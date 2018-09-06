@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Monotonicity Failure Under IRV</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+
+<meta name="description" content="Turn your analyses into high quality documents, reports, presentations and dashboards with R Markdown. Use a productive notebook interface to weave together narrative text and code to produce elegantly formatted output. Use multiple languages including R, Python, and SQL. R Markdown supports a reproducible workflow for dozens of static and dynamic output formats including HTML, PDF, MS Word, Beamer, HTML5 slides, Tufte-style handouts, books, dashboards, shiny applications, scientific articles, websites, and more." />
+
+<link rel="icon" type="image/png" href="images/favicon.png" />
+
+<script type="text/javascript" src="js/redirect.js"></script>
+<script type="text/javascript" src="js/rmarkdown.js"></script>
+<script type="text/javascript" src="js/ga.js"></script>
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="css\rmarkdown.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div id="rStudioHeader" class="alwaysShrunk">
+  <div class="innards bandContent">
+    <div>
+      <a class="productName" href="index.html">Joe Ornstein</a>
+    </div>
+
+    <div id="menu">
+      <div id="menuToggler"></div>
+      <div id="menuItems">
+        <a class="menuItem" href="research.html">Research</a>
+        <a class="menuItem" href="teaching.html">Teaching</a>
+        <a class="menuItem" href="CV/Ornstein_CV.pdf">CV</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+#TOC {
+  margin-left: 50px;
+  margin-top: 90px;
+}
+</style>
+
+<script type="text/javascript">
+$(".main-container").removeClass("main-container").removeClass("container-fluid").addClass("footerPushDown");
+</script>
+
+
+<div id="pageContent" class="standardPadding">
+  <div class="articleBandContent">
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Monotonicity Failure Under IRV</h1>
+
+</div>
+
+
+<p>Ornstein, Joseph T. and Norman, Robert Z. “Frequency of Monotonicity Failure Under Instant Runoff Voting: estimates based on a spatial model of elections” <em>Public Choice</em> 161:1-9.</p>
+<ul>
+<li><a href="papers/Ornstein-Norman-2014.pdf">PDF</a></li>
+<li><a href="papers/VotingModel.nlogo">NetLogo Code</a></li>
+<li><a href="papers/Ornstein-Norman-comments.pdf">Post-Publication Comments by Jack Nagel</a></li>
+</ul>
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>Instant Runoff Voting (IRV) is an alternative electoral system where voters rank candidates in order of preference, and candidates are successively eliminated until one receives a majority of first-place votes. Although it has many appealing properties, it suffers from a defect called <strong>nonmonotonicity</strong>. In some cases, increasing support for a winning candidate can cause that candidate to lose, and decreasing support for a losing candidate can cause that candidate to win.</p>
+<p>An open question, however, is how <em>likely</em> nonmonotonic outcomes would be in practice under IRV. In this paper, Bob Norman and I detail the conditions under which an election profile violates monotonicity, and use a simulated spatial model of elections to assess how frequently those conditions should occur. We conclude that IRV is particularly suspectible to monotonicity failure in threeway competitive elections, exhibiting a monotonicity failure rate of about 15% on average.</p>
+</div>
+<div id="an-example-of-nonmonotonicity" class="section level2">
+<h2>An Example of Nonmonotonicity</h2>
+<p>Here’s an example of a monotonicity failure. In 2009, the city of Burlington, VT held a mayoral election using IRV. There were three strong candidates in the running: the Progressive incumbent, a Democrat, and a Republican. The actual ranked choice votes looked like this:</p>
+<div class="figure">
+<img src="images/OrnsteinNormanTable1.png" />
+
+</div>
+<p>Under IRV, no candidate received a majority in the first round of voting, so candidates were eliminated until someone was. In this case, the Democratic candidate received the fewest first place votes, so she was eliminated and her support redistributed according to the voters rankings. After this redistribution, the Progressive received a majority of first-place votes.</p>
+<p>But suppose that Burlington, VT were <em>more</em> progressive than it actually was in 2009. Shifting 750 votes from the Republican to the Progressive yields the following profile:</p>
+<div class="figure">
+<img src="images/OrnsteinNormanTable2.png" />
+
+</div>
+<p>In a monotonic voting system, the Progressive would still win. But under IRV, the Progressive loses! The Republican has the fewest first-place votes in the first round, so he is eliminated, and his votes are redistributed mostly to the Democrat. In the final round, the Democrat receives a majority, and wins.</p>
+</div>
+<div id="the-model" class="section level2">
+<h2>The Model</h2>
+<p>In the paper, we show mathematically that monotonicity failures will occur under IRV when the following two conditions hold:</p>
+<ol style="list-style-type: decimal">
+<li>The election is threeway competitive (three candidates receive at least 25% of the vote).</li>
+<li>The Condorcet winner does not win (or there is no Condorcet winner).</li>
+</ol>
+<p>We then develop an agent-based computational model to assess how likely those conditions are to hold in practice. Voters are represented as points in a two-dimensional issue space, and candidates propose platforms in that space, attempting to gather the most votes. In the simulation, monotonicity failure becomes more common in threeway competitive elections, regardless of the underlying distribution of political opinion.</p>
+<div class="figure">
+<img src="images/OrnsteinNormanFigure5.png" alt="Figure 5 from Ornstein &amp; Norman (2014)" />
+<p class="caption">Figure 5 from Ornstein &amp; Norman (2014)</p>
+</div>
+</div>
+
+  </div> <!-- articleBandContent -->
+</div> <!-- pageContent -->
+
+<div id="rStudioFooter" class="band full">
+<div class="bandContent">
+  <div id="copyright">© Copyright 2018 Joseph T. Ornstein</div>
+  <div id="logos">
+    <a href="https://twitter.com/joeornstein" class="footerLogo twitter"></a>
+    <a href="https://github.com/joeornstein" class="footerLogo gitHub"></a>
+    <a href="https://scholar.google.com/citations?user=HXC86u8AAAAJ&hl=en" class="footerLogo googleScholar"></a>
+  </div>
+</div>
+</div>
+
+<!-- bizible -->
+<script type="text/javascript" src="//cdn.bizible.com/scripts/bizible.js" async=""></script>
+
+<!-- disqus -->
+<div id="disqus_thread" class="standardPadding"></div>
+<script type="text/javascript" src="js/disqus.js"></script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<script type="text/javascript" src="js/external-links.js"></script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+
+</body>
+</html>
