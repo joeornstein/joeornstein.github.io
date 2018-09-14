@@ -688,7 +688,7 @@ table.table td a:only-child:active {
 @media screen and (max-width: 1200px){
 
   .band .imageOne {
-    width: 490px;
+    width: 470px;
     bottom: -50px;
     left: -25px;
   }
@@ -770,7 +770,7 @@ table.table td a:only-child:active {
 
   .band .imageOne {
     position: relative;
-    max-width: 120%;
+    max-width: 100%;
     bottom: auto;
     left: auto;
     top: -50px;
