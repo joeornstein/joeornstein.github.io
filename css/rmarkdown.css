@@ -52,9 +52,9 @@ p {
 
 .band .imageOne {
   position: absolute;
-  left: 30px;
-  bottom: 20px;
-  width: 560px;
+  left: 140px;
+  bottom: 60px;
+  width: 290px;
   height: auto;
 
   z-index: 0;
@@ -63,9 +63,9 @@ p {
 .band .imageTwo {
   position: absolute;
   top: 80px;
-  bottom: 80px;
-  right: 30px;
-  width: 650px;
+  bottom: 75px;
+  right: 70px;
+  width: 580px;
   height: auto;
   z-index: 0;
 }
@@ -437,6 +437,11 @@ p {
   background-color: #f8f8f8;
 }
 
+#homeContent .band.slategray {
+  background-color: lightslategray;
+  color: #fff;
+}
+
 #homeContent .band.blue {
   background-color: #75aadb;
   color: #fff;
@@ -502,13 +507,13 @@ p {
 
 #rStudioFooter.band {
 
-  background-color: #75aadb;
+  background-color: lightslategray;
   padding: 30px 5%;
 
   color: #fff;
 
   font-weight: 300;
-  font-size: 12px;
+  font-size: 15px;
 
   line-height: 25px;
 }
@@ -683,7 +688,7 @@ table.table td a:only-child:active {
 @media screen and (max-width: 1200px){
 
   .band .imageOne {
-    width: 490px;
+    width: 470px;
     bottom: -50px;
     left: -25px;
   }
@@ -765,7 +770,7 @@ table.table td a:only-child:active {
 
   .band .imageOne {
     position: relative;
-    max-width: 120%;
+    max-width: 100%;
     bottom: auto;
     left: auto;
     top: -50px;
