@@ -2,10 +2,11 @@
 title: "The SRP Package"
 author: "Joseph T. Ornstein"
 date: "`r Sys.Date()`"
-output:   
-  html_document:
-    toc: false
-    toc_float: false
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{The SRP Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 bibliography: refs.bib
 ---
 
@@ -29,8 +30,8 @@ Suppose we want to know how some public opinion varies by subnational unit. But 
 The `SRP` package is currently available on GitHub. You can install it using the `devtools` package.
 
 ```{r installation}
-#devtools::install_github('SRP', username = 'joeornstein')
-#library(SRP)
+#devtools::install_github('SRP', username = 'jornstein')
+library(SRP)
 ```
 
 ## The Data
@@ -39,7 +40,7 @@ The dataset (`trainset`) contains individual-level data on public opinion and de
 
 
 ```{r data, message=FALSE}
-trainset <- read_csv('data/vignetteData.csv')
+trainset <- SRP::vignetteData
 
 trainset
 ```
@@ -79,7 +80,7 @@ model1 <- lmer(y ~ (1|x1) + (1|x2) + unit_covariate + (1|unit), data = trainset)
 For the second stage, we need a **poststratification frame**. For the `SRP` package, it should come in the following format.
 
 ```{r PSFrame, message=FALSE}
-PSFrame <- read_csv('data/vignettePSFrame.csv')
+PSFrame <- SRP::vignettePSFrame
 
 PSFrame
 ```
@@ -92,8 +93,6 @@ Once we have both pieces of information -- the predictions and the frequencies -
  * `freq`: the empirical frequency for each cell.
 
 ```{r poststratification1, message=FALSE}
-source('R/poststratificationFunctions.r') #TODO: When this is a package, just make this a library() call
-
 pred <- predict(model1, PSFrame, allow.new.levels = T)
 
 mrp_estimates <- poststratify(pred, PSFrame)
@@ -109,7 +108,6 @@ Stacked regression and poststratification (SRP) proceeds in the same fashion as 
 To start, we must tune and estimate each of the component models separately. The following code estimates a hierarchical linear regression model, LASSO, random forest, KNN, and gradient boosting. 
 
 ```{r machine learning, message=FALSE}
-source('R/stackingFunctions.r') #TODO: When this is a package, just make this a library() call
 library(glmnet)
 library(ranger)
 library(kknn)
@@ -211,7 +209,7 @@ head(srp_estimates)
 Because the data came from a simulation, we also know the true unit-level means. Let's see how our estimates compare. 
 
 ```{r plots, echo=FALSE, message=FALSE}
-true_means <- read_csv('data/vignetteTruth.csv')
+true_means <- SRP::vignetteTruth
 
 mrp_estimates %<>% set_colnames(c('unit','mrp_estimate'))
 srp_estimates %<>% set_colnames(c('unit','srp_estimate'))
@@ -251,8 +249,8 @@ The `SRP` package provides a function that can generate synthetic poststratifica
 Suppose you have two (non-synthetic) frequency distributions describing the same population.
 
 ```{r PSFrames, echo=TRUE, message=FALSE}
-PSFrame1 <- read_csv('data/race.csv')
-PSFrame2 <- read_csv('data/education.csv')
+PSFrame1 <- SRP::race
+PSFrame2 <- SRP::education
 
 PSFrame1
 PSFrame2
@@ -269,7 +267,7 @@ PSFrame
 If you want to generate a synthetic poststratification frame from more than one marginal distribution, simply repeat the process.
 
 ```{r getSynthetic2, echo=TRUE, message=FALSE}
-PSFrame3 <- read_csv('data/sex.csv')
+PSFrame3 <- SRP::sex
 
 PSFrame3
 

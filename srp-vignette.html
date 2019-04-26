@@ -179,13 +179,13 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 <div id="installation" class="section level2">
 <h2>Installation</h2>
 <p>The <code>SRP</code> package is currently available on GitHub. You can install it using the <code>devtools</code> package.</p>
-<pre class="r"><code>#devtools::install_github(&#39;SRP&#39;, username = &#39;joeornstein&#39;)
-#library(SRP)</code></pre>
+<pre class="r"><code>#devtools::install_github(&#39;SRP&#39;, username = &#39;jornstein&#39;)
+library(SRP)</code></pre>
 </div>
 <div id="the-data" class="section level2">
 <h2>The Data</h2>
 <p>The dataset (<code>trainset</code>) contains individual-level data on public opinion and demographic characteristics. It is simulated data, generated from the Monte Carlo in <span class="citation">Ornstein (2019)</span>. It contains the following variables:</p>
-<pre class="r"><code>trainset &lt;- read_csv(&#39;data/vignetteData.csv&#39;)
+<pre class="r"><code>trainset &lt;- SRP::vignetteData
 
 trainset
 #&gt; # A tibble: 3,000 x 8
@@ -240,7 +240,7 @@ disag_estimates
 
 model1 &lt;- lmer(y ~ (1|x1) + (1|x2) + unit_covariate + (1|unit), data = trainset)</code></pre>
 <p>For the second stage, we need a <strong>poststratification frame</strong>. For the <code>SRP</code> package, it should come in the following format.</p>
-<pre class="r"><code>PSFrame &lt;- read_csv(&#39;data/vignettePSFrame.csv&#39;)
+<pre class="r"><code>PSFrame &lt;- SRP::vignettePSFrame
 
 PSFrame
 #&gt; # A tibble: 3,200 x 7
@@ -263,9 +263,7 @@ PSFrame
 <li><code>unit</code>: the identity of the subnational unit.</li>
 <li><code>freq</code>: the empirical frequency for each cell.</li>
 </ul>
-<pre class="r"><code>source(&#39;R/poststratificationFunctions.r&#39;) #TODO: When this is a package, just make this a library() call
-
-pred &lt;- predict(model1, PSFrame, allow.new.levels = T)
+<pre class="r"><code>pred &lt;- predict(model1, PSFrame, allow.new.levels = T)
 
 mrp_estimates &lt;- poststratify(pred, PSFrame)
 
@@ -289,8 +287,7 @@ mrp_estimates
 <h2>SRP</h2>
 <p>Stacked regression and poststratification (SRP) proceeds in the same fashion as MRP, but the first-stage predictions come from an ensemble model average generated through stacking. See <span class="citation">Ornstein (2019)</span> for technical details.</p>
 <p>To start, we must tune and estimate each of the component models separately. The following code estimates a hierarchical linear regression model, LASSO, random forest, KNN, and gradient boosting.</p>
-<pre class="r"><code>source(&#39;R/stackingFunctions.r&#39;) #TODO: When this is a package, just make this a library() call
-library(glmnet)
+<pre class="r"><code>library(glmnet)
 library(ranger)
 library(kknn)
 library(xgboost)
@@ -354,7 +351,7 @@ gbmModel &lt;- xgboost(data = dtrain,
                                 nfolds = 5)
 
 stackWeights %&gt;% round(3)
-#&gt; [1] 0.333 0.000 0.158 0.000 0.509</code></pre>
+#&gt; [1] 0.320 0.000 0.127 0.000 0.552</code></pre>
 <p>Then we can poststratify as before.</p>
 <pre class="r"><code>PSFrame_lasso &lt;- cleanDataLASSO(PSFrame, lasso_vars = lasso_vars, lasso_factors = lasso_factors,
                                 new_vars_lasso = colnames(trainset_lasso))$trainset
@@ -376,12 +373,12 @@ head(srp_estimates)
 #&gt; # A tibble: 6 x 2
 #&gt;    unit poststratifiedEstimate
 #&gt;   &lt;int&gt;                  &lt;dbl&gt;
-#&gt; 1     1                 -0.344
-#&gt; 2     2                  0.754
-#&gt; 3     3                 -3.10 
-#&gt; 4     4                 -2.88 
-#&gt; 5     5                  0.186
-#&gt; 6     6                 -2.11</code></pre>
+#&gt; 1     1                 -0.214
+#&gt; 2     2                  0.802
+#&gt; 3     3                 -3.17 
+#&gt; 4     4                 -2.96 
+#&gt; 5     5                  0.269
+#&gt; 6     6                 -2.12</code></pre>
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>
@@ -396,8 +393,8 @@ head(srp_estimates)
 <div id="using-the-function" class="section level3">
 <h3>Using the Function</h3>
 <p>Suppose you have two (non-synthetic) frequency distributions describing the same population.</p>
-<pre class="r"><code>PSFrame1 &lt;- read_csv(&#39;data/race.csv&#39;)
-PSFrame2 &lt;- read_csv(&#39;data/education.csv&#39;)
+<pre class="r"><code>PSFrame1 &lt;- SRP::race
+PSFrame2 &lt;- SRP::education
 
 PSFrame1
 #&gt; # A tibble: 8 x 3
@@ -440,7 +437,7 @@ PSFrame
 #&gt; 10     1     4         1  100 
 #&gt; # ... with 14 more rows</code></pre>
 <p>If you want to generate a synthetic poststratification frame from more than one marginal distribution, simply repeat the process.</p>
-<pre class="r"><code>PSFrame3 &lt;- read_csv(&#39;data/sex.csv&#39;)
+<pre class="r"><code>PSFrame3 &lt;- SRP::sex
 
 PSFrame3
 #&gt; # A tibble: 4 x 3
