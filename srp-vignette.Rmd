@@ -166,7 +166,7 @@ gbmModel <- xgboost(data = dtrain,
 
 Next, we will use the `getStackWeights()` function to estimate the optimal ensemble model average weights using 5-fold cross-validation.
 
-```{r stacking, message=FALSE}
+```{r stacking, message=FALSE, warning=FALSE}
 stackWeights <- getStackWeights(trainset = trainset,
                                 hlmFormula = hlmFormula,
                                 lasso_vars = lasso_vars,
