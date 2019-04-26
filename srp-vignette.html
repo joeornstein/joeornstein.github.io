@@ -179,7 +179,7 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 <div id="installation" class="section level2">
 <h2>Installation</h2>
 <p>The <code>SRP</code> package is currently available on GitHub. You can install it using the <code>devtools</code> package.</p>
-<pre class="r"><code>#devtools::install_github(&#39;SRP&#39;, username = &#39;jornstein&#39;)
+<pre class="r"><code>devtools::install_github(&#39;joeornstein/SRP&#39;)
 library(SRP)</code></pre>
 </div>
 <div id="the-data" class="section level2">
@@ -237,6 +237,7 @@ disag_estimates
 </ol>
 <p>We can estimate the first-stage regression using the <code>lme4</code> package.</p>
 <pre class="r"><code>library(lme4)
+#&gt; Warning: package &#39;lme4&#39; was built under R version 3.5.3
 
 model1 &lt;- lmer(y ~ (1|x1) + (1|x2) + unit_covariate + (1|unit), data = trainset)</code></pre>
 <p>For the second stage, we need a <strong>poststratification frame</strong>. For the <code>SRP</code> package, it should come in the following format.</p>
@@ -289,9 +290,12 @@ mrp_estimates
 <p>To start, we must tune and estimate each of the component models separately. The following code estimates a hierarchical linear regression model, LASSO, random forest, KNN, and gradient boosting.</p>
 <pre class="r"><code>library(glmnet)
 library(ranger)
+#&gt; Warning: package &#39;ranger&#39; was built under R version 3.5.3
 library(kknn)
 library(xgboost)
+#&gt; Warning: package &#39;xgboost&#39; was built under R version 3.5.3
 library(caret)
+#&gt; Warning: package &#39;caret&#39; was built under R version 3.5.3
 
 
 #Estimate HLM
@@ -349,9 +353,12 @@ gbmModel &lt;- xgboost(data = dtrain,
                                 gbm_vars = gbm_vars, gbm_factors = NULL, 
                                 gbm_params = list(eta = 0.02), gbm_tune = xgb.tune, 
                                 nfolds = 5)
+#&gt; Warning in checkConv(attr(opt, &quot;derivs&quot;), opt$par, ctrl = control
+#&gt; $checkConv, : Model failed to converge with max|grad| = 0.0152649 (tol =
+#&gt; 0.002, component 1)
 
 stackWeights %&gt;% round(3)
-#&gt; [1] 0.320 0.000 0.127 0.000 0.552</code></pre>
+#&gt; [1] 0.299 0.000 0.139 0.000 0.561</code></pre>
 <p>Then we can poststratify as before.</p>
 <pre class="r"><code>PSFrame_lasso &lt;- cleanDataLASSO(PSFrame, lasso_vars = lasso_vars, lasso_factors = lasso_factors,
                                 new_vars_lasso = colnames(trainset_lasso))$trainset
@@ -373,12 +380,12 @@ head(srp_estimates)
 #&gt; # A tibble: 6 x 2
 #&gt;    unit poststratifiedEstimate
 #&gt;   &lt;int&gt;                  &lt;dbl&gt;
-#&gt; 1     1                 -0.214
-#&gt; 2     2                  0.802
-#&gt; 3     3                 -3.17 
-#&gt; 4     4                 -2.96 
-#&gt; 5     5                  0.269
-#&gt; 6     6                 -2.12</code></pre>
+#&gt; 1     1                 -0.134
+#&gt; 2     2                  0.858
+#&gt; 3     3                 -3.14 
+#&gt; 4     4                 -2.93 
+#&gt; 5     5                  0.325
+#&gt; 6     6                 -2.09</code></pre>
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>
