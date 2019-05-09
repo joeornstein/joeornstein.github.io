@@ -67,6 +67,13 @@ Papers on agent-based modeling, spatial econometrics, and local public opinion e
    
       <div class="galleryItems">
       
+      
+        <div class="galleryItem">
+          <a href="SRP.html"><img class="galleryItemImage" src="images/BHresults.png"/></a>
+          <a href="SRP.html" class="galleryItemLabel">Stacked Regression and Poststratification</a>
+          <div class="galleryItemDescription">Working Paper.</div>
+        </div>
+      
         <div class="galleryItem">
           <a href="papers/Ornstein-Hammond2017.pdf"><img class="galleryItemImage" src="papers/jqc-fig8.png"/></a>
           <a href="papers/Ornstein-Hammond2017.pdf" class="galleryItemLabel">The Burglary Boost: A Note on Detecting Contagion Using the Knox Test</a>
@@ -77,12 +84,6 @@ Papers on agent-based modeling, spatial econometrics, and local public opinion e
           <a href="MonotonicityFailure.html"><img class="galleryItemImage" src="papers/public-choice-fig5.png"/></a>
           <a href="MonotonicityFailure.html" class="galleryItemLabel">Frequency of monotonicity failure under Instant Runoff Voting: estimates based on a spatial model of elections</a>
           <div class="galleryItemDescription">Public Choice, 2014, with Bob Norman.</div>
-        </div>
-        
-        <div class="galleryItem">
-          <a href="papers/MLP.pdf"><img class="galleryItemImage" src="papers/MLP-stateIllustrative.png"/></a>
-          <a href="papers/MLP.pdf" class="galleryItemLabel">Machine Learning and Poststratification</a>
-          <div class="galleryItemDescription">Working Paper.</div>
         </div>
         
       

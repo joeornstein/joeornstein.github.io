@@ -9,9 +9,10 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="Joseph T. Ornstein" />
 
 
-<title>Research</title>
+<title>Stacked Regression and Poststratification</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -226,145 +227,36 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 <div id="pageContent" class="standardPadding">
   <div class="articleBandContent">
 
-<style type="text/css">
-.title {
-  display: none;
-}
-#disqus_thread {
-  display: none;
-}
-</style>
-
 <div class="fluid-row" id="header">
 
 
 
-<h1 class="title toc-ignore">Research</h1>
+<h1 class="title toc-ignore">Stacked Regression and Poststratification</h1>
+<h4 class="author">Joseph T. Ornstein</h4>
+<h4 class="date">5/9/2019</h4>
 
 </div>
 
 
-
-
-<div class="band full">
-  <div class="bandContent pageTitle">Research</div>
-  <div class="bandContent pageIntro">A gallery of my published and ongoing research projects.</div>
+<p>Ornstein, Joseph T. “Stacked Regression and Poststratification” <em>Working Paper</em>.</p>
+<ul>
+<li><a href="papers/SRP.pdf">PDF</a></li>
+<li><a href="papers/SRP_appendix.pdf">Supplementary Materials</a></li>
+<li><a href="srp-vignette.html">R Package</a></li>
+</ul>
+<div id="abstract" class="section level2">
+<h2>Abstract</h2>
+<p>I develop a procedure for estimating local-area public opinion called stacked regression and poststratification (SRP), a generalization of classical multilevel regression and poststratification (MRP). This procedure employs a diverse ensemble of predictive models – including multilevel regression, LASSO, k-nearest neighbors, random forest, and gradient boosting – to improve the cross-validated fit of the first-stage predictions. In a Monte Carlo simulation, SRP significantly outperforms MRP when there are deep interactions in the data generating process, without requiring the researcher to specify a complex parametric model in advance. In an empirical application, I show that SRP produces superior local public opinion estimates on a broad range of issue areas, particularly when trained on large datasets.</p>
 </div>
-
-
-<div id="urban-political-economy" class="section level3">
-<h3>Urban Political Economy</h3>
-<p>Papers on land use policy, public spending, and segregation in US cities.</p>
-
-
-<div class="band full">
-
-  <div class="bandContent gallerySection">
-    
-    <div class="galleryItems">
-      
-      <div class="galleryItem">
-        <a href="ElectionTiming.html"><img class="galleryItemImage" src="papers/election-timing-figure.png"/></a>
-        <a href="ElectionTiming.html" class="galleryItemLabel">Municipal Election Timing and the Politics of Urban Growth</a>
-        <div class="galleryItemDescription">Working Paper.</div>
-      </div>
-      
-      <div class="galleryItem">
-        <a href="papers/ornstein-zone-defense.pdf"><img class="galleryItemImage" src="papers/zone-defense-fig1.png"/></a>
-        <a href="papers/ornstein-zone-defense.pdf" class="galleryItemLabel">Zone Defense: Why Liberal Cities Build Fewer Houses</a>
-        <div class="galleryItemDescription">Working Paper.</div>
-      </div>
-      
-      <div class="galleryItem">
-        <a href="papers/dcsm.pdf"><img class="galleryItemImage" src="papers/dcsm-figure.png"/></a>
-        <a href="papers/dcsm.pdf" class="galleryItemLabel">Diverse Cities Spend More</a>
-        <div class="galleryItemDescription">Working Paper.</div>
-      </div>
-      
-      
-    </div>
-      
-  </div>
-      
+<div id="monte-carlo-analysis" class="section level2">
+<h2>Monte Carlo Analysis</h2>
+<p>When multiplicative interaction effects are large – and therefore a linear-additive model is misspecified – SRP produces significant improvements in predictive accuracy.</p>
+<p><img src="images/representativeMC.png" /></p>
 </div>
-      
-
-</div>
-<div id="research-methods" class="section level3">
-<h3>Research Methods</h3>
-<p>Papers on agent-based modeling, spatial econometrics, and local public opinion estimation.</p>
-      
-
-<div class="band full">
-      
-   <div class="bandContent gallerySection">
-   
-      <div class="galleryItems">
-      
-      
-        <div class="galleryItem">
-          <a href="SRP.html"><img class="galleryItemImage" src="images/BHresults.png"/></a>
-          <a href="SRP.html" class="galleryItemLabel">Stacked Regression and Poststratification</a>
-          <div class="galleryItemDescription">Working Paper.</div>
-        </div>
-      
-        <div class="galleryItem">
-          <a href="papers/Ornstein-Hammond2017.pdf"><img class="galleryItemImage" src="papers/jqc-fig8.png"/></a>
-          <a href="papers/Ornstein-Hammond2017.pdf" class="galleryItemLabel">The Burglary Boost: A Note on Detecting Contagion Using the Knox Test</a>
-          <div class="galleryItemDescription">Journal of Quantitative Criminology, 2017, with Ross A. Hammond.</div>
-        </div>
-        
-        <div class="galleryItem">
-          <a href="MonotonicityFailure.html"><img class="galleryItemImage" src="papers/public-choice-fig5.png"/></a>
-          <a href="MonotonicityFailure.html" class="galleryItemLabel">Frequency of monotonicity failure under Instant Runoff Voting: estimates based on a spatial model of elections</a>
-          <div class="galleryItemDescription">Public Choice, 2014, with Bob Norman.</div>
-        </div>
-        
-      
-      </div>
-      
-  </div>
-  
-</div>
-
-
-
-
-</div>
-<div id="public-health" class="section level3">
-<h3>Public Health</h3>
-<p>Computational modeling to inform public health policymaking.</p>
-      
-
-<div class="band full">
-      
-   <div class="bandContent gallerySection">
-   
-      <div class="galleryItems">
-      
-        <div class="galleryItem">
-          <a href="papers/Hammond_et_al-2014-Annals_of_the_New_York_Academy_of_Sciences.pdf"><img class="galleryItemImage" src="papers/Hammond_et_al-2014-Annals_of_the_New_York_Academy_of_Sciences.png"/></a>
-          <a href="papers/Hammond_et_al-2014-Annals_of_the_New_York_Academy_of_Sciences.pdf" class="galleryItemLabel">A model of social influence on body mass index</a>
-          <div class="galleryItemDescription">Annals of the New York Academy of Sciences, 2014, with Ross A. Hammond.</div>
-        </div>
-        
-        <div class="galleryItem">
-          <a href="papers/Hammond-2012.pdf"><img class="galleryItemImage" src="papers/Hammond-2012.png"/></a>
-          <a href="papers/Hammond-2012.pdf" class="galleryItemLabel">A model of food reward learning with dynamic reward exposure</a>
-          <div class="galleryItemDescription">Frontiers in Computational Neuroscience, 2012, with Ross A. Hammond, et al.</div>
-        </div>
-        
-        
-      
-      </div>
-      
-  </div>
-  
-</div>
-
-
-
-
+<div id="empirical-application" class="section level2">
+<h2>Empirical Application</h2>
+<p>SRP outperforms classical MRP across 89 different public opinion issues (data from Buttice &amp; Highton, 2013), particularly when trained on large datasets.</p>
+<p><img src="images/BHresults.png" /></p>
 </div>
 
   </div> <!-- articleBandContent -->

@@ -1,0 +1,32 @@
+---
+title: "Stacked Regression and Poststratification"
+author: "Joseph T. Ornstein"
+date: "5/9/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Ornstein, Joseph T. "Stacked Regression and Poststratification" *Working Paper*.
+
+- [PDF](papers/SRP.pdf)
+- [Supplementary Materials](papers/SRP_appendix.pdf)
+- [R Package](srp-vignette.html)
+
+## Abstract
+
+I develop a procedure for estimating local-area public opinion called stacked regression and poststratification (SRP), a generalization of classical multilevel regression and poststratification (MRP). This procedure employs a diverse ensemble of predictive models -- including multilevel regression, LASSO, k-nearest neighbors, random forest, and gradient boosting -- to improve the cross-validated fit of the first-stage predictions. In a Monte Carlo simulation, SRP significantly outperforms MRP when there are deep interactions in the data generating process, without requiring the researcher to specify a complex parametric model in advance. In an empirical application, I show that SRP produces superior local public opinion estimates on a broad range of issue areas, particularly when trained on large datasets. 
+
+## Monte Carlo Analysis
+
+When multiplicative interaction effects are large -- and therefore a linear-additive model is misspecified -- SRP produces significant improvements in predictive accuracy. 
+
+![](images/representativeMC.png) 
+ 
+## Empirical Application
+ 
+SRP outperforms classical MRP across 89 different public opinion issues (data from Buttice & Highton, 2013), particularly when trained on large datasets.
+
+![](images/BHresults.png) 
