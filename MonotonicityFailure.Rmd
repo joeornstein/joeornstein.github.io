@@ -3,7 +3,7 @@ title: "Monotonicity Failure Under IRV"
 output: 
   html_document:
     highlight: tango
-    toc: true
+    toc: false
     toc_float: 
       collapsed: false
 ---

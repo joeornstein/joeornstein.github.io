@@ -3,7 +3,7 @@ title: "Election Timing and Land Use Policy"
 output: 
   html_document:
     highlight: tango
-    toc: true
+    toc: false
     toc_float: 
       collapsed: false
 ---

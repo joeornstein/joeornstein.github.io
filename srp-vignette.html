@@ -11,7 +11,7 @@
 
 <meta name="author" content="Joseph T. Ornstein" />
 
-<meta name="date" content="2019-04-26" />
+<meta name="date" content="2019-05-23" />
 
 <title>The SRP Package</title>
 
@@ -27,7 +27,7 @@
 
 <meta name="description" content="Joe Ornstein's Personal Website" />
 
-<link rel="icon" type="image/png" href="images/washu-seal.png" />
+<link rel="icon" type="image/png" href="images/Shield_open_pos200-01.png" />
 
 <script type="text/javascript" src="js/redirect.js"></script>
 <script type="text/javascript" src="js/rmarkdown.js"></script>
@@ -234,7 +234,7 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 
 <h1 class="title toc-ignore">The SRP Package</h1>
 <h4 class="author">Joseph T. Ornstein</h4>
-<h4 class="date">2019-04-26</h4>
+<h4 class="date">2019-05-23</h4>
 
 </div>
 
@@ -419,7 +419,7 @@ gbmModel &lt;- xgboost(data = dtrain,
                                 nfolds = 5)
 
 stackWeights %&gt;% round(3)
-#&gt; [1] 0.321 0.000 0.106 0.000 0.572</code></pre>
+#&gt; [1] 0.265 0.000 0.114 0.000 0.621</code></pre>
 <p>Then we can poststratify as before.</p>
 <pre class="r"><code>PSFrame_lasso &lt;- cleanDataLASSO(PSFrame, lasso_vars = lasso_vars, lasso_factors = lasso_factors,
                                 new_vars_lasso = colnames(trainset_lasso))$trainset
@@ -441,12 +441,12 @@ head(srp_estimates)
 #&gt; # A tibble: 6 x 2
 #&gt;    unit poststratifiedEstimate
 #&gt;   &lt;int&gt;                  &lt;dbl&gt;
-#&gt; 1     1                 -0.178
-#&gt; 2     2                  0.803
-#&gt; 3     3                 -3.15 
-#&gt; 4     4                 -2.96 
-#&gt; 5     5                  0.257
-#&gt; 6     6                 -2.11</code></pre>
+#&gt; 1     1                 0.0922
+#&gt; 2     2                 0.966 
+#&gt; 3     3                -3.14  
+#&gt; 4     4                -2.96  
+#&gt; 5     5                 0.454 
+#&gt; 6     6                -2.03</code></pre>
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>
