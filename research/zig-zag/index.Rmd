@@ -1,10 +1,12 @@
 ---
-title: 'Zig Zag: When Noisy Regression Discontinuities Yield Exaggerated Claims'
+title: 'Zig Zag'
 author: "Joseph T. Ornstein"
 date: "7/12/2019"
-output: html_document
+output: 
+  html_document:
+    highlight: tango
 includes:
-      before_body: [include_header.html, include_header_navpage.html]
+      before_body: [../../include_header.html, ../../include_header_navpage.html]
 ---
 
 
@@ -13,8 +15,15 @@ includes:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Ornstein, Joseph T. "Municipal Election Timing and the Politics of Urban Growth" *Working Paper*.
+Ornstein, Joseph T. (2019) "Zig Zag: When Noisy Regression Discontinuities Yield Exaggerated Claims" *Working Paper*.
 
 - [PDF](Zig_Zag.pdf)
 - [rdviz R Package](../../rdviz.html)
 - [Poster](ornstein_polmeth2019.pdf)
+
+## Abstract
+
+In applied settings, regression discontinuity (RD) designs often suffer from noisy datasets and low power. When combined with a statistical significance filter, this tends to produce exaggerated causal effect estimates, typified by implausibly large slope and/or concavity parameters. In this paper, I illustrate the problem through a Monte Carlo simulation and two empirical illustrations from the published literature. I propose a method for estimating the magnitude of the distortion from the statistical significance filter and modified guidelines for the graphical display of RD results.
+
+
+ ![](ZigZagAndSquiggleFig.png) 
