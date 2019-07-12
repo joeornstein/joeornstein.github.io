@@ -15,9 +15,8 @@ $("#pageContent").removeClass("standardPadding");
 
 <!--html_preserve-->
 
-
 <div id="homeContent">
-  
+
   <div class="band full slategray first rightText">
     <div class="bandContent vCenter">
       <div class="blurb">
@@ -36,12 +35,10 @@ $("#pageContent").removeClass("standardPadding");
     </div>
     <img class="imageTwo" src="images/tokyo-cropped.png"/>
   </div>
-
   
 </div>
+  
+<!--/html_preserve--> 
 
-
-
-<!--/html_preserve-->
 
 ![](images/New York.jpg)

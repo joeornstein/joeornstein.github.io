@@ -1,0 +1,20 @@
+---
+title: 'Zig Zag: When Noisy Regression Discontinuities Yield Exaggerated Claims'
+author: "Joseph T. Ornstein"
+date: "7/12/2019"
+output: html_document
+includes:
+      before_body: [include_header.html, include_header_navpage.html]
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Ornstein, Joseph T. "Municipal Election Timing and the Politics of Urban Growth" *Working Paper*.
+
+- [PDF](Zig_Zag.pdf)
+- [rdviz R Package](../../rdviz.html)
+- [Poster](ornstein_polmeth2019.pdf)

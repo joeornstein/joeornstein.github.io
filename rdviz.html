@@ -11,7 +11,7 @@
 
 
 
-<title>Joe Ornstein</title>
+<title>rdviz</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -226,55 +226,31 @@ $(".main-container").removeClass("main-container").removeClass("container-fluid"
 <div id="pageContent" class="standardPadding">
   <div class="articleBandContent">
 
-<style type="text/css">
-.title {
-  display: none;
-}
-#disqus_thread {
-  display: none;
-}
-</style>
-
 <div class="fluid-row" id="header">
 
 
 
-<h1 class="title toc-ignore">Joe Ornstein</h1>
+<h1 class="title toc-ignore">rdviz</h1>
 
 </div>
 
 
-<script type="text/javascript">
-$("#rStudioHeader").removeClass("alwaysShrunk");
-$("#pageContent").removeClass("standardPadding");
-</script>
-
-
-<div id="homeContent">
-
-  <div class="band full slategray first rightText">
-    <div class="bandContent vCenter">
-      <div class="blurb">
-        <div class="tagline">ABOUT ME</div>
-        <div>I am a Postdoctoral Research Associate at Washington University in St. Louis, where I study urban land use policy, computational research methods, and public health. I recently completed my PhD in Political Science at the University of Michigan. </div>
-      </div>
-    </div>
-    <img class="imageOne" src="images/ornstein-head-cropped.jpg"/>
-  </div>
-  
-  <div class="band full gray1 second leftText">
-    <div class="bandContent vCenter">
-      <div class="blurb">
-        <div> I study how city governments provide (or fail to provide) their residents with public goods, affordable housing, and conditions favorable to health and safety. Much of my research employs computational methods like agent-based modeling and machine learning. You can find a gallery of my work <a href="research.html">here</a>. </div>
-      </div>
-    </div>
-    <img class="imageTwo" src="images/tokyo-cropped.png"/>
-  </div>
-  
+<p><code>rdviz</code> is an <code>R</code> package that creates visualizations for regression discontinuity analyses. It builds on the automated bandwidth selection and local polynomial estimation techniques from the <code>rdrobust</code> package (Calonico, Cattaneo, Farrell and Titiunik 2015).</p>
+<div id="installation" class="section level2">
+<h2>Installation</h2>
+<p>The <code>rdviz</code> package is currently available on GitHub. You can install it using the <code>devtools</code> package.</p>
+<pre class="r"><code>devtools::install_github(&#39;joeornstein/rdviz&#39;)
+library(rdviz)</code></pre>
 </div>
-  
-
-<p><img src="images/New%20York.jpg" /></p>
+<div id="example" class="section level2">
+<h2>Example</h2>
+<p>The <code>X</code> and <code>Y</code> variables are randomly generated data included with the package. Here are two examples visualizations using these data, varying the polynomial order.</p>
+<pre class="r"><code>rdviz(x = X, y = Y, c = 0, p = 1)</code></pre>
+<p><img src="rdviz_files/figure-html/setup-1.png" width="672" /></p>
+<pre class="r"><code>
+rdviz(x = X, y = Y, c = 0, p = 2)</code></pre>
+<p><img src="rdviz_files/figure-html/setup-2.png" width="672" /></p>
+</div>
 
   </div> <!-- articleBandContent -->
 </div> <!-- pageContent -->
