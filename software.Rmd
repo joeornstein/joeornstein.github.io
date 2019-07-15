@@ -33,6 +33,12 @@ output:
         <div class="galleryItemDescription">R Package</div>
       </div>
       
+      <div class="galleryItem">
+        <a href="rdviz.html"><img class="galleryItemImage" src="research/zig-zag/ZigZagAndSquiggleFig.png"/></a>
+        <a href="rdviz.html" class="galleryItemLabel">rdviz</a>
+        <div class="galleryItemDescription">R Package</div>
+      </div>
+      
       
       
     </div>

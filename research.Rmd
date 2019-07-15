@@ -73,17 +73,18 @@ Papers on agent-based modeling, spatial econometrics, and local public opinion e
           <a href="SRP.html" class="galleryItemLabel">Stacked Regression and Poststratification</a>
           <div class="galleryItemDescription">Working Paper.</div>
         </div>
+        
+        <div class="galleryItem">
+          <a href="research/zig-zag/index.html"><img class="galleryItemImage" src="research/zig-zag/ZigZagAndSquiggleFig.png"/></a>
+          <a href="research/zig-zag/index.html" class="galleryItemLabel">Zig Zag: When Noisy Regression Discontinuities Yield Exaggerated Claims</a>
+          <div class="galleryItemDescription">Working Paper.</div>
+        </div>
+        
       
         <div class="galleryItem">
           <a href="papers/Ornstein-Hammond2017.pdf"><img class="galleryItemImage" src="papers/jqc-fig8.png"/></a>
           <a href="papers/Ornstein-Hammond2017.pdf" class="galleryItemLabel">The Burglary Boost: A Note on Detecting Contagion Using the Knox Test</a>
           <div class="galleryItemDescription">Journal of Quantitative Criminology, 2017, with Ross A. Hammond.</div>
-        </div>
-        
-        <div class="galleryItem">
-          <a href="MonotonicityFailure.html"><img class="galleryItemImage" src="papers/public-choice-fig5.png"/></a>
-          <a href="MonotonicityFailure.html" class="galleryItemLabel">Frequency of monotonicity failure under Instant Runoff Voting: estimates based on a spatial model of elections</a>
-          <div class="galleryItemDescription">Public Choice, 2014, with Bob Norman.</div>
         </div>
         
       
@@ -131,3 +132,35 @@ Computational modeling to inform public health policymaking.
 
 
 <!--/html_preserve-->
+
+
+### Other
+
+These papers defy categorization, or fall into a category with only one entry.
+
+<!--html_preserve-->      
+
+<div class="band full">
+      
+   <div class="bandContent gallerySection">
+   
+      <div class="galleryItems">
+      
+                <div class="galleryItem">
+          <a href="MonotonicityFailure.html"><img class="galleryItemImage" src="papers/public-choice-fig5.png"/></a>
+          <a href="MonotonicityFailure.html" class="galleryItemLabel">Frequency of monotonicity failure under Instant Runoff Voting: estimates based on a spatial model of elections</a>
+          <div class="galleryItemDescription">Public Choice, 2014, with Bob Norman.</div>
+        </div>
+        
+        
+      
+      </div>
+      
+  </div>
+  
+</div>
+
+
+
+<!--/html_preserve-->
+
