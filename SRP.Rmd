@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Ornstein, Joseph T. "Stacked Regression and Poststratification" *Working Paper*.
+Ornstein, Joseph T. "Stacked Regression and Poststratification" *Political Analysis* (Conditionally Accepted).
 
 - [PDF](papers/SRP.pdf)
 - [Supplementary Materials](papers/SRP_appendix.pdf)
