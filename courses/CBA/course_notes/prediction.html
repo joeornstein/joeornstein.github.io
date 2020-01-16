@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Prediction | Cost-Benefit Analysis</title>
+  <meta name="description" content="These are the collected course notes for my Cost-Benefit Analysis class (Spring 2020)." />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Prediction | Cost-Benefit Analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These are the collected course notes for my Cost-Benefit Analysis class (Spring 2020)." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Prediction | Cost-Benefit Analysis" />
+  
+  <meta name="twitter:description" content="These are the collected course notes for my Cost-Benefit Analysis class (Spring 2020)." />
+  
+
+<meta name="author" content="Joseph T. Ornstein" />
+
+
+<meta name="date" content="2020-01-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="input-secondary-markets.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html"><i class="fa fa-check"></i><b>1</b> Introduction to Cost-Benefit Analysis (CBA)</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#course-outline"><i class="fa fa-check"></i><b>1.1</b> Course Outline</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#course-goals"><i class="fa fa-check"></i><b>1.1.1</b> Course Goals</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#things-you-will-do"><i class="fa fa-check"></i><b>1.1.2</b> Things You Will Do</a></li>
+<li class="chapter" data-level="1.1.3" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#readings"><i class="fa fa-check"></i><b>1.1.3</b> Readings</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#the-ten-steps-of-cba"><i class="fa fa-check"></i><b>1.2</b> The Ten Steps of CBA</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#explain-purpose"><i class="fa fa-check"></i><b>1.2.1</b> Explain Purpose</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#specify-alternatives"><i class="fa fa-check"></i><b>1.2.2</b> Specify Alternatives</a></li>
+<li class="chapter" data-level="1.2.3" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#specify-standing"><i class="fa fa-check"></i><b>1.2.3</b> Specify Standing</a></li>
+<li class="chapter" data-level="1.2.4" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#identify-impacts"><i class="fa fa-check"></i><b>1.2.4</b> Identify Impacts</a></li>
+<li class="chapter" data-level="1.2.5" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#predict"><i class="fa fa-check"></i><b>1.2.5</b> Predict</a></li>
+<li class="chapter" data-level="1.2.6" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#monetize"><i class="fa fa-check"></i><b>1.2.6</b> Monetize</a></li>
+<li class="chapter" data-level="1.2.7" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#discount"><i class="fa fa-check"></i><b>1.2.7</b> Discount</a></li>
+<li class="chapter" data-level="1.2.8" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#compute-npv"><i class="fa fa-check"></i><b>1.2.8</b> Compute NPV</a></li>
+<li class="chapter" data-level="1.2.9" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#sensitivity-analysis"><i class="fa fa-check"></i><b>1.2.9</b> Sensitivity Analysis</a></li>
+<li class="chapter" data-level="1.2.10" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#make-a-recommendation"><i class="fa fa-check"></i><b>1.2.10</b> Make a Recommendation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html"><i class="fa fa-check"></i><b>2</b> Conceptual Foundations of CBA</a><ul>
+<li class="chapter" data-level="2.1" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#cba-as-a-framework-for-assessing-efficiency"><i class="fa fa-check"></i><b>2.1</b> CBA as a Framework for Assessing Efficiency</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#pareto-efficiency-vs.-kaldor-hicks-efficiency"><i class="fa fa-check"></i><b>2.1.1</b> Pareto Efficiency vs. Kaldor-Hicks Efficiency</a></li>
+<li class="chapter" data-level="2.1.2" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#willingness-to-pay-wtp"><i class="fa fa-check"></i><b>2.1.2</b> Willingness To Pay (WTP)</a></li>
+<li class="chapter" data-level="2.1.3" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#opportunity-costs"><i class="fa fa-check"></i><b>2.1.3</b> Opportunity Costs</a></li>
+<li class="chapter" data-level="2.1.4" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#net-benefits-or-cost-benefit-ratio"><i class="fa fa-check"></i><b>2.1.4</b> Net Benefits or Cost-Benefit Ratio?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#some-fundamental-problems"><i class="fa fa-check"></i><b>2.2</b> Some Fundamental Problems</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#arrows-theorem"><i class="fa fa-check"></i><b>2.2.1</b> Arrow’s Theorem</a></li>
+<li class="chapter" data-level="2.2.2" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#wtp-depends-on-distribution-of-wealth"><i class="fa fa-check"></i><b>2.2.2</b> WTP Depends on Distribution of Wealth</a></li>
+<li class="chapter" data-level="2.2.3" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#whose-wtp-should-be-considered-standing"><i class="fa fa-check"></i><b>2.2.3</b> Whose WTP should be considered (standing)?</a></li>
+<li class="chapter" data-level="2.2.4" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#how-can-you-put-a-price-on-some-things"><i class="fa fa-check"></i><b>2.2.4</b> How can you put a price on some things?</a></li>
+<li class="chapter" data-level="2.2.5" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#does-cba-undermine-democracy"><i class="fa fa-check"></i><b>2.2.5</b> Does CBA undermine democracy??</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#cba-of-the-day"><i class="fa fa-check"></i><b>2.3</b> CBA of the Day</a></li>
+<li class="chapter" data-level="2.4" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#alternative-approaches"><i class="fa fa-check"></i><b>2.4</b> Alternative Approaches</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#budget-impact-analysis"><i class="fa fa-check"></i><b>2.4.1</b> Budget Impact Analysis</a></li>
+<li class="chapter" data-level="2.4.2" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#cost-effectiveness-analysis"><i class="fa fa-check"></i><b>2.4.2</b> Cost-Effectiveness Analysis</a></li>
+<li class="chapter" data-level="2.4.3" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#multigoal-analysis"><i class="fa fa-check"></i><b>2.4.3</b> Multigoal Analysis</a></li>
+<li class="chapter" data-level="2.4.4" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#distributionally-weighted-cba"><i class="fa fa-check"></i><b>2.4.4</b> Distributionally-Weighted CBA</a></li>
+<li class="chapter" data-level="2.4.5" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#what-to-do"><i class="fa fa-check"></i><b>2.4.5</b> What To Do?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="microeconomic-foundations-of-cba.html"><a href="microeconomic-foundations-of-cba.html"><i class="fa fa-check"></i><b>3</b> Microeconomic Foundations of CBA</a><ul>
+<li class="chapter" data-level="3.1" data-path="microeconomic-foundations-of-cba.html"><a href="microeconomic-foundations-of-cba.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="microeconomic-foundations-of-cba.html"><a href="microeconomic-foundations-of-cba.html#some-economics-101-aka-geometry-about-money"><i class="fa fa-check"></i><b>3.2</b> Some Economics 101 (aka geometry about money)</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="microeconomic-foundations-of-cba.html"><a href="microeconomic-foundations-of-cba.html#demand-curves"><i class="fa fa-check"></i><b>3.2.1</b> Demand Curves</a></li>
+<li class="chapter" data-level="3.2.2" data-path="microeconomic-foundations-of-cba.html"><a href="microeconomic-foundations-of-cba.html#supply-curves"><i class="fa fa-check"></i><b>3.2.2</b> Supply Curves</a></li>
+<li class="chapter" data-level="3.2.3" data-path="microeconomic-foundations-of-cba.html"><a href="microeconomic-foundations-of-cba.html#market-equilibrium"><i class="fa fa-check"></i><b>3.2.3</b> Market Equilibrium</a></li>
+<li class="chapter" data-level="3.2.4" data-path="microeconomic-foundations-of-cba.html"><a href="microeconomic-foundations-of-cba.html#government-surplus"><i class="fa fa-check"></i><b>3.2.4</b> Government Surplus</a></li>
+<li class="chapter" data-level="3.2.5" data-path="microeconomic-foundations-of-cba.html"><a href="microeconomic-foundations-of-cba.html#marginal-excess-tax-burden-metb"><i class="fa fa-check"></i><b>3.2.5</b> Marginal Excess Tax Burden (METB)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="microeconomic-foundations-of-cba.html"><a href="microeconomic-foundations-of-cba.html#cba-of-the-day-1"><i class="fa fa-check"></i><b>3.3</b> CBA of the Day</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html"><i class="fa fa-check"></i><b>4</b> Valuing Impacts in Output Markets</a><ul>
+<li class="chapter" data-level="4.1" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html#impact-categories"><i class="fa fa-check"></i><b>4.1</b> Impact Categories</a></li>
+<li class="chapter" data-level="4.2" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html#efficient-output-markets"><i class="fa fa-check"></i><b>4.2</b> Efficient Output Markets</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html#no-price-change"><i class="fa fa-check"></i><b>4.2.1</b> No Price Change</a></li>
+<li class="chapter" data-level="4.2.2" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html#price-change"><i class="fa fa-check"></i><b>4.2.2</b> Price Change</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html#distorted-output-markets"><i class="fa fa-check"></i><b>4.3</b> Distorted Output Markets</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html#asymmetric-information"><i class="fa fa-check"></i><b>4.3.1</b> Asymmetric Information</a></li>
+<li class="chapter" data-level="4.3.2" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html#externalities"><i class="fa fa-check"></i><b>4.3.2</b> Externalities</a></li>
+<li class="chapter" data-level="4.3.3" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html#public-goods"><i class="fa fa-check"></i><b>4.3.3</b> Public Goods</a></li>
+<li class="chapter" data-level="4.3.4" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html#addictive-goods"><i class="fa fa-check"></i><b>4.3.4</b> Addictive Goods</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html#cba-of-the-day-2"><i class="fa fa-check"></i><b>4.4</b> CBA of the Day</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html"><i class="fa fa-check"></i><b>5</b> Input &amp; Secondary Markets</a><ul>
+<li class="chapter" data-level="5.1" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#input-markets"><i class="fa fa-check"></i><b>5.1</b> Input Markets</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#review-opportunity-costs"><i class="fa fa-check"></i><b>5.1.1</b> Review: Opportunity Costs</a></li>
+<li class="chapter" data-level="5.1.2" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#efficient-markets"><i class="fa fa-check"></i><b>5.1.2</b> Efficient Markets</a></li>
+<li class="chapter" data-level="5.1.3" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#distorted-markets"><i class="fa fa-check"></i><b>5.1.3</b> Distorted Markets</a></li>
+<li class="chapter" data-level="5.1.4" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#what-have-we-learned"><i class="fa fa-check"></i><b>5.1.4</b> What Have We Learned?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#secondary-markets"><i class="fa fa-check"></i><b>5.2</b> Secondary Markets</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#no-price-effects"><i class="fa fa-check"></i><b>5.2.1</b> No Price Effects</a></li>
+<li class="chapter" data-level="5.2.2" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#price-effects"><i class="fa fa-check"></i><b>5.2.2</b> Price Effects</a></li>
+<li class="chapter" data-level="5.2.3" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#distorted-secondary-markets"><i class="fa fa-check"></i><b>5.2.3</b> Distorted Secondary Markets</a></li>
+<li class="chapter" data-level="5.2.4" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#eia-and-multiplier-effects"><i class="fa fa-check"></i><b>5.2.4</b> EIA and Multiplier Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#putting-it-all-together"><i class="fa fa-check"></i><b>5.3</b> Putting it All Together</a></li>
+<li class="chapter" data-level="5.4" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#cba-of-the-day-3"><i class="fa fa-check"></i><b>5.4</b> CBA of the Day</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="prediction.html"><a href="prediction.html"><i class="fa fa-check"></i><b>6</b> Prediction</a><ul>
+<li class="chapter" data-level="6.1" data-path="prediction.html"><a href="prediction.html#fermi-methods"><i class="fa fa-check"></i><b>6.1</b> Fermi Methods</a></li>
+<li class="chapter" data-level="6.2" data-path="prediction.html"><a href="prediction.html#cba-of-the-day-4"><i class="fa fa-check"></i><b>6.2</b> CBA of the Day</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Cost-Benefit Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="prediction" class="section level1">
+<h1><span class="header-section-number">6</span> Prediction</h1>
+<p><strong>Today’s Goals:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Introduce several methods for predicting the impact of our programs.</li>
+<li>Talk About The Loop Trolley</li>
+<li>CBA of the Day</li>
+</ol>
+<div id="fermi-methods" class="section level2">
+<h2><span class="header-section-number">6.1</span> Fermi Methods</h2>
+<blockquote>
+<p><strong>Exercise 2:</strong></p>
+<p>Here is the map of the Delmar Loop Trolley route.</p>
+</blockquote>
+<blockquote>
+<p><img src="figures/St-Louis-Loop-Trolley2.jpg" /></p>
+<p>Using the Fermi Method, estimate the monthly number of Trolley riders during 2019. (The service operated from noon-6pm Thursdays through Sundays.)</p>
+</blockquote>
+</div>
+<div id="cba-of-the-day-4" class="section level2">
+<h2><span class="header-section-number">6.2</span> CBA of the Day</h2>
+
+</div>
+</div>
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="input-secondary-markets.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

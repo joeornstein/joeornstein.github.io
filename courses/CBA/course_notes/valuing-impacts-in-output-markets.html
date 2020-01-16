@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Valuing Impacts in Output Markets | Cost-Benefit Analysis</title>
+  <meta name="description" content="These are the collected course notes for my Cost-Benefit Analysis class (Spring 2020)." />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Valuing Impacts in Output Markets | Cost-Benefit Analysis" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These are the collected course notes for my Cost-Benefit Analysis class (Spring 2020)." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Valuing Impacts in Output Markets | Cost-Benefit Analysis" />
+  
+  <meta name="twitter:description" content="These are the collected course notes for my Cost-Benefit Analysis class (Spring 2020)." />
+  
+
+<meta name="author" content="Joseph T. Ornstein" />
+
+
+<meta name="date" content="2020-01-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="microeconomic-foundations-of-cba.html"/>
+<link rel="next" href="input-secondary-markets.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html"><i class="fa fa-check"></i><b>1</b> Introduction to Cost-Benefit Analysis (CBA)</a><ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#course-outline"><i class="fa fa-check"></i><b>1.1</b> Course Outline</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#course-goals"><i class="fa fa-check"></i><b>1.1.1</b> Course Goals</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#things-you-will-do"><i class="fa fa-check"></i><b>1.1.2</b> Things You Will Do</a></li>
+<li class="chapter" data-level="1.1.3" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#readings"><i class="fa fa-check"></i><b>1.1.3</b> Readings</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#the-ten-steps-of-cba"><i class="fa fa-check"></i><b>1.2</b> The Ten Steps of CBA</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#explain-purpose"><i class="fa fa-check"></i><b>1.2.1</b> Explain Purpose</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#specify-alternatives"><i class="fa fa-check"></i><b>1.2.2</b> Specify Alternatives</a></li>
+<li class="chapter" data-level="1.2.3" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#specify-standing"><i class="fa fa-check"></i><b>1.2.3</b> Specify Standing</a></li>
+<li class="chapter" data-level="1.2.4" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#identify-impacts"><i class="fa fa-check"></i><b>1.2.4</b> Identify Impacts</a></li>
+<li class="chapter" data-level="1.2.5" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#predict"><i class="fa fa-check"></i><b>1.2.5</b> Predict</a></li>
+<li class="chapter" data-level="1.2.6" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#monetize"><i class="fa fa-check"></i><b>1.2.6</b> Monetize</a></li>
+<li class="chapter" data-level="1.2.7" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#discount"><i class="fa fa-check"></i><b>1.2.7</b> Discount</a></li>
+<li class="chapter" data-level="1.2.8" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#compute-npv"><i class="fa fa-check"></i><b>1.2.8</b> Compute NPV</a></li>
+<li class="chapter" data-level="1.2.9" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#sensitivity-analysis"><i class="fa fa-check"></i><b>1.2.9</b> Sensitivity Analysis</a></li>
+<li class="chapter" data-level="1.2.10" data-path="introduction-to-cost-benefit-analysis-cba.html"><a href="introduction-to-cost-benefit-analysis-cba.html#make-a-recommendation"><i class="fa fa-check"></i><b>1.2.10</b> Make a Recommendation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html"><i class="fa fa-check"></i><b>2</b> Conceptual Foundations of CBA</a><ul>
+<li class="chapter" data-level="2.1" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#cba-as-a-framework-for-assessing-efficiency"><i class="fa fa-check"></i><b>2.1</b> CBA as a Framework for Assessing Efficiency</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#pareto-efficiency-vs.-kaldor-hicks-efficiency"><i class="fa fa-check"></i><b>2.1.1</b> Pareto Efficiency vs. Kaldor-Hicks Efficiency</a></li>
+<li class="chapter" data-level="2.1.2" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#willingness-to-pay-wtp"><i class="fa fa-check"></i><b>2.1.2</b> Willingness To Pay (WTP)</a></li>
+<li class="chapter" data-level="2.1.3" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#opportunity-costs"><i class="fa fa-check"></i><b>2.1.3</b> Opportunity Costs</a></li>
+<li class="chapter" data-level="2.1.4" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#net-benefits-or-cost-benefit-ratio"><i class="fa fa-check"></i><b>2.1.4</b> Net Benefits or Cost-Benefit Ratio?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#some-fundamental-problems"><i class="fa fa-check"></i><b>2.2</b> Some Fundamental Problems</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#arrows-theorem"><i class="fa fa-check"></i><b>2.2.1</b> Arrow’s Theorem</a></li>
+<li class="chapter" data-level="2.2.2" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#wtp-depends-on-distribution-of-wealth"><i class="fa fa-check"></i><b>2.2.2</b> WTP Depends on Distribution of Wealth</a></li>
+<li class="chapter" data-level="2.2.3" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#whose-wtp-should-be-considered-standing"><i class="fa fa-check"></i><b>2.2.3</b> Whose WTP should be considered (standing)?</a></li>
+<li class="chapter" data-level="2.2.4" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#how-can-you-put-a-price-on-some-things"><i class="fa fa-check"></i><b>2.2.4</b> How can you put a price on some things?</a></li>
+<li class="chapter" data-level="2.2.5" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#does-cba-undermine-democracy"><i class="fa fa-check"></i><b>2.2.5</b> Does CBA undermine democracy??</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#cba-of-the-day"><i class="fa fa-check"></i><b>2.3</b> CBA of the Day</a></li>
+<li class="chapter" data-level="2.4" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#alternative-approaches"><i class="fa fa-check"></i><b>2.4</b> Alternative Approaches</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#budget-impact-analysis"><i class="fa fa-check"></i><b>2.4.1</b> Budget Impact Analysis</a></li>
+<li class="chapter" data-level="2.4.2" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#cost-effectiveness-analysis"><i class="fa fa-check"></i><b>2.4.2</b> Cost-Effectiveness Analysis</a></li>
+<li class="chapter" data-level="2.4.3" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#multigoal-analysis"><i class="fa fa-check"></i><b>2.4.3</b> Multigoal Analysis</a></li>
+<li class="chapter" data-level="2.4.4" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#distributionally-weighted-cba"><i class="fa fa-check"></i><b>2.4.4</b> Distributionally-Weighted CBA</a></li>
+<li class="chapter" data-level="2.4.5" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#what-to-do"><i class="fa fa-check"></i><b>2.4.5</b> What To Do?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="microeconomic-foundations-of-cba.html"><a href="microeconomic-foundations-of-cba.html"><i class="fa fa-check"></i><b>3</b> Microeconomic Foundations of CBA</a><ul>
+<li class="chapter" data-level="3.1" data-path="microeconomic-foundations-of-cba.html"><a href="microeconomic-foundations-of-cba.html#introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="microeconomic-foundations-of-cba.html"><a href="microeconomic-foundations-of-cba.html#some-economics-101-aka-geometry-about-money"><i class="fa fa-check"></i><b>3.2</b> Some Economics 101 (aka geometry about money)</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="microeconomic-foundations-of-cba.html"><a href="microeconomic-foundations-of-cba.html#demand-curves"><i class="fa fa-check"></i><b>3.2.1</b> Demand Curves</a></li>
+<li class="chapter" data-level="3.2.2" data-path="microeconomic-foundations-of-cba.html"><a href="microeconomic-foundations-of-cba.html#supply-curves"><i class="fa fa-check"></i><b>3.2.2</b> Supply Curves</a></li>
+<li class="chapter" data-level="3.2.3" data-path="microeconomic-foundations-of-cba.html"><a href="microeconomic-foundations-of-cba.html#market-equilibrium"><i class="fa fa-check"></i><b>3.2.3</b> Market Equilibrium</a></li>
+<li class="chapter" data-level="3.2.4" data-path="microeconomic-foundations-of-cba.html"><a href="microeconomic-foundations-of-cba.html#government-surplus"><i class="fa fa-check"></i><b>3.2.4</b> Government Surplus</a></li>
+<li class="chapter" data-level="3.2.5" data-path="microeconomic-foundations-of-cba.html"><a href="microeconomic-foundations-of-cba.html#marginal-excess-tax-burden-metb"><i class="fa fa-check"></i><b>3.2.5</b> Marginal Excess Tax Burden (METB)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="microeconomic-foundations-of-cba.html"><a href="microeconomic-foundations-of-cba.html#cba-of-the-day-1"><i class="fa fa-check"></i><b>3.3</b> CBA of the Day</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html"><i class="fa fa-check"></i><b>4</b> Valuing Impacts in Output Markets</a><ul>
+<li class="chapter" data-level="4.1" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html#impact-categories"><i class="fa fa-check"></i><b>4.1</b> Impact Categories</a></li>
+<li class="chapter" data-level="4.2" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html#efficient-output-markets"><i class="fa fa-check"></i><b>4.2</b> Efficient Output Markets</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html#no-price-change"><i class="fa fa-check"></i><b>4.2.1</b> No Price Change</a></li>
+<li class="chapter" data-level="4.2.2" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html#price-change"><i class="fa fa-check"></i><b>4.2.2</b> Price Change</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html#distorted-output-markets"><i class="fa fa-check"></i><b>4.3</b> Distorted Output Markets</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html#asymmetric-information"><i class="fa fa-check"></i><b>4.3.1</b> Asymmetric Information</a></li>
+<li class="chapter" data-level="4.3.2" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html#externalities"><i class="fa fa-check"></i><b>4.3.2</b> Externalities</a></li>
+<li class="chapter" data-level="4.3.3" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html#public-goods"><i class="fa fa-check"></i><b>4.3.3</b> Public Goods</a></li>
+<li class="chapter" data-level="4.3.4" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html#addictive-goods"><i class="fa fa-check"></i><b>4.3.4</b> Addictive Goods</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="valuing-impacts-in-output-markets.html"><a href="valuing-impacts-in-output-markets.html#cba-of-the-day-2"><i class="fa fa-check"></i><b>4.4</b> CBA of the Day</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html"><i class="fa fa-check"></i><b>5</b> Input &amp; Secondary Markets</a><ul>
+<li class="chapter" data-level="5.1" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#input-markets"><i class="fa fa-check"></i><b>5.1</b> Input Markets</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#review-opportunity-costs"><i class="fa fa-check"></i><b>5.1.1</b> Review: Opportunity Costs</a></li>
+<li class="chapter" data-level="5.1.2" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#efficient-markets"><i class="fa fa-check"></i><b>5.1.2</b> Efficient Markets</a></li>
+<li class="chapter" data-level="5.1.3" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#distorted-markets"><i class="fa fa-check"></i><b>5.1.3</b> Distorted Markets</a></li>
+<li class="chapter" data-level="5.1.4" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#what-have-we-learned"><i class="fa fa-check"></i><b>5.1.4</b> What Have We Learned?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#secondary-markets"><i class="fa fa-check"></i><b>5.2</b> Secondary Markets</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#no-price-effects"><i class="fa fa-check"></i><b>5.2.1</b> No Price Effects</a></li>
+<li class="chapter" data-level="5.2.2" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#price-effects"><i class="fa fa-check"></i><b>5.2.2</b> Price Effects</a></li>
+<li class="chapter" data-level="5.2.3" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#distorted-secondary-markets"><i class="fa fa-check"></i><b>5.2.3</b> Distorted Secondary Markets</a></li>
+<li class="chapter" data-level="5.2.4" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#eia-and-multiplier-effects"><i class="fa fa-check"></i><b>5.2.4</b> EIA and Multiplier Effects</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#putting-it-all-together"><i class="fa fa-check"></i><b>5.3</b> Putting it All Together</a></li>
+<li class="chapter" data-level="5.4" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#cba-of-the-day-3"><i class="fa fa-check"></i><b>5.4</b> CBA of the Day</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="prediction.html"><a href="prediction.html"><i class="fa fa-check"></i><b>6</b> Prediction</a><ul>
+<li class="chapter" data-level="6.1" data-path="prediction.html"><a href="prediction.html#fermi-methods"><i class="fa fa-check"></i><b>6.1</b> Fermi Methods</a></li>
+<li class="chapter" data-level="6.2" data-path="prediction.html"><a href="prediction.html#cba-of-the-day-4"><i class="fa fa-check"></i><b>6.2</b> CBA of the Day</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Cost-Benefit Analysis</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="valuing-impacts-in-output-markets" class="section level1">
+<h1><span class="header-section-number">4</span> Valuing Impacts in Output Markets</h1>
+<p><strong>Today’s Goals:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Take our Econ 101 knowledge and apply it to monetizing program impacts.
+<ul>
+<li>Specifically, how do we measure the social value of the <em>output</em> of our programs?</li>
+<li>And how does that depend on the private market for the good we’re producing?</li>
+</ul></li>
+<li>CBA of the Day</li>
+</ol>
+<div id="impact-categories" class="section level2">
+<h2><span class="header-section-number">4.1</span> Impact Categories</h2>
+<p>Recall: goal of CBA is allocative efficiency. Maximize <span class="math inline">\(NSB = B - C\)</span></p>
+<p>Social Surplus: <span class="math inline">\(SS = CS + PS + GS\)</span></p>
+<p><strong>3 categories for impacts:</strong></p>
+<ul>
+<li>Output Markets</li>
+<li>Input Markets</li>
+<li>Secondary Markets</li>
+</ul>
+<p>Knowing an impact’s category will help determine whether to include it in our CBA.</p>
+<p><strong>Output Markets:</strong></p>
+<ul>
+<li>Where the intervention “takes place”</li>
+<li>Directly affected by program/project/policy</li>
+<li>Note: also includes externalities that are “missing” from output markets</li>
+</ul>
+<p><strong>Input Markets:</strong></p>
+<ul>
+<li>Factors of production</li>
+<li>What you must purchase in order to enact your program</li>
+</ul>
+<p><strong>Secondary Markets:</strong></p>
+<ul>
+<li>Anything <em>indirectly</em> affected by the project</li>
+</ul>
+<p>Impacts still add up as before:</p>
+<p><span class="math inline">\(\Delta SS = \Delta SS_{O} + \Delta SS_I + \Delta SS_S\)</span></p>
+<p><span class="math inline">\(\Delta SS_O = \gamma_g\Delta R + \Delta CS_O + \Delta PS_O\)</span></p>
+<p><span class="math inline">\(\Delta SS_I = \gamma_g \Delta E + \Delta CS_I + \Delta PS_I\)</span></p>
+<p><span class="math inline">\(\Delta SS_S = \Delta CS_S + \Delta PS_S\)</span></p>
+<blockquote>
+<p><strong>Exercise 1: Categorizing Impacts</strong></p>
+<p>For each project, think of as many potential impacts as you can, and categorize them into (1) output, (2) input, or (3) secondary.</p>
+<ul>
+<li>MetroLink Expansion</li>
+<li>Full Day Kindergarten</li>
+<li>Smallpox Eradication</li>
+</ul>
+</blockquote>
+<p>Over the next two weeks, we’ll talk about how to value impacts when <strong>market prices</strong> are observable. If that’s not the case (as for many programs involving the environment, health, and social services), then we’ll need <strong>shadow prices</strong>. More on that topic starting in Week 7.</p>
+</div>
+<div id="efficient-output-markets" class="section level2">
+<h2><span class="header-section-number">4.2</span> Efficient Output Markets</h2>
+<p>To begin, suppose that our program adds supply to an area where there is already a private market.</p>
+<p><strong>Example:</strong> In recreation, private campgrounds exist alongside public campgrounds.</p>
+<div id="no-price-change" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> No Price Change</h3>
+<p>If our output is small enough that prices don’t change:</p>
+<div class="figure">
+<img src="figures/image-20200113143143859.png" alt="" />
+<p class="caption">Ouput Market, No Price Effect</p>
+</div>
+<blockquote>
+<p><strong>Exercise 2:</strong></p>
+<p>Is the demand curve shown above elastic or inelastic?</p>
+<p>What happens to social surplus in this case? (Hint: <span class="math inline">\(SS = PS + CS + GS\)</span>)</p>
+<p>What if we distribute those q’ units for <strong>free</strong>?</p>
+<p>Let’s discuss those results. What happened?</p>
+</blockquote>
+</div>
+<div id="price-change" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Price Change</h3>
+<p>If our project is so large that prices move:</p>
+<div class="figure">
+<img src="figures/image-20200113144700417.png" alt="" />
+<p class="caption">Output Market, With Price Effect</p>
+</div>
+<blockquote>
+<p><strong>Exercise 3:</strong></p>
+<p>What happens to social surplus in this case? Who gains and who loses?</p>
+<p>What if we distribute those q’ units for <strong>free</strong>? (Hint: it matters who gets the goods.)</p>
+</blockquote>
+<blockquote>
+<p><strong>Exercise 4:</strong></p>
+<p>Suppose that, instead of selling output to consumers, our project reduced costs for producers (e.g. deepening a harbor). How would we model that?</p>
+</blockquote>
+</div>
+</div>
+<div id="distorted-output-markets" class="section level2">
+<h2><span class="header-section-number">4.3</span> Distorted Output Markets</h2>
+<p>Now we get to the really interesting (and consequential) cases. What if there doesn’t exist an efficient private market for the good you want to provide? <em>This is an appropriate justification for intervention</em>.</p>
+<p>We’ll discuss four types of <strong>market failures</strong>.</p>
+<ol style="list-style-type: decimal">
+<li>Asymmetric information</li>
+<li>Externalities</li>
+<li>Public goods</li>
+<li>Addictive goods</li>
+</ol>
+<p>(Boardman also has a section on monopoly power. Explore at your leisure; it may be useful if your program is intervening in a market with a single private producer.)</p>
+<div id="asymmetric-information" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> Asymmetric Information</h3>
+<p>Whenever a seller has access to information unavailable to a buyer, we say the market is characterized by asymmetric information.</p>
+<blockquote>
+<p><strong>Exercise 5:</strong></p>
+<p>What are some examples of markets with asymmetric information?</p>
+</blockquote>
+<p>Types of asymmetric information include search costs, experience goods, and post-experience goods. Can model it by drawing two demand curves, one for <em>uninformed</em> consumers and another for <em>informed</em> consumers. When consumers are uninformed, they overpay and overbuy.</p>
+<div class="figure">
+<img src="figures/image-20200113151700067.png" alt="" />
+<p class="caption">Asymmetric Information</p>
+</div>
+<p>DWL comes from the individuals between <span class="math inline">\(Q_i\)</span> and <span class="math inline">\(Q_u\)</span> who buy a good that they wouldn’t have bought if they were fully informed. If we can intervene, regulate, or provide information for less than the DWL, then net benefits would be positive.</p>
+</div>
+<div id="externalities" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> Externalities</h3>
+<p>An <strong>externality</strong> is a cost or benefit that your actions impose on someone else.</p>
+<ul>
+<li>Can be positive or negative</li>
+<li>Can occur in production or consumption</li>
+<li><strong>Examples:</strong> secondhand smoke, pollution from factories</li>
+<li>Also known as “missing markets”. No private market that sets a price on externalities. (If there were, then they wouldn’t be externalities anymore, because you could buy and sell them like normal goods.)</li>
+</ul>
+<blockquote>
+<p><strong>Exercise 6:</strong></p>
+<p>Think up some examples of positive and negative externalities.</p>
+</blockquote>
+<p><strong>NOTE:</strong> It is easy to get confused between what is an externality and what is a “secondary effect”. Secondary effects (which we discuss next week) are effects that occur in markets outside of the primary output market. Note the key word <strong>market</strong>. If the market is “missing”, then it is an externality, not a secondary effect. This will be an important distinction, because as we will learn next week, our default practice will be to ignore secondary effects. And we don’t want to ignore externalities.</p>
+<p>Practical considerations for CBA:</p>
+<ul>
+<li>Identify the type of externality (positive or negative)</li>
+<li>Which side of the market</li>
+<li>Try to quantify it</li>
+</ul>
+<p>Tax negative externalities and subsidize positive externalities (“Pigouvian tax/subsidy”). Try to set exactly at external cost.</p>
+<p><strong>Negative Externality in Production + Pigouvian Tax:</strong></p>
+<div class="figure">
+<img src="figures/image-20200113155319910.png" alt="" />
+<p class="caption">Externalities</p>
+</div>
+<p>The firm’s marginal cost of producing something (e.g. pollution) is <span class="math inline">\(S^*\)</span>, lower than <em>society’s</em> marginal cost <span class="math inline">\(S^\#\)</span>.</p>
+<p>Note that optimal level of negative externality is not zero. It’s where <span class="math inline">\(SMC=SMB\)</span>.</p>
+<p>The distributional implications of the Pigouvian tax look like this:</p>
+<p><img src="figures/image-20200113160316998.png" /></p>
+<p><strong>Positive Externality in Consumption + Pigouvian Subsidy:</strong></p>
+<p><img src="figures/image-20200113160730207.png" /></p>
+<p>Consumers buy too little on their own. Need to somehow shift the supply curve so they purchase <span class="math inline">\(q_1\)</span> instead of <span class="math inline">\(q_0\)</span> (or ideally the quantity at the intersection of <span class="math inline">\(D_S\)</span> and <span class="math inline">\(S\)</span>; that would completely eliminate DWL).</p>
+</div>
+<div id="public-goods" class="section level3">
+<h3><span class="header-section-number">4.3.3</span> Public Goods</h3>
+<p>Two characteristics of goods:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Excludability:</strong> Can you prohibit people from using it?</li>
+<li><strong>Rivalry:</strong> Does one person’s consumption diminish the its value for someone else?</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>Rivalrous</th>
+<th>Non-Rivalrous</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Excludable</strong></td>
+<td>Private Goods</td>
+<td>Club Goods</td>
+</tr>
+<tr class="even">
+<td><strong>Non-Excludable</strong></td>
+<td>Common Pool Resources</td>
+<td>Public Goods</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Exercise 7:</strong></p>
+<p>Think of one good that falls in each category.</p>
+</blockquote>
+<p>Why are public goods special cases in CBA?</p>
+<ul>
+<li>Markets typically do not exist for public goods.</li>
+<li>Therefore, valuing them is <strong>hard</strong>.</li>
+<li>And yet it’s a very common application of CBA, since government is often the only provider.</li>
+</ul>
+<p>Non-rivalrous goods face the <strong>Free Rider Problem</strong>:</p>
+<ul>
+<li>No reason to pay for something if others will</li>
+<li>Therefore, you understate your true value; if there were a private market you would under-consume
+<ul>
+<li>It’s basically an extreme version of the positive externality problem above. If I buy a public good, that doesn’t just give you some benefit; it gives you <em>all</em> the benefit.</li>
+</ul></li>
+<li>Private WTP might rationally be $0 even though societal benefits are large</li>
+</ul>
+<p>Estimating the appropriate WTP values through <strong>shadow prices</strong> is a major challenge for public goods valuation. Let’s put a pin in that for a few weeks.</p>
+</div>
+<div id="addictive-goods" class="section level3">
+<h3><span class="header-section-number">4.3.4</span> Addictive Goods</h3>
+<p>In economist-speak, addictive goods exhibit a <em>negative intrapersonal externality</em>. In other words, consuming them today benefits present-day-you, but at some cost to future-you. Can analyze this in a similar fashion to the asymmetric information case; draw an <em>addicted</em> demand curve and a <em>recreational</em> demand curve.</p>
+<div class="figure">
+<img src="figures/image-20200113161541559.png" alt="" />
+<p class="caption">Addictive Goods</p>
+</div>
+<p>Addicted gamblers buy <span class="math inline">\(Q_A\)</span> units, but would only buy <span class="math inline">\(Q_R\)</span> if they weren’t addicted.</p>
+<blockquote>
+<p><strong>Exercise 8:</strong></p>
+<p>What’s the total deadweight loss from addiction?</p>
+</blockquote>
+<p>Several studies on the social cost of addiction have used this approach – estimating demand curves for unaddicted consumers and addicted consumers and computing the deadweight loss.</p>
+<p>Of course, some studies have taken an alternative approach:</p>
+<p><img src="figures/trudeau.jpg" /></p>
+</div>
+</div>
+<div id="cba-of-the-day-2" class="section level2">
+<h2><span class="header-section-number">4.4</span> CBA of the Day</h2>
+<p>TBD</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="microeconomic-foundations-of-cba.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="input-secondary-markets.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
