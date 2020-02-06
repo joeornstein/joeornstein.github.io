@@ -24,7 +24,7 @@
 <meta name="author" content="Joseph T. Ornstein" />
 
 
-<meta name="date" content="2020-01-30" />
+<meta name="date" content="2020-02-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -151,8 +151,17 @@
 <li class="chapter" data-level="5.4" data-path="input-secondary-markets.html"><a href="input-secondary-markets.html#cba-of-the-day-3"><i class="fa fa-check"></i><b>5.4</b> CBA of the Day</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="prediction.html"><a href="prediction.html"><i class="fa fa-check"></i><b>6</b> Prediction</a><ul>
-<li class="chapter" data-level="6.1" data-path="prediction.html"><a href="prediction.html#fermi-methods"><i class="fa fa-check"></i><b>6.1</b> Fermi Methods</a></li>
-<li class="chapter" data-level="6.2" data-path="prediction.html"><a href="prediction.html#cba-of-the-day-4"><i class="fa fa-check"></i><b>6.2</b> CBA of the Day</a></li>
+<li class="chapter" data-level="6.1" data-path="prediction.html"><a href="prediction.html#the-wisdom-of-crowds-meta-analysis"><i class="fa fa-check"></i><b>6.1</b> The Wisdom of Crowds &amp; Meta-Analysis</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="prediction.html"><a href="prediction.html#diversity-prediction-theorem"><i class="fa fa-check"></i><b>6.1.1</b> Diversity Prediction Theorem:</a></li>
+<li class="chapter" data-level="6.1.2" data-path="prediction.html"><a href="prediction.html#best-practices-for-meta-analysis"><i class="fa fa-check"></i><b>6.1.2</b> Best Practices for Meta-Analysis:</a></li>
+<li class="chapter" data-level="6.1.3" data-path="prediction.html"><a href="prediction.html#pitfalls-of-meta-analysis"><i class="fa fa-check"></i><b>6.1.3</b> Pitfalls of Meta-Analysis:</a></li>
+<li class="chapter" data-level="6.1.4" data-path="prediction.html"><a href="prediction.html#cba-of-the-day-1-1"><i class="fa fa-check"></i><b>6.1.4</b> CBA of the Day #1</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="prediction.html"><a href="prediction.html#models-and-simulations"><i class="fa fa-check"></i><b>6.2</b> Models and Simulations</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="prediction.html"><a href="prediction.html#example-tobacco-town"><i class="fa fa-check"></i><b>6.2.1</b> Example – Tobacco Town:</a></li>
+<li class="chapter" data-level="6.2.2" data-path="prediction.html"><a href="prediction.html#example-cba-of-the-day-2"><i class="fa fa-check"></i><b>6.2.2</b> Example – CBA of the Day #2:</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="prediction.html"><a href="prediction.html#fermi-methods"><i class="fa fa-check"></i><b>6.3</b> Fermi Methods</a></li>
 </ul></li>
 </ul>
 
@@ -175,24 +184,175 @@
 <h1><span class="header-section-number">6</span> Prediction</h1>
 <p><strong>Today’s Goals:</strong></p>
 <ol style="list-style-type: decimal">
-<li>Introduce several methods for predicting the impact of our programs.</li>
-<li>Talk About The Loop Trolley</li>
-<li>CBA of the Day</li>
+<li>Introduce several methods for predicting the impact of our programs</li>
+<li>Conduct an in-class meta-analysis</li>
+<li>Discuss two CBAs (Supervised Injection Facilities and Job Corps)</li>
 </ol>
-<div id="fermi-methods" class="section level2">
-<h2><span class="header-section-number">6.1</span> Fermi Methods</h2>
+<p>Today marks the beginning of Part 2 of the course (out of three parts). In Part 1 we focused on the conceptual and economic foundations of CBA. In Part 2 we will build up a toolkit of specific techniques that you can use when conducting your own CBA. If you haven’t started thinking about what you will do for your Final Project, now is a good time to start!</p>
+<p>A central part of cost-benefit analysis is <strong>prediction</strong>. Ironically, this is the step for which Boardman offers the least guidance. Broadly speaking, there are three major errors that CBAs make at this point.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Omission Errors</strong>: Excluding a relevant impact</li>
+<li><strong>Forecasting Errors</strong>: Inaccurate prediction of the program’s true effect</li>
+<li><strong>Valuation Errors:</strong> Inaccurate estimates of the relevant shadow prices (more on this in Weeks 7 and 8)</li>
+</ol>
+<p>Today, we’ll discuss three methods that can help you make better predictions—meta-analysis, models, and Fermi methods.</p>
+<div id="the-wisdom-of-crowds-meta-analysis" class="section level2">
+<h2><span class="header-section-number">6.1</span> The Wisdom of Crowds &amp; Meta-Analysis</h2>
+<blockquote>
+<p><strong>Exercise 1:</strong></p>
+<p>Guess how heavy this object is in kilograms.</p>
+<p>(Bonus Fun: we’ll learn how to implement functions in Excel.)</p>
+</blockquote>
+<div id="diversity-prediction-theorem" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> Diversity Prediction Theorem:</h3>
+<p>The Diversity Prediction Theorem (<a href="https://www.jstor.org/stable/pdf/27747407.pdf">Page, 2007</a>) states that the collective error of a diverse group will be smaller than the average error of individuals.</p>
+<p><strong>Collective Error</strong> = <strong>Average Individual Error</strong> – <strong>Prediction Diversity</strong></p>
+<p>In mathematical terms, if <span class="math inline">\(\mu\)</span> is the true value, there are <span class="math inline">\(n\)</span> predictors who each predict <span class="math inline">\(X_i\)</span>, and the collective prediction is <span class="math inline">\(\bar{X}\)</span>, then:
+<span class="math display">\[
+(\bar{X}-\mu)^2 = \frac{\sum(X_i-\mu)^2}{n}-\frac{\sum(X_i-\bar{X})^2}{n}
+\]</span>
+There’s no guarantee that the crowd will predict better than the <em>best</em> individual, but the crowd is guaranteed to predict better than the <em>average</em> individual. This idea—that taking the average of a group of predictions will tend to yield better results than a random <em>single</em> prediction—is the logic underlying meta-analysis.</p>
+</div>
+<div id="best-practices-for-meta-analysis" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> Best Practices for Meta-Analysis:</h3>
+<p>There is a <strong>big</strong> literature on meta-analysis. A lot of it is technical and beyond the scope of this class. So here are my expectations if you choose to conduct a meta-analysis for your final project.</p>
+<ol style="list-style-type: decimal">
+<li>Collect as many studies as you can find (bigger crowds are wiser than smaller crowds).
+<ul>
+<li>Some studies will evaluate a policy that is <em>similar</em> in some way or is based on a slightly different population. Beware of over-extrapolating and use your best judgment on whether this study is informative for your context.</li>
+</ul></li>
+<li>Keep the ones with the most rigorous research design. We want <strong>causal</strong> estimates, not just correlation.
+<ul>
+<li><strong>Best:</strong> Double-blind randomized control trials</li>
+<li><strong>Good:</strong> Natural experiments, quasi-experimental methods (e.g. regression discontinuity), difference-in-difference</li>
+<li><strong>Not Good</strong>: Correlational findings, cross-sectional regression</li>
+<li><strong>Bad:</strong> No treatment-control comparisons</li>
+</ul></li>
+<li>Where possible, standardize the effect size
+<ul>
+<li>Divide by the standard deviation of the outcome</li>
+</ul></li>
+<li>Compute a weighted average</li>
+<li>Keep the uncertainty estimates for sensitivity analysis</li>
+</ol>
 <blockquote>
 <p><strong>Exercise 2:</strong></p>
-<p>Here is the map of the Delmar Loop Trolley route.</p>
+<p>Now we’ll conduct a meta-analysis as a class. The topic is open, but let’s pick one where we’ll probably find lots of studies.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Author (Year)</th>
+<th>Quality (1-5)</th>
+<th>N</th>
+<th>Estimated Effect</th>
+<th>95% Confidence Interval</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+</div>
+<div id="pitfalls-of-meta-analysis" class="section level3">
+<h3><span class="header-section-number">6.1.3</span> Pitfalls of Meta-Analysis:</h3>
+<ol style="list-style-type: decimal">
+<li>The File Drawer Effect
+<ul>
+<li>There is a bias in academia against publishing null results. As a result, the estimated effects you find in the published literature are <strong>likely to be overestimates</strong>.</li>
+</ul></li>
+<li>External Validity
+<ul>
+<li>The results of a study in one population may not replicate to your population of interest</li>
+</ul></li>
+<li>Cherry-picking
+<ul>
+<li>Select studies based on objective criteria; <strong>never select based on a study’s results</strong>.</li>
+</ul></li>
+</ol>
+</div>
+<div id="cba-of-the-day-1-1" class="section level3">
+<h3><span class="header-section-number">6.1.4</span> CBA of the Day #1</h3>
+<p><a href="https://wustl.instructure.com/courses/43398/files/folder/Readings?preview=1024107"><strong>Job Corps</strong>: Long et al. (1981)</a></p>
+</div>
+</div>
+<div id="models-and-simulations" class="section level2">
+<h2><span class="header-section-number">6.2</span> Models and Simulations</h2>
+<p>What if there are no published studies estimating the effect of the policy you care about?</p>
+<ul>
+<li>Maybe it’s never been tried before.</li>
+<li>Maybe it would be unethical to conduct a randomized-control trial.</li>
+<li>Maybe there are some studies, but you have serious concerns about external validity</li>
+<li>Maybe there are some studies, but they are all poor-quality, and they likely overestimate the true effect</li>
+</ul>
+<p>One option is to consider models or computer simulations. Common in lots of fields:</p>
+<ul>
+<li>Macroeconomics (can’t run experiments on the economy)</li>
+<li>Infectious disease modeling (can’t run experiments on pandemic vaccination policy)</li>
+<li>Climate models (can’t run experiments on global carbon emissions)</li>
+</ul>
+<div id="example-tobacco-town" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> Example – Tobacco Town:</h3>
+<p><a href="https://netnav.shinyapps.io/TobaccoSwamps">Policy Dashboard</a></p>
+</div>
+<div id="example-cba-of-the-day-2" class="section level3">
+<h3><span class="header-section-number">6.2.2</span> Example – CBA of the Day #2:</h3>
+<p><a href="https://wustl.instructure.com/courses/43398/files/folder/Readings?preview=1024109"><strong>Supervised Injection Facilities</strong> (Andresen &amp; Boyd, 2010)</a></p>
+</div>
+</div>
+<div id="fermi-methods" class="section level2">
+<h2><span class="header-section-number">6.3</span> Fermi Methods</h2>
+<p>What if you don’t have good empirical studies and you don’t have a computer simulation? What if you just have to…guess? Fortunately there is an academic literature on how best to make educated guesses.</p>
+<p>The Fermi Method—named in honor of physicist <a href="https://en.wikipedia.org/wiki/Enrico_Fermi">Enrico Fermi</a>—uses a <em>divide-and-conquer</em> approach.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> For example, suppose we wanted to estimate how many piano tuners there are in the city of Chicago. A Fermi approach would look like this:</p>
+<ol style="list-style-type: decimal">
+<li>How many households are in Chicago? (<a href="https://en.wikipedia.org/wiki/Chicago">1 million</a>)</li>
+<li>What percentage of households own pianos? (Maybe 1 in 10?)</li>
+<li>How often do pianos need to be tuned? (<a href="https://www.merriammusic.com/piano-services/the-ultimate-guide-to-piano-care-how-often-do-i-need-to-tune-my-piano/">Once a year</a>)</li>
+<li>How many pianos can a piano tuner tune every day? (<a href="http://www.janssenpiano.com/faq.php">About 4</a>)</li>
+</ol>
+<p>So we would guess:</p>
+<p><span class="math inline">\(1,000,000\)</span> households <span class="math inline">\(\times\)</span> <span class="math inline">\(\frac{1}{10}\)</span> pianos/households <span class="math inline">\(\times\)</span> 1 tunings/piano <span class="math inline">\(\div\)</span> <span class="math inline">\((4 \times 365)\)</span> tunings/tuner <span class="math inline">\(\approx\)</span> 68 piano tuners in Chicago</p>
+<div id="bounds-analysis" class="section level4">
+<h4><span class="header-section-number">6.3.0.1</span> Bounds Analysis</h4>
+<p>To be really careful, calculate lower and upper bounds:</p>
+<p><strong>Lower Bound</strong>: <span class="math inline">\(1,000,000\)</span> households <span class="math inline">\(\times\)</span> <span class="math inline">\(\frac{1}{30}\)</span> pianos/households <span class="math inline">\(\times\)</span> <span class="math inline">\(\frac{1}{5}\)</span> tunings/piano <span class="math inline">\(\div\)</span> <span class="math inline">\((5 \times 365)\)</span> tunings/tuner <span class="math inline">\(\approx\)</span> 4 piano tuners in Chicago</p>
+<p><strong>Upper Bound:</strong> <span class="math inline">\(1,000,000\)</span> households <span class="math inline">\(\times\)</span> <span class="math inline">\(\frac{1}{5}\)</span> pianos/households <span class="math inline">\(\times\)</span> <span class="math inline">\(2\)</span> tunings/piano <span class="math inline">\(\div\)</span> <span class="math inline">\((2 \times 365)\)</span> tunings/tuner <span class="math inline">\(\approx\)</span> 548 piano tuners in Chicago</p>
+<p>A safe bet is that there are somewhere between 4 and 548 piano tuners in Chicago.</p>
+<blockquote>
+<p><strong>Exercise 3:</strong></p>
+<p>The Loop Trolley is a good example of a project that could have used a rigorous cost-benefit analysis prior to execution. See <a href="http://www.looptrolley.com/">here</a> and <a href="https://www.stlmag.com/news/think-again/get-in-the-loop/">here</a> for some background.</p>
+<p>This is a map of the Delmar Loop Trolley route.</p>
 </blockquote>
 <blockquote>
 <p><img src="figures/St-Louis-Loop-Trolley2.jpg" /></p>
-<p>Using the Fermi Method, estimate the monthly number of Trolley riders during 2019. (The service operated from noon-6pm Thursdays through Sundays.)</p>
+<p>Using the Fermi Method, predict the total fare revenue the Trolley earned between November 2018 and June 2019. The service operated from noon-6pm Thursdays through Sundays, and cost $2.00 for a two-hour fare.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
 </blockquote>
-</div>
-<div id="cba-of-the-day-4" class="section level2">
-<h2><span class="header-section-number">6.2</span> CBA of the Day</h2>
 
+</div>
 </div>
 </div>
 
@@ -201,6 +361,15 @@
 
 
 
+
+
+<div class="footnotes">
+<hr />
+<ol start="2">
+<li id="fn2"><p>The most famous example of a Fermi Problem is the <a href="https://en.wikipedia.org/wiki/Drake_equation">Drake Equation</a>.<a href="prediction.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Here’s the <a href="https://www.stltoday.com/news/local/govt-and-politics/loop-trolley-ridership-and-fare-revenue-lag-it-s-raised/article_c75e642c-c17e-5782-9bfc-9918657417e5.html">answer</a>. <strong>NO PEEKING!</strong><a href="prediction.html#fnref3" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
             </section>
 
           </div>
