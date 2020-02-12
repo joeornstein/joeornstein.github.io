@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Cost-Benefit Analysis</title>
+  <title>7 Shadow Prices 1: Stated Preferences | Cost-Benefit Analysis</title>
   <meta name="description" content="These are the collected course notes for my Cost-Benefit Analysis class (Spring 2020)." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Cost-Benefit Analysis" />
+  <meta property="og:title" content="7 Shadow Prices 1: Stated Preferences | Cost-Benefit Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Cost-Benefit Analysis" />
+  <meta name="twitter:title" content="7 Shadow Prices 1: Stated Preferences | Cost-Benefit Analysis" />
   
   <meta name="twitter:description" content="These are the collected course notes for my Cost-Benefit Analysis class (Spring 2020)." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="prediction.html"/>
 
-<link rel="next" href="introduction-to-cost-benefit-analysis-cba.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -195,25 +195,158 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Cost-Benefit Analysis</h1>
-<p class="author"><em>Joseph T. Ornstein</em></p>
-<p class="date"><em>February 12, 2020</em></p>
+<div id="shadow-prices-1-stated-preferences" class="section level1">
+<h1><span class="header-section-number">7</span> Shadow Prices 1: Stated Preferences</h1>
+<p><strong>Today’s Goals:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Review Problem Set 3</li>
+<li>Introduce contingent valuation (stated preference) methods</li>
+<li>Practice fielding a contingent valuation survey (and jump start some class projects)</li>
+<li>CBA of the Day: Early Childhood Education</li>
+</ol>
+<p>Okay. We’ve been foreshadowing this topic a lot over the last six weeks. How do you <strong>monetize</strong> an impact when there are no market prices to consult? If Willingness To Pay (WTP) is the basis for all of our measures of social welfare, but we can’t observe what people are willing to pay, what do we do?</p>
+<ul>
+<li>How much do people value decreased pollution?</li>
+<li>How much do parents value their kids’ safety and education?</li>
+<li>How much does traffic congestion reduce people’s well-being?</li>
+</ul>
+<p>Today we’ll introduce <strong>stated preference (SP)</strong> methods for estimating these shadow prices, which involve people <em>stating</em> how much they value a benefit or cost. Next week we’ll introduce <strong>revealed preference (RP)</strong> methods, which involve people taking actions that <em>reveal</em> how much they value a benefit or cost. These terminologies are relatively straightforward.</p>
+<p>Stated preference methods are generally considered less rigorous than revealed preference methods, for reasons we will discuss (people lie, people are bad at estimating value, people suffer from systematic psychological biases, people never answer the phone anymore….methods that don’t depend on people are typically superior). But sometimes they are all you have, and an uncertain estimate may be better than no estimate at all.</p>
+<div id="contingent-valuation" class="section level2">
+<h2><span class="header-section-number">7.1</span> Contingent Valuation</h2>
+<p>One type of stated preference method is <strong>contingent valuation (CVM)</strong>. This method involves surveying people to elicit their WTP. They generally proceed as follows:</p>
+<ol style="list-style-type: decimal">
+<li>Identify a sample from the population with standing</li>
+<li>Ask questions about their valuation over changes in the quantity of a good.</li>
+<li>Use those responses to estimate WTP (or WTA)</li>
+<li>Extrapolate results from sample to population (multiplication)</li>
+</ol>
+<p>Let’s discuss three types of CVM surveys: open-ended, closed-ended iterative, and dichotomous choice.</p>
+<div id="open-ended" class="section level3">
+<h3><span class="header-section-number">7.1.1</span> Open-Ended</h3>
+<p>Just ask people how much they would be willing to pay.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<blockquote>
+<p><strong>Exercise 1:</strong></p>
+<p>What are the advantages and disadvantages to this approach?</p>
+</blockquote>
 </div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p>Cost-benefit analysis is a method for measuring the effect of a policy, program, or intervention on <strong>social welfare</strong>. Its aim is to enumerate—for each member of society—the costs and benefits accruing to that person, and evaluate whether, on net, the benefits outweigh the costs. As you can imagine, this is a difficult task! (And not without its critics.) But when done well, it can be a powerful set of tools for deciding how to do the most good in the world within a given budget constraint.</p>
-<p><a href="https://www.smbc-comics.com/comic/sunset"><img src="figures/1574869213-20191127.png" alt="With the right assumptions, I think you could get to a negative number." /></a></p>
-<p>What follows are the collected course notes for my Cost-Benefit Analysis class (Brown School, Washington University in St. Louis, Spring 2020). Please enjoy!</p>
+<div id="closed-ended-iterative-bidding" class="section level3">
+<h3><span class="header-section-number">7.1.2</span> Closed-Ended Iterative Bidding</h3>
+<ol style="list-style-type: decimal">
+<li>Ask if respondent would pay $X for benefit.
+<ul>
+<li>If yes, ask if they would pay <span class="math inline">\(\$(X + \varepsilon)\)</span></li>
+<li>If no, ask if they would pay <span class="math inline">\(\$(X-\varepsilon)\)</span></li>
+</ul></li>
+<li>Keep incrementing / decrementing until they switch their answer.</li>
+</ol>
+<blockquote>
+<p><strong>Exercise 2:</strong></p>
+<p>What are the advantages and disadvantages to this approach?</p>
+</blockquote>
+<p>Here’s a neat example of this type of study from <a href="https://brownschool.wustl.edu/Faculty-and-Research/Pages/Derek-Brown.aspx">Derek Brown</a>:</p>
+<p><img src="figures/image-20200212145144436.png" /></p>
+<p><img src="figures/image-20200212145318800.png" /></p>
+</div>
+<div id="dichotomous-choice-referendum-method" class="section level3">
+<h3><span class="header-section-number">7.1.3</span> Dichotomous Choice / Referendum Method</h3>
+<p>Give each respondent a single, <em>randomly drawn</em> dollar value <span class="math inline">\(\$X\)</span> and as if they would be willing to pay that amount. Then you can plot out a demand curve like this:</p>
+<p><img src="figures/image-20200212144614492.png" /></p>
+<blockquote>
+<p><strong>Exercise 3:</strong></p>
+<p>What are the advantages and disadvantages of this approach?</p>
+</blockquote>
+</div>
+</div>
+<div id="discrete-choice-experiments-conjoint-analysis" class="section level2">
+<h2><span class="header-section-number">7.2</span> Discrete Choice Experiments (Conjoint Analysis)</h2>
+<p>Adapted from marketing research. Particularly useful if your policy is multidimensional, and you want to estimate how people value one attribute relative to another.</p>
+<p><strong>Example 1:</strong></p>
+<p><img src="figures/conjoint_terms.jpg" /></p>
+<p><strong>Example 2:</strong></p>
+<p><img src="figures/image-20200212150356138.png" /></p>
+<div id="survey-administration-methods" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> Survey Administration Methods</h3>
+<p><img src="figures/image-20200204152449933.png" /></p>
+</div>
+</div>
+<div id="critiques-of-contingent-valuation" class="section level2">
+<h2><span class="header-section-number">7.3</span> Critiques of Contingent Valuation</h2>
+<ol style="list-style-type: decimal">
+<li>Hypothetical Bias
+<ul>
+<li>When faced with a hypothetical situation, people have difficulty imagining their WTP. There may be an <strong>upward bias</strong>, where people report that they are willing to pay more than they actually would if faced with the situation in real life.</li>
+<li>The opposite problem holds too. When people have very small WTP, they may report $0 instead of a small value.</li>
+</ul></li>
+<li>Difference between WTP and WTA
+<ul>
+<li>Because of psychological biases like <strong>loss aversion</strong> and the <strong>endowment effect</strong>, people tend to report lower WTP for benefits they don’t have and higher WTA for benefits they do have.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></li>
+</ul></li>
+</ol>
+<p><img src="figures/image-20200204152536495.png" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Order/Anchor Effects
+<ul>
+<li>Responses often depend on the order in which questions are asked. (If you’re first asked about your valuation for saving whales, your valuation for saving seals might be lower than if the questions were asked the other way around.)</li>
+<li>Best practice is to ask each respondent only one valuation question.</li>
+</ul></li>
+<li>Who are your respondents? Are they representative of the people who will actually benefit from the program?</li>
+<li>Non-response bias. Common problem for all survey research these days.</li>
+<li>Scope Problems
+<ul>
+<li>Survey respondents often report very similar values for quantitatively different outcomes. For example, people will often report the same WTP for saving 2,000 birds as they would for saving 200,000 birds.</li>
+<li>People have a hard time conceptualizing big numbers! Always a good idea to provide context when people may be unfamiliar with your area of interest. (How many migratory seabirds are there currently?)</li>
+<li>Also good practice to conduct a <strong>scope test</strong>. Vary your numbers and see what happens to valuations.</li>
+</ul></li>
+<li>Non-Commitment Bias
+<ul>
+<li>If you just ask for WTP, then you’re not capturing differences in <em>certainty</em>. One respondent may be very sure that they would pay $3. Another respondent may just blindly guess $3. Good practice is to ask a follow up question about their level of certainty, and see how valuation varies based on certainty.</li>
+</ul></li>
+</ol>
+</div>
+<div id="boardmans-recommendations" class="section level2">
+<h2><span class="header-section-number">7.4</span> Boardman’s Recommendations</h2>
+<p><img src="figures/image-20200204152521087.png" /></p>
+</div>
+<div id="cba-of-the-day-3" class="section level2">
+<h2><span class="header-section-number">7.5</span> CBA of the Day</h2>
+<p><a href="https://wustl.instructure.com/courses/43398/files/folder/Readings?preview=1024076">Early Childhood Education for Low-Income Students (Hoagland, 2019)</a></p>
+</div>
+<div id="in-class-exercise" class="section level2">
+<h2><span class="header-section-number">7.6</span> In-Class Exercise</h2>
+<ol style="list-style-type: decimal">
+<li>Consider the CBA you’d like to conduct for your class project. Are there any benefits (or costs) for which it will be difficult to estimate WTP from market prices?</li>
+<li>Raise your hand. Students without such a problem will help you construct a contingent valuation survey to administer to the rest of the class.</li>
+<li>Which survey method will you use? What questions will you ask? Write them down.</li>
+<li>Once Step 3 is complete, each group will introduce their problem and administer their survey to the remainder of the class.</li>
+</ol>
 
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="4">
+<li id="fn4"><p>This is the method I used in Week 2 to elicit the class WTP for golden delicious apples.<a href="shadow-prices-1-stated-preferences.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>You may remember this phenomenon from our first problem set.<a href="shadow-prices-1-stated-preferences.html#fnref5" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
+<a href="prediction.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="introduction-to-cost-benefit-analysis-cba.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
