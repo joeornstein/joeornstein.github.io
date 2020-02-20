@@ -71,13 +71,13 @@ Papers on agent-based modeling, spatial econometrics, and local public opinion e
         <div class="galleryItem">
           <a href="SRP.html"><img class="galleryItemImage" src="images/BHresults.png"/></a>
           <a href="SRP.html" class="galleryItemLabel">Stacked Regression and Poststratification</a>
-          <div class="galleryItemDescription">Political Analysis (Forthcoming).</div>
+          <div class="galleryItemDescription">Political Analysis, 2020.</div>
         </div>
         
         <div class="galleryItem">
-          <a href="research/zig-zag/index.html"><img class="galleryItemImage" src="research/zig-zag/ZigZagAndSquiggleFig.png"/></a>
-          <a href="research/zig-zag/index.html" class="galleryItemLabel">Zig Zag: When Noisy Regression Discontinuities Yield Exaggerated Claims</a>
-          <div class="galleryItemDescription">Working Paper.</div>
+          <a href="papers/gprd.pdf"><img class="galleryItemImage" src="research/zig-zag/ZigZagAndSquiggleFig.png"/></a>
+          <a href="papers/gprd.pdf" class="galleryItemLabel">Gaussian Process Regression Discontinuity</a>
+          <div class="galleryItemDescription">Working Paper, with JBrandon Duck-Mayr</div>
         </div>
         
       
