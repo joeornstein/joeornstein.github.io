@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 Prediction | Cost-Benefit Analysis</title>
+  <title>8 Discounting Future Impacts | Cost-Benefit Analysis</title>
   <meta name="description" content="These are the collected course notes for my Cost-Benefit Analysis class (Spring 2020)." />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6 Prediction | Cost-Benefit Analysis" />
+  <meta property="og:title" content="8 Discounting Future Impacts | Cost-Benefit Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 Prediction | Cost-Benefit Analysis" />
+  <meta name="twitter:title" content="8 Discounting Future Impacts | Cost-Benefit Analysis" />
   
   <meta name="twitter:description" content="These are the collected course notes for my Cost-Benefit Analysis class (Spring 2020)." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="input-secondary-markets.html"/>
-<link rel="next" href="shadow-prices-1-stated-preferences.html"/>
+<link rel="prev" href="shadow-prices-1-stated-preferences.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -206,186 +206,204 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="prediction" class="section level1">
-<h1><span class="header-section-number">6</span> Prediction</h1>
+<div id="discounting-future-impacts" class="section level1">
+<h1><span class="header-section-number">8</span> Discounting Future Impacts</h1>
 <p><strong>Today’s Goals:</strong></p>
 <ol style="list-style-type: decimal">
-<li>Introduce several methods for predicting the impact of our programs</li>
-<li>Conduct an in-class meta-analysis</li>
-<li>Discuss two CBAs (Supervised Injection Facilities and Job Corps)</li>
+<li>Learn why and how we <em>discount</em> benefits and costs that occur in the future</li>
+<li>Practice computing <strong>net present value</strong> (NPV) in Excel</li>
+<li>Understand the origin and use of the <strong>social discount rate</strong> (SDR), and how varying assumptions about the SDR can affect NPV</li>
 </ol>
-<p>Today marks the beginning of Part 2 of the course (out of three parts). In Part 1 we focused on the conceptual and economic foundations of CBA. In Part 2 we will build up a toolkit of specific techniques that you can use when conducting your own CBA. If you haven’t started thinking about what you will do for your Final Project, now is a good time to start!</p>
-<p>A central part of cost-benefit analysis is <strong>prediction</strong>. Ironically, this is the step for which Boardman offers the least guidance. Broadly speaking, there are three major errors that CBAs make at this point.</p>
-<ol style="list-style-type: decimal">
-<li><strong>Omission Errors</strong>: Excluding a relevant impact</li>
-<li><strong>Forecasting Errors</strong>: Inaccurate prediction of the program’s true effect</li>
-<li><strong>Valuation Errors:</strong> Inaccurate estimates of the relevant shadow prices (more on this in Weeks 7 and 8)</li>
-</ol>
-<p>Today, we’ll discuss three methods that can help you make better predictions—meta-analysis, models, and Fermi methods.</p>
-<div id="the-wisdom-of-crowds-meta-analysis" class="section level2">
-<h2><span class="header-section-number">6.1</span> The Wisdom of Crowds &amp; Meta-Analysis</h2>
-<blockquote>
-<p><strong>Exercise 1:</strong></p>
-<p>Guess how heavy this object is in kilograms.</p>
-<p>(Bonus Fun: we’ll learn how to implement functions in Excel.)</p>
-</blockquote>
-<div id="diversity-prediction-theorem" class="section level3">
-<h3><span class="header-section-number">6.1.1</span> Diversity Prediction Theorem:</h3>
-<p>The Diversity Prediction Theorem (<a href="https://www.jstor.org/stable/pdf/27747407.pdf">Page, 2007</a>) states that the collective error of a diverse group will be smaller than the average error of individuals.</p>
-<p><strong>Collective Error</strong> = <strong>Average Individual Error</strong> – <strong>Prediction Diversity</strong></p>
-<p>In mathematical terms, if <span class="math inline">\(\mu\)</span> is the true value, there are <span class="math inline">\(n\)</span> predictors who each predict <span class="math inline">\(X_i\)</span>, and the collective prediction is <span class="math inline">\(\bar{X}\)</span>, then:
-<span class="math display">\[
-(\bar{X}-\mu)^2 = \frac{\sum(X_i-\mu)^2}{n}-\frac{\sum(X_i-\bar{X})^2}{n}
-\]</span>
-There’s no guarantee that the crowd will predict better than the <em>best</em> individual, but the crowd is guaranteed to predict better than the <em>average</em> individual. This idea—that taking the average of a group of predictions will tend to yield better results than a random <em>single</em> prediction—is the logic underlying meta-analysis.</p>
+<p><a href="https://dilbert.com/strip/1993-02-11"><img src="figures/dogbert.png" /></a></p>
+<div id="why-discount-the-future" class="section level2">
+<h2><span class="header-section-number">8.1</span> Why Discount the Future?</h2>
+<p>When we conduct a CBA, we start from the assumption that benefits (and costs) are worth less in the future than they would be worth today. Why do we make this assumption?</p>
+<ul>
+<li><strong>Opportunity Costs:</strong> The resources we expend for our project could be earning a positive return elsewhere (say, in the stock market).</li>
+<li><strong>Human Nature:</strong> People prefer to consume benefits today and put off costs until tomorrow.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></li>
+<li><strong>Inflation:</strong> The price of goods tends to rise over time. $100 in ten years will buy less stuff than $100 today.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a> we may want to take this into account for our analysis.</li>
+</ul>
 </div>
-<div id="best-practices-for-meta-analysis" class="section level3">
-<h3><span class="header-section-number">6.1.2</span> Best Practices for Meta-Analysis:</h3>
-<p>There is a <strong>big</strong> literature on meta-analysis. A lot of it is technical and beyond the scope of this class. So here are my expectations if you choose to conduct a meta-analysis for your final project.</p>
-<ol style="list-style-type: decimal">
-<li>Collect as many studies as you can find (bigger crowds are wiser than smaller crowds).
-<ul>
-<li>Some studies will evaluate a policy that is <em>similar</em> in some way or is based on a slightly different population. Beware of over-extrapolating and use your best judgment on whether this study is informative for your context.</li>
-</ul></li>
-<li>Keep the ones with the most rigorous research design. We want <strong>causal</strong> estimates, not just correlation.
-<ul>
-<li><strong>Best:</strong> Double-blind randomized control trials</li>
-<li><strong>Good:</strong> Natural experiments, quasi-experimental methods (e.g. regression discontinuity), difference-in-difference</li>
-<li><strong>Not Good</strong>: Correlational findings, cross-sectional regression</li>
-<li><strong>Bad:</strong> No treatment-control comparisons</li>
-</ul></li>
-<li>Where possible, standardize the effect size
-<ul>
-<li>Divide by the standard deviation of the outcome</li>
-</ul></li>
-<li>Compute a weighted average</li>
-<li>Keep the uncertainty estimates for sensitivity analysis</li>
-</ol>
+<div id="future-value" class="section level2">
+<h2><span class="header-section-number">8.2</span> Future Value</h2>
+<p>The most straightforward way to motivate the idea of <strong>present value</strong> is to first consider its inverse: <strong>future value</strong>.</p>
 <blockquote>
-<p><strong>Exercise 2:</strong></p>
-<p>Now we’ll conduct a meta-analysis as a class. The topic is open, but let’s pick one where we’ll probably find lots of studies.</p>
-<table>
+<p><strong>Exercise 1:</strong> Suppose you have $100 and you put it into an account that yields 3% interest each year. How much will that account be worth in one year?</p>
+</blockquote>
+<p><span class="math display">\[
+FV = PV(1+r)
+\]</span></p>
+<blockquote>
+<p><strong>Exercise 2:</strong> How much will the account be worth in two years? Five years? (Throughout, assume that interest is compounded annually.)</p>
+</blockquote>
+<p><span class="math display">\[
+FV = PV(1+r)^T
+\]</span></p>
+<blockquote>
+<p><strong>Exercise 3:</strong> Using Excel, compute the future value of the account over each of the next twenty years.</p>
+</blockquote>
+</div>
+<div id="present-value" class="section level2">
+<h2><span class="header-section-number">8.3</span> Present Value</h2>
+<p>Conceptually, computing <strong>present value</strong> of a future benefit is the inverse problem.</p>
+<blockquote>
+<p><strong>Exercise 4:</strong> Suppose someone promised to give you $100 in exactly 1 year. You know you can earn 4% each year in an investment account. How much would you be willing to accept <em>today</em> instead of the future benefit?</p>
+</blockquote>
+<p><span class="math display">\[
+PV = \frac{FV}{1+r}
+\]</span></p>
+<blockquote>
+<p><strong>Exercise 5:</strong> What if you had to <strong>pay</strong> someone $100 in 5 years? How much would you be willing to pay them today instead of that future payment?</p>
+</blockquote>
+<p><span class="math display">\[
+PV = \frac{FV}{(1+r)^T}
+\]</span></p>
+<p>The <strong>net present value</strong> (NPV) of a project is the present value of benefits minus the present value of costs.</p>
+</div>
+<div id="the-discount-rate" class="section level2">
+<h2><span class="header-section-number">8.4</span> The Discount Rate</h2>
+<p>What does the discount rate mean?</p>
+<blockquote>
+<p><strong>Exercise 6:</strong> Increase the discount rate to 6%. What happens to your conclusion from Exercise 5? Now decrease it to 2%. How could we interpret the discount rate as a measure of “patience”?</p>
+<p>Also, let’s introduce Named Variables in Excel to make these computations easier.</p>
+</blockquote>
+</div>
+<div id="discounting-over-multiple-periods" class="section level2">
+<h2><span class="header-section-number">8.5</span> Discounting Over Multiple Periods</h2>
+<blockquote>
+<p><strong>Exercise 7:</strong> Suppose a project yielded the following stream of benefits:</p>
+<p>Year 0 (today): $300</p>
+<p>Year 1: $200</p>
+<p>Year 2: $300</p>
+<p>Year 3: $400</p>
+<p>Year 4: $200</p>
+<p>Year 5: $1000</p>
+<p>Using a discount rate of 3%, compute the present value of the project. How much would you be willing to pay today for that stream of benefits?</p>
+</blockquote>
+<p>Here’s a useful figure from the Boardman book. See if you can replicate it in Excel (discount rate is 4%). A nice feature of computing NPV is that it doesn’t matter whether you do the net benefit step first or the discounting step first. You still get the same answer.</p>
+<p><img src="figures/image-20200226173942388.png" /></p>
+<p>If the stream of benefits is constant (e.g. $X every year for N years), then computing the present value is simpler. We can use the <strong>annuity formula</strong>.
+<span class="math display">\[
+PV = \sum_{t=1}^n \frac{A}{(1+r)^t}=A\sum_{t=1}^n \frac{1}{(1+r)^t}=Aa_r^n
+\]</span>
+We can compute the <strong>annuity factor</strong>, <span class="math inline">\(a_r^n\)</span>, in Excel with the <code>PV</code> formula.</p>
+<blockquote>
+<p><strong>Exercise 8:</strong> Compute the net present value of an annuity that costs $900 today and pays $100 in benefits every year for 10 years. Is NPV positive or negative?</p>
+</blockquote>
+<p>An annuity that extends indefinitely is called a <strong>perpetuity</strong>.</p>
+<blockquote>
+<p><strong>Exercise 9:</strong> What’s the NPV of the annuity from Exercise 8 if the benefits kept accruing for 20 years? 50 years? 100 years? 250 years? 400 years? 1000 years?</p>
+</blockquote>
+<p>In the limit, the value of a perpetuity equals:
+<span class="math display">\[
+PV = \frac{A}{r}
+\]</span></p>
+</div>
+<div id="comparing-projects" class="section level2">
+<h2><span class="header-section-number">8.6</span> Comparing Projects</h2>
+<p>Always compare using the same discounting horizon! When comparing two projects that yield benefits over different time periods, normalize their NPV using annuity factors. The <strong>equivalent annual net social benefit</strong> (EANB) is one such method. This converts each project into an annuity value, an apples-to-apples comparison.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>
+<span class="math display">\[
+EANB = \frac{NPV}{a_r^n}
+\]</span></p>
+<blockquote>
+<p><strong>Exercise 10:</strong> Project A costs $10,000 upfront and yields $2,500 in benefits every year for 10 years. Project B costs $20,000 upfront and yields $9,000 in benefits every year for 3 years. Assume a 6% discount rate. Which has a higher NPV? Which has a higher EANB? Which should you implement? Why?</p>
+</blockquote>
+</div>
+<div id="inflation" class="section level2">
+<h2><span class="header-section-number">8.7</span> Inflation</h2>
+<p>Prices tend to rise over time. Or, equivalently, the value of a dollar tends to decline over time.</p>
+<p><strong>Nominal dollars</strong> are unadjusted for inflation. <strong>Real dollars</strong> are adjusted for inflation, typically by dividing by a <strong>consumer price index (CPI)</strong>.</p>
+<p><img src="figures/image-20200227124343808.png" /></p>
+<table style="width:100%;">
+<colgroup>
+<col width="5%" />
+<col width="27%" />
+<col width="20%" />
+<col width="46%" />
+</colgroup>
 <thead>
 <tr class="header">
-<th>Author (Year)</th>
-<th>Quality (1-5)</th>
-<th>N</th>
-<th>Estimated Effect</th>
-<th>95% Confidence Interval</th>
-<th>Notes</th>
+<th>Year</th>
+<th>Consumer Price Index</th>
+<th>Nominal Dollars</th>
+<th>Real Dollars (Nominal / CPI * 100)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>1982</td>
+<td>100</td>
+<td>$1,000</td>
+<td>$1,000</td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>1990</td>
+<td>134.2</td>
+<td>$1,000</td>
+<td>$745</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>2001</td>
+<td>177.4</td>
+<td>$1,000</td>
+<td>$564</td>
+</tr>
+<tr class="even">
+<td>2010</td>
+<td>220.5</td>
+<td>$1,000</td>
+<td>$454</td>
+</tr>
+<tr class="odd">
+<td>2019</td>
+<td>258.4</td>
+<td>$1,000</td>
+<td>$387</td>
 </tr>
 </tbody>
 </table>
-</blockquote>
-</div>
-<div id="pitfalls-of-meta-analysis" class="section level3">
-<h3><span class="header-section-number">6.1.3</span> Pitfalls of Meta-Analysis:</h3>
-<ol style="list-style-type: decimal">
-<li>The File Drawer Effect
+<p>That’s how you convert between real and nominal dollars.</p>
+<p>Remember this:</p>
 <ul>
-<li>There is a bias in academia against publishing null results. As a result, the estimated effects you find in the published literature are <strong>likely to be overestimates</strong>.</li>
-</ul></li>
-<li>External Validity
-<ul>
-<li>The results of a study in one population may not replicate to your population of interest</li>
-</ul></li>
-<li>Cherry-picking
-<ul>
-<li>Select studies based on objective criteria; <strong>never select based on a study’s results</strong>.</li>
-</ul></li>
-</ol>
-</div>
-<div id="cba-of-the-day-1-2" class="section level3">
-<h3><span class="header-section-number">6.1.4</span> CBA of the Day #1</h3>
-<p><a href="https://wustl.instructure.com/courses/43398/files/folder/Readings?preview=1024107"><strong>Job Corps</strong>: Long et al. (1981)</a></p>
-</div>
-</div>
-<div id="models-and-simulations" class="section level2">
-<h2><span class="header-section-number">6.2</span> Models and Simulations</h2>
-<p>What if there are no published studies estimating the effect of the policy you care about?</p>
-<ul>
-<li>Maybe it’s never been tried before.</li>
-<li>Maybe it would be unethical to conduct a randomized-control trial.</li>
-<li>Maybe there are some studies, but you have serious concerns about external validity</li>
-<li>Maybe there are some studies, but they are all poor-quality, and they likely overestimate the true effect</li>
+<li>If you are working with nominal dollars, use a nominal discount rate</li>
+<li>If you are working with real dollars, use a real discount rate</li>
 </ul>
-<p>One option is to consider models or computer simulations. Common in lots of fields:</p>
-<ul>
-<li>Macroeconomics (can’t run experiments on the economy)</li>
-<li>Infectious disease modeling (can’t run experiments on pandemic vaccination policy)</li>
-<li>Climate models (can’t run experiments on global carbon emissions)</li>
-</ul>
-<div id="example-tobacco-town" class="section level3">
-<h3><span class="header-section-number">6.2.1</span> Example – Tobacco Town:</h3>
-<p><a href="https://netnav.shinyapps.io/TobaccoSwamps">Policy Dashboard</a></p>
+<p><strong>Just be consistent!</strong></p>
+<p>In practice, you will probably already be using real dollars when you make projections (it makes more intuitive sense to think about future benefits and costs at today’s prices rather than future inflated prices).</p>
 </div>
-<div id="example-cba-of-the-day-2" class="section level3">
-<h3><span class="header-section-number">6.2.2</span> Example – CBA of the Day #2:</h3>
-<p><a href="https://wustl.instructure.com/courses/43398/files/folder/Readings?preview=1024109"><strong>Supervised Injection Facilities</strong> (Andresen &amp; Boyd, 2010)</a></p>
+<div id="cba-of-the-day-4" class="section level2">
+<h2><span class="header-section-number">8.8</span> CBA of the Day</h2>
+<p>Early Identification and Treatment of Alzheimer’s Disease (<a href="https://wustl.instructure.com/courses/43398/files/folder/Readings?preview=1024038">Weimer &amp; Sager, 2009</a>)</p>
 </div>
-</div>
-<div id="fermi-methods" class="section level2">
-<h2><span class="header-section-number">6.3</span> Fermi Methods</h2>
-<p>What if you don’t have good empirical studies and you don’t have a computer simulation? What if you just have to…guess? Fortunately there is an academic literature on how best to make educated guesses.</p>
-<p>The Fermi Method—named in honor of physicist <a href="https://en.wikipedia.org/wiki/Enrico_Fermi">Enrico Fermi</a>—uses a <em>divide-and-conquer</em> approach.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> For example, suppose we wanted to estimate how many piano tuners there are in the city of Chicago. A Fermi approach would look like this:</p>
-<ol style="list-style-type: decimal">
-<li>How many households are in Chicago? (<a href="https://en.wikipedia.org/wiki/Chicago">1 million</a>)</li>
-<li>What percentage of households own pianos? (Maybe 1 in 10?)</li>
-<li>How often do pianos need to be tuned? (<a href="https://www.merriammusic.com/piano-services/the-ultimate-guide-to-piano-care-how-often-do-i-need-to-tune-my-piano/">Once a year</a>)</li>
-<li>How many pianos can a piano tuner tune every day? (<a href="http://www.janssenpiano.com/faq.php">About 4</a>)</li>
-</ol>
-<p>So we would guess:</p>
-<p><span class="math inline">\(1,000,000\)</span> households <span class="math inline">\(\times\)</span> <span class="math inline">\(\frac{1}{10}\)</span> pianos/households <span class="math inline">\(\times\)</span> 1 tunings/piano <span class="math inline">\(\div\)</span> <span class="math inline">\((4 \times 365)\)</span> tunings/tuner <span class="math inline">\(\approx\)</span> 68 piano tuners in Chicago</p>
-<div id="bounds-analysis" class="section level4">
-<h4><span class="header-section-number">6.3.0.1</span> Bounds Analysis</h4>
-<p>To be really careful, calculate lower and upper bounds:</p>
-<p><strong>Lower Bound</strong>: <span class="math inline">\(1,000,000\)</span> households <span class="math inline">\(\times\)</span> <span class="math inline">\(\frac{1}{30}\)</span> pianos/households <span class="math inline">\(\times\)</span> <span class="math inline">\(\frac{1}{5}\)</span> tunings/piano <span class="math inline">\(\div\)</span> <span class="math inline">\((5 \times 365)\)</span> tunings/tuner <span class="math inline">\(\approx\)</span> 4 piano tuners in Chicago</p>
-<p><strong>Upper Bound:</strong> <span class="math inline">\(1,000,000\)</span> households <span class="math inline">\(\times\)</span> <span class="math inline">\(\frac{1}{5}\)</span> pianos/households <span class="math inline">\(\times\)</span> <span class="math inline">\(2\)</span> tunings/piano <span class="math inline">\(\div\)</span> <span class="math inline">\((2 \times 365)\)</span> tunings/tuner <span class="math inline">\(\approx\)</span> 548 piano tuners in Chicago</p>
-<p>A safe bet is that there are somewhere between 4 and 548 piano tuners in Chicago.</p>
-<blockquote>
-<p><strong>Exercise 3:</strong></p>
-<p>The Loop Trolley is a good example of a project that could have used a rigorous cost-benefit analysis prior to execution. See <a href="http://www.looptrolley.com/">here</a> and <a href="https://www.stlmag.com/news/think-again/get-in-the-loop/">here</a> for some background.</p>
-<p>This is a map of the Delmar Loop Trolley route.</p>
-</blockquote>
-<blockquote>
-<p><img src="figures/St-Louis-Loop-Trolley2.jpg" /></p>
-<p>Using the Fermi Method, predict the total fare revenue the Trolley earned between November 16, 2018 and July 1, 2019. The service operated from noon-6pm Thursdays through Sundays, and cost $2.00 for a two-hour fare.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
-</blockquote>
+<div id="the-social-discount-rate" class="section level2">
+<h2><span class="header-section-number">8.9</span> The Social Discount Rate</h2>
+<p>What is the “right” discount rate to use?</p>
+<p><strong>Exercise: Show that SDR matters.</strong> (Table 10.1)</p>
+<p><strong>Brief</strong> discussion of estimation methods.</p>
+<p>Time-Declining SDR and intergenerational Projects</p>
+<p>Picking the right discount rate is inherently uncertain. So always perform a sensitivity analysis! That’s our topic for next week.</p>
 
 </div>
 </div>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="footnotes">
 <hr />
-<ol start="2">
-<li id="fn2"><p>The most famous example of a Fermi Problem is the <a href="https://en.wikipedia.org/wiki/Drake_equation">Drake Equation</a>.<a href="prediction.html#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>Here’s the <a href="https://www.stltoday.com/news/local/govt-and-politics/loop-trolley-ridership-and-fare-revenue-lag-it-s-raised/article_c75e642c-c17e-5782-9bfc-9918657417e5.html">answer</a>. <strong>NO PEEKING!</strong><a href="prediction.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<ol start="6">
+<li id="fn6"><p>Since people’s preferences are the conceptual foundation of all cost-benefit analysis (see Week 2), we need to take this facet of human nature into account.<a href="discounting-future-impacts.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>This is not a universal law. Many countries have also experienced periods of deflation (price decreases). But over the past century, economically developed countries have tended to experience a low and steady rate of inflation (indeed, this is one explicit goal of macroeconomic policymaking).<a href="discounting-future-impacts.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p>In accounting, this is also known as <strong>amortization</strong>.<a href="discounting-future-impacts.html#fnref8" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -393,8 +411,8 @@ There’s no guarantee that the crowd will predict better than the <em>best</em>
           </div>
         </div>
       </div>
-<a href="input-secondary-markets.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="shadow-prices-1-stated-preferences.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="shadow-prices-1-stated-preferences.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
