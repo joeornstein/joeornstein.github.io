@@ -24,7 +24,7 @@
 <meta name="author" content="Joseph T. Ornstein" />
 
 
-<meta name="date" content="2020-02-27" />
+<meta name="date" content="2020-03-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -221,7 +221,7 @@
 <ul>
 <li><strong>Opportunity Costs:</strong> The resources we expend for our project could be earning a positive return elsewhere (say, in the stock market).</li>
 <li><strong>Human Nature:</strong> People prefer to consume benefits today and put off costs until tomorrow.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></li>
-<li><strong>Inflation:</strong> The price of goods tends to rise over time. $100 in ten years will buy less stuff than $100 today.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a> we may want to take this into account for our analysis.</li>
+<li><strong>Inflation:</strong> The price of goods tends to rise over time. $100 in ten years will buy less stuff than $100 today.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a> We may want to take this into account for our analysis.</li>
 </ul>
 </div>
 <div id="future-value" class="section level2">
@@ -290,7 +290,7 @@ We can compute the <strong>annuity factor</strong>, <span class="math inline">\(
 <blockquote>
 <p><strong>Exercise 8:</strong> Compute the net present value of an annuity that costs $900 today and pays $100 in benefits every year for 10 years. Is NPV positive or negative?</p>
 </blockquote>
-<p>An annuity that extends indefinitely is called a <strong>perpetuity</strong>.</p>
+<p>An annuity that extends indefinitely is called a <strong>perpetuity</strong>. What’s a perpetuity worth? You’re being promised an infinite amount of money, so…infinity dollars?</p>
 <blockquote>
 <p><strong>Exercise 9:</strong> What’s the NPV of the annuity from Exercise 8 if the benefits kept accruing for 20 years? 50 years? 100 years? 250 years? 400 years? 1000 years?</p>
 </blockquote>
@@ -301,7 +301,7 @@ PV = \frac{A}{r}
 </div>
 <div id="comparing-projects" class="section level2">
 <h2><span class="header-section-number">8.6</span> Comparing Projects</h2>
-<p>Always compare using the same discounting horizon! When comparing two projects that yield benefits over different time periods, normalize their NPV using annuity factors. The <strong>equivalent annual net social benefit</strong> (EANB) is one such method. This converts each project into an annuity value, an apples-to-apples comparison.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>
+<p>Always compare using the same discounting horizon! When comparing two projects that yield benefits over different time periods, normalize each NPV using its annuity factor. The <strong>equivalent annual net social benefit</strong> (EANB) is one such method. This converts each project into an annuity value, an apples-to-apples comparison.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>
 <span class="math display">\[
 EANB = \frac{NPV}{a_r^n}
 \]</span></p>
@@ -326,7 +326,7 @@ EANB = \frac{NPV}{a_r^n}
 <th>Year</th>
 <th>Consumer Price Index</th>
 <th>Nominal Dollars</th>
-<th>Real Dollars (Nominal / CPI * 100)</th>
+<th>Real 1982 Dollars (Nominal / CPI * 100)</th>
 </tr>
 </thead>
 <tbody>
@@ -373,18 +373,33 @@ EANB = \frac{NPV}{a_r^n}
 </div>
 <div id="cba-of-the-day-4" class="section level2">
 <h2><span class="header-section-number">8.8</span> CBA of the Day</h2>
-<p>Early Identification and Treatment of Alzheimer’s Disease (<a href="https://wustl.instructure.com/courses/43398/files/folder/Readings?preview=1024038">Weimer &amp; Sager, 2009</a>)</p>
+<p>Reentry Programs for Incarcerated Persons (<a href="https://wustl.instructure.com/courses/43398/files/folder/Readings?preview=1024104">Drake et al., 2017</a>)</p>
 </div>
 <div id="the-social-discount-rate" class="section level2">
 <h2><span class="header-section-number">8.9</span> The Social Discount Rate</h2>
-<p>What is the “right” discount rate to use?</p>
-<p><strong>Exercise: Show that SDR matters.</strong> (Table 10.1)</p>
-<p><strong>Brief</strong> discussion of estimation methods.</p>
-<p>Time-Declining SDR and intergenerational Projects</p>
-<p>Picking the right discount rate is inherently uncertain. So always perform a sensitivity analysis! That’s our topic for next week.</p>
+<p>What is the “right” discount rate to use? As Table 10.1 demonstrates, the choice matters!<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
+<p><img src="figures/table-10-1.png" /></p>
+<p>In Week 2, we discussed why it is conceptually difficult to aggregate individual preferences into a “social preference”. The same thing goes for <em>time preferences</em>. Each individual in society has a different <strong>marginal rate of time preference</strong> (i.e. value on consumption today vs. tomorrow / patience). But for our analyses, we want a <strong>social discount rate</strong> (SDR). The Boardman book goes into considerable detail on methods to derive this quantity, so consult chapter 10 if you’d like to learn more. For our purposes, note that there are two competing methods:</p>
+<ol style="list-style-type: decimal">
+<li>The Social Opportunity Cost of Capital (SOC) Method</li>
+</ol>
+<ul>
+<li>The SDR should reflect the opportunity cost of raising capital through taxes and borrowing. If interest rates are high, there is a bigger opportunity cost from taking funds out of the private market to fund public projects. SDR under this method is proportional to private rates of return on investment and the cost of borrowing.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>The Social Time Preference (STP) Method</li>
+</ol>
+<ul>
+<li>The SDR should balance society’s impatience with its preference for <em>consumption smoothing</em>. In periods of high economic growth, we can consume more today and still expect plenty tomorrow. In periods of low economic growth, we may need to save more today in order to consume tomorrow. SDR should therefore increase with the rate of economic growth.</li>
+</ul>
+<p>Depending on the method you choose (and the country where you reside), you get slightly different estimates of SDR. Boardman recommends a <em>time-declining</em> SDR of 0.035 for US projects that last less than 50 years, dropping steadily thereafter for long-term intergenerational projects.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
+<p><img src="figures/table-10-3.png" /></p>
+<p>Regardless of method, picking the right discount rate is inherently uncertain. So it is good practice to always perform a sensitivity analysis! That is our topic for next week.</p>
 
 </div>
 </div>
+
+
 
 
 
@@ -402,8 +417,10 @@ EANB = \frac{NPV}{a_r^n}
 <hr />
 <ol start="6">
 <li id="fn6"><p>Since people’s preferences are the conceptual foundation of all cost-benefit analysis (see Week 2), we need to take this facet of human nature into account.<a href="discounting-future-impacts.html#fnref6" class="footnote-back">↩︎</a></p></li>
-<li id="fn7"><p>This is not a universal law. Many countries have also experienced periods of deflation (price decreases). But over the past century, economically developed countries have tended to experience a low and steady rate of inflation (indeed, this is one explicit goal of macroeconomic policymaking).<a href="discounting-future-impacts.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>This is not a universal law. Many countries have also experienced periods of deflation (price decreases). But over the past century, economically developed countries have tended to experience a low and steady rate of inflation (indeed, this is an explicit goal of macroeconomic policymaking).<a href="discounting-future-impacts.html#fnref7" class="footnote-back">↩︎</a></p></li>
 <li id="fn8"><p>In accounting, this is also known as <strong>amortization</strong>.<a href="discounting-future-impacts.html#fnref8" class="footnote-back">↩︎</a></p></li>
+<li id="fn9"><p>Should we make costly investments today in order to decrease the risk of climate change for future generations? Ultimately, this is a question about the right choice of discount rate.<a href="discounting-future-impacts.html#fnref9" class="footnote-back">↩︎</a></p></li>
+<li id="fn10"><p>Why use a time-declining SDR? A time-declining SDR implies that I care more about my present-day consumption than my future consumption, but I don’t care more about my great-grandchildren’s consumption than my great-great-great-grandchildren’s consumption.<a href="discounting-future-impacts.html#fnref10" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
