@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 Conceptual Foundations of CBA | Cost-Benefit Analysis</title>
   <meta name="description" content="These are the collected course notes for my Cost-Benefit Analysis class (Spring 2020)." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 Conceptual Foundations of CBA | Cost-Benefit Analysis" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Joseph T. Ornstein" />
 
 
-<meta name="date" content="2020-03-05" />
+<meta name="date" content="2020-03-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -87,7 +87,7 @@
 </ul></li>
 <li class="chapter" data-level="2" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html"><i class="fa fa-check"></i><b>2</b> Conceptual Foundations of CBA</a><ul>
 <li class="chapter" data-level="2.1" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#cba-as-a-framework-for-assessing-efficiency"><i class="fa fa-check"></i><b>2.1</b> CBA as a Framework for Assessing Efficiency</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#pareto-efficiency-vs.-kaldor-hicks-efficiency"><i class="fa fa-check"></i><b>2.1.1</b> Pareto Efficiency vs. Kaldor-Hicks Efficiency</a></li>
+<li class="chapter" data-level="2.1.1" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#pareto-efficiency-vs.kaldor-hicks-efficiency"><i class="fa fa-check"></i><b>2.1.1</b> Pareto Efficiency vs. Kaldor-Hicks Efficiency</a></li>
 <li class="chapter" data-level="2.1.2" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#willingness-to-pay-wtp"><i class="fa fa-check"></i><b>2.1.2</b> Willingness To Pay (WTP)</a></li>
 <li class="chapter" data-level="2.1.3" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#opportunity-costs"><i class="fa fa-check"></i><b>2.1.3</b> Opportunity Costs</a></li>
 <li class="chapter" data-level="2.1.4" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#net-benefits-or-benefit-cost-ratio"><i class="fa fa-check"></i><b>2.1.4</b> Net Benefits or Benefit-Cost Ratio?</a></li>
@@ -189,6 +189,15 @@
 <li class="chapter" data-level="8.8" data-path="discounting-future-impacts.html"><a href="discounting-future-impacts.html#cba-of-the-day-4"><i class="fa fa-check"></i><b>8.8</b> CBA of the Day</a></li>
 <li class="chapter" data-level="8.9" data-path="discounting-future-impacts.html"><a href="discounting-future-impacts.html#the-social-discount-rate"><i class="fa fa-check"></i><b>8.9</b> The Social Discount Rate</a></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html"><i class="fa fa-check"></i><b>9</b> Sensitivity Analysis</a><ul>
+<li class="chapter" data-level="9.1" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#overview"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
+<li class="chapter" data-level="9.2" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#partial-sensitivity-analysis"><i class="fa fa-check"></i><b>9.2</b> Partial Sensitivity Analysis</a></li>
+<li class="chapter" data-level="9.3" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#monte-carlo-simulation"><i class="fa fa-check"></i><b>9.3</b> Monte Carlo Simulation</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#uniform-distribution"><i class="fa fa-check"></i><b>9.3.1</b> Uniform Distribution</a></li>
+<li class="chapter" data-level="9.3.2" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#normal-distribution"><i class="fa fa-check"></i><b>9.3.2</b> Normal Distribution</a></li>
+<li class="chapter" data-level="9.3.3" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#monte-carlo-in-excel"><i class="fa fa-check"></i><b>9.3.3</b> Monte Carlo in Excel</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -221,9 +230,12 @@
 <div id="cba-as-a-framework-for-assessing-efficiency" class="section level2">
 <h2><span class="header-section-number">2.1</span> CBA as a Framework for Assessing Efficiency</h2>
 <p>CBA at the individual-level is pretty straightforward (conceptually). Things get tricky when we try to evaluate costs and benefits for <em>society as a whole</em>.</p>
-<div id="pareto-efficiency-vs.-kaldor-hicks-efficiency" class="section level3">
+<div id="pareto-efficiency-vs.kaldor-hicks-efficiency" class="section level3">
 <h3><span class="header-section-number">2.1.1</span> Pareto Efficiency vs. Kaldor-Hicks Efficiency</h3>
-<p><img src="figures/image-20191219144605930.png" /></p>
+<div class="figure">
+<img src="figures/image-20191219144605930.png" />
+
+</div>
 <p><strong>Pareto Improvement:</strong> No one is made worse off. At least one person is made better off.</p>
 <p><strong>Kaldor-Hicks Improvement:</strong> Some people may be made worse off. But we could imagine some set of transfers from those made better off to those made worse off so that, post-transfers, no one is worse off (a <em>potential</em> Pareto Improvement).</p>
 <p><strong>Pareto Efficient</strong>: Impossible to help someone without hurting someone else</p>
@@ -245,7 +257,10 @@
 <h3><span class="header-section-number">2.1.2</span> Willingness To Pay (WTP)</h3>
 <p>They say you can’t compare apples and oranges. Well, in a CBA we have to find some way to do it!</p>
 <p>The <em>fundamental move</em> in a cost-benefit analysis is to convert social welfare into <strong>monetary equivalents</strong>.</p>
-<p><img src="figures/image-20191219144656690.png" /></p>
+<div class="figure">
+<img src="figures/image-20191219144656690.png" />
+
+</div>
 <ul>
 <li>Inverse is “willingness to accept” (WTA): how much would you need to be <em>paid</em> in order to accept the cost of a policy?</li>
 </ul>
@@ -286,13 +301,14 @@
 </div>
 <div id="net-benefits-or-benefit-cost-ratio" class="section level3">
 <h3><span class="header-section-number">2.1.4</span> Net Benefits or Benefit-Cost Ratio?</h3>
-<p><img src="figures/image-20191219144739856.png" /></p>
-<p>Net benefit is a better way to prioritize projects than benefit-cost ratio, because a ratio is <em>manipuable</em>:
-- If you categorize something as a “cost averted” rather than a “benefit gained”, you artificially increase your benefit-cost ratio, but net benefit remains the same.</p>
+<div class="figure">
+<img src="figures/image-20191219144739856.png" />
+
+</div>
+<p>Net benefit is a better way to prioritize projects than benefit-cost ratio, because a ratio is <em>manipuable</em>: - If you categorize something as a “cost averted” rather than a “benefit gained”, you artificially increase your benefit-cost ratio, but net benefit remains the same.</p>
 <blockquote>
 <p><strong>Exercise 4:</strong></p>
-<p>Consider the following “project”. I’m going to go to the grocery store and buy 1 apple and 1 soda.
-Apples cost $1 and sodas cost $1. I value the apple at $2 and the soda at $1.50.</p>
+<p>Consider the following “project”. I’m going to go to the grocery store and buy 1 apple and 1 soda. Apples cost $1 and sodas cost $1. I value the apple at $2 and the soda at $1.50.</p>
 <ol style="list-style-type: decimal">
 <li>What is the net benefit of my project? What’s the cost-benefit ratio?</li>
 </ol>
@@ -316,10 +332,13 @@ Apples cost $1 and sodas cost $1. I value the apple at $2 and the soda at $1.50.
 <div id="arrows-theorem" class="section level3">
 <h3><span class="header-section-number">2.2.2</span> Arrow’s Theorem</h3>
 <p>Fundamental problem. What does it mean to have a <em>social preference</em>?</p>
-<p><img src="figures/image-20191219150105972.png" /></p>
+<div class="figure">
+<img src="figures/image-20191219150105972.png" />
+
+</div>
 <p>X = Pizza (12), Y = Tacos (10), Z = Sushi (9)</p>
 <p>Condorcet criterion (pairwise majorities) does not produce a transitive social ordering. How do you conduct an analysis of social costs and benefits if society doesn’t have clear preferences over policies?</p>
-<p>Arrow (1951) shows that transitive social choice functions cannot simultaneously be (a) unanimous, (b) democratic, and (c) satisfy independence of irrelevant alternatives (IIA). So we must make some restrictive assumptions about preferences in order for WTP to always yield a coherent social ordering.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>Arrow (1951) shows that transitive social choice functions cannot simultaneously be (a) unanimous, (b) democratic, and (c) satisfy independence of irrelevant alternatives (IIA). So we must make some restrictive assumptions about preferences in order for WTP to always yield a coherent social ordering.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
 </div>
 <div id="wtp-depends-on-distribution-of-wealth" class="section level3">
 <h3><span class="header-section-number">2.2.3</span> WTP Depends on Distribution of Wealth</h3>
@@ -329,27 +348,21 @@ Apples cost $1 and sodas cost $1. I value the apple at $2 and the soda at $1.50.
 <p>CBA will (typically) assign higher net benefits to Policy A, because the rich person would be willing to pay more for the puppy.</p>
 <p>Or consider a policy that transfers $10 to a rich person at the cost of $9 from a poor person. The latter probably values that money more (higher <em>marginal utility of money</em>), so Kaldor-Hicks improvement fails to increase aggregate utility (unless we actually make the transfers necessary to produce Pareto improvement).</p>
 <ul>
-<li>Added critique: the concept of Pareto efficiency itself depends on the status quo distribution of wealth.
-<ul>
+<li>Added critique: the concept of Pareto efficiency itself depends on the status quo distribution of wealth.</li>
 <li>(Note: Kaldor-Hicks does not.)</li>
-</ul></li>
 </ul>
 </div>
 <div id="whose-wtp-should-be-considered-standing" class="section level3">
 <h3><span class="header-section-number">2.2.4</span> Whose WTP should be considered (standing)?</h3>
 <p><strong>Some Discussion Questions:</strong></p>
 <ul>
-<li>Should you include the perspectives of people outside of your jurisdiction?
-<ul>
+<li>Should you include the perspectives of people outside of your jurisdiction?</li>
 <li>Suppose you’re working for a municipal government. Should you adopt a local perspective, considering only the benefits/costs that accrue to residents of your city?</li>
 <li>Or a more universalistic perspective?</li>
 <li>The latter is more valuable. The former is (sadly?) more common.</li>
-</ul></li>
 <li>CBA is anthropocentric. We can only compute WTP for people, so only people count. Should we include the costs of environmental damage or animal welfare into our analyses? If so, how?</li>
-<li>Should we exclude “socially unacceptable preferences”? Who decides what is socially unacceptable?
-<ul>
+<li>Should we exclude “socially unacceptable preferences”? Who decides what is socially unacceptable?</li>
 <li>Haiti example: if husbands have negative WTP for programs that save their wives time, should those preferences be given standing in a CBA?</li>
-</ul></li>
 <li>Should future generations receive standing?</li>
 </ul>
 </div>
@@ -376,14 +389,15 @@ Apples cost $1 and sodas cost $1. I value the apple at $2 and the soda at $1.50.
 <p>If you are ever asked to evaluate a program, there will be powerful interest groups pushing you <em>not</em> to do a CBA. (This is the point that Boardman is making in Section 1.4 about “guardians” and “spenders”).</p>
 <div id="budget-impact-analysis" class="section level3">
 <h3><span class="header-section-number">2.4.1</span> Budget Impact Analysis</h3>
-<p><img src="figures/image-20200113164253073.png" /></p>
+<div class="figure">
+<img src="figures/image-20200113164253073.png" />
+
+</div>
 <ul>
-<li><p>Purely looks at revenues and costs. Unconcerned with social benefits more broadly.</p></li>
+<li>Purely looks at revenues and costs. Unconcerned with social benefits more broadly.</li>
 <li><p>Hard-nosed way to evaluate projects.</p></li>
-<li><p>Can be very useful to conduct in some cases! If, for instance, a project needs to be revenue-neutral, then it is <em>essential</em> to conduct a BIA in addition to a CBA.</p>
-<ul>
-<li>The good news is that it requires almost no additional work. You already have all the cost and revenue figures if you’ve done a CBA.</li>
-</ul></li>
+<li>Can be very useful to conduct in some cases! If, for instance, a project needs to be revenue-neutral, then it is <em>essential</em> to conduct a BIA in addition to a CBA.</li>
+<li><p>The good news is that it requires almost no additional work. You already have all the cost and revenue figures if you’ve done a CBA.</p></li>
 </ul>
 </div>
 <div id="cost-effectiveness-analysis" class="section level3">
@@ -409,7 +423,7 @@ Apples cost $1 and sodas cost $1. I value the apple at $2 and the soda at $1.50.
 <div class="footnotes">
 <hr />
 <ol start="1">
-<li id="fn1"><p>Namely, we must assume well-behaved utility functions with declining marginal utility that we can aggregate into market demand by summing. Don’t worry too much about this; it’s the technical jargon that underlies the pretty supply and demand figures we’ll look at in Week 3.<a href="conceptual-foundations-of-cba.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn1"><p>Namely, we must assume well-behaved utility functions with declining marginal utility that we can aggregate into market demand by summing. Don’t worry too much about this; it’s the technical jargon that underlies the pretty supply and demand figures we’ll look at in Week 3.<a href="conceptual-foundations-of-cba.html#fnref1">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -473,7 +487,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

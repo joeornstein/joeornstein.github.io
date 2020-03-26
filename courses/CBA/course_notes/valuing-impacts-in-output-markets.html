@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 Valuing Impacts in Output Markets | Cost-Benefit Analysis</title>
   <meta name="description" content="These are the collected course notes for my Cost-Benefit Analysis class (Spring 2020)." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 Valuing Impacts in Output Markets | Cost-Benefit Analysis" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Joseph T. Ornstein" />
 
 
-<meta name="date" content="2020-03-05" />
+<meta name="date" content="2020-03-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -87,7 +87,7 @@
 </ul></li>
 <li class="chapter" data-level="2" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html"><i class="fa fa-check"></i><b>2</b> Conceptual Foundations of CBA</a><ul>
 <li class="chapter" data-level="2.1" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#cba-as-a-framework-for-assessing-efficiency"><i class="fa fa-check"></i><b>2.1</b> CBA as a Framework for Assessing Efficiency</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#pareto-efficiency-vs.-kaldor-hicks-efficiency"><i class="fa fa-check"></i><b>2.1.1</b> Pareto Efficiency vs. Kaldor-Hicks Efficiency</a></li>
+<li class="chapter" data-level="2.1.1" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#pareto-efficiency-vs.kaldor-hicks-efficiency"><i class="fa fa-check"></i><b>2.1.1</b> Pareto Efficiency vs. Kaldor-Hicks Efficiency</a></li>
 <li class="chapter" data-level="2.1.2" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#willingness-to-pay-wtp"><i class="fa fa-check"></i><b>2.1.2</b> Willingness To Pay (WTP)</a></li>
 <li class="chapter" data-level="2.1.3" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#opportunity-costs"><i class="fa fa-check"></i><b>2.1.3</b> Opportunity Costs</a></li>
 <li class="chapter" data-level="2.1.4" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#net-benefits-or-benefit-cost-ratio"><i class="fa fa-check"></i><b>2.1.4</b> Net Benefits or Benefit-Cost Ratio?</a></li>
@@ -189,6 +189,15 @@
 <li class="chapter" data-level="8.8" data-path="discounting-future-impacts.html"><a href="discounting-future-impacts.html#cba-of-the-day-4"><i class="fa fa-check"></i><b>8.8</b> CBA of the Day</a></li>
 <li class="chapter" data-level="8.9" data-path="discounting-future-impacts.html"><a href="discounting-future-impacts.html#the-social-discount-rate"><i class="fa fa-check"></i><b>8.9</b> The Social Discount Rate</a></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html"><i class="fa fa-check"></i><b>9</b> Sensitivity Analysis</a><ul>
+<li class="chapter" data-level="9.1" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#overview"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
+<li class="chapter" data-level="9.2" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#partial-sensitivity-analysis"><i class="fa fa-check"></i><b>9.2</b> Partial Sensitivity Analysis</a></li>
+<li class="chapter" data-level="9.3" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#monte-carlo-simulation"><i class="fa fa-check"></i><b>9.3</b> Monte Carlo Simulation</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#uniform-distribution"><i class="fa fa-check"></i><b>9.3.1</b> Uniform Distribution</a></li>
+<li class="chapter" data-level="9.3.2" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#normal-distribution"><i class="fa fa-check"></i><b>9.3.2</b> Normal Distribution</a></li>
+<li class="chapter" data-level="9.3.3" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#monte-carlo-in-excel"><i class="fa fa-check"></i><b>9.3.3</b> Monte Carlo in Excel</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -210,11 +219,13 @@
 <h1><span class="header-section-number">4</span> Valuing Impacts in Output Markets</h1>
 <p><strong>Today’s Goals:</strong></p>
 <ol style="list-style-type: decimal">
-<li>Take our Econ 101 knowledge and apply it to monetizing program impacts.
+<li>Take our Econ 101 knowledge and apply it to monetizing program impacts.</li>
+</ol>
 <ul>
 <li>Specifically, how do we measure the social value of the <em>output</em> of our programs?</li>
 <li>And how does that depend on the private market for the good we’re producing?</li>
-</ul></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
 <li>CBA of the Day (Electric Buses)</li>
 </ol>
 <div id="impact-categories" class="section level2">
@@ -266,7 +277,10 @@
 <div id="no-price-change" class="section level3">
 <h3><span class="header-section-number">4.2.1</span> No Price Change</h3>
 <p>If our output is small enough that prices don’t change:</p>
-<p><img src="figures/image-20200113143143859.png" /></p>
+<div class="figure">
+<img src="figures/image-20200113143143859.png" />
+
+</div>
 <blockquote>
 <p><strong>Exercise 2:</strong></p>
 <p>Is the demand curve shown above elastic or inelastic?</p>
@@ -278,7 +292,10 @@
 <div id="price-change" class="section level3">
 <h3><span class="header-section-number">4.2.2</span> Price Change</h3>
 <p>If our project is so large that prices move:</p>
-<p><img src="figures/image-20200113144700417.png" /></p>
+<div class="figure">
+<img src="figures/image-20200113144700417.png" />
+
+</div>
 <blockquote>
 <p><strong>Exercise 3:</strong></p>
 <p>What happens to social surplus in this case? Who gains and who loses?</p>
@@ -309,7 +326,10 @@
 <p>What are some examples of markets with asymmetric information?</p>
 </blockquote>
 <p>Types of asymmetric information include search costs, experience goods, and post-experience goods. Can model it by drawing two demand curves, one for <em>uninformed</em> consumers and another for <em>informed</em> consumers. When consumers are uninformed, they overpay and overbuy.</p>
-<p><img src="figures/image-20200113151700067.png" /></p>
+<div class="figure">
+<img src="figures/image-20200113151700067.png" />
+
+</div>
 <p>DWL comes from the individuals between <span class="math inline">\(Q_i\)</span> and <span class="math inline">\(Q_u\)</span> who buy a good that they wouldn’t have bought if they were fully informed. If we can intervene, regulate, or provide information for less than the DWL, then net benefits would be positive.</p>
 </div>
 <div id="externalities" class="section level3">
@@ -334,13 +354,22 @@
 </ul>
 <p>Tax negative externalities and subsidize positive externalities (“Pigouvian tax/subsidy”). Try to set exactly at external cost.</p>
 <p><strong>Negative Externality in Production + Pigouvian Tax:</strong></p>
-<p><img src="figures/image-20200113155319910.png" /></p>
+<div class="figure">
+<img src="figures/image-20200113155319910.png" />
+
+</div>
 <p>The firm’s marginal cost of producing something (e.g. pollution) is <span class="math inline">\(S^*\)</span>, lower than <em>society’s</em> marginal cost <span class="math inline">\(S^\#\)</span>.</p>
 <p>Note that optimal level of negative externality is not zero. It’s where <span class="math inline">\(SMC=SMB\)</span>.</p>
 <p>The distributional implications of the Pigouvian tax look like this:</p>
-<p><img src="figures/image-20200113160316998.png" /></p>
+<div class="figure">
+<img src="figures/image-20200113160316998.png" />
+
+</div>
 <p><strong>Positive Externality in Consumption + Pigouvian Subsidy:</strong></p>
-<p><img src="figures/image-20200113160730207.png" /></p>
+<div class="figure">
+<img src="figures/image-20200113160730207.png" />
+
+</div>
 <p>Consumers buy too little on their own. Need to somehow shift the supply curve so they purchase <span class="math inline">\(q_1\)</span> instead of <span class="math inline">\(q_0\)</span> (or ideally the quantity at the intersection of <span class="math inline">\(D_S\)</span> and <span class="math inline">\(S\)</span>; that would completely eliminate DWL).</p>
 </div>
 <div id="public-goods" class="section level3">
@@ -384,10 +413,8 @@
 <p>Non-rivalrous goods face the <strong>Free Rider Problem</strong>:</p>
 <ul>
 <li>No reason to pay for something if others will</li>
-<li>Therefore, you understate your true value; if there were a private market you would under-consume
-<ul>
+<li>Therefore, you understate your true value; if there were a private market you would under-consume</li>
 <li>It’s basically an extreme version of the positive externality problem above. If I buy a public good, that doesn’t just give you some benefit; it gives you <em>all</em> the benefit.</li>
-</ul></li>
 <li>Private WTP might rationally be $0 even though societal benefits are large</li>
 </ul>
 <p>Estimating the appropriate WTP values through <strong>shadow prices</strong> is a major challenge for public goods valuation. Let’s put a pin in that for a few weeks.</p>
@@ -395,7 +422,10 @@
 <div id="addictive-goods" class="section level3">
 <h3><span class="header-section-number">4.3.4</span> Addictive Goods</h3>
 <p>In economist-speak, addictive goods exhibit a <em>negative intrapersonal externality</em>. In other words, consuming them today benefits present-day-you, but at some cost to future-you. Can analyze this in a similar fashion to the asymmetric information case; draw an <em>addicted</em> demand curve and a <em>recreational</em> demand curve.</p>
-<p><img src="figures/image-20200113161541559.png" /></p>
+<div class="figure">
+<img src="figures/image-20200113161541559.png" />
+
+</div>
 <p>Addicted gamblers buy <span class="math inline">\(Q_A\)</span> units, but would only buy <span class="math inline">\(Q_R\)</span> if they weren’t addicted.</p>
 <blockquote>
 <p><strong>Exercise 8:</strong></p>
@@ -403,7 +433,10 @@
 </blockquote>
 <p>Several studies on the social cost of addiction have used this approach – estimating demand curves for unaddicted consumers and addicted consumers and computing the deadweight loss.</p>
 <p>Of course, some studies have taken an alternative approach:</p>
-<p><img src="figures/trudeau.jpg" /></p>
+<div class="figure">
+<img src="figures/trudeau.jpg" />
+
+</div>
 </div>
 </div>
 <div id="cba-of-the-day-2" class="section level2">
@@ -474,7 +507,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

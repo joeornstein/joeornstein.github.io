@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Cost-Benefit Analysis</title>
+  <title>9 Sensitivity Analysis | Cost-Benefit Analysis</title>
   <meta name="description" content="These are the collected course notes for my Cost-Benefit Analysis class (Spring 2020)." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Cost-Benefit Analysis" />
+  <meta property="og:title" content="9 Sensitivity Analysis | Cost-Benefit Analysis" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Cost-Benefit Analysis" />
+  <meta name="twitter:title" content="9 Sensitivity Analysis | Cost-Benefit Analysis" />
   
   <meta name="twitter:description" content="These are the collected course notes for my Cost-Benefit Analysis class (Spring 2020)." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="discounting-future-impacts.html"/>
 
-<link rel="next" href="introduction-to-cost-benefit-analysis-cba.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -215,25 +215,142 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Cost-Benefit Analysis</h1>
-<p class="author"><em>Joseph T. Ornstein</em></p>
-<p class="date"><em>March 26, 2020</em></p>
+<div id="sensitivity-analysis-1" class="section level1">
+<h1><span class="header-section-number">9</span> Sensitivity Analysis</h1>
+<p><strong>Today’s Goals:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Learn how to handle <em>uncertainty</em> when we estimate net benefits</li>
+<li>Practice performing partial sensitivity analysis and Monte Carlo simulations in Excel<a href="#fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a></li>
+<li>Develop action plans for final projects</li>
+</ol>
+<div id="overview" class="section level2">
+<h2><span class="header-section-number">9.1</span> Overview</h2>
+<p>In every step of a cost-benefit analysis, we have to make choices and assumptions based on limited information. This includes choices about:</p>
+<ul>
+<li>The discount rate</li>
+<li>What categories to include or exclude</li>
+<li>Estimated effect sizes from published studies</li>
+<li>Monetization strategies</li>
+<li>Standing</li>
+</ul>
+<p>We would like to know how <strong>sensitive</strong> our conclusions are to those assumptions. In other words, if we made different choices, how much would our conclusions change?</p>
+<p>This is the focus of the final step of a good CBA: <strong>sensitivity analysis</strong>. In this chapter, we will discuss two sensitivity analysis methods, (1) partial sensitivity analysis and (2) Monte Carlo simulation.</p>
 </div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p>Cost-benefit analysis is a method for measuring the effect of a policy, program, or intervention on <strong>social welfare</strong>. Its aim is to enumerate—for each member of society—the costs and benefits accruing to that person, and evaluate whether, on net, the benefits outweigh the costs. As you can imagine, this is a difficult task! (And not without its critics.) But when done well, it can be a powerful set of tools for deciding how to do the most good in the world within a given budget constraint.</p>
-<p><a href="https://www.smbc-comics.com/comic/sunset"><img src="figures/1574869213-20191127.png" alt="With the right assumptions, I think you could get to a negative number." /></a></p>
-<p>What follows are the collected course notes for my Cost-Benefit Analysis class (Brown School, Washington University in St. Louis, Spring 2020). Please enjoy!</p>
+<div id="partial-sensitivity-analysis" class="section level2">
+<h2><span class="header-section-number">9.2</span> Partial Sensitivity Analysis</h2>
+<p>In a partial sensitivity analysis (also called univariate or one-way sensitivity analysis), you try a <strong>range</strong> of values for a single variable — holding everything else constant — and see how it affects your conclusions.</p>
+<p>Here’s one example from a paper we read on electric buses. The authors plot the range of values they tried for each variable on the x-axis and net present value on the y-axis.</p>
+<div class="figure">
+<img src="figures/noel-fig1.png" />
 
+</div>
+<p>To do a partial sensitivity analysis in Excel, simply create a column of values you’ll try for the variable in question. Then plug in those values into the formulas you used to compute net benefits and record the results in a second column.</p>
+</div>
+<div id="monte-carlo-simulation" class="section level2">
+<h2><span class="header-section-number">9.3</span> Monte Carlo Simulation</h2>
+<p>What if you want to vary multiple assumptions at once? Ideally, you could see what happens at every <em>possible</em> combination of parameter values, but that would be infeasible. Once you start varying more than one value, there are just too many combinations!</p>
+<p><strong>Monte Carlo</strong> simulation tackles this problem by generating a large number of random values and recomputing net benefits for each new draw. Named after the famous Monaco casino (because casinos are just big random number generators that you pay to take your money):</p>
+<div class="figure">
+<img src="figures/sbm_casinos_10_2017_place_du_casinosoir_16_id111623_rsz.jpg.jpeg" />
+
+</div>
+<p>For our purposes, you can draw random numbers in one of two ways: a uniform distribution or a normal distribution.</p>
+<div class="figure">
+<img src="figures/uniform.png" alt="https://www.fromthegenesis.com/probability-distribution-uniform/" />
+<p class="caption"><a href="https://www.fromthegenesis.com/probability-distribution-uniform/" class="uri">https://www.fromthegenesis.com/probability-distribution-uniform/</a></p>
+</div>
+<div id="uniform-distribution" class="section level3">
+<h3><span class="header-section-number">9.3.1</span> Uniform Distribution</h3>
+<p>In a <strong>uniform</strong> distribution, any value within some range is equally likely.</p>
+<p>In Excel, you can draw a uniformly random value between 0 and 1 with the <code>RAND()</code> function.</p>
+<blockquote>
+<p><strong>Exercise:</strong> Try it! Type <code>=RAND()</code> into a cell in an Excel document. What value do you get? Try hitting the F9 key a few times. What happens?</p>
+</blockquote>
+<p>If you want to draw a uniform random value between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, use <code>=RAND()*(b-a)+a</code></p>
+<blockquote>
+<p><strong>Exercise:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Draw 100 random values between 3 and 6 in Excel. (Don’t forget about dragging formulas!)</li>
+<li>Create a <strong>histogram</strong> of your random values. Highlight all 100 values, then select Insert &gt; Chart &gt; Histogram.</li>
+</ol>
+<div class="figure">
+<img src="figures/Histogram-Chart-Option-in-the-Ribbon.png" />
+
+</div>
+<ol start="3" style="list-style-type: decimal">
+<li>You may notice that your random values keep changing every time you change something on the spreadsheet. To stop this from happening, replace the formulas in those cells with their <strong>values</strong> by copying the cells, right clicking, and selecting “Values” under “Paste Options”.</li>
+</ol>
+<div class="figure">
+<img src="figures/paste-options-excel.png" />
+
+</div>
+</blockquote>
+</div>
+<div id="normal-distribution" class="section level3">
+<h3><span class="header-section-number">9.3.2</span> Normal Distribution</h3>
+<p>In a <strong>normal</strong> distribution, values closer to the mean are more likely than those far away (a bell shape curve, as in the figure above).</p>
+<p>In Excel, you can draw <strong>normal</strong> random values with mean = <span class="math inline">\(a\)</span> and standard deviation = <span class="math inline">\(b\)</span> using:</p>
+<ul>
+<li><code>=NORM.INV(RAND(),a,b)</code></li>
+</ul>
+<p>This distribution is useful when you’re incorporating uncertainty estimates from an academic study. Rather than assuming that every value within the 95% confidence interval is equally likely, you should draw from a normal distribution centered around the estimate, with standard deviation equal to the <strong>standard error</strong> of the estimate.</p>
+<blockquote>
+<p><strong>Exercise:</strong> Suppose that you are you making a prediction about the effect of your program based on an academic study. The study estimates that, on average, 300 hundred lives will be saved if you implement your program, but that estimate has a standard error (measure of uncertainty) equal to 200. Draw 100 random normal draws to characterize the uncertainty in that estimate. What is the average value of those draws? What percentage of those draws fall below zero? Plot a histogram too.</p>
+<p>Note: To count the number of cells that match a certain criterion, use the <code>COUNTIF()</code> function. <code>COUNTIF(B1:B100, &quot;&lt;0&quot;)</code> counts the number of cells between <code>B1</code> and <code>B100</code> that are less than 0. The first argument is a range of cells, and the second argument (the criteria) should always be placed in quotations.</p>
+</blockquote>
+</div>
+<div id="monte-carlo-in-excel" class="section level3">
+<h3><span class="header-section-number">9.3.3</span> Monte Carlo in Excel</h3>
+<p>Here are the steps you’ll want to take to construct a Monte Carlo simulation in Excel.</p>
+<p><strong>Step 1: Enter the Formula</strong></p>
+<div class="figure">
+<img src="figures/step1-1585244582529.png" />
+
+</div>
+<p><strong>Step 2: Drag it down</strong></p>
+<div class="figure">
+<img src="figures/step2.png" alt="step2" />
+<p class="caption">step2</p>
+</div>
+<p><strong>Step 3: Create a column for each variable</strong></p>
+<div class="figure">
+<img src="figures/step3.png" alt="step3" />
+<p class="caption">step3</p>
+</div>
+<p><strong>Step 4: Recompute net benefits using the values in each row</strong></p>
+<p><img src="figures/step4.png" alt="step4" />**</p>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="10">
+<li id="fn10"><p>Throughout the chapter, I will use <code>this</code> font to denote Excel commands.<a href="sensitivity-analysis-1.html#fnref10">↩</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
+<a href="discounting-future-impacts.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="introduction-to-cost-benefit-analysis-cba.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

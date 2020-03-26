@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6 Prediction | Cost-Benefit Analysis</title>
   <meta name="description" content="These are the collected course notes for my Cost-Benefit Analysis class (Spring 2020)." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6 Prediction | Cost-Benefit Analysis" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Joseph T. Ornstein" />
 
 
-<meta name="date" content="2020-03-05" />
+<meta name="date" content="2020-03-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -87,7 +87,7 @@
 </ul></li>
 <li class="chapter" data-level="2" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html"><i class="fa fa-check"></i><b>2</b> Conceptual Foundations of CBA</a><ul>
 <li class="chapter" data-level="2.1" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#cba-as-a-framework-for-assessing-efficiency"><i class="fa fa-check"></i><b>2.1</b> CBA as a Framework for Assessing Efficiency</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#pareto-efficiency-vs.-kaldor-hicks-efficiency"><i class="fa fa-check"></i><b>2.1.1</b> Pareto Efficiency vs. Kaldor-Hicks Efficiency</a></li>
+<li class="chapter" data-level="2.1.1" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#pareto-efficiency-vs.kaldor-hicks-efficiency"><i class="fa fa-check"></i><b>2.1.1</b> Pareto Efficiency vs. Kaldor-Hicks Efficiency</a></li>
 <li class="chapter" data-level="2.1.2" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#willingness-to-pay-wtp"><i class="fa fa-check"></i><b>2.1.2</b> Willingness To Pay (WTP)</a></li>
 <li class="chapter" data-level="2.1.3" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#opportunity-costs"><i class="fa fa-check"></i><b>2.1.3</b> Opportunity Costs</a></li>
 <li class="chapter" data-level="2.1.4" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#net-benefits-or-benefit-cost-ratio"><i class="fa fa-check"></i><b>2.1.4</b> Net Benefits or Benefit-Cost Ratio?</a></li>
@@ -189,6 +189,15 @@
 <li class="chapter" data-level="8.8" data-path="discounting-future-impacts.html"><a href="discounting-future-impacts.html#cba-of-the-day-4"><i class="fa fa-check"></i><b>8.8</b> CBA of the Day</a></li>
 <li class="chapter" data-level="8.9" data-path="discounting-future-impacts.html"><a href="discounting-future-impacts.html#the-social-discount-rate"><i class="fa fa-check"></i><b>8.9</b> The Social Discount Rate</a></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html"><i class="fa fa-check"></i><b>9</b> Sensitivity Analysis</a><ul>
+<li class="chapter" data-level="9.1" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#overview"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
+<li class="chapter" data-level="9.2" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#partial-sensitivity-analysis"><i class="fa fa-check"></i><b>9.2</b> Partial Sensitivity Analysis</a></li>
+<li class="chapter" data-level="9.3" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#monte-carlo-simulation"><i class="fa fa-check"></i><b>9.3</b> Monte Carlo Simulation</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#uniform-distribution"><i class="fa fa-check"></i><b>9.3.1</b> Uniform Distribution</a></li>
+<li class="chapter" data-level="9.3.2" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#normal-distribution"><i class="fa fa-check"></i><b>9.3.2</b> Normal Distribution</a></li>
+<li class="chapter" data-level="9.3.3" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#monte-carlo-in-excel"><i class="fa fa-check"></i><b>9.3.3</b> Monte Carlo in Excel</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -233,31 +242,35 @@
 <h3><span class="header-section-number">6.1.1</span> Diversity Prediction Theorem:</h3>
 <p>The Diversity Prediction Theorem (<a href="https://www.jstor.org/stable/pdf/27747407.pdf">Page, 2007</a>) states that the collective error of a diverse group will be smaller than the average error of individuals.</p>
 <p><strong>Collective Error</strong> = <strong>Average Individual Error</strong> – <strong>Prediction Diversity</strong></p>
-<p>In mathematical terms, if <span class="math inline">\(\mu\)</span> is the true value, there are <span class="math inline">\(n\)</span> predictors who each predict <span class="math inline">\(X_i\)</span>, and the collective prediction is <span class="math inline">\(\bar{X}\)</span>, then:
-<span class="math display">\[
+<p>In mathematical terms, if <span class="math inline">\(\mu\)</span> is the true value, there are <span class="math inline">\(n\)</span> predictors who each predict <span class="math inline">\(X_i\)</span>, and the collective prediction is <span class="math inline">\(\bar{X}\)</span>, then: <span class="math display">\[
 (\bar{X}-\mu)^2 = \frac{\sum(X_i-\mu)^2}{n}-\frac{\sum(X_i-\bar{X})^2}{n}
-\]</span>
-There’s no guarantee that the crowd will predict better than the <em>best</em> individual, but the crowd is guaranteed to predict better than the <em>average</em> individual. This idea—that taking the average of a group of predictions will tend to yield better results than a random <em>single</em> prediction—is the logic underlying meta-analysis.</p>
+\]</span> There’s no guarantee that the crowd will predict better than the <em>best</em> individual, but the crowd is guaranteed to predict better than the <em>average</em> individual. This idea—that taking the average of a group of predictions will tend to yield better results than a random <em>single</em> prediction—is the logic underlying meta-analysis.</p>
 </div>
 <div id="best-practices-for-meta-analysis" class="section level3">
 <h3><span class="header-section-number">6.1.2</span> Best Practices for Meta-Analysis:</h3>
 <p>There is a <strong>big</strong> literature on meta-analysis. A lot of it is technical and beyond the scope of this class. So here are my expectations if you choose to conduct a meta-analysis for your final project.</p>
 <ol style="list-style-type: decimal">
-<li>Collect as many studies as you can find (bigger crowds are wiser than smaller crowds).
+<li>Collect as many studies as you can find (bigger crowds are wiser than smaller crowds).</li>
+</ol>
 <ul>
 <li>Some studies will evaluate a policy that is <em>similar</em> in some way or is based on a slightly different population. Beware of over-extrapolating and use your best judgment on whether this study is informative for your context.</li>
-</ul></li>
-<li>Keep the ones with the most rigorous research design. We want <strong>causal</strong> estimates, not just correlation.
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Keep the ones with the most rigorous research design. We want <strong>causal</strong> estimates, not just correlation.</li>
+</ol>
 <ul>
 <li><strong>Best:</strong> Double-blind randomized control trials</li>
 <li><strong>Good:</strong> Natural experiments, quasi-experimental methods (e.g. regression discontinuity), difference-in-difference</li>
 <li><strong>Not Good</strong>: Correlational findings, cross-sectional regression</li>
 <li><strong>Bad:</strong> No treatment-control comparisons</li>
-</ul></li>
-<li>Where possible, standardize the effect size
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Where possible, standardize the effect size</li>
+</ol>
 <ul>
 <li>Divide by the standard deviation of the outcome</li>
-</ul></li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
 <li>Compute a weighted average</li>
 <li>Keep the uncertainty estimates for sensitivity analysis</li>
 </ol>
@@ -307,23 +320,27 @@ There’s no guarantee that the crowd will predict better than the <em>best</em>
 <div id="pitfalls-of-meta-analysis" class="section level3">
 <h3><span class="header-section-number">6.1.3</span> Pitfalls of Meta-Analysis:</h3>
 <ol style="list-style-type: decimal">
-<li>The File Drawer Effect
+<li>The File Drawer Effect</li>
+</ol>
 <ul>
 <li>There is a bias in academia against publishing null results. As a result, the estimated effects you find in the published literature are <strong>likely to be overestimates</strong>.</li>
-</ul></li>
-<li>External Validity
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>External Validity</li>
+</ol>
 <ul>
 <li>The results of a study in one population may not replicate to your population of interest</li>
-</ul></li>
-<li>Cherry-picking
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Cherry-picking</li>
+</ol>
 <ul>
 <li>Select studies based on objective criteria; <strong>never select based on a study’s results</strong>.</li>
-</ul></li>
-</ol>
+</ul>
 </div>
 <div id="cba-of-the-day-1-2" class="section level3">
 <h3><span class="header-section-number">6.1.4</span> CBA of the Day #1</h3>
-<p><a href="https://wustl.instructure.com/courses/43398/files/folder/Readings?preview=1024107"><strong>Job Corps</strong>: Long et al. (1981)</a></p>
+<p><a href="https://wustl.instructure.com/courses/43398/files/folder/Readings?preview=1024107"><strong>Job Corps</strong>: Long et al. (1981)</a></p>
 </div>
 </div>
 <div id="models-and-simulations" class="section level2">
@@ -353,7 +370,7 @@ There’s no guarantee that the crowd will predict better than the <em>best</em>
 <div id="fermi-methods" class="section level2">
 <h2><span class="header-section-number">6.3</span> Fermi Methods</h2>
 <p>What if you don’t have good empirical studies and you don’t have a computer simulation? What if you just have to…guess? Fortunately there is an academic literature on how best to make educated guesses.</p>
-<p>The Fermi Method—named in honor of physicist <a href="https://en.wikipedia.org/wiki/Enrico_Fermi">Enrico Fermi</a>—uses a <em>divide-and-conquer</em> approach.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> For example, suppose we wanted to estimate how many piano tuners there are in the city of Chicago. A Fermi approach would look like this:</p>
+<p>The Fermi Method—named in honor of physicist <a href="https://en.wikipedia.org/wiki/Enrico_Fermi">Enrico Fermi</a>—uses a <em>divide-and-conquer</em> approach.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> For example, suppose we wanted to estimate how many piano tuners there are in the city of Chicago. A Fermi approach would look like this:</p>
 <ol style="list-style-type: decimal">
 <li>How many households are in Chicago? (<a href="https://en.wikipedia.org/wiki/Chicago">1 million</a>)</li>
 <li>What percentage of households own pianos? (Maybe 1 in 10?)</li>
@@ -374,8 +391,11 @@ There’s no guarantee that the crowd will predict better than the <em>best</em>
 <p>This is a map of the Delmar Loop Trolley route.</p>
 </blockquote>
 <blockquote>
-<p><img src="figures/St-Louis-Loop-Trolley2.jpg" /></p>
-<p>Using the Fermi Method, predict the total fare revenue the Trolley earned between November 16, 2018 and July 1, 2019. The service operated from noon-6pm Thursdays through Sundays, and cost $2.00 for a two-hour fare.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+<div class="figure">
+<img src="figures/St-Louis-Loop-Trolley2.jpg" />
+
+</div>
+<p>Using the Fermi Method, predict the total fare revenue the Trolley earned between November 16, 2018 and July 1, 2019. The service operated from noon-6pm Thursdays through Sundays, and cost $2.00 for a two-hour fare.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p>
 </blockquote>
 
 </div>
@@ -384,8 +404,8 @@ There’s no guarantee that the crowd will predict better than the <em>best</em>
 <div class="footnotes">
 <hr />
 <ol start="2">
-<li id="fn2"><p>The most famous example of a Fermi Problem is the <a href="https://en.wikipedia.org/wiki/Drake_equation">Drake Equation</a>.<a href="prediction.html#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>Here’s the <a href="https://www.stltoday.com/news/local/govt-and-politics/loop-trolley-ridership-and-fare-revenue-lag-it-s-raised/article_c75e642c-c17e-5782-9bfc-9918657417e5.html">answer</a>. <strong>NO PEEKING!</strong><a href="prediction.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>The most famous example of a Fermi Problem is the <a href="https://en.wikipedia.org/wiki/Drake_equation">Drake Equation</a>.<a href="prediction.html#fnref2">↩</a></p></li>
+<li id="fn3"><p>Here’s the <a href="https://www.stltoday.com/news/local/govt-and-politics/loop-trolley-ridership-and-fare-revenue-lag-it-s-raised/article_c75e642c-c17e-5782-9bfc-9918657417e5.html">answer</a>. <strong>NO PEEKING!</strong><a href="prediction.html#fnref3">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -449,7 +469,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))

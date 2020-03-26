@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1 Introduction to Cost-Benefit Analysis (CBA) | Cost-Benefit Analysis</title>
   <meta name="description" content="These are the collected course notes for my Cost-Benefit Analysis class (Spring 2020)." />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1 Introduction to Cost-Benefit Analysis (CBA) | Cost-Benefit Analysis" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Joseph T. Ornstein" />
 
 
-<meta name="date" content="2020-03-05" />
+<meta name="date" content="2020-03-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -87,7 +87,7 @@
 </ul></li>
 <li class="chapter" data-level="2" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html"><i class="fa fa-check"></i><b>2</b> Conceptual Foundations of CBA</a><ul>
 <li class="chapter" data-level="2.1" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#cba-as-a-framework-for-assessing-efficiency"><i class="fa fa-check"></i><b>2.1</b> CBA as a Framework for Assessing Efficiency</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#pareto-efficiency-vs.-kaldor-hicks-efficiency"><i class="fa fa-check"></i><b>2.1.1</b> Pareto Efficiency vs. Kaldor-Hicks Efficiency</a></li>
+<li class="chapter" data-level="2.1.1" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#pareto-efficiency-vs.kaldor-hicks-efficiency"><i class="fa fa-check"></i><b>2.1.1</b> Pareto Efficiency vs. Kaldor-Hicks Efficiency</a></li>
 <li class="chapter" data-level="2.1.2" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#willingness-to-pay-wtp"><i class="fa fa-check"></i><b>2.1.2</b> Willingness To Pay (WTP)</a></li>
 <li class="chapter" data-level="2.1.3" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#opportunity-costs"><i class="fa fa-check"></i><b>2.1.3</b> Opportunity Costs</a></li>
 <li class="chapter" data-level="2.1.4" data-path="conceptual-foundations-of-cba.html"><a href="conceptual-foundations-of-cba.html#net-benefits-or-benefit-cost-ratio"><i class="fa fa-check"></i><b>2.1.4</b> Net Benefits or Benefit-Cost Ratio?</a></li>
@@ -189,6 +189,15 @@
 <li class="chapter" data-level="8.8" data-path="discounting-future-impacts.html"><a href="discounting-future-impacts.html#cba-of-the-day-4"><i class="fa fa-check"></i><b>8.8</b> CBA of the Day</a></li>
 <li class="chapter" data-level="8.9" data-path="discounting-future-impacts.html"><a href="discounting-future-impacts.html#the-social-discount-rate"><i class="fa fa-check"></i><b>8.9</b> The Social Discount Rate</a></li>
 </ul></li>
+<li class="chapter" data-level="9" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html"><i class="fa fa-check"></i><b>9</b> Sensitivity Analysis</a><ul>
+<li class="chapter" data-level="9.1" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#overview"><i class="fa fa-check"></i><b>9.1</b> Overview</a></li>
+<li class="chapter" data-level="9.2" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#partial-sensitivity-analysis"><i class="fa fa-check"></i><b>9.2</b> Partial Sensitivity Analysis</a></li>
+<li class="chapter" data-level="9.3" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#monte-carlo-simulation"><i class="fa fa-check"></i><b>9.3</b> Monte Carlo Simulation</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#uniform-distribution"><i class="fa fa-check"></i><b>9.3.1</b> Uniform Distribution</a></li>
+<li class="chapter" data-level="9.3.2" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#normal-distribution"><i class="fa fa-check"></i><b>9.3.2</b> Normal Distribution</a></li>
+<li class="chapter" data-level="9.3.3" data-path="sensitivity-analysis-1.html"><a href="sensitivity-analysis-1.html#monte-carlo-in-excel"><i class="fa fa-check"></i><b>9.3.3</b> Monte Carlo in Excel</a></li>
+</ul></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -210,10 +219,12 @@
 <h1><span class="header-section-number">1</span> Introduction to Cost-Benefit Analysis (CBA)</h1>
 <p><strong>Today’s Goals:</strong></p>
 <ol style="list-style-type: decimal">
-<li>Introduce ourselves and the course. Review the course outline, syllabus, assignments, and expectations.
+<li>Introduce ourselves and the course. Review the course outline, syllabus, assignments, and expectations.</li>
+</ol>
 <ul>
 <li>Assign readings</li>
-</ul></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
 <li>Learn the Ten Steps of CBA. Conduct a “mock” CBA.</li>
 </ol>
 <div id="course-outline" class="section level2">
@@ -235,7 +246,7 @@
 <colgroup>
 <col width="7%" />
 <col width="7%" />
-<col width="47%" />
+<col width="46%" />
 <col width="19%" />
 <col width="18%" />
 </colgroup>
@@ -397,11 +408,11 @@
 <div id="readings" class="section level3">
 <h3><span class="header-section-number">1.1.3</span> Readings</h3>
 <p>Each of the following 22 articles reports the results of a cost benefit analysis. Every student will be assigned one article as its <strong>resident expert</strong>. You will be responsible for presenting the article in class as if you were its author. If you are not the resident expert, I expect you to <em>skim</em> the article and come prepared with questions.</p>
-<table style="width:100%;">
+<table>
 <colgroup>
-<col width="56%" />
+<col width="55%" />
 <col width="34%" />
-<col width="8%" />
+<col width="9%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -423,12 +434,12 @@
 </tr>
 <tr class="odd">
 <td>Communities That Care (youth behavioral health)</td>
-<td>Kuklinsky et al. (2012)</td>
+<td>Kuklinsky et al. (2012)</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>Compensation for Kidney Donors</td>
-<td>Held et al. (2016)</td>
+<td>Held et al. (2016)</td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -438,12 +449,12 @@
 </tr>
 <tr class="even">
 <td>Early Childhood Education for Low-Income Students</td>
-<td>Hoagland et al. (2019)</td>
+<td>Hoagland et al. (2019)</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>Education and Employment Training (EET) for Juvenile Offenders</td>
-<td>Miller et al. (2015)</td>
+<td>Miller et al. (2015)</td>
 <td></td>
 </tr>
 <tr class="even">
@@ -478,7 +489,7 @@
 </tr>
 <tr class="even">
 <td>Job Corps</td>
-<td>Long et al. (1981)</td>
+<td>Long et al. (1981)</td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -488,27 +499,27 @@
 </tr>
 <tr class="even">
 <td>Older Adult Fall Prevention Interventions</td>
-<td>Carande-Kulis et al. (2015)</td>
+<td>Carande-Kulis et al. (2015)</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>Perry Preschool Project</td>
-<td>Belfield et al. (2006)</td>
+<td>Belfield et al. (2006)</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>Reentry Programs for Incarcerated Persons</td>
-<td>Drake et al. (2017)</td>
+<td>Drake et al. (2017)</td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>School-Based Health Centers</td>
-<td>Guo et al. (2010)</td>
+<td>Guo et al. (2010)</td>
 <td></td>
 </tr>
 <tr class="even">
 <td>Sporting Events</td>
-<td>Kesenne (2005) &amp; Taks et al. (2011)</td>
+<td>Kesenne (2005) &amp; Taks et al. (2011)</td>
 <td></td>
 </tr>
 <tr class="odd">
@@ -518,7 +529,7 @@
 </tr>
 <tr class="even">
 <td>The Impact of Drug Courts</td>
-<td>Rossman et al. (2011) &amp; Roman (2013)</td>
+<td>Rossman et al. (2011) &amp; Roman (2013)</td>
 <td></td>
 </tr>
 </tbody>
@@ -528,7 +539,10 @@
 </div>
 <div id="the-ten-steps-of-cba" class="section level2">
 <h2><span class="header-section-number">1.2</span> The Ten Steps of CBA</h2>
-<p><img src="figures/image-20191213153403977.png" /></p>
+<div class="figure">
+<img src="figures/image-20191213153403977.png" />
+
+</div>
 <p><strong><em>(What a convenient list! For your final project, this is the exact set of things you’ll be expected to do!)</em></strong></p>
 <blockquote>
 <p><strong>Exercise 1:</strong></p>
@@ -554,7 +568,10 @@
 <h3><span class="header-section-number">1.2.2</span> Specify Alternatives</h3>
 <p>Always compare alternatives to the status quo (i.e. what would happen if you <em>didn’t</em> implement the policy; not just doing nothing).</p>
 <p>We will ultimately want to create a table that looks like this (alternatives in the columns, impact categories in the rows), called an <strong>impact matrix</strong>:</p>
-<p><img src="figures/image-20191219145022493.png" /></p>
+<div class="figure">
+<img src="figures/image-20191219145022493.png" />
+
+</div>
 <blockquote>
 <p><strong>Exercise 3:</strong></p>
 <p>What alternative programs are being considered?</p>
@@ -623,20 +640,19 @@
 <h3><span class="header-section-number">1.2.9</span> Sensitivity Analysis</h3>
 <p>Much more about this in Week 10, but here’s the basic idea:</p>
 <ul>
-<li><p>Identify where there is uncertainty in your assumptions.</p>
-<ul>
+<li><p>Identify where there is uncertainty in your assumptions.</p></li>
 <li>Predictions, parameters, or monetary equivalents</li>
-</ul></li>
-<li><p>What is the <strong>distribution</strong> of that estimate?</p>
-<ul>
-<li>Use the distribution as an input in a Monte Carlo analysis</li>
-</ul></li>
+<li><p>What is the <strong>distribution</strong> of that estimate?</p></li>
+<li><p>Use the distribution as an input in a Monte Carlo analysis</p></li>
 </ul>
 <blockquote>
 <p><strong>Exercise 9:</strong></p>
 <p>See ‘w1_sensitivityanalysis.xlsx’ to demonstrate an example of a (simple) sensitivity analysis.</p>
 </blockquote>
-<p><img src="figures/image-20191217123826348.png" /></p>
+<div class="figure">
+<img src="figures/image-20191217123826348.png" />
+
+</div>
 </div>
 <div id="make-a-recommendation" class="section level3">
 <h3><span class="header-section-number">1.2.10</span> Make a Recommendation</h3>
@@ -646,7 +662,10 @@
 <li>Cost-benefit ratio: <span class="math inline">\(\left(\frac{B}{C}\right)\)</span></li>
 <li><span class="math inline">\(P(NB &gt; 0)\)</span></li>
 </ol>
-<p><img src="figures/image-20191213153443959.png" /></p>
+<div class="figure">
+<img src="figures/image-20191213153443959.png" />
+
+</div>
 <p>Next week, we’ll discuss why the Boardman book prefers metric number 1 (and 3).</p>
 
 </div>
@@ -713,7 +732,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "true";
+    var src = "";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
