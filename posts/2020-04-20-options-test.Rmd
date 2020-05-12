@@ -1,9 +1,0 @@
----
-title: options test
-author: Joseph T. Ornstein
-date: '2020-04-20'
-slug: options-test
-categories: []
-tags: []
-images: []
----

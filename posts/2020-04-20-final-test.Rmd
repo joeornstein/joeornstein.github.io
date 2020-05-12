@@ -1,9 +1,0 @@
----
-title: final test
-author: Joseph T. Ornstein
-date: '2020-04-20'
-slug: final-test
-categories: []
-tags: []
-images: []
----
