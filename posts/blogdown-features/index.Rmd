@@ -1,0 +1,27 @@
+---
+title: "Blogdown Features"
+author: "Joseph T. Ornstein"
+date: '2020-05-10'
+slug: blogdown-features
+categories: 
+ - R
+tags: []
+images: []
+---
+
+The following post is for my future reference on various blogdown features, like how to embed shiny, slides, and tweets into posts. Observe, if you will, that we can embed a shiny dashboard into a static website with RMarkdown. Thanks to [Yang Liu](https://liuyanguu.github.io/post/2019/02/24/shiny-in-blogdown/#my-shiny-app-example)!
+
+
+```{r embed shiny, echo=T}
+knitr::include_app("https://vac-lshtm.shinyapps.io/ncov_tracker/?_ga=2.126674445.1246084674.1588877732-1324960155.1586370896", height = "600px")
+```
+
+It also works for slides:
+
+```{r embed slides, echo=T}
+knitr::include_url('https://timmastny.rbind.io/slides/first_presentation#2')
+```
+
+Twitter shortcode: 
+
+{{% tweet 877500564405444608 %}}

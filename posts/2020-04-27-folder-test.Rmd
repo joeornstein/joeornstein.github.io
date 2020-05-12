@@ -1,0 +1,9 @@
+---
+title: folder test
+author: Joseph T. Ornstein
+date: '2020-04-27'
+slug: folder-test
+categories: []
+tags: []
+images: []
+---

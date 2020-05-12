@@ -1,314 +1,539 @@
-<!DOCTYPE html>
+<!doctype html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 
 <head>
-
-<meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="pandoc" />
-
-
-
-
-<title>Joe Ornstein</title>
-
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <title>Joseph T. Ornstein</title>
+  <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<meta name="description" content="The HTML5 Herald" />
+<meta name="author" content="Joseph T. Ornstein" /><link rel="alternate" type="application/rss+xml+xml" href="/index.xml" title="Joseph T. Ornstein" /><meta property="og:title" content="Joseph T. Ornstein" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="/" />
+<meta property="og:updated_time" content="2020-04-16T00:00:00+00:00" />
 
-<meta name="description" content="Joe Ornstein's Personal Website" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Joseph T. Ornstein"/>
+<meta name="twitter:description" content=""/>
 
-<link rel="icon" type="image/png" href="images/Shield_open_pos200-01.png" />
+<meta name="generator" content="Hugo 0.69.0" />
+    
+    <link rel="shortcut icon" href="https://joeornstein.github.io/images/Shield_open_pos200-01.png" />
+  
 
-<script type="text/javascript" src="js/redirect.js"></script>
-<script type="text/javascript" src="js/rmarkdown.js"></script>
-<script type="text/javascript" src="js/ga.js"></script>
-
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
-
-
-
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
-
-<link rel="stylesheet" href="css\rmarkdown.css" type="text/css" />
-
-
-
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
-.tabbed-pane {
-  padding-top: 12px;
-}
-.html-widget {
-  margin-bottom: 20px;
-}
-button.code-folding-btn:focus {
-  outline: none;
-}
-summary {
-  display: list-item;
-}
-</style>
-
-
-
-<!-- tabsets -->
-
-<style type="text/css">
-.tabset-dropdown > .nav-tabs {
-  display: inline-table;
-  max-height: 500px;
-  min-height: 44px;
-  overflow-y: auto;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
-  font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
-}
-
-.tabset-dropdown > .nav-tabs > li.active {
-  display: block;
-}
-
-.tabset-dropdown > .nav-tabs > li > a,
-.tabset-dropdown > .nav-tabs > li > a:focus,
-.tabset-dropdown > .nav-tabs > li > a:hover {
-  border: none;
-  display: inline-block;
-  border-radius: 4px;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-  display: block;
-  float: none;
-}
-
-.tabset-dropdown > .nav-tabs > li {
-  display: none;
-}
-</style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
-<!-- code folding -->
-
-
-
-
-</head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/fontawesome/css/all.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" /></head>
 
 <body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="/">Joseph T. Ornstein</a>
+            </h1>
+
+      <ul id="social-media">
+             <li>
+               <a href="https://github.com/joeornstein" title="GitHub">
+               <i class="fab fa-github fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://twitter.com/joeornstein" title="Twitter">
+               <i class="fab fa-twitter fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://scholar.google.com/citations?user=HXC86u8AAAAJ&amp;hl=en" title="Google Scholar">
+               <i class="fab fa-google fa-lg"></i>
+               </a>
+             </li>
+      </ul>
+      
+      <p><em>Postdoctoral Researcher, Washington University in St. Louis</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Archives</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/publications/">
+                <i class="fa-li fa  fa-lg"></i><span>Publications</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/teaching/">
+                <i class="fa-li fa  fa-lg"></i><span>Teaching</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/resources/">
+                <i class="fa-li fa  fa-lg"></i><span>Resources</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/about/">
+                <i class="fa-li fa  fa-lg"></i><span>CV</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
 
 
-<div class="container-fluid main-container">
+    <main>
+
+
+<link rel="stylesheet" href="/css/atom-one-dark.css" rel="stylesheet" id="theme-stylesheet">
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
 
 
+<section id="home">
+  <ul>
+    
+    
+    
+    <li class="first" >
+      <h1><a href="/posts/blogdown-features/" title="Blogdown Features">Blogdown Features</a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2020-05-10T00:00:00Z">May 10, 2020</time>
+        </li>
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="/categories/r">R</a>
+                
+            </em>
+        </li>
+        
 
-<div id="rStudioHeader" class="alwaysShrunk">
-  <div class="innards bandContent">
-    <div>
-      <a class="productName" href="index.html">Joe Ornstein</a>
-    </div>
+        
 
-    <div id="menu">
-      <div id="menuToggler"></div>
-      <div id="menuItems">
-        <a class="menuItem" href="research.html">Research</a>
-        <a class="menuItem" href="teaching.html">Teaching</a>
-	<a class="menuItem" href="software.html">Software/Data</a>
-        <a class="menuItem" href="CV/ornstein_CV.pdf">CV</a>
-      </div>
-    </div>
-  </div>
+        <li>One minute read</li>
+    </ul>
+</aside>
+
+      
+<div class="featured_image">
+    <a href="/posts/blogdown-features/" title="Blogdown Features">
+        <img src="">
+    </a>
 </div>
 
-<style type="text/css">
-#TOC {
-  margin-left: 50px;
-  margin-top: 90px;
-}
-</style>
 
-<script type="text/javascript">
-$(".main-container").removeClass("main-container").removeClass("container-fluid").addClass("footerPushDown");
-</script>
+      <p>The following post is for my future reference on various blogdown features, like how to embed shiny, slides, and tweets into posts.</p>
+      
+      <a href="/posts/blogdown-features/">Read more…</a>
+      
+    </li>
+    
+    <li >
+      <h1><a href="/posts/the-contact-paradox/" title="The Contact Paradox">The Contact Paradox</a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2020-04-22T00:00:00Z">Apr 22, 2020</time>
+        </li>
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="/categories/models">models</a>
+                
+                    , 
+                    <a href="/categories/networks">networks</a>
+                
+                    , 
+                    <a href="/categories/epidemiology">epidemiology</a>
+                
+            </em>
+        </li>
+        
 
+        
 
-<div id="pageContent" class="standardPadding">
-  <div class="articleBandContent">
+        <li>3 minutes read</li>
+    </ul>
+</aside>
 
-<style type="text/css">
-.title {
-  display: none;
-}
-#disqus_thread {
-  display: none;
-}
-</style>
-
-<div class="fluid-row" id="header">
-
-
-
-<h1 class="title toc-ignore">Joe Ornstein</h1>
-
+      
+<div class="featured_image">
+    <a href="/posts/the-contact-paradox/" title="The Contact Paradox">
+        <img src="">
+    </a>
 </div>
 
 
-<script type="text/javascript">
-$("#rStudioHeader").removeClass("alwaysShrunk");
-$("#pageContent").removeClass("standardPadding");
-</script>
+      <p>The Friendship Paradox states that, on average, your friends have more friends than you do. (It’s not your fault. It’s just a property non-random sampling on networks.</p>
+      
+      <a href="/posts/the-contact-paradox/">Read more…</a>
+      
+    </li>
+    
+    <li >
+      <h1><a href="/posts/2020-04-16-posttime/" title="posttime">posttime</a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2020-04-16T00:00:00Z">Apr 16, 2020</time>
+        </li>
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="/categories/test">test</a>
+                
+            </em>
+        </li>
+        
 
+        
 
-<div id="homeContent">
+        <li>One minute read</li>
+    </ul>
+</aside>
 
-  <div class="band full slategray first rightText">
-    <div class="bandContent vCenter">
-      <div class="blurb">
-        <div class="tagline">ABOUT ME</div>
-        <div>I am a Postdoctoral Research Associate at Washington University in St. Louis, where I study urban land use policy, computational research methods, and public health. I recently completed my PhD in Political Science at the University of Michigan. </div>
-      </div>
-    </div>
-    <img class="imageOne" src="images/ornstein-head-cropped.jpg"/>
-  </div>
-  
-  <div class="band full gray1 second leftText">
-    <div class="bandContent vCenter">
-      <div class="blurb">
-        <div> I study how city governments provide (or fail to provide) their residents with public goods, affordable housing, and conditions favorable to health and safety. Much of my research employs computational methods like agent-based modeling and machine learning. You can find a gallery of my work <a href="research.html">here</a>. </div>
-      </div>
-    </div>
-    <img class="imageTwo" src="images/tokyo-cropped.png"/>
-  </div>
-  
-</div>
-  
-
-<p><img src="images/New%20York.jpg" /></p>
-
-  </div> <!-- articleBandContent -->
-</div> <!-- pageContent -->
-
-<div id="rStudioFooter" class="band full">
-<div class="bandContent">
-  <div id="copyright">© Copyright 2018 Joseph T. Ornstein</div>
-  <div id="logos">
-    <a href="https://twitter.com/joeornstein" class="footerLogo twitter"></a>
-    <a href="https://github.com/joeornstein" class="footerLogo gitHub"></a>
-    <a href="https://scholar.google.com/citations?user=HXC86u8AAAAJ&hl=en" class="footerLogo googleScholar"></a>
-  </div>
-</div>
+      
+<div class="featured_image">
+    <a href="/posts/2020-04-16-posttime/" title="posttime">
+        <img src="">
+    </a>
 </div>
 
-<script type="text/javascript" src="js/external-links.js"></script>
 
+      <p>Filler text hello
+Now let&rsquo;s try some code and equations, like $2x^2+2$. Doesn&rsquo;t work with .md extension.
+Rendering again now that we have included the MathJax html snippet in footer.</p>
+      
+      <a href="/posts/2020-04-16-posttime/">Read more…</a>
+      
+    </li>
+    
+    <li >
+      <h1><a href="/posts/posty/" title="Test Post">Test Post</a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2020-04-16T00:00:00Z">Apr 16, 2020</time>
+        </li>
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="/categories/test">test</a>
+                
+            </em>
+        </li>
+        
 
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="/tags/testtime">#testtime</a>
+                
+            </em>
+        </li>
+        
 
+        <li>One minute read</li>
+    </ul>
+</aside>
+
+      
+<div class="featured_image">
+    <a href="/posts/posty/" title="Test Post">
+        <img src="">
+    </a>
 </div>
 
-<script>
 
-// add bootstrap table styles to pandoc tables
-function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-}
-$(document).ready(function () {
-  bootstrapStylePandocTables();
-});
+      <p>Here&rsquo;s some code.
+Here&rsquo;s a code block:
+print('Hello Code Block')</p>
+      
+    </li>
+    
+    <li >
+      <h1><a href="/posts/test-rmd/" title="Test RMarkdown Post">Test RMarkdown Post</a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2020-04-16T00:00:00Z">Apr 16, 2020</time>
+        </li>
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="/categories/test">test</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="/tags/testtime">#testtime</a>
+                
+            </em>
+        </li>
+        
+
+        <li>One minute read</li>
+    </ul>
+</aside>
+
+      
+<div class="featured_image">
+    <a href="/posts/test-rmd/" title="Test RMarkdown Post">
+        <img src="">
+    </a>
+</div>
 
 
-</script>
+      <p>R MarkdownThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents.</p>
+      
+      <a href="/posts/test-rmd/">Read more…</a>
+      
+    </li>
+    
+    <li >
+      <h1><a href="/posts/this-post-should-go-to-the-right-subdirectory/" title="This post should go to the right subdirectory!">This post should go to the right subdirectory!</a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2020-04-16T00:00:00Z">Apr 16, 2020</time>
+        </li>
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="/categories/test">Test</a>
+                
+            </em>
+        </li>
+        
 
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="/tags/test">#test</a>
+                
+            </em>
+        </li>
+        
+
+        <li>One minute read</li>
+    </ul>
+</aside>
+
+      
+<div class="featured_image">
+    <a href="/posts/this-post-should-go-to-the-right-subdirectory/" title="This post should go to the right subdirectory!">
+        <img src="">
+    </a>
+</div>
+
+
+      <p>filler.
+And equations? \(2x^2\)
+\[2x^2 + \alpha\]
+\[2x^2\]</p>
+      
+    </li>
+    
+    <li >
+      <h1><a href="/posts/feature-image/" title="Feature Image">Feature Image</a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2020-01-01T00:00:00-06:00">Jan 1, 2020</time>
+        </li>
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="/categories/images">Images</a>
+                
+            </em>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="/tags/feature-image">#Feature Image</a>
+                
+                    , 
+                    <a href="/tags/layout">#Layout</a>
+                
+            </em>
+        </li>
+        
+
+        <li>One minute read</li>
+    </ul>
+</aside>
+
+      
+<div class="featured_image">
+    <a href="/posts/feature-image/" title="Feature Image">
+        <img src="http://via.placeholder.com/600x200">
+    </a>
+</div>
+
+
+      <p>The Hugo Kiera theme now supports featured images. To use the feature, set the images parameter in a page&rsquo;s frontmatter.</p>
+      
+      <a href="/posts/feature-image/">Read more…</a>
+      
+    </li>
+    
+    <li >
+      <h1><a href="/posts/style-guide/" title="Style Guide">Style Guide</a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2017-11-14T10:57:55-05:00">Nov 14, 2017</time>
+        </li>
+        
+
+        
+        <li>
+            <em>
+                
+                    
+                    <a href="/tags/layout">#Layout</a>
+                
+            </em>
+        </li>
+        
+
+        <li>4 minutes read</li>
+    </ul>
+</aside>
+
+      
+
+      <p>Headings Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6  Headings with Text Heading 1 Lorem ipsum dolor sit amet, adipiscing elit.</p>
+      
+      <a href="/posts/style-guide/">Read more…</a>
+      
+    </li>
+    
+    <li >
+      <h1><a href="/posts/image-content/" title="Image Style Guide">Image Style Guide</a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2017-11-14T08:08:17-05:00">Nov 14, 2017</time>
+        </li>
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="/categories/images">Images</a>
+                
+            </em>
+        </li>
+        
+
+        
+
+        <li>4 minutes read</li>
+    </ul>
+</aside>
+
+      
+
+      <p>Veniam est eu adipisicing reprehenderit do sit sint elit sint. Tempor laborum ut dolore aliqua. Commodo eu qui sint magna veniam laborum.</p>
+      
+      <a href="/posts/image-content/">Read more…</a>
+      
+    </li>
+    
+    <li >
+      <h1><a href="/posts/creating-a-new-theme/" title="Creating a New Theme">Creating a New Theme</a></h1>
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2014-09-28T00:00:00Z">Sep 28, 2014</time>
+        </li>
+        
+
+        
+
+        <li>34 minutes read</li>
+    </ul>
+</aside>
+
+      
+
+      <p>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content.</p>
+      
+      <a href="/posts/creating-a-new-theme/">Read more…</a>
+      
+    </li>
+    
+  </ul>
+</section>
+
+
+
+</main>
+    <footer>
+        <h6>Copyright © 2020 - Joseph T. Ornstein |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a>
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
 
 </body>
+
 </html>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>

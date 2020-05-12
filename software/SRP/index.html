@@ -1,0 +1,455 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>Joseph T. Ornstein</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The HTML5 Herald" />
+<meta name="author" content="Joseph T. Ornstein" /><meta property="og:title" content="The SRP Package" />
+<meta property="og:description" content="SRP is an R package that contains useful functions for implementing multilevel regression and poststratification (MRP) and stacked regression and poststratification (SRP)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/software/srp/" />
+<meta property="article:published_time" content="2020-05-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-05-12T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="The SRP Package"/>
+<meta name="twitter:description" content="SRP is an R package that contains useful functions for implementing multilevel regression and poststratification (MRP) and stacked regression and poststratification (SRP)."/>
+
+<meta name="generator" content="Hugo 0.69.0" />
+    
+    <link rel="shortcut icon" href="https://joeornstein.github.io/images/Shield_open_pos200-01.png" />
+  
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/fontawesome/css/all.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" /></head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="/">Joseph T. Ornstein</a>
+            </h1>
+
+      <ul id="social-media">
+             <li>
+               <a href="https://github.com/joeornstein" title="GitHub">
+               <i class="fab fa-github fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://twitter.com/joeornstein" title="Twitter">
+               <i class="fab fa-twitter fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://scholar.google.com/citations?user=HXC86u8AAAAJ&amp;hl=en" title="Google Scholar">
+               <i class="fab fa-google fa-lg"></i>
+               </a>
+             </li>
+      </ul>
+      
+      <p><em>Postdoctoral Researcher, Washington University in St. Louis</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Archives</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/publications/">
+                <i class="fa-li fa  fa-lg"></i><span>Publications</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/teaching/">
+                <i class="fa-li fa  fa-lg"></i><span>Teaching</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/resources/">
+                <i class="fa-li fa  fa-lg"></i><span>Resources</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/about/">
+                <i class="fa-li fa  fa-lg"></i><span>CV</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+<link rel="stylesheet" href="/css/atom-one-dark.css" rel="stylesheet" id="theme-stylesheet">
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+<article>
+
+    <h1>The SRP Package</h1>
+
+    
+
+    
+
+
+    
+
+
+<p>SRP is an <code>R</code> package that contains useful functions for implementing multilevel regression and poststratification (MRP) and stacked regression and poststratification (SRP).</p>
+<div id="motivation" class="section level2">
+<h2>Motivation</h2>
+<p>Suppose we want to know how some public opinion varies by subnational unit. But we don’t have surveys that were conducted at the unit-level, only a national-level survey. How can we use the information from the national survey to make inferences about the subnational level? This vignette walks through three techniques for doing so: disaggregation, multilevel regression and poststratification (MRP), and stacked regression and poststratification (SRP). It concludes with an introduction to synthetic poststratification.</p>
+</div>
+<div id="installation" class="section level2">
+<h2>Installation</h2>
+<p>The <code>SRP</code> package is currently available on GitHub. You can install it using the <code>devtools</code> package.</p>
+<pre class="r"><code>devtools::install_github(&#39;joeornstein/SRP&#39;)
+library(SRP)</code></pre>
+</div>
+<div id="the-data" class="section level2">
+<h2>The Data</h2>
+<p>The dataset (<code>trainset</code>) contains individual-level data on public opinion and demographic characteristics. It is simulated data, generated from the Monte Carlo in <span class="citation">Ornstein (2019)</span>. It contains the following variables:</p>
+<pre class="r"><code>trainset &lt;- SRP::vignetteData
+
+trainset
+#&gt; # A tibble: 3,000 x 8
+#&gt;         ID      y    x1    x2  unit latitude longitude unit_covariate
+#&gt;      &lt;int&gt;  &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;          &lt;dbl&gt;
+#&gt;  1  638233 -2.68      2     1    43    0.663    0.140            2.22
+#&gt;  2 1909280  2.01      3     3   128    0.987    0.504            2.64
+#&gt;  3 2513825 -4.36      1     2   168    0.752    0.746            2.84
+#&gt;  4 2968824 -0.989     2     3   198    0.764    0.190            3.27
+#&gt;  5  258017  4.18      1     1    18    0.545    0.897            2.00
+#&gt;  6 1252503 -4.54      3     3    84    0.770    0.195            2.43
+#&gt;  7 1414783 -3.63      2     2    95    0.518    0.0937           2.47
+#&gt;  8  602889  3.56      3     3    41    0.162    0.559            2.20
+#&gt;  9  157609  0.271     2     2    11    0.431    0.554            1.93
+#&gt; 10 2610832  5.99      4     4   175    0.898    0.932            2.91
+#&gt; # ... with 2,990 more rows</code></pre>
+<p>The variable <span class="math inline">\(y\)</span> is our outcome of interest, <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are individual-level covariates, <code>unit</code> is the subnational unit ID, and <code>latitude</code>, <code>longitude</code>, and <code>unit_covariate</code> are characteristics of the subnational unit.</p>
+</div>
+<div id="disaggregation" class="section level2">
+<h2>Disaggregation</h2>
+<p>Disaggregation is the most straightforward method to estimate. Simply take the unit-level means from the national survey. Note, however, that the number of observations within each unit is fairly small. As a result, disaggregation is unlikely to yield good estimates. This is why we adopt a model-based approach.</p>
+<pre class="r"><code>disag_estimates &lt;- trainset %&gt;% 
+  group_by(unit) %&gt;% 
+  summarise(disag_estimate = mean(y),
+            num = n())
+
+disag_estimates
+#&gt; # A tibble: 200 x 3
+#&gt;     unit disag_estimate   num
+#&gt;    &lt;int&gt;          &lt;dbl&gt; &lt;int&gt;
+#&gt;  1     1          -6.15    14
+#&gt;  2     2           2.61    14
+#&gt;  3     3          -4.10    16
+#&gt;  4     4          -3.45    15
+#&gt;  5     5          -3.63    10
+#&gt;  6     6          -5.40    21
+#&gt;  7     7          -2.74    15
+#&gt;  8     8          -2.95    18
+#&gt;  9     9          -1.61    15
+#&gt; 10    10          -1.48    16
+#&gt; # ... with 190 more rows</code></pre>
+</div>
+<div id="mrp" class="section level2">
+<h2>MRP</h2>
+<p>Multilevel regression and poststratification (MRP) was introduced by <span class="citation">Gelman and Little (1997)</span> and refined by <span class="citation">Park, Gelman, and Bafumi (2004)</span>. It proceeds in two steps:</p>
+<ol style="list-style-type: decimal">
+<li>Estimate a multilevel regression, predicting opinion using observed individual-level and unit-level covariates.</li>
+<li>Poststratify by taking the mean of each group’s prediction weighted by their frequency in the subnational unit.</li>
+</ol>
+<p>We can estimate the first-stage regression using the <code>lme4</code> package.</p>
+<pre class="r"><code>library(lme4)
+
+model1 &lt;- lmer(y ~ (1|x1) + (1|x2) + unit_covariate + (1|unit), data = trainset)</code></pre>
+<p>For the second stage, we need a <strong>poststratification frame</strong>. For the <code>SRP</code> package, it should come in the following format.</p>
+<pre class="r"><code>PSFrame &lt;- SRP::vignettePSFrame
+
+PSFrame
+#&gt; # A tibble: 3,200 x 7
+#&gt;     unit    x1    x2  freq unit_covariate latitude longitude
+#&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;          &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+#&gt;  1     1     1     1  5482           1.54    0.623    0.0647
+#&gt;  2     1     1     2  2497           1.54    0.623    0.0647
+#&gt;  3     1     1     3   499           1.54    0.623    0.0647
+#&gt;  4     1     1     4    43           1.54    0.623    0.0647
+#&gt;  5     1     2     1  2418           1.54    0.623    0.0647
+#&gt;  6     1     2     2  1817           1.54    0.623    0.0647
+#&gt;  7     1     2     3   603           1.54    0.623    0.0647
+#&gt;  8     1     2     4    58           1.54    0.623    0.0647
+#&gt;  9     1     3     1   557           1.54    0.623    0.0647
+#&gt; 10     1     3     2   590           1.54    0.623    0.0647
+#&gt; # ... with 3,190 more rows</code></pre>
+<p>Each row reports the empirical frequency for each unique combination of individual-level characteristics, repeated for each subnational unit. For example, the first row reports that there are 5482 individuals with <span class="math inline">\(x_1 = 1\)</span> and <span class="math inline">\(x_2 = 1\)</span> in Unit 1.</p>
+<p>Once we have both pieces of information – the predictions and the frequencies – poststratification simply requires taking a weighted average, using the <code>poststratify</code> function. Note that this function requires your poststratification frame to have two particular variables:</p>
+<ul>
+<li><code>unit</code>: the identity of the subnational unit.</li>
+<li><code>freq</code>: the empirical frequency for each cell.</li>
+</ul>
+<pre class="r"><code>pred &lt;- predict(model1, PSFrame, allow.new.levels = T)
+
+mrp_estimates &lt;- poststratify(pred, PSFrame)
+
+mrp_estimates
+#&gt; # A tibble: 200 x 2
+#&gt;     unit poststratifiedEstimate
+#&gt;    &lt;int&gt;                  &lt;dbl&gt;
+#&gt;  1     1                  -3.54
+#&gt;  2     2                  -1.38
+#&gt;  3     3                  -2.72
+#&gt;  4     4                  -2.49
+#&gt;  5     5                  -2.39
+#&gt;  6     6                  -2.96
+#&gt;  7     7                  -2.06
+#&gt;  8     8                  -2.27
+#&gt;  9     9                  -1.76
+#&gt; 10    10                  -1.66
+#&gt; # ... with 190 more rows</code></pre>
+</div>
+<div id="srp" class="section level2">
+<h2>SRP</h2>
+<p>Stacked regression and poststratification (SRP) proceeds in the same fashion as MRP, but the first-stage predictions come from an ensemble model average generated through stacking. See <span class="citation">Ornstein (2019)</span> for technical details.</p>
+<p>To start, we must tune and estimate each of the component models separately. The following code estimates a hierarchical linear regression model, LASSO, random forest, KNN, and gradient boosting.</p>
+<pre class="r"><code>library(glmnet)
+library(ranger)
+library(kknn)
+library(xgboost)
+library(caret)
+
+
+#Estimate HLM
+hlmFormula &lt;- y ~ (1|x1) +  (1|x2) + unit_covariate + (1|unit) 
+hlmModel &lt;- lmer(hlmFormula, data = trainset)
+
+#Tune LASSO
+lasso_vars &lt;- c(&quot;x1&quot;,&quot;x2&quot;,&quot;unit&quot;,&quot;unit_covariate&quot;)
+lasso_factors &lt;- c(&#39;x1&#39;, &#39;x2&#39;, &#39;unit&#39;) #which variables to convert to factors
+trainset_lasso &lt;- cleanDataLASSO(trainset, lasso_vars, lasso_factors)$trainset
+
+lassoModel &lt;- cv.glmnet(trainset_lasso, trainset$y, 
+                        type.measure = &quot;mse&quot;) 
+
+#Tune KNN
+knnFormula &lt;- y ~ x1 + x2 + latitude + longitude + unit_covariate
+knn_train &lt;- train.kknn(knnFormula, data=trainset, kmax = 201) #Find best k (LOOCV)
+k_best &lt;- knn_train$best.parameters$k
+
+#Tune Random Forest
+forestFormula &lt;- y ~ x1 + x2 + latitude + longitude + unit_covariate
+forestModel &lt;- ranger(forestFormula, data = trainset)
+
+#Tune GBM
+gbm_vars &lt;- c(&quot;x1&quot;,&quot;x2&quot;,&quot;latitude&quot;,&quot;longitude&quot;,&quot;unit_covariate&quot;)
+trainset_gbm &lt;- cleanDataGBM(trainset=trainset, gbm_vars=gbm_vars)$trainset
+#Create a custom &#39;xgb.DMatrix&#39;. Faster computation
+dtrain &lt;- xgb.DMatrix(trainset_gbm, label = trainset$y)
+
+#5-fold cross-validation; pick nrounds that minimizes RMSE
+xgb.tune &lt;- xgb.cv(data = dtrain, 
+                   booster = &quot;gbtree&quot;,
+                   objective = &quot;reg:linear&quot;,
+                   eval_metric = &quot;rmse&quot;,
+                   eta = 0.02,
+                   nrounds = 50 / 0.02, #Lower eta -&gt; more trees
+                   nfold = 5, 
+                   verbose = F,
+                   early_stopping_rounds = 20)
+
+gbmModel &lt;- xgboost(data = dtrain, 
+                    booster = &quot;gbtree&quot;,
+                    objective = &quot;reg:linear&quot;,
+                    eval_metric = &quot;rmse&quot;,
+                    eta = 0.02,
+                    verbose = F,
+                    nrounds = xgb.tune$best_iteration)</code></pre>
+<p>Next, we will use the <code>getStackWeights()</code> function to estimate the optimal ensemble model average weights using 5-fold cross-validation.</p>
+<pre class="r"><code>stackWeights &lt;- getStackWeights(trainset = trainset,
+                                hlmFormula = hlmFormula,
+                                lasso_vars = lasso_vars,
+                                lasso_factors = lasso_factors,
+                                forestFormula = forestFormula,
+                                knnFormula = knnFormula, k_best = k_best,
+                                gbm_vars = gbm_vars, gbm_factors = NULL, 
+                                gbm_params = list(eta = 0.02), gbm_tune = xgb.tune, 
+                                nfolds = 5)
+
+stackWeights %&gt;% round(3)
+#&gt; [1] 0.275 0.000 0.111 0.000 0.614</code></pre>
+<p>Then we can poststratify as before.</p>
+<pre class="r"><code>PSFrame_lasso &lt;- cleanDataLASSO(PSFrame, lasso_vars = lasso_vars, lasso_factors = lasso_factors,
+                                new_vars_lasso = colnames(trainset_lasso))$trainset
+PSFrame_gbm &lt;- cleanDataGBM(PSFrame, gbm_vars = gbm_vars)$trainset
+
+M1 &lt;- predict(hlmModel, PSFrame, allow.new.levels = T)
+M2 &lt;- predict(lassoModel, newx = PSFrame_lasso, s = lassoModel$lambda.min)
+M3 &lt;- kknn(knnFormula, train = trainset, test = PSFrame, k = k_best)$fitted.values
+M4 &lt;- predict(forestModel, PSFrame)$predictions
+M5 &lt;- predict(gbmModel, PSFrame_gbm)
+M &lt;- cbind(M1,M2,M3,M4,M5) %&gt;% as.matrix
+
+pred &lt;- M %*% stackWeights
+
+#Poststratify
+srp_estimates &lt;- poststratify(pred, PSFrame)
+
+head(srp_estimates)
+#&gt; # A tibble: 6 x 2
+#&gt;    unit poststratifiedEstimate
+#&gt;   &lt;int&gt;                  &lt;dbl&gt;
+#&gt; 1     1                 0.0571
+#&gt; 2     2                 0.952 
+#&gt; 3     3                -3.18  
+#&gt; 4     4                -2.99  
+#&gt; 5     5                 0.438 
+#&gt; 6     6                -2.05</code></pre>
+</div>
+<div id="results" class="section level2">
+<h2>Results</h2>
+<p>Because the data came from a simulation, we also know the true unit-level means. Let’s see how our estimates compare.</p>
+<p><img src="/software/SRP/index_files/figure-html/plots-1.png" width="672" /><img src="/software/SRP/index_files/figure-html/plots-2.png" width="672" /><img src="/software/SRP/index_files/figure-html/plots-3.png" width="672" /></p>
+</div>
+<div id="synthetic-poststratification" class="section level2">
+<h2>Synthetic Poststratification</h2>
+<p>What if you do not have the joint frequency distribution for all your predictor variables at the subnational level? <span class="citation">Leemann and Wasserfallen (2017)</span> propose a method that instead uses marginal frequency distributions called <strong>synthetic poststratification</strong>. The approach proceeds by multiplying the marginal probabilities to create a <em>synethtic</em> joint distribution, assuming that the predictor variables are statistically independent.</p>
+<p>Note that this is a strong assumption. However, if the first-stage model is additively-separable, then both classical and synthetic poststratification produce identical results (see Appendix A in <span class="citation">Ornstein (2019)</span> for the proof). This implies that Multilevel Regression and Synthetic Poststratification (MrsP) can produce <em>strictly</em> superior estimates when the first-stage model is linear-additive, because one can include more predictor variables.</p>
+<p>The <code>SRP</code> package provides a function that can generate synthetic poststratification frames, called <code>getSyntheticPSFrame()</code>.</p>
+<div id="using-the-function" class="section level3">
+<h3>Using the Function</h3>
+<p>Suppose you have two (non-synthetic) frequency distributions describing the same population.</p>
+<pre class="r"><code>PSFrame1 &lt;- SRP::race
+PSFrame2 &lt;- SRP::education
+
+PSFrame1
+#&gt; # A tibble: 8 x 3
+#&gt;    unit  race  freq
+#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;
+#&gt; 1     1     1   100
+#&gt; 2     1     2   200
+#&gt; 3     1     3   300
+#&gt; 4     1     4   400
+#&gt; 5     2     1   200
+#&gt; 6     2     2   100
+#&gt; 7     2     3   300
+#&gt; 8     2     4   400
+PSFrame2
+#&gt; # A tibble: 6 x 3
+#&gt;    unit education  freq
+#&gt;   &lt;int&gt;     &lt;int&gt; &lt;int&gt;
+#&gt; 1     1         1   250
+#&gt; 2     1         2   300
+#&gt; 3     1         3   450
+#&gt; 4     2         1   450
+#&gt; 5     2         2   350
+#&gt; 6     2         3   200</code></pre>
+<p>To get the synthetic joint distribution, just call <code>getSyntheticPSFrame()</code>. Note that the resulting output is consistent with the marginal frequency distributions; add up all the observations with race == 1 in and it should yield the same frequency from <code>PSFrame1</code>.</p>
+<pre class="r"><code>PSFrame &lt;- getSyntheticPSFrame(PSFrame1, PSFrame2)
+
+PSFrame
+#&gt; # A tibble: 24 x 4
+#&gt;     unit  race education  freq
+#&gt;    &lt;int&gt; &lt;int&gt;     &lt;int&gt; &lt;dbl&gt;
+#&gt;  1     1     1         1   25 
+#&gt;  2     1     1         2   30 
+#&gt;  3     1     1         3   45.
+#&gt;  4     1     2         1   50 
+#&gt;  5     1     2         2   60 
+#&gt;  6     1     2         3   90.
+#&gt;  7     1     3         1   75 
+#&gt;  8     1     3         2   90 
+#&gt;  9     1     3         3  135 
+#&gt; 10     1     4         1  100 
+#&gt; # ... with 14 more rows</code></pre>
+<p>If you want to generate a synthetic poststratification frame from more than one marginal distribution, simply repeat the process.</p>
+<pre class="r"><code>PSFrame3 &lt;- SRP::sex
+
+PSFrame3
+#&gt; # A tibble: 4 x 3
+#&gt;    unit   sex  freq
+#&gt;   &lt;int&gt; &lt;int&gt; &lt;int&gt;
+#&gt; 1     1     1   600
+#&gt; 2     1     2   400
+#&gt; 3     2     1   500
+#&gt; 4     2     2   500
+
+PSFrame &lt;- getSyntheticPSFrame(PSFrame, PSFrame3)
+
+PSFrame
+#&gt; # A tibble: 48 x 5
+#&gt;     unit  race education   sex  freq
+#&gt;    &lt;int&gt; &lt;int&gt;     &lt;int&gt; &lt;int&gt; &lt;dbl&gt;
+#&gt;  1     1     1         1     1   15 
+#&gt;  2     1     1         1     2   10.
+#&gt;  3     1     1         2     1   18 
+#&gt;  4     1     1         2     2   12 
+#&gt;  5     1     1         3     1   27.
+#&gt;  6     1     1         3     2   18.
+#&gt;  7     1     2         1     1   30 
+#&gt;  8     1     2         1     2   20.
+#&gt;  9     1     2         2     1   36 
+#&gt; 10     1     2         2     2   24 
+#&gt; # ... with 38 more rows</code></pre>
+</div>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2>References</h2>
+<div id="refs" class="references">
+<div id="ref-Gelman1997">
+<p>Gelman, Andrew, and Thomas C Little. 1997. “Poststratification into Many Categories using Hierachical Logistic Regression.” <em>Survey Methodology</em> 23 (2): 127–35. <a href="https://doi.org/10.1016/j.ins.2011.12.036">https://doi.org/10.1016/j.ins.2011.12.036</a>.</p>
+</div>
+<div id="ref-Leemann2016">
+<p>Leemann, Lucas, and Fabio Wasserfallen. 2017. “Extending the Use and Prediction Precision of Subnational Public Opinion Estimation.” <em>American Journal of Political Science</em> 61 (4): 1003–22.</p>
+</div>
+<div id="ref-Ornstein2019">
+<p>Ornstein, Joseph T. 2019. “Stacked Regression and Poststratification.” <em>Working Paper</em>.</p>
+</div>
+<div id="ref-Park2004">
+<p>Park, David K., Andrew Gelman, and Joseph Bafumi. 2004. “Bayesian multilevel estimation with poststratification: State-level estimates from national polls.” <em>Political Analysis</em> 12 (4): 375–85. <a href="https://doi.org/10.1093/pan/mph024">https://doi.org/10.1093/pan/mph024</a>.</p>
+</div>
+</div>
+</div>
+
+
+</article>
+
+
+
+
+
+
+</main>
+    <footer>
+        <h6>Copyright © 2020 - Joseph T. Ornstein |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a>
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+
+</body>
+
+</html>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
