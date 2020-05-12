@@ -6,39 +6,15 @@
    <description>Recent content in networks on Joseph T. Ornstein</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2020 - Joseph T. Ornstein</copyright>
-   <lastBuildDate>Wed, 22 Apr 2020 00:00:00 +0000</lastBuildDate>
+   <lastBuildDate>Tue, 12 May 2020 00:00:00 +0000</lastBuildDate>
    
        <atom:link href="/categories/networks/index.xml" rel="self" type="application/rss+xml" />
    
    
      <item>
-       <title>Blogdown Features</title>
-       <link>/posts/blogdown-features/</link>
-       <pubDate>Sun, 10 May 2020 00:00:00 +0000</pubDate>
-       
-       <guid>/posts/blogdown-features/</guid>
-       <description>
-
-
-&lt;p&gt;The following post is for my future reference on various blogdown features, like how to embed shiny, slides, and tweets into posts. Observe, if you will, that we can embed a shiny dashboard into a static website with RMarkdown. Thanks to &lt;a href=&#34;https://liuyanguu.github.io/post/2019/02/24/shiny-in-blogdown/#my-shiny-app-example&#34;&gt;Yang Liu&lt;/a&gt;!&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;knitr::include_app(&amp;quot;https://vac-lshtm.shinyapps.io/ncov_tracker/?_ga=2.126674445.1246084674.1588877732-1324960155.1586370896&amp;quot;, height = &amp;quot;600px&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;iframe src=&#34;https://vac-lshtm.shinyapps.io/ncov_tracker/?_ga=2.126674445.1246084674.1588877732-1324960155.1586370896&#34; width=&#34;672&#34; height=&#34;600px&#34;&gt;
-&lt;/iframe&gt;
-&lt;p&gt;It also works for slides:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;knitr::include_url(&amp;#39;https://timmastny.rbind.io/slides/first_presentation#2&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
-&lt;iframe src=&#34;https://timmastny.rbind.io/slides/first_presentation#2&#34; width=&#34;672&#34; height=&#34;400px&#34;&gt;
-&lt;/iframe&gt;
-&lt;p&gt;Twitter shortcode:&lt;/p&gt;
-&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Hugo 0.24 Released: Big archetype update + &lt;a href=&#34;https://twitter.com/Netlify?ref_src=twsrc%5Etfw&#34;&gt;@Netlify&lt;/a&gt; _redirects etc. file support&lt;a href=&#34;https://t.co/X94FmYDEZJ&#34;&gt;https://t.co/X94FmYDEZJ&lt;/a&gt; &lt;a href=&#34;https://twitter.com/hashtag/gohugo?src=hash&amp;amp;ref_src=twsrc%5Etfw&#34;&gt;#gohugo&lt;/a&gt; &lt;a href=&#34;https://twitter.com/hashtag/golang?src=hash&amp;amp;ref_src=twsrc%5Etfw&#34;&gt;#golang&lt;/a&gt; &lt;a href=&#34;https://twitter.com/spf13?ref_src=twsrc%5Etfw&#34;&gt;@spf13&lt;/a&gt; &lt;a href=&#34;https://twitter.com/bepsays?ref_src=twsrc%5Etfw&#34;&gt;@bepsays&lt;/a&gt;&lt;/p&gt;&amp;mdash; GoHugo.io (@GoHugoIO) &lt;a href=&#34;https://twitter.com/GoHugoIO/status/877500564405444608?ref_src=twsrc%5Etfw&#34;&gt;June 21, 2017&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async src=&#34;https://platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
-&lt;/p&gt;
-</description>
-     </item>
-   
-     <item>
        <title>The Contact Paradox</title>
        <link>/posts/the-contact-paradox/</link>
-       <pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate>
+       <pubDate>Tue, 12 May 2020 00:00:00 +0000</pubDate>
        
        <guid>/posts/the-contact-paradox/</guid>
        <description>
@@ -86,6 +62,30 @@
 &lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;See also &lt;a href=&#34;https://arxiv.org/abs/1004.4792&#34; class=&#34;uri&#34;&gt;https://arxiv.org/abs/1004.4792&lt;/a&gt;&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Blogdown Features</title>
+       <link>/posts/blogdown-features/</link>
+       <pubDate>Sun, 10 May 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/blogdown-features/</guid>
+       <description>
+
+
+&lt;p&gt;The following post is for my future reference on various blogdown features, like how to embed shiny, slides, and tweets into posts. Observe, if you will, that we can embed a shiny dashboard into a static website with RMarkdown. Thanks to &lt;a href=&#34;https://liuyanguu.github.io/post/2019/02/24/shiny-in-blogdown/#my-shiny-app-example&#34;&gt;Yang Liu&lt;/a&gt;!&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;knitr::include_app(&amp;quot;https://vac-lshtm.shinyapps.io/ncov_tracker/?_ga=2.126674445.1246084674.1588877732-1324960155.1586370896&amp;quot;, height = &amp;quot;600px&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;iframe src=&#34;https://vac-lshtm.shinyapps.io/ncov_tracker/?_ga=2.126674445.1246084674.1588877732-1324960155.1586370896&#34; width=&#34;672&#34; height=&#34;600px&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;It also works for slides:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;knitr::include_url(&amp;#39;https://timmastny.rbind.io/slides/first_presentation#2&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;iframe src=&#34;https://timmastny.rbind.io/slides/first_presentation#2&#34; width=&#34;672&#34; height=&#34;400px&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;Twitter shortcode:&lt;/p&gt;
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Hugo 0.24 Released: Big archetype update + &lt;a href=&#34;https://twitter.com/Netlify?ref_src=twsrc%5Etfw&#34;&gt;@Netlify&lt;/a&gt; _redirects etc. file support&lt;a href=&#34;https://t.co/X94FmYDEZJ&#34;&gt;https://t.co/X94FmYDEZJ&lt;/a&gt; &lt;a href=&#34;https://twitter.com/hashtag/gohugo?src=hash&amp;amp;ref_src=twsrc%5Etfw&#34;&gt;#gohugo&lt;/a&gt; &lt;a href=&#34;https://twitter.com/hashtag/golang?src=hash&amp;amp;ref_src=twsrc%5Etfw&#34;&gt;#golang&lt;/a&gt; &lt;a href=&#34;https://twitter.com/spf13?ref_src=twsrc%5Etfw&#34;&gt;@spf13&lt;/a&gt; &lt;a href=&#34;https://twitter.com/bepsays?ref_src=twsrc%5Etfw&#34;&gt;@bepsays&lt;/a&gt;&lt;/p&gt;&amp;mdash; GoHugo.io (@GoHugoIO) &lt;a href=&#34;https://twitter.com/GoHugoIO/status/877500564405444608?ref_src=twsrc%5Etfw&#34;&gt;June 21, 2017&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;https://platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
+&lt;/p&gt;
 </description>
      </item>
    

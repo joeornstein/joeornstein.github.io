@@ -1,7 +1,7 @@
 ---
 title: The Contact Paradox
 author: Joseph T. Ornstein
-date: '2020-04-22'
+date: '2020-05-12'
 slug: the-contact-paradox
 categories: 
 - models
