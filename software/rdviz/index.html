@@ -116,6 +116,10 @@
 
 
 <p><code>rdviz</code> is an <code>R</code> package that creates visualizations for regression discontinuity analyses. It builds on the automated bandwidth selection and local polynomial estimation techniques from the <code>rdrobust</code> package (Calonico, Cattaneo, Farrell and Titiunik 2015).</p>
+<div id="motivation" class="section level2">
+<h2>Motivation</h2>
+<p>Researchers estimating a regression discontinuity (RD) design will often visualize their results using binned scatter plots and global polynomial fits. Unfortunately, this practice can mislead readers about their choice of estimator (often local linear regression) and obscure problems of low power. The <code>rdviz</code> package provides more principled visualization of regression discontinuity designs by including the scatter of all data points coupled with the local polynomial fit and chosen bandwidth. The output is a <code>ggplot2</code> object so users can post-process the resulting figure.</p>
+</div>
 <div id="installation" class="section level2">
 <h2>Installation</h2>
 <p>The <code>rdviz</code> package is currently available on GitHub. You can install it using the <code>devtools</code> package.</p>
