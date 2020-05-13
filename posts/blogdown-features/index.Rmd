@@ -28,4 +28,4 @@ Here's a tweet courtesy of the Twitter shortcode:
 
 {{% tweet 877500564405444608 %}}
 
-I'll add more examples to this post as I discover them.
+I will add more examples to this post as I discover them.
