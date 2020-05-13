@@ -74,18 +74,20 @@
        <description>
 
 
-&lt;p&gt;The following post is for my future reference on various blogdown features, like how to embed shiny, slides, and tweets into posts. Observe, if you will, that we can embed a shiny dashboard into a static website with RMarkdown. Thanks to &lt;a href=&#34;https://liuyanguu.github.io/post/2019/02/24/shiny-in-blogdown/#my-shiny-app-example&#34;&gt;Yang Liu&lt;/a&gt;!&lt;/p&gt;
+&lt;p&gt;Any website built with &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; and &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;&lt;code&gt;blogdown&lt;/code&gt;&lt;/a&gt; will inevitably feature one blog post about all the cool features of &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; and &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;&lt;code&gt;blogdown&lt;/code&gt;&lt;/a&gt;. This is mine.&lt;/p&gt;
+&lt;p&gt;Observe, if you will, that we can embed a shiny dashboard into a static website with RMarkdown. Thanks to &lt;a href=&#34;https://liuyanguu.github.io/post/2019/02/24/shiny-in-blogdown/#my-shiny-app-example&#34;&gt;Yang Liu&lt;/a&gt;!&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;knitr::include_app(&amp;quot;https://vac-lshtm.shinyapps.io/ncov_tracker/?_ga=2.126674445.1246084674.1588877732-1324960155.1586370896&amp;quot;, height = &amp;quot;600px&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;iframe src=&#34;https://vac-lshtm.shinyapps.io/ncov_tracker/?_ga=2.126674445.1246084674.1588877732-1324960155.1586370896&#34; width=&#34;672&#34; height=&#34;600px&#34;&gt;
 &lt;/iframe&gt;
-&lt;p&gt;It also works for slides:&lt;/p&gt;
+&lt;p&gt;The same &lt;code&gt;knitr&lt;/code&gt; function also works for slides:&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;knitr::include_url(&amp;#39;https://timmastny.rbind.io/slides/first_presentation#2&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
 &lt;iframe src=&#34;https://timmastny.rbind.io/slides/first_presentation#2&#34; width=&#34;672&#34; height=&#34;400px&#34;&gt;
 &lt;/iframe&gt;
-&lt;p&gt;Twitter shortcode:&lt;/p&gt;
+&lt;p&gt;Here’s a tweet courtesy of the Twitter shortcode:&lt;/p&gt;
 &lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Hugo 0.24 Released: Big archetype update + &lt;a href=&#34;https://twitter.com/Netlify?ref_src=twsrc%5Etfw&#34;&gt;@Netlify&lt;/a&gt; _redirects etc. file support&lt;a href=&#34;https://t.co/X94FmYDEZJ&#34;&gt;https://t.co/X94FmYDEZJ&lt;/a&gt; &lt;a href=&#34;https://twitter.com/hashtag/gohugo?src=hash&amp;amp;ref_src=twsrc%5Etfw&#34;&gt;#gohugo&lt;/a&gt; &lt;a href=&#34;https://twitter.com/hashtag/golang?src=hash&amp;amp;ref_src=twsrc%5Etfw&#34;&gt;#golang&lt;/a&gt; &lt;a href=&#34;https://twitter.com/spf13?ref_src=twsrc%5Etfw&#34;&gt;@spf13&lt;/a&gt; &lt;a href=&#34;https://twitter.com/bepsays?ref_src=twsrc%5Etfw&#34;&gt;@bepsays&lt;/a&gt;&lt;/p&gt;&amp;mdash; GoHugo.io (@GoHugoIO) &lt;a href=&#34;https://twitter.com/GoHugoIO/status/877500564405444608?ref_src=twsrc%5Etfw&#34;&gt;June 21, 2017&lt;/a&gt;&lt;/blockquote&gt;
 &lt;script async src=&#34;https://platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
 &lt;/p&gt;
+&lt;p&gt;I’ll add more examples to this post as I discover them.&lt;/p&gt;
 </description>
      </item>
    
