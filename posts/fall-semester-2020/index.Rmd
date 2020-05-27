@@ -22,7 +22,7 @@ One shared feature of these proposals is a reduction in the number of large, in-
 
 It's not a coincidence that so many COVID-19 infections have been traced to large, indoor [super-spreader](https://www.nytimes.com/2020/03/30/us/coronavirus-funeral-albany-georgia.html) [events](https://www.nytimes.com/2020/04/12/us/coronavirus-biogen-boston-superspreader.html). That's because large gatherings of people simultaneously increase two quantities: the expected number of infected individuals in attendance *and* the total number of person-to-person contacts.
 
-In a group of size $n$, the probability that one person is infected = $1 - (1-p)^n$, where $p$ is the population prevalence. Here's what that function looks like for a few values of $p$:
+In a group of size $n$, the probability that at least one person is infected = $1 - (1-p)^n$, where $p$ is the population prevalence. Here's what that function looks like for a few values of $p$:
 
 ```{r Probability Curve, echo = FALSE}
 
