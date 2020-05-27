@@ -12,8 +12,8 @@
 MotivationSuppose we want to know how some public opinion varies by subnational unit." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/software/srp/" />
-<meta property="article:published_time" content="2020-05-13T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-05-13T00:00:00+00:00" />
+<meta property="article:published_time" content="2020-05-22T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-05-22T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="The SRP Package"/>
@@ -292,7 +292,7 @@ gbmModel &lt;- xgboost(data = dtrain,
                                 nfolds = 5)
 
 stackWeights %&gt;% round(3)
-#&gt; [1] 0.391 0.000 0.124 0.000 0.485</code></pre>
+#&gt; [1] 0.334 0.000 0.123 0.000 0.543</code></pre>
 <p>Then we can poststratify as before.</p>
 <pre class="r"><code>PSFrame_lasso &lt;- cleanDataLASSO(PSFrame, lasso_vars = lasso_vars, lasso_factors = lasso_factors,
                                 new_vars_lasso = colnames(trainset_lasso))$trainset
@@ -314,12 +314,12 @@ head(srp_estimates)
 #&gt; # A tibble: 6 x 2
 #&gt;    unit poststratifiedEstimate
 #&gt;   &lt;int&gt;                  &lt;dbl&gt;
-#&gt; 1     1                -0.616 
-#&gt; 2     2                 0.618 
-#&gt; 3     3                -3.21  
-#&gt; 4     4                -3.00  
-#&gt; 5     5                 0.0163
-#&gt; 6     6                -2.32</code></pre>
+#&gt; 1     1                 -0.326
+#&gt; 2     2                  0.799
+#&gt; 3     3                 -3.27 
+#&gt; 4     4                 -3.05 
+#&gt; 5     5                  0.243
+#&gt; 6     6                 -2.27</code></pre>
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>

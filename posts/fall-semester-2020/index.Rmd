@@ -1,0 +1,81 @@
+---
+title: "Fall Semester 2020"
+author: "Joseph T. Ornstein"
+date: '2020-05-26'
+slug: fall-semester-2020
+categories: 
+ - models
+ - epidemiology
+tags: []
+images: []
+---
+
+```{R setup, include = FALSE}
+library(tidyverse)
+```
+
+What is the best way to organize higher education in the fall? The University System of Georgia (my future home, go Dawgs) is [considering a range of options](https://www.redandblack.com/uganews/usg-memo-details-possible-fall-semester-plans/article_dbbf02da-9e3e-11ea-b78f-975f030212bc.html) between socially-distanced on-campus classes and a fully online semester. Tyler Cowen suggests a [Lancastrian solution](https://marginalrevolution.com/marginalrevolution/2020/05/my-weird-lancastrian-method-for-reopening-higher-education.html). Zach Weinersmith has my personal [favorite proposal](https://www.smbc-comics.com/comic/social) drawn from social network analysis.^[You could probably invite the political methodologists back to campus too. See my [previous post](https://joeornstein.github.io/posts/the-contact-paradox/) for a much less funny take with more graphs.]
+
+One shared feature of these proposals is a reduction in the number of large, in-person gatherings. Let me put a little math behind that idea.
+
+### Keep classes small
+
+It's not a coincidence that so many COVID-19 infections have been traced to large, indoor [super-spreader](https://www.nytimes.com/2020/03/30/us/coronavirus-funeral-albany-georgia.html) [events](https://www.nytimes.com/2020/04/12/us/coronavirus-biogen-boston-superspreader.html). That's because large gatherings of people simultaneously increase two quantities: the expected number of infected individuals in attendance *and* the total number of person-to-person contacts. As a result, the rate of virus spread scales quadratically with the size of a crowd.
+
+In a group of size $n$, the probability that one person is infected = $1 - (1-p)^n$, where $p$ is the population prevalence. Here's what that function looks like for a few values of $p$:
+
+```{r Probability Curve, echo = FALSE}
+
+prob_one_infected <- function(n, p){
+  return((1 - (1-p)^n) * 100)
+}
+
+num_discordant_contacts <- function(n,p){
+  return(p*(1-p)*n^2)
+}
+
+data <- expand.grid(class_size = seq(1,300,1),
+                    prevalence = c(1/1000, 5/1000, 10/1000)) %>% 
+  mutate(prob = prob_one_infected(n = class_size, p = prevalence),
+         num_contacts = num_discordant_contacts(n = class_size, p = prevalence))
+
+p <- ggplot(data,
+       mapping = aes(x=class_size, y = prob, linetype = factor(prevalence))) + 
+  geom_line() + 
+  theme_bw() + 
+  xlab('Gathering Size') + 
+  ylab('Probability One Person Is Infected') +
+  scale_y_continuous(limits = c(0,100)) + 
+  guides(linetype=guide_legend(title="Prevalence"))
+
+
+p
+```
+
+
+It's hard to say what the overall prevalence of the virus will be in the fall. Depending on your assumptions, a 300-person lecture hall is either virtually guaranteed to have someone infected with the virus, or maybe has a 1-in-4 chance. Smaller seminar-style classes, on the other hand, are much more likely to be virus-free regardless of overall prevalence.
+
+The rate at which a virus spreads is proportional to the number of *discordant contacts* (contacts between an infected individual and a susceptible individual). This number scales quadratically with the size of a gathering. 
+
+Expected Number Infected: $np$  
+Expected Number Susceptible: $(1-p)n$  
+Expected Number of Discordant Contacts: $p(1-p)n^2$  
+
+
+```{R Discordant Contacts, echo = FALSE}
+p2 <- ggplot(data,
+       mapping = aes(x=class_size, y = num_contacts, linetype = factor(prevalence))) + 
+  geom_line() + 
+  theme_bw() + xlab('Gathering Size') + 
+  ylab('Number of Discordant Contacts') +
+  guides(linetype=guide_legend(title="Prevalence"))
+  
+
+p2
+
+```
+
+All of which is to say that when you go from a 30-student seminar to a 300-student lecture hall, you don't get a tenfold increase in virus spread. You get a **hundredfold** increase. You can replace that lecture class with ten seminars and lower the rate of viral spread by 90%.^[Or, in general, splitting the big group into $m$ smaller groups reduces the number of discordant contacts m-fold: $m(\frac{n}{m})^2 = \frac{n^2}{m}$] And hey, you might even [improve](http://www.cwsei.ubc.ca/SEI_research/files/Wieman-Change_Sept-Oct_2007.pdf) [learning](https://www.insidehighered.com/quicktakes/2018/06/29/class-size-matters).
+
+The x-axis on that last figure cuts off at 300, because I expect the model will start to break down a bit for larger crowds where you can't assume random mixing. I'll leave the 100,000 person football stadium as an exercise for the reader...
+
