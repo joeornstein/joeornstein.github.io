@@ -25,14 +25,16 @@ test1 <- read_xlsx('data/test1.xlsx')
 test2 <- read_xlsx('data/test2.xlsx')
 test3 <- read_xlsx('data/test3.xlsx')
 test4 <- read_xlsx('data/test4.xlsx')
+test5 <- read_xlsx('data/test5.xlsx')
 
-results <- tibble(day = c(1,2,4,10),
+results <- tibble(day = c(1,2,4,10, 17),
                   correct = NA)
 
 results$correct[1] <- sum(test1$license_plates %in% master$license_plates)
 results$correct[2] <- sum(test2$license_plates %in% master$license_plates)
 results$correct[3] <- sum(test3$license_plates %in% master$license_plates)
 results$correct[4] <- sum(test4$license_plates %in% master$license_plates)
+results$correct[5] <- sum(test5$license_plates %in% master$license_plates)
 
 p <- ggplot(results, 
        aes(x=day, y=correct)) + 
