@@ -6,10 +6,86 @@
    <description>Recent content in R on Joseph T. Ornstein</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2020 - Joseph T. Ornstein</copyright>
-   <lastBuildDate>Tue, 16 Jun 2020 00:00:00 +0000</lastBuildDate>
+   <lastBuildDate>Fri, 26 Jun 2020 00:00:00 +0000</lastBuildDate>
    
        <atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
    
+   
+     <item>
+       <title>Makefiles for Dummies who use Windows</title>
+       <link>/posts/makefiles-dummies-windows/</link>
+       <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/makefiles-dummies-windows/</guid>
+       <description>
+
+
+&lt;p&gt;Some combination of &lt;a href=&#34;https://kbroman.org/minimal_make/&#34;&gt;Karl Broman’s blog&lt;/a&gt; and &lt;a href=&#34;https://plain-text.co/pull-it-together.html#pull-it-together&#34;&gt;Kieran Healy’s book&lt;/a&gt; convinced me to try Makefiles as part of my workflow. Both authors have nice tutorials on the topic, but neither one appears to use Windows OS, so their instructions omit several hassles that such users must endure. Here is a dummified version of what I did to get everything working on my machine.&lt;/p&gt;
+&lt;div id=&#34;why-use-makefiles&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Why Use Makefiles?&lt;/h3&gt;
+&lt;p&gt;One benchmark for good reproducible research is the &lt;a href=&#34;https://rescience.github.io/ten-years/&#34;&gt;Ten Year Challenge&lt;/a&gt;. Can you sucecssfully replicate a paper you wrote ten years ago? How hard did you make it for your future self? As far as I can tell, nothing I wrote in or around 2010 is reproducible without a bunch of reverse-engineering. Which is unfortunate, because at least some of that stuff may actually be good.&lt;/p&gt;
+&lt;p&gt;Starting in grad school I began to internalize the idea that every analysis should be captured in &lt;strong&gt;code&lt;/strong&gt;. Anything accomplished through point-and-click is lost forever, and therefore not reproducible research. But even to this day, there are still some point-and-click components in my workflow. For example:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Open a project in RStudio and click “Run” to execute a script.&lt;/li&gt;
+&lt;li&gt;Download data from the Internet through a web browser.&lt;/li&gt;
+&lt;li&gt;Click “Build and View (F5)” in TeXStudio to rebuild a PDF.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is all fairly innocuous stuff, but in ten years I will not be able to easily figure out (a) which R script I ran to create Figure 4, (b) where I got the raw data, (c) exactly what sequence of code I need to execute before I can build the PDF. By using a makefile, I can instead automate this whole process, and in so doing provide a nice self-documenting record of my entire workflow.&lt;/p&gt;
+&lt;!-- Fully reproducible analysis replaces every point-and-click action with a script! Then you can just go back and read the script.  --&gt;
+&lt;p&gt;&lt;strong&gt;Advantages:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;It’s automatic. One button (just type &lt;code&gt;make&lt;/code&gt;) reproduces your entire workflow, even if you’re using multiple languages (R, Python, TeX, shell scripting, etc).&lt;/li&gt;
+&lt;li&gt;It’s fast. The &lt;code&gt;make&lt;/code&gt; program only executes a line of code if something changed since the last time you ran it. If you just want to fiddle with the code that produces Figure 2, typing &lt;code&gt;make&lt;/code&gt; won’t rebuild your entire project, just the part you changed.&lt;/li&gt;
+&lt;li&gt;It’s self-documenting. Anyone can open your Makefile in a text editor and see exactly what steps need to be taken, in what order, to generate your output.&lt;/li&gt;
+&lt;li&gt;Running analyses from the terminal is just inherently satisfying. This must be what real software developers feel like &lt;em&gt;all the time&lt;/em&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;So here is the set of steps I took to get it working on a Windows PC.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-1-download-and-setup-gnu-make&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Step 1: Download and setup GNU Make&lt;/h3&gt;
+&lt;p&gt;Download &lt;a href=&#34;http://gnuwin32.sourceforge.net/packages/make.htm&#34;&gt;Make for Windows&lt;/a&gt;. I used the &lt;a href=&#34;http://gnuwin32.sourceforge.net/downlinks/make.php&#34;&gt;Setup Program&lt;/a&gt; (that link should automatically start the download). Install it to a directory you will remember, like &lt;code&gt;C:\GnuWin32\&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Next, you need to add the &lt;code&gt;make.exe&lt;/code&gt; directory to your PATH variable, so that Windows knows what to do when you type &lt;code&gt;make&lt;/code&gt; into the Command Prompt. Here is a &lt;a href=&#34;https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/&#34;&gt;step-by-step guide&lt;/a&gt; to adding variables to PATH in Windows 10. If you installed Make in the same directory that I did, then the folder you will want to add is &lt;code&gt;C:\GnuWin32\bin\&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The next time you open a new Command Prompt, you should be able to type &lt;code&gt;make&lt;/code&gt; and not get a &lt;code&gt;&#39;make&#39; is not recognized as a command...&lt;/code&gt; error. If not, go ahead and restart your computer. Or throw it into a river.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-1a-also-add-r-to-your-path&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Step 1a: Also add &lt;code&gt;R&lt;/code&gt; to your PATH&lt;/h3&gt;
+&lt;p&gt;In case you haven’t already, add the directory that contains the &lt;code&gt;Rscript.exe&lt;/code&gt; application to your PATH variable too. Now you can run R scripts from the command line.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-2-create-a-makefile&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Step 2: Create a Makefile&lt;/h3&gt;
+&lt;p&gt;For a more detailed tutorial on how to write Makefiles, see the links above. You can also play around with an example project I put together at &lt;a href=&#34;https://github.com/joeornstein/makefile-tutorial&#34;&gt;this repository&lt;/a&gt;. It contains a LaTeX file, a folder with raw data, and some R scripts to clean the data, build tables, and build figures. The Makefile that stitches everything together looks like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Define the list of tables
+TABLES = tables/table1.tex tables/table2.tex
+
+# Compile the paper
+paper/paper.pdf : paper/paper.tex figures/fig1.png $(TABLES)
+    pdflatex paper/paper.tex -output-directory paper
+
+# Create Figure 1
+figures/fig1.png : R/fig1.R data/clean_data.RDS
+    Rscript R/fig1.R
+
+# Create Tables 1 and 2
+$(TABLES) : R/tables.R data/clean_data.RDS
+    Rscript R/tables.R
+
+# Clean the data
+data/clean_data.RDS : R/clean_data.R data/raw_data.csv
+    Rscript R/clean_data.R&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;No extension. Just put it in the root directory of your project and call it “Makefile”. It’s plain text so any text editor can open it, including RStudio.&lt;/p&gt;
+&lt;p&gt;Note: In &lt;a href=&#34;https://kbroman.org/minimal_make/&#34;&gt;Karl Broman’s tutorial&lt;/a&gt; he uses the &lt;code&gt;CD&lt;/code&gt; command when jumping around to subdirectories. Trying to adapt his syntax yielded a bunch of errors for me, likely because I’m accustomed to using path names relative to my R Project (e.g. &lt;code&gt;figures/fig1.png&lt;/code&gt; instead of &lt;code&gt;../figures/fig1.png&lt;/code&gt;). So instead I just include the full relative path for every script I want to call (in this case, my code is in the &lt;code&gt;R/&lt;/code&gt; folder, and my LaTeX file is the in the &lt;code&gt;paper/&lt;/code&gt; folder).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-3-type-make&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Step 3: Type &lt;code&gt;make&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;You can also type &lt;code&gt;ctrl+shift+B&lt;/code&gt; in RStudio. If there is a Makefile in your project directory, it will recognize it and use it as instructions to build your output! Very slick.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;further-reading&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Further Reading&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://bost.ocks.org/mike/make/&#34;&gt;Mike Bostock&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&#34;https://kbroman.org/steps2rr/&#34;&gt;Karl Broman’s Tutorial on Reproducible Research&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+     </item>
    
      <item>
        <title>COVID-19 Animation</title>

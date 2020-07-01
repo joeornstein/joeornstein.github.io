@@ -1,0 +1,259 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>Joseph T. Ornstein</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The HTML5 Herald" />
+<meta name="author" content="Joseph T. Ornstein" /><meta property="og:title" content="Makefiles for Dummies who use Windows" />
+<meta property="og:description" content="Some combination of Karl Broman’s blog and Kieran Healy’s book convinced me to try Makefiles as part of my workflow. Both authors have nice tutorials on the topic, but neither one appears to use Windows OS, so their instructions omit several hassles that such users must endure." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/makefiles-dummies-windows/" />
+<meta property="article:published_time" content="2020-06-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-06-26T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Makefiles for Dummies who use Windows"/>
+<meta name="twitter:description" content="Some combination of Karl Broman’s blog and Kieran Healy’s book convinced me to try Makefiles as part of my workflow. Both authors have nice tutorials on the topic, but neither one appears to use Windows OS, so their instructions omit several hassles that such users must endure."/>
+
+<meta name="generator" content="Hugo 0.69.0" />
+    
+    <link rel="shortcut icon" href="https://joeornstein.github.io/images/Shield_open_pos200-01.png" />
+  
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/fontawesome/css/all.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" /></head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="/">Joseph T. Ornstein</a>
+            </h1>
+
+      <ul id="social-media">
+             <li>
+               <a href="https://github.com/joeornstein" title="GitHub">
+               <i class="fab fa-github fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://twitter.com/joeornstein" title="Twitter">
+               <i class="fab fa-twitter fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://scholar.google.com/citations?user=HXC86u8AAAAJ&amp;hl=en" title="Google Scholar">
+               <i class="fab fa-google fa-lg"></i>
+               </a>
+             </li>
+      </ul>
+      
+      <p><em>Postdoctoral Researcher, Washington University in St. Louis</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Archives</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/publications/">
+                <i class="fa-li fa  fa-lg"></i><span>Publications</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/teaching/">
+                <i class="fa-li fa  fa-lg"></i><span>Teaching</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/resources/">
+                <i class="fa-li fa  fa-lg"></i><span>Resources</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+<link rel="stylesheet" href="/css/atom-one-dark.css" rel="stylesheet" id="theme-stylesheet">
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+<article>
+
+    <h1>Makefiles for Dummies who use Windows</h1>
+
+    
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2020-06-26T00:00:00Z">Jun 26, 2020</time>
+        </li>
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="/categories/r">R</a>
+                
+                    , 
+                    <a href="/categories/data-science">Data Science</a>
+                
+            </em>
+        </li>
+        
+
+        
+
+        <li>5 minutes read</li>
+    </ul>
+</aside>
+
+    
+
+    
+<div class="featured_image">
+    <a href="/posts/makefiles-dummies-windows/" title="Makefiles for Dummies who use Windows">
+        <img src="">
+    </a>
+</div>
+
+
+
+    
+
+
+<p>Some combination of <a href="https://kbroman.org/minimal_make/">Karl Broman’s blog</a> and <a href="https://plain-text.co/pull-it-together.html#pull-it-together">Kieran Healy’s book</a> convinced me to try Makefiles as part of my workflow. Both authors have nice tutorials on the topic, but neither one appears to use Windows OS, so their instructions omit several hassles that such users must endure. Here is a dummified version of what I did to get everything working on my machine.</p>
+<div id="why-use-makefiles" class="section level3">
+<h3>Why Use Makefiles?</h3>
+<p>One benchmark for good reproducible research is the <a href="https://rescience.github.io/ten-years/">Ten Year Challenge</a>. Can you sucecssfully replicate a paper you wrote ten years ago? How hard did you make it for your future self? As far as I can tell, nothing I wrote in or around 2010 is reproducible without a bunch of reverse-engineering. Which is unfortunate, because at least some of that stuff may actually be good.</p>
+<p>Starting in grad school I began to internalize the idea that every analysis should be captured in <strong>code</strong>. Anything accomplished through point-and-click is lost forever, and therefore not reproducible research. But even to this day, there are still some point-and-click components in my workflow. For example:</p>
+<ul>
+<li>Open a project in RStudio and click “Run” to execute a script.</li>
+<li>Download data from the Internet through a web browser.</li>
+<li>Click “Build and View (F5)” in TeXStudio to rebuild a PDF.</li>
+</ul>
+<p>This is all fairly innocuous stuff, but in ten years I will not be able to easily figure out (a) which R script I ran to create Figure 4, (b) where I got the raw data, (c) exactly what sequence of code I need to execute before I can build the PDF. By using a makefile, I can instead automate this whole process, and in so doing provide a nice self-documenting record of my entire workflow.</p>
+<!-- Fully reproducible analysis replaces every point-and-click action with a script! Then you can just go back and read the script.  -->
+<p><strong>Advantages:</strong></p>
+<ol style="list-style-type: decimal">
+<li>It’s automatic. One button (just type <code>make</code>) reproduces your entire workflow, even if you’re using multiple languages (R, Python, TeX, shell scripting, etc).</li>
+<li>It’s fast. The <code>make</code> program only executes a line of code if something changed since the last time you ran it. If you just want to fiddle with the code that produces Figure 2, typing <code>make</code> won’t rebuild your entire project, just the part you changed.</li>
+<li>It’s self-documenting. Anyone can open your Makefile in a text editor and see exactly what steps need to be taken, in what order, to generate your output.</li>
+<li>Running analyses from the terminal is just inherently satisfying. This must be what real software developers feel like <em>all the time</em>.</li>
+</ol>
+<p>So here is the set of steps I took to get it working on a Windows PC.</p>
+</div>
+<div id="step-1-download-and-setup-gnu-make" class="section level3">
+<h3>Step 1: Download and setup GNU Make</h3>
+<p>Download <a href="http://gnuwin32.sourceforge.net/packages/make.htm">Make for Windows</a>. I used the <a href="http://gnuwin32.sourceforge.net/downlinks/make.php">Setup Program</a> (that link should automatically start the download). Install it to a directory you will remember, like <code>C:\GnuWin32\</code>.</p>
+<p>Next, you need to add the <code>make.exe</code> directory to your PATH variable, so that Windows knows what to do when you type <code>make</code> into the Command Prompt. Here is a <a href="https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/">step-by-step guide</a> to adding variables to PATH in Windows 10. If you installed Make in the same directory that I did, then the folder you will want to add is <code>C:\GnuWin32\bin\</code>.</p>
+<p>The next time you open a new Command Prompt, you should be able to type <code>make</code> and not get a <code>'make' is not recognized as a command...</code> error. If not, go ahead and restart your computer. Or throw it into a river.</p>
+</div>
+<div id="step-1a-also-add-r-to-your-path" class="section level3">
+<h3>Step 1a: Also add <code>R</code> to your PATH</h3>
+<p>In case you haven’t already, add the directory that contains the <code>Rscript.exe</code> application to your PATH variable too. Now you can run R scripts from the command line.</p>
+</div>
+<div id="step-2-create-a-makefile" class="section level3">
+<h3>Step 2: Create a Makefile</h3>
+<p>For a more detailed tutorial on how to write Makefiles, see the links above. You can also play around with an example project I put together at <a href="https://github.com/joeornstein/makefile-tutorial">this repository</a>. It contains a LaTeX file, a folder with raw data, and some R scripts to clean the data, build tables, and build figures. The Makefile that stitches everything together looks like this:</p>
+<pre><code># Define the list of tables
+TABLES = tables/table1.tex tables/table2.tex
+
+# Compile the paper
+paper/paper.pdf : paper/paper.tex figures/fig1.png $(TABLES)
+    pdflatex paper/paper.tex -output-directory paper
+
+# Create Figure 1
+figures/fig1.png : R/fig1.R data/clean_data.RDS
+    Rscript R/fig1.R
+
+# Create Tables 1 and 2
+$(TABLES) : R/tables.R data/clean_data.RDS
+    Rscript R/tables.R
+
+# Clean the data
+data/clean_data.RDS : R/clean_data.R data/raw_data.csv
+    Rscript R/clean_data.R</code></pre>
+<p>No extension. Just put it in the root directory of your project and call it “Makefile”. It’s plain text so any text editor can open it, including RStudio.</p>
+<p>Note: In <a href="https://kbroman.org/minimal_make/">Karl Broman’s tutorial</a> he uses the <code>CD</code> command when jumping around to subdirectories. Trying to adapt his syntax yielded a bunch of errors for me, likely because I’m accustomed to using path names relative to my R Project (e.g. <code>figures/fig1.png</code> instead of <code>../figures/fig1.png</code>). So instead I just include the full relative path for every script I want to call (in this case, my code is in the <code>R/</code> folder, and my LaTeX file is the in the <code>paper/</code> folder).</p>
+</div>
+<div id="step-3-type-make" class="section level3">
+<h3>Step 3: Type <code>make</code></h3>
+<p>You can also type <code>ctrl+shift+B</code> in RStudio. If there is a Makefile in your project directory, it will recognize it and use it as instructions to build your output! Very slick.</p>
+</div>
+<div id="further-reading" class="section level2">
+<h2>Further Reading</h2>
+<p><a href="https://bost.ocks.org/mike/make/">Mike Bostock</a><br />
+<a href="https://kbroman.org/steps2rr/">Karl Broman’s Tutorial on Reproducible Research</a></p>
+</div>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="/posts/covid-animation/"><i class="fa fa-chevron-circle-left"></i> COVID-19 Animation</a>
+        </li>
+        
+        
+    </ul>
+</section>
+    
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6>Copyright © 2020 - Joseph T. Ornstein |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a>
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-166301409-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
