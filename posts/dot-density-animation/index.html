@@ -1,0 +1,229 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <title>Joseph T. Ornstein</title>
+  <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The HTML5 Herald" />
+<meta name="author" content="Joseph T. Ornstein" /><meta property="og:title" content="Dot Density Animation" />
+<meta property="og:description" content="In a previous post, I demonstrated some features of the gganimate package by animating a map of US COVID-19 cases. In this post, I’ll make it a bit prettier." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/dot-density-animation/" />
+<meta property="article:published_time" content="2020-07-08T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-07-08T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Dot Density Animation"/>
+<meta name="twitter:description" content="In a previous post, I demonstrated some features of the gganimate package by animating a map of US COVID-19 cases. In this post, I’ll make it a bit prettier."/>
+
+<meta name="generator" content="Hugo 0.69.0" />
+    
+    <link rel="shortcut icon" href="https://joeornstein.github.io/images/Shield_open_pos200-01.png" />
+  
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="/fontawesome/css/all.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" /></head>
+
+<body>
+  <div id="container">
+    <header>
+      <h1>
+                <a href="/">Joseph T. Ornstein</a>
+            </h1>
+
+      <ul id="social-media">
+             <li>
+               <a href="https://github.com/joeornstein" title="GitHub">
+               <i class="fab fa-github fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://twitter.com/joeornstein" title="Twitter">
+               <i class="fab fa-twitter fa-lg"></i>
+               </a>
+             </li>
+             <li>
+               <a href="https://scholar.google.com/citations?user=HXC86u8AAAAJ&amp;hl=en" title="Google Scholar">
+               <i class="fab fa-google fa-lg"></i>
+               </a>
+             </li>
+      </ul>
+      
+      <p><em>Postdoctoral Researcher, Washington University in St. Louis</em></p>
+      
+    </header>
+
+    
+<nav>
+    <ul>
+        
+        <li>
+            <a class="" href="/posts/">
+                <i class="fa-li fa  fa-lg"></i><span>Archives</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/publications/">
+                <i class="fa-li fa  fa-lg"></i><span>Publications</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/teaching/">
+                <i class="fa-li fa  fa-lg"></i><span>Teaching</span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="" href="/resources/">
+                <i class="fa-li fa  fa-lg"></i><span>Resources</span>
+            </a>
+        </li>
+        
+    </ul>
+</nav>
+
+
+    <main>
+
+
+<link rel="stylesheet" href="/css/atom-one-dark.css" rel="stylesheet" id="theme-stylesheet">
+<script src="/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+<article>
+
+    <h1>Dot Density Animation</h1>
+
+    
+      <aside>
+    <ul>
+        <li>
+            <time class="post-date" datetime="2020-07-08T00:00:00Z">Jul 8, 2020</time>
+        </li>
+        
+        <li>
+            Categories:
+            <em>
+                
+                    
+                    <a href="/categories/r">R</a>
+                
+                    , 
+                    <a href="/categories/epidemiology">Epidemiology</a>
+                
+            </em>
+        </li>
+        
+
+        
+
+        <li>One minute read</li>
+    </ul>
+</aside>
+
+    
+
+    
+<div class="featured_image">
+    <a href="/posts/dot-density-animation/" title="Dot Density Animation">
+        <img src="">
+    </a>
+</div>
+
+
+
+    
+
+
+<p>In a <a href="../covid-animation/">previous post</a>, I demonstrated some features of the <code>gganimate</code> package by animating a map of US COVID-19 cases. In this post, I’ll make it a bit prettier.</p>
+<pre class="r"><code>continental_states &lt;- unique(tigris::fips_codes$state)[c(1, 3:11, 13:51)]
+
+county_shp &lt;- tigris::counties(state = continental_states,
+                               cb = TRUE,
+                               class = &#39;sf&#39;,
+                               progress_bar = FALSE) %&gt;% 
+  mutate(fips = paste0(STATEFP, COUNTYFP)) %&gt;% 
+  select(fips)
+
+countypops &lt;- read_excel(&#39;../covid-animation/data/census/countypop.xlsx&#39;) %&gt;% 
+  mutate(fips = substr(id, 10, 14))
+
+
+county_shp &lt;- left_join(county_shp, countypops, by = &#39;fips&#39;)
+
+# # 1 point represents 10,000 people
+# points &lt;- county_shp %&gt;% 
+#   st_sample(size = floor(county_shp$population / 10000)) %&gt;% 
+#   suppressWarnings
+# 
+# state_boundaries &lt;- tigris::states(class = &#39;sf&#39;, cb = TRUE, progress_bar = FALSE) %&gt;%
+#   filter(STUSPS %in% continental_states)
+# 
+# ggplot() + 
+#   geom_sf(data = state_boundaries) + 
+#   geom_sf(data = points, size = 0.05) + 
+#   theme_void()</code></pre>
+<div id="further-reading" class="section level2">
+<h2>Further Reading</h2>
+<ul>
+<li><a href="https://tarakc02.github.io/dot-density/">Dot Density Plots</a></li>
+</ul>
+</div>
+
+
+</article>
+
+
+<section class="post-nav">
+    <ul>
+        
+        <li>
+            <a href="/posts/newton/"><i class="fa fa-chevron-circle-left"></i> Newton</a>
+        </li>
+        
+        
+    </ul>
+</section>
+    
+    
+
+
+
+
+
+</main>
+    <footer>
+        <h6>Copyright © 2020 - Joseph T. Ornstein |
+            Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a>
+    </footer>
+</div>
+<script src="/js/scripts.js"></script>
+
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-166301409-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+</body>
+
+</html>
+
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>

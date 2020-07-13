@@ -195,3 +195,8 @@ animate(animation, nframes = 250)
 ```
 
 Much better. I have a few ideas for how to clean it up and make it more beautiful, but they will have to wait for [another post](https://joeornstein.github.io/covid-animation-2).
+
+
+## Futher Reading
+
+[`gganimate` with a Spooky Twist](https://goodekat.github.io/presentations/2019-isugg-gganimate-spooky/slides.html#1)

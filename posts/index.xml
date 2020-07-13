@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
  <channel>
    <title>Archives on Joseph T. Ornstein</title>
-   <link>/posts/</link>
+   <link>https://joeornstein.github.io/posts/</link>
    <description>Recent content in Archives on Joseph T. Ornstein</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2020 - Joseph T. Ornstein</copyright>
    <lastBuildDate>Fri, 26 Jun 2020 00:00:00 +0000</lastBuildDate>
    
-       <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+       <atom:link href="https://joeornstein.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
    
    
      <item>
        <title>Makefiles for Dummies who use Windows</title>
-       <link>/posts/makefiles-dummies-windows/</link>
+       <link>https://joeornstein.github.io/posts/makefiles-dummies-windows/</link>
        <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/makefiles-dummies-windows/</guid>
+       <guid>https://joeornstein.github.io/posts/makefiles-dummies-windows/</guid>
        <description>
 
 
@@ -89,10 +89,10 @@ data/clean_data.RDS : R/clean_data.R data/raw_data.csv
    
      <item>
        <title>COVID-19 Animation</title>
-       <link>/posts/covid-animation/</link>
+       <link>https://joeornstein.github.io/posts/covid-animation/</link>
        <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/covid-animation/</guid>
+       <guid>https://joeornstein.github.io/posts/covid-animation/</guid>
        <description>
 
 
@@ -181,7 +181,7 @@ p &amp;lt;- ggplot(data = county_shp) +
   scale_fill_gradient(low = &amp;#39;white&amp;#39;, high = &amp;#39;black&amp;#39;)
 
 p&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/posts/covid-animation/index_files/figure-html/Load%20Shapefiles-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/covid-animation/index_files/figure-html/Load%20Shapefiles-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Then create a &lt;code&gt;ggplot2&lt;/code&gt; object with all of the time series data plotted on a map and animate it with the &lt;code&gt;gganimate::transition_states()&lt;/code&gt; function.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = data %&amp;gt;%
               left_join(county_centroids, by = &amp;#39;fips&amp;#39;) %&amp;gt;%
@@ -256,17 +256,21 @@ animation &amp;lt;- p +
 
 # render the animation
 animate(animation, nframes = 250) &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/posts/covid-animation/index_files/figure-html/smooth%20video-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/covid-animation/index_files/figure-html/smooth%20video-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;Much better. I have a few ideas for how to clean it up and make it more beautiful, but they will have to wait for &lt;a href=&#34;https://joeornstein.github.io/covid-animation-2&#34;&gt;another post&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;futher-reading&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Futher Reading&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://goodekat.github.io/presentations/2019-isugg-gganimate-spooky/slides.html#1&#34;&gt;&lt;code&gt;gganimate&lt;/code&gt; with a Spooky Twist&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
 </description>
      </item>
    
      <item>
        <title>Measurement and the Back-Door Criterion</title>
-       <link>/posts/back-door-measurement/</link>
+       <link>https://joeornstein.github.io/posts/back-door-measurement/</link>
        <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/back-door-measurement/</guid>
+       <guid>https://joeornstein.github.io/posts/back-door-measurement/</guid>
        <description>
 
 
@@ -282,16 +286,16 @@ animate(animation, nframes = 250) &lt;/code&gt;&lt;/pre&gt;
    
      <item>
        <title>Spaced Repetition for Syllabi</title>
-       <link>/posts/spaced-repetition-for-syllabi/</link>
+       <link>https://joeornstein.github.io/posts/spaced-repetition-for-syllabi/</link>
        <pubDate>Fri, 05 Jun 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/spaced-repetition-for-syllabi/</guid>
+       <guid>https://joeornstein.github.io/posts/spaced-repetition-for-syllabi/</guid>
        <description>
 
 
 &lt;p&gt;We tell students that cramming the night before the test is a poor strategy. But of course it isn’t. Students don’t get good grades for effective long-term memory consolidation. They get good grades for scoring well on the exam &lt;em&gt;tomorrow&lt;/em&gt;. If instructors want to encourage long-term memory building, they need to incentivize it.&lt;/p&gt;
 &lt;p&gt;For fun and a pretty graph, I replicated a version of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Hermann_Ebbinghaus&#34;&gt;Ebbinghaus experiment&lt;/a&gt; on forgetting. I started with a list of 100 randomly generated license plate numbers and attempted to memorize them all.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; To faithfully simulate cramming before the exam, I studied the list for about two hours the night before the first test, with frequent distraction from video games and small children. Here’s how I fared on subsequent tests:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/posts/spaced-repetition-for-syllabi/index_files/figure-html/plot%20forgetting%20curve-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/spaced-repetition-for-syllabi/index_files/figure-html/plot%20forgetting%20curve-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The curve is not exactly exponential decay, but it’s decay nonetheless. I remembered more than I would have expected on Day 1, and forgot about 30% of the license plates within a week. No doubt I would have lost more if not for the intermittent reinforcement of the tests themselves. And now I have about two dozen fake license plate numbers permanently taking up space in long-term memory. Great!&lt;/p&gt;
 &lt;p&gt;If instead of cramming I had used something like &lt;a href=&#34;https://www.gwern.net/Spaced-repetition&#34;&gt;spaced repetition&lt;/a&gt;, I’m sure I would have remembered many more license plates. See Nicky Case’s fantastic &lt;a href=&#34;https://ncase.me/remember/&#34;&gt;explorable explanation&lt;/a&gt; for a guided tour to spaced repetition, but in a nutshell it works like this. Take a bunch of items you want to remember, and test yourself at varying intervals. If you successfully remember an item, increase the interval until the next test. If you fail, decrease the interval. That way you test the each item when you’re most in danger of forgetting it.&lt;/p&gt;
 &lt;p&gt;The two key elements of spaced repetition are (a) active recall rather than passive studying, and (b) spacing out study sessions. To design a course that leverages spaced repetition, consider the following ideas.&lt;/p&gt;
@@ -339,10 +343,10 @@ animate(animation, nframes = 250) &lt;/code&gt;&lt;/pre&gt;
    
      <item>
        <title>Fall Semester 2020</title>
-       <link>/posts/fall-semester-2020/</link>
+       <link>https://joeornstein.github.io/posts/fall-semester-2020/</link>
        <pubDate>Tue, 26 May 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/fall-semester-2020/</guid>
+       <guid>https://joeornstein.github.io/posts/fall-semester-2020/</guid>
        <description>
 
 
@@ -352,13 +356,13 @@ animate(animation, nframes = 250) &lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;Keep classes small&lt;/h3&gt;
 &lt;p&gt;It’s not a coincidence that so many COVID-19 infections have been traced to large, indoor &lt;a href=&#34;https://www.nytimes.com/2020/03/30/us/coronavirus-funeral-albany-georgia.html&#34;&gt;super-spreader&lt;/a&gt; &lt;a href=&#34;https://www.nytimes.com/2020/04/12/us/coronavirus-biogen-boston-superspreader.html&#34;&gt;events&lt;/a&gt;. That’s because large gatherings of people simultaneously increase two quantities: the expected number of infected individuals in attendance &lt;em&gt;and&lt;/em&gt; the total number of person-to-person contacts.&lt;/p&gt;
 &lt;p&gt;In a group of size &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;, the probability that at least one person is infected = &lt;span class=&#34;math inline&#34;&gt;\(1 - (1-p)^n\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; is the population prevalence. Here’s what that function looks like for a few values of &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/posts/fall-semester-2020/index_files/figure-html/Probability%20Curve-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/fall-semester-2020/index_files/figure-html/Probability%20Curve-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It’s hard to say what the overall prevalence of the virus will be in the fall. Depending on your assumptions, a 300-person lecture hall is either virtually guaranteed to have someone infected with the virus, or maybe has a 1-in-4 chance. Smaller seminar-style classes, on the other hand, are much more likely to be virus-free regardless of overall prevalence.&lt;/p&gt;
 &lt;p&gt;The rate at which a virus spreads is proportional to the number of &lt;em&gt;discordant contacts&lt;/em&gt; (contacts between an infected individual and a susceptible individual). This number scales quadratically with the size of a gathering.&lt;/p&gt;
 &lt;p&gt;Expected Number Infected: &lt;span class=&#34;math inline&#34;&gt;\(np\)&lt;/span&gt;&lt;br /&gt;
 Expected Number Susceptible: &lt;span class=&#34;math inline&#34;&gt;\((1-p)n\)&lt;/span&gt;&lt;br /&gt;
 Expected Number of Discordant Contacts: &lt;span class=&#34;math inline&#34;&gt;\(p(1-p)n^2\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/posts/fall-semester-2020/index_files/figure-html/Discordant%20Contacts-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/fall-semester-2020/index_files/figure-html/Discordant%20Contacts-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;All of which is to say that when you go from a 30-student seminar to a 300-student lecture hall, you don’t get a tenfold increase in virus spread. You get a &lt;strong&gt;hundredfold&lt;/strong&gt; increase. You can replace that lecture class with ten seminars and lower the rate of viral spread by 90%.&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; And hey, you might even &lt;a href=&#34;http://www.cwsei.ubc.ca/SEI_research/files/Wieman-Change_Sept-Oct_2007.pdf&#34;&gt;improve&lt;/a&gt; &lt;a href=&#34;https://www.insidehighered.com/quicktakes/2018/06/29/class-size-matters&#34;&gt;learning&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The x-axis on that last figure cuts off at 300, because I expect the model will start to break down a bit for larger crowds where you can’t assume random mixing. I’ll leave the 100,000 person football stadium as an exercise for the reader…&lt;/p&gt;
 &lt;/div&gt;
@@ -374,10 +378,10 @@ Expected Number of Discordant Contacts: &lt;span class=&#34;math inline&#34;&gt;
    
      <item>
        <title>The Contact Paradox</title>
-       <link>/posts/the-contact-paradox/</link>
+       <link>https://joeornstein.github.io/posts/the-contact-paradox/</link>
        <pubDate>Tue, 12 May 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/the-contact-paradox/</guid>
+       <guid>https://joeornstein.github.io/posts/the-contact-paradox/</guid>
        <description>
 
 
@@ -385,7 +389,7 @@ Expected Number of Discordant Contacts: &lt;span class=&#34;math inline&#34;&gt;
 &lt;!-- ***Attention Conservation Notice:*** *The following post describes an agent-based epidemiological model demonstrating that simple contact tracing strictly outperforms mass random testing. If you already believe this without a model, you may skip the exposition. Maybe just look at the pretty charts.* --&gt;
 &lt;!-- --- --&gt;
 &lt;p&gt;The &lt;a href=&#34;https://en.wikipedia.org/wiki/Friendship_paradox&#34;&gt;Friendship Paradox&lt;/a&gt; states that, on average, your friends have more friends than you do. (It’s not your fault. It’s just a property non-random sampling on networks.) Note that in the network below only agent 3 is more popular than his friends.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/posts/the-contact-paradox/index_files/figure-html/plot%20graph-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/the-contact-paradox/index_files/figure-html/plot%20graph-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The epidemiological corollary to this rule is that &lt;em&gt;your contacts have more contacts than you&lt;/em&gt;. We can use this fact to help identify and isolate “super-spreaders” during an epidemic, maximizing the effectiveness of the tests we have available.&lt;/p&gt;
 &lt;div id=&#34;model-assumptions&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Model Assumptions&lt;/h2&gt;
@@ -428,10 +432,10 @@ Expected Number of Discordant Contacts: &lt;span class=&#34;math inline&#34;&gt;
    
      <item>
        <title>Blogdown Features</title>
-       <link>/posts/blogdown-features/</link>
+       <link>https://joeornstein.github.io/posts/blogdown-features/</link>
        <pubDate>Sun, 10 May 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/blogdown-features/</guid>
+       <guid>https://joeornstein.github.io/posts/blogdown-features/</guid>
        <description>
 
 

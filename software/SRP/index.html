@@ -11,9 +11,9 @@
 <meta property="og:description" content="SRP is an R package that contains useful functions for implementing multilevel regression and poststratification (MRP) and stacked regression and poststratification (SRP).
 MotivationSuppose we want to know how some public opinion varies by subnational unit." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/software/srp/" />
-<meta property="article:published_time" content="2020-05-22T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-05-22T00:00:00+00:00" />
+<meta property="og:url" content="https://joeornstein.github.io/software/srp/" />
+<meta property="article:published_time" content="2020-07-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-07-01T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="The SRP Package"/>
@@ -26,15 +26,15 @@ MotivationSuppose we want to know how some public opinion varies by subnational
   
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
-  <link rel="stylesheet" href="/fontawesome/css/all.min.css" />
+  <link rel="stylesheet" href="https://joeornstein.github.io/fontawesome/css/all.min.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
-  <link rel="stylesheet" type="text/css" href="/css/styles.css" /></head>
+  <link rel="stylesheet" type="text/css" href="https://joeornstein.github.io/css/styles.css" /></head>
 
 <body>
   <div id="container">
     <header>
       <h1>
-                <a href="/">Joseph T. Ornstein</a>
+                <a href="https://joeornstein.github.io/">Joseph T. Ornstein</a>
             </h1>
 
       <ul id="social-media">
@@ -64,25 +64,25 @@ MotivationSuppose we want to know how some public opinion varies by subnational
     <ul>
         
         <li>
-            <a class="" href="/posts/">
+            <a class="" href="https://joeornstein.github.io/posts/">
                 <i class="fa-li fa  fa-lg"></i><span>Archives</span>
             </a>
         </li>
         
         <li>
-            <a class="" href="/publications/">
+            <a class="" href="https://joeornstein.github.io/publications/">
                 <i class="fa-li fa  fa-lg"></i><span>Publications</span>
             </a>
         </li>
         
         <li>
-            <a class="" href="/teaching/">
+            <a class="" href="https://joeornstein.github.io/teaching/">
                 <i class="fa-li fa  fa-lg"></i><span>Teaching</span>
             </a>
         </li>
         
         <li>
-            <a class="" href="/resources/">
+            <a class="" href="https://joeornstein.github.io/resources/">
                 <i class="fa-li fa  fa-lg"></i><span>Resources</span>
             </a>
         </li>
@@ -94,8 +94,8 @@ MotivationSuppose we want to know how some public opinion varies by subnational
     <main>
 
 
-<link rel="stylesheet" href="/css/atom-one-dark.css" rel="stylesheet" id="theme-stylesheet">
-<script src="/js/highlight.pack.js"></script>
+<link rel="stylesheet" href="https://joeornstein.github.io/css/atom-one-dark.css" rel="stylesheet" id="theme-stylesheet">
+<script src="https://joeornstein.github.io/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 
@@ -292,7 +292,7 @@ gbmModel &lt;- xgboost(data = dtrain,
                                 nfolds = 5)
 
 stackWeights %&gt;% round(3)
-#&gt; [1] 0.334 0.000 0.123 0.000 0.543</code></pre>
+#&gt; [1] 0.328 0.000 0.121 0.000 0.551</code></pre>
 <p>Then we can poststratify as before.</p>
 <pre class="r"><code>PSFrame_lasso &lt;- cleanDataLASSO(PSFrame, lasso_vars = lasso_vars, lasso_factors = lasso_factors,
                                 new_vars_lasso = colnames(trainset_lasso))$trainset
@@ -314,17 +314,17 @@ head(srp_estimates)
 #&gt; # A tibble: 6 x 2
 #&gt;    unit poststratifiedEstimate
 #&gt;   &lt;int&gt;                  &lt;dbl&gt;
-#&gt; 1     1                 -0.326
-#&gt; 2     2                  0.799
-#&gt; 3     3                 -3.27 
-#&gt; 4     4                 -3.05 
-#&gt; 5     5                  0.243
-#&gt; 6     6                 -2.27</code></pre>
+#&gt; 1     1                 -0.271
+#&gt; 2     2                  0.839
+#&gt; 3     3                 -3.31 
+#&gt; 4     4                 -3.11 
+#&gt; 5     5                  0.250
+#&gt; 6     6                 -2.30</code></pre>
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>
 <p>Because the data came from a simulation, we also know the true unit-level means. Let’s see how our estimates compare.</p>
-<p><img src="/software/SRP/index_files/figure-html/plots-1.png" width="672" /><img src="/software/SRP/index_files/figure-html/plots-2.png" width="672" /><img src="/software/SRP/index_files/figure-html/plots-3.png" width="672" /></p>
+<p><img src="https://joeornstein.github.io/software/SRP/index_files/figure-html/plots-1.png" width="672" /><img src="https://joeornstein.github.io/software/SRP/index_files/figure-html/plots-2.png" width="672" /><img src="https://joeornstein.github.io/software/SRP/index_files/figure-html/plots-3.png" width="672" /></p>
 </div>
 <div id="synthetic-poststratification" class="section level2">
 <h2>Synthetic Poststratification</h2>
@@ -440,7 +440,7 @@ PSFrame
             Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a>
     </footer>
 </div>
-<script src="/js/scripts.js"></script>
+<script src="https://joeornstein.github.io/js/scripts.js"></script>
 
   
 <script type="application/javascript">

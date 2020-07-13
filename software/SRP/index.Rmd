@@ -220,6 +220,8 @@ results <- true_means %>%
   left_join(mrp_estimates, by = 'unit') %>%
   left_join(srp_estimates, by = 'unit')
 
+save(results, file = 'vignette_results.RData')
+
 ggplot(results) + geom_point(aes(x=disag_estimate, y=true_mean)) + 
   xlab('Disaggregated Estimate') + ylab('True Mean') + 
   geom_abline(intercept = 0, slope = 1) +

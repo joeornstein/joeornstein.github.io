@@ -1,0 +1,28 @@
+---
+title: "Newton"
+author: "Joseph T. Ornstein"
+date: '2020-07-02'
+slug: newton
+categories: 
+ - Books
+tags: []
+images: []
+draft: true
+---
+
+Putting together some lectures on calculus for my graduate students reminded of James Gleick's [excellent biography](https://www.goodreads.com/book/show/17098.Isaac_Newton) of Isaac Newton. Prior to reading, my impression of Newton was that he was some jerk who was lucky to live in the 16th century, when you could be knighted as a towering genius for picking a lot of low-hanging intellectual fruit. You know. Objects fall because of gravity. Prisms defract light. Stuff like that.
+
+One of the things I loved about the book is how well it puts you into a pre-Newtonian mindset, which make his achievements all the more impressive.
+
+Consider what your theory of gravity would be if you had never been taught Newton's laws. .... I ran the experiment to find out, asking my four-year-old why clouds float and apples fall down. I quote her response in full:
+
+> Because  
+> -Fiona Ornstein
+
+TODO: Ask Fiona why clouds float and apples fall. 
+
+
+
+## Further Reading
+
+[Isaac Newton](https://www.goodreads.com/book/show/17098.Isaac_Newton), of course
