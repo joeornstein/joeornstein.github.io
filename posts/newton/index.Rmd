@@ -7,21 +7,24 @@ categories:
  - Books
 tags: []
 images: []
-draft: true
+draft: false
 ---
 
-Putting together some lectures on calculus for my graduate students reminded of James Gleick's [excellent biography](https://www.goodreads.com/book/show/17098.Isaac_Newton) of Isaac Newton. Prior to reading, my impression of Newton was that he was some jerk who was lucky to live in the 16th century, when you could be knighted as a towering genius for picking a lot of low-hanging intellectual fruit. You know. Objects fall because of gravity. Prisms defract light. Stuff like that.
+Putting together some lectures on calculus reminded me of James Gleick's [excellent biography](https://www.goodreads.com/book/show/17098.Isaac_Newton) of Isaac Newton. It's easily one of my favorite biographies of science (a crowded field!). Prior to reading, my uninformed impression of Newton was that he was some jerk who had the good fortune to live in the 16th century, when you could be knighted as a towering genius for picking a bunch of low-hanging intellectual fruit. You know. Objects fall because of gravity. Prisms make rainbows. Stuff like that.
 
-One of the things I loved about the book is how well it puts you into a pre-Newtonian mindset, which make his achievements all the more impressive.
+Reading the book at least confirmed the first part of my preconception. Newton was indeed a jerk, who took perhaps too much pleasure in executing counterfeiters during his tenure as Master of the Royal Mint. I was amused by the reviews of the book in which readers expressed disappointment that Gleick didn't go into greater detail about Newton's personal life. By all accounts, he had no personal life. He was a celibate who hated his family, kept his work secret from his peers,^[Newton only published his work on calculus after Leibniz independently published himself. Absent that professional rivalry, all indications suggest he would have taken calculus to his grave.] and dedicated himself single-mindedly to his research. 
 
-Consider what your theory of gravity would be if you had never been taught Newton's laws. .... I ran the experiment to find out, asking my four-year-old why clouds float and apples fall down. I quote her response in full:
+But the second part of my preconception was shattered. Newton was not picking low-hanging fruit. He was up in the branches of an orchard that no one else even knew existed, and in the process completely upended our species' understanding of reality.
 
-> Because  
-> -Fiona Ornstein
+---
 
-TODO: Ask Fiona why clouds float and apples fall. 
+Consider what your theory of gravity would be if you had never been taught Newton's Laws. Common sense in a pre-Newtonian world suggests that gravity is not a property of the Earth itself, but of *objects*. Rocks possess gravity. That is why they fall. Clouds, by comparison, possess *levity*. That is why they float. Feathers seem to  possess some combination of the two. No doubt that is how ducks can fly, being covered in the stuff. 
 
+I can't ask a member of a pre-Newtonian society how they conceive gravity, but I can ask my four year old. So I put the question to her during a walk the other day: "Why do clouds float in the sky while other things fall to the ground?" She patiently explained to me that the leaves on trees "point to the ground", which is why they fall. And that was basically all that I could get out of her. Falling is a thing that leaves do in the fall season. She's well-trained on identifying the characteristics of seasons.
 
+Newton's Laws are remarkable because they are completely contradicted by ordinary experience. Objects remain in motion unless acted upon by another object? Since when? On Earth, objects in motion *always* stop moving, without any obvious force acting upon them. Yet the entire edifice of Newtonian physics rests on that fundamental, counterintuitive insight. 
+
+To conceive of a model of the universe in which every bit of human sensory experience is just a special case -- the product of observation by tiny creatures who happen to live inside a planet's gravity well and atmosphere -- takes a special kind of genius.
 
 ## Further Reading
 

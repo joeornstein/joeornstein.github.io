@@ -1,0 +1,83 @@
+---
+title: "Stacked Regression and Poststratification (SRP)"
+author: "Joseph T. Ornstein"
+date: '2020-07-15'
+slug: srp
+categories: 
+ - R
+ - Statistics
+tags: []
+images: []
+draft: false
+---
+
+```{r setup, include = FALSE}
+library(tidyverse)
+library(directlabels)
+library(gganimate)
+theme_set(theme_minimal(base_size = 16))
+```
+
+Fielding a good poll is harder than it used to be. People just don't pick up their phones for unrecognized numbers and sit through surveys anymore.^[Perhaps we are less starved for entertainment than we used to be.] And those that do tend to be unrepresentative in some important way. Random sampling, the basis for making inferences from sample to population, is getting harder to do.
+
+One way to mitigate this problem is to reweight the survey after the fact. A popular technique is **Multilevel Regression and Poststratification (MRP)**. Basically, you fit a model to predict opinion based on the demographics and location of each survey respondent (multilevel regression). Then you compute a weighted average of those predictions to make an inference about the population of interest (poststratification).
+
+My recent contribution to this literature is a generalization of MRP, called **Stacked Regression and Poststratification (SRP)**. Instead of making predictions based on a multilevel regression model, you create an ensemble of diverse machine learning models through a technique called [stacking](https://joeornstein.github.io/publications/stacked_regression_and_poststratification.pdf). Then poststratify as normal.
+
+I animated some of the charts from the paper to illustrate the results. Here is an animated version of Figure 2, comparing of the performance of SRP, MRP, and disaggregation (i.e. just taking sample means) on a simulated dataset.
+
+```{r Animated Figure 2, echo = FALSE}
+load('data/vignette_results.RData')
+
+results <- results %>% 
+  select(-num) %>% 
+  pivot_longer(cols = c('disag_estimate', 'mrp_estimate', 'srp_estimate'), 
+               names_to = 'estimator', values_to = 'estimate') %>% 
+  mutate(estimator = recode(estimator, # Recode estimator labels
+                            disag_estimate = 'Disaggregation',
+                            mrp_estimate = 'MRP',
+                            srp_estimate = 'SRP')) %>% 
+  mutate(estimator = factor(estimator, # Order the factor levels
+                            levels = c('Disaggregation', 'MRP', 'SRP')))
+
+p <- ggplot(data = results, aes(x=estimate, y=true_mean)) +
+  geom_point(alpha = 0.5) +
+  labs(x = 'Estimate', y='True Mean') +
+  geom_abline(slope = 1, intercept = 0, linetype = 'dashed')
+
+animation <- p + 
+  transition_states(estimator, transition_length = 2,
+                    state_length = 3) +
+  ggtitle('{closest_state}') +
+  enter_fade() + exit_fade()
+
+animation
+```
+
+And here is an animated version of Figure 4, comparing the performance of MRP and SRP across 89 different empirical applications. SRP does better than MRP on average, but particularly for surveys with large samples.
+
+```{r Animated Figure 4, echo = FALSE}
+load('data/empirical_application_data.RData')
+
+p <- ggplot(dat, aes(x=MRP.correlation, y=SRP.correlation)) + 
+  geom_point(alpha = 0.5) + geom_abline(intercept=0,slope=1, linetype = 'dashed') +
+  xlab("MRP Correlation") +
+  ylab("SRP Correlation") +
+  ggtitle("n = 10,000")
+
+animation <- p + transition_states(sample.size, transition_length = 2,
+                    state_length = 3) +
+  ggtitle('n = {closest_state}') +
+  enter_fade() + exit_fade()
+
+animation
+```
+
+## Further Reading
+
+- [The Paper](https://doi.org/10.1017/pan.2019.43)
+- [The R Package](https://joeornstein.github.io/software/SRP)
+
+```{r embed slides, echo=F}
+knitr::include_url('https://joeornstein.github.io/slides/SRP-slides.html')
+```

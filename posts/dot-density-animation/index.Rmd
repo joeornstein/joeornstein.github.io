@@ -8,23 +8,50 @@ categories:
  - Epidemiology
 tags: []
 images: []
-draft: true
+draft: false
 ---
 
-In a [previous post](../covid-animation/), I demonstrated some features of the `gganimate` package by animating a map of US COVID-19 cases. In this post, I'll make it a bit prettier.
+In a [previous post](../covid-animation/), I demonstrated some features of the `gganimate` package by animating a map of US COVID-19 cases. In this post, I'll make it all a bit prettier.
+
+The [dot density map](https://en.wikipedia.org/wiki/Dot_distribution_map) is a nice alternative to chloropleths, particularly when the geographic subunits of interest are of varying sizes (e.g. counties in the Western United States are larger on average than those in the East). Here is some code to generate a dot plot for the population distribution of the continental United States. First, get the county boundary shapefile and merge with data on population in each county, using the code from [this post](../covid-animation/).
 
 ```{r setup, echo = FALSE, warning=FALSE, message=FALSE}
 library(tidyverse)
 library(sf)
 library(readxl)
+library(gganimate)
+
 knitr::opts_chunk$set(warning=FALSE, message = FALSE)
 ```
 
 
-```{r get tigris}
+```{r get and clean COVID-19 data}
+# Read from NYT github
+data <- read_csv('https://github.com/nytimes/covid-19-data/raw/master/us-counties.csv')
 
+# If unavailable, use the file pulled previously
+if(!exists('data')){
+  data <- read_csv('../covid-animation/data/nyt-covid/us-counties.csv')
+}
+
+# Generate new cases / deaths variables
+data <- data %>% 
+  group_by(county, state) %>%
+  mutate(new_cases = cases - lag(cases),
+         new_deaths = deaths - lag(deaths)) %>% 
+  mutate(new_cases = if_else(is.na(new_cases), 0, new_cases),
+         new_deaths = if_else(is.na(new_deaths), 0, new_deaths))
+
+# Give New York City the Manhattan FIPS code
+data[data$county == 'New York City',]$fips <- '36061'
+```
+
+```{r get shapefiles from tigris package, echo = FALSE}
+
+# get list of states in the continental US
 continental_states <- unique(tigris::fips_codes$state)[c(1, 3:11, 13:51)]
 
+# get the county shapefile
 county_shp <- tigris::counties(state = continental_states,
                                cb = TRUE,
                                class = 'sf',
@@ -32,28 +59,124 @@ county_shp <- tigris::counties(state = continental_states,
   mutate(fips = paste0(STATEFP, COUNTYFP)) %>% 
   select(fips)
 
+# Merge with county population / demographics
+library(readxl)
 countypops <- read_excel('../covid-animation/data/census/countypop.xlsx') %>% 
   mutate(fips = substr(id, 10, 14))
 
+race <- read_excel('../covid-animation/data/census/countyrace.xlsx') %>% 
+  mutate(fips = substr(id, 10,14))
 
-county_shp <- left_join(county_shp, countypops, by = 'fips')
+county_data <- countypops %>% 
+  left_join(race %>% select(fips, total_black), by = 'fips') %>% 
+  mutate(pct_black = total_black / population * 100)
 
-# # 1 point represents 10,000 people
-# points <- county_shp %>% 
-#   st_sample(size = floor(county_shp$population / 10000)) %>% 
-#   suppressWarnings
-# 
-# state_boundaries <- tigris::states(class = 'sf', cb = TRUE, progress_bar = FALSE) %>%
-#   filter(STUSPS %in% continental_states)
-# 
-# ggplot() + 
-#   geom_sf(data = state_boundaries) + 
-#   geom_sf(data = points, size = 0.05) + 
-#   theme_void()
+county_shp <- left_join(county_shp, county_data, by = 'fips')
+
+# get centroids of each county (https://www.r-spatial.org/r/2018/10/25/ggplot2-sf-2.html)
+county_shp <- cbind(county_shp, st_coordinates(st_centroid(county_shp))) 
+county_centroids <- county_shp %>% 
+  as_tibble %>% 
+  select(fips, X, Y)
+
+# get the state boundary shapefile
+state_boundaries <- tigris::states(class = 'sf', cb = TRUE, progress_bar = FALSE) %>%
+  filter(STUSPS %in% continental_states)
 
 ```
 
+Next, use the `st_sample` function to sample points within each county -- proportional to the population of the county. Here I sample one point for every 25,000 people, and don't sample points for counties with a population smaller than 25,000.
 
+```{r sample points from the county shapefiles}
+
+# to make rendering the website quicker, save the sampled points
+resample_points <- FALSE
+
+if(resample_points){
+  
+  # 1 point represents 25,000 people
+  points <- county_shp %>%
+    st_sample(size = floor(county_shp$population / 25000)) %>%
+    suppressMessages
+  
+  saveRDS(points, 'data/points.RDS')
+}
+
+points <- readRDS('data/points.RDS')
+
+
+p <- ggplot() +
+  geom_sf(data = county_shp, aes(fill = pct_black), color = NA, alpha = 0.6) +
+  geom_sf(data = state_boundaries, fill = NA) +
+  geom_sf(data = points, size = 0.01) +
+  scale_fill_distiller(palette = 'PuBu', direction = 1) + 
+  # _brewer for discrete variables
+  # _distiller for continuous variables
+  # _fermenter to discretize a continuous variable
+  theme_void() +
+  theme(legend.position = "none")
+
+p
+```
+
+In the map above, I overlay the dot map on a chloropleth of percent black residents by county. Note, it would look even better if I used a smaller geographic unit, like tracts or Census Block Groups. LA County, for instance, is just a big blob on this map. And the population around Miami appears to extend far into the Everglades swamp when it really hugs the coast a lot more. But since our COVID-19 data is also at the county level, let's work with this.
+
+Next, add red dots in proportion to the (smoothed) number of COVID-19 deaths in each county.
+
+```{r add (smoothed) COVID-19 cases}
+
+# Fit LOESS (span parameter = 0.3) for each county and append predictions
+data <- data %>% 
+  ungroup %>% 
+  filter(!is.na(fips)) %>% 
+  mutate(ID = 1:n(),
+         date_numeric = as.numeric(date),
+         death_smoothed = NA,
+         cases_smoothed = NA)
+
+for(i in unique(data$fips)){
+  
+  data_subset <- data %>% filter(fips == i)
+  
+  if(nrow(data_subset) < 7) next # don't smooth time series that are too short
+  
+  death_loess <- loess(new_deaths ~ date_numeric, 
+                       data = data_subset,
+                       span = 0.3)
+  
+  cases_loess <- loess(new_cases ~ date_numeric,
+                       data = data_subset,
+                       span = 0.3)
+  
+  data$death_smoothed[data$ID %in% data_subset$ID] <- 
+    death_loess %>% 
+    predict(data_subset)
+  
+  data$cases_smoothed[data$ID %in% data_subset$ID] <- 
+    cases_loess %>% 
+    predict(data_subset)
+  
+}
+
+
+p <- p +
+  geom_point(data = data %>%
+              left_join(county_centroids, by = 'fips') %>%
+              filter(death_smoothed >= 0.5),
+             aes(x=X, y=Y, size=death_smoothed),
+             color = 'red')
+
+animation <- p + 
+  transition_states(date, transition_length = 1,
+                    state_length = 3) +
+  ggtitle('{closest_state}') +
+  enter_fade() + exit_fade()
+
+# render the animation
+animate(animation, nframes = 350)
+```
+
+And there it is. More pretty, as promised.
 
 ## Further Reading
 

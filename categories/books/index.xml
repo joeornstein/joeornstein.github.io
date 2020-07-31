@@ -12,6 +12,66 @@
    
    
      <item>
+       <title>Do Referenda Reduce Polarization?</title>
+       <link>/posts/swiss-polarization/</link>
+       <pubDate>Tue, 21 Jul 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/swiss-polarization/</guid>
+       <description>
+
+
+&lt;p&gt;In his nice overview of &lt;a href=&#34;https://www.lesswrong.com/posts/x6hpkYyzMG6Bf8T3W/swiss-political-system-more-than-you-ever-wanted-to-know-i&#34;&gt;Switzerland’s political system&lt;/a&gt;, Martin Sustrik writes:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“In short, legislative referenda are probably the single most important force that driving [sic] Switzerland away from the political polarization and towards the rule by consensus.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This claim strikes me as odd for two reasons.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;If adding veto points reduced polarization by forcing compromise, then one would expect the United States — a system riddled with veto players, referenda, and multiple levels of government — to be much less polarized than it is. And Western European parliamentary systems to be much more polarized than they are. As best as I can tell, there is no such empirical relationship.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The premise itself — that Switzerland has been driven away from political polarization — just doesn’t seem to be true. As &lt;a href=&#34;cross-polar.pdf&#34;&gt;Boxell, Gentzkow, and Shapiro (2020)&lt;/a&gt; show, affective polarization is Switzerland is roughly at the same level as the United States, and has been trending upward since the 1970s. Compare that with other Western European countries, where affective polarization is, by their measure, &lt;em&gt;declining&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;img/cross-polar.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;One important trend in Swiss politics has been the rise of the right-wing populist Swiss People’s Party (SVP), which doubled its representation in the federal legislature over the past 30 years. No doubt this has played a role in increasing affective polarization, a measure of how people &lt;em&gt;feel&lt;/em&gt; about members of other parties.&lt;/p&gt;
+&lt;p&gt;There are many things to admire in the Swiss political system, but being uniquely depolarizing does not seem to be one of them.&lt;/p&gt;
+&lt;p&gt;Actually, one of my favorite features of the Swiss political system is the federal executive branch, which is not headed by a single president or prime minister, but by a seven-member Federal Council. And control of the Federal Council is assigned proportionally! No easy feat for a body with seven members, so since the 1950s seats on the council have been allocated by an unofficial “Magic Formula”. The Liberal party always gets two seats, the Social Democrats always gets two seats, and so forth, so that membership is roughly divided according to party vote share.&lt;/p&gt;
+&lt;p&gt;The fact that the “prize” of the federal executive is basically never up for grabs seems like a deeply salient fact. A Swiss citizen may deeply dislike the SVP, but the fact that they are not a hair’s breadth from wielding complete control of the executive branch might make politics feel a bit less apocalyptic.&lt;/p&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Stacked Regression and Poststratification (SRP)</title>
+       <link>/posts/srp/</link>
+       <pubDate>Wed, 15 Jul 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/srp/</guid>
+       <description>
+
+
+&lt;p&gt;Fielding a good poll is harder than it used to be. People just don’t pick up their phones for unrecognized numbers and sit through surveys anymore.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; And those that do tend to be unrepresentative in some important way. Random sampling, the basis for making inferences from sample to population, is getting harder to do.&lt;/p&gt;
+&lt;p&gt;One way to mitigate this problem is to reweight the survey after the fact. A popular technique is &lt;strong&gt;Multilevel Regression and Poststratification (MRP)&lt;/strong&gt;. Basically, you fit a model to predict opinion based on the demographics and location of each survey respondent (multilevel regression). Then you compute a weighted average of those predictions to make an inference about the population of interest (poststratification).&lt;/p&gt;
+&lt;p&gt;My recent contribution to this literature is a generalization of MRP, called &lt;strong&gt;Stacked Regression and Poststratification (SRP)&lt;/strong&gt;. Instead of making predictions based on a multilevel regression model, you create an ensemble of diverse machine learning models through a technique called &lt;a href=&#34;https://joeornstein.github.io/publications/stacked_regression_and_poststratification.pdf&#34;&gt;stacking&lt;/a&gt;. Then poststratify as normal.&lt;/p&gt;
+&lt;p&gt;I animated some of the charts from the paper to illustrate the results. Here is an animated version of Figure 2, comparing of the performance of SRP, MRP, and disaggregation (i.e. just taking sample means) on a simulated dataset.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/srp/index_files/figure-html/Animated%20Figure%202-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;And here is an animated version of Figure 4, comparing the performance of MRP and SRP across 89 different empirical applications. SRP does better than MRP on average, but particularly for surveys with large samples.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/srp/index_files/figure-html/Animated%20Figure%204-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;div id=&#34;further-reading&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Further Reading&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://doi.org/10.1017/pan.2019.43&#34;&gt;The Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://joeornstein.github.io/software/SRP&#34;&gt;The R Package&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;iframe src=&#34;https://joeornstein.github.io/slides/SRP-slides.html&#34; width=&#34;672&#34; height=&#34;400px&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Perhaps we are less starved for entertainment than we used to be.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+     </item>
+   
+     <item>
        <title>Dot Density Animation</title>
        <link>/posts/dot-density-animation/</link>
        <pubDate>Wed, 08 Jul 2020 00:00:00 +0000</pubDate>
@@ -20,34 +80,109 @@
        <description>
 
 
-&lt;p&gt;In a &lt;a href=&#34;../covid-animation/&#34;&gt;previous post&lt;/a&gt;, I demonstrated some features of the &lt;code&gt;gganimate&lt;/code&gt; package by animating a map of US COVID-19 cases. In this post, I’ll make it a bit prettier.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;continental_states &amp;lt;- unique(tigris::fips_codes$state)[c(1, 3:11, 13:51)]
+&lt;p&gt;In a &lt;a href=&#34;../covid-animation/&#34;&gt;previous post&lt;/a&gt;, I demonstrated some features of the &lt;code&gt;gganimate&lt;/code&gt; package by animating a map of US COVID-19 cases. In this post, I’ll make it all a bit prettier.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;https://en.wikipedia.org/wiki/Dot_distribution_map&#34;&gt;dot density map&lt;/a&gt; is a nice alternative to chloropleths, particularly when the geographic subunits of interest are of varying sizes (e.g. counties in the Western United States are larger on average than those in the East). Here is some code to generate a dot plot for the population distribution of the continental United States. First, get the county boundary shapefile and merge with data on population in each county, using the code from &lt;a href=&#34;../covid-animation/&#34;&gt;this post&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Read from NYT github
+data &amp;lt;- read_csv(&amp;#39;https://github.com/nytimes/covid-19-data/raw/master/us-counties.csv&amp;#39;)
 
-county_shp &amp;lt;- tigris::counties(state = continental_states,
-                               cb = TRUE,
-                               class = &amp;#39;sf&amp;#39;,
-                               progress_bar = FALSE) %&amp;gt;% 
-  mutate(fips = paste0(STATEFP, COUNTYFP)) %&amp;gt;% 
-  select(fips)
+# If unavailable, use the file pulled previously
+if(!exists(&amp;#39;data&amp;#39;)){
+  data &amp;lt;- read_csv(&amp;#39;../covid-animation/data/nyt-covid/us-counties.csv&amp;#39;)
+}
 
-countypops &amp;lt;- read_excel(&amp;#39;../covid-animation/data/census/countypop.xlsx&amp;#39;) %&amp;gt;% 
-  mutate(fips = substr(id, 10, 14))
+# Generate new cases / deaths variables
+data &amp;lt;- data %&amp;gt;% 
+  group_by(county, state) %&amp;gt;%
+  mutate(new_cases = cases - lag(cases),
+         new_deaths = deaths - lag(deaths)) %&amp;gt;% 
+  mutate(new_cases = if_else(is.na(new_cases), 0, new_cases),
+         new_deaths = if_else(is.na(new_deaths), 0, new_deaths))
+
+# Give New York City the Manhattan FIPS code
+data[data$county == &amp;#39;New York City&amp;#39;,]$fips &amp;lt;- &amp;#39;36061&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next, use the &lt;code&gt;st_sample&lt;/code&gt; function to sample points within each county – proportional to the population of the county. Here I sample one point for every 25,000 people, and don’t sample points for counties with a population smaller than 25,000.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# to make rendering the website quicker, save the sampled points
+resample_points &amp;lt;- FALSE
+
+if(resample_points){
+  
+  # 1 point represents 25,000 people
+  points &amp;lt;- county_shp %&amp;gt;%
+    st_sample(size = floor(county_shp$population / 25000)) %&amp;gt;%
+    suppressMessages
+  
+  saveRDS(points, &amp;#39;data/points.RDS&amp;#39;)
+}
+
+points &amp;lt;- readRDS(&amp;#39;data/points.RDS&amp;#39;)
 
 
-county_shp &amp;lt;- left_join(county_shp, countypops, by = &amp;#39;fips&amp;#39;)
+p &amp;lt;- ggplot() +
+  geom_sf(data = county_shp, aes(fill = pct_black), color = NA, alpha = 0.6) +
+  geom_sf(data = state_boundaries, fill = NA) +
+  geom_sf(data = points, size = 0.01) +
+  scale_fill_distiller(palette = &amp;#39;PuBu&amp;#39;, direction = 1) + 
+  # _brewer for discrete variables
+  # _distiller for continuous variables
+  # _fermenter to discretize a continuous variable
+  theme_void() +
+  theme(legend.position = &amp;quot;none&amp;quot;)
 
-# # 1 point represents 10,000 people
-# points &amp;lt;- county_shp %&amp;gt;% 
-#   st_sample(size = floor(county_shp$population / 10000)) %&amp;gt;% 
-#   suppressWarnings
-# 
-# state_boundaries &amp;lt;- tigris::states(class = &amp;#39;sf&amp;#39;, cb = TRUE, progress_bar = FALSE) %&amp;gt;%
-#   filter(STUSPS %in% continental_states)
-# 
-# ggplot() + 
-#   geom_sf(data = state_boundaries) + 
-#   geom_sf(data = points, size = 0.05) + 
-#   theme_void()&lt;/code&gt;&lt;/pre&gt;
+p&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/dot-density-animation/index_files/figure-html/sample%20points%20from%20the%20county%20shapefiles-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;In the map above, I overlay the dot map on a chloropleth of percent black residents by county. Note, it would look even better if I used a smaller geographic unit, like tracts or Census Block Groups. LA County, for instance, is just a big blob on this map. And the population around Miami appears to extend far into the Everglades swamp when it really hugs the coast a lot more. But since our COVID-19 data is also at the county level, let’s work with this.&lt;/p&gt;
+&lt;p&gt;Next, add red dots in proportion to the (smoothed) number of COVID-19 deaths in each county.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Fit LOESS (span parameter = 0.3) for each county and append predictions
+data &amp;lt;- data %&amp;gt;% 
+  ungroup %&amp;gt;% 
+  filter(!is.na(fips)) %&amp;gt;% 
+  mutate(ID = 1:n(),
+         date_numeric = as.numeric(date),
+         death_smoothed = NA,
+         cases_smoothed = NA)
+
+for(i in unique(data$fips)){
+  
+  data_subset &amp;lt;- data %&amp;gt;% filter(fips == i)
+  
+  if(nrow(data_subset) &amp;lt; 7) next # don&amp;#39;t smooth time series that are too short
+  
+  death_loess &amp;lt;- loess(new_deaths ~ date_numeric, 
+                       data = data_subset,
+                       span = 0.3)
+  
+  cases_loess &amp;lt;- loess(new_cases ~ date_numeric,
+                       data = data_subset,
+                       span = 0.3)
+  
+  data$death_smoothed[data$ID %in% data_subset$ID] &amp;lt;- 
+    death_loess %&amp;gt;% 
+    predict(data_subset)
+  
+  data$cases_smoothed[data$ID %in% data_subset$ID] &amp;lt;- 
+    cases_loess %&amp;gt;% 
+    predict(data_subset)
+  
+}
+
+
+p &amp;lt;- p +
+  geom_point(data = data %&amp;gt;%
+              left_join(county_centroids, by = &amp;#39;fips&amp;#39;) %&amp;gt;%
+              filter(death_smoothed &amp;gt;= 0.5),
+             aes(x=X, y=Y, size=death_smoothed),
+             color = &amp;#39;red&amp;#39;)
+
+animation &amp;lt;- p + 
+  transition_states(date, transition_length = 1,
+                    state_length = 3) +
+  ggtitle(&amp;#39;{closest_state}&amp;#39;) +
+  enter_fade() + exit_fade()
+
+# render the animation
+animate(animation, nframes = 350)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/dot-density-animation/index_files/figure-html/add%20(smoothed)%20COVID-19%20cases-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;And there it is. More pretty, as promised.&lt;/p&gt;
 &lt;div id=&#34;further-reading&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Further Reading&lt;/h2&gt;
 &lt;ul&gt;
@@ -66,17 +201,23 @@ county_shp &amp;lt;- left_join(county_shp, countypops, by = &amp;#39;fips&amp;#3
        <description>
 
 
-&lt;p&gt;Putting together some lectures on calculus for my graduate students reminded of James Gleick’s &lt;a href=&#34;https://www.goodreads.com/book/show/17098.Isaac_Newton&#34;&gt;excellent biography&lt;/a&gt; of Isaac Newton. Prior to reading, my impression of Newton was that he was some jerk who was lucky to live in the 16th century, when you could be knighted as a towering genius for picking a lot of low-hanging intellectual fruit. You know. Objects fall because of gravity. Prisms defract light. Stuff like that.&lt;/p&gt;
-&lt;p&gt;One of the things I loved about the book is how well it puts you into a pre-Newtonian mindset, which make his achievements all the more impressive.&lt;/p&gt;
-&lt;p&gt;Consider what your theory of gravity would be if you had never been taught Newton’s laws. …. I ran the experiment to find out, asking my four-year-old why clouds float and apples fall down. I quote her response in full:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Because&lt;br /&gt;
--Fiona Ornstein&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;TODO: Ask Fiona why clouds float and apples fall.&lt;/p&gt;
+&lt;p&gt;Putting together some lectures on calculus reminded me of James Gleick’s &lt;a href=&#34;https://www.goodreads.com/book/show/17098.Isaac_Newton&#34;&gt;excellent biography&lt;/a&gt; of Isaac Newton. It’s easily one of my favorite biographies of science (a crowded field!). Prior to reading, my uninformed impression of Newton was that he was some jerk who had the good fortune to live in the 16th century, when you could be knighted as a towering genius for picking a bunch of low-hanging intellectual fruit. You know. Objects fall because of gravity. Prisms make rainbows. Stuff like that.&lt;/p&gt;
+&lt;p&gt;Reading the book at least confirmed the first part of my preconception. Newton was indeed a jerk, who took perhaps too much pleasure in executing counterfeiters during his tenure as Master of the Royal Mint. I was amused by the reviews of the book in which readers expressed disappointment that Gleick didn’t go into greater detail about Newton’s personal life. By all accounts, he had no personal life. He was a celibate who hated his family, kept his work secret from his peers,&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; and dedicated himself single-mindedly to his research.&lt;/p&gt;
+&lt;p&gt;But the second part of my preconception was shattered. Newton was not picking low-hanging fruit. He was up in the branches of an orchard that no one else even knew existed, and in the process completely upended our species’ understanding of reality.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Consider what your theory of gravity would be if you had never been taught Newton’s Laws. Common sense in a pre-Newtonian world suggests that gravity is not a property of the Earth itself, but of &lt;em&gt;objects&lt;/em&gt;. Rocks possess gravity. That is why they fall. Clouds, by comparison, possess &lt;em&gt;levity&lt;/em&gt;. That is why they float. Feathers seem to possess some combination of the two. No doubt that is how ducks can fly, being covered in the stuff.&lt;/p&gt;
+&lt;p&gt;I can’t ask a member of a pre-Newtonian society how they conceive gravity, but I can ask my four year old. So I put the question to her during a walk the other day: “Why do clouds float in the sky while other things fall to the ground?” She patiently explained to me that the leaves on trees “point to the ground”, which is why they fall. And that was basically all that I could get out of her. Falling is a thing that leaves do in the fall season. She’s well-trained on identifying the characteristics of seasons.&lt;/p&gt;
+&lt;p&gt;Newton’s Laws are remarkable because they are completely contradicted by ordinary experience. Objects remain in motion unless acted upon by another object? Since when? On Earth, objects in motion &lt;em&gt;always&lt;/em&gt; stop moving, without any obvious force acting upon them. Yet the entire edifice of Newtonian physics rests on that fundamental, counterintuitive insight.&lt;/p&gt;
+&lt;p&gt;To conceive of a model of the universe in which every bit of human sensory experience is just a special case – the product of observation by tiny creatures who happen to live inside a planet’s gravity well and atmosphere – takes a special kind of genius.&lt;/p&gt;
 &lt;div id=&#34;further-reading&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Further Reading&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&#34;https://www.goodreads.com/book/show/17098.Isaac_Newton&#34;&gt;Isaac Newton&lt;/a&gt;, of course&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Newton only published his work on calculus after Leibniz independently published himself. Absent that professional rivalry, all indications suggest he would have taken calculus to his grave.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
 &lt;/div&gt;
 </description>
      </item>

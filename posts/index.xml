@@ -2,21 +2,232 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
  <channel>
    <title>Archives on Joseph T. Ornstein</title>
-   <link>https://joeornstein.github.io/posts/</link>
+   <link>/posts/</link>
    <description>Recent content in Archives on Joseph T. Ornstein</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2020 - Joseph T. Ornstein</copyright>
-   <lastBuildDate>Fri, 26 Jun 2020 00:00:00 +0000</lastBuildDate>
+   <lastBuildDate>Tue, 21 Jul 2020 00:00:00 +0000</lastBuildDate>
    
-       <atom:link href="https://joeornstein.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+       <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
    
    
      <item>
+       <title>Do Referenda Reduce Polarization?</title>
+       <link>/posts/swiss-polarization/</link>
+       <pubDate>Tue, 21 Jul 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/swiss-polarization/</guid>
+       <description>
+
+
+&lt;p&gt;In his nice overview of &lt;a href=&#34;https://www.lesswrong.com/posts/x6hpkYyzMG6Bf8T3W/swiss-political-system-more-than-you-ever-wanted-to-know-i&#34;&gt;Switzerland’s political system&lt;/a&gt;, Martin Sustrik writes:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“In short, legislative referenda are probably the single most important force that driving [sic] Switzerland away from the political polarization and towards the rule by consensus.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This claim strikes me as odd for two reasons.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;If adding veto points reduced polarization by forcing compromise, then one would expect the United States — a system riddled with veto players, referenda, and multiple levels of government — to be much less polarized than it is. And Western European parliamentary systems to be much more polarized than they are. As best as I can tell, there is no such empirical relationship.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The premise itself — that Switzerland has been driven away from political polarization — just doesn’t seem to be true. As &lt;a href=&#34;cross-polar.pdf&#34;&gt;Boxell, Gentzkow, and Shapiro (2020)&lt;/a&gt; show, affective polarization is Switzerland is roughly at the same level as the United States, and has been trending upward since the 1970s. Compare that with other Western European countries, where affective polarization is, by their measure, &lt;em&gt;declining&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;img/cross-polar.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;One important trend in Swiss politics has been the rise of the right-wing populist Swiss People’s Party (SVP), which doubled its representation in the federal legislature over the past 30 years. No doubt this has played a role in increasing affective polarization, a measure of how people &lt;em&gt;feel&lt;/em&gt; about members of other parties.&lt;/p&gt;
+&lt;p&gt;There are many things to admire in the Swiss political system, but being uniquely depolarizing does not seem to be one of them.&lt;/p&gt;
+&lt;p&gt;Actually, one of my favorite features of the Swiss political system is the federal executive branch, which is not headed by a single president or prime minister, but by a seven-member Federal Council. And control of the Federal Council is assigned proportionally! No easy feat for a body with seven members, so since the 1950s seats on the council have been allocated by an unofficial “Magic Formula”. The Liberal party always gets two seats, the Social Democrats always gets two seats, and so forth, so that membership is roughly divided according to party vote share.&lt;/p&gt;
+&lt;p&gt;The fact that the “prize” of the federal executive is basically never up for grabs seems like a deeply salient fact. A Swiss citizen may deeply dislike the SVP, but the fact that they are not a hair’s breadth from wielding complete control of the executive branch might make politics feel a bit less apocalyptic.&lt;/p&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Stacked Regression and Poststratification (SRP)</title>
+       <link>/posts/srp/</link>
+       <pubDate>Wed, 15 Jul 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/srp/</guid>
+       <description>
+
+
+&lt;p&gt;Fielding a good poll is harder than it used to be. People just don’t pick up their phones for unrecognized numbers and sit through surveys anymore.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; And those that do tend to be unrepresentative in some important way. Random sampling, the basis for making inferences from sample to population, is getting harder to do.&lt;/p&gt;
+&lt;p&gt;One way to mitigate this problem is to reweight the survey after the fact. A popular technique is &lt;strong&gt;Multilevel Regression and Poststratification (MRP)&lt;/strong&gt;. Basically, you fit a model to predict opinion based on the demographics and location of each survey respondent (multilevel regression). Then you compute a weighted average of those predictions to make an inference about the population of interest (poststratification).&lt;/p&gt;
+&lt;p&gt;My recent contribution to this literature is a generalization of MRP, called &lt;strong&gt;Stacked Regression and Poststratification (SRP)&lt;/strong&gt;. Instead of making predictions based on a multilevel regression model, you create an ensemble of diverse machine learning models through a technique called &lt;a href=&#34;https://joeornstein.github.io/publications/stacked_regression_and_poststratification.pdf&#34;&gt;stacking&lt;/a&gt;. Then poststratify as normal.&lt;/p&gt;
+&lt;p&gt;I animated some of the charts from the paper to illustrate the results. Here is an animated version of Figure 2, comparing of the performance of SRP, MRP, and disaggregation (i.e. just taking sample means) on a simulated dataset.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/srp/index_files/figure-html/Animated%20Figure%202-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;And here is an animated version of Figure 4, comparing the performance of MRP and SRP across 89 different empirical applications. SRP does better than MRP on average, but particularly for surveys with large samples.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/srp/index_files/figure-html/Animated%20Figure%204-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;div id=&#34;further-reading&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Further Reading&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://doi.org/10.1017/pan.2019.43&#34;&gt;The Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://joeornstein.github.io/software/SRP&#34;&gt;The R Package&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;iframe src=&#34;https://joeornstein.github.io/slides/SRP-slides.html&#34; width=&#34;672&#34; height=&#34;400px&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Perhaps we are less starved for entertainment than we used to be.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Dot Density Animation</title>
+       <link>/posts/dot-density-animation/</link>
+       <pubDate>Wed, 08 Jul 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/dot-density-animation/</guid>
+       <description>
+
+
+&lt;p&gt;In a &lt;a href=&#34;../covid-animation/&#34;&gt;previous post&lt;/a&gt;, I demonstrated some features of the &lt;code&gt;gganimate&lt;/code&gt; package by animating a map of US COVID-19 cases. In this post, I’ll make it all a bit prettier.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;https://en.wikipedia.org/wiki/Dot_distribution_map&#34;&gt;dot density map&lt;/a&gt; is a nice alternative to chloropleths, particularly when the geographic subunits of interest are of varying sizes (e.g. counties in the Western United States are larger on average than those in the East). Here is some code to generate a dot plot for the population distribution of the continental United States. First, get the county boundary shapefile and merge with data on population in each county, using the code from &lt;a href=&#34;../covid-animation/&#34;&gt;this post&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Read from NYT github
+data &amp;lt;- read_csv(&amp;#39;https://github.com/nytimes/covid-19-data/raw/master/us-counties.csv&amp;#39;)
+
+# If unavailable, use the file pulled previously
+if(!exists(&amp;#39;data&amp;#39;)){
+  data &amp;lt;- read_csv(&amp;#39;../covid-animation/data/nyt-covid/us-counties.csv&amp;#39;)
+}
+
+# Generate new cases / deaths variables
+data &amp;lt;- data %&amp;gt;% 
+  group_by(county, state) %&amp;gt;%
+  mutate(new_cases = cases - lag(cases),
+         new_deaths = deaths - lag(deaths)) %&amp;gt;% 
+  mutate(new_cases = if_else(is.na(new_cases), 0, new_cases),
+         new_deaths = if_else(is.na(new_deaths), 0, new_deaths))
+
+# Give New York City the Manhattan FIPS code
+data[data$county == &amp;#39;New York City&amp;#39;,]$fips &amp;lt;- &amp;#39;36061&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next, use the &lt;code&gt;st_sample&lt;/code&gt; function to sample points within each county – proportional to the population of the county. Here I sample one point for every 25,000 people, and don’t sample points for counties with a population smaller than 25,000.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# to make rendering the website quicker, save the sampled points
+resample_points &amp;lt;- FALSE
+
+if(resample_points){
+  
+  # 1 point represents 25,000 people
+  points &amp;lt;- county_shp %&amp;gt;%
+    st_sample(size = floor(county_shp$population / 25000)) %&amp;gt;%
+    suppressMessages
+  
+  saveRDS(points, &amp;#39;data/points.RDS&amp;#39;)
+}
+
+points &amp;lt;- readRDS(&amp;#39;data/points.RDS&amp;#39;)
+
+
+p &amp;lt;- ggplot() +
+  geom_sf(data = county_shp, aes(fill = pct_black), color = NA, alpha = 0.6) +
+  geom_sf(data = state_boundaries, fill = NA) +
+  geom_sf(data = points, size = 0.01) +
+  scale_fill_distiller(palette = &amp;#39;PuBu&amp;#39;, direction = 1) + 
+  # _brewer for discrete variables
+  # _distiller for continuous variables
+  # _fermenter to discretize a continuous variable
+  theme_void() +
+  theme(legend.position = &amp;quot;none&amp;quot;)
+
+p&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/dot-density-animation/index_files/figure-html/sample%20points%20from%20the%20county%20shapefiles-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;In the map above, I overlay the dot map on a chloropleth of percent black residents by county. Note, it would look even better if I used a smaller geographic unit, like tracts or Census Block Groups. LA County, for instance, is just a big blob on this map. And the population around Miami appears to extend far into the Everglades swamp when it really hugs the coast a lot more. But since our COVID-19 data is also at the county level, let’s work with this.&lt;/p&gt;
+&lt;p&gt;Next, add red dots in proportion to the (smoothed) number of COVID-19 deaths in each county.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Fit LOESS (span parameter = 0.3) for each county and append predictions
+data &amp;lt;- data %&amp;gt;% 
+  ungroup %&amp;gt;% 
+  filter(!is.na(fips)) %&amp;gt;% 
+  mutate(ID = 1:n(),
+         date_numeric = as.numeric(date),
+         death_smoothed = NA,
+         cases_smoothed = NA)
+
+for(i in unique(data$fips)){
+  
+  data_subset &amp;lt;- data %&amp;gt;% filter(fips == i)
+  
+  if(nrow(data_subset) &amp;lt; 7) next # don&amp;#39;t smooth time series that are too short
+  
+  death_loess &amp;lt;- loess(new_deaths ~ date_numeric, 
+                       data = data_subset,
+                       span = 0.3)
+  
+  cases_loess &amp;lt;- loess(new_cases ~ date_numeric,
+                       data = data_subset,
+                       span = 0.3)
+  
+  data$death_smoothed[data$ID %in% data_subset$ID] &amp;lt;- 
+    death_loess %&amp;gt;% 
+    predict(data_subset)
+  
+  data$cases_smoothed[data$ID %in% data_subset$ID] &amp;lt;- 
+    cases_loess %&amp;gt;% 
+    predict(data_subset)
+  
+}
+
+
+p &amp;lt;- p +
+  geom_point(data = data %&amp;gt;%
+              left_join(county_centroids, by = &amp;#39;fips&amp;#39;) %&amp;gt;%
+              filter(death_smoothed &amp;gt;= 0.5),
+             aes(x=X, y=Y, size=death_smoothed),
+             color = &amp;#39;red&amp;#39;)
+
+animation &amp;lt;- p + 
+  transition_states(date, transition_length = 1,
+                    state_length = 3) +
+  ggtitle(&amp;#39;{closest_state}&amp;#39;) +
+  enter_fade() + exit_fade()
+
+# render the animation
+animate(animation, nframes = 350)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/dot-density-animation/index_files/figure-html/add%20(smoothed)%20COVID-19%20cases-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;And there it is. More pretty, as promised.&lt;/p&gt;
+&lt;div id=&#34;further-reading&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Further Reading&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tarakc02.github.io/dot-density/&#34;&gt;Dot Density Plots&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Newton</title>
+       <link>/posts/newton/</link>
+       <pubDate>Thu, 02 Jul 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/newton/</guid>
+       <description>
+
+
+&lt;p&gt;Putting together some lectures on calculus reminded me of James Gleick’s &lt;a href=&#34;https://www.goodreads.com/book/show/17098.Isaac_Newton&#34;&gt;excellent biography&lt;/a&gt; of Isaac Newton. It’s easily one of my favorite biographies of science (a crowded field!). Prior to reading, my uninformed impression of Newton was that he was some jerk who had the good fortune to live in the 16th century, when you could be knighted as a towering genius for picking a bunch of low-hanging intellectual fruit. You know. Objects fall because of gravity. Prisms make rainbows. Stuff like that.&lt;/p&gt;
+&lt;p&gt;Reading the book at least confirmed the first part of my preconception. Newton was indeed a jerk, who took perhaps too much pleasure in executing counterfeiters during his tenure as Master of the Royal Mint. I was amused by the reviews of the book in which readers expressed disappointment that Gleick didn’t go into greater detail about Newton’s personal life. By all accounts, he had no personal life. He was a celibate who hated his family, kept his work secret from his peers,&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; and dedicated himself single-mindedly to his research.&lt;/p&gt;
+&lt;p&gt;But the second part of my preconception was shattered. Newton was not picking low-hanging fruit. He was up in the branches of an orchard that no one else even knew existed, and in the process completely upended our species’ understanding of reality.&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;Consider what your theory of gravity would be if you had never been taught Newton’s Laws. Common sense in a pre-Newtonian world suggests that gravity is not a property of the Earth itself, but of &lt;em&gt;objects&lt;/em&gt;. Rocks possess gravity. That is why they fall. Clouds, by comparison, possess &lt;em&gt;levity&lt;/em&gt;. That is why they float. Feathers seem to possess some combination of the two. No doubt that is how ducks can fly, being covered in the stuff.&lt;/p&gt;
+&lt;p&gt;I can’t ask a member of a pre-Newtonian society how they conceive gravity, but I can ask my four year old. So I put the question to her during a walk the other day: “Why do clouds float in the sky while other things fall to the ground?” She patiently explained to me that the leaves on trees “point to the ground”, which is why they fall. And that was basically all that I could get out of her. Falling is a thing that leaves do in the fall season. She’s well-trained on identifying the characteristics of seasons.&lt;/p&gt;
+&lt;p&gt;Newton’s Laws are remarkable because they are completely contradicted by ordinary experience. Objects remain in motion unless acted upon by another object? Since when? On Earth, objects in motion &lt;em&gt;always&lt;/em&gt; stop moving, without any obvious force acting upon them. Yet the entire edifice of Newtonian physics rests on that fundamental, counterintuitive insight.&lt;/p&gt;
+&lt;p&gt;To conceive of a model of the universe in which every bit of human sensory experience is just a special case – the product of observation by tiny creatures who happen to live inside a planet’s gravity well and atmosphere – takes a special kind of genius.&lt;/p&gt;
+&lt;div id=&#34;further-reading&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Further Reading&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.goodreads.com/book/show/17098.Isaac_Newton&#34;&gt;Isaac Newton&lt;/a&gt;, of course&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Newton only published his work on calculus after Leibniz independently published himself. Absent that professional rivalry, all indications suggest he would have taken calculus to his grave.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+     </item>
+   
+     <item>
        <title>Makefiles for Dummies who use Windows</title>
-       <link>https://joeornstein.github.io/posts/makefiles-dummies-windows/</link>
+       <link>/posts/makefiles-dummies-windows/</link>
        <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
        
-       <guid>https://joeornstein.github.io/posts/makefiles-dummies-windows/</guid>
+       <guid>/posts/makefiles-dummies-windows/</guid>
        <description>
 
 
@@ -89,10 +300,10 @@ data/clean_data.RDS : R/clean_data.R data/raw_data.csv
    
      <item>
        <title>COVID-19 Animation</title>
-       <link>https://joeornstein.github.io/posts/covid-animation/</link>
+       <link>/posts/covid-animation/</link>
        <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
        
-       <guid>https://joeornstein.github.io/posts/covid-animation/</guid>
+       <guid>/posts/covid-animation/</guid>
        <description>
 
 
@@ -181,7 +392,7 @@ p &amp;lt;- ggplot(data = county_shp) +
   scale_fill_gradient(low = &amp;#39;white&amp;#39;, high = &amp;#39;black&amp;#39;)
 
 p&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/covid-animation/index_files/figure-html/Load%20Shapefiles-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/covid-animation/index_files/figure-html/Load%20Shapefiles-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Then create a &lt;code&gt;ggplot2&lt;/code&gt; object with all of the time series data plotted on a map and animate it with the &lt;code&gt;gganimate::transition_states()&lt;/code&gt; function.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = data %&amp;gt;%
               left_join(county_centroids, by = &amp;#39;fips&amp;#39;) %&amp;gt;%
@@ -256,7 +467,7 @@ animation &amp;lt;- p +
 
 # render the animation
 animate(animation, nframes = 250) &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/covid-animation/index_files/figure-html/smooth%20video-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/covid-animation/index_files/figure-html/smooth%20video-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;Much better. I have a few ideas for how to clean it up and make it more beautiful, but they will have to wait for &lt;a href=&#34;https://joeornstein.github.io/covid-animation-2&#34;&gt;another post&lt;/a&gt;.&lt;/p&gt;
 &lt;div id=&#34;futher-reading&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Futher Reading&lt;/h2&gt;
@@ -267,10 +478,10 @@ animate(animation, nframes = 250) &lt;/code&gt;&lt;/pre&gt;
    
      <item>
        <title>Measurement and the Back-Door Criterion</title>
-       <link>https://joeornstein.github.io/posts/back-door-measurement/</link>
+       <link>/posts/back-door-measurement/</link>
        <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
        
-       <guid>https://joeornstein.github.io/posts/back-door-measurement/</guid>
+       <guid>/posts/back-door-measurement/</guid>
        <description>
 
 
@@ -286,16 +497,16 @@ animate(animation, nframes = 250) &lt;/code&gt;&lt;/pre&gt;
    
      <item>
        <title>Spaced Repetition for Syllabi</title>
-       <link>https://joeornstein.github.io/posts/spaced-repetition-for-syllabi/</link>
+       <link>/posts/spaced-repetition-for-syllabi/</link>
        <pubDate>Fri, 05 Jun 2020 00:00:00 +0000</pubDate>
        
-       <guid>https://joeornstein.github.io/posts/spaced-repetition-for-syllabi/</guid>
+       <guid>/posts/spaced-repetition-for-syllabi/</guid>
        <description>
 
 
 &lt;p&gt;We tell students that cramming the night before the test is a poor strategy. But of course it isn’t. Students don’t get good grades for effective long-term memory consolidation. They get good grades for scoring well on the exam &lt;em&gt;tomorrow&lt;/em&gt;. If instructors want to encourage long-term memory building, they need to incentivize it.&lt;/p&gt;
 &lt;p&gt;For fun and a pretty graph, I replicated a version of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Hermann_Ebbinghaus&#34;&gt;Ebbinghaus experiment&lt;/a&gt; on forgetting. I started with a list of 100 randomly generated license plate numbers and attempted to memorize them all.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; To faithfully simulate cramming before the exam, I studied the list for about two hours the night before the first test, with frequent distraction from video games and small children. Here’s how I fared on subsequent tests:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/spaced-repetition-for-syllabi/index_files/figure-html/plot%20forgetting%20curve-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/spaced-repetition-for-syllabi/index_files/figure-html/plot%20forgetting%20curve-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The curve is not exactly exponential decay, but it’s decay nonetheless. I remembered more than I would have expected on Day 1, and forgot about 30% of the license plates within a week. No doubt I would have lost more if not for the intermittent reinforcement of the tests themselves. And now I have about two dozen fake license plate numbers permanently taking up space in long-term memory. Great!&lt;/p&gt;
 &lt;p&gt;If instead of cramming I had used something like &lt;a href=&#34;https://www.gwern.net/Spaced-repetition&#34;&gt;spaced repetition&lt;/a&gt;, I’m sure I would have remembered many more license plates. See Nicky Case’s fantastic &lt;a href=&#34;https://ncase.me/remember/&#34;&gt;explorable explanation&lt;/a&gt; for a guided tour to spaced repetition, but in a nutshell it works like this. Take a bunch of items you want to remember, and test yourself at varying intervals. If you successfully remember an item, increase the interval until the next test. If you fail, decrease the interval. That way you test the each item when you’re most in danger of forgetting it.&lt;/p&gt;
 &lt;p&gt;The two key elements of spaced repetition are (a) active recall rather than passive studying, and (b) spacing out study sessions. To design a course that leverages spaced repetition, consider the following ideas.&lt;/p&gt;
@@ -343,10 +554,10 @@ animate(animation, nframes = 250) &lt;/code&gt;&lt;/pre&gt;
    
      <item>
        <title>Fall Semester 2020</title>
-       <link>https://joeornstein.github.io/posts/fall-semester-2020/</link>
+       <link>/posts/fall-semester-2020/</link>
        <pubDate>Tue, 26 May 2020 00:00:00 +0000</pubDate>
        
-       <guid>https://joeornstein.github.io/posts/fall-semester-2020/</guid>
+       <guid>/posts/fall-semester-2020/</guid>
        <description>
 
 
@@ -356,13 +567,13 @@ animate(animation, nframes = 250) &lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;Keep classes small&lt;/h3&gt;
 &lt;p&gt;It’s not a coincidence that so many COVID-19 infections have been traced to large, indoor &lt;a href=&#34;https://www.nytimes.com/2020/03/30/us/coronavirus-funeral-albany-georgia.html&#34;&gt;super-spreader&lt;/a&gt; &lt;a href=&#34;https://www.nytimes.com/2020/04/12/us/coronavirus-biogen-boston-superspreader.html&#34;&gt;events&lt;/a&gt;. That’s because large gatherings of people simultaneously increase two quantities: the expected number of infected individuals in attendance &lt;em&gt;and&lt;/em&gt; the total number of person-to-person contacts.&lt;/p&gt;
 &lt;p&gt;In a group of size &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;, the probability that at least one person is infected = &lt;span class=&#34;math inline&#34;&gt;\(1 - (1-p)^n\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; is the population prevalence. Here’s what that function looks like for a few values of &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/fall-semester-2020/index_files/figure-html/Probability%20Curve-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/fall-semester-2020/index_files/figure-html/Probability%20Curve-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It’s hard to say what the overall prevalence of the virus will be in the fall. Depending on your assumptions, a 300-person lecture hall is either virtually guaranteed to have someone infected with the virus, or maybe has a 1-in-4 chance. Smaller seminar-style classes, on the other hand, are much more likely to be virus-free regardless of overall prevalence.&lt;/p&gt;
 &lt;p&gt;The rate at which a virus spreads is proportional to the number of &lt;em&gt;discordant contacts&lt;/em&gt; (contacts between an infected individual and a susceptible individual). This number scales quadratically with the size of a gathering.&lt;/p&gt;
 &lt;p&gt;Expected Number Infected: &lt;span class=&#34;math inline&#34;&gt;\(np\)&lt;/span&gt;&lt;br /&gt;
 Expected Number Susceptible: &lt;span class=&#34;math inline&#34;&gt;\((1-p)n\)&lt;/span&gt;&lt;br /&gt;
 Expected Number of Discordant Contacts: &lt;span class=&#34;math inline&#34;&gt;\(p(1-p)n^2\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/fall-semester-2020/index_files/figure-html/Discordant%20Contacts-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/fall-semester-2020/index_files/figure-html/Discordant%20Contacts-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;All of which is to say that when you go from a 30-student seminar to a 300-student lecture hall, you don’t get a tenfold increase in virus spread. You get a &lt;strong&gt;hundredfold&lt;/strong&gt; increase. You can replace that lecture class with ten seminars and lower the rate of viral spread by 90%.&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; And hey, you might even &lt;a href=&#34;http://www.cwsei.ubc.ca/SEI_research/files/Wieman-Change_Sept-Oct_2007.pdf&#34;&gt;improve&lt;/a&gt; &lt;a href=&#34;https://www.insidehighered.com/quicktakes/2018/06/29/class-size-matters&#34;&gt;learning&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The x-axis on that last figure cuts off at 300, because I expect the model will start to break down a bit for larger crowds where you can’t assume random mixing. I’ll leave the 100,000 person football stadium as an exercise for the reader…&lt;/p&gt;
 &lt;/div&gt;
@@ -378,10 +589,10 @@ Expected Number of Discordant Contacts: &lt;span class=&#34;math inline&#34;&gt;
    
      <item>
        <title>The Contact Paradox</title>
-       <link>https://joeornstein.github.io/posts/the-contact-paradox/</link>
+       <link>/posts/the-contact-paradox/</link>
        <pubDate>Tue, 12 May 2020 00:00:00 +0000</pubDate>
        
-       <guid>https://joeornstein.github.io/posts/the-contact-paradox/</guid>
+       <guid>/posts/the-contact-paradox/</guid>
        <description>
 
 
@@ -389,7 +600,7 @@ Expected Number of Discordant Contacts: &lt;span class=&#34;math inline&#34;&gt;
 &lt;!-- ***Attention Conservation Notice:*** *The following post describes an agent-based epidemiological model demonstrating that simple contact tracing strictly outperforms mass random testing. If you already believe this without a model, you may skip the exposition. Maybe just look at the pretty charts.* --&gt;
 &lt;!-- --- --&gt;
 &lt;p&gt;The &lt;a href=&#34;https://en.wikipedia.org/wiki/Friendship_paradox&#34;&gt;Friendship Paradox&lt;/a&gt; states that, on average, your friends have more friends than you do. (It’s not your fault. It’s just a property non-random sampling on networks.) Note that in the network below only agent 3 is more popular than his friends.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/the-contact-paradox/index_files/figure-html/plot%20graph-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/the-contact-paradox/index_files/figure-html/plot%20graph-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The epidemiological corollary to this rule is that &lt;em&gt;your contacts have more contacts than you&lt;/em&gt;. We can use this fact to help identify and isolate “super-spreaders” during an epidemic, maximizing the effectiveness of the tests we have available.&lt;/p&gt;
 &lt;div id=&#34;model-assumptions&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Model Assumptions&lt;/h2&gt;
@@ -432,10 +643,10 @@ Expected Number of Discordant Contacts: &lt;span class=&#34;math inline&#34;&gt;
    
      <item>
        <title>Blogdown Features</title>
-       <link>https://joeornstein.github.io/posts/blogdown-features/</link>
+       <link>/posts/blogdown-features/</link>
        <pubDate>Sun, 10 May 2020 00:00:00 +0000</pubDate>
        
-       <guid>https://joeornstein.github.io/posts/blogdown-features/</guid>
+       <guid>/posts/blogdown-features/</guid>
        <description>
 
 
