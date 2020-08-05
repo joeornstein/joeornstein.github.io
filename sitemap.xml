@@ -4,7 +4,7 @@
   
   <url>
     <loc>/posts/</loc>
-    <lastmod>2020-07-21T00:00:00+00:00</lastmod>
+    <lastmod>2020-07-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -28,17 +28,22 @@
   </url>
   
   <url>
-    <loc>/categories/</loc>
-    <lastmod>2020-07-21T00:00:00+00:00</lastmod>
+    <loc>/posts/cordorcet-hare-manifesto/</loc>
+    <lastmod>2020-07-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/posts/swiss-polarization/</loc>
-    <lastmod>2020-07-21T00:00:00+00:00</lastmod>
+    <loc>/categories/</loc>
+    <lastmod>2020-07-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/categories/political-science/</loc>
+    <lastmod>2020-07-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/swiss-polarization/</loc>
     <lastmod>2020-07-21T00:00:00+00:00</lastmod>
   </url>
   

@@ -6,10 +6,30 @@
    <description>Recent content in Categories on Joseph T. Ornstein</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2020 - Joseph T. Ornstein</copyright>
-   <lastBuildDate>Tue, 21 Jul 2020 00:00:00 +0000</lastBuildDate>
+   <lastBuildDate>Fri, 31 Jul 2020 00:00:00 +0000</lastBuildDate>
    
        <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
    
+   
+     <item>
+       <title>A Condorect-Hare Manifesto</title>
+       <link>/posts/cordorcet-hare-manifesto/</link>
+       <pubDate>Fri, 31 Jul 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/cordorcet-hare-manifesto/</guid>
+       <description>
+
+
+&lt;p&gt;To its credit, Ranked Choice Voting gets a lot right. Straightforward to understand.&lt;/p&gt;
+&lt;p&gt;But RCV also has serious - in my mind, disqualifying - flaws.&lt;/p&gt;
+&lt;p&gt;I would strongly urge Condorcet-Hare&lt;/p&gt;
+&lt;p&gt;Explain it like so:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Rank the candidates in order from your most to least preferred. If one candidate is preferred by a majority of voters to any other candidate, they will be selected. Otherwise, the candidate with the fewest first-place votes will be eliminated until there is a majority choice.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;There. Doesn’t seem harder to understand than RCV as&lt;/p&gt;
+</description>
+     </item>
    
      <item>
        <title>Do Referenda Reduce Polarization?</title>
@@ -30,10 +50,10 @@
 &lt;li&gt;&lt;p&gt;The premise itself — that Switzerland has been driven away from political polarization — just doesn’t seem to be true. As &lt;a href=&#34;cross-polar.pdf&#34;&gt;Boxell, Gentzkow, and Shapiro (2020)&lt;/a&gt; show, affective polarization is Switzerland is roughly at the same level as the United States, and has been trending upward since the 1970s. Compare that with other Western European countries, where affective polarization is, by their measure, &lt;em&gt;declining&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&#34;img/cross-polar.png&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;One important trend in Swiss politics has been the rise of the right-wing populist Swiss People’s Party (SVP), which doubled its representation in the federal legislature over the past 30 years. No doubt this has played a role in increasing affective polarization, a measure of how people &lt;em&gt;feel&lt;/em&gt; about members of other parties.&lt;/p&gt;
 &lt;p&gt;There are many things to admire in the Swiss political system, but being uniquely depolarizing does not seem to be one of them.&lt;/p&gt;
-&lt;p&gt;Actually, one of my favorite features of the Swiss political system is the federal executive branch, which is not headed by a single president or prime minister, but by a seven-member Federal Council. And control of the Federal Council is assigned proportionally! No easy feat for a body with seven members, so since the 1950s seats on the council have been allocated by an unofficial “Magic Formula”. The Liberal party always gets two seats, the Social Democrats always gets two seats, and so forth, so that membership is roughly divided according to party vote share.&lt;/p&gt;
-&lt;p&gt;The fact that the “prize” of the federal executive is basically never up for grabs seems like a deeply salient fact. A Swiss citizen may deeply dislike the SVP, but the fact that they are not a hair’s breadth from wielding complete control of the executive branch might make politics feel a bit less apocalyptic.&lt;/p&gt;
+&lt;p&gt;One important trend in Swiss politics has been the rise of the right-wing populist Swiss People’s Party (SVP), which doubled its representation in the federal legislature over the past 30 years. No doubt this has played a role in increasing affective polarization, a measure of how people &lt;em&gt;feel&lt;/em&gt; about members of other parties.&lt;/p&gt;
+&lt;p&gt;Actually, one of my favorite features of the Swiss political system is the federal executive branch, which is not headed by a single president or prime minister, but by a seven-member Federal Council. And control of the Federal Council is assigned proportionally! No easy feat for a body with seven members, so since the 1950s seats on the council have been allocated by an unofficial “Magic Formula”. The Liberal party always gets two seats, the Social Democrats always get two seats, and so forth, so that membership is roughly divided according to party vote share.&lt;/p&gt;
+&lt;p&gt;The fact that the “prize” of the federal executive is basically never up for grabs seems like a deeply salient fact. A Swiss citizen may despise the SVP, but the fact that they are not a hair’s breadth from wielding complete control of the executive branch might make politics feel a bit less apocalyptic.&lt;/p&gt;
 </description>
      </item>
    

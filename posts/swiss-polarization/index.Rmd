@@ -23,10 +23,10 @@ This claim strikes me as odd for two reasons.
 
 ![](img/cross-polar.png)
 
-One important trend in Swiss politics has been the rise of the right-wing populist Swiss People's Party (SVP), which doubled its representation in the federal legislature over the past 30 years. No doubt this has played a role in increasing affective polarization, a measure of how people *feel* about members of other parties.
-
 There are many things to admire in the Swiss political system, but being uniquely depolarizing does not seem to be one of them. 
 
-Actually, one of my favorite features of the Swiss political system is the federal executive branch, which is not headed by a single president or prime minister, but by a seven-member Federal Council. And control of the Federal Council is assigned proportionally! No easy feat for a body with seven members, so since the 1950s seats on the council have been allocated by an unofficial "Magic Formula". The Liberal party always gets two seats, the Social Democrats always gets two seats, and so forth, so that membership is roughly divided according to party vote share. 
+One important trend in Swiss politics has been the rise of the right-wing populist Swiss People's Party (SVP), which doubled its representation in the federal legislature over the past 30 years. No doubt this has played a role in increasing affective polarization, a measure of how people *feel* about members of other parties. 
 
-The fact that the "prize" of the federal executive is basically never up for grabs seems like a deeply salient fact. A Swiss citizen may deeply dislike the SVP, but the fact that they are not a hair's breadth from wielding complete control of the executive branch might make politics feel a bit less apocalyptic.
+Actually, one of my favorite features of the Swiss political system is the federal executive branch, which is not headed by a single president or prime minister, but by a seven-member Federal Council. And control of the Federal Council is assigned proportionally! No easy feat for a body with seven members, so since the 1950s seats on the council have been allocated by an unofficial "Magic Formula". The Liberal party always gets two seats, the Social Democrats always get two seats, and so forth, so that membership is roughly divided according to party vote share. 
+
+The fact that the "prize" of the federal executive is basically never up for grabs seems like a deeply salient fact. A Swiss citizen may despise the SVP, but the fact that they are not a hair's breadth from wielding complete control of the executive branch might make politics feel a bit less apocalyptic.
