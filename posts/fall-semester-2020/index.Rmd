@@ -4,9 +4,9 @@ author: "Joseph T. Ornstein"
 date: '2020-05-26'
 slug: fall-semester-2020
 categories: 
- - education
- - models
- - epidemiology
+ - Education
+ - Models
+ - Epidemiology
 tags: []
 images: []
 ---

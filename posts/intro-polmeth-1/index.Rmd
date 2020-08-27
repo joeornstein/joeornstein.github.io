@@ -1,0 +1,25 @@
+---
+title: "Introduction to Political Methodology, Week 1"
+author: "Joseph T. Ornstein"
+date: '2020-08-15'
+slug: intro-polmeth-1
+categories: 
+ - R
+ - Statistics
+ - Political Science
+ - Education
+tags: []
+images: []
+draft: true
+---
+
+My first-semester graduate political methodology course is a practical introduction to working with data. We'll cover the most useful mathematical and computational tools that one needs to function as an academic political scientist, including: 
+
+ - Data Wrangling
+ - Data Visualization
+ - Reproducible Research
+ - Optimization
+ - Matrix Algebra
+ - Probability and Inference
+
+In Week 1, we discuss the fundamentals of `R`, functions, vectors, matrices, and summary statistics. The slides are [here]().

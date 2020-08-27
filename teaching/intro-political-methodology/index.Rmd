@@ -1,0 +1,11 @@
+---
+title: "Introduction to Political Methodology"
+author: "Joseph T. Ornstein"
+date: "`r Sys.Date()`"
+meta: "false"
+output: rmarkdown::html_vignette
+---
+
+## Slides
+
+- [Getting Started]()

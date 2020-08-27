@@ -1,15 +1,36 @@
 
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
  <channel>
-   <title>education on Joseph T. Ornstein</title>
+   <title>Education on Joseph T. Ornstein</title>
    <link>https://joeornstein.github.io/categories/education/</link>
-   <description>Recent content in education on Joseph T. Ornstein</description>
+   <description>Recent content in Education on Joseph T. Ornstein</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2020 - Joseph T. Ornstein</copyright>
    <lastBuildDate>Wed, 10 Jun 2020 00:00:00 +0000</lastBuildDate>
    
        <atom:link href="https://joeornstein.github.io/categories/education/index.xml" rel="self" type="application/rss+xml" />
    
+   
+     <item>
+       <title>What&#39;s in your Anki?</title>
+       <link>https://joeornstein.github.io/posts/anki/</link>
+       <pubDate>Sat, 08 Aug 2020 00:00:00 +0000</pubDate>
+       
+       <guid>https://joeornstein.github.io/posts/anki/</guid>
+       <description>
+
+
+&lt;p&gt;I have never been one to write margin notes or highlight books. To my Lawful Neutral brain, it just seems &lt;em&gt;wrong&lt;/em&gt;, and also I get a lot of books from the library, where it is in fact wrong. But I also recognize that passive reading is a poor strategy for memory consolidation; too often I will read an entire book and be unable to recall more than a handful of details.&lt;/p&gt;
+&lt;p&gt;So my current system is to read with a blank deck of &lt;a href=&#34;https://ncase.me/remember/&#34;&gt;Anki cards&lt;/a&gt;, creating a new card for everything I read that seems important enough to remember. This strategy has a few nice advantages:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;Keeps my notes in one place, rather than spread out in margins across multiple books.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Fosters some meta-cognitive awareness while reading, by requiring me to identify passages worth committing to memory.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Aids in memory consolidation by converting a passive learning exercise (reading) into an active learning exercise (recall with spaced repetition).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Helps form connections between ideas from different sources.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Spaced repetition has been one of my favorite new habits of 2020 – which I suppose makes it clear how much time I’ve spent indoors this year. In addition to my “Things I Read” deck, I am also working through a deck of Spanish phrases.&lt;/p&gt;
+</description>
+     </item>
    
      <item>
        <title>Do Referenda Reduce Polarization?</title>
@@ -204,7 +225,6 @@ animate(animation, nframes = 350)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Putting together some lectures on calculus reminded me of James Gleick’s &lt;a href=&#34;https://www.goodreads.com/book/show/17098.Isaac_Newton&#34;&gt;excellent biography&lt;/a&gt; of Isaac Newton. It’s easily one of my favorite biographies of science (a crowded field!). Prior to reading, my uninformed impression of Newton was that he was some jerk who had the good fortune to live in the 16th century, when you could be knighted as a towering genius for picking a bunch of low-hanging intellectual fruit. You know. Objects fall because of gravity. Prisms make rainbows. Stuff like that.&lt;/p&gt;
 &lt;p&gt;Reading the book at least confirmed the first part of my preconception. Newton was indeed a jerk, who took perhaps too much pleasure in executing counterfeiters during his tenure as Master of the Royal Mint. I was amused by the reviews of the book in which readers expressed disappointment that Gleick didn’t go into greater detail about Newton’s personal life. By all accounts, he had no personal life. He was a celibate who hated his family, kept his work secret from his peers,&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; and dedicated himself single-mindedly to his research.&lt;/p&gt;
 &lt;p&gt;But the second part of my preconception was shattered. Newton was not picking low-hanging fruit. He was up in the branches of an orchard that no one else even knew existed, and in the process completely upended our species’ understanding of reality.&lt;/p&gt;
-&lt;hr /&gt;
 &lt;p&gt;Consider what your theory of gravity would be if you had never been taught Newton’s Laws. Common sense in a pre-Newtonian world suggests that gravity is not a property of the Earth itself, but of &lt;em&gt;objects&lt;/em&gt;. Rocks possess gravity. That is why they fall. Clouds, by comparison, possess &lt;em&gt;levity&lt;/em&gt;. That is why they float. Feathers seem to possess some combination of the two. No doubt that is how ducks can fly, being covered in the stuff.&lt;/p&gt;
 &lt;p&gt;I can’t ask a member of a pre-Newtonian society how they conceive gravity, but I can ask my four year old. So I put the question to her during a walk the other day: “Why do clouds float in the sky while other things fall to the ground?” She patiently explained to me that the leaves on trees “point to the ground”, which is why they fall. And that was basically all that I could get out of her. Falling is a thing that leaves do in the fall season. She’s well-trained on identifying the characteristics of seasons.&lt;/p&gt;
 &lt;p&gt;Newton’s Laws are remarkable because they are completely contradicted by ordinary experience. Objects remain in motion unless acted upon by another object? Since when? On Earth, objects in motion &lt;em&gt;always&lt;/em&gt; stop moving, without any obvious force acting upon them. Yet the entire edifice of Newtonian physics rests on that fundamental, counterintuitive insight.&lt;/p&gt;

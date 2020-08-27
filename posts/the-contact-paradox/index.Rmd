@@ -4,9 +4,9 @@ author: Joseph T. Ornstein
 date: '2020-05-12'
 slug: the-contact-paradox
 categories: 
-- models
-- networks
-- epidemiology
+- Models
+- Networks
+- Epidemiology
 tags: []
 images: []
 ---

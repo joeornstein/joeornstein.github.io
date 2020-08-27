@@ -1,0 +1,246 @@
+% Syllabus Template from Arman Shokrollahi
+% https://www.overleaf.com/latex/templates/syllabus-template-course-info/gbqbpcdgvxjs
+
+\documentclass[11pt, letterpaper]{article}
+%\usepackage{geometry}
+\usepackage[inner=2cm,outer=2cm,top=2.5cm,bottom=2.5cm]{geometry}
+\pagestyle{empty}
+\usepackage{graphicx}
+\usepackage{fancyhdr, lastpage, bbding, pmboxdraw}
+\usepackage[usenames,dvipsnames]{color}
+\definecolor{darkblue}{rgb}{0,0,.6}
+\definecolor{darkred}{rgb}{.7,0,0}
+\definecolor{darkgreen}{rgb}{0,.6,0}
+\definecolor{red}{rgb}{.98,0,0}
+\usepackage[colorlinks,pagebackref,pdfusetitle,urlcolor=darkblue,citecolor=darkblue,linkcolor=darkred,bookmarksnumbered,plainpages=false]{hyperref}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\pagestyle{fancyplain}
+\fancyhf{}
+\lhead{ \fancyplain{}{Introduction to Models} }
+%\chead{ \fancyplain{}{} }
+\rhead{ \fancyplain{}{Fall 2020} }%\today
+%\rfoot{\fancyplain{}{page \thepage\ of \pageref{LastPage}}}
+\fancyfoot[RO, LE] {page \thepage\ of \pageref{LastPage} }
+\thispagestyle{plain}
+
+%%%%%%%%%%%% LISTING %%%
+\usepackage{listings}
+\usepackage{caption}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+\usepackage{verbatim} % used to display code
+\usepackage{fancyvrb}
+\usepackage{acronym}
+\usepackage{amsthm}
+\VerbatimFootnotes % Required, otherwise verbatim does not work in footnotes!
+
+
+
+\definecolor{OliveGreen}{cmyk}{0.64,0,0.95,0.40}
+\definecolor{CadetBlue}{cmyk}{0.62,0.57,0.23,0}
+\definecolor{lightlightgray}{gray}{0.93}
+
+
+
+\lstset{
+%language=bash,                          % Code langugage
+basicstyle=\ttfamily,                   % Code font, Examples: \footnotesize, \ttfamily
+keywordstyle=\color{OliveGreen},        % Keywords font ('*' = uppercase)
+commentstyle=\color{gray},              % Comments font
+numbers=left,                           % Line nums position
+numberstyle=\tiny,                      % Line-numbers fonts
+stepnumber=1,                           % Step between two line-numbers
+numbersep=5pt,                          % How far are line-numbers from code
+backgroundcolor=\color{lightlightgray}, % Choose background color
+frame=none,                             % A frame around the code
+tabsize=2,                              % Default tab size
+captionpos=t,                           % Caption-position = bottom
+breaklines=true,                        % Automatic line breaking?
+breakatwhitespace=false,                % Automatic breaks only at whitespace?
+showspaces=false,                       % Dont make spaces visible
+showtabs=false,                         % Dont make tabls visible
+columns=flexible,                       % Column format
+morekeywords={__global__, __device__},  % CUDA specific keywords
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{center}
+{\Large \textsc{POLS 3320: Introduction to Models in Political Science}}
+\end{center}
+\begin{center}
+{\large Fall 2020}
+\end{center}
+%\date{September 26, 2014}
+
+\begin{center}
+\rule{6.5in}{0.4pt}
+\begin{minipage}[t]{.96\textwidth}
+\begin{tabular}{llcccll}
+\textbf{Professor:} & Joe Ornstein & & &  & \textbf{Time:} & MWF 4:10 -- 5:00pm \\
+\textbf{Email:} &  \href{mailto:jornstein@uga.edu}{jornstein@uga.edu} & & & & \textbf{Place:} & 102 Baldwin Hall\\
+\textbf{Website:} & \href{https://uga.view.usg.edu/d2l/home/2058921}{https://uga.view.usg.edu/d2l/home/2058921} & & & & &
+\end{tabular}
+\end{minipage}
+\rule{6.5in}{0.4pt}
+\end{center}
+\vspace{.15cm}
+\setlength{\unitlength}{1in}
+\renewcommand{\arraystretch}{2}
+
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[width=0.5\textwidth]{img/math-model-shutterstock.jpg}
+%\end{figure}
+\begin{quotation}
+	\noindent``\textit{You can't really know anything if you just remember isolated facts. If the facts don't hang together on a latticework of theory, you don't have them in a usable form. You've got to have models in your head.}''\\
+	\\
+	--Charlie Munger (investor, vice chairman of Berkshire Hathaway)
+\end{quotation}
+
+\noindent In this class, I aim to put models in your head. Fifty-one of them, to be preicse. Models are simplified mathematical representations of the world, and knowing a bunch of them can help you better understand politics, society, and even your own personal life. We'll learn how to forecast elections, why it's so hard to stop epidemic diseases, how economies grow, why your friends are all (statistically) cooler than you, how to distinguish correlation from causation, why residential segregation has become so entrenched, how to guess the number of circus clowns in Chicago, and much, much more. 
+
+\section*{Course Objectives}
+%\vskip.15in
+%\noindent\textbf{Course Objectives:}  
+By the end of this course, you will be able to:
+\begin{enumerate}
+	\item Explain the assumptions and implications of over four dozen foundational models from the social sciences
+	\item Apply multiple models to understand a single topic (``many-to-one thinking'')
+	\item Apply a single model to understand multiple topics (``one-to-many thinking'')
+\end{enumerate}
+
+\section*{Prerequisites}
+This is a class on mathematical models, so $\ldots$ there will be math. But not, like, hard math. If you can do high school algebra (e.g. solve an equation for $X$) then that's all you need. Knowing some calculus will help you \textit{appreciate} many of the models on a deeper level, but it's not a prerequisite. 
+
+\section*{Course Structure}
+
+This course will be ``flipped'', with pre-class time dedicated to reading, video lectures, and online quizzes so that class time can be spent on discussion and team projects. This is partly a response to COVID-19, but mostly because you'll learn more this way. Before coming to class, please complete the assigned readings, watch the lectures, and complete the quizzes on eLC. Successfully completing a quiz is my indication that you're ready to come to class and participate in group discussions and projects. Late quizzes will receive half credit. I will make it clear on eLC when everything is due.
+
+Our classroom will have limited capacity this semester (14 students), so you will only attend one out of every three in-person sessions. Our first class session will meet virtually over Zoom, and by the beginning of the second week of classes I will contact you to clarify which sessions you will be assigned to join in person. Following the Thanksgiving break, all remaining class sessions will be held online.
+
+The midterm and final exam will be online and open-book. Dates TBD.
+
+\section*{Speaking of COVID-19}
+
+This will be a weird semester, and I expect that there will be more than the usual share of setbacks and hardships for both students and instructors. Please don't hesitate to ask questions or reach out to me with your concerns. 
+
+If you show any \href{https://www.google.com/search?q=covid-19+symptoms}{symptoms of COVID-19} or have been exposed to someone who tests positive for COVID-19, don't come to class. Obviously. I do not grade class attendance, and every piece of material that you need to succeed on assignments and tests will be available online or in the book. I will hold regular virtual office hours if you have questions that aren't covered in those places. 
+
+When you come to class, please wear a mask. The University System of Georgia (USG) requires all faculty, students, and staff to wear appropriate face coverings while inside campus buildings. Reasonable accommodations may be made for those who are unable to wear a face covering for documented health reasons. Students seeking an accommodation related to face coverings should contact Disability Services at \href{https://drc.uga.edu/}{https://drc.uga.edu/}. For more information on the University of Georgia's coronavirus response, visit \href{https://coronavirus.uga.edu/}{https://coronavirus.uga.edu/}. 
+
+
+
+\section*{Team Projects}
+
+During the first week of the course, I will randomly split the class into teams of 3-5 students. You and your teammates will work together throughout the semester to complete projects and in-class assignments. To help ensure that everyone contributes to the team effort, 10\% of your grade will come from peer evaluations at the end of the semester.
+
+\section*{Grading Policy}
+Quizzes (15\%),  Midterm (15\%), Final Exam (20\%), Team Projects (40\%), Peer Evaluations (10\%)
+
+
+
+%%\noindent\textbf{Course Pages:} 
+%\subsection*{Course Pages}
+%\begin{enumerate}
+%\item \url{}
+%\item \url{https://joeornstein.github.io/teaching}
+%\end{enumerate}
+
+%\vskip.15in
+%\noindent\textbf{Office Hours:} 
+\section*{Office Hours}
+Every Wednesday from noon to 1pm I will hold Virtual Office Hours over Zoom. A sign-up spreadsheet will be posted on the course website, so sign-up and come say hi! One of the great things about college is that all of your professors are required to set aside time each week to just talk with their students. Take advantage of it!
+
+%\vskip.15in
+%\noindent\textbf{Textbook:} %\footnotemark
+\section*{Textbook}
+You will need one book for this course:
+\begin{itemize}
+\item Scott E. Page, \textit{The Model Thinker: What You Need to Know to Make Data Work for You}, Basic Books, 2018.
+\end{itemize} 
+I will assign a manageable chunk of the book before each class period, typically 5-10 pages. Reading will be essential because my video lectures will be short, and cannot cover everything in a 300+ page book. For most of the reading assignments, I will include a short quiz on the course website to ensure that you've gotten the key points. By the way, thanks for reading the syllabus. If you send me an email saying ``Hey professor I read your syllabus and it was awesome! Meticulously crafted and really informative. Impressive that a first-year professor put together such a compelling course in the middle of a pandemic on such a short time frame!'' and include a fun fact about yourself, I will award you an extra point on your first midterm.  
+
+
+
+%\vspace*{.15in}
+%
+%\noindent \textbf{Tentative Course Outline:}
+
+\section*{Tentative Course Outline}
+
+Von Moltke writes that no battle plan survives first contact with the enemy. The same is true for syllabi. The following schedule should serve as a rough outline. It is split into \textit{modules}, which will match the organization on the course website. Each module should take about 1-3 weeks. 
+
+%\begin{center} 
+%\begin{minipage}{6in}
+%\begin{flushleft}
+%Chapter 1 \dotfill ~$\approx$ 3 days \\
+%{\color{darkgreen}{\Rectangle}} ~A little of probability theory and graph theory	
+\subsubsection*{Module 1: Thinking With Models}
+\textit{Pre-Class Survey, What Are Models?, The Condorcet Jury Theorem, The Diversity Prediction Theorem, Categorization Models, Classification Trees, Random Forests}
+
+\subsubsection*{Module 2: Diffusion and Contagion}
+\textit{The SIR Model, Herd Immunity, Complex Contagion}
+
+\subsubsection*{Module 3: Probability and Chance}
+\textit{Modeling Randomness, Bayes Rule, The Normal Distribution, Central Limit Theorem, Long Tails}
+
+\subsubsection*{Module 4: Correlation and Causation}
+\textit{The Linear Model, DAGs, Forks, Colliders}
+
+\subsubsection*{Module 5: Growth and Decay}
+\textit{Exponential Functions, The Rule of 72, Increasing and Diminishing Returns, The Forgetting Curve, Economic Growth, The Solow Model, O-Rings}
+
+\subsubsection*{Module 6: Networks and Graphs}
+\textit{Centrality, Small Worlds, The Friendship Paradox, Robustness, Stable Matching Problems, Metcalfe's Law}
+
+\subsubsection*{Module 7: Games and Strategy}
+\textit{Decision Theory, Zero-Sum Games, Mixed Strategies, Sequential Games, Commitment Problems, The Prisoner's Dilemma, Cooperation, Coordination, Signaling, Collective Action Problems}
+
+\subsubsection*{Module 8: Elections and Social Choice}
+\textit{Aggregating Preferences, Arrow's Theorem, Spatial Models, Median Voter Theorem, Veto Players, Gerrymandering, Election Forecasting, Polling, Prediction Markets}
+
+\subsubsection*{Module 9: Institutions and Incentives}
+\textit{Mechanism Design, Auctions, Coalitions, Shapley Value, Principal-Agent Models, Delegation, Selectorate Theory}
+
+\subsubsection*{Module 10: Dynamics and Chaos}
+\textit{Random Walks, Markov Chains, Path Dependence, Chaos Theory, System Dynamics, Mass Protest, Sorting, Segregation}
+
+\subsubsection*{Module 11: Learning and Problem-Solving}
+\textit{Fermi Estimation, Reinforcement Learning, Replicator Dynamics, Multi-Armed Bandits, Rugged Landscapes}
+
+%\end{flushleft}
+%\end{minipage}
+%\end{center}
+
+%\vskip.15in
+%\noindent\textbf{Important Dates:}
+%\begin{center} \begin{minipage}{3.8in}
+%\begin{flushleft}
+%Midterm \#1      \dotfill ~\={A}b\={a}n 16, 1393  \\
+%Midterm \#2      \dotfill ~\={A}zar 21, 1393  \\
+%%Project Deadline \dotfill ~Month Day \\
+%Final Exam       \dotfill ~Dey 18, 1393  \\
+%\end{flushleft}
+%\end{minipage}
+%\end{center}
+
+
+
+\subsection*{Academic Honesty}
+Remember that when you joined the University of Georgia community, you agreed to abide by a code of conduct outlined in the academic honesty policy called \href{https://honesty.uga.edu/Academic-Honesty-Policy/Introduction/}{\textit{A Culture of Honesty}}. It has some pretty specific things to say on the subject of cheating. Quite specific. I will make clear which assignments I expect to be team efforts and which I expect to be completed by individuals. Please complete the midterm, final exam, and online quizzes individually. 
+
+
+\subsection*{Mental Health and Wellness Resources}
+
+\begin{itemize}
+	\item If you or someone you know needs assistance, you are encouraged to contact Student Care and Outreach in the Division of Student Affairs at 706-542-7774 or visit \href{https://sco.uga.edu}{https://sco.uga.edu}. They will help you navigate any difficult circumstances you may be facing by connecting you with the appropriate resources or services. 
+	\item UGA has several resources for a student seeking \href{https://www.uhs.uga.edu/bewelluga/bewelluga}{mental health services} or \href{https://www.uhs.uga.edu/info/emergencies}{crisis support}. 
+	\item If you need help managing stress anxiety, relationships, etc., please visit \href{https://www.uhs.uga.edu/bewelluga/bewelluga}{BeWellUGA} for a list of FREE workshops, classes, mentoring, and health coaching led by licensed clinicians and health educators in the University Health Center.
+	\item Additional resources can be accessed through the UGA App.
+\end{itemize}
+
+%%%%%% THE END 
+\end{document} 

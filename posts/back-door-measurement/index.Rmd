@@ -4,8 +4,8 @@ author: "Joseph T. Ornstein"
 date: '2020-06-10'
 slug: back-door-measurement
 categories: 
- - statistics
- - education
+ - Statistics
+ - Education
 tags: []
 images: []
 ---
