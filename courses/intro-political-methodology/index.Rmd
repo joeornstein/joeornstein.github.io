@@ -17,3 +17,4 @@ In this class, students learn how to confidently work with data using `R` and `R
 ## Slides
 
 1. [Getting Started](slides/01-Getting-Started/01-Getting-Started.html)
+2. [Data Visualization](slides/02-Data-Visualization/02-Data-Visualization.html)
