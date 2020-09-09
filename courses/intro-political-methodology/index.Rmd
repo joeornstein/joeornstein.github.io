@@ -18,3 +18,4 @@ In this class, students learn how to confidently work with data using `R` and `R
 
 1. [Getting Started](slides/01-Getting-Started/01-Getting-Started.html)
 2. [Data Visualization](slides/02-Data-Visualization/02-Data-Visualization.html)
+3. [Tools for Reproducible Research](slides/03-Tools-for-Reproducible-Research/03-Tools-for-Reproducible-Research.html)

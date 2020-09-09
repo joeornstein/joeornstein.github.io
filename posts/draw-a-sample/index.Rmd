@@ -1,0 +1,19 @@
+---
+title: "Interactive Draw a Sample"
+author: "Joseph T. Ornstein"
+date: '2020-09-07'
+slug: draw-a-sample
+categories:
+ - Education
+ - Statistics
+ - Political Science
+tags: []
+images: []
+draft: true
+---
+
+I wanted to let my students play around with drawing a random sample from a population --- so that they could explore ideas like the Central Limit Theorem, how often a certain low-prevalence virus will show up in a randomly drawn class of size $N$, etc. And I was surprised that I couldn't find a basic web app that let you do what I wanted, so I went ahead and made one.
+
+You can find the shiny app [here](), or see it embedded below:
+
+<TODO: Embed>
