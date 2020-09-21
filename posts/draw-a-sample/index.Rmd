@@ -9,11 +9,13 @@ categories:
  - Political Science
 tags: []
 images: []
-draft: true
+draft: false
 ---
 
-I wanted to let my students play around with drawing a random sample from a population --- so that they could explore ideas like the Central Limit Theorem, how often a certain low-prevalence virus will show up in a randomly drawn class of size $N$, etc. And I was surprised that I couldn't find a basic web app that let you do what I wanted, so I went ahead and made one.
+I wanted to let my students play around with drawing a random sample from a population --- so that they could explore ideas like the Central Limit Theorem, how often a certain low-prevalence virus will show up in a randomly drawn class of size $N$, etc. --- but I couldn't find anything on the web that let you do what I wanted. 
 
-You can find the shiny app [here](), or see it embedded below:
+So I went ahead and made my own. You can find the shiny app [here](https://ornstein.shinyapps.io/Draw-A-Sample/), or see it embedded below:
 
-<TODO: Embed>
+```{r embed shiny, echo = FALSE}
+knitr::include_app("https://ornstein.shinyapps.io/Draw-A-Sample/", height = "800px")
+```

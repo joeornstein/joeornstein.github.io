@@ -6,10 +6,51 @@
    <description>Recent content in Statistics on Joseph T. Ornstein</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2020 - Joseph T. Ornstein</copyright>
-   <lastBuildDate>Wed, 15 Jul 2020 00:00:00 +0000</lastBuildDate>
+   <lastBuildDate>Mon, 07 Sep 2020 00:00:00 +0000</lastBuildDate>
    
        <atom:link href="https://joeornstein.github.io/categories/statistics/index.xml" rel="self" type="application/rss+xml" />
    
+   
+     <item>
+       <title>git undo</title>
+       <link>https://joeornstein.github.io/posts/git-undo/</link>
+       <pubDate>Mon, 21 Sep 2020 00:00:00 +0000</pubDate>
+       
+       <guid>https://joeornstein.github.io/posts/git-undo/</guid>
+       <description>
+
+
+&lt;p&gt;When using &lt;a href=&#34;bryan-2017.pdf&#34;&gt;GitHub&lt;/a&gt; to manage changes to analyses/manuscripts/slides, my most frustrating frustration occurs when I forget to add a large (&amp;gt;50MB) data file to my &lt;code&gt;.gitignore&lt;/code&gt;. I merrily type –&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git add .
+git commit -m &amp;quot;unsuspecting commit message&amp;quot;
+git push&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;– and GitHub explodes because of a file size limit.&lt;/p&gt;
+&lt;p&gt;The maddening bit is that you can’t just retroactively tell &lt;code&gt;git&lt;/code&gt; to ignore the file, because it’s already tracked and in your history. So I set out to find a sequence of commands that would effectively (and quickly) undo the addition of the large file.&lt;/p&gt;
+&lt;p&gt;After much searching, the winning solution comes from &lt;a href=&#34;https://dalibornasevic.com/posts/2-permanently-remove-files-and-folders-from-a-git-repository&#34;&gt;Dalibor Nasevic&lt;/a&gt;, abbreviated below:&lt;/p&gt;
+&lt;pre class=&#34;git&#34;&gt;&lt;code&gt;git filter-branch --tree-filter &amp;#39;rm -rf PATH-TO-BIG-FILE&amp;#39; HEAD
+
+git push origin master --force&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The first line recursively searches through your commits to find and remove the big file. The second line “force pushes” the revision to GitHub.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;force-push.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Of course, erasing your own history is a serious step not to be taken lightly, so make sure you only remove the files you tracked by accident.&lt;/p&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Interactive Draw a Sample</title>
+       <link>https://joeornstein.github.io/posts/draw-a-sample/</link>
+       <pubDate>Mon, 07 Sep 2020 00:00:00 +0000</pubDate>
+       
+       <guid>https://joeornstein.github.io/posts/draw-a-sample/</guid>
+       <description>
+
+
+&lt;p&gt;I wanted to let my students play around with drawing a random sample from a population — so that they could explore ideas like the Central Limit Theorem, how often a certain low-prevalence virus will show up in a randomly drawn class of size &lt;span class=&#34;math inline&#34;&gt;\(N\)&lt;/span&gt;, etc. — but I couldn’t find anything on the web that let you do what I wanted.&lt;/p&gt;
+&lt;p&gt;So I went ahead and made my own. You can find the shiny app &lt;a href=&#34;https://ornstein.shinyapps.io/Draw-A-Sample/&#34;&gt;here&lt;/a&gt;, or see it embedded below:&lt;/p&gt;
+&lt;iframe src=&#34;https://ornstein.shinyapps.io/Draw-A-Sample/?showcase=0&#34; width=&#34;672&#34; height=&#34;800px&#34;&gt;
+&lt;/iframe&gt;
+</description>
+     </item>
    
      <item>
        <title>What&#39;s in your Anki?</title>
