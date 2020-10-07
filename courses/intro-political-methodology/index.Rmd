@@ -25,3 +25,5 @@ In this class, students learn how to confidently work with data using `R` and `R
 4. [Data Wrangling](https://github.com/joeornstein/POLS7012-Data-Wrangling)
 
 5. [All The Calculus You Need](slides/06-Calculus/06-Calculus.html)
+
+6. [Probability and Inference](slides/07-Probability/07-Probability.html)
