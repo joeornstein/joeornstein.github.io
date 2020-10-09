@@ -16,8 +16,6 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-library(tidyverse)
-library(magrittr)
 ```
 
 SRP is an `R` package that contains useful functions for implementing multilevel regression and poststratification (MRP) and stacked regression and poststratification (SRP).
@@ -28,11 +26,12 @@ Suppose we want to know how some public opinion varies by subnational unit. But 
 
 ## Installation
 
-The `SRP` package is currently available on GitHub. You can install it using the `devtools` package.
+The `SRP` package is currently available on GitHub. You can install it using the `devtools` package. You'll also want to load the `tidyverse` library for this vignette.
 
 ```{r installation, message = FALSE}
 devtools::install_github('joeornstein/SRP')
 library(SRP)
+library(tidyverse)
 ```
 
 ## The Data
@@ -146,7 +145,7 @@ dtrain <- xgb.DMatrix(trainset_gbm, label = trainset$y)
 #5-fold cross-validation; pick nrounds that minimizes RMSE
 xgb.tune <- xgb.cv(data = dtrain, 
                    booster = "gbtree",
-                   objective = "reg:linear",
+                   objective = "reg:squarederror",
                    eval_metric = "rmse",
                    eta = 0.02,
                    nrounds = 50 / 0.02, #Lower eta -> more trees
@@ -156,7 +155,7 @@ xgb.tune <- xgb.cv(data = dtrain,
 
 gbmModel <- xgboost(data = dtrain, 
                     booster = "gbtree",
-                    objective = "reg:linear",
+                    objective = "reg:squarederror",
                     eval_metric = "rmse",
                     eta = 0.02,
                     verbose = F,
@@ -212,8 +211,8 @@ Because the data came from a simulation, we also know the true unit-level means.
 ```{r plots, echo=FALSE, message=FALSE}
 true_means <- SRP::vignetteTruth
 
-mrp_estimates %<>% set_colnames(c('unit','mrp_estimate'))
-srp_estimates %<>% set_colnames(c('unit','srp_estimate'))
+names(mrp_estimates) <- c('unit','mrp_estimate')
+names(srp_estimates) <- c('unit','srp_estimate')
 
 results <- true_means %>%
   left_join(disag_estimates, by = 'unit') %>%

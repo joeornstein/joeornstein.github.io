@@ -12,8 +12,8 @@
 MotivationSuppose we want to know how some public opinion varies by subnational unit." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://joeornstein.github.io/software/srp/" />
-<meta property="article:published_time" content="2020-07-01T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-07-01T00:00:00+00:00" />
+<meta property="article:published_time" content="2020-10-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-10-09T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="The SRP Package"/>
@@ -119,9 +119,10 @@ MotivationSuppose we want to know how some public opinion varies by subnational
 </div>
 <div id="installation" class="section level2">
 <h2>Installation</h2>
-<p>The <code>SRP</code> package is currently available on GitHub. You can install it using the <code>devtools</code> package.</p>
+<p>The <code>SRP</code> package is currently available on GitHub. You can install it using the <code>devtools</code> package. You’ll also want to load the <code>tidyverse</code> library for this vignette.</p>
 <pre class="r"><code>devtools::install_github(&#39;joeornstein/SRP&#39;)
-library(SRP)</code></pre>
+library(SRP)
+library(tidyverse)</code></pre>
 </div>
 <div id="the-data" class="section level2">
 <h2>The Data</h2>
@@ -265,7 +266,7 @@ dtrain &lt;- xgb.DMatrix(trainset_gbm, label = trainset$y)
 #5-fold cross-validation; pick nrounds that minimizes RMSE
 xgb.tune &lt;- xgb.cv(data = dtrain, 
                    booster = &quot;gbtree&quot;,
-                   objective = &quot;reg:linear&quot;,
+                   objective = &quot;reg:squarederror&quot;,
                    eval_metric = &quot;rmse&quot;,
                    eta = 0.02,
                    nrounds = 50 / 0.02, #Lower eta -&gt; more trees
@@ -275,7 +276,7 @@ xgb.tune &lt;- xgb.cv(data = dtrain,
 
 gbmModel &lt;- xgboost(data = dtrain, 
                     booster = &quot;gbtree&quot;,
-                    objective = &quot;reg:linear&quot;,
+                    objective = &quot;reg:squarederror&quot;,
                     eval_metric = &quot;rmse&quot;,
                     eta = 0.02,
                     verbose = F,
@@ -292,7 +293,7 @@ gbmModel &lt;- xgboost(data = dtrain,
                                 nfolds = 5)
 
 stackWeights %&gt;% round(3)
-#&gt; [1] 0.328 0.000 0.121 0.000 0.551</code></pre>
+#&gt; [1] 0.317 0.000 0.164 0.000 0.519</code></pre>
 <p>Then we can poststratify as before.</p>
 <pre class="r"><code>PSFrame_lasso &lt;- cleanDataLASSO(PSFrame, lasso_vars = lasso_vars, lasso_factors = lasso_factors,
                                 new_vars_lasso = colnames(trainset_lasso))$trainset
@@ -314,12 +315,12 @@ head(srp_estimates)
 #&gt; # A tibble: 6 x 2
 #&gt;    unit poststratifiedEstimate
 #&gt;   &lt;int&gt;                  &lt;dbl&gt;
-#&gt; 1     1                 -0.271
-#&gt; 2     2                  0.839
-#&gt; 3     3                 -3.31 
-#&gt; 4     4                 -3.11 
-#&gt; 5     5                  0.250
-#&gt; 6     6                 -2.30</code></pre>
+#&gt; 1     1                 -0.274
+#&gt; 2     2                  0.801
+#&gt; 3     3                 -3.14 
+#&gt; 4     4                 -2.92 
+#&gt; 5     5                  0.257
+#&gt; 6     6                 -2.12</code></pre>
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>
