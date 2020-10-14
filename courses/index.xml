@@ -6,7 +6,7 @@
    <description>Recent content in Courses on Joseph T. Ornstein</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2020 - Joseph T. Ornstein</copyright>
-   <lastBuildDate>Wed, 07 Oct 2020 00:00:00 +0000</lastBuildDate>
+   <lastBuildDate>Wed, 14 Oct 2020 00:00:00 +0000</lastBuildDate>
    
        <atom:link href="https://joeornstein.github.io/courses/index.xml" rel="self" type="application/rss+xml" />
    
@@ -27,8 +27,7 @@ git push&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;– and GitHub explodes because of a file size limit.&lt;/p&gt;
 &lt;p&gt;The maddening bit is that you can’t just retroactively tell &lt;code&gt;git&lt;/code&gt; to ignore the file, because it’s already tracked and in your history. So I set out to find a sequence of commands that would effectively (and quickly) undo the addition of the large file.&lt;/p&gt;
 &lt;p&gt;After much searching, the winning solution comes from &lt;a href=&#34;https://dalibornasevic.com/posts/2-permanently-remove-files-and-folders-from-a-git-repository&#34;&gt;Dalibor Nasevic&lt;/a&gt;, abbreviated below:&lt;/p&gt;
-&lt;pre class=&#34;git&#34;&gt;&lt;code&gt;git filter-branch --tree-filter &amp;#39;rm -rf PATH-TO-BIG-FILE&amp;#39; HEAD
-
+&lt;pre&gt;&lt;code&gt;git filter-branch --tree-filter &amp;#39;rm -rf PATH-TO-BIG-FILE&amp;#39; HEAD
 git push origin master --force&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The first line recursively searches through your commits to find and remove the big file. The second line “force pushes” the revision to GitHub.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;force-push.png&#34; /&gt;&lt;/p&gt;

@@ -147,8 +147,7 @@ git push</code></pre>
 <p>– and GitHub explodes because of a file size limit.</p>
 <p>The maddening bit is that you can’t just retroactively tell <code>git</code> to ignore the file, because it’s already tracked and in your history. So I set out to find a sequence of commands that would effectively (and quickly) undo the addition of the large file.</p>
 <p>After much searching, the winning solution comes from <a href="https://dalibornasevic.com/posts/2-permanently-remove-files-and-folders-from-a-git-repository">Dalibor Nasevic</a>, abbreviated below:</p>
-<pre class="git"><code>git filter-branch --tree-filter &#39;rm -rf PATH-TO-BIG-FILE&#39; HEAD
-
+<pre><code>git filter-branch --tree-filter &#39;rm -rf PATH-TO-BIG-FILE&#39; HEAD
 git push origin master --force</code></pre>
 <p>The first line recursively searches through your commits to find and remove the big file. The second line “force pushes” the revision to GitHub.</p>
 <p><img src="force-push.png" /></p>

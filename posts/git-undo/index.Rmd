@@ -17,15 +17,15 @@ git add .
 git commit -m "unsuspecting commit message"
 git push
 ```
+
 -- and GitHub explodes because of a file size limit. 
 
 The maddening bit is that you can't just retroactively tell `git` to ignore the file, because it's already tracked and in your history. So I set out to find a sequence of commands that would effectively (and quickly) undo the addition of the large file.
 
 After much searching, the winning solution comes from [Dalibor Nasevic](https://dalibornasevic.com/posts/2-permanently-remove-files-and-folders-from-a-git-repository), abbreviated below:
 
-```git
+```
 git filter-branch --tree-filter 'rm -rf PATH-TO-BIG-FILE' HEAD
-
 git push origin master --force
 ```
 
