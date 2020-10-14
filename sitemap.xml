@@ -3,191 +3,206 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://joeornstein.github.io/posts/</loc>
+    <loc>/posts/</loc>
     <lastmod>2020-09-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/publications/</loc>
+    <loc>/publications/</loc>
     <lastmod>2020-04-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/teaching/</loc>
+    <loc>/teaching/</loc>
     <lastmod>2020-04-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/resources/</loc>
+    <loc>/resources/</loc>
     <lastmod>2020-04-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/about/</loc>
+    <loc>/about/</loc>
     <lastmod>2014-04-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/courses/</loc>
+    <loc>/courses/</loc>
     <lastmod>2020-10-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/courses/intro-political-methodology/</loc>
+    <loc>/courses/intro-political-methodology/</loc>
     <lastmod>2020-10-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/software/</loc>
+    <loc>/software/</loc>
     <lastmod>2020-10-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/software/srp/</loc>
+    <loc>/software/srp/</loc>
     <lastmod>2020-10-09T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/categories/</loc>
+    <loc>/categories/</loc>
     <lastmod>2020-09-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/categories/data-science/</loc>
+    <loc>/categories/data-science/</loc>
     <lastmod>2020-09-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/posts/git-undo/</loc>
+    <loc>/posts/git-undo/</loc>
     <lastmod>2020-09-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/categories/education/</loc>
+    <loc>/categories/education/</loc>
     <lastmod>2020-09-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/posts/draw-a-sample/</loc>
+    <loc>/posts/draw-a-sample/</loc>
     <lastmod>2020-09-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/categories/political-science/</loc>
+    <loc>/categories/political-science/</loc>
     <lastmod>2020-09-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/categories/statistics/</loc>
+    <loc>/categories/statistics/</loc>
     <lastmod>2020-09-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/categories/personal/</loc>
+    <loc>/posts/condorcet-jury-theorem/</loc>
+    <lastmod>2020-08-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/intro-polmeth-1/</loc>
+    <lastmod>2020-08-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/r/</loc>
+    <lastmod>2020-08-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/personal/</loc>
     <lastmod>2020-08-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/posts/anki/</loc>
+    <loc>/posts/anki/</loc>
     <lastmod>2020-08-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/posts/swiss-polarization/</loc>
+    <loc>/posts/cordorcet-hare-manifesto/</loc>
+    <lastmod>2020-07-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/swiss-polarization/</loc>
     <lastmod>2020-07-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/categories/progress-studies/</loc>
+    <loc>/categories/progress-studies/</loc>
     <lastmod>2020-07-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/categories/r/</loc>
+    <loc>/posts/srp/</loc>
     <lastmod>2020-07-15T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/posts/srp/</loc>
-    <lastmod>2020-07-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://joeornstein.github.io/posts/dot-density-animation/</loc>
+    <loc>/posts/dot-density-animation/</loc>
     <lastmod>2020-07-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/categories/epidemiology/</loc>
+    <loc>/categories/epidemiology/</loc>
     <lastmod>2020-07-08T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/categories/books/</loc>
+    <loc>/categories/books/</loc>
     <lastmod>2020-07-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/posts/newton/</loc>
+    <loc>/posts/newton/</loc>
     <lastmod>2020-07-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/posts/makefiles-dummies-windows/</loc>
+    <loc>/posts/makefiles-dummies-windows/</loc>
     <lastmod>2020-06-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/posts/covid-animation/</loc>
+    <loc>/posts/covid-animation/</loc>
     <lastmod>2020-06-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/posts/back-door-measurement/</loc>
+    <loc>/posts/back-door-measurement/</loc>
     <lastmod>2020-06-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/posts/spaced-repetition-for-syllabi/</loc>
+    <loc>/posts/spaced-repetition-for-syllabi/</loc>
     <lastmod>2020-06-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/posts/fall-semester-2020/</loc>
+    <loc>/posts/fall-semester-2020/</loc>
     <lastmod>2020-05-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/categories/models/</loc>
+    <loc>/categories/models/</loc>
     <lastmod>2020-05-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/categories/networks/</loc>
+    <loc>/categories/networks/</loc>
     <lastmod>2020-05-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/posts/the-contact-paradox/</loc>
+    <loc>/posts/the-contact-paradox/</loc>
     <lastmod>2020-05-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/posts/blogdown-features/</loc>
+    <loc>/posts/blogdown-features/</loc>
     <lastmod>2020-05-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/</loc>
+    <loc>/</loc>
     <lastmod>2020-04-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/software/rdviz/</loc>
+    <loc>/software/rdviz/</loc>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/tags/</loc>
+    <loc>/tags/</loc>
   </url>
   
 </urlset>
