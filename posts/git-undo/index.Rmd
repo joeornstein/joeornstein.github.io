@@ -10,7 +10,7 @@ images: []
 draft: false
 ---
 
-When using [GitHub](bryan-2017.pdf) to manage changes to analyses/manuscripts/slides, my most frustrating frustration occurs when I forget to add a large (>50MB) data file to my `.gitignore`. I merrily type --
+When using [GitHub](bryan-2017.pdf) to manage changes to analyses, manuscripts, and slides, my most frequent frustration occurs when I forget to add a large (>50MB) data file to my `.gitignore`. I merrily type --
 
 ```
 git add .
