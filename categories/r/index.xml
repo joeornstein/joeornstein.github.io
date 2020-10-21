@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
  <channel>
    <title>R on Joseph T. Ornstein</title>
-   <link>/categories/r/</link>
+   <link>https://joeornstein.github.io/categories/r/</link>
    <description>Recent content in R on Joseph T. Ornstein</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2020 - Joseph T. Ornstein</copyright>
-   <lastBuildDate>Sat, 15 Aug 2020 00:00:00 +0000</lastBuildDate>
+   <lastBuildDate>Wed, 15 Jul 2020 00:00:00 +0000</lastBuildDate>
    
-       <atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
+       <atom:link href="https://joeornstein.github.io/categories/r/index.xml" rel="self" type="application/rss+xml" />
    
    
      <item>
        <title>git undo</title>
-       <link>/posts/git-undo/</link>
+       <link>https://joeornstein.github.io/posts/git-undo/</link>
        <pubDate>Mon, 21 Sep 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/git-undo/</guid>
+       <guid>https://joeornstein.github.io/posts/git-undo/</guid>
        <description>
 
 
@@ -37,10 +37,10 @@ git push origin master --force&lt;/code&gt;&lt;/pre&gt;
    
      <item>
        <title>Interactive Draw a Sample</title>
-       <link>/posts/draw-a-sample/</link>
+       <link>https://joeornstein.github.io/posts/draw-a-sample/</link>
        <pubDate>Mon, 07 Sep 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/draw-a-sample/</guid>
+       <guid>https://joeornstein.github.io/posts/draw-a-sample/</guid>
        <description>
 
 
@@ -52,47 +52,11 @@ git push origin master --force&lt;/code&gt;&lt;/pre&gt;
      </item>
    
      <item>
-       <title>The Condorcet Jury Theorem Illustrated</title>
-       <link>/posts/condorcet-jury-theorem/</link>
-       <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
-       
-       <guid>/posts/condorcet-jury-theorem/</guid>
-       <description>
-
-
-&lt;p&gt;As I tell my students, the neat thing about the Condorcet Jury Theorem is that you can take a large group of dummies – who are barely better at making choices than a coin flip – and as long as they make decisions by majority vote they’re almost guaranteed to figure out the right answer. Inspiring stuff; it’s also why I feel better giving them hard questions as long as I split them into teams. Anyway, here’s the theorem illustrated:&lt;/p&gt;
-&lt;p&gt;&amp;lt;TODO: Add slides&amp;gt;&lt;/p&gt;
-</description>
-     </item>
-   
-     <item>
-       <title>Introduction to Political Methodology, Week 1</title>
-       <link>/posts/intro-polmeth-1/</link>
-       <pubDate>Sat, 15 Aug 2020 00:00:00 +0000</pubDate>
-       
-       <guid>/posts/intro-polmeth-1/</guid>
-       <description>
-
-
-&lt;p&gt;My first-semester graduate political methodology course is a practical introduction to working with data. We’ll cover the most useful mathematical and computational tools that one needs to function as an academic political scientist, including:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Data Wrangling&lt;/li&gt;
-&lt;li&gt;Data Visualization&lt;/li&gt;
-&lt;li&gt;Reproducible Research&lt;/li&gt;
-&lt;li&gt;Optimization&lt;/li&gt;
-&lt;li&gt;Matrix Algebra&lt;/li&gt;
-&lt;li&gt;Probability and Inference&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;In Week 1, we discuss the fundamentals of &lt;code&gt;R&lt;/code&gt;, functions, vectors, matrices, and summary statistics. The slides are &lt;a href=&#34;&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-</description>
-     </item>
-   
-     <item>
        <title>What&#39;s in your Anki?</title>
-       <link>/posts/anki/</link>
+       <link>https://joeornstein.github.io/posts/anki/</link>
        <pubDate>Sat, 08 Aug 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/anki/</guid>
+       <guid>https://joeornstein.github.io/posts/anki/</guid>
        <description>
 
 
@@ -109,51 +73,11 @@ git push origin master --force&lt;/code&gt;&lt;/pre&gt;
      </item>
    
      <item>
-       <title>A Condorect-Hare Manifesto</title>
-       <link>/posts/cordorcet-hare-manifesto/</link>
-       <pubDate>Fri, 31 Jul 2020 00:00:00 +0000</pubDate>
-       
-       <guid>/posts/cordorcet-hare-manifesto/</guid>
-       <description>
-
-
-&lt;p&gt;If you’re familiar with any non-plurality social choice rule, it’s probably &lt;a href=&#34;&#34;&gt;Ranked Choice Voting&lt;/a&gt;, aka Instant Runoff Voting (IRV) or – across the pond – as Single Transferable Vote (STV). Under RCV/IRV/STV, voters submit a preference &lt;em&gt;ranking&lt;/em&gt; and the candidate with the fewest first-place votes is eliminated until one candidate has an outright majority of first-place votes.&lt;/p&gt;
-&lt;p&gt;To its credit, RCV/IRV/STV gets a lot right. It is straightforward to understand. At least, straightforward compared to some of its&lt;/p&gt;
-&lt;p&gt;But RCV also has serious - in my mind, disqualifying - flaws. Chief among them, nonmonotonicity. Increasing support for a candidate can, under some circumstance, cause that candidate to lose. And conversely, decreasing support for a candidate can cause that candidate to win! In &lt;a href=&#34;&#34;&gt;paper&lt;/a&gt;, Bob Norman and I show that there are two (necessary and sufficient) conditions under which such a paradox will occur with three candidates.&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;p&gt;RCV fails to select the Condorcet winner.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The election is a competitive three-way race. Each candidate receives at least 25% of the first-place vote.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;How often should we expect this to happen? Basically, whenever there’s a competitive multi-candidate race and one candidate is the “consensus” pick between two extremes. For example, in a tight election between a left-wing, moderate, and right-wing candidate, the moderate may be preferred in all pairwise comparisons – right-wing + moderate voters prefer her over the left-wing candidate, and left-wing + moderate voters prefer her over the right-wing candidate – but she receives the least first-place support. It’s precisely in this situation where, paradoxically, increasing the support of one of the extremist candidates would cause him to lose.&lt;/p&gt;
-&lt;p&gt;What a damning finding! The very outcome that alternative voting systems are designed to foster – competitive multiparty elections – is precisely when the system starts to unravel!&lt;/p&gt;
-&lt;p&gt;But as Nicolaus Tideman pointed out a few years back, these two conditions actually point to an elegant solution. Why not just adopt &lt;strong&gt;Condorcet-Hare&lt;/strong&gt;?&lt;/p&gt;
-&lt;p&gt;Ordinary RCV has one nice advantage: it is straightforward to explain:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Rank the candidates in order from your most to least preferred. If one candidate receives a majority of first-place votes, they will be elected. Otherwise, the candidate with the fewest first-place votes will be eliminated until one candidate receives a majority.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;But Condorcet-Hare is not any more difficult to explain. Observe the difference:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Rank the candidates in order from your most to least preferred. If one candidate is &lt;em&gt;preferred by a majority of voters to any other candidate&lt;/em&gt;, they will be elected. Otherwise, the candidate with the fewest first-place votes will be eliminated until &lt;em&gt;there is a majority choice&lt;/em&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;There. Doesn’t seem harder to understand than vanilla RCV.&lt;/p&gt;
-&lt;p&gt;Another nice feature of Condorcet-Hare is that the full preference of B voters aren’t ignored.&lt;/p&gt;
-&lt;p&gt;Where Condorcet-Hare falls short compared to Vanilla RCV is on the &lt;a href=&#34;https://en.wikipedia.org/wiki/Later-no-harm_criterion&#34;&gt;“Later No Harm” criterion&lt;/a&gt;. Extremist voters may “bullet vote”, witholding their complete ranking in order to eliminate the moderate Condorcet winner in the first round. But this critique strikes me as underwhelming for two reasons. First, it would be a high-variance tactical ploy. If your candidate ends up being eliminated instead, you forfeit a chance to influence the winner. And second, why not just prohibit bullet voting? Require complete or partial rankings in order for a ballot to be valid.&lt;/p&gt;
-&lt;p&gt;But, &lt;a href=&#34;https://en.wikipedia.org/wiki/Independence_of_clones_criterion#Compliant_methods&#34;&gt;independence of clones criterion&lt;/a&gt;. That’s why I can’t support Borda. Candidates much more likely to be strategic than voters. AV fails strategic exit. Condorcet-Hare methods less likely to be susceptible to either strategic entry or exit. See &lt;a href=&#34;hybrids.pdf&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-&lt;hr /&gt;
-&lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;To see the intuition, label the candidates A, B, and C. Candidate A is the RCV winner, and Candidate C is the Condorcet winner. The only way that RCV could fail to select the Condorcet winner is if C is &lt;em&gt;eliminated&lt;/em&gt; during the first round. So long as each candidate has at least 25% of the first-place vote, shifting support from B to A will cause B to be eliminated before A receives a majority of first-place votes. Once B is eliminated, C wins (she must win a two way race with A; she’s the Condorcet candidate).&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
-     </item>
-   
-     <item>
        <title>Do Referenda Reduce Polarization?</title>
-       <link>/posts/swiss-polarization/</link>
+       <link>https://joeornstein.github.io/posts/swiss-polarization/</link>
        <pubDate>Tue, 21 Jul 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/swiss-polarization/</guid>
+       <guid>https://joeornstein.github.io/posts/swiss-polarization/</guid>
        <description>
 
 
@@ -176,10 +100,10 @@ git push origin master --force&lt;/code&gt;&lt;/pre&gt;
    
      <item>
        <title>Stacked Regression and Poststratification (SRP)</title>
-       <link>/posts/srp/</link>
+       <link>https://joeornstein.github.io/posts/srp/</link>
        <pubDate>Wed, 15 Jul 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/srp/</guid>
+       <guid>https://joeornstein.github.io/posts/srp/</guid>
        <description>
 
 
@@ -187,9 +111,9 @@ git push origin master --force&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;One way to mitigate this problem is to reweight the survey after the fact. A popular technique is &lt;strong&gt;Multilevel Regression and Poststratification (MRP)&lt;/strong&gt;. Basically, you fit a model to predict opinion based on the demographics and location of each survey respondent (multilevel regression). Then you compute a weighted average of those predictions to make an inference about the population of interest (poststratification).&lt;/p&gt;
 &lt;p&gt;My recent contribution to this literature is a generalization of MRP, called &lt;strong&gt;Stacked Regression and Poststratification (SRP)&lt;/strong&gt;. Instead of making predictions based on a multilevel regression model, you create an ensemble of diverse machine learning models through a technique called &lt;a href=&#34;https://joeornstein.github.io/publications/stacked_regression_and_poststratification.pdf&#34;&gt;stacking&lt;/a&gt;. Then poststratify as normal.&lt;/p&gt;
 &lt;p&gt;I animated some of the charts from the paper to illustrate the results. Here is an animated version of Figure 2, comparing of the performance of SRP, MRP, and disaggregation (i.e. just taking sample means) on a simulated dataset.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/posts/srp/index_files/figure-html/Animated%20Figure%202-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/srp/index_files/figure-html/Animated%20Figure%202-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;And here is an animated version of Figure 4, comparing the performance of MRP and SRP across 89 different empirical applications. SRP does better than MRP on average, but particularly for surveys with large samples.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/posts/srp/index_files/figure-html/Animated%20Figure%204-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/srp/index_files/figure-html/Animated%20Figure%204-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;div id=&#34;further-reading&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Further Reading&lt;/h2&gt;
 &lt;ul&gt;
@@ -210,10 +134,10 @@ git push origin master --force&lt;/code&gt;&lt;/pre&gt;
    
      <item>
        <title>Dot Density Animation</title>
-       <link>/posts/dot-density-animation/</link>
+       <link>https://joeornstein.github.io/posts/dot-density-animation/</link>
        <pubDate>Wed, 08 Jul 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/dot-density-animation/</guid>
+       <guid>https://joeornstein.github.io/posts/dot-density-animation/</guid>
        <description>
 
 
@@ -266,7 +190,7 @@ p &amp;lt;- ggplot() +
   theme(legend.position = &amp;quot;none&amp;quot;)
 
 p&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/posts/dot-density-animation/index_files/figure-html/sample%20points%20from%20the%20county%20shapefiles-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/dot-density-animation/index_files/figure-html/sample%20points%20from%20the%20county%20shapefiles-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In the map above, I overlay the dot map on a chloropleth of percent black residents by county. Note, it would look even better if I used a smaller geographic unit, like tracts or Census Block Groups. LA County, for instance, is just a big blob on this map. And the population around Miami appears to extend far into the Everglades swamp when it really hugs the coast a lot more. But since our COVID-19 data is also at the county level, let’s work with this.&lt;/p&gt;
 &lt;p&gt;Next, add red dots in proportion to the (smoothed) number of COVID-19 deaths in each county.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Fit LOESS (span parameter = 0.3) for each county and append predictions
@@ -318,7 +242,7 @@ animation &amp;lt;- p +
 
 # render the animation
 animate(animation, nframes = 350)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/posts/dot-density-animation/index_files/figure-html/add%20(smoothed)%20COVID-19%20cases-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/dot-density-animation/index_files/figure-html/add%20(smoothed)%20COVID-19%20cases-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;And there it is. More pretty, as promised.&lt;/p&gt;
 &lt;div id=&#34;further-reading&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Further Reading&lt;/h2&gt;
@@ -331,10 +255,10 @@ animate(animation, nframes = 350)&lt;/code&gt;&lt;/pre&gt;
    
      <item>
        <title>Newton</title>
-       <link>/posts/newton/</link>
+       <link>https://joeornstein.github.io/posts/newton/</link>
        <pubDate>Thu, 02 Jul 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/newton/</guid>
+       <guid>https://joeornstein.github.io/posts/newton/</guid>
        <description>
 
 
@@ -360,10 +284,10 @@ animate(animation, nframes = 350)&lt;/code&gt;&lt;/pre&gt;
    
      <item>
        <title>Makefiles for Dummies who use Windows</title>
-       <link>/posts/makefiles-dummies-windows/</link>
+       <link>https://joeornstein.github.io/posts/makefiles-dummies-windows/</link>
        <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/makefiles-dummies-windows/</guid>
+       <guid>https://joeornstein.github.io/posts/makefiles-dummies-windows/</guid>
        <description>
 
 
@@ -436,10 +360,10 @@ data/clean_data.RDS : R/clean_data.R data/raw_data.csv
    
      <item>
        <title>COVID-19 Animation</title>
-       <link>/posts/covid-animation/</link>
+       <link>https://joeornstein.github.io/posts/covid-animation/</link>
        <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/covid-animation/</guid>
+       <guid>https://joeornstein.github.io/posts/covid-animation/</guid>
        <description>
 
 
@@ -528,7 +452,7 @@ p &amp;lt;- ggplot(data = county_shp) +
   scale_fill_gradient(low = &amp;#39;white&amp;#39;, high = &amp;#39;black&amp;#39;)
 
 p&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/posts/covid-animation/index_files/figure-html/Load%20Shapefiles-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/covid-animation/index_files/figure-html/Load%20Shapefiles-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Then create a &lt;code&gt;ggplot2&lt;/code&gt; object with all of the time series data plotted on a map and animate it with the &lt;code&gt;gganimate::transition_states()&lt;/code&gt; function.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = data %&amp;gt;%
               left_join(county_centroids, by = &amp;#39;fips&amp;#39;) %&amp;gt;%
@@ -603,7 +527,7 @@ animation &amp;lt;- p +
 
 # render the animation
 animate(animation, nframes = 250) &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/posts/covid-animation/index_files/figure-html/smooth%20video-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/covid-animation/index_files/figure-html/smooth%20video-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
 &lt;p&gt;Much better. I have a few ideas for how to clean it up and make it more beautiful, but they will have to wait for &lt;a href=&#34;https://joeornstein.github.io/covid-animation-2&#34;&gt;another post&lt;/a&gt;.&lt;/p&gt;
 &lt;div id=&#34;futher-reading&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Futher Reading&lt;/h2&gt;
@@ -614,10 +538,10 @@ animate(animation, nframes = 250) &lt;/code&gt;&lt;/pre&gt;
    
      <item>
        <title>Measurement and the Back-Door Criterion</title>
-       <link>/posts/back-door-measurement/</link>
+       <link>https://joeornstein.github.io/posts/back-door-measurement/</link>
        <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/back-door-measurement/</guid>
+       <guid>https://joeornstein.github.io/posts/back-door-measurement/</guid>
        <description>
 
 
@@ -633,16 +557,16 @@ animate(animation, nframes = 250) &lt;/code&gt;&lt;/pre&gt;
    
      <item>
        <title>Spaced Repetition for Syllabi</title>
-       <link>/posts/spaced-repetition-for-syllabi/</link>
+       <link>https://joeornstein.github.io/posts/spaced-repetition-for-syllabi/</link>
        <pubDate>Fri, 05 Jun 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/spaced-repetition-for-syllabi/</guid>
+       <guid>https://joeornstein.github.io/posts/spaced-repetition-for-syllabi/</guid>
        <description>
 
 
 &lt;p&gt;We tell students that cramming the night before the test is a poor strategy. But of course it isn’t. Students don’t get good grades for effective long-term memory consolidation. They get good grades for scoring well on the exam &lt;em&gt;tomorrow&lt;/em&gt;. If instructors want to encourage long-term memory building, they need to incentivize it.&lt;/p&gt;
 &lt;p&gt;For fun and a pretty graph, I replicated a version of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Hermann_Ebbinghaus&#34;&gt;Ebbinghaus experiment&lt;/a&gt; on forgetting. I started with a list of 100 randomly generated license plate numbers and attempted to memorize them all.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; To faithfully simulate cramming before the exam, I studied the list for about two hours the night before the first test, with frequent distraction from video games and small children. Here’s how I fared on subsequent tests:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/posts/spaced-repetition-for-syllabi/index_files/figure-html/plot%20forgetting%20curve-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/spaced-repetition-for-syllabi/index_files/figure-html/plot%20forgetting%20curve-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The curve is not exactly exponential decay, but it’s decay nonetheless. I remembered more than I would have expected on Day 1, and forgot about 30% of the license plates within a week. No doubt I would have lost more if not for the intermittent reinforcement of the tests themselves. And now I have about two dozen fake license plate numbers permanently taking up space in long-term memory. Great!&lt;/p&gt;
 &lt;p&gt;If instead of cramming I had used something like &lt;a href=&#34;https://www.gwern.net/Spaced-repetition&#34;&gt;spaced repetition&lt;/a&gt;, I’m sure I would have remembered many more license plates. See Nicky Case’s fantastic &lt;a href=&#34;https://ncase.me/remember/&#34;&gt;explorable explanation&lt;/a&gt; for a guided tour to spaced repetition, but in a nutshell it works like this. Take a bunch of items you want to remember, and test yourself at varying intervals. If you successfully remember an item, increase the interval until the next test. If you fail, decrease the interval. That way you test the each item when you’re most in danger of forgetting it.&lt;/p&gt;
 &lt;p&gt;The two key elements of spaced repetition are (a) active recall rather than passive studying, and (b) spacing out study sessions. To design a course that leverages spaced repetition, consider the following ideas.&lt;/p&gt;
@@ -690,10 +614,10 @@ animate(animation, nframes = 250) &lt;/code&gt;&lt;/pre&gt;
    
      <item>
        <title>Fall Semester 2020</title>
-       <link>/posts/fall-semester-2020/</link>
+       <link>https://joeornstein.github.io/posts/fall-semester-2020/</link>
        <pubDate>Tue, 26 May 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/fall-semester-2020/</guid>
+       <guid>https://joeornstein.github.io/posts/fall-semester-2020/</guid>
        <description>
 
 
@@ -703,13 +627,13 @@ animate(animation, nframes = 250) &lt;/code&gt;&lt;/pre&gt;
 &lt;h3&gt;Keep classes small&lt;/h3&gt;
 &lt;p&gt;It’s not a coincidence that so many COVID-19 infections have been traced to large, indoor &lt;a href=&#34;https://www.nytimes.com/2020/03/30/us/coronavirus-funeral-albany-georgia.html&#34;&gt;super-spreader&lt;/a&gt; &lt;a href=&#34;https://www.nytimes.com/2020/04/12/us/coronavirus-biogen-boston-superspreader.html&#34;&gt;events&lt;/a&gt;. That’s because large gatherings of people simultaneously increase two quantities: the expected number of infected individuals in attendance &lt;em&gt;and&lt;/em&gt; the total number of person-to-person contacts.&lt;/p&gt;
 &lt;p&gt;In a group of size &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;, the probability that at least one person is infected = &lt;span class=&#34;math inline&#34;&gt;\(1 - (1-p)^n\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; is the population prevalence. Here’s what that function looks like for a few values of &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/posts/fall-semester-2020/index_files/figure-html/Probability%20Curve-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/fall-semester-2020/index_files/figure-html/Probability%20Curve-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;It’s hard to say what the overall prevalence of the virus will be in the fall. Depending on your assumptions, a 300-person lecture hall is either virtually guaranteed to have someone infected with the virus, or maybe has a 1-in-4 chance. Smaller seminar-style classes, on the other hand, are much more likely to be virus-free regardless of overall prevalence.&lt;/p&gt;
 &lt;p&gt;The rate at which a virus spreads is proportional to the number of &lt;em&gt;discordant contacts&lt;/em&gt; (contacts between an infected individual and a susceptible individual). This number scales quadratically with the size of a gathering.&lt;/p&gt;
 &lt;p&gt;Expected Number Infected: &lt;span class=&#34;math inline&#34;&gt;\(np\)&lt;/span&gt;&lt;br /&gt;
 Expected Number Susceptible: &lt;span class=&#34;math inline&#34;&gt;\((1-p)n\)&lt;/span&gt;&lt;br /&gt;
 Expected Number of Discordant Contacts: &lt;span class=&#34;math inline&#34;&gt;\(p(1-p)n^2\)&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/posts/fall-semester-2020/index_files/figure-html/Discordant%20Contacts-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/fall-semester-2020/index_files/figure-html/Discordant%20Contacts-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;All of which is to say that when you go from a 30-student seminar to a 300-student lecture hall, you don’t get a tenfold increase in virus spread. You get a &lt;strong&gt;hundredfold&lt;/strong&gt; increase. You can replace that lecture class with ten seminars and lower the rate of viral spread by 90%.&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; And hey, you might even &lt;a href=&#34;http://www.cwsei.ubc.ca/SEI_research/files/Wieman-Change_Sept-Oct_2007.pdf&#34;&gt;improve&lt;/a&gt; &lt;a href=&#34;https://www.insidehighered.com/quicktakes/2018/06/29/class-size-matters&#34;&gt;learning&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The x-axis on that last figure cuts off at 300, because I expect the model will start to break down a bit for larger crowds where you can’t assume random mixing. I’ll leave the 100,000 person football stadium as an exercise for the reader…&lt;/p&gt;
 &lt;/div&gt;
@@ -725,10 +649,10 @@ Expected Number of Discordant Contacts: &lt;span class=&#34;math inline&#34;&gt;
    
      <item>
        <title>The Contact Paradox</title>
-       <link>/posts/the-contact-paradox/</link>
+       <link>https://joeornstein.github.io/posts/the-contact-paradox/</link>
        <pubDate>Tue, 12 May 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/the-contact-paradox/</guid>
+       <guid>https://joeornstein.github.io/posts/the-contact-paradox/</guid>
        <description>
 
 
@@ -736,7 +660,7 @@ Expected Number of Discordant Contacts: &lt;span class=&#34;math inline&#34;&gt;
 &lt;!-- ***Attention Conservation Notice:*** *The following post describes an agent-based epidemiological model demonstrating that simple contact tracing strictly outperforms mass random testing. If you already believe this without a model, you may skip the exposition. Maybe just look at the pretty charts.* --&gt;
 &lt;!-- --- --&gt;
 &lt;p&gt;The &lt;a href=&#34;https://en.wikipedia.org/wiki/Friendship_paradox&#34;&gt;Friendship Paradox&lt;/a&gt; states that, on average, your friends have more friends than you do. (It’s not your fault. It’s just a property non-random sampling on networks.) Note that in the network below only agent 3 is more popular than his friends.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/posts/the-contact-paradox/index_files/figure-html/plot%20graph-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/the-contact-paradox/index_files/figure-html/plot%20graph-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The epidemiological corollary to this rule is that &lt;em&gt;your contacts have more contacts than you&lt;/em&gt;. We can use this fact to help identify and isolate “super-spreaders” during an epidemic, maximizing the effectiveness of the tests we have available.&lt;/p&gt;
 &lt;div id=&#34;model-assumptions&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Model Assumptions&lt;/h2&gt;
@@ -779,10 +703,10 @@ Expected Number of Discordant Contacts: &lt;span class=&#34;math inline&#34;&gt;
    
      <item>
        <title>Blogdown Features</title>
-       <link>/posts/blogdown-features/</link>
+       <link>https://joeornstein.github.io/posts/blogdown-features/</link>
        <pubDate>Sun, 10 May 2020 00:00:00 +0000</pubDate>
        
-       <guid>/posts/blogdown-features/</guid>
+       <guid>https://joeornstein.github.io/posts/blogdown-features/</guid>
        <description>
 
 
