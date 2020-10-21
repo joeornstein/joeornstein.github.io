@@ -29,3 +29,5 @@ In this class, students learn how to confidently work with data using `R` and `R
 6. [Probability and Inference](slides/07-Probability/07-Probability.html)
 
 7. [Hypothesis Testing](slides/07-Probability/08-Hypothesis-Testing.html)
+
+8. [Correlation](slides/09-Correlation/09-Correlation.html)
