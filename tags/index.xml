@@ -19,15 +19,14 @@
        <description>
 
 
-&lt;p&gt;When using &lt;a href=&#34;bryan-2017.pdf&#34;&gt;GitHub&lt;/a&gt; to manage changes to analyses/manuscripts/slides, my most frustrating frustration occurs when I forget to add a large (&amp;gt;50MB) data file to my &lt;code&gt;.gitignore&lt;/code&gt;. I merrily type –&lt;/p&gt;
+&lt;p&gt;When using &lt;a href=&#34;bryan-2017.pdf&#34;&gt;GitHub&lt;/a&gt; to manage changes to analyses, manuscripts, and slides, my most frequent frustration occurs when I forget to add a large (&amp;gt;50MB) data file to my &lt;code&gt;.gitignore&lt;/code&gt;. I merrily type –&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;git add .
 git commit -m &amp;quot;unsuspecting commit message&amp;quot;
 git push&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;– and GitHub explodes because of a file size limit.&lt;/p&gt;
 &lt;p&gt;The maddening bit is that you can’t just retroactively tell &lt;code&gt;git&lt;/code&gt; to ignore the file, because it’s already tracked and in your history. So I set out to find a sequence of commands that would effectively (and quickly) undo the addition of the large file.&lt;/p&gt;
 &lt;p&gt;After much searching, the winning solution comes from &lt;a href=&#34;https://dalibornasevic.com/posts/2-permanently-remove-files-and-folders-from-a-git-repository&#34;&gt;Dalibor Nasevic&lt;/a&gt;, abbreviated below:&lt;/p&gt;
-&lt;pre class=&#34;git&#34;&gt;&lt;code&gt;git filter-branch --tree-filter &amp;#39;rm -rf PATH-TO-BIG-FILE&amp;#39; HEAD
-
+&lt;pre&gt;&lt;code&gt;git filter-branch --tree-filter &amp;#39;rm -rf PATH-TO-BIG-FILE&amp;#39; HEAD
 git push origin master --force&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The first line recursively searches through your commits to find and remove the big file. The second line “force pushes” the revision to GitHub.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;force-push.png&#34; /&gt;&lt;/p&gt;
@@ -88,7 +87,7 @@ git push origin master --force&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;This claim strikes me as odd for two reasons.&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;&lt;p&gt;If adding veto points reduced polarization by forcing compromise, then one would expect the United States — a system riddled with veto players, referenda, and multiple levels of government — to be much less polarized than it is. And Western European parliamentary systems to be much more polarized than they are. As best as I can tell, there is no such empirical relationship.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;The premise itself — that Switzerland has been driven away from political polarization — just doesn’t seem to be true. As &lt;a href=&#34;cross-polar.pdf&#34;&gt;Boxell, Gentzkow, and Shapiro (2020)&lt;/a&gt; show, affective polarization is Switzerland is roughly at the same level as the United States, and has been trending upward since the 1970s. Compare that with other Western European countries, where affective polarization is, by their measure, &lt;em&gt;declining&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The premise itself — that Switzerland has been driven away from political polarization — just doesn’t seem to be true. As &lt;a href=&#34;cross-polar.pdf&#34;&gt;Boxell, Gentzkow, and Shapiro (2020)&lt;/a&gt; show, affective polarization in Switzerland is roughly at the same level as the United States, and has been trending upward since the 1970s. Compare that with other Western European countries, where affective polarization is, by their measure, &lt;em&gt;declining&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&lt;img src=&#34;img/cross-polar.png&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;There are many things to admire in the Swiss political system, but being uniquely depolarizing does not seem to be one of them.&lt;/p&gt;
