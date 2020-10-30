@@ -168,3 +168,8 @@ ggplot(data = swing_states) +
 ```
 
 My point is that "the polls were wrong in 2016 and could be wrong in 2020" is a weaker argument than you need to believe that Trump will win in 2020. Instead, you need to believe that the 2020 polls are (a) wrong in the same direction as they were in 2016 and (b) actually significantly worse in almost every state, despite the concerted efforts of pollsters to not make the same mistakes they did four years ago.
+
+
+## Further Reading
+
+[Matt Yglesias](https://www.vox.com/21524703/biden-trump-poll-lead-2016)
