@@ -6,10 +6,238 @@
    <description>Recent content in Data Science on Joseph T. Ornstein</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2020 - Joseph T. Ornstein</copyright>
-   <lastBuildDate>Mon, 21 Sep 2020 00:00:00 +0000</lastBuildDate>
+   <lastBuildDate>Mon, 02 Nov 2020 00:00:00 +0000</lastBuildDate>
    
        <atom:link href="https://joeornstein.github.io/categories/data-science/index.xml" rel="self" type="application/rss+xml" />
    
+   
+     <item>
+       <title>Poll Wrangling</title>
+       <link>https://joeornstein.github.io/posts/poll-wrangling/</link>
+       <pubDate>Mon, 02 Nov 2020 00:00:00 +0000</pubDate>
+       
+       <guid>https://joeornstein.github.io/posts/poll-wrangling/</guid>
+       <description>
+
+
+&lt;p&gt;In my &lt;a href=&#34;https://joeornstein.github.io/courses/intro-political-methodology/&#34;&gt;Intro to Political Methodology&lt;/a&gt; class, we wrote some &lt;code&gt;R&lt;/code&gt; code to wrangle and visualize the presidential polling data aggregated by &lt;a href=&#34;https://data.fivethirtyeight.com/&#34;&gt;fivethirtyeight&lt;/a&gt;. Here’s a modified version of what we produced.&lt;/p&gt;
+&lt;div id=&#34;import-and-tidy&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Import and Tidy&lt;/h2&gt;
+&lt;p&gt;First, here’s a script to load and tidy the polling data from 2016 and 2020. We’ll keep only the high-quality polls of likely voters (rated B- or higher by fivethirtyeight) conducted since July.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# 2016 polls
+polls_2016 &amp;lt;- read_csv(&amp;#39;http://projects.fivethirtyeight.com/general-model/president_general_polls_2016.csv&amp;#39;) %&amp;gt;% 
+  # reformat dates
+  mutate(end_date = as.Date(enddate, format = &amp;#39;%m/%d/%Y&amp;#39;)) %&amp;gt;% 
+  # keep recent high-quality polls of likely voters
+  filter(end_date &amp;gt; &amp;#39;2016-07-01&amp;#39;,
+         type == &amp;#39;now-cast&amp;#39;, # remove duplicates for different model versions
+         grade %in% c(&amp;#39;A&amp;#39;, &amp;#39;A-&amp;#39;, &amp;#39;A+&amp;#39;, &amp;#39;B&amp;#39;, &amp;#39;B-&amp;#39;, &amp;#39;B+&amp;#39;),
+         population == &amp;#39;lv&amp;#39;)
+
+# 2020 polls from: https://github.com/fivethirtyeight/data/tree/master/polls
+polls_2020 &amp;lt;- read_csv(&amp;#39;https://projects.fivethirtyeight.com/polls-page/president_polls.csv&amp;#39;) %&amp;gt;% 
+  #keep the variables we want
+  select(question_id, poll_id, state,
+         pollster_id, pollster, fte_grade,
+         sample_size, population, 
+         end_date, candidate_id, candidate_name, pct) %&amp;gt;% 
+  # reformat dates
+  mutate(end_date = as.Date(end_date, format = &amp;#39;%m/%d/%y&amp;#39;)) %&amp;gt;% 
+  # keep recent high-quality polls of likely voters (Joe and Donny only)
+  filter(candidate_id %in% c(13256, 13254),
+         end_date &amp;gt; &amp;#39;2020-07-01&amp;#39;,
+         fte_grade %in% c(&amp;#39;A&amp;#39;,&amp;#39;A-&amp;#39;,&amp;#39;A/B&amp;#39;,&amp;#39;A+&amp;#39;,
+                          &amp;#39;B&amp;#39;, &amp;#39;B-&amp;#39;, &amp;#39;B/C&amp;#39;, &amp;#39;B+&amp;#39;),
+         population == &amp;#39;lv&amp;#39;,
+         # drop the Morning Consult daily tracker; a bit duplicative
+         pollster != &amp;quot;Morning Consult&amp;quot;) %&amp;gt;% 
+  # pivot the percentage into their own columns
+  pivot_wider(id_cols = question_id:end_date,
+              names_from = candidate_name, 
+              values_from = pct) %&amp;gt;% 
+  rename(&amp;#39;biden&amp;#39; = `Joseph R. Biden Jr.`,
+         &amp;#39;trump&amp;#39; = `Donald Trump`) %&amp;gt;% 
+  # for polls with multiple questions, take the average value across questions
+  group_by(poll_id, state,
+           pollster_id, pollster, fte_grade,
+           sample_size, population, 
+           end_date) %&amp;gt;% 
+  summarize(biden = mean(biden),
+            trump = mean(trump))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next, bring in a dataset of state-level election results from the &lt;a href=&#34;https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/42MVDX&#34;&gt;MIT Election Data + Science Lab&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;results &amp;lt;- read_csv(&amp;#39;data/1976-2016-president.csv&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;visualize&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Visualize&lt;/h2&gt;
+&lt;p&gt;Now let’s create some visualizations to compare the 2016 presidential election polls with those from this year. Start by merging the two datasets together.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;polls &amp;lt;- polls_2016 %&amp;gt;%
+  mutate(cycle = 2016,
+         democrat = rawpoll_clinton,
+         republican = rawpoll_trump,
+         # add four years so they plot on the same x-axis scale
+         end_date = end_date + years(4)) %&amp;gt;% 
+  select(cycle, end_date, state, democrat, republican) %&amp;gt;% 
+  bind_rows(polls_2020 %&amp;gt;% 
+              ungroup %&amp;gt;% 
+              mutate(cycle = 2020,
+                     democrat = biden,
+                     republican = trump) %&amp;gt;% 
+              select(cycle, end_date, state, democrat, republican))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Create a function to plot the 2016 and 2020 polls side-by-side for a given state.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls &amp;lt;- function(state_to_plot, start_date = &amp;#39;09-01&amp;#39;){
+  
+  # get the 2016 results
+  republican_2016 &amp;lt;- results %&amp;gt;% 
+    filter(year == 2016, 
+           state %in% state_to_plot,
+           candidate == &amp;#39;Trump, Donald J.&amp;#39;) %&amp;gt;% 
+    mutate(pct = candidatevotes / totalvotes * 100) %&amp;gt;% 
+    pull(pct)
+  
+  democrat_2016 &amp;lt;- results %&amp;gt;% 
+    filter(year == 2016, 
+           state %in% state_to_plot,
+           candidate == &amp;#39;Clinton, Hillary&amp;#39;) %&amp;gt;% 
+    mutate(pct = candidatevotes / totalvotes * 100) %&amp;gt;% 
+    pull(pct)
+  
+  polls %&amp;gt;% 
+    filter(state == state_to_plot,
+           end_date &amp;gt; paste0(&amp;#39;2020-&amp;#39;, start_date)) %&amp;gt;% 
+    ggplot() +
+    geom_point(mapping = aes(x=end_date, y=democrat), 
+               color = &amp;#39;blue&amp;#39;, alpha = 0.2) +
+    geom_smooth(mapping = aes(x=end_date, y=democrat), 
+                color = &amp;#39;blue&amp;#39;, se = FALSE, method = &amp;#39;loess&amp;#39;) +
+    geom_point(mapping = aes(x=end_date, y=republican),
+               color = &amp;#39;red&amp;#39;, alpha = 0.2) +
+    geom_smooth(mapping = aes(x=end_date, y=republican),
+                color = &amp;#39;red&amp;#39;, se = FALSE, method = &amp;#39;loess&amp;#39;) +
+    facet_grid(~cycle) +
+    theme_bw() +
+    labs(x = &amp;#39;Poll End Date&amp;#39;, y = &amp;#39;Raw Polling Percentage&amp;#39;,
+         title = paste0(state_to_plot, &amp;#39; Polls&amp;#39;)) +
+    geom_hline(yintercept = republican_2016, color = &amp;#39;red&amp;#39;,
+               linetype = &amp;#39;dashed&amp;#39;, size = 1) +
+    geom_hline(yintercept = democrat_2016, color = &amp;#39;blue&amp;#39;,
+               linetype = &amp;#39;dashed&amp;#39;, size = 1)
+  
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;the-blue-wall&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The Blue Wall&lt;/h3&gt;
+&lt;p&gt;Let’s start by looking at the good old &lt;a href=&#34;https://fivethirtyeight.com/features/there-is-no-blue-wall/&#34;&gt;Blue Wall&lt;/a&gt; states: Wisconsin, Michigan, and Pennsylvania. The horizontal dashed lines mark the 2016 election result.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;Wisconsin&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/wisconsin-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;In Wisconsin, the size of Biden’s polling lead is roughly the same as Clinton’s was in 2016. The major difference is the intercept shift, reflecting a much smaller share of undecided voters. Whereas Clinton never polled higher than 50% among badgers, Biden has pretty consistenly averaged higher than 50%. That matters, because even if undecideds break strongly to Trump as they did in 2016, that alone wouldn’t produce a polling error big enough for him to win there.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;Michigan&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/michigan-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;In 2016, the Michigan polls tightened significantly in the final weeks. Contrary to &lt;a href=&#34;https://nymag.com/intelligencer/2016/11/donald-trump-is-not-going-to-win-michigan.html&#34;&gt;some protestations&lt;/a&gt;, the polls really suggested a squeaker, and Trump won by a razor-thin margin. It is difficult to look at the 2020 chart – where he has never led a single poll – and conclude that he can pull off a similar result this year.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;Pennsylvania&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/pennsylvania-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Pennsylvania is the state Trump &lt;a href=&#34;https://fivethirtyeight.com/features/is-joe-biden-toast-if-he-loses-pennsylvania/&#34;&gt;needs to win&lt;/a&gt; this year. He can plot a plausible course to 270 without Michigan and Wisconsin, but not Pennsylvania. And while the margin is closer than in the other two states, the general pattern is the same. The 2016 polls were very close in the final week, and Clinton never polled greater than 50%. In 2020, Trump needs an even bigger polling error in his favor, without the benefit of a pool of undecided voters.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-south-and-southwest&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The South and Southwest&lt;/h3&gt;
+&lt;p&gt;Next, a few states where Clinton was not likely to win, but Biden might be:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;Georgia&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/Georgia-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;In Georgia, Trump won basically by the margin predicted by the polls in 2016. Today, everything is within the margin of error. I have nothing prognosticatory to say here. It’s a complete toss-up.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;Arizona&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/Arizona-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;North Carolina&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/Arizona-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;Florida&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/Arizona-3.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Arizona, Florida, and North Carolina all kind of look like the Midwestern states, except with much tighter margins. Biden has consistently led in the polling average, but by a margin that would not require a surprising polling error to surmount.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-few-other-states&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;A Few Other States&lt;/h3&gt;
+&lt;p&gt;These I present without comment, except that why are there so few quality polls in these states this year? It would be nice to have more data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;Nevada&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/other%20states-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;Minnesota&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/other%20states-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;Virginia&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/other%20states-3.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;Alaska&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/other%20states-4.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;putting-it-all-together&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Putting It All Together&lt;/h2&gt;
+&lt;p&gt;So what would Trump need to cobble together a win tomorrow? The following is nothing nearly as sophisticated as Nate Silver’s recency- and quality-weighted moving average. I’m just going to take the mean of the last three weeks of high-quality polls, and compare the polling miss in 2016 with Biden’s margin today.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# function to get the polling margin in 2016
+polling_margin_2016 &amp;lt;- function(data, state_name, num_weeks = 2){
+  data %&amp;gt;% 
+    filter(end_date &amp;gt; ymd(&amp;#39;2016-11-08&amp;#39;) - weeks(num_weeks),
+           state == state_name) %&amp;gt;% 
+    mutate(clinton_margin = rawpoll_clinton - rawpoll_trump) %&amp;gt;% 
+    pull(clinton_margin) %&amp;gt;% 
+    mean
+}
+
+# function to get the polling margin in 2020
+polling_margin_2020 &amp;lt;- function(data, state_name, num_weeks = 2){
+  data %&amp;gt;% 
+    filter(end_date &amp;gt; ymd(&amp;#39;2020-11-03&amp;#39;) - weeks(num_weeks),
+           state == state_name) %&amp;gt;%
+    mutate(biden_margin = biden - trump) %&amp;gt;% 
+    pull(biden_margin) %&amp;gt;%
+    mean
+}
+
+# get the results from 2020
+results_2016 &amp;lt;- results %&amp;gt;% 
+  filter(year == 2016,
+         candidate %in% c(&amp;#39;Trump, Donald J.&amp;#39;,&amp;#39;Clinton, Hillary&amp;#39;)) %&amp;gt;%
+  group_by(state, candidate, totalvotes) %&amp;gt;%
+  summarize(candidatevotes = sum(candidatevotes)) %&amp;gt;% 
+  mutate(pct = candidatevotes / totalvotes * 100) %&amp;gt;% 
+  select(state, candidate, pct) %&amp;gt;% 
+  pivot_wider(names_from = candidate, values_from = pct) %&amp;gt;%
+  mutate(clinton_actual_margin_2016 = `Clinton, Hillary` - `Trump, Donald J.`) %&amp;gt;% 
+  select(state, clinton_actual_margin_2016)
+
+# compute the polling error for key swing states, merge with 2020 polling margin
+swing_states &amp;lt;- tibble(state = c(&amp;#39;Pennsylvania&amp;#39;, &amp;#39;Wisconsin&amp;#39;, &amp;#39;Michigan&amp;#39;,
+                                 &amp;#39;Florida&amp;#39;, &amp;#39;North Carolina&amp;#39;, &amp;#39;Arizona&amp;#39;,
+                                 &amp;#39;Ohio&amp;#39;, &amp;#39;Virginia&amp;#39;, &amp;#39;Nevada&amp;#39;, &amp;#39;Georgia&amp;#39;,
+                                 &amp;#39;Iowa&amp;#39;, &amp;#39;Minnesota&amp;#39;)) %&amp;gt;% 
+  mutate(clinton_polling_margin_2016 = 
+           map(state, ~polling_margin_2016(data = polls_2016,
+                                           state_name = .x,
+                                           num_weeks = 3)) %&amp;gt;% 
+           unlist,
+         biden_polling_margin_2020 = 
+           map(state, ~polling_margin_2020(data = polls_2020,
+                                           state_name = .x,
+                                           num_weeks = 3)) %&amp;gt;% 
+           unlist) %&amp;gt;% 
+  left_join(results_2016, by = &amp;#39;state&amp;#39;) %&amp;gt;% 
+  # join with state abbreviations for visualization
+  left_join(tibble(state.abb, state.name) %&amp;gt;% 
+              rename(&amp;#39;state&amp;#39; = state.name),
+            by = &amp;#39;state&amp;#39;) %&amp;gt;% 
+  mutate(polling_error_2016 = clinton_actual_margin_2016 - clinton_polling_margin_2016)
+
+ggplot(data = swing_states) +
+  geom_text(mapping = aes(x = -polling_error_2016, 
+                          y = biden_polling_margin_2020,
+                          label = state.abb)) +
+  theme_bw() + 
+  geom_abline(intercept = 0, slope = 1, linetype = &amp;#39;dashed&amp;#39;) +
+  labs(x = &amp;#39;Polling Error in 2016&amp;#39;, 
+       y = &amp;#39;Polling Error Trump Needs in 2020&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/polling%20errors-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The figure paints a difficult, if not impossible, challenge for Trump to overcome. Assume, for a moment, that he wins all the states below the dotted line. All that would require is a modest polling error in his favor, less than the error he benefited from in 2016. But even in that universe, Trump still needs a bigger-than-2016 polling error in both Florida &lt;em&gt;and&lt;/em&gt; Pennsylvania to get to 270.&lt;/p&gt;
+&lt;p&gt;Saying “the polls were wrong in 2016 and could be wrong in 2020” is a weaker argument than you need to believe that Trump will win in 2020. Instead, the 2020 polls must be (a) wrong in the same direction as they were in 2016 and (b) significantly wronger-than-2016 in both Pennsylvania and Florida.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;further-reading&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Further Reading&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.vox.com/21524703/biden-trump-poll-lead-2016&#34;&gt;Matt Yglesias&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+     </item>
    
      <item>
        <title>git undo</title>

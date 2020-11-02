@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://joeornstein.github.io/posts/</loc>
-    <lastmod>2020-09-21T00:00:00+00:00</lastmod>
+    <lastmod>2020-11-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -28,13 +28,33 @@
   </url>
   
   <url>
+    <loc>https://joeornstein.github.io/categories/</loc>
+    <lastmod>2020-11-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://joeornstein.github.io/courses/</loc>
-    <lastmod>2020-10-21T00:00:00+00:00</lastmod>
+    <lastmod>2020-11-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://joeornstein.github.io/categories/data-science/</loc>
+    <lastmod>2020-11-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://joeornstein.github.io/categories/elections/</loc>
+    <lastmod>2020-11-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://joeornstein.github.io/posts/poll-wrangling/</loc>
+    <lastmod>2020-11-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://joeornstein.github.io/courses/intro-political-methodology/</loc>
-    <lastmod>2020-10-21T00:00:00+00:00</lastmod>
+    <lastmod>2020-11-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -45,16 +65,6 @@
   <url>
     <loc>https://joeornstein.github.io/software/srp/</loc>
     <lastmod>2020-10-09T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://joeornstein.github.io/categories/</loc>
-    <lastmod>2020-09-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://joeornstein.github.io/categories/data-science/</loc>
-    <lastmod>2020-09-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
