@@ -28,12 +28,17 @@
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/categories/</loc>
-    <lastmod>2020-11-02T00:00:00+00:00</lastmod>
+    <loc>https://joeornstein.github.io/courses/</loc>
+    <lastmod>2020-11-11T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://joeornstein.github.io/courses/</loc>
+    <loc>https://joeornstein.github.io/courses/intro-political-methodology/</loc>
+    <lastmod>2020-11-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://joeornstein.github.io/categories/</loc>
     <lastmod>2020-11-02T00:00:00+00:00</lastmod>
   </url>
   
@@ -49,11 +54,6 @@
   
   <url>
     <loc>https://joeornstein.github.io/posts/poll-wrangling/</loc>
-    <lastmod>2020-11-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://joeornstein.github.io/courses/intro-political-methodology/</loc>
     <lastmod>2020-11-02T00:00:00+00:00</lastmod>
   </url>
   
