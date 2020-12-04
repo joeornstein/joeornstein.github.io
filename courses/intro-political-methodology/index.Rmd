@@ -6,9 +6,10 @@ date: "`r Sys.Date()`"
 meta: "false"
 ---
 
+In this class, students learn how to confidently work with data using `R` and `RStudio`. Along the way we introduce the fundamental mathematics behind the tools we use in empirical social science, including optimization, matrix algebra, probability, and inference. 
+
 [![](syllabus/img/certainty.png)](https://xkcd.com/263/)
 
-In this class, students learn how to confidently work with data using `R` and `RStudio`. Along the way we introduce the fundamental mathematics behind the tools we use in empirical social science, including optimization, matrix algebra, probability, and inference. 
 
 ## Syllabus
 

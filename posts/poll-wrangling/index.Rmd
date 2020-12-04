@@ -6,7 +6,7 @@ slug: poll-wrangling
 categories:
  - Data Science
  - Elections
-tags: []
+tags:  []
 images: []
 draft: false
 ---
