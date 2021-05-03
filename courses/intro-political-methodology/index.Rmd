@@ -1,14 +1,15 @@
 ---
-title: "Intro to Political Methodology (POLS 7012)"
+title: "POLS 7012: Intro to Political Methodology"
 subtitle: "University of Georgia"
 author: "Joseph T. Ornstein"
 date: "`r Sys.Date()`"
 meta: "false"
 ---
 
+In this class, students learn how to confidently work with data using `R` and `RStudio`. Along the way we introduce the fundamental mathematics behind the tools we use in empirical social science, including optimization, matrix algebra, probability, and inference. 
+
 [![](syllabus/img/certainty.png)](https://xkcd.com/263/)
 
-In this class, students learn how to confidently work with data using `R` and `RStudio`. Along the way we introduce the fundamental mathematics behind the tools we use in empirical social science, including optimization, matrix algebra, probability, and inference. 
 
 ## Syllabus
 
@@ -31,3 +32,5 @@ In this class, students learn how to confidently work with data using `R` and `R
 7. [Hypothesis Testing](slides/07-Probability/08-Hypothesis-Testing.html)
 
 8. [Correlation](slides/09-Correlation/09-Correlation.html)
+
+9. [Prediction](slides/10-Prediction/10-Prediction.html)
