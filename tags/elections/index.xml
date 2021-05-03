@@ -1,0 +1,1035 @@
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+ <channel>
+   <title>Elections on Joseph T. Ornstein</title>
+   <link>/tags/elections/</link>
+   <description>Recent content in Elections on Joseph T. Ornstein</description>
+   <generator>Hugo -- gohugo.io</generator>
+   <copyright>Copyright &amp;copy; 2020 - Joseph T. Ornstein</copyright>
+   <lastBuildDate>Mon, 02 Nov 2020 00:00:00 +0000</lastBuildDate>
+   
+       <atom:link href="/tags/elections/index.xml" rel="self" type="application/rss+xml" />
+   
+   
+     <item>
+       <title>Poll Wrangling</title>
+       <link>/posts/poll-wrangling/</link>
+       <pubDate>Mon, 02 Nov 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/poll-wrangling/</guid>
+       <description>
+
+
+&lt;p&gt;In my &lt;a href=&#34;https://joeornstein.github.io/courses/intro-political-methodology/&#34;&gt;Intro to Political Methodology&lt;/a&gt; class, we wrote some &lt;code&gt;R&lt;/code&gt; code to wrangle and visualize the presidential polling data aggregated by &lt;a href=&#34;https://data.fivethirtyeight.com/&#34;&gt;fivethirtyeight&lt;/a&gt;. Here’s a modified version of what we produced.&lt;/p&gt;
+&lt;div id=&#34;import-and-tidy&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Import and Tidy&lt;/h2&gt;
+&lt;p&gt;First, here’s a script to load and tidy the polling data from 2016 and 2020. We’ll keep only the high-quality polls of likely voters (rated B- or higher by fivethirtyeight) conducted since July.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# 2016 polls
+polls_2016 &amp;lt;- read_csv(&amp;#39;http://projects.fivethirtyeight.com/general-model/president_general_polls_2016.csv&amp;#39;) %&amp;gt;% 
+  # reformat dates
+  mutate(end_date = as.Date(enddate, format = &amp;#39;%m/%d/%Y&amp;#39;)) %&amp;gt;% 
+  # keep recent high-quality polls of likely voters
+  filter(end_date &amp;gt; &amp;#39;2016-07-01&amp;#39;,
+         type == &amp;#39;now-cast&amp;#39;, # remove duplicates for different model versions
+         grade %in% c(&amp;#39;A&amp;#39;, &amp;#39;A-&amp;#39;, &amp;#39;A+&amp;#39;, &amp;#39;B&amp;#39;, &amp;#39;B-&amp;#39;, &amp;#39;B+&amp;#39;),
+         population == &amp;#39;lv&amp;#39;)
+
+# 2020 polls from: https://github.com/fivethirtyeight/data/tree/master/polls
+polls_2020 &amp;lt;- read_csv(&amp;#39;https://projects.fivethirtyeight.com/polls-page/president_polls.csv&amp;#39;) %&amp;gt;% 
+  #keep the variables we want
+  select(question_id, poll_id, state,
+         pollster_id, pollster, fte_grade,
+         sample_size, population, 
+         end_date, candidate_id, candidate_name, pct) %&amp;gt;% 
+  # reformat dates
+  mutate(end_date = as.Date(end_date, format = &amp;#39;%m/%d/%y&amp;#39;)) %&amp;gt;% 
+  # keep recent high-quality polls of likely voters (Joe and Donny only)
+  filter(candidate_id %in% c(13256, 13254),
+         end_date &amp;gt; &amp;#39;2020-07-01&amp;#39;,
+         fte_grade %in% c(&amp;#39;A&amp;#39;,&amp;#39;A-&amp;#39;,&amp;#39;A/B&amp;#39;,&amp;#39;A+&amp;#39;,
+                          &amp;#39;B&amp;#39;, &amp;#39;B-&amp;#39;, &amp;#39;B/C&amp;#39;, &amp;#39;B+&amp;#39;),
+         population == &amp;#39;lv&amp;#39;,
+         # drop the Morning Consult daily tracker; a bit duplicative
+         pollster != &amp;quot;Morning Consult&amp;quot;) %&amp;gt;% 
+  # pivot the percentage into their own columns
+  pivot_wider(id_cols = question_id:end_date,
+              names_from = candidate_name, 
+              values_from = pct) %&amp;gt;% 
+  rename(&amp;#39;biden&amp;#39; = `Joseph R. Biden Jr.`,
+         &amp;#39;trump&amp;#39; = `Donald Trump`) %&amp;gt;% 
+  # for polls with multiple questions, take the average value across questions
+  group_by(poll_id, state,
+           pollster_id, pollster, fte_grade,
+           sample_size, population, 
+           end_date) %&amp;gt;% 
+  summarize(biden = mean(biden),
+            trump = mean(trump))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next, bring in a dataset of state-level election results from the &lt;a href=&#34;https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/42MVDX&#34;&gt;MIT Election Data + Science Lab&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;results &amp;lt;- read_csv(&amp;#39;data/1976-2016-president.csv&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;visualize&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Visualize&lt;/h2&gt;
+&lt;p&gt;Now let’s create some visualizations to compare the 2016 presidential election polls with those from this year. Start by merging the two datasets together.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;polls &amp;lt;- polls_2016 %&amp;gt;%
+  mutate(cycle = 2016,
+         democrat = rawpoll_clinton,
+         republican = rawpoll_trump,
+         # add four years so they plot on the same x-axis scale
+         end_date = end_date + years(4)) %&amp;gt;% 
+  select(cycle, end_date, state, democrat, republican) %&amp;gt;% 
+  bind_rows(polls_2020 %&amp;gt;% 
+              ungroup %&amp;gt;% 
+              mutate(cycle = 2020,
+                     democrat = biden,
+                     republican = trump) %&amp;gt;% 
+              select(cycle, end_date, state, democrat, republican))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Create a function to plot the 2016 and 2020 polls side-by-side for a given state.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls &amp;lt;- function(state_to_plot, start_date = &amp;#39;09-01&amp;#39;){
+  
+  # get the 2016 results
+  republican_2016 &amp;lt;- results %&amp;gt;% 
+    filter(year == 2016, 
+           state %in% state_to_plot,
+           candidate == &amp;#39;Trump, Donald J.&amp;#39;) %&amp;gt;% 
+    mutate(pct = candidatevotes / totalvotes * 100) %&amp;gt;% 
+    pull(pct)
+  
+  democrat_2016 &amp;lt;- results %&amp;gt;% 
+    filter(year == 2016, 
+           state %in% state_to_plot,
+           candidate == &amp;#39;Clinton, Hillary&amp;#39;) %&amp;gt;% 
+    mutate(pct = candidatevotes / totalvotes * 100) %&amp;gt;% 
+    pull(pct)
+  
+  polls %&amp;gt;% 
+    filter(state == state_to_plot,
+           end_date &amp;gt; paste0(&amp;#39;2020-&amp;#39;, start_date)) %&amp;gt;% 
+    ggplot() +
+    geom_point(mapping = aes(x=end_date, y=democrat), 
+               color = &amp;#39;blue&amp;#39;, alpha = 0.2) +
+    geom_smooth(mapping = aes(x=end_date, y=democrat), 
+                color = &amp;#39;blue&amp;#39;, se = FALSE, method = &amp;#39;loess&amp;#39;) +
+    geom_point(mapping = aes(x=end_date, y=republican),
+               color = &amp;#39;red&amp;#39;, alpha = 0.2) +
+    geom_smooth(mapping = aes(x=end_date, y=republican),
+                color = &amp;#39;red&amp;#39;, se = FALSE, method = &amp;#39;loess&amp;#39;) +
+    facet_grid(~cycle) +
+    theme_bw() +
+    labs(x = &amp;#39;Poll End Date&amp;#39;, y = &amp;#39;Raw Polling Percentage&amp;#39;,
+         title = paste0(state_to_plot, &amp;#39; Polls&amp;#39;)) +
+    geom_hline(yintercept = republican_2016, color = &amp;#39;red&amp;#39;,
+               linetype = &amp;#39;dashed&amp;#39;, size = 1) +
+    geom_hline(yintercept = democrat_2016, color = &amp;#39;blue&amp;#39;,
+               linetype = &amp;#39;dashed&amp;#39;, size = 1)
+  
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;div id=&#34;the-blue-wall&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The Blue Wall&lt;/h3&gt;
+&lt;p&gt;Let’s start by looking at the good old &lt;a href=&#34;https://fivethirtyeight.com/features/there-is-no-blue-wall/&#34;&gt;Blue Wall&lt;/a&gt; states: Wisconsin, Michigan, and Pennsylvania. The horizontal dashed lines mark the 2016 election result.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;Wisconsin&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/poll-wrangling/index_files/figure-html/wisconsin-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;In Wisconsin, the size of Biden’s polling lead is roughly the same as Clinton’s was in 2016. The major difference is the intercept shift, reflecting a much smaller share of undecided voters. Whereas Clinton never polled higher than 50% among badgers, Biden has pretty consistenly averaged higher than 50%. That matters, because even if undecideds break strongly to Trump as they did in 2016, that alone wouldn’t produce a polling error big enough for him to win there.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;Michigan&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/poll-wrangling/index_files/figure-html/michigan-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;In 2016, the Michigan polls tightened significantly in the final weeks. Contrary to &lt;a href=&#34;https://nymag.com/intelligencer/2016/11/donald-trump-is-not-going-to-win-michigan.html&#34;&gt;some protestations&lt;/a&gt;, the polls really suggested a squeaker, and Trump won by a razor-thin margin. It is difficult to look at the 2020 chart – where he has never led a single poll – and conclude that he can pull off a similar result this year.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;Pennsylvania&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/poll-wrangling/index_files/figure-html/pennsylvania-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Pennsylvania is the state Trump &lt;a href=&#34;https://fivethirtyeight.com/features/is-joe-biden-toast-if-he-loses-pennsylvania/&#34;&gt;needs to win&lt;/a&gt; this year. He can plot a plausible course to 270 without Michigan and Wisconsin, but not Pennsylvania. And while the margin is closer than in the other two states, the general pattern is the same. The 2016 polls were very close in the final week, and Clinton never polled greater than 50%. In 2020, Trump needs an even bigger polling error in his favor, without the benefit of a pool of undecided voters.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-south-and-southwest&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;The South and Southwest&lt;/h3&gt;
+&lt;p&gt;Next, a few states where Clinton was not likely to win, but Biden might be:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;Georgia&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/poll-wrangling/index_files/figure-html/Georgia-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;In Georgia, Trump won basically by the margin predicted by the polls in 2016. Today, everything is within the margin of error. I have nothing prognosticatory to say here. It’s a complete toss-up.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;Arizona&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/poll-wrangling/index_files/figure-html/Arizona-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;North Carolina&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/poll-wrangling/index_files/figure-html/Arizona-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;Florida&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/poll-wrangling/index_files/figure-html/Arizona-3.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Arizona, Florida, and North Carolina all kind of look like the Midwestern states, except with much tighter margins. Biden has consistently led in the polling average, but by a margin that would not require a surprising polling error to surmount.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;a-few-other-states&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;A Few Other States&lt;/h3&gt;
+&lt;p&gt;These I present without comment, except that why are there so few quality polls in these states this year? It would be nice to have more data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;Nevada&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/poll-wrangling/index_files/figure-html/other%20states-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;Minnesota&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/poll-wrangling/index_files/figure-html/other%20states-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;Virginia&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/poll-wrangling/index_files/figure-html/other%20states-3.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_polls(&amp;#39;Alaska&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/poll-wrangling/index_files/figure-html/other%20states-4.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;putting-it-all-together&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Putting It All Together&lt;/h2&gt;
+&lt;p&gt;So what would Trump need to cobble together a win tomorrow? The following is nothing nearly as sophisticated as Nate Silver’s recency- and quality-weighted moving average. I’m just going to take the mean of the last three weeks of high-quality polls, and compare the polling miss in 2016 with Biden’s margin today.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# function to get the polling margin in 2016
+polling_margin_2016 &amp;lt;- function(data, state_name, num_weeks = 2){
+  data %&amp;gt;% 
+    filter(end_date &amp;gt; ymd(&amp;#39;2016-11-08&amp;#39;) - weeks(num_weeks),
+           state == state_name) %&amp;gt;% 
+    mutate(clinton_margin = rawpoll_clinton - rawpoll_trump) %&amp;gt;% 
+    pull(clinton_margin) %&amp;gt;% 
+    mean
+}
+
+# function to get the polling margin in 2020
+polling_margin_2020 &amp;lt;- function(data, state_name, num_weeks = 2){
+  data %&amp;gt;% 
+    filter(end_date &amp;gt; ymd(&amp;#39;2020-11-03&amp;#39;) - weeks(num_weeks),
+           state == state_name) %&amp;gt;%
+    mutate(biden_margin = biden - trump) %&amp;gt;% 
+    pull(biden_margin) %&amp;gt;%
+    mean
+}
+
+# get the results from 2020
+results_2016 &amp;lt;- results %&amp;gt;% 
+  filter(year == 2016,
+         candidate %in% c(&amp;#39;Trump, Donald J.&amp;#39;,&amp;#39;Clinton, Hillary&amp;#39;)) %&amp;gt;%
+  group_by(state, candidate, totalvotes) %&amp;gt;%
+  summarize(candidatevotes = sum(candidatevotes)) %&amp;gt;% 
+  mutate(pct = candidatevotes / totalvotes * 100) %&amp;gt;% 
+  select(state, candidate, pct) %&amp;gt;% 
+  pivot_wider(names_from = candidate, values_from = pct) %&amp;gt;%
+  mutate(clinton_actual_margin_2016 = `Clinton, Hillary` - `Trump, Donald J.`) %&amp;gt;% 
+  select(state, clinton_actual_margin_2016)
+
+# compute the polling error for key swing states, merge with 2020 polling margin
+swing_states &amp;lt;- tibble(state = c(&amp;#39;Pennsylvania&amp;#39;, &amp;#39;Wisconsin&amp;#39;, &amp;#39;Michigan&amp;#39;,
+                                 &amp;#39;Florida&amp;#39;, &amp;#39;North Carolina&amp;#39;, &amp;#39;Arizona&amp;#39;,
+                                 &amp;#39;Ohio&amp;#39;, &amp;#39;Virginia&amp;#39;, &amp;#39;Nevada&amp;#39;, &amp;#39;Georgia&amp;#39;,
+                                 &amp;#39;Iowa&amp;#39;, &amp;#39;Minnesota&amp;#39;)) %&amp;gt;% 
+  mutate(clinton_polling_margin_2016 = 
+           map(state, ~polling_margin_2016(data = polls_2016,
+                                           state_name = .x,
+                                           num_weeks = 3)) %&amp;gt;% 
+           unlist,
+         biden_polling_margin_2020 = 
+           map(state, ~polling_margin_2020(data = polls_2020,
+                                           state_name = .x,
+                                           num_weeks = 3)) %&amp;gt;% 
+           unlist) %&amp;gt;% 
+  left_join(results_2016, by = &amp;#39;state&amp;#39;) %&amp;gt;% 
+  # join with state abbreviations for visualization
+  left_join(tibble(state.abb, state.name) %&amp;gt;% 
+              rename(&amp;#39;state&amp;#39; = state.name),
+            by = &amp;#39;state&amp;#39;) %&amp;gt;% 
+  mutate(polling_error_2016 = clinton_actual_margin_2016 - clinton_polling_margin_2016)
+
+ggplot(data = swing_states) +
+  geom_text(mapping = aes(x = -polling_error_2016, 
+                          y = biden_polling_margin_2020,
+                          label = state.abb)) +
+  theme_bw() + 
+  geom_abline(intercept = 0, slope = 1, linetype = &amp;#39;dashed&amp;#39;) +
+  labs(x = &amp;#39;Polling Error in 2016&amp;#39;, 
+       y = &amp;#39;Polling Error Trump Needs in 2020&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/poll-wrangling/index_files/figure-html/polling%20errors-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The figure paints a difficult, if not impossible, challenge for Trump to overcome. Assume, for a moment, that he wins all the states below the dotted line. All that would require is a modest polling error in his favor, less than the error he benefited from in 2016. But even in that universe, Trump still needs a bigger-than-2016 polling error in both Florida &lt;em&gt;and&lt;/em&gt; Pennsylvania to get to 270.&lt;/p&gt;
+&lt;p&gt;Saying “the polls were wrong in 2016 and could be wrong in 2020” is a weaker argument than you need to believe that Trump will win in 2020. Instead, the 2020 polls must be (a) wrong in the same direction as they were in 2016 and (b) significantly wronger-than-2016 in both Pennsylvania and Florida.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;further-reading&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Further Reading&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.vox.com/21524703/biden-trump-poll-lead-2016&#34;&gt;Matt Yglesias&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>git undo</title>
+       <link>/posts/git-undo/</link>
+       <pubDate>Mon, 21 Sep 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/git-undo/</guid>
+       <description>
+
+
+&lt;p&gt;When using &lt;a href=&#34;bryan-2017.pdf&#34;&gt;GitHub&lt;/a&gt; to manage changes to analyses, manuscripts, and slides, my most frequent frustration occurs when I forget to add a large (&amp;gt;50MB) data file to my &lt;code&gt;.gitignore&lt;/code&gt;. I merrily type –&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git add .
+git commit -m &amp;quot;unsuspecting commit message&amp;quot;
+git push&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;– and GitHub explodes because of a file size limit.&lt;/p&gt;
+&lt;p&gt;The maddening bit is that you can’t just retroactively tell &lt;code&gt;git&lt;/code&gt; to ignore the file, because it’s already tracked and in your history. So I set out to find a sequence of commands that would effectively (and quickly) undo the addition of the large file.&lt;/p&gt;
+&lt;p&gt;After much searching, the winning solution comes from &lt;a href=&#34;https://dalibornasevic.com/posts/2-permanently-remove-files-and-folders-from-a-git-repository&#34;&gt;Dalibor Nasevic&lt;/a&gt;, abbreviated below:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;git filter-branch --tree-filter &amp;#39;rm -rf PATH-TO-BIG-FILE&amp;#39; HEAD
+git push origin master --force&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The first line recursively searches through your commits to find and remove the big file. The second line “force pushes” the revision to GitHub.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;force-push.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Of course, erasing your own history is a serious step not to be taken lightly, so make sure you only remove the files you tracked by accident.&lt;/p&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Interactive Draw a Sample</title>
+       <link>/posts/draw-a-sample/</link>
+       <pubDate>Mon, 07 Sep 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/draw-a-sample/</guid>
+       <description>
+
+
+&lt;p&gt;I wanted to let my students play around with drawing a random sample from a population — so that they could explore ideas like the Central Limit Theorem, how often a certain low-prevalence virus will show up in a randomly drawn class of size &lt;span class=&#34;math inline&#34;&gt;\(N\)&lt;/span&gt;, etc. — but I couldn’t find anything on the web that let you do what I wanted.&lt;/p&gt;
+&lt;p&gt;So I went ahead and made my own. You can find the shiny app &lt;a href=&#34;https://ornstein.shinyapps.io/Draw-A-Sample/&#34;&gt;here&lt;/a&gt;, or see it embedded below:&lt;/p&gt;
+&lt;iframe src=&#34;https://ornstein.shinyapps.io/Draw-A-Sample/?showcase=0&#34; width=&#34;672&#34; height=&#34;800px&#34;&gt;
+&lt;/iframe&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>The Condorcet Jury Theorem Illustrated</title>
+       <link>/posts/condorcet-jury-theorem/</link>
+       <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/condorcet-jury-theorem/</guid>
+       <description>
+
+
+&lt;p&gt;As I tell my students, the neat thing about the Condorcet Jury Theorem is that you can take a large group of dummies – who are barely better at making choices than a coin flip – and as long as they make decisions by majority vote they’re almost guaranteed to figure out the right answer. Inspiring stuff; it’s also why I feel better giving them hard questions as long as I split them into teams. Anyway, here’s the theorem illustrated:&lt;/p&gt;
+&lt;p&gt;&amp;lt;TODO: Add slides&amp;gt;&lt;/p&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Introduction to Political Methodology, Week 1</title>
+       <link>/posts/intro-polmeth-1/</link>
+       <pubDate>Sat, 15 Aug 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/intro-polmeth-1/</guid>
+       <description>
+
+
+&lt;p&gt;My first-semester graduate political methodology course is a practical introduction to working with data. We’ll cover the most useful mathematical and computational tools that one needs to function as an academic political scientist, including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Data Wrangling&lt;/li&gt;
+&lt;li&gt;Data Visualization&lt;/li&gt;
+&lt;li&gt;Reproducible Research&lt;/li&gt;
+&lt;li&gt;Optimization&lt;/li&gt;
+&lt;li&gt;Matrix Algebra&lt;/li&gt;
+&lt;li&gt;Probability and Inference&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In Week 1, we discuss the fundamentals of &lt;code&gt;R&lt;/code&gt;, functions, vectors, matrices, and summary statistics. The slides are &lt;a href=&#34;&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>What&#39;s in your Anki?</title>
+       <link>/posts/anki/</link>
+       <pubDate>Sat, 08 Aug 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/anki/</guid>
+       <description>
+
+
+&lt;p&gt;I have never been one to write margin notes or highlight books. To my Lawful Neutral brain, it just seems &lt;em&gt;wrong&lt;/em&gt;, and also I get a lot of books from the library, where it is in fact wrong. But I also recognize that passive reading is a poor strategy for memory consolidation; too often I will read an entire book and be unable to recall more than a handful of details.&lt;/p&gt;
+&lt;p&gt;So my current system is to read with a blank deck of &lt;a href=&#34;https://ncase.me/remember/&#34;&gt;Anki cards&lt;/a&gt;, creating a new card for everything I read that seems important enough to remember. This strategy has a few nice advantages:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;Keeps my notes in one place, rather than spread out in margins across multiple books.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Fosters some meta-cognitive awareness while reading, by requiring me to identify passages worth committing to memory.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Aids in memory consolidation by converting a passive learning exercise (reading) into an active learning exercise (recall with spaced repetition).&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Helps form connections between ideas from different sources.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Spaced repetition has been one of my favorite new habits of 2020 – which I suppose makes it clear how much time I’ve spent indoors this year. In addition to my “Things I Read” deck, I am also working through a deck of Spanish phrases.&lt;/p&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>A Condorect-Hare Manifesto</title>
+       <link>/posts/cordorcet-hare-manifesto/</link>
+       <pubDate>Fri, 31 Jul 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/cordorcet-hare-manifesto/</guid>
+       <description>
+
+
+&lt;p&gt;If you’re familiar with any non-plurality social choice rule, it’s probably &lt;a href=&#34;&#34;&gt;Ranked Choice Voting&lt;/a&gt;, aka Instant Runoff Voting (IRV) or – across the pond – as Single Transferable Vote (STV). Under RCV/IRV/STV, voters submit a preference &lt;em&gt;ranking&lt;/em&gt; and the candidate with the fewest first-place votes is eliminated until one candidate has an outright majority of first-place votes.&lt;/p&gt;
+&lt;p&gt;To its credit, RCV/IRV/STV gets a lot right. It is straightforward to understand. At least, straightforward compared to some of its&lt;/p&gt;
+&lt;p&gt;But RCV also has serious - in my mind, disqualifying - flaws. Chief among them, nonmonotonicity. Increasing support for a candidate can, under some circumstance, cause that candidate to lose. And conversely, decreasing support for a candidate can cause that candidate to win! In &lt;a href=&#34;&#34;&gt;paper&lt;/a&gt;, Bob Norman and I show that there are two (necessary and sufficient) conditions under which such a paradox will occur with three candidates.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;RCV fails to select the Condorcet winner.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The election is a competitive three-way race. Each candidate receives at least 25% of the first-place vote.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;How often should we expect this to happen? Basically, whenever there’s a competitive multi-candidate race and one candidate is the “consensus” pick between two extremes. For example, in a tight election between a left-wing, moderate, and right-wing candidate, the moderate may be preferred in all pairwise comparisons – right-wing + moderate voters prefer her over the left-wing candidate, and left-wing + moderate voters prefer her over the right-wing candidate – but she receives the least first-place support. It’s precisely in this situation where, paradoxically, increasing the support of one of the extremist candidates would cause him to lose.&lt;/p&gt;
+&lt;p&gt;What a damning finding! The very outcome that alternative voting systems are designed to foster – competitive multiparty elections – is precisely when the system starts to unravel!&lt;/p&gt;
+&lt;p&gt;But as Nicolaus Tideman pointed out a few years back, these two conditions actually point to an elegant solution. Why not just adopt &lt;strong&gt;Condorcet-Hare&lt;/strong&gt;?&lt;/p&gt;
+&lt;p&gt;Ordinary RCV has one nice advantage: it is straightforward to explain:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Rank the candidates in order from your most to least preferred. If one candidate receives a majority of first-place votes, they will be elected. Otherwise, the candidate with the fewest first-place votes will be eliminated until one candidate receives a majority.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;But Condorcet-Hare is not any more difficult to explain. Observe the difference:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Rank the candidates in order from your most to least preferred. If one candidate is &lt;em&gt;preferred by a majority of voters to any other candidate&lt;/em&gt;, they will be elected. Otherwise, the candidate with the fewest first-place votes will be eliminated until &lt;em&gt;there is a majority choice&lt;/em&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;There. Doesn’t seem harder to understand than vanilla RCV.&lt;/p&gt;
+&lt;p&gt;Another nice feature of Condorcet-Hare is that the full preference of B voters aren’t ignored.&lt;/p&gt;
+&lt;p&gt;Where Condorcet-Hare falls short compared to Vanilla RCV is on the &lt;a href=&#34;https://en.wikipedia.org/wiki/Later-no-harm_criterion&#34;&gt;“Later No Harm” criterion&lt;/a&gt;. Extremist voters may “bullet vote”, witholding their complete ranking in order to eliminate the moderate Condorcet winner in the first round. But this critique strikes me as underwhelming for two reasons. First, it would be a high-variance tactical ploy. If your candidate ends up being eliminated instead, you forfeit a chance to influence the winner. And second, why not just prohibit bullet voting? Require complete or partial rankings in order for a ballot to be valid.&lt;/p&gt;
+&lt;p&gt;But, &lt;a href=&#34;https://en.wikipedia.org/wiki/Independence_of_clones_criterion#Compliant_methods&#34;&gt;independence of clones criterion&lt;/a&gt;. That’s why I can’t support Borda. Candidates much more likely to be strategic than voters. AV fails strategic exit. Condorcet-Hare methods less likely to be susceptible to either strategic entry or exit. See &lt;a href=&#34;hybrids.pdf&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;To see the intuition, label the candidates A, B, and C. Candidate A is the RCV winner, and Candidate C is the Condorcet winner. The only way that RCV could fail to select the Condorcet winner is if C is &lt;em&gt;eliminated&lt;/em&gt; during the first round. So long as each candidate has at least 25% of the first-place vote, shifting support from B to A will cause B to be eliminated before A receives a majority of first-place votes. Once B is eliminated, C wins (she must win a two way race with A; she’s the Condorcet candidate).&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Do Referenda Reduce Polarization?</title>
+       <link>/posts/swiss-polarization/</link>
+       <pubDate>Tue, 21 Jul 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/swiss-polarization/</guid>
+       <description>
+
+
+&lt;p&gt;In his nice overview of &lt;a href=&#34;https://www.lesswrong.com/posts/x6hpkYyzMG6Bf8T3W/swiss-political-system-more-than-you-ever-wanted-to-know-i&#34;&gt;Switzerland’s political system&lt;/a&gt;, Martin Sustrik writes:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;“In short, legislative referenda are probably the single most important force that driving [sic] Switzerland away from the political polarization and towards the rule by consensus.”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This claim strikes me as odd for two reasons.&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;p&gt;If adding veto points reduced polarization by forcing compromise, then one would expect the United States — a system riddled with veto players, referenda, and multiple levels of government — to be much less polarized than it is. And Western European parliamentary systems to be much more polarized than they are. As best as I can tell, there is no such empirical relationship.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;The premise itself — that Switzerland has been driven away from political polarization — just doesn’t seem to be true. As &lt;a href=&#34;cross-polar.pdf&#34;&gt;Boxell, Gentzkow, and Shapiro (2020)&lt;/a&gt; show, affective polarization in Switzerland is roughly at the same level as the United States, and has been trending upward since the 1970s. Compare that with other Western European countries, where affective polarization is, by their measure, &lt;em&gt;declining&lt;/em&gt;.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;img/cross-polar.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;There are many things to admire in the Swiss political system, but being uniquely depolarizing does not seem to be one of them.&lt;/p&gt;
+&lt;p&gt;One important trend in Swiss politics has been the rise of the right-wing populist Swiss People’s Party (SVP), which doubled its representation in the federal legislature over the past 30 years. No doubt this has played a role in increasing affective polarization, a measure of how people &lt;em&gt;feel&lt;/em&gt; about members of other parties.&lt;/p&gt;
+&lt;p&gt;Actually, one of my favorite features of the Swiss political system is the federal executive branch, which is not headed by a single president or prime minister, but by a seven-member Federal Council. And control of the Federal Council is assigned proportionally! No easy feat for a body with seven members, so since the 1950s seats on the council have been allocated by an unofficial “Magic Formula”. The Liberal party always gets two seats, the Social Democrats always get two seats, and so forth, so that membership is roughly divided according to party vote share.&lt;/p&gt;
+&lt;p&gt;The fact that the “prize” of the federal executive is basically never up for grabs seems like a deeply salient fact. A Swiss citizen may despise the SVP, but the fact that they are not a hair’s breadth from wielding complete control of the executive branch might make politics feel a bit less apocalyptic.&lt;/p&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Stacked Regression and Poststratification (SRP)</title>
+       <link>/posts/srp/</link>
+       <pubDate>Wed, 15 Jul 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/srp/</guid>
+       <description>
+
+
+&lt;p&gt;Fielding a good poll is harder than it used to be. People just don’t pick up their phones for unrecognized numbers and sit through surveys anymore.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; And those that do tend to be unrepresentative in some important way. Random sampling, the basis for making inferences from sample to population, is getting harder to do.&lt;/p&gt;
+&lt;p&gt;One way to mitigate this problem is to reweight the survey after the fact. A popular technique is &lt;strong&gt;Multilevel Regression and Poststratification (MRP)&lt;/strong&gt;. Basically, you fit a model to predict opinion based on the demographics and location of each survey respondent (multilevel regression). Then you compute a weighted average of those predictions to make an inference about the population of interest (poststratification).&lt;/p&gt;
+&lt;p&gt;My recent contribution to this literature is a generalization of MRP, called &lt;strong&gt;Stacked Regression and Poststratification (SRP)&lt;/strong&gt;. Instead of making predictions based on a multilevel regression model, you create an ensemble of diverse machine learning models through a technique called &lt;a href=&#34;https://joeornstein.github.io/publications/stacked_regression_and_poststratification.pdf&#34;&gt;stacking&lt;/a&gt;. Then poststratify as normal.&lt;/p&gt;
+&lt;p&gt;I animated some of the charts from the paper to illustrate the results. Here is an animated version of Figure 2, comparing of the performance of SRP, MRP, and disaggregation (i.e. just taking sample means) on a simulated dataset.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/srp/index_files/figure-html/Animated%20Figure%202-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;And here is an animated version of Figure 4, comparing the performance of MRP and SRP across 89 different empirical applications. SRP does better than MRP on average, but particularly for surveys with large samples.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/srp/index_files/figure-html/Animated%20Figure%204-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;div id=&#34;further-reading&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Further Reading&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://doi.org/10.1017/pan.2019.43&#34;&gt;The Paper&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://joeornstein.github.io/software/SRP&#34;&gt;The R Package&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;iframe src=&#34;https://joeornstein.github.io/slides/SRP-slides.html&#34; width=&#34;672&#34; height=&#34;400px&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Perhaps we are less starved for entertainment than we used to be.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Dot Density Animation</title>
+       <link>/posts/dot-density-animation/</link>
+       <pubDate>Wed, 08 Jul 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/dot-density-animation/</guid>
+       <description>
+
+
+&lt;p&gt;In a &lt;a href=&#34;../covid-animation/&#34;&gt;previous post&lt;/a&gt;, I demonstrated some features of the &lt;code&gt;gganimate&lt;/code&gt; package by animating a map of US COVID-19 cases. In this post, I’ll make it all a bit prettier.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;https://en.wikipedia.org/wiki/Dot_distribution_map&#34;&gt;dot density map&lt;/a&gt; is a nice alternative to chloropleths, particularly when the geographic subunits of interest are of varying sizes (e.g. counties in the Western United States are larger on average than those in the East). Here is some code to generate a dot plot for the population distribution of the continental United States. First, get the county boundary shapefile and merge with data on population in each county, using the code from &lt;a href=&#34;../covid-animation/&#34;&gt;this post&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Read from NYT github
+data &amp;lt;- read_csv(&amp;#39;https://github.com/nytimes/covid-19-data/raw/master/us-counties.csv&amp;#39;)
+
+# If unavailable, use the file pulled previously
+if(!exists(&amp;#39;data&amp;#39;)){
+  data &amp;lt;- read_csv(&amp;#39;../covid-animation/data/nyt-covid/us-counties.csv&amp;#39;)
+}
+
+# Generate new cases / deaths variables
+data &amp;lt;- data %&amp;gt;% 
+  group_by(county, state) %&amp;gt;%
+  mutate(new_cases = cases - lag(cases),
+         new_deaths = deaths - lag(deaths)) %&amp;gt;% 
+  mutate(new_cases = if_else(is.na(new_cases), 0, new_cases),
+         new_deaths = if_else(is.na(new_deaths), 0, new_deaths))
+
+# Give New York City the Manhattan FIPS code
+data[data$county == &amp;#39;New York City&amp;#39;,]$fips &amp;lt;- &amp;#39;36061&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next, use the &lt;code&gt;st_sample&lt;/code&gt; function to sample points within each county – proportional to the population of the county. Here I sample one point for every 25,000 people, and don’t sample points for counties with a population smaller than 25,000.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# to make rendering the website quicker, save the sampled points
+resample_points &amp;lt;- FALSE
+
+if(resample_points){
+  
+  # 1 point represents 25,000 people
+  points &amp;lt;- county_shp %&amp;gt;%
+    st_sample(size = floor(county_shp$population / 25000)) %&amp;gt;%
+    suppressMessages
+  
+  saveRDS(points, &amp;#39;data/points.RDS&amp;#39;)
+}
+
+points &amp;lt;- readRDS(&amp;#39;data/points.RDS&amp;#39;)
+
+
+p &amp;lt;- ggplot() +
+  geom_sf(data = county_shp, aes(fill = pct_black), color = NA, alpha = 0.6) +
+  geom_sf(data = state_boundaries, fill = NA) +
+  geom_sf(data = points, size = 0.01) +
+  scale_fill_distiller(palette = &amp;#39;PuBu&amp;#39;, direction = 1) + 
+  # _brewer for discrete variables
+  # _distiller for continuous variables
+  # _fermenter to discretize a continuous variable
+  theme_void() +
+  theme(legend.position = &amp;quot;none&amp;quot;)
+
+p&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/dot-density-animation/index_files/figure-html/sample%20points%20from%20the%20county%20shapefiles-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;In the map above, I overlay the dot map on a chloropleth of percent black residents by county. Note, it would look even better if I used a smaller geographic unit, like tracts or Census Block Groups. LA County, for instance, is just a big blob on this map. And the population around Miami appears to extend far into the Everglades swamp when it really hugs the coast a lot more. But since our COVID-19 data is also at the county level, let’s work with this.&lt;/p&gt;
+&lt;p&gt;Next, add red dots in proportion to the (smoothed) number of COVID-19 deaths in each county.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Fit LOESS (span parameter = 0.3) for each county and append predictions
+data &amp;lt;- data %&amp;gt;% 
+  ungroup %&amp;gt;% 
+  filter(!is.na(fips)) %&amp;gt;% 
+  mutate(ID = 1:n(),
+         date_numeric = as.numeric(date),
+         death_smoothed = NA,
+         cases_smoothed = NA)
+
+for(i in unique(data$fips)){
+  
+  data_subset &amp;lt;- data %&amp;gt;% filter(fips == i)
+  
+  if(nrow(data_subset) &amp;lt; 7) next # don&amp;#39;t smooth time series that are too short
+  
+  death_loess &amp;lt;- loess(new_deaths ~ date_numeric, 
+                       data = data_subset,
+                       span = 0.3)
+  
+  cases_loess &amp;lt;- loess(new_cases ~ date_numeric,
+                       data = data_subset,
+                       span = 0.3)
+  
+  data$death_smoothed[data$ID %in% data_subset$ID] &amp;lt;- 
+    death_loess %&amp;gt;% 
+    predict(data_subset)
+  
+  data$cases_smoothed[data$ID %in% data_subset$ID] &amp;lt;- 
+    cases_loess %&amp;gt;% 
+    predict(data_subset)
+  
+}
+
+
+p &amp;lt;- p +
+  geom_point(data = data %&amp;gt;%
+              left_join(county_centroids, by = &amp;#39;fips&amp;#39;) %&amp;gt;%
+              filter(death_smoothed &amp;gt;= 0.5),
+             aes(x=X, y=Y, size=death_smoothed),
+             color = &amp;#39;red&amp;#39;)
+
+animation &amp;lt;- p + 
+  transition_states(date, transition_length = 1,
+                    state_length = 3) +
+  ggtitle(&amp;#39;{closest_state}&amp;#39;) +
+  enter_fade() + exit_fade()
+
+# render the animation
+animate(animation, nframes = 350)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/dot-density-animation/index_files/figure-html/add%20(smoothed)%20COVID-19%20cases-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;And there it is. More pretty, as promised.&lt;/p&gt;
+&lt;div id=&#34;further-reading&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Further Reading&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://tarakc02.github.io/dot-density/&#34;&gt;Dot Density Plots&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Newton</title>
+       <link>/posts/newton/</link>
+       <pubDate>Thu, 02 Jul 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/newton/</guid>
+       <description>
+
+
+&lt;p&gt;Putting together some lectures on calculus reminded me of James Gleick’s &lt;a href=&#34;https://www.goodreads.com/book/show/17098.Isaac_Newton&#34;&gt;excellent biography&lt;/a&gt; of Isaac Newton. It’s easily one of my favorite biographies of science (a crowded field!). Prior to reading, my uninformed impression of Newton was that he was some jerk who had the good fortune to live in the 16th century, when you could be knighted as a towering genius for picking a bunch of low-hanging intellectual fruit. You know. Objects fall because of gravity. Prisms make rainbows. Stuff like that.&lt;/p&gt;
+&lt;p&gt;Reading the book at least confirmed the first part of my preconception. Newton was indeed a jerk, who took perhaps too much pleasure in executing counterfeiters during his tenure as Master of the Royal Mint. I was amused by the reviews of the book in which readers expressed disappointment that Gleick didn’t go into greater detail about Newton’s personal life. By all accounts, he had no personal life. He was a celibate who hated his family, kept his work secret from his peers,&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; and dedicated himself single-mindedly to his research.&lt;/p&gt;
+&lt;p&gt;But the second part of my preconception was shattered. Newton was not picking low-hanging fruit. He was up in the branches of an orchard that no one else even knew existed, and in the process completely upended our species’ understanding of reality.&lt;/p&gt;
+&lt;p&gt;Consider what your theory of gravity would be if you had never been taught Newton’s Laws. Common sense in a pre-Newtonian world suggests that gravity is not a property of the Earth itself, but of &lt;em&gt;objects&lt;/em&gt;. Rocks possess gravity. That is why they fall. Clouds, by comparison, possess &lt;em&gt;levity&lt;/em&gt;. That is why they float. Feathers seem to possess some combination of the two. No doubt that is how ducks can fly, being covered in the stuff.&lt;/p&gt;
+&lt;p&gt;I can’t ask a member of a pre-Newtonian society how they conceive gravity, but I can ask my four year old. So I put the question to her during a walk the other day: “Why do clouds float in the sky while other things fall to the ground?” She patiently explained to me that the leaves on trees “point to the ground”, which is why they fall. And that was basically all that I could get out of her. Falling is a thing that leaves do in the fall season. She’s well-trained on identifying the characteristics of seasons.&lt;/p&gt;
+&lt;p&gt;Newton’s Laws are remarkable because they are completely contradicted by ordinary experience. Objects remain in motion unless acted upon by another object? Since when? On Earth, objects in motion &lt;em&gt;always&lt;/em&gt; stop moving, without any obvious force acting upon them. Yet the entire edifice of Newtonian physics rests on that fundamental, counterintuitive insight.&lt;/p&gt;
+&lt;p&gt;To conceive of a model of the universe in which every bit of human sensory experience is just a special case – the product of observation by tiny creatures who happen to live inside a planet’s gravity well and atmosphere – takes a special kind of genius.&lt;/p&gt;
+&lt;div id=&#34;further-reading&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Further Reading&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.goodreads.com/book/show/17098.Isaac_Newton&#34;&gt;Isaac Newton&lt;/a&gt;, of course&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Newton only published his work on calculus after Leibniz independently published himself. Absent that professional rivalry, all indications suggest he would have taken calculus to his grave.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Makefiles for Dummies who use Windows</title>
+       <link>/posts/makefiles-dummies-windows/</link>
+       <pubDate>Fri, 26 Jun 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/makefiles-dummies-windows/</guid>
+       <description>
+
+
+&lt;p&gt;Some combination of &lt;a href=&#34;https://kbroman.org/minimal_make/&#34;&gt;Karl Broman’s blog&lt;/a&gt; and &lt;a href=&#34;https://plain-text.co/pull-it-together.html#pull-it-together&#34;&gt;Kieran Healy’s book&lt;/a&gt; convinced me to try Makefiles as part of my workflow. Both authors have nice tutorials on the topic, but neither one appears to use Windows OS, so their instructions omit several hassles that such users must endure. Here is a dummified version of what I did to get everything working on my machine.&lt;/p&gt;
+&lt;div id=&#34;why-use-makefiles&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Why Use Makefiles?&lt;/h3&gt;
+&lt;p&gt;One benchmark for good reproducible research is the &lt;a href=&#34;https://rescience.github.io/ten-years/&#34;&gt;Ten Year Challenge&lt;/a&gt;. Can you sucecssfully replicate a paper you wrote ten years ago? How hard did you make it for your future self? As far as I can tell, nothing I wrote in or around 2010 is reproducible without a bunch of reverse-engineering. Which is unfortunate, because at least some of that stuff may actually be good.&lt;/p&gt;
+&lt;p&gt;Starting in grad school I began to internalize the idea that every analysis should be captured in &lt;strong&gt;code&lt;/strong&gt;. Anything accomplished through point-and-click is lost forever, and therefore not reproducible research. But even to this day, there are still some point-and-click components in my workflow. For example:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Open a project in RStudio and click “Run” to execute a script.&lt;/li&gt;
+&lt;li&gt;Download data from the Internet through a web browser.&lt;/li&gt;
+&lt;li&gt;Click “Build and View (F5)” in TeXStudio to rebuild a PDF.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is all fairly innocuous stuff, but in ten years I will not be able to easily figure out (a) which R script I ran to create Figure 4, (b) where I got the raw data, (c) exactly what sequence of code I need to execute before I can build the PDF. By using a makefile, I can instead automate this whole process, and in so doing provide a nice self-documenting record of my entire workflow.&lt;/p&gt;
+&lt;!-- Fully reproducible analysis replaces every point-and-click action with a script! Then you can just go back and read the script.  --&gt;
+&lt;p&gt;&lt;strong&gt;Advantages:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;It’s automatic. One button (just type &lt;code&gt;make&lt;/code&gt;) reproduces your entire workflow, even if you’re using multiple languages (R, Python, TeX, shell scripting, etc).&lt;/li&gt;
+&lt;li&gt;It’s fast. The &lt;code&gt;make&lt;/code&gt; program only executes a line of code if something changed since the last time you ran it. If you just want to fiddle with the code that produces Figure 2, typing &lt;code&gt;make&lt;/code&gt; won’t rebuild your entire project, just the part you changed.&lt;/li&gt;
+&lt;li&gt;It’s self-documenting. Anyone can open your Makefile in a text editor and see exactly what steps need to be taken, in what order, to generate your output.&lt;/li&gt;
+&lt;li&gt;Running analyses from the terminal is just inherently satisfying. This must be what real software developers feel like &lt;em&gt;all the time&lt;/em&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;So here is the set of steps I took to get it working on a Windows PC.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-1-download-and-setup-gnu-make&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Step 1: Download and setup GNU Make&lt;/h3&gt;
+&lt;p&gt;Download &lt;a href=&#34;http://gnuwin32.sourceforge.net/packages/make.htm&#34;&gt;Make for Windows&lt;/a&gt;. I used the &lt;a href=&#34;http://gnuwin32.sourceforge.net/downlinks/make.php&#34;&gt;Setup Program&lt;/a&gt; (that link should automatically start the download). Install it to a directory you will remember, like &lt;code&gt;C:\GnuWin32\&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Next, you need to add the &lt;code&gt;make.exe&lt;/code&gt; directory to your PATH variable, so that Windows knows what to do when you type &lt;code&gt;make&lt;/code&gt; into the Command Prompt. Here is a &lt;a href=&#34;https://www.architectryan.com/2018/03/17/add-to-the-path-on-windows-10/&#34;&gt;step-by-step guide&lt;/a&gt; to adding variables to PATH in Windows 10. If you installed Make in the same directory that I did, then the folder you will want to add is &lt;code&gt;C:\GnuWin32\bin\&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;The next time you open a new Command Prompt, you should be able to type &lt;code&gt;make&lt;/code&gt; and not get a &lt;code&gt;&#39;make&#39; is not recognized as a command...&lt;/code&gt; error. If not, go ahead and restart your computer. Or throw it into a river.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-1a-also-add-r-to-your-path&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Step 1a: Also add &lt;code&gt;R&lt;/code&gt; to your PATH&lt;/h3&gt;
+&lt;p&gt;In case you haven’t already, add the directory that contains the &lt;code&gt;Rscript.exe&lt;/code&gt; application to your PATH variable too. Now you can run R scripts from the command line.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-2-create-a-makefile&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Step 2: Create a Makefile&lt;/h3&gt;
+&lt;p&gt;For a more detailed tutorial on how to write Makefiles, see the links above. You can also play around with an example project I put together at &lt;a href=&#34;https://github.com/joeornstein/makefile-tutorial&#34;&gt;this repository&lt;/a&gt;. It contains a LaTeX file, a folder with raw data, and some R scripts to clean the data, build tables, and build figures. The Makefile that stitches everything together looks like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Define the list of tables
+TABLES = tables/table1.tex tables/table2.tex
+
+# Compile the paper
+paper/paper.pdf : paper/paper.tex figures/fig1.png $(TABLES)
+    pdflatex paper/paper.tex -output-directory paper
+
+# Create Figure 1
+figures/fig1.png : R/fig1.R data/clean_data.RDS
+    Rscript R/fig1.R
+
+# Create Tables 1 and 2
+$(TABLES) : R/tables.R data/clean_data.RDS
+    Rscript R/tables.R
+
+# Clean the data
+data/clean_data.RDS : R/clean_data.R data/raw_data.csv
+    Rscript R/clean_data.R&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;No extension. Just put it in the root directory of your project and call it “Makefile”. It’s plain text so any text editor can open it, including RStudio.&lt;/p&gt;
+&lt;p&gt;Note: In &lt;a href=&#34;https://kbroman.org/minimal_make/&#34;&gt;Karl Broman’s tutorial&lt;/a&gt; he uses the &lt;code&gt;CD&lt;/code&gt; command when jumping around to subdirectories. Trying to adapt his syntax yielded a bunch of errors for me, likely because I’m accustomed to using path names relative to my R Project (e.g. &lt;code&gt;figures/fig1.png&lt;/code&gt; instead of &lt;code&gt;../figures/fig1.png&lt;/code&gt;). So instead I just include the full relative path for every script I want to call (in this case, my code is in the &lt;code&gt;R/&lt;/code&gt; folder, and my LaTeX file is the in the &lt;code&gt;paper/&lt;/code&gt; folder).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-3-type-make&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Step 3: Type &lt;code&gt;make&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;You can also type &lt;code&gt;ctrl+shift+B&lt;/code&gt; in RStudio. If there is a Makefile in your project directory, it will recognize it and use it as instructions to build your output! Very slick.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;further-reading&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Further Reading&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://bost.ocks.org/mike/make/&#34;&gt;Mike Bostock&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&#34;https://kbroman.org/steps2rr/&#34;&gt;Karl Broman’s Tutorial on Reproducible Research&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>COVID-19 Animation</title>
+       <link>/posts/covid-animation/</link>
+       <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/covid-animation/</guid>
+       <description>
+
+
+&lt;p&gt;The &lt;code&gt;gganimate&lt;/code&gt; package facets a &lt;code&gt;ggplot&lt;/code&gt; by some variable and stitches the plots together to create an animated video. Here’s some code to generate such an animation, using the time series of COVID-19 deaths in US counties from the &lt;em&gt;New York Times&lt;/em&gt; &lt;a href=&#34;https://github.com/nytimes/covid-19-data&#34;&gt;data repository&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;First we load and clean up the data, merging it with county-level population counts and demographics.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse) 
+library(sf)
+library(gganimate)
+
+# Read from NYT github
+data &amp;lt;- read_csv(&amp;#39;https://github.com/nytimes/covid-19-data/raw/master/us-counties.csv&amp;#39;)
+
+# If unavailable, use the file pulled previously
+if(!exists(&amp;#39;data&amp;#39;)){
+  data &amp;lt;- read_csv(&amp;#39;data/nyt-covid/us-counties.csv&amp;#39;)
+}
+
+# Generate new cases / deaths variables
+data &amp;lt;- data %&amp;gt;% 
+  group_by(county, state) %&amp;gt;%
+  mutate(new_cases = cases - lag(cases),
+         new_deaths = deaths - lag(deaths)) %&amp;gt;% 
+  mutate(new_cases = if_else(is.na(new_cases), 0, new_cases),
+         new_deaths = if_else(is.na(new_deaths), 0, new_deaths))
+
+# Merge with county population / demographics
+library(readxl)
+countypops &amp;lt;- read_excel(&amp;#39;data/census/countypop.xlsx&amp;#39;) %&amp;gt;% 
+  mutate(fips = substr(id, 10, 14))
+
+race &amp;lt;- read_excel(&amp;#39;data/census/countyrace.xlsx&amp;#39;) %&amp;gt;% 
+  mutate(fips = substr(id, 10,14))
+
+county_data &amp;lt;- countypops %&amp;gt;% 
+  left_join(race %&amp;gt;% select(fips, total_black), by = &amp;#39;fips&amp;#39;) %&amp;gt;% 
+  mutate(pct_black = total_black / population * 100)
+
+data &amp;lt;- data %&amp;gt;% 
+  left_join(county_data %&amp;gt;% 
+              select(-county, -id), 
+            by = &amp;#39;fips&amp;#39;) 
+
+# Fix New York City population
+nyc &amp;lt;- countypops %&amp;gt;% 
+  filter(county %in% c(&amp;#39;Kings County, New York&amp;#39;,
+                       &amp;#39;Queens County, New York&amp;#39;,
+                       &amp;#39;New York County, New York&amp;#39;,
+                       &amp;#39;Bronx County, New York&amp;#39;,
+                       &amp;#39;Richmond County, New York&amp;#39;))
+data[data$county == &amp;#39;New York City&amp;#39;,]$population &amp;lt;- sum(nyc$population)
+
+# Give New York City the Manhattan FIPS code
+data[data$county == &amp;#39;New York City&amp;#39;,]$fips &amp;lt;- &amp;#39;36061&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next, get shapefiles for the continental US from the &lt;code&gt;tigris&lt;/code&gt; package.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;continental_states &amp;lt;- unique(tigris::fips_codes$state)[c(1, 3:11, 13:51)]
+
+state_boundaries &amp;lt;- tigris::states(class = &amp;#39;sf&amp;#39;, cb = TRUE, progress_bar = FALSE) %&amp;gt;%
+  filter(STUSPS %in% continental_states)
+
+county_shp &amp;lt;- tigris::counties(state = continental_states,
+                               cb = TRUE,
+                               class = &amp;#39;sf&amp;#39;,
+                               progress_bar = FALSE) %&amp;gt;% 
+  mutate(fips = paste0(STATEFP, COUNTYFP)) %&amp;gt;% 
+  select(fips)
+
+# add centroids (https://www.r-spatial.org/r/2018/10/25/ggplot2-sf-2.html)
+county_shp &amp;lt;- cbind(county_shp, st_coordinates(st_centroid(county_shp))) 
+
+county_centroids &amp;lt;- county_shp %&amp;gt;% 
+  as_tibble %&amp;gt;% 
+  select(fips, X, Y)
+
+# merge with county data
+county_shp &amp;lt;- county_shp %&amp;gt;% 
+  left_join(county_data, by = &amp;#39;fips&amp;#39;)
+
+theme_set(theme_void() +
+          theme(axis.text = element_blank()))
+
+p &amp;lt;- ggplot(data = county_shp) +
+  geom_sf(mapping = aes(fill = pct_black)) +
+  geom_point(mapping = aes(x=X,y=Y), 
+             size = 0.1) +
+  xlab(&amp;#39;&amp;#39;) + ylab(&amp;#39;&amp;#39;) +
+  scale_fill_gradient(low = &amp;#39;white&amp;#39;, high = &amp;#39;black&amp;#39;)
+
+p&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/covid-animation/index_files/figure-html/Load%20Shapefiles-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Then create a &lt;code&gt;ggplot2&lt;/code&gt; object with all of the time series data plotted on a map and animate it with the &lt;code&gt;gganimate::transition_states()&lt;/code&gt; function.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p &amp;lt;- ggplot(data = data %&amp;gt;%
+              left_join(county_centroids, by = &amp;#39;fips&amp;#39;) %&amp;gt;%
+              filter(new_deaths &amp;gt; 0)) +
+  geom_sf(data = county_shp, aes(fill = pct_black), color = NA) +
+  geom_sf(data = state_boundaries, fill = NA) +
+  scale_fill_gradient(low = &amp;#39;white&amp;#39;, high = &amp;#39;black&amp;#39;) +
+  geom_point(mapping = aes(x=X,y=Y, size = new_deaths),
+             color = &amp;#39;red&amp;#39;) +
+  xlab(&amp;#39;&amp;#39;) + ylab(&amp;#39;&amp;#39;) +
+  theme(legend.position = &amp;quot;none&amp;quot;)
+
+animation &amp;lt;- p + 
+  transition_states(date, transition_length = 1,
+                    state_length = 3) +
+  ggtitle(&amp;#39;{closest_state}&amp;#39;) +
+  enter_fade() + exit_fade()
+
+# render the animation (commented out because Hugo doesn&amp;#39;t like multiple gifs per page)
+# animate(animation, nframes = 250) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Animating the raw death statistics comes out a bit jerky. There’s a lot of idiosyncratic day-to-day noise in the death reporting, which we can smooth out like so, complete with clunky &lt;code&gt;for&lt;/code&gt; loop:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Fit LOESS (span parameter = 0.3) for each county and append predictions
+data &amp;lt;- data %&amp;gt;% 
+  ungroup %&amp;gt;% 
+  filter(!is.na(fips)) %&amp;gt;% 
+  mutate(ID = 1:n(),
+         date_numeric = as.numeric(date),
+         cases_smoothed = NA,
+         death_smoothed = NA)
+
+for(i in unique(data$fips)){
+  
+  data_subset &amp;lt;- data %&amp;gt;% filter(fips == i)
+  
+  if(nrow(data_subset) &amp;lt; 7) next # don&amp;#39;t smooth time series that are too short
+  
+  death_loess &amp;lt;- loess(new_deaths ~ date_numeric, 
+                       data = data_subset,
+                       span = 0.3)
+  
+  cases_loess &amp;lt;- loess(new_cases ~ date_numeric,
+                       data = data_subset,
+                       span = 0.3)
+  
+  data$death_smoothed[data$ID %in% data_subset$ID] &amp;lt;- 
+    death_loess %&amp;gt;% 
+    predict(data_subset)
+  
+  data$cases_smoothed[data$ID %in% data_subset$ID] &amp;lt;- 
+    cases_loess %&amp;gt;% 
+    predict(data_subset)
+  
+  
+}
+
+p &amp;lt;- ggplot(data = data %&amp;gt;%
+              left_join(county_centroids, by = &amp;#39;fips&amp;#39;) %&amp;gt;%
+              filter(death_smoothed &amp;gt;= 0.5)) +
+  geom_sf(data = county_shp, aes(fill = pct_black), color = NA) +
+  geom_sf(data = state_boundaries, fill = NA) +
+  scale_fill_gradient(low = &amp;#39;white&amp;#39;, high = &amp;#39;black&amp;#39;) +
+  geom_point(mapping = aes(x=X,y=Y, size = death_smoothed),
+             color = &amp;#39;red&amp;#39;) +
+  xlab(&amp;#39;&amp;#39;) + ylab(&amp;#39;&amp;#39;) +
+  theme(legend.position = &amp;quot;none&amp;quot;)
+
+animation &amp;lt;- p + 
+  transition_states(date, transition_length = 1,
+                    state_length = 3) +
+  ggtitle(&amp;#39;{closest_state}&amp;#39;) +
+  enter_fade() + exit_fade()
+
+# render the animation
+animate(animation, nframes = 250) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/covid-animation/index_files/figure-html/smooth%20video-1.gif&#34; /&gt;&lt;!-- --&gt;&lt;/p&gt;
+&lt;p&gt;Much better. I have a few ideas for how to clean it up and make it more beautiful, but they will have to wait for &lt;a href=&#34;https://joeornstein.github.io/covid-animation-2&#34;&gt;another post&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;futher-reading&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Futher Reading&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://goodekat.github.io/presentations/2019-isugg-gganimate-spooky/slides.html#1&#34;&gt;&lt;code&gt;gganimate&lt;/code&gt; with a Spooky Twist&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Measurement and the Back-Door Criterion</title>
+       <link>/posts/back-door-measurement/</link>
+       <pubDate>Wed, 10 Jun 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/back-door-measurement/</guid>
+       <description>
+
+
+&lt;p&gt;An useful way to think about the problem of measurement is to first consider an extreme case. For example, this illustration of &lt;a href=&#34;https://en.wikipedia.org/wiki/Simpson&amp;#39;s_paradox&#34;&gt;Simpson’s Paradox&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;figures/jeter-justice.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;In both 1995 and 1996, David Justice had a higher batting average than Derek Jeter. But when you look at their &lt;em&gt;combined&lt;/em&gt; batting average across both years, Justice has the higher batting average. So which is the best measure of hitting ability, the aggregated or disaggregated batting average? Who was the better batter?&lt;/p&gt;
+&lt;p&gt;As Judea Pearl shows in this &lt;a href=&#34;pearl-2013.pdf&#34;&gt;nice paper&lt;/a&gt;, causal DAGs can help cleanly resolve Simpson’s Paradox issues. Since I lack the wherewithal to learn a special purpose software to draw a DAG, let me go ahead and render this one in MS Paint…&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;figures/DAG.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Nice. Looking clean and professional. The point is that one’s batting average depends on more than just hitting ability. It also depends on, for instance, the quality of the pitchers you face. Since the baseball season determines both who bats and who pitches, the variable &lt;code&gt;Season&lt;/code&gt; confounds batting average as a measure of quality.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Measurement fundamentally invokes a causal claim&lt;/strong&gt;. A good measure changes whenever the latent characteristic we care about changes. A bad measure has a non-causal, back-door path between the latent characteristic and the observed measure. Only once you close off the back-door path between Batting Quality and Batting Average (by conditioning on Season) does their observed correlation correspond to the true causal relationship.&lt;/p&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Spaced Repetition for Syllabi</title>
+       <link>/posts/spaced-repetition-for-syllabi/</link>
+       <pubDate>Fri, 05 Jun 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/spaced-repetition-for-syllabi/</guid>
+       <description>
+
+
+&lt;p&gt;We tell students that cramming the night before the test is a poor strategy. But of course it isn’t. Students don’t get good grades for effective long-term memory consolidation. They get good grades for scoring well on the exam &lt;em&gt;tomorrow&lt;/em&gt;. If instructors want to encourage long-term memory building, they need to incentivize it.&lt;/p&gt;
+&lt;p&gt;For fun and a pretty graph, I replicated a version of the &lt;a href=&#34;https://en.wikipedia.org/wiki/Hermann_Ebbinghaus&#34;&gt;Ebbinghaus experiment&lt;/a&gt; on forgetting. I started with a list of 100 randomly generated license plate numbers and attempted to memorize them all.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; To faithfully simulate cramming before the exam, I studied the list for about two hours the night before the first test, with frequent distraction from video games and small children. Here’s how I fared on subsequent tests:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/spaced-repetition-for-syllabi/index_files/figure-html/plot%20forgetting%20curve-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The curve is not exactly exponential decay, but it’s decay nonetheless. I remembered more than I would have expected on Day 1, and forgot about 30% of the license plates within a week. No doubt I would have lost more if not for the intermittent reinforcement of the tests themselves. And now I have about two dozen fake license plate numbers permanently taking up space in long-term memory. Great!&lt;/p&gt;
+&lt;p&gt;If instead of cramming I had used something like &lt;a href=&#34;https://www.gwern.net/Spaced-repetition&#34;&gt;spaced repetition&lt;/a&gt;, I’m sure I would have remembered many more license plates. See Nicky Case’s fantastic &lt;a href=&#34;https://ncase.me/remember/&#34;&gt;explorable explanation&lt;/a&gt; for a guided tour to spaced repetition, but in a nutshell it works like this. Take a bunch of items you want to remember, and test yourself at varying intervals. If you successfully remember an item, increase the interval until the next test. If you fail, decrease the interval. That way you test the each item when you’re most in danger of forgetting it.&lt;/p&gt;
+&lt;p&gt;The two key elements of spaced repetition are (a) active recall rather than passive studying, and (b) spacing out study sessions. To design a course that leverages spaced repetition, consider the following ideas.&lt;/p&gt;
+&lt;div id=&#34;lots-of-low-stakes-assessment&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Lots of low-stakes assessment&lt;/h4&gt;
+&lt;p&gt;If a student only engages with a piece of content once during a lecture, then they haven’t been set up to remember it. Anything you want a student to remember needs to be reinforced through active recall, ideally multiple times throughout the semester. Low-stakes vocabulary and reading comprehension quizzes seem so…primary school, but they have a place in higher education too. Any opportunity for active recall is an opportunity to strengthen memory.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-most-important-content-goes-first&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;The most important content goes first&lt;/h4&gt;
+&lt;!-- For courses that lack an **explicit ladder structure**, there is rarely a clear guide for what order to present material. General to specific? Chronological?  --&gt;
+&lt;p&gt;Putting new content during the final weeks of the semester is like a &lt;a href=&#34;https://politicaldictionary.com/words/friday-news-dump/&#34;&gt;Friday news dump&lt;/a&gt;. Without much opportunity to practice and apply it, there’s far less chance students will remember it. Instead, make sure that the content you most want students to remember goes near the beginning of the course, and save those last few weeks for review and applications.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;less-content-more-review&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Less content, more review&lt;/h4&gt;
+&lt;p&gt;This may be a controversial one, but I would rather cover less content and have it be successfully rememebered than cover more content and have it crowd out the important stuff. Seriously consider what you want your students to get out of the course. Anything that is a Learning Objective with a capital-L should be reinforced multiple times. Prune other things to make room. Take time in class to review graded homework assignments, so they’re not immediately forgotten after they’re turned in. Create specific class periods for review of previously discussed material. Require your students to ask clarifying questions on a discussion board, and set aside time to review those questions. It all helps.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;decluster-assignments&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Decluster assignments&lt;/h4&gt;
+&lt;p&gt;Rather than partitioning your assignments into tidy modules that move from one topic to the next, consider constructing assignments that reach back earlier in the course to test concepts you’ve already covered. My AP European History teacher called this a “RIPPLE &amp;amp; CONNECT”, then she flapped her arms like an eagle and screeched.&lt;/p&gt;
+&lt;p&gt;You don’t have to do that last part.&lt;/p&gt;
+&lt;!-- ## Isn&#39;t Rote Memorization Bad? --&gt;
+&lt;!-- One objection to all of this .... But [Mnemosyne was the mother of the Muses](https://ncase.me/remember/). You can&#39;t have inspiration without memory. If you&#39;re a successful creative person, chances are that your creativity is built upon a bunch of existing knowledge about your field. Smart people tend to know a bunch of things. --&gt;
+&lt;/div&gt;
+&lt;div id=&#34;further-reading&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Further Reading&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://ncase.me/remember/&#34;&gt;Nicky Case&lt;/a&gt; has a fantastic explorable explanation of spaced repetition&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.gwern.net/Spaced-repetition&#34;&gt;Gwern&lt;/a&gt; has researched everything else you could possibly want to know&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.youtube.com/watch?v=kO8x8eoU3L4&#34;&gt;The Five Minute University&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/dZ6qMrVEdHY&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Can you remember your license plate number? You should!&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Fall Semester 2020</title>
+       <link>/posts/fall-semester-2020/</link>
+       <pubDate>Tue, 26 May 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/fall-semester-2020/</guid>
+       <description>
+
+
+&lt;p&gt;What is the best way to organize higher education in the fall? The University System of Georgia (my future home, go Dawgs) is &lt;a href=&#34;https://www.redandblack.com/uganews/usg-memo-details-possible-fall-semester-plans/article_dbbf02da-9e3e-11ea-b78f-975f030212bc.html&#34;&gt;considering a range of options&lt;/a&gt; between socially-distanced on-campus classes and a fully online semester. Tyler Cowen suggests a &lt;a href=&#34;https://marginalrevolution.com/marginalrevolution/2020/05/my-weird-lancastrian-method-for-reopening-higher-education.html&#34;&gt;Lancastrian solution&lt;/a&gt;. Zach Weinersmith has my personal &lt;a href=&#34;https://www.smbc-comics.com/comic/social&#34;&gt;favorite proposal&lt;/a&gt; drawn from social network analysis.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;One shared feature of these proposals is a reduction in the number of large, in-person gatherings. Let me put a little math behind that idea.&lt;/p&gt;
+&lt;div id=&#34;keep-classes-small&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Keep classes small&lt;/h3&gt;
+&lt;p&gt;It’s not a coincidence that so many COVID-19 infections have been traced to large, indoor &lt;a href=&#34;https://www.nytimes.com/2020/03/30/us/coronavirus-funeral-albany-georgia.html&#34;&gt;super-spreader&lt;/a&gt; &lt;a href=&#34;https://www.nytimes.com/2020/04/12/us/coronavirus-biogen-boston-superspreader.html&#34;&gt;events&lt;/a&gt;. That’s because large gatherings of people simultaneously increase two quantities: the expected number of infected individuals in attendance &lt;em&gt;and&lt;/em&gt; the total number of person-to-person contacts.&lt;/p&gt;
+&lt;p&gt;In a group of size &lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;, the probability that at least one person is infected = &lt;span class=&#34;math inline&#34;&gt;\(1 - (1-p)^n\)&lt;/span&gt;, where &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt; is the population prevalence. Here’s what that function looks like for a few values of &lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/fall-semester-2020/index_files/figure-html/Probability%20Curve-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;It’s hard to say what the overall prevalence of the virus will be in the fall. Depending on your assumptions, a 300-person lecture hall is either virtually guaranteed to have someone infected with the virus, or maybe has a 1-in-4 chance. Smaller seminar-style classes, on the other hand, are much more likely to be virus-free regardless of overall prevalence.&lt;/p&gt;
+&lt;p&gt;The rate at which a virus spreads is proportional to the number of &lt;em&gt;discordant contacts&lt;/em&gt; (contacts between an infected individual and a susceptible individual). This number scales quadratically with the size of a gathering.&lt;/p&gt;
+&lt;p&gt;Expected Number Infected: &lt;span class=&#34;math inline&#34;&gt;\(np\)&lt;/span&gt;&lt;br /&gt;
+Expected Number Susceptible: &lt;span class=&#34;math inline&#34;&gt;\((1-p)n\)&lt;/span&gt;&lt;br /&gt;
+Expected Number of Discordant Contacts: &lt;span class=&#34;math inline&#34;&gt;\(p(1-p)n^2\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/fall-semester-2020/index_files/figure-html/Discordant%20Contacts-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;All of which is to say that when you go from a 30-student seminar to a 300-student lecture hall, you don’t get a tenfold increase in virus spread. You get a &lt;strong&gt;hundredfold&lt;/strong&gt; increase. You can replace that lecture class with ten seminars and lower the rate of viral spread by 90%.&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; And hey, you might even &lt;a href=&#34;http://www.cwsei.ubc.ca/SEI_research/files/Wieman-Change_Sept-Oct_2007.pdf&#34;&gt;improve&lt;/a&gt; &lt;a href=&#34;https://www.insidehighered.com/quicktakes/2018/06/29/class-size-matters&#34;&gt;learning&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The x-axis on that last figure cuts off at 300, because I expect the model will start to break down a bit for larger crowds where you can’t assume random mixing. I’ll leave the 100,000 person football stadium as an exercise for the reader…&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;You could probably invite the political methodologists back to campus too. See my &lt;a href=&#34;https://joeornstein.github.io/posts/the-contact-paradox/&#34;&gt;previous post&lt;/a&gt; for a much less funny take with more graphs.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;Or, in general, splitting the big group into &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; smaller groups reduces the number of discordant contacts m-fold: &lt;span class=&#34;math inline&#34;&gt;\(m(\frac{n}{m})^2 = \frac{n^2}{m}\)&lt;/span&gt;&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>The Contact Paradox</title>
+       <link>/posts/the-contact-paradox/</link>
+       <pubDate>Tue, 12 May 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/the-contact-paradox/</guid>
+       <description>
+
+
+&lt;!-- --- --&gt;
+&lt;!-- ***Attention Conservation Notice:*** *The following post describes an agent-based epidemiological model demonstrating that simple contact tracing strictly outperforms mass random testing. If you already believe this without a model, you may skip the exposition. Maybe just look at the pretty charts.* --&gt;
+&lt;!-- --- --&gt;
+&lt;p&gt;The &lt;a href=&#34;https://en.wikipedia.org/wiki/Friendship_paradox&#34;&gt;Friendship Paradox&lt;/a&gt; states that, on average, your friends have more friends than you do. (It’s not your fault. It’s just a property non-random sampling on networks.) Note that in the network below only agent 3 is more popular than his friends.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/the-contact-paradox/index_files/figure-html/plot%20graph-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The epidemiological corollary to this rule is that &lt;em&gt;your contacts have more contacts than you&lt;/em&gt;. We can use this fact to help identify and isolate “super-spreaders” during an epidemic, maximizing the effectiveness of the tests we have available.&lt;/p&gt;
+&lt;div id=&#34;model-assumptions&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Model Assumptions&lt;/h2&gt;
+&lt;p&gt;Consider an agent-based &lt;a href=&#34;https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology#The_SIR_model&#34;&gt;SIR model&lt;/a&gt; with the following assumptions:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(R_0 = 2.5\)&lt;/span&gt; (i.e., in the absence of intervention, we expect each infected person to infect 2.5 others before recovering).&lt;/li&gt;
+&lt;li&gt;Infections last 10 days.&lt;/li&gt;
+&lt;li&gt;Initial prevalence is 1 per 1,000 agents.&lt;/li&gt;
+&lt;li&gt;There is significant asymptomatic and/or presymptomatic spread, so we cannot rely on testing symptomatic individuals and must broadly test asymptomatics.&lt;/li&gt;
+&lt;li&gt;There are 10,000 agents with an average of 12 contacts each.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Each day, we administer tests to a fraction of the population &lt;code&gt;pct_tested&lt;/code&gt;. If an agent tests positive, they are removed (quarantined).&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; Consider two strategies for how to target these tests:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;&lt;strong&gt;Random Targeting&lt;/strong&gt;: Select agents at random and test&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Contact Targeting&lt;/strong&gt;: Select agents at random and test one of their &lt;em&gt;contacts&lt;/em&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You can find replication code &lt;a href=&#34;code/sir-model.R&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;results&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Results&lt;/h2&gt;
+&lt;p&gt;If the degree distribution of the contact network is normally distributed, then there is little difference between the most connected individuals and the least connected individuals.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;figs/normal_distribution.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;In this universe, Contact Targeting does no better than Random Targeting. It doesn’t do any &lt;em&gt;worse&lt;/em&gt;, but since there are no super-spreaders, it doesn’t offer any systematic advantage.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;figs/normal_results.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;But suppose (as is likely the case) that the degree distribution is &lt;a href=&#34;https://en.wikipedia.org/wiki/Fat-tailed_distribution&#34;&gt;fat-tailed&lt;/a&gt;. Most agents have relatively few contacts, but some agents have an enormous number of contacts. (Think service sector workers, conference attendees, etc.) This might look more like a gamma distribution:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;figs/gamma_distribution.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;In this universe, you can suppress the epidemic with significantly fewer tests per day through Contact Targeting instead of Random Targeting. Because &lt;em&gt;your contacts tend to have more contacts than you&lt;/em&gt;, we can identify the super-spreader nodes through simple contact tracing without having to go through the arduous task of mapping the entire network.&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;figs/gamma_results.png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;As the above figure shows, you can suppress the epidemic with 3X fewer tests by targeting contacts instead of targeting agents at random. The exact number of tests required will obviously depend on the epidemiological parameters, but the implication is clear. If you’re mass testing people in response to an epidemic (see, for instance, &lt;a href=&#34;https://roadmap.paulromer.net/paulromer-roadmap-report.pdf&#34;&gt;Paul Romer’s roadmap&lt;/a&gt;), there is no advantage to allocating tests at random. You can always do at least as well by allocating tests to contacts.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Assume a zero false negative rate on PCR tests. Since the false negative rate remains constant across targeting conditions, it does not affect the results.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;See also &lt;a href=&#34;https://arxiv.org/abs/1004.4792&#34; class=&#34;uri&#34;&gt;https://arxiv.org/abs/1004.4792&lt;/a&gt;&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+     </item>
+   
+     <item>
+       <title>Blogdown Features</title>
+       <link>/posts/blogdown-features/</link>
+       <pubDate>Sun, 10 May 2020 00:00:00 +0000</pubDate>
+       
+       <guid>/posts/blogdown-features/</guid>
+       <description>
+
+
+&lt;p&gt;Any website built with &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; and &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;&lt;code&gt;blogdown&lt;/code&gt;&lt;/a&gt; will inevitably feature one blog post about all the cool features of &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt; and &lt;a href=&#34;https://bookdown.org/yihui/blogdown/&#34;&gt;&lt;code&gt;blogdown&lt;/code&gt;&lt;/a&gt;. This is mine.&lt;/p&gt;
+&lt;p&gt;Observe, if you will, that we can embed a shiny dashboard into a static website with RMarkdown. Thanks to &lt;a href=&#34;https://liuyanguu.github.io/post/2019/02/24/shiny-in-blogdown/#my-shiny-app-example&#34;&gt;Yang Liu&lt;/a&gt;!&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;knitr::include_app(&amp;quot;https://vac-lshtm.shinyapps.io/ncov_tracker/?_ga=2.126674445.1246084674.1588877732-1324960155.1586370896&amp;quot;, height = &amp;quot;600px&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;iframe src=&#34;https://vac-lshtm.shinyapps.io/ncov_tracker/?_ga=2.126674445.1246084674.1588877732-1324960155.1586370896&#34; width=&#34;672&#34; height=&#34;600px&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;The same &lt;code&gt;knitr&lt;/code&gt; function also works for slides:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;knitr::include_url(&amp;#39;https://timmastny.rbind.io/slides/first_presentation#2&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;iframe src=&#34;https://timmastny.rbind.io/slides/first_presentation#2&#34; width=&#34;672&#34; height=&#34;400px&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;Here’s a tweet courtesy of the Twitter shortcode:&lt;/p&gt;
+&lt;p&gt;&lt;blockquote class=&#34;twitter-tweet&#34;&gt;&lt;p lang=&#34;en&#34; dir=&#34;ltr&#34;&gt;Hugo 0.24 Released: Big archetype update + &lt;a href=&#34;https://twitter.com/Netlify?ref_src=twsrc%5Etfw&#34;&gt;@Netlify&lt;/a&gt; _redirects etc. file support&lt;a href=&#34;https://t.co/X94FmYDEZJ&#34;&gt;https://t.co/X94FmYDEZJ&lt;/a&gt; &lt;a href=&#34;https://twitter.com/hashtag/gohugo?src=hash&amp;amp;ref_src=twsrc%5Etfw&#34;&gt;#gohugo&lt;/a&gt; &lt;a href=&#34;https://twitter.com/hashtag/golang?src=hash&amp;amp;ref_src=twsrc%5Etfw&#34;&gt;#golang&lt;/a&gt; &lt;a href=&#34;https://twitter.com/spf13?ref_src=twsrc%5Etfw&#34;&gt;@spf13&lt;/a&gt; &lt;a href=&#34;https://twitter.com/bepsays?ref_src=twsrc%5Etfw&#34;&gt;@bepsays&lt;/a&gt;&lt;/p&gt;&amp;mdash; GoHugo.io (@GoHugoIO) &lt;a href=&#34;https://twitter.com/GoHugoIO/status/877500564405444608?ref_src=twsrc%5Etfw&#34;&gt;June 21, 2017&lt;/a&gt;&lt;/blockquote&gt;
+&lt;script async src=&#34;https://platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt;
+&lt;/p&gt;
+&lt;p&gt;I will add more examples to this post as I discover them.&lt;/p&gt;
+</description>
+     </item>
+   
+ </channel>
+</rss>

@@ -1,0 +1,175 @@
+---
+title: "Polls 2020"
+author: "Joseph T. Ornstein"
+date: '2020-10-24'
+slug: polls-2020
+categories:
+ - Data Science
+ - Elections
+tags: []
+images: []
+draft: true
+---
+
+```{r preamble, include = FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+filler text
+
+<TODO: Use 538>
+
+```{r get data}
+# 2016 data is here: http://projects.fivethirtyeight.com/general-model/president_general_polls_2016.csv
+polls_2016 <- read_rds('data/president_general_polls_2016.RDS') %>% 
+  mutate(enddate = as.Date(enddate, format = '%m/%d/%Y'))
+
+# 2020 polls from: https://docs.google.com/spreadsheets/d/e/2PACX-1vQ56fySJKLL18Lipu1_i3ID9JE06voJEz2EXm6JW4Vh11zmndyTwejMavuNntzIWLY0RyhA1UsVEen0/pub?gid=0&single=true&output=csv
+# and: https://github.com/fivethirtyeight/data/tree/master/polls
+polls_2020 <- read_csv('data/2020 US presidential election polls - all_polls.csv') %>% 
+  rename('state.abb' = state,
+         'enddate' = end.date) %>% 
+  mutate(enddate = as.Date(enddate, format = '%m/%d/%Y')) %>% 
+  left_join(tibble(state.abb, state.name) %>% 
+              rename('state' = state.name),
+            by = 'state.abb')
+
+# election results from https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/42MVDX
+results <- read_csv('data/1976-2016-president.csv')
+```
+
+```{r plot swing states 2016}
+state_to_plot <- 'Ohio'
+  
+# swing_states <-  c('Pennsylvania', 'Wisconsin', 'Michigan', 'Florida', 'North Carolina', 'Arizona', 'Ohio', 'Virginia', 'Nevada', 'Georgia', 'Iowa', 'Minnesota')
+
+republican_2016 <- results %>% 
+  filter(year == 2016, state %in% state_to_plot,
+         candidate == 'Trump, Donald J.') %>% 
+  mutate(pct = candidatevotes / totalvotes * 100) %>% 
+  pull(pct)
+
+democrat_2016 <- results %>% 
+  filter(year == 2016, state == state_to_plot,
+         candidate == 'Clinton, Hillary') %>% 
+  mutate(pct = candidatevotes / totalvotes * 100) %>% 
+  pull(pct)
+
+polls_2016 %>% 
+  filter(state == state_to_plot,
+         enddate > '2016-09-01') %>% 
+  ggplot() +
+  geom_point(mapping = aes(x=enddate, y=rawpoll_clinton), 
+             color = 'blue', alpha = 0.2) +
+  geom_smooth(mapping = aes(x=enddate, y=rawpoll_clinton), 
+              color = 'blue', se = FALSE, method = 'loess') +
+  geom_point(mapping = aes(x=enddate, y=rawpoll_trump),
+             color = 'red', alpha = 0.2) +
+  geom_smooth(mapping = aes(x=enddate, y=rawpoll_trump),
+              color = 'red', se = FALSE, method = 'loess') +
+  theme_bw() + 
+  labs(x = 'Poll End Date', y = 'Raw Polling Percentage',
+       title = paste0(state_to_plot, ' Polls, 2016')) +
+  geom_hline(yintercept = republican_2016, color = 'red',
+             linetype = 'dashed', size = 1) +
+  geom_hline(yintercept = democrat_2016, color = 'blue',
+             linetype = 'dashed', size = 1)
+```
+
+```{r 2020}
+polls_2020 %>% 
+  filter(state == state_to_plot,
+         enddate > '2016-09-01') %>% 
+  ggplot() +
+  geom_point(mapping = aes(x=enddate, y=biden), 
+             color = 'blue', alpha = 0.2) +
+  geom_smooth(mapping = aes(x=enddate, y=biden), 
+              color = 'blue', se = FALSE, method = 'loess') +
+  geom_point(mapping = aes(x=enddate, y=trump),
+             color = 'red', alpha = 0.2) +
+  geom_smooth(mapping = aes(x=enddate, y=trump),
+              color = 'red', se = FALSE, method = 'loess') +
+  theme_bw() + 
+  labs(x = 'Poll End Date', y = 'Raw Polling Percentage',
+       title = paste0(state_to_plot, ' Polls, 2020')) +
+  geom_hline(yintercept = republican_2016, color = 'red',
+             linetype = 'dashed', size = 1) +
+  geom_hline(yintercept = democrat_2016, color = 'blue',
+             linetype = 'dashed', size = 1)
+```
+
+
+In 2016, the final two weeks of Michigan polls suggested the election was going to be a squeaker. And...it was a squeaker.
+
+In 2020, the Michigan polls are pretty definitive. In order to believe that Trump is winning, you would have to expect a much larger polling error than we saw in 2016.
+
+<TODO: polling error in 2016 versus the polling error Trump needs to win in 2020>
+
+Less sophisticated than Nate Silver's quality- and recency-weighted moving average. I'm just going to take the mean of the last two weeks of polls.
+
+```{r polling errors}
+library(lubridate)
+
+polling_margin_2016 <- function(data, state_name){
+  data %>% 
+    filter(enddate > ymd('2016-11-08') - weeks(2),
+           state == state_name) %>% 
+    mutate(clinton_margin = rawpoll_clinton - rawpoll_trump) %>% 
+    pull(clinton_margin) %>% 
+    mean
+}
+
+polling_margin_2020 <- function(data, state_name){
+  data %>% 
+    filter(enddate > Sys.Date() - weeks(2),
+           state == state_name) %>% 
+    pull(biden_margin) %>%
+    mean
+}
+
+results_2016 <- results %>% 
+  filter(year == 2016,
+         candidate %in% c('Trump, Donald J.','Clinton, Hillary')) %>%
+  group_by(state, candidate, totalvotes) %>%
+  summarize(candidatevotes = sum(candidatevotes)) %>% 
+  mutate(pct = candidatevotes / totalvotes * 100) %>% 
+  select(state, candidate, pct) %>% 
+  pivot_wider(names_from = candidate, values_from = pct) %>%
+  mutate(clinton_actual_margin_2016 = `Clinton, Hillary` - `Trump, Donald J.`) %>% 
+  select(state, clinton_actual_margin_2016)
+
+swing_states <- tibble(state = c('Pennsylvania', 'Wisconsin', 'Michigan',
+                                 'Florida', 'North Carolina', 'Arizona',
+                                 'Ohio', 'Virginia', 'Nevada', 'Georgia',
+                                 'Iowa', 'Minnesota')) %>% 
+  mutate(clinton_polling_margin_2016 = 
+           map(state, ~polling_margin_2016(data = polls_2016,
+                                           state_name = .x)) %>% 
+           unlist,
+         biden_polling_margin_2020 = 
+           map(state, ~polling_margin_2020(data = polls_2020,
+                                           state_name = .x)) %>% 
+           unlist) %>% 
+  left_join(results_2016, by = 'state') %>% 
+  left_join(tibble(state.abb, state.name) %>% 
+              rename('state' = state.name),
+            by = 'state') %>% 
+  mutate(polling_error_2016 = clinton_actual_margin_2016 - clinton_polling_margin_2016)
+
+ggplot(data = swing_states) +
+  geom_text(mapping = aes(x = -polling_error_2016, 
+                          y = biden_polling_margin_2020,
+                          label = state.abb)) +
+  theme_bw() + 
+  geom_abline(intercept = 0, slope = 1, linetype = 'dashed') +
+  labs(x = 'Polling Error in 2016', 
+       y = 'Polling Error Trump Needs in 2020')
+```
+
+My point is that "the polls were wrong in 2016 and could be wrong in 2020" is a weaker argument than you need to believe that Trump will win in 2020. Instead, you need to believe that the 2020 polls are (a) wrong in the same direction as they were in 2016 and (b) actually significantly worse in almost every state, despite the concerted efforts of pollsters to not make the same mistakes they did four years ago.
+
+
+## Further Reading
+
+[Matt Yglesias](https://www.vox.com/21524703/biden-trump-poll-lead-2016)
