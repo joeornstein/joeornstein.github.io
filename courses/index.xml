@@ -59,8 +59,7 @@ wiley_transfers &amp;lt;- (elimination_sequence[,4] - elimination_sequence[,3]) 
 wiley_transfers&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##      Adams      Wiley     Garcia       Yang      Other  Exhausted 
 ##  0.1956394 -1.0000000  0.5156968  0.0000000  0.0000000  0.2886638&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;If Wiley is eliminated, expect 51% of her votes to go to Garcia, 19% to go to Adams, and 28% to be exhausted. Similarly, a vote for Yang is worth roughly `&lt;code&gt;yang_transfers[&#39;Wiley&#39;] * wiley_transfers[&#39;Garcia&#39;] + yang_transfers[&#39;Garcia&#39;]`&lt;/code&gt;, or 0.39 votes for Garcia, assuming that the order of eliminations is the same after they tally the absentee ballots.&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Now we can construct the transition matrix &lt;span class=&#34;math inline&#34;&gt;\(P\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;If Wiley is eliminated, expect 51% of her votes to go to Garcia, 19% to go to Adams, and 28% to be exhausted. Now we can construct the transition matrix &lt;span class=&#34;math inline&#34;&gt;\(P\)&lt;/span&gt;.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;P &amp;lt;- rbind(c(1,0,0,0,0,0),
            wiley_transfers,
            c(0,0,1,0,0,0),
@@ -93,7 +92,7 @@ B&lt;/code&gt;&lt;/pre&gt;
 ## Yang      0.3015142     0 0.3899229    0     0 0.3085629
 ## Other     0.2723540     0 0.4415741    0     0 0.2860719
 ## Exhausted 0.0000000     0 0.0000000    0     0 1.0000000&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;First-place votes for Wiley are worth roughly 0.52 votes for Garcia, but only 0.2 votes for Adams. First-place votes for Yang are worth 0.39 for Garcia and 0.3 votes for Adams respectively.&lt;/p&gt;
+&lt;p&gt;First-place votes for Wiley are worth roughly 0.52 votes for Garcia, but only 0.2 votes for Adams. First-place votes for Yang are worth 0.39 for Garcia and 0.3 votes for Adams respectively, assuming that the order of eliminations is the same after they tally the absentee ballots.&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# multiply the first round vote vector with the matrix B, and you should get the final round vote vector
 elimination_sequence[,1] %*% B&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##       Adams Wiley Garcia Yang Other Exhausted

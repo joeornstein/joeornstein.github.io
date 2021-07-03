@@ -182,8 +182,7 @@ wiley_transfers &lt;- (elimination_sequence[,4] - elimination_sequence[,3]) / el
 wiley_transfers</code></pre>
 <pre><code>##      Adams      Wiley     Garcia       Yang      Other  Exhausted 
 ##  0.1956394 -1.0000000  0.5156968  0.0000000  0.0000000  0.2886638</code></pre>
-<p>If Wiley is eliminated, expect 51% of her votes to go to Garcia, 19% to go to Adams, and 28% to be exhausted. Similarly, a vote for Yang is worth roughly `<code>yang_transfers['Wiley'] * wiley_transfers['Garcia'] + yang_transfers['Garcia']`</code>, or 0.39 votes for Garcia, assuming that the order of eliminations is the same after they tally the absentee ballots.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
-<p>Now we can construct the transition matrix <span class="math inline">\(P\)</span>.</p>
+<p>If Wiley is eliminated, expect 51% of her votes to go to Garcia, 19% to go to Adams, and 28% to be exhausted. Now we can construct the transition matrix <span class="math inline">\(P\)</span>.</p>
 <pre class="r"><code>P &lt;- rbind(c(1,0,0,0,0,0),
            wiley_transfers,
            c(0,0,1,0,0,0),
@@ -216,7 +215,7 @@ B</code></pre>
 ## Yang      0.3015142     0 0.3899229    0     0 0.3085629
 ## Other     0.2723540     0 0.4415741    0     0 0.2860719
 ## Exhausted 0.0000000     0 0.0000000    0     0 1.0000000</code></pre>
-<p>First-place votes for Wiley are worth roughly 0.52 votes for Garcia, but only 0.2 votes for Adams. First-place votes for Yang are worth 0.39 for Garcia and 0.3 votes for Adams respectively.</p>
+<p>First-place votes for Wiley are worth roughly 0.52 votes for Garcia, but only 0.2 votes for Adams. First-place votes for Yang are worth 0.39 for Garcia and 0.3 votes for Adams respectively, assuming that the order of eliminations is the same after they tally the absentee ballots.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
 <pre class="r"><code># multiply the first round vote vector with the matrix B, and you should get the final round vote vector
 elimination_sequence[,1] %*% B</code></pre>
 <pre><code>##       Adams Wiley Garcia Yang Other Exhausted

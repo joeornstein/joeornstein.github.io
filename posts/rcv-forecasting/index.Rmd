@@ -52,11 +52,7 @@ wiley_transfers <- (elimination_sequence[,4] - elimination_sequence[,3]) / elimi
 wiley_transfers
 ```
 
-If Wiley is eliminated, expect `r floor(wiley_transfers['Garcia'] * 100)`% of her votes to go to Garcia, `r floor(wiley_transfers['Adams'] * 100)`% to go to Adams, and `r floor(wiley_transfers['Exhausted'] * 100)`% to be exhausted. Similarly, a vote for Yang is worth roughly \``` yang_transfers['Wiley'] * wiley_transfers['Garcia'] + yang_transfers['Garcia']` ``, or `r round(yang_transfers['Wiley'] * wiley_transfers['Garcia'] + yang_transfers['Garcia'], 2)` votes for Garcia, assuming that the order of eliminations is the same after they tally the absentee ballots.[^2]
-
-[^2]: A *big* if! Without data on the complete preference rankings of voters, we don't know what would happen if, say, Garcia were eliminated instead of Wiley. But, as we'll see, the geographic distribution of absentee ballots doesn't suggest that Wiley is likely to overtake Garcia in the penultimate round.
-
-Now we can construct the transition matrix $P$.
+If Wiley is eliminated, expect `r floor(wiley_transfers['Garcia'] * 100)`% of her votes to go to Garcia, `r floor(wiley_transfers['Adams'] * 100)`% to go to Adams, and `r floor(wiley_transfers['Exhausted'] * 100)`% to be exhausted. Now we can construct the transition matrix $P$.
 
 ```{r create transition matrix}
 P <- rbind(c(1,0,0,0,0,0),
@@ -83,7 +79,9 @@ B <- P %*% P %*% P %*% P
 B
 ```
 
-First-place votes for Wiley are worth roughly `r round(B['Wiley', 'Garcia'], 2)` votes for Garcia, but only `r round(B['Wiley', 'Adams'], 2)` votes for Adams. First-place votes for Yang are worth `r round(B['Yang', 'Garcia'], 2)` for Garcia and `r round(B['Yang', 'Adams'], 2)` votes for Adams respectively.
+First-place votes for Wiley are worth roughly `r round(B['Wiley', 'Garcia'], 2)` votes for Garcia, but only `r round(B['Wiley', 'Adams'], 2)` votes for Adams. First-place votes for Yang are worth `r round(B['Yang', 'Garcia'], 2)` for Garcia and `r round(B['Yang', 'Adams'], 2)` votes for Adams respectively, assuming that the order of eliminations is the same after they tally the absentee ballots.[^2]
+
+[^2]: A *big* if! Without data on the complete preference rankings of voters, we don't know what would happen if, say, Garcia were eliminated instead of Wiley. But, as we'll see, the geographic distribution of absentee ballots doesn't suggest that Wiley is likely to overtake Garcia in the penultimate round.
 
 ```{r preliminary results vector}
 # multiply the first round vote vector with the matrix B, and you should get the final round vote vector
