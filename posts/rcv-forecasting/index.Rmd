@@ -1,0 +1,289 @@
+---
+title: "Forecasting the NYC Ranked Choice Mayoral Primary"
+author: "Joseph T. Ornstein"
+date: '2021-07-03'
+slug: rcv-forecasting
+categories:
+ - Data Science
+ - Elections
+tags:  []
+images: []
+draft: false
+---
+
+```{r preamble, include = FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+```
+
+As of July 3, 2021, the ranked choice voting (RCV) race for New York City mayor is hotly contested. An unofficial RCV result counting only in-person Election Day ballots projected a close Adams win over Garcia in the final round of elimination. But there are over [125,000 absentee ballots](https://www.nytimes.com/2021/07/02/nyregion/nyc-mayor-race-voting-count-eric-adams.html) left to count. Will those ballots be enough for Garcia to overtake Adams? (Or for Wiley to overtake Garcia?) Here's a quick-and-dirty peek at the data.
+
+## Clean The Data
+
+Without the ballot image data, we'll need to work with three sets of data: (1) the [unofficial ranked choice results](https://web.enrboenyc.us/rcv/024306_1.html) as of July 1, to get a sense of the likely sequence of eliminations and transfers, (2) counts of absentee ballots returned by assembly district, and (3) [district-level first-place vote counts](https://web.enrboenyc.us/CD24306ADI0.html) from Election Day, to get a sense of who those absentee ballots will support.
+
+First, let's create a transition matrix $P$ with the projected eliminations and the redistribution of voter support. To make it easy on ourselves, we'll focus on the top four candidates (Adams, Wiley, Garcia, and Yang); all other votes, including write-ins, will be labeled "Other".[^1]
+
+[^1]: Some candidates are eliminated simultaneously, which makes it difficult to construct a transition matrix including each of the first 10 candidates eliminated.
+
+```{r transition matrix}
+
+library(tidyverse)
+library(readxl)
+
+# load the unofficial RCV transfers
+rcv_transfers <- read_xlsx('data/rcv-transfers.xlsx')
+
+# convert to a matrix
+elimination_sequence <- as.matrix(rcv_transfers[,2:5])
+rownames(elimination_sequence) <- rcv_transfers$candidate
+
+elimination_sequence
+
+# in the preliminary tally, votes for 'other' candidates transferred to the four major candidates as follows
+other_transfers <- (elimination_sequence[,2] - elimination_sequence[,1]) / elimination_sequence[5,1]
+other_transfers
+
+# Yang votes transferred as follows
+yang_transfers <- (elimination_sequence[,3] - elimination_sequence[,2]) / elimination_sequence[4,2]
+yang_transfers
+
+# and Wiley transfers...
+wiley_transfers <- (elimination_sequence[,4] - elimination_sequence[,3]) / elimination_sequence[2,3]
+wiley_transfers
+```
+
+If Wiley is eliminated, expect `r floor(wiley_transfers['Garcia'] * 100)`% of her votes to go to Garcia, `r floor(wiley_transfers['Adams'] * 100)`% to go to Adams, and `r floor(wiley_transfers['Exhausted'] * 100)`% to be exhausted. Similarly, a vote for Yang is worth roughly \``` yang_transfers['Wiley'] * wiley_transfers['Garcia'] + yang_transfers['Garcia']` ``, or `r round(yang_transfers['Wiley'] * wiley_transfers['Garcia'] + yang_transfers['Garcia'], 2)` votes for Garcia, assuming that the order of eliminations is the same after they tally the absentee ballots.[^2]
+
+[^2]: A *big* if! Without data on the complete preference rankings of voters, we don't know what would happen if, say, Garcia were eliminated instead of Wiley. But, as we'll see, the geographic distribution of absentee ballots doesn't suggest that Wiley is likely to overtake Garcia in the penultimate round.
+
+Now we can construct the transition matrix $P$.
+
+```{r create transition matrix}
+P <- rbind(c(1,0,0,0,0,0),
+           wiley_transfers,
+           c(0,0,1,0,0,0),
+           yang_transfers,
+           other_transfers,
+           c(0,0,0,0,0,1))
+rownames(P) <- colnames(P)
+# zeroes in the diagonals for eliminated candidates (transient states)
+P['Wiley','Wiley'] <- 0 
+P['Yang','Yang'] <- 0
+P['Other','Other'] <- 0
+
+P
+```
+
+Run that Markov Chain forward a few rounds and you get the matrix $B$, which reports the probability that a first-place vote for row candidate $i$ will ultimately be transferred to column candidate $j$ (or the ballot will be Exhausted):
+
+```{r absorbing states}
+# multiply the transition matrix by itself to compute the absorbing state probabilities
+B <- P %*% P %*% P %*% P
+
+B
+```
+
+First-place votes for Wiley are worth roughly `r round(B['Wiley', 'Garcia'], 2)` votes for Garcia, but only `r round(B['Wiley', 'Adams'], 2)` votes for Adams. First-place votes for Yang are worth `r round(B['Yang', 'Garcia'], 2)` for Garcia and `r round(B['Yang', 'Adams'], 2)` votes for Adams respectively.
+
+```{r preliminary results vector}
+# multiply the first round vote vector with the matrix B, and you should get the final round vote vector
+elimination_sequence[,1] %*% B
+```
+
+With that pinned down, we can look at the Election Day results by assembly district, (available [here](https://web.enrboenyc.us/CD24306ADI0.html)), see how many absentee ballots are left to count in each of those districts, and estimate how the absentee ballots will affect the final results.
+
+```{r clean data}
+
+# load first-pick data from election night
+d <- read_xlsx('data/election-night-results.xlsx') %>% 
+  # collapse the non-top-four candidates
+  mutate(other = Foldenauer + Morales + Stringer + McGuire +
+           Prince + Chang + Wright + Donovan + Taylor + `Write-in`) %>% 
+  select(borough, assembly_district, Adams, Wiley, Garcia, Yang, other) %>% 
+  # reshape longer
+  pivot_longer(cols = 'Adams':'other',
+               values_to = 'votes',
+               names_to = 'candidate') %>% 
+  # reformat some variables
+  mutate(assembly_district = assembly_district %>% str_replace_all('AD ', '') %>% as.numeric,
+         candidate = str_to_title(candidate),
+         candidate = factor(candidate, levels = rownames(B))) %>%
+  # compute the share of votes received by candidates in each assembly district
+  group_by(borough, assembly_district) %>% 
+  summarize(candidate = candidate,
+            votes = votes,
+            ad_share = votes / sum(votes))
+
+election_night_vote_totals <- d %>% 
+  group_by(candidate) %>%
+  summarize(first_place_votes = sum(votes))
+
+election_night_vote_totals
+```
+
+Here are the assembly districts where absentee ballots still need to be counted:
+
+```{r absentee ballots}
+absentee_ballots <- read_xlsx('data/absentee-ballots.xlsx')
+
+# merge with the election night vote totals
+d <- d %>% 
+  left_join(absentee_ballots, by = c('borough', 'assembly_district'))
+
+d %>% 
+  ggplot() +
+  geom_point(mapping = aes(x=absentee_ballots_returned,
+                           y=ad_share),
+             alpha = 0.4) +
+  facet_wrap(~candidate) +
+  labs(x = 'Absentee Ballots Left To Count',
+       y = "Vote Share (Election Night)") +
+  theme_bw()
+```
+
+## Estimating Absentee Support
+
+If absentee voters look like the Election Day voters from their districts, then you can take the dot product from each of those charts above to forecast the support that each will receive from absentee ballots. Under this (big) assumption, Adams receives the most first-place absentee votes.
+
+```{r projected first place votes}
+# projected votes
+d <- d %>% 
+  mutate(projected_absentee_votes = absentee_ballots_returned * ad_share,
+         projected_first_place_votes = votes + projected_absentee_votes)
+
+d %>% 
+  group_by(candidate) %>% 
+  summarize(projected_absentee_votes = sum(projected_absentee_votes)) %>% 
+  mutate(share_absentee_votes = projected_absentee_votes / sum(projected_absentee_votes))
+```
+
+Because Wiley votes are worth `r round(B['Wiley', 'Garcia'], 2)` votes for Garcia, this narrows the final gap between Adams and Garcia, but will it be by enough to give Garcia the edge? Perform the transfers by multiplying the first-round vector by the absorbing state matrix $B$.
+
+```{r perform transfers}
+projected_votes <- d %>% 
+  group_by(candidate, .drop = FALSE) %>% # .drop = FALSE keeps factor levels that don't appear in the data
+  summarize(first_place_votes = sum(projected_first_place_votes))
+
+projected_votes
+
+final <- (projected_votes$first_place_votes %*% B)[1,]
+final
+
+# two-candidate vote share
+final['Adams'] / (final['Adams'] + final['Garcia']) * 100
+```
+
+With the absentee ballots counted, the final round gap between Adams and Garcia narrows to about `r (final['Adams'] - final['Garcia']) %>% floor %>% prettyNum(big.mark = ',')` votes. It's a squeaker, but geography alone won't save Garcia. For her to win, the absentee ballots must be significantly worse for Adams than their geographic distribution would suggest.[^3]
+
+[^3]: They probably will be! Absentee voters tend to be better educated than Election Day voters, a group that is more likely to support Garcia and Wiley. But note that part of that effect is already captured in the geographic distribution of the absentee ballots (e.g. a lot of absentee ballots returned in the neighborhoods around Central Park).
+
+## What about Wiley?
+
+Are the absentee ballots likely to put Wiley over Garcia in Round 8?
+
+```{r round 8 chain}
+projected_round_1 <- projected_votes$first_place_votes
+names(projected_round_1) <- projected_votes$candidate
+
+# transfer votes from other candidates
+projected_round_7 <- projected_round_1 + projected_round_1['Other'] * other_transfers
+
+round( projected_round_7 )
+
+# transfer votes from Yang
+projected_round_8 <- projected_round_7 + projected_round_7['Yang'] * yang_transfers
+
+round( projected_round_8 )
+```
+
+Nope. The margin between Garcia and Wiley grows even larger -- to `r (projected_round_8['Garcia'] - projected_round_8['Wiley']) %>% floor %>% prettyNum(big.mark = ',')` votes.
+
+## Final Thoughts
+
+Right now, I wouldn't be surprised if Garcia won[^4], but I give the edge to Adams. As this post was going to press, the *New York Times* [reported](https://www.nytimes.com/2021/07/02/nyregion/nyc-mayor-race-voting-count-eric-adams.html) an early unofficial count of absentee ballots in Manhattan, showing Garcia as a first-choice on 9,043 of the 23,739 absentee ballots counted in the borough, and Adams as first choice on 2,999. That's a wide margin (38% vs 13%), but it's not much more favorable to Garcia than the Election Day results from those Manhattan districts would suggest:
+
+[^4]: And to be clear, if Garcia wins, it wouldn't be a "come from behind victory". It would be because more people voted for Garcia over Adams than voted for Adams over Garcia. The sequential eliminations in RCV make it *seem* like a horse race where a candidate with an early lead gets overtaken by an underdog, but that's just accounting.
+
+```{r manhattan absentee}
+d %>% 
+  filter(borough == 'manhattan') %>% 
+  group_by(candidate) %>% 
+  summarize(projected_absentee_votes = sum(projected_absentee_votes)) %>% 
+  mutate(share_absentee_votes = projected_absentee_votes / sum(projected_absentee_votes))
+```
+
+Assume that Adams underperforms his Election Day numbers by that same margin on absentee ballots in every borough. Would that be enough for Garcia to win?
+
+```{r reproject with absentee skew}
+d <- d %>% 
+  # downweight Adams' assembly district shares
+  mutate(revised_ad_share = if_else(candidate == 'Adams', ad_share - (0.172 - 0.126), ad_share)) %>% 
+  # all the Adams votes get divided equally between Garcia and Wiley
+  group_by(borough, assembly_district) %>% 
+  mutate(revised_ad_share = if_else(candidate %in% c('Garcia', 'Wiley'), revised_ad_share + (0.172 - 0.126) / 2, revised_ad_share)) %>% 
+  # reproject absentee votes
+  mutate(projected_absentee_votes = absentee_ballots_returned * revised_ad_share,
+         projected_first_place_votes = votes + projected_absentee_votes)
+
+projected_votes <- d %>% 
+  group_by(candidate, .drop = FALSE) %>% # .drop = FALSE keeps factor levels that don't appear in the data
+  summarize(first_place_votes = sum(projected_first_place_votes))
+
+projected_votes
+
+final <- (projected_votes$first_place_votes %*% B)[1,]
+final
+```
+
+She would win by about `r floor(final['Garcia'] - final['Adams'])` votes! Well now I have no idea. [PredictIt](https://www.predictit.org/markets/detail/7002/Who-will-be-elected-New-York-City-mayor-in-2021) gives roughly even odds to both candidates today, and that seems about right to me.
+
+## Acknowledgments
+
+Thanks to [Ryan Beitzell](https://www.imdb.com/name/nm4955790/?ref_=m_nmfm_nm) for research assistance.
+
+```{r tool with multinomial, include=FALSE, eval=FALSE}
+# sample from multinomial instead of taking the expected value. doesn't affect the results much, given the quantity of outstanding absentee ballots
+d %>% 
+  group_by(borough, assembly_district) %>% 
+  summarize(candidate = candidate, votes = votes, ad_share = ad_share,
+            absentee_ballots_returned = absentee_ballots_returned,
+            projected_absentee_votes = rmultinom(n=1, size=absentee_ballots_returned, prob = ad_share)[,1]
+            ) %>% 
+  mutate(projected_first_place_votes = projected_absentee_votes + votes) %>% 
+  group_by(candidate, .drop = FALSE) %>% 
+  summarize(first_place_votes = sum(projected_first_place_votes)) %>% 
+  pull(first_place_votes) %*% B
+```
+
+```{r dross, include = FALSE, eval = FALSE}
+# candidates <- c('Adams', 'Wiley', 'Garcia', 'Yang', 'Stringer', 'Morales', 'McGuire', 'Donovan', 'Foldenauer', 'Chang', 'Prince', 'Taylor', 'Wright', 'Write-in', 'Exhausted')
+# 
+# # record the sequence of eliminations from the preliminary RCV results
+# elimination_sequence <- matrix(data = 0,
+#                             nrow = length(candidates),
+#                             ncol = 4,
+#                             dimnames = list(candidates, paste0('Round ', c(1, 7:9))))
+# 
+# 
+# elimination_sequence[, 'Round 1'] <- c(260455, 181590, 158221, 96005, 41141 , 23086 , 18893 , 17810 , 7121 , 6073 , 3557 , 2289 , 1999 , 1374 , 0)
+# elimination_sequence[,'Round 7'] <- c(283142, 213857, 190106, 111239, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21270)
+# elimination_sequence[,'Round 8'] <- c(314194, 226575, 226922, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 51923)
+# elimination_sequence[,'Round 9'] <- c(358521, 0, 343766, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 117327)
+
+candidates <- c('Adams', 'Wiley', 'Garcia', 'Yang', 'Other', 'Exhausted')
+
+# record the sequence of eliminations from the preliminary RCV results
+elimination_sequence <- matrix(data = 0,
+                            nrow = length(candidates),
+                            ncol = 4,
+                            dimnames = list(candidates, paste0('Round ', c(1, 7:9))))
+
+
+elimination_sequence[, 'Round 1'] <- c(260455, 181590, 158221, 96005, 123343, 0)
+elimination_sequence[,'Round 7'] <- c(283142, 213857, 190106, 111239, 0, 21270)
+elimination_sequence[,'Round 8'] <- c(314194, 226575, 226922, 0,  0, 51923)
+elimination_sequence[,'Round 9'] <- c(358521, 0, 343766, 0, 0, 117327)
+
+# if we recorded those correctly, the columns should all have the same sums
+colSums(elimination_sequence)
+```
