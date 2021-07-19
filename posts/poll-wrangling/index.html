@@ -10,7 +10,7 @@
 <meta name="author" content="Joseph T. Ornstein" /><meta property="og:title" content="Poll Wrangling" />
 <meta property="og:description" content="In my Intro to Political Methodology class, we wrote some R code to wrangle and visualize the presidential polling data aggregated by fivethirtyeight. Here’s a modified version of what we produced." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://joeornstein.github.io/posts/poll-wrangling/" />
+<meta property="og:url" content="/posts/poll-wrangling/" />
 <meta property="article:published_time" content="2020-11-02T00:00:00+00:00" />
 <meta property="article:modified_time" content="2020-11-02T00:00:00+00:00" />
 
@@ -24,15 +24,15 @@
   
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://joeornstein.github.io/fontawesome/css/all.min.css" />
+  <link rel="stylesheet" href="/fontawesome/css/all.min.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab|Ruda" />
-  <link rel="stylesheet" type="text/css" href="https://joeornstein.github.io/css/styles.css" /></head>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" /></head>
 
 <body>
   <div id="container">
     <header>
       <h1>
-                <a href="https://joeornstein.github.io/">Joseph T. Ornstein</a>
+                <a href="/">Joseph T. Ornstein</a>
             </h1>
 
       <ul id="social-media">
@@ -62,25 +62,25 @@
     <ul>
         
         <li>
-            <a class="" href="https://joeornstein.github.io/posts/">
+            <a class="" href="/posts/">
                 <i class="fa-li fa  fa-lg"></i><span>Archives</span>
             </a>
         </li>
         
         <li>
-            <a class="" href="https://joeornstein.github.io/publications/">
+            <a class="" href="/publications/">
                 <i class="fa-li fa  fa-lg"></i><span>Publications</span>
             </a>
         </li>
         
         <li>
-            <a class="" href="https://joeornstein.github.io/teaching/">
+            <a class="" href="/teaching/">
                 <i class="fa-li fa  fa-lg"></i><span>Teaching</span>
             </a>
         </li>
         
         <li>
-            <a class="" href="https://joeornstein.github.io/resources/">
+            <a class="" href="/resources/">
                 <i class="fa-li fa  fa-lg"></i><span>Resources</span>
             </a>
         </li>
@@ -92,8 +92,8 @@
     <main>
 
 
-<link rel="stylesheet" href="https://joeornstein.github.io/css/atom-one-dark.css" rel="stylesheet" id="theme-stylesheet">
-<script src="https://joeornstein.github.io/js/highlight.pack.js"></script>
+<link rel="stylesheet" href="/css/atom-one-dark.css" rel="stylesheet" id="theme-stylesheet">
+<script src="/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 
@@ -114,10 +114,10 @@
             <em>
                 
                     
-                    <a href="https://joeornstein.github.io/categories/data-science">Data Science</a>
+                    <a href="/categories/data-science">Data Science</a>
                 
                     , 
-                    <a href="https://joeornstein.github.io/categories/elections">Elections</a>
+                    <a href="/categories/elections">Elections</a>
                 
             </em>
         </li>
@@ -133,7 +133,7 @@
 
     
 <div class="featured_image">
-    <a href="https://joeornstein.github.io/posts/poll-wrangling/" title="Poll Wrangling">
+    <a href="/posts/poll-wrangling/" title="Poll Wrangling">
         <img src="">
     </a>
 </div>
@@ -250,40 +250,40 @@ polls_2020 &lt;- read_csv(&#39;https://projects.fivethirtyeight.com/polls-page/p
 <h3>The Blue Wall</h3>
 <p>Let’s start by looking at the good old <a href="https://fivethirtyeight.com/features/there-is-no-blue-wall/">Blue Wall</a> states: Wisconsin, Michigan, and Pennsylvania. The horizontal dashed lines mark the 2016 election result.</p>
 <pre class="r"><code>plot_polls(&#39;Wisconsin&#39;)</code></pre>
-<p><img src="https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/wisconsin-1.png" width="672" /></p>
+<p><img src="/posts/poll-wrangling/index_files/figure-html/wisconsin-1.png" width="672" /></p>
 <p>In Wisconsin, the size of Biden’s polling lead is roughly the same as Clinton’s was in 2016. The major difference is the intercept shift, reflecting a much smaller share of undecided voters. Whereas Clinton never polled higher than 50% among badgers, Biden has pretty consistenly averaged higher than 50%. That matters, because even if undecideds break strongly to Trump as they did in 2016, that alone wouldn’t produce a polling error big enough for him to win there.</p>
 <pre class="r"><code>plot_polls(&#39;Michigan&#39;)</code></pre>
-<p><img src="https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/michigan-1.png" width="672" /></p>
+<p><img src="/posts/poll-wrangling/index_files/figure-html/michigan-1.png" width="672" /></p>
 <p>In 2016, the Michigan polls tightened significantly in the final weeks. Contrary to <a href="https://nymag.com/intelligencer/2016/11/donald-trump-is-not-going-to-win-michigan.html">some protestations</a>, the polls really suggested a squeaker, and Trump won by a razor-thin margin. It is difficult to look at the 2020 chart – where he has never led a single poll – and conclude that he can pull off a similar result this year.</p>
 <pre class="r"><code>plot_polls(&#39;Pennsylvania&#39;)</code></pre>
-<p><img src="https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/pennsylvania-1.png" width="672" /></p>
+<p><img src="/posts/poll-wrangling/index_files/figure-html/pennsylvania-1.png" width="672" /></p>
 <p>Pennsylvania is the state Trump <a href="https://fivethirtyeight.com/features/is-joe-biden-toast-if-he-loses-pennsylvania/">needs to win</a> this year. He can plot a plausible course to 270 without Michigan and Wisconsin, but not Pennsylvania. And while the margin is closer than in the other two states, the general pattern is the same. The 2016 polls were very close in the final week, and Clinton never polled greater than 50%. In 2020, Trump needs an even bigger polling error in his favor, without the benefit of a pool of undecided voters.</p>
 </div>
 <div id="the-south-and-southwest" class="section level3">
 <h3>The South and Southwest</h3>
 <p>Next, a few states where Clinton was not likely to win, but Biden might be:</p>
 <pre class="r"><code>plot_polls(&#39;Georgia&#39;)</code></pre>
-<p><img src="https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/Georgia-1.png" width="672" /></p>
+<p><img src="/posts/poll-wrangling/index_files/figure-html/Georgia-1.png" width="672" /></p>
 <p>In Georgia, Trump won basically by the margin predicted by the polls in 2016. Today, everything is within the margin of error. I have nothing prognosticatory to say here. It’s a complete toss-up.</p>
 <pre class="r"><code>plot_polls(&#39;Arizona&#39;)</code></pre>
-<p><img src="https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/Arizona-1.png" width="672" /></p>
+<p><img src="/posts/poll-wrangling/index_files/figure-html/Arizona-1.png" width="672" /></p>
 <pre class="r"><code>plot_polls(&#39;North Carolina&#39;)</code></pre>
-<p><img src="https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/Arizona-2.png" width="672" /></p>
+<p><img src="/posts/poll-wrangling/index_files/figure-html/Arizona-2.png" width="672" /></p>
 <pre class="r"><code>plot_polls(&#39;Florida&#39;)</code></pre>
-<p><img src="https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/Arizona-3.png" width="672" /></p>
+<p><img src="/posts/poll-wrangling/index_files/figure-html/Arizona-3.png" width="672" /></p>
 <p>Arizona, Florida, and North Carolina all kind of look like the Midwestern states, except with much tighter margins. Biden has consistently led in the polling average, but by a margin that would not require a surprising polling error to surmount.</p>
 </div>
 <div id="a-few-other-states" class="section level3">
 <h3>A Few Other States</h3>
 <p>These I present without comment, except that why are there so few quality polls in these states this year? It would be nice to have more data.</p>
 <pre class="r"><code>plot_polls(&#39;Nevada&#39;)</code></pre>
-<p><img src="https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/other%20states-1.png" width="672" /></p>
+<p><img src="/posts/poll-wrangling/index_files/figure-html/other%20states-1.png" width="672" /></p>
 <pre class="r"><code>plot_polls(&#39;Minnesota&#39;)</code></pre>
-<p><img src="https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/other%20states-2.png" width="672" /></p>
+<p><img src="/posts/poll-wrangling/index_files/figure-html/other%20states-2.png" width="672" /></p>
 <pre class="r"><code>plot_polls(&#39;Virginia&#39;)</code></pre>
-<p><img src="https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/other%20states-3.png" width="672" /></p>
+<p><img src="/posts/poll-wrangling/index_files/figure-html/other%20states-3.png" width="672" /></p>
 <pre class="r"><code>plot_polls(&#39;Alaska&#39;)</code></pre>
-<p><img src="https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/other%20states-4.png" width="672" /></p>
+<p><img src="/posts/poll-wrangling/index_files/figure-html/other%20states-4.png" width="672" /></p>
 </div>
 </div>
 <div id="putting-it-all-together" class="section level2">
@@ -351,7 +351,7 @@ ggplot(data = swing_states) +
   geom_abline(intercept = 0, slope = 1, linetype = &#39;dashed&#39;) +
   labs(x = &#39;Polling Error in 2016&#39;, 
        y = &#39;Polling Error Trump Needs in 2020&#39;)</code></pre>
-<p><img src="https://joeornstein.github.io/posts/poll-wrangling/index_files/figure-html/polling%20errors-1.png" width="672" /></p>
+<p><img src="/posts/poll-wrangling/index_files/figure-html/polling%20errors-1.png" width="672" /></p>
 <p>The figure paints a difficult, if not impossible, challenge for Trump to overcome. Assume, for a moment, that he wins all the states below the dotted line. All that would require is a modest polling error in his favor, less than the error he benefited from in 2016. But even in that universe, Trump still needs a bigger-than-2016 polling error in both Florida <em>and</em> Pennsylvania to get to 270.</p>
 <p>Saying “the polls were wrong in 2016 and could be wrong in 2020” is a weaker argument than you need to believe that Trump will win in 2020. Instead, the 2020 polls must be (a) wrong in the same direction as they were in 2016 and (b) significantly wronger-than-2016 in both Pennsylvania and Florida.</p>
 </div>
@@ -368,12 +368,12 @@ ggplot(data = swing_states) +
     <ul>
         
         <li>
-            <a href="https://joeornstein.github.io/posts/git-undo/"><i class="fa fa-chevron-circle-left"></i> git undo</a>
+            <a href="/posts/git-undo/"><i class="fa fa-chevron-circle-left"></i> git undo</a>
         </li>
         
         
         <li>
-            <a href="https://joeornstein.github.io/posts/rcv-forecasting/">Forecasting the NYC Ranked Choice Mayoral Primary <i class="fa fa-chevron-circle-right"></i> </a>
+            <a href="/posts/rcv-forecasting/">Forecasting the NYC Ranked Choice Mayoral Primary <i class="fa fa-chevron-circle-right"></i> </a>
         </li>
         
     </ul>
@@ -391,7 +391,7 @@ ggplot(data = swing_states) +
             Rendered by <a href="https://gohugo.io" title="Hugo">Hugo</a>
     </footer>
 </div>
-<script src="https://joeornstein.github.io/js/scripts.js"></script>
+<script src="/js/scripts.js"></script>
 
   
 <script type="application/javascript">

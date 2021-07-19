@@ -33,7 +33,7 @@ d <- tibble(
   pay = round(pay, digits = 2)
   )
 
-d %>% head(50) %>% knitr::kable()
+d %>% head(10) %>% knitr::kable()
 ```
 
 If we put `pay` on the y-axis and `performance` on the x-axis, it appears the red dot is overpaid relative to expectations.
