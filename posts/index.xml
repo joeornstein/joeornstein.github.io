@@ -6,10 +6,315 @@
    <description>Recent content in Archives on Joseph T. Ornstein</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2020 - Joseph T. Ornstein</copyright>
-   <lastBuildDate>Sat, 03 Jul 2021 00:00:00 +0000</lastBuildDate>
+   <lastBuildDate>Mon, 19 Jul 2021 00:00:00 +0000</lastBuildDate>
    
        <atom:link href="https://joeornstein.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
    
+   
+     <item>
+       <title>Regression Puzzle</title>
+       <link>https://joeornstein.github.io/posts/regression-puzzle/</link>
+       <pubDate>Mon, 19 Jul 2021 00:00:00 +0000</pubDate>
+       
+       <guid>https://joeornstein.github.io/posts/regression-puzzle/</guid>
+       <description>
+&lt;script src=&#34;https://joeornstein.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;&lt;a href=&#34;https://marginalrevolution.com/marginalrevolution/2021/07/a-regression-puzzle.html&#34;&gt;Alex Tabarrok&lt;/a&gt; points to a fun statistics puzzle, in which flipping the axes in a regression analysis dramatically changes whether you think Packers quarterback Aaron Rodgers is slightly underpaid or &lt;em&gt;extremely&lt;/em&gt; underpaid. Here’s a variation on that puzzle.&lt;/p&gt;
+&lt;p&gt;Suppose you have the following dataset with 50 observations measuring job performance and salary. You want to know who is overpaid and who is underpaid relative to their performance.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;right&#34;&gt;id&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;performance&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;pay&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.37&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.01&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;2&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.56&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.07&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.36&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.76&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.63&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.96&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;5&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.40&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.29&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.11&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.22&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;7&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.51&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.44&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;8&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.09&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.04&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;9&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.02&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.98&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;10&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.06&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.25&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;11&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.30&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.29&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;12&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2.29&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.33&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;13&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.39&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.11&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;14&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.28&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.26&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;15&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.13&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.79&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;16&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.64&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.62&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;17&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.28&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.19&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;18&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.66&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.29&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;19&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.44&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.30&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;20&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.32&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.38&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;21&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.31&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.20&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;22&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.78&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.98&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;23&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.17&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.54&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;24&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.21&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.35&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;25&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.90&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.40&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;26&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.43&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.37&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;27&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.26&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;28&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.76&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.42&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;29&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.46&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.66&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;30&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.64&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.42&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;31&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.46&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.74&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;32&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.70&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.61&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;33&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.04&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.61&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;34&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.61&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.43&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;35&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.50&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.94&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;36&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.72&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.25&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;37&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.78&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.61&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;38&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.85&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.61&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;39&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-2.41&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.27&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;40&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.04&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.84&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;41&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.21&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.50&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;42&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.36&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.66&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;43&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.76&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.03&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;44&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.73&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.03&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;45&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.37&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.79&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;46&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.43&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;47&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.81&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-1.54&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;48&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.44&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.74&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;49&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.43&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;-0.14&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;right&#34;&gt;50&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.66&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;0.98&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;If we put &lt;code&gt;pay&lt;/code&gt; on the y-axis and &lt;code&gt;performance&lt;/code&gt; on the x-axis, it appears the red dot is overpaid relative to expectations.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(data = d,
+       mapping = aes(x=performance, y=pay)) +
+  geom_point(mapping = aes(color = factor(id == 1)), alpha = 0.3) +
+  geom_smooth(method = &amp;#39;lm&amp;#39;, se = FALSE) +
+  theme_bw() +
+  theme(legend.position = &amp;#39;&amp;#39;) +
+  scale_color_manual(values = c(&amp;#39;black&amp;#39;, &amp;#39;red&amp;#39;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/regression-puzzle/index_files/figure-html/regression%201-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;But what if we flip the axes? Now the very same red dot is performing at a higher level than we would expect given their pay, suggesting that they are &lt;em&gt;underpaid&lt;/em&gt;!&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(mapping = aes(x=pay, y=performance)) +
+  geom_point(mapping = aes(color = factor(id == 1)), alpha = 0.3) +
+  geom_smooth(method = &amp;#39;lm&amp;#39;, se = FALSE) +
+  theme_bw() +
+  theme(legend.position = &amp;#39;&amp;#39;) +
+  scale_color_manual(values = c(&amp;#39;black&amp;#39;, &amp;#39;red&amp;#39;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/regression-puzzle/index_files/figure-html/regression%202-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The fact that someone can be overperforming relative to their pay and overpaid relative to their performance seems deeply counterintuitive, but there’s nothing mathematically paradoxical about it. Regression is a machine that computes &lt;span class=&#34;math inline&#34;&gt;\(E(Y|X)\)&lt;/span&gt;, the expected value of &lt;span class=&#34;math inline&#34;&gt;\(Y\)&lt;/span&gt; for a given &lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt; value. Comparing the red dot against other observations with a similar level of performance, the red dot is one of the highest paid:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/regression-puzzle/index_files/figure-html/shade%20performance-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;And comparing it against observations with similar pay, the red dot is one of the highest performing:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://joeornstein.github.io/posts/regression-puzzle/index_files/figure-html/shade%20pay-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The key is that, when you flip the axes, your regression is conditioning on a different variable. If you want &lt;span class=&#34;math inline&#34;&gt;\(E(\text{pay} | \text{performance})\)&lt;/span&gt;, then you need Regression 1. You can’t recover that expectation from Regression 2, because it’s not what you asked it to compute.&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;In the &lt;a href=&#34;https://marginalrevolution.com/marginalrevolution/2021/07/a-regression-puzzle.html&#34;&gt;original puzzle&lt;/a&gt;, Ben Roethlisberger is like our red dot, underpaid or overpaid depending on your method.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;Another way to think about it is that Regression 2 suggests that the red dot is underpaid based on the horizontal distance between the observation and the regression line. But “horizontal residuals” don’t make sense, because you didn’t ask your regression to minimize horizontal residuals! You asked it to minimize the (average squared) vertical residual.&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+     </item>
    
      <item>
        <title>Forecasting the NYC Ranked Choice Mayoral Primary</title>

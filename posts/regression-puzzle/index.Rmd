@@ -1,0 +1,96 @@
+---
+title: "Regression Puzzle"
+author: "Joseph T. Ornstein"
+date: '2021-07-19'
+slug: regression-puzzle
+categories:
+ - Statistics
+tags:  []
+images: []
+draft: false
+---
+
+```{r preamble, include = FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+[Alex Tabarrok](https://marginalrevolution.com/marginalrevolution/2021/07/a-regression-puzzle.html) points to a fun statistics puzzle, in which flipping the axes in a regression analysis dramatically changes whether you think Packers quarterback Aaron Rodgers is slightly underpaid or *extremely* underpaid. Here's a variation on that puzzle.
+
+Suppose you have the following dataset with 50 observations measuring job performance and salary. You want to know who is overpaid and who is underpaid relative to their performance.
+
+```{r generate data, echo = FALSE}
+set.seed(42)
+
+n <- 50
+id <- 1:n
+performance <- rnorm(n, 0 ,1)
+pay <- 0.5 * performance + rnorm(n, 0, 1)
+
+d <- tibble(
+  id = id,
+  performance = round(performance, digits = 2),
+  pay = round(pay, digits = 2)
+  )
+
+d %>% head(50) %>% knitr::kable()
+```
+
+If we put `pay` on the y-axis and `performance` on the x-axis, it appears the red dot is overpaid relative to expectations.
+
+```{r regression 1}
+ggplot(data = d,
+       mapping = aes(x=performance, y=pay)) +
+  geom_point(mapping = aes(color = factor(id == 1)), alpha = 0.3) +
+  geom_smooth(method = 'lm', se = FALSE) +
+  theme_bw() +
+  theme(legend.position = '') +
+  scale_color_manual(values = c('black', 'red'))
+```
+
+But what if we flip the axes? Now the very same red dot is performing at a higher level than we would expect given their pay, suggesting that they are *underpaid*![^1]
+
+[^1]: In the [original puzzle](https://marginalrevolution.com/marginalrevolution/2021/07/a-regression-puzzle.html), Ben Roethlisberger is like our red dot, underpaid or overpaid depending on your method.
+
+```{r regression 2}
+ggplot(mapping = aes(x=pay, y=performance)) +
+  geom_point(mapping = aes(color = factor(id == 1)), alpha = 0.3) +
+  geom_smooth(method = 'lm', se = FALSE) +
+  theme_bw() +
+  theme(legend.position = '') +
+  scale_color_manual(values = c('black', 'red'))
+```
+
+The fact that someone can be overperforming relative to their pay and overpaid relative to their performance seems deeply counterintuitive, but there's nothing mathematically paradoxical about it. Regression is a machine that computes $E(Y|X)$, the expected value of $Y$ for a given $X$ value. Comparing the red dot against other observations with a similar level of performance, the red dot is one of the highest paid:
+
+```{r shade performance, echo = FALSE}
+ggplot(data = d,
+       mapping = aes(x=performance, y=pay)) +
+  geom_point(mapping = aes(color = factor(id == 1)), alpha = 0.3) +
+  annotate(geom = 'rect', 
+           xmin = 1.1, xmax = 1.65, 
+           ymin = -Inf, ymax = Inf,
+           alpha = 0.1) +
+  theme_bw() +
+  theme(legend.position = '') +
+  scale_color_manual(values = c('black', 'red'))
+```
+
+And comparing it against observations with similar pay, the red dot is one of the highest performing:
+
+```{r shade pay, echo = FALSE}
+ggplot(data = d,
+       mapping = aes(x=performance, y=pay)) +
+  geom_point(mapping = aes(color = factor(id == 1)), alpha = 0.3) +
+  annotate(geom = 'rect', 
+           xmin = -Inf, xmax = Inf, 
+           ymin = 0.75, ymax = 1.25,
+           alpha = 0.1) +
+  theme_bw() +
+  theme(legend.position = '') +
+  scale_color_manual(values = c('black', 'red'))
+```
+
+The key is that, when you flip the axes, your regression is conditioning on a different variable. If you want $E(\text{pay} | \text{performance})$, then you need Regression 1. You can't recover that expectation from Regression 2, because it's not what you asked it to compute.[^2]
+
+[^2]: Another way to think about it is that Regression 2 suggests that the red dot is underpaid based on the horizontal distance between the observation and the regression line. But "horizontal residuals" don't make sense, because you didn't ask your regression to minimize horizontal residuals! You asked it to minimize the (average squared) vertical residual.
