@@ -1,0 +1,26 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this site",
+      "description": "Some additional details about the website",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-07-27T13:41:59-04:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Political Analysis in R",
+      "description": "The website for the course.\n",
+      "author": [
+        {
+          "name": "Joseph T. Ornstein",
+          "url": "https://joeornstein.github.io/"
+        }
+      ],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-07-27T13:42:00-04:00"
+    }
+  ],
+  "collections": []
+}
