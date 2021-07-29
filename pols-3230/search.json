@@ -1,0 +1,26 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this site",
+      "description": "Some additional details about the website",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-07-29T12:09:05-04:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Political Analysis in R",
+      "description": "The website for the course.\n",
+      "author": [
+        {
+          "name": "Joseph T. Ornstein",
+          "url": "https://joeornstein.github.io/"
+        }
+      ],
+      "contents": "\r\n\r\nContents\r\nGetting Started\r\nR\r\nHypothesis\r\n\r\n\r\nWe’ll learn stuff. Industry standard stuff.1\r\nGetting Started\r\nHere’s everything you need to get started.\r\nR\r\nFor starters, you’ll need R. The most current version is available here. To download, click link for your operating system (i.e. Mac, Windows, Linux), then click\r\nHypothesis\r\nThis semester, we’ll be using a social annotation platform called Hypothesis. That way, everyone will be able to post comments/questions/concerns/memes directly into the reading assignments. Follow these steps to get started:\r\nClick the book icon in the top-right corner of the course website. This will take you to our Hypothesis Group Page.\r\nIf you don’t already have an account, you will be prompted to create one. Make your username something like firstname_lastname so we know who is posting!\r\nHypothesis works best with Google Chrome. If you don’t have it, install it here.\r\nInstall the Chrome extension. When you do, it should take you to a welcome page with instructions on how to log in, pin the extension, and start annotating pages!\r\n\r\nGo to the syllabus and add your questions/comments/memes. Whenever you annotate a reading, just make sure that you are posting to the Group instead of Public (see the dropdown menu at the top of the extension).\r\n\r\nFor example, this very website was built with R. Powerful stuff.↩︎\r\n",
+      "last_modified": "2021-07-29T12:09:06-04:00"
+    }
+  ],
+  "collections": []
+}
