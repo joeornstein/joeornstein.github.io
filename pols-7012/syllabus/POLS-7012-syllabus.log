@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.15)  5 AUG 2021 16:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.15)  6 AUG 2021 08:56
 entering extended mode
 **./POLS-7012-syllabus.tex
 (POLS-7012-syllabus.tex
@@ -651,7 +651,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 <img/existence_proof_2x.png, id=6, 1239.63126pt x 486.81876pt>
 File: img/existence_proof_2x.png Graphic file (type png)
 <use img/existence_proof_2x.png>
-Package pdftex.def Info: img/existence_proof_2x.png  used on input line 94.
+Package pdftex.def Info: img/existence_proof_2x.png  used on input line 99.
 (pdftex.def)             Requested size: 400.38872pt x 157.23369pt.
 
 
@@ -676,12 +676,12 @@ Package rerunfilecheck Info: File `POLS-7012-syllabus.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  10279 strings out of 479697
- 163497 string characters out of 2863296
+ 163587 string characters out of 2863296
  481989 words of memory out of 3000000
  27200 multiletter control sequences out of 15000+200000
  408843 words of font info for 45 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 91i,11n,98p,638b,381s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 91i,11n,98p,634b,381s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\jornstein\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi
 600\tcrm1095.pk><C:/Users/jornstein/AppData/Local/Programs/MiKTeX 2.9/fonts/typ
 e1/public/amsfonts/cm/cmbx10.pfb><C:/Users/jornstein/AppData/Local/Programs/MiK
@@ -692,7 +692,7 @@ ornstein/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10
 msfonts/cm/cmr12.pfb><C:/Users/jornstein/AppData/Local/Programs/MiKTeX 2.9/font
 s/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/jornstein/AppData/Local/Program
 s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on POLS-7012-syllabus.pdf (3 pages, 187509 bytes).
+Output written on POLS-7012-syllabus.pdf (3 pages, 187432 bytes).
 PDF statistics:
  99 PDF objects out of 1000 (max. 8388607)
  22 named destinations out of 1000 (max. 500000)
