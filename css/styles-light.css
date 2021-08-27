@@ -104,8 +104,8 @@ time {
 
 #container main {
   flex: 1 0 0;
-  line-height: 1.5;
-  font-size: 1.0rem;/*1.2rem;  old font size*/
+  line-height: 1.45; /*1.5; old line height*/
+  font-size: 1.15rem;/*1.2rem;  old font size*/
 }
 
 #container main section#home ul {
