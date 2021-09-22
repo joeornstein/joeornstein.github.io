@@ -86,30 +86,30 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Introduction to Political Methodology: Week 2</title>
+  <title>Introduction to Political Methodology: Week 7</title>
 
-  <meta property="description" itemprop="description" content="How to make effective data visualizations"/>
+  <meta property="description" itemprop="description" content="Building our first statistical model, plus all the calculus you need to make it go"/>
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="img/favicon_io/favicon.ico"/>
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Introduction to Political Methodology: Week 2"/>
+  <meta property="og:title" content="Introduction to Political Methodology: Week 7"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="How to make effective data visualizations"/>
+  <meta property="og:description" content="Building our first statistical model, plus all the calculus you need to make it go"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Introduction to Political Methodology"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Introduction to Political Methodology: Week 2"/>
-  <meta property="twitter:description" content="How to make effective data visualizations"/>
+  <meta property="twitter:title" content="Introduction to Political Methodology: Week 7"/>
+  <meta property="twitter:description" content="Building our first statistical model, plus all the calculus you need to make it go"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["Week 2"]},{"type":"character","attributes":{},"value":["How to make effective data visualizations"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["Week 7"]},{"type":"character","attributes":{},"value":["Building our first statistical model, plus all the calculus you need to make it go"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2364,7 +2364,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Week 2","description":"How to make effective data visualizations","authors":[]}
+{"title":"Week 7","description":"Building our first statistical model, plus all the calculus you need to make it go","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2414,10 +2414,10 @@ Schedule
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Week 2</h1>
+<h1>Week 7</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>How to make effective data visualizations</p></p>
+<p><p>Building our first statistical model, plus all the calculus you need to make it go</p></p>
 </div>
 
 
@@ -2431,40 +2431,19 @@ Schedule
 </ul>
 </nav>
 </div>
-<p>In its raw form, data is completely unintelligible to the human mind.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> It’s just a bunch of numbers. So, over time, we humans have developed three techniques to help make sense of data: visualizations, summaries, and models. We’re going to start the course with visualization, because it is the most intuitive of the three. Over the next few weeks, we’ll discuss what makes an informative, compelling data visualization, and learn how to construct them ourselves in <code>R</code>.</p>
-<p><img src="img/ross.png" /></p>
-<p>The human mind is hardwired to detect patterns in images, and a well-crafted data visualization can take advantage of that fact to communicate lots of information in an aesthetically pleasing way. And it’s about more than communication. Charts can reveal patterns in data that summary statistics alone might miss, as the <a href="https://www.autodesk.com/research/publications/same-stats-different-graphs">Datasaurus Dozen</a> artfully reveals…</p>
-<p><img src="img/datasaurus-dozen.gif" /></p>
-<p>This week, we start building our own visualizations using the <code>ggplot2</code> package (a part of the <code>tidyverse</code>). It will take some time to learn all of the function syntax, so be patient with yourself. Once you get the hang of it, you’ll have an endlessly flexible tool for exploring and communicating patterns in your data. Let’s get started.</p>
+<figure>
+<img src="img/newton_and_leibniz.png" alt="You’ll laugh later" /><figcaption aria-hidden="true">You’ll laugh later</figcaption>
+</figure>
 <h2 id="reading-assignments">Reading Assignments</h2>
-<p>Next week, we’ll build some more intricate visualizations, and consider what to do if your dataset isn’t formatted exactly that way you need it to be prior to visualizing. Please read and annotate the following before next week:</p>
+<p>Next week we discuss the art of causal inference. Our guide is <em>The Effect</em>, by Nick Huntington-Klein. The whole book is great, but start with:</p>
 <ul>
-<li><a href="https://allisonhorst.shinyapps.io/dplyr-learnr/">Wrangling Penguins</a></li>
-<li><a href="https://socviz.co/groupfacettx.html">Healy Chapter 4</a></li>
-<li><a href="https://socviz.co/workgeoms.html">Healy Chapter 5</a></li>
-</ul>
-<p>Optional:</p>
-<ul>
-<li>If you want to learn how to make maps in <code>ggplot</code>, <a href="https://socviz.co/maps.html">Healy Chapter 7</a> is a great resource.</li>
-<li>For more practice with <code>ggplot</code>, this <a href="https://r4ds.had.co.nz/data-visualisation.html">chapter</a> in Hadley Wickham’s book is a nice resource.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
+<li><a href="https://theeffectbook.net/ch-CausalDiagrams.html">Chapter 6: Causal Diagrams</a></li>
+<li><a href="https://theeffectbook.net/ch-DrawingCausalDiagrams.html">Chapter 7: Drawing Causal Diagrams</a></li>
+<li><a href="https://theeffectbook.net/ch-CausalPaths.html">Chapter 8: Closing Back Doors</a></li>
 </ul>
 <h2 id="problem-set">Problem Set</h2>
-<p>Using one of the datasets we’ve been working with in class, submit create a data visualization using <code>ggplot</code>. Your submission should:</p>
-<ol type="1">
-<li>Communicate some interesting result</li>
-<li>Use more than one aesthetic</li>
-<li>Be easy to interpret at a glance (you can include a short caption – <code>labs(caption = ...)</code> – if you would like).</li>
-<li>Be <em>reproducible</em>; submit your figure as a <code>.png</code> file, plus the <code>.R</code> script that produced it.</li>
-</ol>
-<p>Consider this a friendly competition! I will look through the sumbmissions and pick my favorites, and their creators will receive honor, glory, and adoration.</p>
+<p>Practice a bit with calculus <a href="problem-sets/problem-set-06.pdf">here</a>. Complete and submit to eLC in any format you like.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
-<section class="footnotes" role="doc-endnotes">
-<hr />
-<ol>
-<li id="fn1" role="doc-endnote"><p>Yes, I know that the word “data” is technically plural, but the sentence “In their raw form, data are completely unintelligible” seemed…unintelligible to me.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>Hadley is the author of <code>ggplot</code>, so he knows a trick or two.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
