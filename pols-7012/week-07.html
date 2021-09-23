@@ -2393,7 +2393,7 @@ Schedule
 <a href="week-06.html">Week 6: Midterm Mini-Conference</a>
 <hr/>
 <span class="nav-dropdown-header">PART 2: BUILD MODELS</span>
-<a href="week-07.html">Week 7: Estimation</a>
+<a href="week-07.html">Week 7: Optimization</a>
 </div>
 </div>
 <a href="https://calendly.com/jornstein/15min">
@@ -2431,9 +2431,25 @@ Schedule
 </ul>
 </nav>
 </div>
-<figure>
-<img src="img/newton_and_leibniz.png" alt="You’ll laugh later" /><figcaption aria-hidden="true">You’ll laugh later</figcaption>
-</figure>
+<p>This week, we introduce the <strong>linear model</strong>, the workhorse of empirical social science. In its most basic form, we take two variables from our dataset and try to find the “line of best fit” – the line that best describes the relationship between them. For example, the line of best fit below suggests that places where infant mortality is high also tend to be places where fertility is high, and vice versa:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>swiss</span>,
+       mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>Fertility</span>,
+                     y <span class='op'>=</span> <span class='va'>Infant.Mortality</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_point</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='co'># the line of best fit</span>
+  <span class='fu'>geom_smooth</span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>'lm'</span>, se <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme_bw</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>labs</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>'The Relationship Between Fertility and Infant Mortality'</span>,
+       subtitle <span class='op'>=</span> <span class='st'>'Swiss Provinces (1888)'</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="week-07_files/figure-html5/line-of-best-fit-1.png" width="624" /></p>
+</div>
+<p>But where did that line of best fit come from? What does it even mean to be the “best fit”? To answer that question, we first need a language that will help us talk about how to <em>minimize</em> error or <em>maximize</em> model fit. That language is differential calculus.</p>
+<p><a href="https://xkcd.com/626/"><img src="img/newton_and_leibniz.png" /></a></p>
+<p>Come with me on a journey.</p>
 <h2 id="reading-assignments">Reading Assignments</h2>
 <p>Next week we discuss the art of causal inference. Our guide is <em>The Effect</em>, by Nick Huntington-Klein. The whole book is great, but start with:</p>
 <ul>
