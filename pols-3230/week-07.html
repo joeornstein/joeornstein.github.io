@@ -86,30 +86,30 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Political Analysis in R: Week 5</title>
+  <title>Political Analysis in R: Week 7</title>
 
-  <meta property="description" itemprop="description" content="Getting information from multiple sources to play nicely"/>
+  <meta property="description" itemprop="description" content="Drawing Maps"/>
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="img/favicon_io/favicon.ico"/>
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Political Analysis in R: Week 5"/>
+  <meta property="og:title" content="Political Analysis in R: Week 7"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Getting information from multiple sources to play nicely"/>
+  <meta property="og:description" content="Drawing Maps"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Political Analysis in R"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Political Analysis in R: Week 5"/>
-  <meta property="twitter:description" content="Getting information from multiple sources to play nicely"/>
+  <meta property="twitter:title" content="Political Analysis in R: Week 7"/>
+  <meta property="twitter:description" content="Drawing Maps"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["Week 5"]},{"type":"character","attributes":{},"value":["Getting information from multiple sources to play nicely"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["Week 7"]},{"type":"character","attributes":{},"value":["Drawing Maps"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2364,7 +2364,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Week 5","description":"Getting information from multiple sources to play nicely","authors":[]}
+{"title":"Week 7","description":"Drawing Maps","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2411,10 +2411,10 @@ Schedule
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Week 5</h1>
+<h1>Week 7</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Getting information from multiple sources to play nicely</p></p>
+<p><p>Drawing Maps</p></p>
 </div>
 
 
@@ -2428,12 +2428,26 @@ Schedule
 </ul>
 </nav>
 </div>
-<p>This week, we talk about <strong>merging</strong> data from multiple sources. Also there’s a quiz.</p>
-<p><img src="img/horst-tidy-wrangle.jpg" /></p>
+<p>This week, we’ll learn to draw maps to represent geographic data with <code>ggplot</code>. We’ll discuss both the code you need and the aesthetic choices you should be aware of when working with spatial data.</p>
+<p><a href="https://xkcd.com/2399/large/"><img src="img/xkcd-election-2020.png" /></a></p>
 <h2 id="reading-assignments">Reading Assignments</h2>
-<p>No new reading assignments this week! Take the time to catch up on anything you missed.</p>
+<p>Next week, we play with interactive maps using the <code>leaflet</code> package. Before then, please read:</p>
+<ul>
+<li><a href="https://rstudio.github.io/leaflet/">Introduction to Leaflet</a></li>
+<li><a href="https://rstudio.github.io/leaflet/map_widget.html">The Map Widget</a></li>
+<li><a href="https://rstudio.github.io/leaflet/basemaps.html">Using Basemaps</a></li>
+<li><a href="https://rstudio.github.io/leaflet/markers.html">Adding Markers</a></li>
+<li><a href="https://rstudio.github.io/leaflet/colors.html">Colors</a></li>
+<li><a href="https://rstudio.github.io/leaflet/legends.html">Legends</a></li>
+<li><a href="https://rstudio.github.io/leaflet/choropleths.html">Choropleths</a></li>
+</ul>
 <h2 id="team-project">Team Project</h2>
-<p>Read over the CES codebook and pick some survey questions you find interesting. Modify <code>R/week-04-clean-ces-2020</code> to clean up and include those variables, and create a new data visualization. Your visualization should be pretty, easy to understand, and tell an interesting story! Submit your image and the R script that produced it to eLC.</p>
+<p>Draw a map with <code>R</code> illustrating some interesting data. Anything you choose. If you need ideas, consider:</p>
+<ol type="1">
+<li><p>A state-level map of answers to a question in the Cooperative Election Study 2020.</p></li>
+<li><p>A world map of answers to a question in the World Values Survey.</p></li>
+<li><p>A county-level map of COVID-19 infections from the NYT repository.</p></li>
+</ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
