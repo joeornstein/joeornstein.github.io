@@ -159,7 +159,9 @@ ggdag_classic(dag) + theme_dag()
 
 ## 3D View
 
-```{r scatterplotly, echo = FALSE}
+[Here](https://joeornstein.github.io/pols-7012/week-09.html#d-plots)
+
+```{r scatterplotly, echo = FALSE, eval = FALSE}
 library(plotly)
 
 cpi <- d$cpi_score
@@ -226,9 +228,9 @@ But there's still a lot of variation in GDP within each of those subplots. We ha
 
 ## How Do You Condition On A Continuous Variable?
 
-**Our Approach**: Add more variables to the linear model, drawing a "plane of best fit".
+**Our Approach**: Add more variables to the linear model, drawing a "[plane of best fit](https://joeornstein.github.io/pols-7012/week-09.html#d-plots)".
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, eval = FALSE}
 cpi <- d$cpi_score
 gdp <- d$gdp_per_capita
 democracy <- d$democracy
