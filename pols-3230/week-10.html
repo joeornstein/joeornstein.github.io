@@ -2427,12 +2427,53 @@ Schedule
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
+<li><a href="#example-code">Example Code</a>
+<ul>
+<li><a href="#solution-1-look-at-cross-sections">Solution 1: Look at Cross-Sections</a></li>
+<li><a href="#solution-2-look-at-a-time-series">Solution 2: Look at a time series</a></li>
+<li><a href="#solution-3-make-a-movie">Solution 3: Make a movie!</a></li>
+</ul></li>
 <li><a href="#reading-assignments">Reading Assignments</a></li>
 <li><a href="#team-project">Team Project</a></li>
 </ul>
 </nav>
 </div>
 <p>This week, we discuss how to work with datasets that include information from multiple time periods.</p>
+<h2 id="example-code">Example Code</h2>
+<p>Let’s look at the relationship between national income and life expectancy in the <code>gapminder</code> dataset. Do people in wealthier countries live longer on average?</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code># A tibble: 6 x 6
+  country     continent  year lifeExp      pop gdpPercap
+  &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+1 Afghanistan Asia       1952    28.8  8425333      779.
+2 Afghanistan Asia       1957    30.3  9240934      821.
+3 Afghanistan Asia       1962    32.0 10267083      853.
+4 Afghanistan Asia       1967    34.0 11537966      836.
+5 Afghanistan Asia       1972    36.1 13079460      740.
+6 Afghanistan Asia       1977    38.4 14880372      786.</code></pre>
+</div>
+<p>Notice that the <code>gapminder</code> dataset has country-level data on life expectancy, population, and GDP per capita every five years between 2007 and 2007. So when you plot it all together, it looks like this:</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="week-10_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+</div>
+<p>It looks like a strong relationship between wealth and health, but maybe it’s just that both GDP and life expectancy have been increasing over time, which causes a <em>spurious correlation</em>. Like plotting <a href="https://tylervigen.com/view_correlation?id=1703">US margarine consumption and the divorce rates</a> over time. To be sure we know what’s going on, we want to take a few precautions.</p>
+<h3 id="solution-1-look-at-cross-sections">Solution 1: Look at Cross-Sections</h3>
+<p>Instead of plotting all the data at once, just filter out a single year and see if there’s a relationship. This is called taking a <strong>cross-section</strong>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="week-10_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+</div>
+<p>Still a relationship!</p>
+<h3 id="solution-2-look-at-a-time-series">Solution 2: Look at a time series</h3>
+<p>Instead of looking at all the countries at once, let’s isolate a single country and see what’s happening to its GDP and life expectancy over time. The <code>geom_path()</code> layer connects points based on their order in the dataset (rather than their order on the x-axis like <code>geom_line()</code>).</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="week-10_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
+</div>
+<h3 id="solution-3-make-a-movie">Solution 3: Make a movie!</h3>
+<p>Why <em>just</em> look at a cross-section or a time series, when you can do both simultaneously? Take that original plot object <code>p</code> and make the dots move over time:</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="week-10_files/figure-html5/unnamed-chunk-5-1.gif" /><!-- --></p>
+</div>
+<p>Now we can see the trajectory of individual countries over time (check out China - the big one!) and verify that the relationship between health and wealth is positive from the 1950s all the way to today.</p>
 <h2 id="reading-assignments">Reading Assignments</h2>
 <p>Next week, text as data! The following tutorial is your guide to the <code>tidytext</code> package, and make you’ve completed the instructions to sign up for the <a href="https://joeornstein.github.io/pols-3230/week-11.html#getting-twitter-data">Twitter API</a>.</p>
 <ul>
@@ -2440,7 +2481,7 @@ Schedule
 </ul>
 <h2 id="team-project">Team Project</h2>
 <p>Create an animation of a time series dataset. Post the replication code to eLC.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
