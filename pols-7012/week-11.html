@@ -2401,6 +2401,7 @@ Schedule
 <a href="week-09.html">Week 9: Back Doors</a>
 <a href="week-10.html">Week 10: Front Doors</a>
 <a href="week-11.html">Week 11: Sampling</a>
+<a href="week-12.html">Week 11: Statistical Inference</a>
 </div>
 </div>
 <a href="https://calendly.com/jornstein/15min">
@@ -2679,7 +2680,16 @@ Schedule
 <p>If the population distribution has higher variance, so will your sampling distribution, because you can draw a wider range of samples. And standard error decreases with the square root of n. If you quadruple your sample size, you cut standard error in half.</p>
 <p>In the limit, as your sample size gets bigger and bigger, the standard error approaches (but never quite reaches) zero. This is the <strong>Law of Large Numbers</strong>. Bigger datasets mean more confidence in your estimate. Formally, we say that the sample mean <em>converges in probability</em> to its expected value.</p>
 <h2 id="problem-set">Problem Set</h2>
-<p>TBD</p>
+<p>Imagine we were interested in studying whether American men were more or less likely than American women to support import tariffs on Chinese goods.</p>
+<ol type="1">
+<li>Load <code>data/ces-2020/cleaned-CES.RData</code>.</li>
+<li>What percent of CES respondents support tariffs on China?</li>
+<li>What is the difference between men and women in support for tariffs?</li>
+<li>Write a function that draws a sample of 100 respondents and returns a sample estimate of the difference between men and women in support for tariffs.</li>
+<li>Using that function, generate a sampling distribution for this difference-in-means.</li>
+<li>Plot your sampling distribution. Confirm that it is centered around the truth.</li>
+<li>How far away from the truth can these sample estimates get? What is the maximum value? What is the minimum value? What is the standard deviation of the sampling distribution?</li>
+</ol>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-abadie2020" class="csl-entry" role="doc-biblioentry">
