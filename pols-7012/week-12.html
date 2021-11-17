@@ -2556,7 +2556,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\ri
 <p><img src="week-12_files/figure-html5/unnamed-chunk-5-1.png" width="400px" /></p>
 </div>
 <p>And the p-value is equal to that shaded area.</p>
-<p><span class="math display">\[p = \int_{\hat{\tau}}^\infty \mathcal{N}\left(0, \frac{\sigma^2}{n_0} + \frac{\sigma^2}{n_1}\right) + \int_{\hat{\tau}}^\infty \mathcal{N}\left(0, \frac{\sigma^2}{n_0} + \frac{\sigma^2}{n_1}\right)\]</span></p>
+<p><span class="math display">\[p = \int_{-\infty}^{-\hat{\tau}} \mathcal{N}\left(0, \frac{\sigma^2}{n_0} + \frac{\sigma^2}{n_1}\right) + \int_{\hat{\tau}}^\infty \mathcal{N}\left(0, \frac{\sigma^2}{n_0} + \frac{\sigma^2}{n_1}\right)\]</span></p>
 <p>We can compute that quantity in <code>R</code> with the <code>pnorm()</code> function.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
