@@ -2607,7 +2607,7 @@ t = \frac{\text{statistic} - H_0}{\text{standard error}}
 <p>Note that this distinction between the t distribution and the normal distribution only really matters when sample size is small. If we go back to drawing a sample of 100…</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># generate a sampling distribution with n=10</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># generate a sampling distribution with n=100</span>
 <span class='va'>sample_size</span> <span class='op'>&lt;-</span> <span class='fl'>100</span>
 <span class='va'>sampling_distribution</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span><span class='op'>(</span><span class='fl'>25000</span>,
                                    <span class='fu'>get_t_statistic</span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>sample_size</span><span class='op'>)</span><span class='op'>)</span>
