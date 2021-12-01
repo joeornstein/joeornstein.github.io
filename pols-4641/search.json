@@ -1,0 +1,50 @@
+{
+  "articles": [
+    {
+      "path": "01-introduction.html",
+      "title": "Introduction",
+      "description": "What is this class all about?",
+      "author": [],
+      "contents": "\r\n\r\nContents\r\nRequired Readings\r\nFurther Readings\r\nSocial Annotation: Hypothesis\r\n\r\nRequired Readings\r\nThe Syllabus\r\nFurther Readings\r\nSocial Annotation: Hypothesis\r\nThis semester, we’ll be using a social annotation platform called Hypothesis. That way, everyone will be able to post comments/questions/concerns/memes directly into the reading assignments. Follow these steps to get started:\r\nClick the book icon in the top-right corner of the course website. This will take you to our Hypothesis Group Page.\r\nIf you don’t already have an account, you will be prompted to create one. Make your username something like firstname_lastname so we know who is posting!\r\nHypothesis works best with Google Chrome. If you don’t have it, install it here.\r\nInstall the Chrome extension. When you do, it should take you to a welcome page with instructions on how to log in, pin the extension, and start annotating pages!\r\n\r\nRead the syllabus and add comments. Whenever you annotate a reading, just make sure that you are posting to the Group instead of Public (see the dropdown menu at the top of the extension).\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-11-18T13:31:35-05:00"
+    },
+    {
+      "path": "02-how-to-ace-the-class.html",
+      "title": "Introduction",
+      "description": "What is this class all about?\n",
+      "author": [],
+      "contents": "\r\n\r\nContents\r\nRequired Readings\r\nFurther Readings\r\n\r\nRequired Readings\r\nFurther Readings\r\nMcCloskey and Ziliak (2019) on rules for writing nonfiction essays.\r\nAhrens (2017) on note-taking.\r\n\r\n\r\n\r\nAhrens, Sönke. 2017. How to Take Smart Notes: One Simple Technique to Boost Writing, Learning and Thinking  for Students, Academics and Nonfiction Book Writers.\r\n\r\n\r\nMcCloskey, Deirdre N., and Stephen Thomas Ziliak. 2019. Economical Writing: Thirty-Five Rules for Clear and Persuasive Prose. Third edition. Chicago Guides to Writing, Editing, and Publishing. Chicago ; London: The University of Chicago Press.\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-11-18T13:31:36-05:00"
+    },
+    {
+      "path": "03-why-cities.html",
+      "title": "Why Cities?",
+      "description": "Economies of Scale, Mostly\n",
+      "author": [],
+      "contents": "\r\n\r\nContents\r\nRequired Readings\r\nFurther Readings\r\n\r\nRequired Readings\r\nFurther Readings\r\nKrugman, Paul. 1991. “Increasing Returns and Economic Geography.” Journal of Political Economy 99(3): 483–99.\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-11-18T13:31:38-05:00"
+    },
+    {
+      "path": "04-path-dependence.html",
+      "title": "Path Dependence",
+      "description": "How the deep past shapes modern-day cities.\n",
+      "author": [],
+      "contents": "\r\n\r\nContents\r\nRequired Readings\r\nFurther Readings\r\n\r\nRequired Readings\r\nFurther Readings\r\nAccetturo, Antonio, Michele Cascarano, and Guido de Blasio. 2020. “Pirate Attacks and the Shape of the Italian Urban System.” Working Paper: 49.\r\nKrugman, Paul. 1991. “Increasing Returns and Economic Geography.” Journal of Political Economy 99(3): 483–99.\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-11-18T13:31:39-05:00"
+    },
+    {
+      "path": "index.html",
+      "title": "The Science of Cities",
+      "description": "A website for the course.\n",
+      "author": [
+        {
+          "name": "Joe Ornstein",
+          "url": "https://joeornstein.github.io/"
+        }
+      ],
+      "contents": "\r\n\r\nContents\r\nIntroduction\r\nFoundational Theories\r\n\r\nHere are the topics, in roughly chronological order, that we will cover this semester. Each link contains a list of Required Readings, which everyone should read and annotate before class, and a list of Further Readings, which Table Read authors should read and annotate. You can also read the Further Readings if you’re just interested in the topic. They’re not forbidden or anything.\r\nIntroduction\r\nWhat Will We Learn?\r\nHow To Ace This Class\r\nFoundational Theories\r\nWhy Cities?\r\nPath Dependence\r\n\r\n\r\n\r\n",
+      "last_modified": "2021-11-18T13:31:40-05:00"
+    }
+  ],
+  "collections": []
+}

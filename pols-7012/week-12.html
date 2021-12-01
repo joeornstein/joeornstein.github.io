@@ -88,7 +88,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_meta_tags-->
   <title>Introduction to Political Methodology: Week 12</title>
 
-  <meta property="description" itemprop="description" content="Statistical Inference &amp; Hypothesis Tests"/>
+  <meta property="description" itemprop="description" content="Statistical Inference, Part I"/>
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="img/favicon_io/favicon.ico"/>
 
@@ -96,14 +96,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Introduction to Political Methodology: Week 12"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Statistical Inference &amp; Hypothesis Tests"/>
+  <meta property="og:description" content="Statistical Inference, Part I"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Introduction to Political Methodology"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Introduction to Political Methodology: Week 12"/>
-  <meta property="twitter:description" content="Statistical Inference &amp; Hypothesis Tests"/>
+  <meta property="twitter:description" content="Statistical Inference, Part I"/>
 
   <!--/radix_placeholder_meta_tags-->
   
@@ -111,7 +111,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Week 12"]},{"type":"character","attributes":{},"value":["Statistical Inference & Hypothesis Tests\n"]},{"type":"character","attributes":{},"value":["references.bib"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Week 12"]},{"type":"character","attributes":{},"value":["Statistical Inference, Part I\n"]},{"type":"character","attributes":{},"value":["references.bib"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2366,7 +2366,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Week 12","description":"Statistical Inference & Hypothesis Tests","authors":[]}
+{"title":"Week 12","description":"Statistical Inference, Part I","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2400,7 +2400,8 @@ Schedule
 <a href="week-09.html">Week 9: Back Doors</a>
 <a href="week-10.html">Week 10: Front Doors</a>
 <a href="week-11.html">Week 11: Sampling</a>
-<a href="week-12.html">Week 12: Hypothesis Testing</a>
+<a href="week-12.html">Week 12: Statistical Inference I</a>
+<a href="week-13.html">Week 13: Statistical Inference II</a>
 </div>
 </div>
 <a href="https://calendly.com/jornstein/15min">
@@ -2424,7 +2425,7 @@ Schedule
 <h1>Week 12</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Statistical Inference &amp; Hypothesis Tests</p></p>
+<p><p>Statistical Inference, Part I</p></p>
 </div>
 
 
@@ -2434,13 +2435,13 @@ Schedule
 <h3>Contents</h3>
 <ul>
 <li><a href="#reading-assignments">Reading Assignments</a></li>
-<li><a href="#class-notes2">Class Notes</a>
+<li><a href="#class-notes">Class Notes</a>
 <ul>
 <li><a href="#step-1-compute-the-test-statistic">Step 1: Compute the test statistic</a></li>
 <li><a href="#step-2-derive-the-sampling-distribution">Step 2: Derive the Sampling Distribution</a></li>
 <li><a href="#step-3-compare-the-observed-statistic-to-the-null-distribution">Step 3: Compare the observed statistic to the null distribution</a></li>
 </ul></li>
-<li><a href="#problem-set">Problem Set</a></li>
+<li><a href="#appendix">Appendix</a></li>
 </ul>
 </nav>
 </div>
@@ -2452,8 +2453,8 @@ Schedule
 <li><p><span class="citation" data-cites="kellstedt2018"><a href="#ref-kellstedt2018" role="doc-biblioref">Kellstedt and Whitten</a> (<a href="#ref-kellstedt2018" role="doc-biblioref">2018</a>)</span>, chapters 7-8 (Statistical Inference and Bivariate Hypothesis Testing)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p></li>
 <li><p><a href="http://allendowney.blogspot.com/2016/06/there-is-still-only-one-test.html">There Is Only One Test</a> (blog post by Allen Downey)</p></li>
 </ul>
-<h2 id="class-notes2">Class Notes<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></h2>
-<p>Every statistic has a sampling distribution. When we conduct a <strong>hypothesis test</strong>, we compare our observed statistic to its sampling distribution, to assess whether our result is something we would have expected due to chance alone. Every hypothesis test proceeds in three steps:</p>
+<h2 id="class-notes">Class Notes</h2>
+<p>Every statistic has a sampling distribution. When we conduct a <strong>hypothesis test</strong>, we compare our observed statistic to its sampling distribution, to assess whether that statistic is something we would have expected due to chance alone. Every hypothesis test proceeds in three steps:</p>
 <ol type="1">
 <li><p>Compute the test statistic</p></li>
 <li><p>Generate the sampling distribution assuming a <strong>null hypothesis</strong></p></li>
@@ -2464,14 +2465,14 @@ Schedule
 </ul></li>
 </ol>
 <h3 id="step-1-compute-the-test-statistic">Step 1: Compute the test statistic</h3>
-<p>A statistic can be anything you compute from data! So far we’ve looked at:</p>
+<p>A statistic can be anything you compute from data! So far we’ve computed statistics like:</p>
 <ul>
-<li><p>The sample mean<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p></li>
+<li><p>The sample mean<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p></li>
 <li><p>The difference in means</p></li>
 <li><p>Variance</p></li>
 <li><p>Linear model coefficients</p></li>
 </ul>
-<p>A word on notation: statisticians denote population-level parameters with Greek letters.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> So the population mean is typically <span class="math inline">\(\mu\)</span>, the population standard deviation is <span class="math inline">\(\sigma\)</span>, the true average treatment effect is <span class="math inline">\(\tau\)</span>, and the true linear model slope coefficient is <span class="math inline">\(\beta\)</span>. Of course, you can write whatever Greek letters you like. These are just conventions.</p>
+<p>A word on notation: statisticians denote population-level parameters with Greek letters.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> So the population mean is typically <span class="math inline">\(\mu\)</span>, the population standard deviation is <span class="math inline">\(\sigma\)</span>, the true average treatment effect is <span class="math inline">\(\tau\)</span>, and the true linear model slope coefficient is <span class="math inline">\(\beta\)</span>. Of course, you can write whatever Greek letters you like. These are just conventions.</p>
 <p>Sample statistics get plain old English letters, like <span class="math inline">\(b\)</span> for an estimated slope or <span class="math inline">\(s\)</span> for a the standard deviation of a sample. Alternatively, they might get little hats on top of Greek letters, like <span class="math inline">\(\hat{\beta}\)</span>, to show that they are estimates of the population-level parameter we care about.</p>
 <p>As a running example, let’s draw a sample from CES and compute the difference in support for tariffs on Chinese goods between men and women.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2503,14 +2504,14 @@ Schedule
 <li><span class="math inline">\(f(x) \geq 0\)</span></li>
 <li><span class="math inline">\(\int_{-\infty}^\infty f(x)dx = 1\)</span></li>
 </ol>
-<p>That first property says that probability can’t be less-than-zero. Every outcome must have at least a zero probability of happening. The second property uses <strong>integral notation</strong>, which we’ll discuss in a moment. It says that the sum of probabilities for all outcomes equals 1 (<em>something</em> has to happen).</p>
+<p>That first property says that probability can’t be less-than-zero. Every outcome must have at least a zero probability of happening. The second property uses <strong>integral notation</strong> (if you’ve never seen that before we’ll discuss it in a moment). It says that the sum of probabilities for all outcomes equals 1 (<em>something</em> has to happen).</p>
 <p>The PDF of a normal distribution looks like this (please don’t cry).</p>
 <p><span class="math display">\[
 f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
 \]</span></p>
-<p>where <span class="math inline">\(\mu\)</span> is the mean of the distribution, <span class="math inline">\(\sigma\)</span> is the standard deviation, <span class="math inline">\(\pi\)</span> is the ratio of a circle’s circumference to its diameter, and <span class="math inline">\(e\)</span> is how much money you would have if you left a dollar in a bank offering 100% interest continuously compounded over one year. The fact that both <span class="math inline">\(\pi\)</span> and <span class="math inline">\(e\)</span> appear in the same equation to describe the distribution of a sample mean is honestly one of the most beautiful things I know about the universe.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
-<p>We’d like to test the null hypothesis that there is no difference between men and women on support for tariffs <span class="math inline">\((H_0: \beta = 0)\)</span>. So we’ll set the mean of our null distribution to 0, but what do we use for <span class="math inline">\(\sigma\)</span>? We don’t know its true value, because we only have a sample, so we’ll estimate it.</p>
-<p>Recall from the <span class="citation" data-cites="kellstedt2018"><a href="#ref-kellstedt2018" role="doc-biblioref">Kellstedt and Whitten</a> (<a href="#ref-kellstedt2018" role="doc-biblioref">2018</a>)</span> that the standard error of a difference in means statistic is <span class="math inline">\(\sqrt{\frac{\sigma^2}{n_0} + \frac{\sigma^2}{n_1}}\)</span>. (If you’re curious where that value comes from, see the appendix of this page – forthcoming during the Thanksgiving break!) We’ll estimate that standard error by plugging in the sample variance for <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>where <span class="math inline">\(\mu\)</span> is the mean of the distribution, <span class="math inline">\(\sigma\)</span> is the standard deviation, <span class="math inline">\(\pi\)</span> is the ratio of a circle’s circumference to its diameter, and <span class="math inline">\(e\)</span> is how much money you would have if you left a dollar in a bank offering 100% interest continuously compounded over one year. The fact that both <span class="math inline">\(\pi\)</span> and <span class="math inline">\(e\)</span> appear in the same equation to describe the distribution of a sample mean is honestly one of the most beautiful things I know about the universe.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>We’d like to test the null hypothesis that there is no difference between men and women on support for tariffs <span class="math inline">\((H_0: \beta = 0)\)</span>. So we’ll set the mean of our null distribution to 0, but what do we use for <span class="math inline">\(\sigma\)</span>? We don’t know its true value, because we only have a sample. So we’ll estimate it instead.</p>
+<p>Recall from the <span class="citation" data-cites="kellstedt2018"><a href="#ref-kellstedt2018" role="doc-biblioref">Kellstedt and Whitten</a> (<a href="#ref-kellstedt2018" role="doc-biblioref">2018</a>)</span> that the standard error of a difference in means statistic is <span class="math inline">\(\sqrt{\frac{\sigma^2}{n_0} + \frac{\sigma^2}{n_1}}\)</span>. (If you’re curious where that value comes from, see the appendix of this page.) We’ll estimate that standard error by plugging in the sample variance for <span class="math inline">\(\sigma^2\)</span>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>n0</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>sample_data</span><span class='op'>$</span><span class='va'>female</span> <span class='op'>==</span> <span class='fl'>0</span><span class='op'>)</span>
@@ -2537,6 +2538,23 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\ri
 <p><img src="week-12_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
 </div>
 <p>…which should look a lot like the sampling distribution from your last problem set!</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='st'>'data/ces-2020/ps11-sampling-distribution.RData'</span><span class='op'>)</span>
+
+<span class='fu'>ggplot</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>geom_histogram</span><span class='op'>(</span>mapping <span class='op'>=</span> 
+                   <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>sampling_distribution</span>, 
+                       y <span class='op'>=</span> <span class='va'>..density..</span><span class='op'>)</span>, 
+                 color <span class='op'>=</span> <span class='st'>'black'</span>, fill <span class='op'>=</span> <span class='st'>'gray'</span>,
+                 binwidth<span class='op'>=</span><span class='fl'>0.02</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'>geom_line</span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>x</span>, y<span class='op'>=</span><span class='va'>f</span><span class='op'>)</span>,
+            color <span class='op'>=</span> <span class='st'>'red'</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="week-12_files/figure-html5/overlay-1.png" width="624" /></p>
+</div>
 <h3 id="step-3-compare-the-observed-statistic-to-the-null-distribution">Step 3: Compare the observed statistic to the null distribution</h3>
 <p>There are two ways to do this:</p>
 <ol type="1">
@@ -2548,6 +2566,7 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\ri
 <iframe src="slides/10-integrals.html" width="624" height="400px">
 </iframe>
 </div>
+<p><a href="slides/10-integrals.html">(Full Screen Version)</a></p>
 <p>Okay we’re back.</p>
 <p>Formally, our sample statistic is <span class="math inline">\(\hat{\tau}\)</span>. The sampling distribution of this statistic is centered around the true population parameter <span class="math inline">\(\tau\)</span>.</p>
 <p><span class="math display">\[\hat{\tau} \sim \mathcal{N}\left(\tau, \frac{\sigma^2}{n_0} + \frac{\sigma^2}{n_1}\right)\]</span></p>
@@ -2575,9 +2594,15 @@ f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\ri
 <pre><code>   female 
 0.8719204 </code></pre>
 </div>
-<p><strong>Coming Soon</strong>: Confidence Intervals</p>
-<h2 id="problem-set">Problem Set</h2>
-<p>TBD</p>
+<h2 class="appendix" id="appendix">Appendix</h2>
+<p>To see why the standard error of the difference-in-means statistic is equal to <span class="math inline">\(\sqrt{\frac{\sigma^2}{n_0} + \frac{\sigma^2}{n_1}}\)</span>, first recall that the variance of one sample mean is <span class="math inline">\(Var(\bar{X}) = \frac{\sigma^2}{N}\)</span>. Now we draw two independent sample means and take the difference. What’s the variance of that statistic?</p>
+<p><span class="math display">\[
+Var(\bar{X_1} - \bar{X_0}) = Var(\bar{X_1}) + Var(\bar{X_0}) - 2 Cov(\bar{X_1},\bar{X_0}) 
+\]</span></p>
+<p>Because the two samples are drawn independently, that final covariance term equals zero. The standard error is the square root of the variance, so:</p>
+<p><span class="math display">\[
+\sqrt{Var(\bar{X}_1) + Var(\bar{X}_2)} = \sqrt{\frac{\sigma^2}{n_0} + \frac{\sigma^2}{n_1}}
+\]</span></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-kellstedt2018" class="csl-entry" role="doc-biblioentry">
@@ -2588,10 +2613,9 @@ Kellstedt, Paul M, and Guy D Whitten. 2018. <em>The Fundamentals of Political Sc
 <hr />
 <ol>
 <li id="fn1" role="doc-endnote"><p>If you’re taking POLS 7010, then I assume you have this book. If not, you may borrow it from others in the class or from me. Or buy it, I guess. It’s a good book.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>Sorry these are a bit rough right now. I’ll clean them up over Thanksgiving.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3" role="doc-endnote"><p>The reason why statisticians like means as a measure of central tendency is because of Central Limit Theorem! The sampling distribution of the mean is normally distributed; no such guarantee for other statistics like medians or modes.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4" role="doc-endnote"><p>Because mathematicians associate timeless truth and beauty with the ancient Greeks.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5" role="doc-endnote"><p>And that’s saying something, because I recently learned about <a href="https://www.google.com/search?q=sugar+glider&amp;rlz=1C1GCEB_enUS896US896&amp;sxsrf=AOaemvJQSFwuBnPuMFcsaRyjIy1n39LXPg:1637176458516&amp;tbm=isch&amp;source=iu&amp;ictx=1&amp;fir=AECjVDXyb9L4NM%252CDAZfITb-5dSBDM%252C_%253B8ofc3BtPDTU5IM%252C6lc9Ql_E8ch4GM%252C_%253BLBeHy7s7UTlA3M%252C1eFqmKv_uvivfM%252C_%253BrTgLh98tmmTi9M%252C2_cTYlj3OJup-M%252C_&amp;vet=1&amp;usg=AI4_-kSQHnIcHjtS5XE9k1mV0C-JW8-RIg&amp;sa=X&amp;ved=2ahUKEwjV5vnJjaD0AhXkSjABHfKVBfgQ_h16BAgiEAE&amp;cshid=1637176596303177&amp;biw=1280&amp;bih=609&amp;dpr=1.5#imgrc=AECjVDXyb9L4NM">sugar gliders</a>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>The reason why statisticians like means as a measure of central tendency is because of Central Limit Theorem! The sampling distribution of the mean is normally distributed; no such guarantee for other statistics like medians or modes.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>Because mathematicians associate timeless truth and beauty with the ancient Greeks.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>And that’s saying something, because I recently learned about <a href="https://www.google.com/search?q=sugar+glider&amp;rlz=1C1GCEB_enUS896US896&amp;sxsrf=AOaemvJQSFwuBnPuMFcsaRyjIy1n39LXPg:1637176458516&amp;tbm=isch&amp;source=iu&amp;ictx=1&amp;fir=AECjVDXyb9L4NM%252CDAZfITb-5dSBDM%252C_%253B8ofc3BtPDTU5IM%252C6lc9Ql_E8ch4GM%252C_%253BLBeHy7s7UTlA3M%252C1eFqmKv_uvivfM%252C_%253BrTgLh98tmmTi9M%252C2_cTYlj3OJup-M%252C_&amp;vet=1&amp;usg=AI4_-kSQHnIcHjtS5XE9k1mV0C-JW8-RIg&amp;sa=X&amp;ved=2ahUKEwjV5vnJjaD0AhXkSjABHfKVBfgQ_h16BAgiEAE&amp;cshid=1637176596303177&amp;biw=1280&amp;bih=609&amp;dpr=1.5#imgrc=AECjVDXyb9L4NM">sugar gliders</a>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->

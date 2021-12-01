@@ -1,0 +1,359 @@
+% Syllabus Template from Arman Shokrollahi
+% https://www.overleaf.com/latex/templates/syllabus-template-course-info/gbqbpcdgvxjs
+
+\documentclass[11pt, letterpaper]{article}
+%\usepackage{geometry}
+\usepackage[inner=2cm,outer=2cm,top=2.5cm,bottom=2.5cm]{geometry}
+\pagestyle{empty}
+\usepackage{graphicx}
+\usepackage{fancyhdr, lastpage, bbding, pmboxdraw}
+\usepackage[usenames,dvipsnames]{color}
+\definecolor{darkblue}{rgb}{0,0,.6}
+\definecolor{darkred}{rgb}{.7,0,0}
+\definecolor{darkgreen}{rgb}{0,.6,0}
+\definecolor{red}{rgb}{.98,0,0}
+\usepackage[colorlinks,pagebackref,pdfusetitle,urlcolor=darkblue,citecolor=darkblue,linkcolor=darkred,bookmarksnumbered,plainpages=false]{hyperref}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\pagestyle{fancyplain}
+\fancyhf{}
+\lhead{ \fancyplain{}{The Science of Cities} }
+%\chead{ \fancyplain{}{} }
+\rhead{ \fancyplain{}{Spring 2021} }%\today
+%\rfoot{\fancyplain{}{page \thepage\ of \pageref{LastPage}}}
+\fancyfoot[RO, LE] {page \thepage\ of \pageref{LastPage} }
+\thispagestyle{plain}
+
+%%%%%%%%%%%% LISTING %%%
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{setspace}
+\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\colorbox{gray}{\parbox{\textwidth}{#1#2#3}}}
+\captionsetup[lstlisting]{format=listing,labelfont=white,textfont=white}
+\usepackage{verbatim} % used to display code
+\usepackage{fancyvrb}
+\usepackage{acronym}
+\usepackage{amsthm}
+\VerbatimFootnotes % Required, otherwise verbatim does not work in footnotes!
+
+
+
+\definecolor{OliveGreen}{cmyk}{0.64,0,0.95,0.40}
+\definecolor{CadetBlue}{cmyk}{0.62,0.57,0.23,0}
+\definecolor{lightlightgray}{gray}{0.93}
+
+
+
+\lstset{
+%language=bash,                          % Code langugage
+basicstyle=\ttfamily,                   % Code font, Examples: \footnotesize, \ttfamily
+keywordstyle=\color{OliveGreen},        % Keywords font ('*' = uppercase)
+commentstyle=\color{gray},              % Comments font
+numbers=left,                           % Line nums position
+numberstyle=\tiny,                      % Line-numbers fonts
+stepnumber=1,                           % Step between two line-numbers
+numbersep=5pt,                          % How far are line-numbers from code
+backgroundcolor=\color{lightlightgray}, % Choose background color
+frame=none,                             % A frame around the code
+tabsize=2,                              % Default tab size
+captionpos=t,                           % Caption-position = bottom
+breaklines=true,                        % Automatic line breaking?
+breakatwhitespace=false,                % Automatic breaks only at whitespace?
+showspaces=false,                       % Dont make spaces visible
+showtabs=false,                         % Dont make tabls visible
+columns=flexible,                       % Column format
+morekeywords={__global__, __device__},  % CUDA specific keywords
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{center}
+{\Large \textsc{POLS 4641: The Science of Cities}}
+\end{center}
+\begin{center}
+{\large Spring 2021}
+\end{center}
+
+\begin{center}
+\rule{6.5in}{0.4pt}
+\begin{minipage}[t]{.96\textwidth}
+\begin{tabular}{llcccll}
+\textbf{Professor:} & Joe Ornstein & & &  & \textbf{Time:} & MWF 11:30am -- 12:20pm \\
+\textbf{Email:} &  \href{mailto:jornstein@uga.edu}{jornstein@uga.edu} & & & & \textbf{Place:} & 101D Baldwin Hall\\
+\textbf{Website:} & \href{https://uga.view.usg.edu/d2l/home/2213495}{https://uga.view.usg.edu/d2l/home/} & & & & &
+\end{tabular}
+\end{minipage}
+\rule{6.5in}{0.4pt}
+\end{center}
+\vspace{.15cm}
+\setlength{\unitlength}{1in}
+\renewcommand{\arraystretch}{2}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width = 1.03\textwidth]{img/night-lights-cropped.jpg}
+\end{figure}
+
+%\begin{quotation}
+%	\noindent``\textit{You can't really know anything if you just remember isolated facts. If the facts don't hang together on a latticework of theory, you don't have them in a usable form. You've got to have models in your head.}''\\
+%	\\
+%	--Charlie Munger (investor, vice chairman of Berkshire Hathaway)
+%\end{quotation}
+
+%% PREAMBLE %%
+\onehalfspacing
+
+% Loosely guessed from this: https://www.sciencealert.com/half-the-world-s-population-lives-on-1-of-its-land
+
+\noindent Over half of the Earth's population lives within the sea of city lights visible on the satellite map above. These cities are the centers of global commerce and culture, but in order to function, they require effective governance. Cities need roads, schools, police, fire protection, parks, buses, sewers, and electricity. Many of our most pressing political problems --- including education, criminal justice reform, housing, and climate change --- are in large part problems of city politics.
+
+In this course, we will explore what makes cities tick, and how research from political science, economics, sociology, psychology, and mathematics can help us build cities that are healthier, safer, fairer, and more livable for their residents. We'll begin with foundational research on the origins of cities and how best to govern them, then discuss some of the specific policy challenges faced by cities today, and end the semester with a few questions about the future of cities, both in the US and worldwide.
+
+%\section*{Course Objectives}
+%%\vskip.15in
+%%\noindent\textbf{Course Objectives:}  
+%By the end of this course, you will be able to:
+%\begin{itemize}
+%	\item 
+%	\item 
+%	\item
+%\end{itemize}
+
+
+\section*{Course Structure}
+
+I will not lecture. Instead, each student will write two papers during the semester, and those student papers will serve as \textbf{Table Reads} for our class sessions. Class time will be structured like a  \href{https://medium.com/swlh/the-silent-meeting-manifesto-v1-189e9e3487eb}{Silent Meeting}, where we take time to read our fellow students' papers and offer comments and suggestions over a shared online platform. These comments will both motivate class discussion and help the students revise their papers for final submission. Our agenda for most class days will look like this:
+
+\begin{enumerate}
+\item Introduction (5 minutes)
+\item Table Read (10 minutes)
+\item Comments and Edits (15 minutes)
+\item ``Loud'' Discussion (15 minutes)
+\item Closing Thoughts (5 minutes)	
+\end{enumerate}
+
+At the beginning of the semester, I will assign paper topics and dates based on your preferences (see Course Topics below). Your papers should be roughly 2000-3000 words (about 6 pages), short enough to read in 10-15 minutes. Please submit your paper draft 24 hours before your assigned class so I have a chance to review it. Late papers will be marked down a full letter grade.
+ 
+Why structure the course this way? Well, in part it's an adjustment to the COVID-19 pandemic. I want to give everyone the option to participate remotely, and forcing a traditional lecture class into a hybrid format is awkward (as I'm sure some of you have experienced). But also, I want to experiment with something new! As I see it, the structure offers the following benefits:
+
+\begin{itemize}
+	\item It sure beats sitting for 50 minutes and getting talked at.
+	\item Everyone does the reading. We're literally on the same page when it comes time for class discussion.
+	\item Your papers don't just get skimmed by your professor and discarded; they're the primary way your peers will learn about the material that day. Makes writing a paper for class less pointless.
+	\item Everyone gets detailed feedback on their work and a chance to improve.
+	\item Everyone can contribute during class, regardless of background knowledge or comfort with public speaking. (I, for example, tend to get nervous when asked to speak in front of 45 of my peers, but I’m happy making comments on a Google Doc. Perhaps you are like me.)
+	\item The class project isn't something that gets tacked on at the end of the semester. Researching and writing your papers will be your primary intellectual activity during the course.
+\end{itemize}
+
+\noindent During the Table Read portion of class, take time to first read the paper from beginning to end, then go back and add comments, questions, and suggestions for edits in the margins of the shared document. Don't worry that criticism will harm your peers' grades! Quite the opposite. If you frame your critiques as suggestions, it can only help them improve the draft and get a better grade upon final submission (due two weeks after the Table Read). Your comments can take any form: grammatical edits, suggestions for how to make a point more clearly, clarification questions, flags for further discussion, and points of agreement/disagreement. And don't forget: positive feedback is just as important as negative feedback! If you read something that was thought-provoking or interesting, highlight it!
+
+Once the silent portion of class is over, we will have a more traditional ``loud'' discussion, focusing on deeper questions brought up during the Table Read. For those participating over Zoom, please turn on your cameras during this portion of class. 
+
+\section*{COVID-19 Precautions}
+
+Due to the COVID-19 pandemic, I expect that there will be more than the usual share of setbacks and hardships this semester. Please don't hesitate to ask questions or reach out to me with your concerns. Our classroom will have a limited capacity (18 students), so if you would prefer to attend our sessions in-person, let me know when you send me your introductory email (details in the Course Topics section). If there are more students that prefer to meet in-person than capacity allows, I will divide the class into sections.
+
+If you show any \href{https://www.google.com/search?q=covid-19+symptoms}{symptoms of COVID-19} or have been exposed to someone who tests positive for COVID-19, don't come to class in-person. Obviously. Everyone will have the option to attend our class sessions in-person or over Zoom, so you will not miss out on anything if you attend remotely. I will also hold virtual office hours after each class session.
+
+When you come to class, please wear a mask. The University System of Georgia (USG) requires all faculty, students, and staff to wear appropriate face coverings while inside campus buildings. Reasonable accommodations may be made for those who are unable to wear a face covering for documented health reasons. Students seeking an accommodation related to face coverings should contact Disability Services at \href{https://drc.uga.edu/}{https://drc.uga.edu/}. For more information on the University of Georgia's coronavirus response, visit \href{https://coronavirus.uga.edu/}{https://coronavirus.uga.edu/}. 
+
+\section*{Grading}
+
+Your grade in the course will be based on five equal components: class participation (20\%), two Table Reads (2 $\times$ 20\%), and two final drafts (2 $\times$ 20\%). 
+
+The class participation grade is earned by consistently attending class, contributing your thoughts, and helping your fellow students improve their work. When you submit a final draft of your paper (due two weeks after your Table Read), you must include a footnote with the names of 5-10 students who were most helpful in improving your paper draft and a brief description of how they helped you. Your participation grade will be based on the number of times you are thanked in these footnotes. You will receive a full participation grade if you are thanked in 10 or more final papers, but I will make a final determination after considering the comment logs and class discussions.
+
+I will have high standards for the papers you submit, because the entire class is relying on your paper to help understand the topic that day. In other classes, bad papers might be painful for the professors who read them, but they don't actually \textit{harm} anyone. In this class, they do! So I expect your effort to be commensurate with that responsibility. My rubric for grading papers looks like this:
+
+\begin{itemize}
+	\item \textbf{A}: This is a \textit{really good} paper. It could be published for a wider audience with minimal revision, and people would be made better off by reading it. It's fun to read, it effectively teaches the concepts, and it accurately portrays the scientific research.
+	\item \textbf{A-}: This is a good paper. With some minor revisions, it could be published for a wider audience. It effectively teaches the concepts and accurately portrays the scientific research. 
+	\item \textbf{B+}: Your paper ``meets the brief''. It teaches the concepts and does not contain anything misleading or inaccurate. It falls short of an A- due to an organizational or stylistic problem that makes it difficult to read, or perhaps the omission of an important concept.
+	\item \textbf{B}: Your paper ``meets the brief'', but would require significant revisions before I would recommend it to a wider audience. It teaches the concepts and does not contain anything misleading or inaccurate. However, it contains a number of organizational or stylistic problems that make it difficult to read and/or it omits a number of important concepts.
+	\item \textbf{B-}: Your paper ``meets the brief'', but would require significant revisions before I would recommend it to a wider audience. It teaches the concepts and does not contain anything misleading or inaccurate. However, it contains a number of organizational or stylistic problems that make it difficult to read and it omits a number of important concepts.
+	\item \textbf{C}: Your paper fails to meet the brief. It contains misleading or inaccurate information, is difficult to understand, and/or omits enough important information that it does not help other students understand the topic. It would need significant revisions to be a good Table Read.
+	\item \textbf{F}: Somehow worse than a C.
+\end{itemize}
+
+
+\section*{Office Hours}
+
+For a half an hour after each class session I will hold Virtual Office Hours over Zoom. Sign up for ten minute slots using \href{https://docs.google.com/spreadsheets/d/11Pb2gW8iwXT_c4Qdo4Sp3OJzQKFA3zPDnCEsIHdD3C0/edit#gid=0}{this spreadsheet} so you don't overlap with other students.
+
+With each paper draft, you'll simultaneously be learning new content \textit{and} trying to teach others what you've learned. This is a difficult cognitive task! I strongly recommend that you sign up for office hours before your paper draft is due so we can discuss any questions you have about the material you're reading. Even if you don't have a problem with the material, stop by office hours anyway! One of the great things about college is that your professors are all required to set aside time each week just to talk with their students. And, not to brag, but I'm \textit{pretty good at talking}. My job title (Assistant Professor) is basically just Latin for ``Assistant Talker''.
+
+\section*{Course Topics}
+
+Ultimately, the content that we cover will depend on what questions you decide to write about. Below is a list of suggested paper topics, and I will provide a set of readings for each topic on the course \href{https://uga.view.usg.edu/d2l/home/2213495}{eLC page}. Take a few minutes to read over the prompts below and decide which you would most like to address in your paper. Then send me an email introducing yourself and ranking your top 10 choices. (If you'd like to suggest your own topic, please do! We'll work together to compile a good reading list.) Once I've assigned everyone's topics, I will post a schedule for the semester.
+
+\textbf{Note:} I will write the Table Reads for the first two weeks of class, so no one is given too tight a deadline, and so you get a chance to read some examples of the kind of papers that I expect.
+
+%\subsection*{Week 1: Course Introduction}
+%
+%\begin{itemize}
+%	\item How will the course be organized? What do you need to be successful?
+%	\item What makes for a good essay?
+%\end{itemize}
+%
+%\subsection*{Week 2: Why Cities?}
+%
+%\begin{itemize}
+%	\item MLK Day
+%	\item Why cities? %plus monocentric city model
+%	\item Why are some cities in strange places?
+%\end{itemize}
+
+\subsection*{Historical Questions}
+
+\begin{itemize}
+	\item When and where were the very first city-states established? What enabled these cities to form, and what made them so fragile and prone to collapse? % against the grain / scott alexander...jared diamond?
+	\item Where did urbanization occur prior to the Industrial Revolution and why?
+	\item What does urbanization do to us, culturally \& psychologically?
+\end{itemize}
+	
+
+\subsection*{The Urban-Rural Divide}
+
+\begin{itemize}
+	\item What caused the geographic divide between liberals and conservatives? % the big sort
+	\item Why are the interests of city residents underrepresented in national government? % Why are they underrespresented in national government. Why do cities lose?
+	%\item Many US cities are overwhelmingly represented by Democratic lawmakers. Is such single-party dominance harmful?
+	\item Does it matter whether Democrats or Republicans are in charge of city government?
+\end{itemize}
+
+\subsection*{Federalism}
+
+\begin{itemize}
+	\item The Atlanta metropolitan area contains roughly 140 municipal governments. What are the benefits (and drawbacks) of dividing a city this way?
+	\item What are the benefits (and drawbacks) of dividing the \textit{responsibilities} of governing across multiple overlapping governments (e.g. municipalities, school boards, special districts)? % TODO John Oliver, Christopher Berry
+	\item During the late 20th century, many city governments fell deeply into debt and/or bankruptcy. What causes cities to lose money? Are we likely to see more municipal bankruptcies in the next decade?
+\end{itemize}
+
+\subsection*{City Limits}
+
+\begin{itemize}
+	\item Why don't liberal cities enact their own social welfare programs? % City limits
+	\item Do economic development incentives (i.e. ``corporate welfare'') produce value, or do they just produce a ``race to the bottom''?
+	\item Should local governments be spending so much money on sports stadiums?
+	\item How well do city governments represent their citizens?
+\end{itemize}
+
+\subsection*{Crime \& Policing}
+
+\begin{itemize}
+	\item What caused the spike in violent crime from 1970 to 1990 and its subsequent decline?
+	%\item Are we facing a new wave in crime in major US cities? Why or why not?
+	\item What reforms work best to reduce police violence?
+\end{itemize}
+
+\subsection*{Public Health}
+
+\begin{itemize}
+	\item Did urban density exacerbate the spread of COVID-19?
+	\item What are the most effective things that cities have done to promote public health? %TODO Walkability stuff, John Snow, smoking ban literature, built environment, etc.
+\end{itemize}
+
+\subsection*{Race \& Segregation}
+
+\begin{itemize}
+	\item Why is residential segregation such a persistent problem in US cities?
+	\item What are the long-run effects of residential segregation? %TODO Ryan Enos racial threat stuff, Trounstine
+	%\item What was the Great Migration, and what were its long-term effects?
+\end{itemize}
+
+\subsection*{Corruption}
+
+\begin{itemize}
+	\item What works to curb corruption in city government?
+	\item What was ``machine politics'', and where did it go?
+\end{itemize}
+
+\subsection*{Political Institutions}
+
+\begin{itemize}
+	\item Do municipal political institutions matter? For instance, does it matter whether your city is run by a mayor or a manager? Does it matter whether your city council is elected at-large? Do ballot initiatives and popular referenda improve governance, or make it more chaotic?
+	\item Does it matter \textit{when} cities hold their elections?
+	\item How has the decline of local news media affected local politics?
+\end{itemize}
+
+
+
+\subsection*{Transportation}
+
+\begin{itemize}
+	\item What were the long-term effects of the Interstate Highway System on US cities?
+	\item Why do American cities sprawl while European cities are compact? And how does it affect our quality of life?
+	\item What makes a city walkable? Bikable? What are the most cost effective ways to improve multi-modal transit? %TODO transit-oriented development
+	\item Why are mass transit projects so expensive in the United States compared to peer nations?
+	\item Do US cities have too few or too many parking spaces? Why?
+	\item What steps can city governments take to mitigate climate change? %TODO triumph of the cities passages
+\end{itemize}
+
+\subsection*{Housing}
+
+\begin{itemize}
+	\item Why have home prices gotten so expensive in major cities?
+	\item Why is it so hard to build more housing where we need it? 
+	\item What works to reduce homelessness? %(Housing First papers, etc.)
+	\item How common are residential evictions, who do they most burden, and what are some effective remedies? %TODO Evicted book
+	% \item Something something public housing
+\end{itemize}
+
+\subsection*{Urban Decline in Industrialized Nations}
+
+\begin{itemize}
+	\item Where are Americans moving and what explains these migration patterns?
+	\item Where have cities shrunk from their population peak? What makes urban decline so difficult to manage?
+	\item Why do so many well-meaning (and not-so-well-meaning) Urban Renewal plans fail? % Seeing like a state, (Belmermeir podcast) High-modernism and its failings.  
+	%TODO This one is pretty broad. We could split it into two. Triumph of the city boondoggles chapter in one; high modernism in another.
+	%\item How severe is the ``infrastructure deficit'' in American cities? Why do governments often underinvest in critical infrastructure? % Flint, smart cities
+	\item Will the ``Death of Distance'' hurt or help cities in the long run?
+\end{itemize}
+
+\subsection*{Urbanization in the Developing World}
+
+\begin{itemize}
+	\item What explains the tremendous growth of ``primate cities'' (Mexico City, Bangkok, Jakarta, Lagos, Kinshasa, etc.)?
+	\item Is urbanization helpful or harmful for the poor in developing countries? % Glaser
+	\item What programs and policies can best help those living in urban slums?
+	\item How has China achieved such rapid urbanization? What are the effects of this massive internal migration on Chinese society? % the Chinese Mayor, dual sector model, Lewis point
+\end{itemize}
+
+
+
+%\end{flushleft}
+%\end{minipage}
+%\end{center}
+
+%\vskip.15in
+%\noindent\textbf{Important Dates:}
+%\begin{center} \begin{minipage}{3.8in}
+%\begin{flushleft}
+%Midterm \#1      \dotfill ~\={A}b\={a}n 16, 1393  \\
+%Midterm \#2      \dotfill ~\={A}zar 21, 1393  \\
+%%Project Deadline \dotfill ~Month Day \\
+%Final Exam       \dotfill ~Dey 18, 1393  \\
+%\end{flushleft}
+%\end{minipage}
+%\end{center}
+
+
+
+\section*{Academic Honesty}
+
+Remember that when you joined the University of Georgia community, you agreed to abide by a code of conduct outlined in the academic honesty policy called \href{https://honesty.uga.edu/Academic-Honesty-Policy/Introduction/}{\textit{A Culture of Honesty}}. It has some pretty specific things to say on the subject of cheating. Quite specific. Plagiarized papers are unacceptable, and I will report any and all dishonest conduct to the Office of the Vice President for Instruction.
+
+\section*{Mental Health and Wellness Resources}
+
+\begin{itemize}
+\item If you or someone you know needs assistance, you are encouraged to contact Student Care and Outreach in the Division of Student Affairs at 706-542-7774 or visit \href{https://sco.uga.edu}{https://sco.uga.edu}. They will help you navigate any difficult circumstances you may be facing by connecting you with the appropriate resources or services. 
+\item UGA has several resources for a student seeking \href{https://www.uhs.uga.edu/bewelluga/bewelluga}{mental health services} or \href{https://www.uhs.uga.edu/info/emergencies}{crisis support}. 
+\item If you need help managing stress anxiety, relationships, etc., please visit \href{https://www.uhs.uga.edu/bewelluga/bewelluga}{BeWellUGA} for a list of FREE workshops, classes, mentoring, and health coaching led by licensed clinicians and health educators in the University Health Center.
+\item Additional resources can be accessed through the UGA App.
+\end{itemize}
+
+
+
+%%%%%% THE END 
+\end{document} 
