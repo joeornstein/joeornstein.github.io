@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #20794d; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,14 +77,13 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.sc { color: #20794d; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
-
 
   <!--radix_placeholder_meta_tags-->
   <title>The Science of Cities: Shrinking Cities</title>
@@ -457,7 +456,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   </style>
 
-  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
   <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
   <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -1864,10 +1863,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refs = $(this).attr('data-cites').split(" ");
-        var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
-        }).join("\n");
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -2348,7 +2344,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2414,6 +2410,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="#discussion-questions">Discussion Questions</a></li>
 <li><a href="#readings">Readings</a>
 <ul>
+<li><a href="#books">Books</a></li>
+<li><a href="#research-papers">Research Papers</a></li>
+<li><a href="#podcasts">Podcasts</a></li>
 <li><a href="#other-media">Other Media</a></li>
 </ul></li>
 </ul>
@@ -2426,10 +2425,25 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><p>What are the best policies to help declining cities?</p></li>
 </ul>
 <h2 id="readings">Readings</h2>
-<p>TODO</p>
+<h3 id="books">Books</h3>
+<ul>
+<li>Glaeser, Edward. <a href="(http://www.smart-city.institute/library/book/triumph_of_the_city.pdf)">Triumph of the City: How Our Greatest Invention Makes Us Richer, Smarter, Greener, Healthier, and Happier.</a> New York: Penguin Books, 2014. <em>Chapter 2</em></li>
+</ul>
+<h3 id="research-papers">Research Papers</h3>
+<ul>
+<li><p><a href="readings/Glaeser,%20Gyourko%20-%202005%20-%20Urban%20Decline%20and%20Durable%20Housing.pdf">Glaeser, Gyourko - 2005 - Urban Decline and Durable Housing</a></p></li>
+<li><p><a href="readings/Schleicher%20-%202017%20-%20Stuck!%20The%20Law%20and%20Economics%20of%20Residential%20Stagna.pdf">Schleicher - 2017 - Stuck!</a></p></li>
+<li><p><a href="readings/Branas%20et%20al.%20-%202018%20-%20Citywide%20cluster%20randomized%20trial%20to%20restore%20blighted%20vacant%20land.pdf">Branas et al. - 2018 - Citywide cluster randomized trial to restore blighted vacant land</a></p></li>
+</ul>
+<h3 id="podcasts">Podcasts</h3>
+<ul>
+<li><a href="https://99percentinvisible.org/episode/dollhouses-st-louis/">Dollhouses of St. Louis</a>. 2017. <em>99 Percent Invisible</em>.</li>
+</ul>
 <h3 id="other-media">Other Media</h3>
 <ul>
-<li><a href="https://99percentinvisible.org/episode/dollhouses-st-louis/">Dollhouses of St. Louis</a> (99 Percent Invisible Podcast)</li>
+<li><p>Benfield, Kaid. 2011. <a href="https://www.theatlantic.com/national/archive/2011/06/detroit-the-shrinking-city-that-isnt-actually-shrinking/240193/">“Detroit: The ‘Shrinking City’ That Isn’t Actually Shrinking.”</a> <em>The Atlantic</em>.</p></li>
+<li><p>Hendy, Richard. <a href="http://www.theguardian.com/cities/2014/aug/15/yubari-japan-city-learns-die-lost-population-detroit">“Yubari, Japan: A City Learns How to Die.”</a> The Guardian, August 15, 2014.</p></li>
+<li><p>Yglesias, Matthew. <a href="https://www.vox.com/2019/8/15/20804284/place-based-visa-heartland-visa-community-revitalization">“Pete Buttigieg’s Plan to Use Immigration to Revitalize Shrinking Communities, Explained.”</a> <em>Vox</em>, August 15, 2019.</p></li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->

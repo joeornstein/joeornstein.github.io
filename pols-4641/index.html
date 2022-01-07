@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #20794d; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,14 +77,13 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.sc { color: #20794d; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
-
 
   <!--radix_placeholder_meta_tags-->
   <title>The Science of Cities</title>
@@ -458,7 +457,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   </style>
 
-  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
   <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
   <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -1865,10 +1864,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refs = $(this).attr('data-cites').split(" ");
-        var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
-        }).join("\n");
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -2349,7 +2345,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2417,29 +2413,25 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#week-1-introduction">Week 1: Introduction</a></li>
-<li><a href="#week-2-foundational-theories">Week 2: Foundational Theories</a></li>
-<li><a href="#week-3-4-a-history-of-cities">Week 3-4: A History of Cities</a></li>
+<li><a href="#weeks-1-2-introduction">Weeks 1-2: Introduction</a></li>
+<li><a href="#week-3-4-some-historical-questions">Week 3-4: Some Historical Questions</a></li>
 <li><a href="#week-xxx">Week XXX</a></li>
 </ul>
 </nav>
 </div>
-<p>Here are the topics, in roughly chronological order, that we will cover this semester. Each link contains a list of <strong>Required Readings</strong>, which everyone should read and annotate before class, and a list of <strong>Further Readings</strong>, which Table Read authors should read and annotate. You can also read the <strong>Further Readings</strong> if you’re just interested in the topic. They’re not forbidden or anything.</p>
-<h2 id="week-1-introduction">Week 1: Introduction</h2>
-<p><em>Note: Professor Ornstein will write all the Table Reads this week.</em></p>
+<p>Below is our schedule for the semester. Each link contains a list of discussion questions and readings to help you write your papers.</p>
+<p><em>Currently Under Construction. Pardon the mess!</em></p>
+<h2 id="weeks-1-2-introduction">Weeks 1-2: Introduction</h2>
+<p><em>Note: Professor Ornstein will write all the Table Reads for the first two weeks.</em></p>
 <ul>
 <li>Tue, Jan 11: <a href="01-introduction.html">Introduction</a></li>
+<li>Tue, Jan 18: <a href="03-why-cities.html">Why Cities?</a></li>
+<li>Thu, Jan 20: <a href="04-path-dependence.html">Path Dependence</a></li>
 <li>Thu, Jan 13: <a href="02-metalearning.html">How To Ace The Class</a></li>
 </ul>
-<h2 id="week-2-foundational-theories">Week 2: Foundational Theories</h2>
-<p><em>Note: Professor Ornstein will write all the Table Reads this week.</em></p>
+<h2 id="week-3-4-some-historical-questions">Week 3-4: Some Historical Questions</h2>
 <ul>
-<li>Tue, Jan 18: <a href="03-why-cities.html">Agglomeration</a></li>
-<li>Thu, Jan 20: <a href="04-path-dependence.html">Path Dependence</a></li>
-</ul>
-<h2 id="week-3-4-a-history-of-cities">Week 3-4: A History of Cities</h2>
-<ul>
-<li>Tue, Jan 25: <a href="05-deep-roots.html">Five Thousand Years of Urbanization</a></li>
+<li>Tue, Jan 25: <a href="05-origins.html">Five Thousand Years of Urbanization</a></li>
 <li>Thu, Jan 27: <a href="06-urban-psychology.html">How Cities Change Our Brains</a></li>
 <li>Tue, Feb 1: <a href="">How Cities Affect Our Health</a></li>
 <li>Thu, Feb 3: <a href="">Urban Renewal</a></li>

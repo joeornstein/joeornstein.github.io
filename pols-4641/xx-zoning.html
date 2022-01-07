@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #20794d; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,14 +77,13 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.sc { color: #20794d; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
-
 
   <!--radix_placeholder_meta_tags-->
   <title>The Science of Cities: The Politics of Zoning</title>
@@ -457,7 +456,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   </style>
 
-  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
   <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
   <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -1864,10 +1863,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refs = $(this).attr('data-cites').split(" ");
-        var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
-        }).join("\n");
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -2348,7 +2344,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2416,6 +2412,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ul>
 <li><a href="#books">Books</a></li>
 <li><a href="#research-papers">Research Papers</a></li>
+<li><a href="#podcasts">Podcasts</a></li>
 <li><a href="#other-media">Other Media</a></li>
 </ul></li>
 </ul>
@@ -2434,9 +2431,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h3 id="research-papers">Research Papers</h3>
 <ul>
 <li><p><a href="readings/Schleicher%20-%202013%20-%20City%20Unplanning.pdf">Schleicher - 2013 - City Unplanning</a></p></li>
-<li><p><a href="readings/Dericks%20and%20Koster%20-%202021%20-%20The%20billion%20pound%20drop%20the%20Blitz%20and%20agglomeratio.pdf">Dericks and Koster - 2021 - The billion pound drop: the Blitz and agglomeration economies in London</a></p></li>
+<li><p><a href="readings/Trounstine%20-%202021%20-%20You%20Won&#39;t%20be%20My%20Neighbor%20Opposition%20to%20High%20Densi.pdf">Trounstine - 2021 - You Won’t be My Neighbor</a></p></li>
+<li><p><a href="readings/Marble%20and%20Nall%20-%202021%20-%20Where%20Self-Interest%20Trumps%20Ideology%20Liberal%20Homeo.pdf">Marble and Nall - 2021 - Where Self-Interest Trumps Ideology</a></p></li>
 <li><p><a href="readings/Einstein%20et%20al.%20-%202019%20-%20Who%20Participates%20in%20Local%20Government%20Evidence%20fro.pdf">Einstein et al. - 2019 - Who Participates in Local Government?</a></p></li>
 <li><p><a href="readings/Fischel%20-%202016%20-%20The%20Rise%20of%20the%20Homevoters.pdf">Fischel - 2016 - The Rise of the Homevoters</a></p></li>
+<li><p><a href="readings/Dericks%20and%20Koster%20-%202021%20-%20The%20billion%20pound%20drop%20the%20Blitz%20and%20agglomeratio.pdf">Dericks and Koster - 2021 - The billion pound drop: the Blitz and agglomeration economies in London</a></p></li>
+</ul>
+<h3 id="podcasts">Podcasts</h3>
+<ul>
+<li><a href="https://podcasts.apple.com/us/podcast/neighborhood-defenders/id1042433083?i=1000461440534">Neighborhood Defenders</a>. 2020. <em>The Weeds</em>.</li>
 </ul>
 <h3 id="other-media">Other Media</h3>
 <ul>
