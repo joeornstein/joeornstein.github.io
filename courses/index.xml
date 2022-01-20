@@ -6,7 +6,7 @@
    <description>Recent content in Courses on Joseph T. Ornstein</description>
    <generator>Hugo -- gohugo.io</generator>
    <copyright>Copyright &amp;copy; 2020 - Joseph T. Ornstein</copyright>
-   <lastBuildDate>Sat, 03 Jul 2021 00:00:00 +0000</lastBuildDate>
+   <lastBuildDate>Thu, 20 Jan 2022 00:00:00 +0000</lastBuildDate>
    
        <atom:link href="https://joeornstein.github.io/courses/index.xml" rel="self" type="application/rss+xml" />
    
@@ -389,6 +389,7 @@ final&lt;/code&gt;&lt;/pre&gt;
        
        <guid>https://joeornstein.github.io/posts/poll-wrangling/</guid>
        <description>
+&lt;script src=&#34;https://joeornstein.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;In my &lt;a href=&#34;https://joeornstein.github.io/courses/intro-political-methodology/&#34;&gt;Intro to Political Methodology&lt;/a&gt; class, we wrote some &lt;code&gt;R&lt;/code&gt; code to wrangle and visualize the presidential polling data aggregated by &lt;a href=&#34;https://data.fivethirtyeight.com/&#34;&gt;fivethirtyeight&lt;/a&gt;. Here’s a modified version of what we produced.&lt;/p&gt;
@@ -617,6 +618,7 @@ ggplot(data = swing_states) +
        
        <guid>https://joeornstein.github.io/posts/git-undo/</guid>
        <description>
+&lt;script src=&#34;https://joeornstein.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;When using &lt;a href=&#34;bryan-2017.pdf&#34;&gt;GitHub&lt;/a&gt; to manage changes to analyses, manuscripts, and slides, my most frequent frustration occurs when I forget to add a large (&amp;gt;50MB) data file to my &lt;code&gt;.gitignore&lt;/code&gt;. I merrily type –&lt;/p&gt;
@@ -641,6 +643,7 @@ git push origin master --force&lt;/code&gt;&lt;/pre&gt;
        
        <guid>https://joeornstein.github.io/posts/draw-a-sample/</guid>
        <description>
+&lt;script src=&#34;https://joeornstein.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;I wanted to let my students play around with drawing a random sample from a population — so that they could explore ideas like the Central Limit Theorem, how often a certain low-prevalence virus will show up in a randomly drawn class of size &lt;span class=&#34;math inline&#34;&gt;\(N\)&lt;/span&gt;, etc. — but I couldn’t find anything on the web that let you do what I wanted.&lt;/p&gt;
@@ -679,6 +682,7 @@ git push origin master --force&lt;/code&gt;&lt;/pre&gt;
        
        <guid>https://joeornstein.github.io/posts/swiss-polarization/</guid>
        <description>
+&lt;script src=&#34;https://joeornstein.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;In his nice overview of &lt;a href=&#34;https://www.lesswrong.com/posts/x6hpkYyzMG6Bf8T3W/swiss-political-system-more-than-you-ever-wanted-to-know-i&#34;&gt;Switzerland’s political system&lt;/a&gt;, Martin Sustrik writes:&lt;/p&gt;
@@ -705,6 +709,7 @@ git push origin master --force&lt;/code&gt;&lt;/pre&gt;
        
        <guid>https://joeornstein.github.io/posts/srp/</guid>
        <description>
+&lt;script src=&#34;https://joeornstein.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Fielding a good poll is harder than it used to be. People just don’t pick up their phones for unrecognized numbers and sit through surveys anymore.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; And those that do tend to be unrepresentative in some important way. Random sampling, the basis for making inferences from sample to population, is getting harder to do.&lt;/p&gt;
@@ -726,7 +731,7 @@ git push origin master --force&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;footnotes&#34;&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Perhaps we are less starved for entertainment than we used to be.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Perhaps we are less starved for entertainment than we used to be.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>
@@ -739,6 +744,7 @@ git push origin master --force&lt;/code&gt;&lt;/pre&gt;
        
        <guid>https://joeornstein.github.io/posts/dot-density-animation/</guid>
        <description>
+&lt;script src=&#34;https://joeornstein.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;In a &lt;a href=&#34;../covid-animation/&#34;&gt;previous post&lt;/a&gt;, I demonstrated some features of the &lt;code&gt;gganimate&lt;/code&gt; package by animating a map of US COVID-19 cases. In this post, I’ll make it all a bit prettier.&lt;/p&gt;
@@ -860,6 +866,7 @@ animate(animation, nframes = 350)&lt;/code&gt;&lt;/pre&gt;
        
        <guid>https://joeornstein.github.io/posts/newton/</guid>
        <description>
+&lt;script src=&#34;https://joeornstein.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Putting together some lectures on calculus reminded me of James Gleick’s &lt;a href=&#34;https://www.goodreads.com/book/show/17098.Isaac_Newton&#34;&gt;excellent biography&lt;/a&gt; of Isaac Newton. It’s easily one of my favorite biographies of science (a crowded field!). Prior to reading, my uninformed impression of Newton was that he was some jerk who had the good fortune to live in the 16th century, when you could be knighted as a towering genius for picking a bunch of low-hanging intellectual fruit. You know. Objects fall because of gravity. Prisms make rainbows. Stuff like that.&lt;/p&gt;
@@ -876,7 +883,7 @@ animate(animation, nframes = 350)&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;footnotes&#34;&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Newton only published his work on calculus after Leibniz independently published himself. Absent that professional rivalry, all indications suggest he would have taken calculus to his grave.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Newton only published his work on calculus after Leibniz independently published himself. Absent that professional rivalry, all indications suggest he would have taken calculus to his grave.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>
@@ -889,6 +896,7 @@ animate(animation, nframes = 350)&lt;/code&gt;&lt;/pre&gt;
        
        <guid>https://joeornstein.github.io/posts/makefiles-dummies-windows/</guid>
        <description>
+&lt;script src=&#34;https://joeornstein.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;Some combination of &lt;a href=&#34;https://kbroman.org/minimal_make/&#34;&gt;Karl Broman’s blog&lt;/a&gt; and &lt;a href=&#34;https://plain-text.co/pull-it-together.html#pull-it-together&#34;&gt;Kieran Healy’s book&lt;/a&gt; convinced me to try Makefiles as part of my workflow. Both authors have nice tutorials on the topic, but neither one appears to use Windows OS, so their instructions omit several hassles that such users must endure. Here is a dummified version of what I did to get everything working on my machine.&lt;/p&gt;
@@ -965,6 +973,7 @@ data/clean_data.RDS : R/clean_data.R data/raw_data.csv
        
        <guid>https://joeornstein.github.io/posts/covid-animation/</guid>
        <description>
+&lt;script src=&#34;https://joeornstein.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;The &lt;code&gt;gganimate&lt;/code&gt; package facets a &lt;code&gt;ggplot&lt;/code&gt; by some variable and stitches the plots together to create an animated video. Here’s some code to generate such an animation, using the time series of COVID-19 deaths in US counties from the &lt;em&gt;New York Times&lt;/em&gt; &lt;a href=&#34;https://github.com/nytimes/covid-19-data&#34;&gt;data repository&lt;/a&gt;.&lt;/p&gt;
@@ -1163,6 +1172,7 @@ animate(animation, nframes = 250) &lt;/code&gt;&lt;/pre&gt;
        
        <guid>https://joeornstein.github.io/posts/spaced-repetition-for-syllabi/</guid>
        <description>
+&lt;script src=&#34;https://joeornstein.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;We tell students that cramming the night before the test is a poor strategy. But of course it isn’t. Students don’t get good grades for effective long-term memory consolidation. They get good grades for scoring well on the exam &lt;em&gt;tomorrow&lt;/em&gt;. If instructors want to encourage long-term memory building, they need to incentivize it.&lt;/p&gt;
@@ -1207,7 +1217,7 @@ animate(animation, nframes = 250) &lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;footnotes&#34;&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Can you remember your license plate number? You should!&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Can you remember your license plate number? You should!&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>
@@ -1220,6 +1230,7 @@ animate(animation, nframes = 250) &lt;/code&gt;&lt;/pre&gt;
        
        <guid>https://joeornstein.github.io/posts/fall-semester-2020/</guid>
        <description>
+&lt;script src=&#34;https://joeornstein.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;p&gt;What is the best way to organize higher education in the fall? The University System of Georgia (my future home, go Dawgs) is &lt;a href=&#34;https://www.redandblack.com/uganews/usg-memo-details-possible-fall-semester-plans/article_dbbf02da-9e3e-11ea-b78f-975f030212bc.html&#34;&gt;considering a range of options&lt;/a&gt; between socially-distanced on-campus classes and a fully online semester. Tyler Cowen suggests a &lt;a href=&#34;https://marginalrevolution.com/marginalrevolution/2020/05/my-weird-lancastrian-method-for-reopening-higher-education.html&#34;&gt;Lancastrian solution&lt;/a&gt;. Zach Weinersmith has my personal &lt;a href=&#34;https://www.smbc-comics.com/comic/social&#34;&gt;favorite proposal&lt;/a&gt; drawn from social network analysis.&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;&lt;/p&gt;
@@ -1241,8 +1252,8 @@ Expected Number of Discordant Contacts: &lt;span class=&#34;math inline&#34;&gt;
 &lt;div class=&#34;footnotes&#34;&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;You could probably invite the political methodologists back to campus too. See my &lt;a href=&#34;https://joeornstein.github.io/posts/the-contact-paradox/&#34;&gt;previous post&lt;/a&gt; for a much less funny take with more graphs.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;Or, in general, splitting the big group into &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; smaller groups reduces the number of discordant contacts m-fold: &lt;span class=&#34;math inline&#34;&gt;\(m(\frac{n}{m})^2 = \frac{n^2}{m}\)&lt;/span&gt;&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;You could probably invite the political methodologists back to campus too. See my &lt;a href=&#34;https://joeornstein.github.io/posts/the-contact-paradox/&#34;&gt;previous post&lt;/a&gt; for a much less funny take with more graphs.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;Or, in general, splitting the big group into &lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt; smaller groups reduces the number of discordant contacts m-fold: &lt;span class=&#34;math inline&#34;&gt;\(m(\frac{n}{m})^2 = \frac{n^2}{m}\)&lt;/span&gt;&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>
@@ -1255,6 +1266,7 @@ Expected Number of Discordant Contacts: &lt;span class=&#34;math inline&#34;&gt;
        
        <guid>https://joeornstein.github.io/posts/the-contact-paradox/</guid>
        <description>
+&lt;script src=&#34;https://joeornstein.github.io/rmarkdown-libs/header-attrs/header-attrs.js&#34;&gt;&lt;/script&gt;
 
 
 &lt;!-- --- --&gt;
@@ -1295,8 +1307,8 @@ Expected Number of Discordant Contacts: &lt;span class=&#34;math inline&#34;&gt;
 &lt;div class=&#34;footnotes&#34;&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
-&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Assume a zero false negative rate on PCR tests. Since the false negative rate remains constant across targeting conditions, it does not affect the results.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;See also &lt;a href=&#34;https://arxiv.org/abs/1004.4792&#34; class=&#34;uri&#34;&gt;https://arxiv.org/abs/1004.4792&lt;/a&gt;&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Assume a zero false negative rate on PCR tests. Since the false negative rate remains constant across targeting conditions, it does not affect the results.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;See also &lt;a href=&#34;https://arxiv.org/abs/1004.4792&#34; class=&#34;uri&#34;&gt;https://arxiv.org/abs/1004.4792&lt;/a&gt;&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>
