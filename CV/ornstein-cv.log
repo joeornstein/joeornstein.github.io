@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.15)  16 JUL 2021 11:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.11) (preloaded format=pdflatex 2020.12.15)  4 FEB 2022 15:53
 entering extended mode
 **./ornstein-cv.tex
 (ornstein-cv.tex
@@ -283,11 +283,11 @@ Overfull \hbox (17.99998pt too wide) in paragraph at lines 56--60
 Here is how much of TeX's memory you used:
  4928 strings out of 479697
  78722 string characters out of 2863296
- 375960 words of memory out of 3000000
+ 376960 words of memory out of 3000000
  21977 multiletter control sequences out of 15000+200000
  405158 words of font info for 33 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,8n,72p,325b,408s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 66i,8n,72p,325b,410s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/jornstein/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/cm/cmbx10.pfb><C:/Users/jornstein/AppData/Local/Programs/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/jornstein/AppData/Local/Pr
@@ -298,9 +298,9 @@ n/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C
 public/amsfonts/cm/cmsy10.pfb><C:/Users/jornstein/AppData/Local/Programs/MiKTeX
  2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/jornstein/AppData/Loca
 l/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on ornstein-cv.pdf (3 pages, 127535 bytes).
+Output written on ornstein-cv.pdf (3 pages, 128919 bytes).
 PDF statistics:
- 70 PDF objects out of 1000 (max. 8388607)
+ 74 PDF objects out of 1000 (max. 8388607)
  4 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
