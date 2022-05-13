@@ -1,0 +1,26 @@
+{
+  "articles": [
+    {
+      "path": "01-webscraping.html",
+      "title": "Week 1",
+      "description": "Getting all the software up and running",
+      "author": [],
+      "contents": "\r\n\r\nContents\r\nIntroductions\r\nReading Assignments\r\nProblem Set\r\n\r\nThis week, we will familiarize ourselves with a suite of software\r\nthat will make life as a social scientist so much nicer – tools for\r\nmanaging your data, your references, and your knowledge. Make sure\r\nyou’ve completed everything from the Getting Started section on the\r\nhome page.\r\nIntroductions\r\nOn our first day, we will be collecting and analyzing some data about\r\nthe class itself. Please complete the following survey.1\r\n\r\n\r\n\r\n\r\nThe results will be available here.\r\nReading Assignments\r\nBefore Week 2, please read and annotate the following:\r\nHealy Preface\r\n(and complete the package installation instructions at the bottom)\r\nTeacup\r\nGiraffes (Intro to R module)\r\nHealy Chapter\r\n2\r\nHealy Chapter\r\n3\r\nOptional:\r\nHealy Chapter 1: A\r\nnice review of the evidence on what makes an effective\r\nvisualization.\r\nProblem Set\r\nOur first problem set will ensure that all the software is\r\nfunctioning on your machine. If you can complete all of the following\r\nsteps, then you’re in good shape!\r\nOpen intro-to-political-methodology.Rproj and pull\r\nthe latest updates from the GitHub repository.\r\nOpen R/week-01/problem-set-01.Rmd.\r\nEdit the metadata so that you are the author.\r\nAdd an in-text citation to something from your Zotero\r\nlibrary.\r\nMake sure you have the tinytex package installed.\r\nThis is the library you need to convert RMarkdown documents into PDFs.\r\nTo install, enter these two lines into your RStudio console.\r\n\r\n\r\ninstall.packages('tinytex')\r\ntinytex::install_tinytex()\r\n\r\n\r\n\r\nKnit to PDF.\r\nSubmit the knitted PDF document to eLC by\r\nour next class.2\r\nIf the embedded survey isn’t working\r\nfor some reason, click here.↩︎\r\nAll problem sets due by the\r\nfollowing week’s class (so this one is due before our second\r\nclass). Feel free to work together on problem sets, but I encourage you\r\nto type out the solutions yourself instead of copying-pasting from\r\nothers. You can’t learn this stuff without doing it.\r\n\r\n↩︎\r\n",
+      "last_modified": "2022-05-13T10:04:47-04:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Text As Data",
+      "description": "A course on analyzing political texts using the `R` programming language\n",
+      "author": [
+        {
+          "name": "Joe Ornstein",
+          "url": "https://joeornstein.github.io/"
+        }
+      ],
+      "contents": "\r\n\r\nContents\r\nOverview\r\n\r\nLast Update: 2022-05-13\r\nOverview\r\nThis site is intended to serve as a companion to Grimmer, Stewart,\r\nand Roberts (2021), an excellent book on thinking\r\nabout text as data, which makes a deliberate choice (wisely, in my view)\r\nto omit coding instructions on how to implement the methods they\r\ndiscuss. Books with code, particularly in fast-evolving subfields, can\r\nquickly become dated. Thus the need for this supplement, which was\r\ndeveloped with my students during our Summer 2022 Text As Data course at\r\nthe University of Georgia.\r\nThis site is divided into three sections, which correspond to the\r\nthree stages of any text-as-data workflow:\r\nHarvest The Text: How to carefully choose what\r\ntexts to include in your corpus, and how to get them from some messy\r\nformat like HTML or PDF into a plaintext dataframe.\r\nClean The Text: How to represent large amounts of\r\ntext quantitatively, and what choices you need to make during the\r\npreprocessing stage.\r\nModel The Text: How to choose a model to fit your\r\nobjective, be it prediction, classification, causal inference, or\r\nexploration.\r\nFor each stage in the workflow, there are a number of useful\r\nR packages that can help accomplish these tasks, including\r\nwebscraping (rvest), optical character recognition\r\n(tesseract), tidying (tidytext), topic\r\nmodeling (topicmodels), sentiment analysis\r\n(sentimentR), and many others. On this site, we will walk\r\nthrough several tutorials of these packages – motivated by political\r\nscience applications – with links to more detailed documentation for\r\nthose interested in exploring further.\r\n\r\n\r\n\r\nGrimmer, Justin, Brandon M. Stewart, and Margaret E. Roberts. 2021.\r\nText as Data: A New Framework for Machine Learning and the Social\r\nSciences. S.l.: Princeton University Press.\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2022-05-13T10:04:48-04:00"
+    }
+  ],
+  "collections": []
+}
