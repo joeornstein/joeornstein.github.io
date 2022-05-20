@@ -2438,7 +2438,7 @@ Harvest the Text
 </button>
 <div class="nav-dropdown-content">
 <a href="webscraping.html">Webscraping</a>
-<a href="under-construction.html">Optical Character Recognition</a>
+<a href="OCR.html">Optical Character Recognition</a>
 <a href="twitter-api.html">APIs</a>
 </div>
 </div>
@@ -2449,8 +2449,8 @@ Tidy the Text
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
-<a href="under-construction.html">Counting Words</a>
-<a href="under-construction.html">Word Embeddings</a>
+<a href="bag-of-words.html">Counting Words</a>
+<a href="word-embeddings.html">Word Embeddings</a>
 <span class="nav-dropdown-header"></span>
 </div>
 </div>
@@ -2461,9 +2461,9 @@ Model the Text
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
-<a href="under-construction.html">Multinomial Model</a>
-<a href="under-construction.html">Vector Space Model</a>
-<a href="under-construction.html">Topic Models</a>
+<a href="multinomial-model.html">Multinomial Model</a>
+<a href="vector-space-model.html">Vector Space Model</a>
+<a href="LDA.html">Topic Models</a>
 </div>
 </div>
 </div>
@@ -2549,115 +2549,22 @@ bottom, and does not understand things like comic panels or speech
 bubbles. If we’re just using a bag of words representation and we don’t
 care about word order, then we can use the <code>ocr_data()</code>
 function, which splits the input into a dataframe with one row for each
-word.</p>
+word. It even includes a handy <code>confidence</code> column, which
+tells you how confident the model is in its prediction.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>xkcd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/tesseract/reference/ocr.html'>ocr_data</a></span><span class='op'>(</span>image <span class='op'>=</span> <span class='st'>'img/suspicion.png'</span><span class='op'>)</span>
 
-<span class='va'>xkcd</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>xkcd</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>         word confidence            bbox
-1        Fie,   0.000000       4,6,37,41
-2         HED  41.026844      50,6,74,41
-3          UR  48.827419     85,6,107,41
-4          1S  55.740883    170,9,185,21
-5     JUST...  82.508400    191,9,318,23
-6         NOW  65.904922    238,5,260,33
-7         AND  65.904922    261,5,283,33
-8        THEN  94.288559    289,5,316,33
-9           |  96.447342    322,5,330,33
-10     BEFORE  96.285820    336,5,379,33
-11       THIS  96.431755    385,5,408,33
-12       GOES  93.722038    415,5,439,33
-13        ANY  96.843773   446,11,465,23
-14   FURTHER,  95.913956   471,11,523,24
-15     ONLINE  95.614761      6,27,34,38
-16      CHATS  96.031876     44,27,93,39
-17        You  96.199310   164,19,188,51
-18    MENTION  90.933662   193,19,239,51
-19   PRODUCTS  95.352898   243,28,319,40
-20        YOU  94.504982   300,19,316,51
-21          |  87.133553   324,19,327,51
-22          T  60.916439   334,29,342,40
-23      THINK  96.099571   348,19,380,51
-24         WE  94.748222   385,19,399,51
-25     SHOULD  94.748222   404,30,447,41
-26         GO  73.753044   452,19,463,51
-27        GET  73.753044   468,19,487,51
-28    TESTED,  77.522858   491,29,529,41
-29     THESE.  67.888412      6,42,40,54
-30       PAST  76.400650     47,33,74,65
-31        FEW  92.729233    79,33,104,65
-32      LIKE,  95.144211   168,37,198,68
-33     AND...  80.389832   202,37,240,68
-34          I  52.237907   249,46,254,57
-35     UORRY.  61.096947   258,46,298,57
-36          |  56.231380   316,37,330,68
-37   YOUKNOU,  41.379276   335,47,390,59
-38  TOGETHER.  93.713951   396,46,459,58
-39         VK  71.984695   570,28,592,72
-40     Coupes  12.794563   603,28,655,72
-41       Tene  40.018837   661,28,706,72
-42     ONTHS,  32.378975     14,58,57,72
-43          I  88.152100   127,63,135,73
-44          =  46.325256   609,60,614,85
-45     PROVES  31.114700   621,60,657,85
-46      Cape.   0.000000   665,60,707,85
-47       USA.  48.494717      8,73,37,84
-48         \\  48.494717     55,60,64,94
-49        ROM  34.790283    72,64,136,90
-50        KE.  49.218102   117,60,140,94
-51      WHAT?  63.584717   220,69,258,83
-52   HONEY...  91.428719   263,71,312,82
-53         \\  88.293594   389,65,399,86
-54        You  71.349243  401,61,425,102
-55       Dont  42.290344  431,61,460,102
-56      Taist   0.000000  469,61,504,102
-57        mee  59.499916   503,66,527,79
-58       YOU,  87.075676   82,93,105,106
-59       ROB.  73.520744  111,93,137,104
-60         I.   9.886841  335,82,345,110
-61       JUST   9.886841  347,82,376,110
-62       WANT  96.509384  380,82,408,110
-63         To  86.460579  415,82,429,110
-64         BE  86.137497  435,89,451,101
-65          4  48.366283 104,109,109,129
-66      SURE.  91.432571  330,96,370,128
-67          O  62.390026 390,110,419,142
-68          S   0.000000 700,108,705,112
-69        io)   0.000000   39,115,74,156
-70         #)   0.000000 416,144,428,150
-71      OKAY,  29.082024 534,124,571,155
-72       PINE  56.432106 575,124,602,155
-73       SANS  63.273560 606,124,635,155
-74         Uy  18.822937 647,139,712,151
-75          d  23.787109   64,153,68,158
-76          z   3.110321 414,152,416,154
-77   PUBRARY:   0.000000 534,143,589,176
-78     YOURS?  69.201859 594,143,635,176
-79         &quot;5  33.932457 669,151,674,164
-80         \\  78.435883 184,156,189,190
-81         iS  39.796501 280,152,291,184
-82         TH  65.731659 629,166,649,178
-83       MORE  65.731659 654,156,687,188
-84       THAN  86.567383 694,156,721,188
-85          A  86.567383 726,166,733,177
-86         4)  83.752899 165,167,184,204
-87         WE  41.342697 193,173,319,195
-88      OCOD.   0.000000 549,176,592,200
-89   SeAMBOT!   6.270096 616,181,672,194
-90        OUR  83.338852 681,172,703,204
-91       LOVE  85.288200 707,172,737,204
-92         Ve  42.331005 166,182,200,225
-93          =  79.254814 221,196,237,211
-94   Goooere,  26.840492 546,202,598,214
-95       usa,  59.342594 606,203,634,213
-96          4  60.332661 654,201,660,218
-97        WAS  92.276482 665,196,690,218
-98      REAL!  85.881111 697,195,732,207
-99        ana  41.209671 181,209,235,225
-100        VC   5.344276 594,211,601,221</code></pre>
+<pre><code>     word confidence         bbox
+1    Fie,    0.00000    4,6,37,41
+2     HED   41.02684   50,6,74,41
+3      UR   48.82742  85,6,107,41
+4      1S   55.74088 170,9,185,21
+5 JUST...   82.50840 191,9,318,23
+6     NOW   65.90492 238,5,260,33</code></pre>
 </div>
 <p>But if we <em>do</em> care about word order, then we’ll need to be
 more careful about pre-processing the image before conducting OCR. For
