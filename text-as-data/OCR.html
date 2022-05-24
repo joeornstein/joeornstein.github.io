@@ -2558,13 +2558,15 @@ tells you how confident the model is in its prediction.</p>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>xkcd</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>     word confidence         bbox
-1    Fie,    0.00000    4,6,37,41
-2     HED   41.02684   50,6,74,41
-3      UR   48.82742  85,6,107,41
-4      1S   55.74088 170,9,185,21
-5 JUST...   82.50840 191,9,318,23
-6     NOW   65.90492 238,5,260,33</code></pre>
+<pre><code># A tibble: 6 x 3
+  word    confidence bbox        
+  &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;       
+1 Fie,           0   4,6,37,41   
+2 HED           41.0 50,6,74,41  
+3 UR            48.8 85,6,107,41 
+4 1S            55.7 170,9,185,21
+5 JUST...       82.5 191,9,318,23
+6 NOW           65.9 238,5,260,33</code></pre>
 </div>
 <p>But if we <em>do</em> care about word order, then we’ll need to be
 more careful about pre-processing the image before conducting OCR. For
