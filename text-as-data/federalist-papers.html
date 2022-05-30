@@ -2478,6 +2478,7 @@ Model the Text
 <li><a href="#vector-space-model">Vector Space Model</a></li>
 <li><a href="#validation-validation-validation">Validation, Validation,
 Validation</a></li>
+<li><a href="#practice-problems">Practice Problems</a></li>
 </ul>
 </nav>
 </div>
@@ -2496,7 +2497,7 @@ Chapters 6 and 7: the multinomial model and the vector space model.</p>
 <h2 id="multinomial-model">Multinomial Model</h2>
 <p>To motivate this model, suppose that each author owns a literal bag
 of words. When they are writing, they randomly draw each word from the
-bag, replacing it when they’re done writing it down. Apparently,
+bag, replacing it when they’re done writing it down. Evidently,
 Alexander Hamilton’s word bag has a <em>lot</em> of the word “upon”.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2524,20 +2525,26 @@ Alexander Hamilton’s word bag has a <em>lot</em> of the word “upon”.</p>
   <span class='fu'><a href='https://rdrr.io/pkg/wordcloud2/man/wordcloud2.html'>wordcloud2</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<div id="htmlwidget-695920bdac8f9ea812bd" style="width:624px;height:384px;" class="wordcloud2 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-695920bdac8f9ea812bd">{"x":{"word":["although","always","commonly","consequently","considerable","heretofore","upon","whilst"],"freq":[1,62,23,4,46,13,374,1],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":0.481283422459893,"backgroundColor":"white","gridSize":0,"minRotation":-0.785398163397448,"maxRotation":0.785398163397448,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+<div id="htmlwidget-99cb56a152884ef1c773" style="width:624px;height:384px;" class="wordcloud2 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-99cb56a152884ef1c773">{"x":{"word":["although","always","commonly","consequently","considerable","heretofore","upon","whilst"],"freq":[1,62,23,4,46,13,374,1],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":0.481283422459893,"backgroundColor":"white","gridSize":0,"minRotation":-0.785398163397448,"maxRotation":0.785398163397448,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
 </div>
-<p>James Madison’s bag of words has relatively more “whilst”.</p>
+<p>By comparison, James Madison’s bag of words has relatively more
+“whilst”.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tidy_federalist</span> |&gt; 
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>author</span> <span class='op'>==</span> <span class='st'>'Madison'</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://rdrr.io/pkg/wordcloud2/man/wordcloud2.html'>wordcloud2</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span>
 </code></pre>
 </div>
-<div id="htmlwidget-9ad70fc320b66e4ee0dc" style="width:624px;height:384px;" class="wordcloud2 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9ad70fc320b66e4ee0dc">{"x":{"word":["although","always","consequently","considerable","heretofore","upon","whilst"],"freq":[7,7,12,5,1,7,12],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":15,"backgroundColor":"white","gridSize":0,"minRotation":-0.785398163397448,"maxRotation":0.785398163397448,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+<pre><code>  word          n
+1 although      7
+2 always        7
+3 consequently 12
+4 considerable  5
+5 heretofore    1
+6 upon          7
+7 whilst       12</code></pre>
 </div>
 <p>Obviously this model leaves out a lot of detail about how authors
 actually write. It ignores word order, syntax, meaning, context, and
@@ -3034,7 +3041,16 @@ the author of Federalist 10. A more thorough model-development loop
 might iterate through validation and refinement a few more times,
 holding out a different validation set each time. But this is the basic
 workflow.</p>
-<div class="sourceCode" id="cb29"><pre
+<h2 id="practice-problems">Practice Problems</h2>
+<ol type="1">
+<li>Conduct more validation tests on undisputed Federalist Papers to see
+if the list of words we came up with in the last section does a good
+job.</li>
+<li>See if you can create a model that accurately classifies whether a
+<a href="bag-of-words.html">State of the Union speech</a> was delivered
+in the 19th or 20th century.</li>
+</ol>
+<div class="sourceCode" id="cb30"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent"
 role="doc-bibliography">

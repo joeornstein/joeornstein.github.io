@@ -85,29 +85,56 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
+<style>
+  div.csl-bib-body { }
+  div.csl-entry {
+    clear: both;
+    }
+  .hanging div.csl-entry {
+    margin-left:2em;
+    text-indent:-2em;
+  }
+  div.csl-left-margin {
+    min-width:2em;
+    float:left;
+  }
+  div.csl-right-inline {
+    margin-left:2em;
+    padding-left:1em;
+  }
+  div.csl-indent {
+    margin-left: 2em;
+  }
+</style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Text As Data: Under Construction</title>
+  <title>Text As Data: Word Embeddings</title>
 
+  <meta property="description" itemprop="description" content="How to quantify what a word *means*."/>
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="img/favicon_io/favicon.ico"/>
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Text As Data: Under Construction"/>
+  <meta property="og:title" content="Text As Data: Word Embeddings"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="How to quantify what a word *means*."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Text As Data"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Text As Data: Under Construction"/>
+  <meta property="twitter:title" content="Text As Data: Word Embeddings"/>
+  <meta property="twitter:description" content="How to quantify what a word *means*."/>
 
   <!--/radix_placeholder_meta_tags-->
+  
+  <meta name="citation_reference" content="citation_title=Text as data: A new framework for machine learning and the social sciences.;citation_publication_date=2021;citation_publisher=Princeton University Press;citation_author=Justin Grimmer;citation_author=Brandon M. Stewart;citation_author=Margaret E. Roberts"/>
+  <meta name="citation_reference" content="citation_title=Word embeddings: What works, what doesn’t, and how to tell the difference for applied research;citation_publication_date=2021;citation_doi=10.1086/715162;citation_author=Pedro L. Rodriguez;citation_author=Arthur Spirling"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title"]}},"value":[{"type":"character","attributes":{},"value":["Under Construction"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Word Embeddings"]},{"type":"character","attributes":{},"value":["How to quantify what a word *means*.\n"]},{"type":"character","attributes":{},"value":["references.bib"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2365,7 +2392,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Under Construction","authors":[]}
+{"title":"Word Embeddings","description":"How to quantify what a word *means*.","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2429,16 +2456,166 @@ Model the Text
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Under Construction</h1>
+<h1>Word Embeddings</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-
+<p><p>How to quantify what a word <em>means</em>.</p></p>
 </div>
 
 
 <div class="d-article">
-<div class="sourceCode" id="cb1"><pre
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#practice-problems">Practice Problems</a></li>
+<li><a href="#further-reading">Further Reading</a></li>
+</ul>
+</nav>
+</div>
+<p>We’d like not just to count the frequency of words, but also get a
+sense of what the words <em>mean</em>. In a <a
+href="bag-of-words.html">bag of words representation</a>, we treat the
+words “president” and “executive” as having completely unique meaning.
+By comparison, a word embeddings approach encodes the fact that these
+words have some overlapping meaning by placing them close together in a
+vector space.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="img/morpheus.jpg" width="262" /></p>
+</div>
+<p>The <code>textdata</code> package is a useful interface for
+downloading pre-trained word embeddings like GloVe. These off-the-shelf
+word embeddings tend to do a pretty good job at capturing meaning, even
+for political science specific applications <span class="citation"
+data-cites="rodriguezWordEmbeddingsWhat2021">(<a
+href="#ref-rodriguezWordEmbeddingsWhat2021"
+role="doc-biblioref">Rodriguez and Spirling 2021</a>)</span>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/juliasilge/tidytext'>tidytext</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/EmilHvitfeldt/textdata'>textdata</a></span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>For expository purposes, let’s just get 400,000 of the
+100-dimensional word embeddings:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>glove</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/textdata/man/embedding_glove.html'>embedding_glove6b</a></span><span class='op'>(</span>dimensions <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>This comes to us as a matrix, but we can pivot it into a tidy
+dataframe.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tidy_glove</span> <span class='op'>&lt;-</span> <span class='va'>glove</span> |&gt;
+  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_longer.html'>pivot_longer</a></span><span class='op'>(</span><span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>contains</a></span><span class='op'>(</span><span class='st'>"d"</span><span class='op'>)</span>,
+               names_to <span class='op'>=</span> <span class='st'>"dimension"</span><span class='op'>)</span>
+
+<span class='va'>tidy_glove</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 40,000,000 x 3
+   token dimension   value
+   &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
+ 1 the   d1        -0.0382
+ 2 the   d2        -0.245 
+ 3 the   d3         0.728 
+ 4 the   d4        -0.400 
+ 5 the   d5         0.0832
+ 6 the   d6         0.0440
+ 7 the   d7        -0.391 
+ 8 the   d8         0.334 
+ 9 the   d9        -0.575 
+10 the   d10        0.0875
+# ... with 39,999,990 more rows</code></pre>
+</div>
+<p>It’s difficult to visualize and interpret a 100-dimensional vector
+space, but we can explore which words have the highest cosine
+similarity. By looking at a word’s “nearest neighbors”, we can get a
+sense of the meaning that GloVe is assigning to it. The following
+function, adapted from <a href="https://smltar.com/embeddings.html">Emil
+Hvitfeldt and Julia Silge</a>, performs that computation.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/dgrtwo/widyr'>widyr</a></span><span class='op'>)</span>
+<span class='va'>nearest_neighbors</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>token</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>df</span> |&gt;
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>item1 <span class='op'>=</span> <span class='va'>token</span><span class='op'>)</span> |&gt;
+    <span class='fu'><a href='https://rdrr.io/pkg/widyr/man/widely.html'>widely</a></span><span class='op'>(</span>
+      <span class='op'>~</span> <span class='op'>{</span>
+        <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='va'>.</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='va'>token</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>.</span><span class='op'>)</span><span class='op'>)</span>, <span class='op'>]</span>
+        <span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span><span class='op'>(</span><span class='va'>.</span> <span class='op'>*</span> <span class='va'>y</span><span class='op'>)</span> <span class='op'>/</span>
+          <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span><span class='op'>(</span><span class='va'>.</span> <span class='op'>^</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>.</span><span class='op'>[</span><span class='va'>token</span>, <span class='op'>]</span> <span class='op'>^</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+        <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='va'>res</span>, ncol <span class='op'>=</span> <span class='fl'>1</span>, dimnames <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+      <span class='op'>}</span>,
+      sort <span class='op'>=</span> <span class='cn'>TRUE</span>,
+      maximum_size <span class='op'>=</span> <span class='cn'>NULL</span>
+    <span class='op'>)</span><span class='op'>(</span><span class='va'>item1</span>, <span class='va'>dimension</span>, <span class='va'>value</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>item2</span><span class='op'>)</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>What words are most closely associated with the word “democracy”?</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>nearest_neighbors</span><span class='op'>(</span><span class='va'>tidy_glove</span>, <span class='st'>'democracy'</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 400,000 x 2
+   item1        value
+   &lt;chr&gt;        &lt;dbl&gt;
+ 1 democracy    1    
+ 2 freedom      0.739
+ 3 unity        0.710
+ 4 independence 0.700
+ 5 political    0.677
+ 6 movement     0.669
+ 7 opposition   0.666
+ 8 peace        0.665
+ 9 freedoms     0.663
+10 peaceful     0.663
+# ... with 399,990 more rows</code></pre>
+</div>
+<h2 id="practice-problems">Practice Problems</h2>
+<ol type="1">
+<li>Explore some of the stereotypes reflected in the GloVe embeddings.
+How close is the word “professor” to female names compared to male
+names? Hispanic names?</li>
+<li>What about words that are ambiguous without context, like “bill” or
+“share”?</li>
+</ol>
+<h2 id="further-reading">Further Reading</h2>
+<ul>
+<li><p><span class="citation"
+data-cites="grimmerTextDataNew2021">Grimmer, Stewart, and Roberts (<a
+href="#ref-grimmerTextDataNew2021"
+role="doc-biblioref">2021</a>)</span>, Chapter 8.</p></li>
+<li><p><a href="https://smltar.com/embeddings.html">Hvitfeldt &amp;
+Silge</a>, Chapter 5.</p></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent"
+role="doc-bibliography">
+<div id="ref-grimmerTextDataNew2021" class="csl-entry"
+role="doc-biblioentry">
+Grimmer, Justin, Brandon M. Stewart, and Margaret E. Roberts. 2021.
+<em>Text as Data: A New Framework for Machine Learning and the Social
+Sciences.</em> S.l.: Princeton University Press.
+</div>
+<div id="ref-rodriguezWordEmbeddingsWhat2021" class="csl-entry"
+role="doc-biblioentry">
+Rodriguez, Pedro L., and Arthur Spirling. 2021. <span>“Word Embeddings:
+What Works, What Doesn<span>’</span>t, and How to Tell the Difference
+for Applied Research.”</span> <em>The Journal of Politics</em>, May,
+000–000. <a
+href="https://doi.org/10.1086/715162">https://doi.org/10.1086/715162</a>.
+</div>
+</div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2450,7 +2627,10 @@ class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"><
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom"></div>
+<div class="appendix-bottom">
+<h3 id="references">References</h3>
+<div id="references-listing"></div>
+</div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <!--/radix_placeholder_navigation_after_body-->
