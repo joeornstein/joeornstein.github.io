@@ -85,29 +85,57 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
+<style>
+  div.csl-bib-body { }
+  div.csl-entry {
+    clear: both;
+    }
+  .hanging div.csl-entry {
+    margin-left:2em;
+    text-indent:-2em;
+  }
+  div.csl-left-margin {
+    min-width:2em;
+    float:left;
+  }
+  div.csl-right-inline {
+    margin-left:2em;
+    padding-left:1em;
+  }
+  div.csl-indent {
+    margin-left: 2em;
+  }
+</style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Text As Data: Under Construction</title>
+  <title>Text As Data: Topic Models</title>
 
+  <meta property="description" itemprop="description" content="A bag filled with bags of words."/>
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="img/favicon_io/favicon.ico"/>
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Text As Data: Under Construction"/>
+  <meta property="og:title" content="Text As Data: Topic Models"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="A bag filled with bags of words."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Text As Data"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Text As Data: Under Construction"/>
+  <meta property="twitter:title" content="Text As Data: Topic Models"/>
+  <meta property="twitter:description" content="A bag filled with bags of words."/>
 
   <!--/radix_placeholder_meta_tags-->
+  
+  <meta name="citation_reference" content="citation_title=Text as data: A new framework for machine learning and the social sciences.;citation_publication_date=2021;citation_publisher=Princeton University Press;citation_author=Justin Grimmer;citation_author=Brandon M. Stewart;citation_author=Margaret E. Roberts"/>
+  <meta name="citation_reference" content="citation_title=Discursive landscapes and unsupervised topic modeling in IR: A validation of text-as-data approaches through a new corpus of UN security council speeches on afghanistan;citation_publication_date=2018;citation_doi=10.48550/arXiv.1810.05572;citation_author=Mirco Schoenfeld;citation_author=Steffen Eckhard;citation_author=Ronny Patz;citation_author=Hilde Meegdenburg"/>
+  <meta name="citation_reference" content="citation_title=Large-Scale Computerized Text Analysis in Political Science: Opportunities and Challenges;citation_publication_date=2017;citation_volume=20;citation_doi=10.1146/annurev-polisci-052615-025542;citation_author=John Wilkerson;citation_author=Andreu Casas"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title"]}},"value":[{"type":"character","attributes":{},"value":["Under Construction"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Topic Models"]},{"type":"character","attributes":{},"value":["A bag filled with bags of words.\n"]},{"type":"character","attributes":{},"value":["references.bib"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2365,7 +2393,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Under Construction","authors":[]}
+{"title":"Topic Models","description":"A bag filled with bags of words.","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2405,8 +2433,8 @@ Model the Text
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
-<a href="multinomial-model.html">Multinomial Model</a>
-<a href="vector-space-model.html">Vector Space Model</a>
+<a href="federalist-papers.html">Federalist Paper Authorship</a>
+<a href="clustering.html">Clustering</a>
 <a href="LDA.html">Topic Models</a>
 </div>
 </div>
@@ -2429,16 +2457,457 @@ Model the Text
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Under Construction</h1>
+<h1>Topic Models</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-
+<p><p>A bag filled with bags of words.</p></p>
 </div>
 
 
 <div class="d-article">
-<div class="sourceCode" id="cb1"><pre
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#intuition">Intuition</a></li>
+<li><a href="#step-1-load-the-documents-and-tidy-up">Step 1: Load the
+Documents and Tidy Up</a></li>
+<li><a href="#step-2-convert-to-a-document-term-matrix">Step 2: Convert
+to a Document-Term Matrix</a></li>
+<li><a href="#step-3-fit-the-model">Step 3: Fit the Model</a></li>
+<li><a href="#step-4-interpret-the-topic-level-probability-vectors">Step
+4: Interpret the Topic-Level Probability Vectors</a></li>
+<li><a
+href="#step-5-interpret-the-document-level-probability-vectors">Step 5:
+Interpret the Document-Level Probability Vectors</a></li>
+<li><a href="#practice-problems">Practice Problems</a></li>
+<li><a href="#further-reading">Further Reading</a></li>
+</ul>
+</nav>
+</div>
+<h2 id="intuition">Intuition</h2>
+<p>The workhorse model for assigning topics to texts is the Latent
+Dirichlet Allocation (LDA), which is a sort of mix between the <a
+href="federalist-papers.html">bag of words model</a> and <a
+href="clustering.html">clustering</a>. I like to think of it as a “bag
+of bags of words”. Imagine that, rather than drawing from a single bag
+of words, authors first draw a <em>topic</em>, which has its own special
+bag of words. This approach is particularly useful when we think that a
+document may be about more than one topic, and we don’t want to impose
+just one classification for each text like we do with k-means.</p>
+<p>To demonstrate the workflow in <code>R</code>, let’s take the set of
+Senator Lautenberg’s press releases from the <a
+href="clustering.html">clustering tutorial</a> and fit an LDA using the
+<code>topicmodels</code> package.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/juliasilge/tidytext'>tidytext</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>topicmodels</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/nalimilan/R.TeMiS'>SnowballC</a></span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="step-1-load-the-documents-and-tidy-up">Step 1: Load the
+Documents and Tidy Up</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='st'>'data/lautenberg-press-releases.RData'</span><span class='op'>)</span>
+
+
+<span class='va'>tidy_press_releases</span> <span class='op'>&lt;-</span> <span class='va'>df</span> |&gt;
+  <span class='co'># remove a common preamble to each press release</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_replace.html'>str_replace_all</a></span><span class='op'>(</span><span class='va'>text</span>,
+                                pattern <span class='op'>=</span> <span class='st'>'     Senator Frank R  Lautenberg                                                                                                                      Press Release        of        Senator Lautenberg                                                                                '</span>,
+                                replacement <span class='op'>=</span> <span class='st'>''</span><span class='op'>)</span><span class='op'>)</span> |&gt;
+  <span class='co'># tokenize to the word level</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>input <span class='op'>=</span> <span class='st'>'text'</span>,
+                output <span class='op'>=</span> <span class='st'>'word'</span><span class='op'>)</span> |&gt;
+  <span class='co'># remove stop words</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter-joins.html'>anti_join</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_stopwords.html'>get_stopwords</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> |&gt;
+  <span class='co'># remove numerals</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='st'>'[0-9]'</span>, negate <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> |&gt;
+  <span class='co'># generate word stems</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>word_stem <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/SnowballC/man/wordStem.html'>wordStem</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span><span class='op'>)</span> |&gt;
+  <span class='co'># count up the word stems in each document</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>word_stem</span><span class='op'>)</span> |&gt; 
+  <span class='co'># remove empty strings</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>word_stem</span> <span class='op'>!=</span> <span class='st'>''</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>tidy_press_releases</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 6 x 3
+     id word_stem     n
+  &lt;int&gt; &lt;chr&gt;     &lt;int&gt;
+1     1 account       2
+2     1 also          2
+3     1 america       2
+4     1 american      1
+5     1 answer        1
+6     1 apologi       1</code></pre>
+</div>
+<h2 id="step-2-convert-to-a-document-term-matrix">Step 2: Convert to a
+Document-Term Matrix</h2>
+<p>Note LDA requires a matrix of counts, just like the <a
+href="federalist-papers.html">multinomial bag of words model</a>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>lautenberg_dtm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/document_term_casters.html'>cast_dtm</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>tidy_press_releases</span>,
+                           document <span class='op'>=</span> <span class='st'>'id'</span>,
+                           term <span class='op'>=</span> <span class='st'>'word_stem'</span>,
+                           value <span class='op'>=</span> <span class='st'>'n'</span><span class='op'>)</span>
+<span class='va'>lautenberg_dtm</span>
+</code></pre>
+</div>
+<pre><code>&lt;&lt;DocumentTermMatrix (documents: 558, terms: 7073)&gt;&gt;
+Non-/sparse entries: 81504/3865230
+Sparsity           : 98%
+Maximal term length: 33
+Weighting          : term frequency (tf)</code></pre>
+</div>
+<h2 id="step-3-fit-the-model">Step 3: Fit the Model</h2>
+<p>Fitting an LDA is just one line of code. It’s the interpretation,
+evaluation, and refinement that’s the tricky part.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>lautenberg_lda</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/topicmodels/man/lda.html'>LDA</a></span><span class='op'>(</span><span class='va'>lautenberg_dtm</span>, 
+                      k <span class='op'>=</span> <span class='fl'>30</span>, 
+                      control <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>seed <span class='op'>=</span> <span class='fl'>42</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="step-4-interpret-the-topic-level-probability-vectors">Step 4:
+Interpret the Topic-Level Probability Vectors</h2>
+<p>Let’s look at the most common terms by topic.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># use the tidy() function from tidytext to extract the beta vector</span>
+<span class='va'>lautenberg_topics</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>lautenberg_lda</span>, matrix <span class='op'>=</span> <span class='st'>'beta'</span><span class='op'>)</span>
+
+<span class='va'>lautenberg_topics</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>topic</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_max</a></span><span class='op'>(</span><span class='va'>beta</span>, n<span class='op'>=</span><span class='fl'>10</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='va'>topic</span>, <span class='op'>-</span><span class='va'>beta</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 300 x 3
+# Groups:   topic [30]
+   topic term         beta
+   &lt;int&gt; &lt;chr&gt;       &lt;dbl&gt;
+ 1     1 program    0.0203
+ 2     1 grant      0.0194
+ 3     1 lautenberg 0.0144
+ 4     1 safeti     0.0143
+ 5     1 d          0.0136
+ 6     1 educ       0.0127
+ 7     1 school     0.0117
+ 8     1 nj         0.0115
+ 9     1 fund       0.0112
+10     1 provid     0.0110
+# ... with 290 more rows</code></pre>
+</div>
+<p>Surprise, surprise. The most common term in each topic is often
+“Lautenberg”. Instead of looking at the terms with the highest
+probability in each bag, let’s look at the terms that are the most
+<em>over-represented</em>, compared to their probability in the average
+topic.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>lautenberg_topics</span> |&gt;
+  <span class='co'># get each word's average beta across topics</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>term</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>average_beta <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>beta</span><span class='op'>)</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span><span class='op'>(</span><span class='op'>)</span> |&gt;
+  <span class='co'># compare beta in that topic with the average beta</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>delta <span class='op'>=</span> <span class='va'>beta</span> <span class='op'>-</span> <span class='va'>average_beta</span><span class='op'>)</span> |&gt;
+  <span class='co'># get the words with the largest difference in each topic</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>topic</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_max</a></span><span class='op'>(</span><span class='va'>delta</span>, n <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span> |&gt;
+  <span class='co'># plot it</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>delta</span>, y<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/reorder.factor.html'>reorder</a></span><span class='op'>(</span><span class='va'>term</span>, <span class='va'>delta</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/facet_wrap.html'>facet_wrap</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>topic</span>, scales <span class='op'>=</span> <span class='st'>'free'</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>'Term Probability Compared to Average'</span>,
+       y <span class='op'>=</span> <span class='st'>'Term'</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="LDA_files/figure-html5/unnamed-chunk-6-1.png" width="768" /></p>
+</div>
+<p>Topics 6 and 9 appear to involve words related to transportation
+infrastructure, while topics 2, 5, 8, 17, 21, 23, 27, and 30 appear to
+be about security, the miltary, and foreign affairs. Topics 3, 7, 10,
+13, 15, 19, 24, and 26 are all related to the environment. This all
+seems consistent with Senator Lautenberg’s work as chairman of the
+Senate subcommittees on Homeland Security, Surface Transportation
+Security, and Superfund, Toxics, and Environmental Health – which should
+give us some confidence in the results. Topics 28 and 29 look like the
+“partisan taunting” category identified in the book.</p>
+<h2 id="step-5-interpret-the-document-level-probability-vectors">Step 5:
+Interpret the Document-Level Probability Vectors</h2>
+<p>If these are roughly how we would categorize each topic…</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>topic_labels</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tribble.html'>tribble</a></span><span class='op'>(</span><span class='op'>~</span><span class='va'>topic</span>, <span class='op'>~</span><span class='va'>label</span>,
+                        <span class='fl'>1</span>, <span class='st'>'Programs'</span>,
+                        <span class='fl'>2</span>, <span class='st'>'Military'</span>,
+                        <span class='fl'>3</span>, <span class='st'>'Environment'</span>,
+                        <span class='fl'>4</span>, <span class='st'>'Health'</span>,
+                        <span class='fl'>5</span>, <span class='st'>'Security'</span>,
+                        <span class='fl'>6</span>, <span class='st'>'Transportation'</span>,
+                        <span class='fl'>7</span>, <span class='st'>'Environment'</span>,
+                        <span class='fl'>8</span>, <span class='st'>'Security'</span>,
+                        <span class='fl'>9</span>, <span class='st'>'Transportation'</span>,
+                        <span class='fl'>10</span>, <span class='st'>'Environment'</span>,
+                        <span class='fl'>11</span>, <span class='st'>'Crime and Courts'</span>,
+                        <span class='fl'>12</span>, <span class='st'>'Health'</span>,
+                        <span class='fl'>13</span>, <span class='st'>'Environment'</span>,
+                        <span class='fl'>14</span>, <span class='st'>'Programs'</span>,
+                        <span class='fl'>15</span>, <span class='st'>'Environment'</span>,
+                        <span class='fl'>16</span>, <span class='st'>'Health'</span>,
+                        <span class='fl'>17</span>, <span class='st'>'Military'</span>,
+                        <span class='fl'>18</span>, <span class='st'>'Health'</span>,
+                        <span class='fl'>19</span>, <span class='st'>'Environment'</span>,
+                        <span class='fl'>20</span>, <span class='st'>'Health'</span>,
+                        <span class='fl'>21</span>, <span class='st'>'Military'</span>,
+                        <span class='fl'>22</span>, <span class='st'>'Crime and Courts'</span>,
+                        <span class='fl'>23</span>, <span class='st'>'Oil'</span>,
+                        <span class='fl'>24</span>, <span class='st'>'Environment'</span>,
+                        <span class='fl'>25</span>, <span class='st'>'New Jersey'</span>,
+                        <span class='fl'>26</span>, <span class='st'>'Environment'</span>,
+                        <span class='fl'>27</span>, <span class='st'>'Security'</span>,
+                        <span class='fl'>28</span>, <span class='st'>'Partisan Taunting'</span>,
+                        <span class='fl'>29</span>, <span class='st'>'Partisan Taunting'</span>,
+                        <span class='fl'>30</span>, <span class='st'>'Security'</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>…then here’s what the breakdown in topics across the 558 press
+releases looks like.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>lautenberg_documents</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>lautenberg_lda</span>, matrix <span class='op'>=</span> <span class='st'>'gamma'</span><span class='op'>)</span>
+
+<span class='va'>lautenberg_documents</span> |&gt; 
+  <span class='co'># join with topic labels</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>document <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>document</span><span class='op'>)</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>topic_labels</span>, by <span class='op'>=</span> <span class='st'>'topic'</span><span class='op'>)</span> |&gt; 
+  <span class='co'># get the most probable document labels</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>gamma</span> <span class='op'>&gt;</span> <span class='fl'>0.3</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='va'>document</span>, <span class='op'>-</span><span class='va'>gamma</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fl'>20</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 20 x 4
+   document topic gamma label            
+      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            
+ 1        1    22 0.999 Crime and Courts 
+ 2        2    18 0.999 Health           
+ 3        3    23 0.999 Oil              
+ 4        4     7 0.976 Environment      
+ 5        5    11 0.693 Crime and Courts 
+ 6        5    29 0.302 Partisan Taunting
+ 7        6    26 0.912 Environment      
+ 8        7     6 0.936 Transportation   
+ 9        8    11 0.897 Crime and Courts 
+10        9    16 0.991 Health           
+11       10    18 0.996 Health           
+12       11    13 0.520 Environment      
+13       11    17 0.382 Military         
+14       12    10 0.477 Environment      
+15       12     7 0.363 Environment      
+16       13     9 0.403 Transportation   
+17       13     6 0.318 Transportation   
+18       14    24 0.705 Environment      
+19       15    27 0.999 Security         
+20       16    21 0.998 Military         </code></pre>
+</div>
+<p>Document 1 should be about Crime/Courts.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>print_text</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_wrap.html'>str_wrap</a></span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span>, sep <span class='op'>=</span> <span class='st'>'\n'</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='fu'>print_text</span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>text</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Senator Frank R Lautenberg Press Release of Senator Lautenberg Lautenberg Cites
+Criminal Laws DeLay May Have Broken in Threat Against Federal Judges Friday
+April 1 2005 WASHINGTON DC Responding to possible violations of criminal law
+by House Majority Leader Tom DeLay when he directed threatening remarks toward
+federal judges involved in the Terri Schiavo case Untied Stated Senator Frank R
+Lautenberg today called on Mr DeLay to renounce his comments In a letter to Mr
+DeLay Senator Lautenberg said the remarks could incite violence against judges
+and noted that federal statutes provide for prison terms up to six years for
+threatening members of the court Threats against specific Federal judges are
+not only a serious crime but also beneath a Member of Congress In my view the
+true measure of democracy is how it dispenses justice Your attempt to intimidate
+judges in America not only threatens our courts but our fundamental democracy
+as well wrote Lautenberg in his letter to Mr DeLay Majority Leader DeLay s
+comments yesterday may violate a Federal criminal statute 18 U S C 115 a 1 B
+That law states Whoever threatens to assault or murder a United States judge
+with intent to retaliate against such judge on account of the performance of
+official duties shall be punished by up to six years in prison A copy of the
+entire letter is attached to this release April 1 2005 Tom DeLay Majority Leader
+House of Representatives Washington DC 20515 Dear Majority Leader DeLay I was
+stunned to read the threatening comments you made yesterday against Federal
+judges and our nation s courts of law in general In reference to certain Federal
+judges you stated The time will come for the men responsible for this to answer
+for their behavior As you are surely aware the family of Federal Judge Joan H
+Lefkow of Illinois was recently murdered in their home And at the state level
+Judge Rowland W Barnes and others in his courtroom were gunned down in Georgia
+Our nation s judges must be concerned for their safety and security when they
+are asked to make difficult decisions every day That s why comments like those
+you made are not only irresponsible but downright dangerous To make matters
+worse is it appropriate to make threats directed at specific Federal and state
+judges You should be aware that your comments yesterday may violate a Federal
+criminal statute 18 U S C 115 a 1 B That law states Whoever threatens to
+assault or murder a United States judge with intent to retaliate against such
+judge on account of the performance of official duties shall be punished by up
+to six years in prison Threats against specific Federal judges are not only a
+serious crime but also beneath a Member of Congress In my view the true measure
+of democracy is how it dispenses justice Your attempt to intimidate judges in
+America not only threatens our courts but our fundamental democracy as well
+Federal judges as well as state and local judges in our nation are honorable
+public servants who make difficult decisions every day You owe them and all
+Americans an apology for your reckless statements Sincerely Frank R Lautenberg
+Questions or Comments</code></pre>
+</div>
+<p>Document 2 should be about Health.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>print_text</span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>text</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Senator Frank R Lautenberg Press Release of Senator Lautenberg Sens Lautenberg
+and Menendez Lead Defeat of Amendment Specifically Targeting NJ s Children
+Health Coverage Bunning Amendment Would Cast Thousands of NJ Children Into The
+Ranks of The Uninsured Contact Press Office 202 224 3224 Wednesday August 1 2007
+WASHINGTON New Jersey Senators Frank R Lautenberg D NJ and Robert Menendez D NJ
+led the effort that tonight resulted in the defeat of an amendment specifically
+targeting childrens health insurance in New Jersey The Bunning amendment to
+the Childrens Health Insurance Program CHIP reauthorization bill was tabled by
+a 53 43 vote The amendment was a direct shot at New Jerseys FamilyCare program
+which covers children from families that make up to 350 of the federal poverty
+level working and low income families that dont qualify for Medicaid but cannot
+afford health insurance in a high cost of living state like New Jersey Had
+the amendment passed only children in New Jersey would have been immediately
+affected Lautenberg and Menendez helped persuade colleagues to oppose the
+amendment and spoke vehemently in opposition Today the U S Senate defeated an
+attack on the health of New Jerseys children said Lautenberg We stood strong
+against right wing efforts to take away the health insurance of 3 000 children
+in New Jersey This vote means we can continue to provide quality affordable
+health care to children in New Jersey and nationwide This was a rifle shot at
+New Jersey and we worked hard to make our colleagues understand what it meant
+for our states children and why it had to be deflected said Menendez Without
+this level of coverage thousands of New Jersey children would have been dropped
+into the ocean of the uninsured Throughout the debate on this bill we have
+been repeatedly confronted with amendments attacking coverage for children and
+families in New Jersey and we have repeatedly held our ground and rejected them
+Todays action brings us one step closer to a major victory for working and low
+income children and families in our state Among the amendments offered to this
+point during Senate debate of CHIP three in particular have taken aim at New
+Jerseys strong health coverage program and all three have been defeated Bunning
+Amendment Motion to Table Passed 53 43 This amendment would have reduced the
+reimbursement rate for CHIP covered children above 300 of poverty in all states
+to the Medicaid matching rate including states that already cover these kids
+under CHIP Only New Jersey has an eligibility level above 300 now in effect New
+York has enacted legislation increasing its eligibility to 400 but has not yet
+gotten approval from the Secretary of HHS for its state plan amendment to make
+the change This amendment unfairly targeted a small percentage of CHIP covered
+children in New Jersey This amendment would have pushed 3 000 New Jersey kids
+off the CHIP program Gregg Amendment Failed 42 53 This amendment would have
+pushed all parents covered under CHIP into Medicaid Over 80 000 parents would
+have lost coverage in NJ Allard Amendment Failed 37 59 The amendment would
+have disallowed states from using any type of income disregards to determine
+eligibility in CHIP Under current law states are permitted to disregard types
+of income or blocks of income and most states use this flexibility to disregard
+wages child support payments and child care expenses to enable working families
+to earn a living wage and still be eligible for CHIP This amendment would have
+disrupted NJs ability to enroll children at a higher income level in CHIP It
+would have prevented us from covering kids above 200 of the federal poverty
+level and would have jeopardized coverage for over 30 000 New Jersey children
+Questions or Comments</code></pre>
+</div>
+<p>Document 5 seems to be some combination of Crime/Courts and Partisan
+Taunting.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>print_text</span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>text</span><span class='op'>[</span><span class='fl'>5</span><span class='op'>]</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Senator Frank R Lautenberg Press Release of Senator Lautenberg Statement by
+Senator Lautenberg on the Retirement of Justice Sandra Day O Connor Friday
+July 1 2005 WASHINGTON D C United States Senator Frank R Lautenberg issued
+the following statement today regarding the retirement of Justice Sandra
+Day O Connor Justice O Connor has earned a place in history not only as the
+first woman to serve on the Supreme Court but also as an independent thinker
+who avoided extreme positions The American people want fair moderate judges
+protecting our rights and I strongly urge President Bush to send us a nominee
+who reflects mainstream legal views not partisan extremes Questions or Comments</code></pre>
+</div>
+<p>Not bad! It’s a press release that is mostly honoring Sandra Day
+O’Connor, but the last sentence is a dig at President Bush.</p>
+<h2 id="practice-problems">Practice Problems</h2>
+<ol type="1">
+<li><p>Fit an LDA to the Federalist Paper corpus (instead of focusing on
+stop words as in the authorship prediction task, I’d advice removing
+stop words and focusing on the substantive terms). What sorts of topics
+does the model produce? What value of <span
+class="math inline">\(k\)</span> yields the most sensible set of
+topics?</p></li>
+<li><p>Fit an LDA to the <a
+href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/OM9RG8">UN
+Security Council speeches about Afghanistan</a> <span class="citation"
+data-cites="schoenfeldDiscursiveLandscapesUnsupervised2018">(<a
+href="#ref-schoenfeldDiscursiveLandscapesUnsupervised2018"
+role="doc-biblioref">Schoenfeld et al. 2018</a>)</span>, available at
+<code>data/un-security-council/UNSC_Afghan_Spchs_Meta.RData</code> on
+the repository.</p></li>
+</ol>
+<h2 id="further-reading">Further Reading</h2>
+<ul>
+<li><span class="citation" data-cites="grimmerTextDataNew2021">Grimmer,
+Stewart, and Roberts (<a href="#ref-grimmerTextDataNew2021"
+role="doc-biblioref">2021</a>)</span> Chapter 13</li>
+<li><a href="https://www.tidytextmining.com/topicmodeling.html">Text
+Ming With <code>R</code> Chapter 6</a></li>
+<li>For a principled procedure for varying <span
+class="math inline">\(k\)</span> to identify the best set of topics, see
+<span class="citation"
+data-cites="wilkersonLargeScaleComputerizedText2017">Wilkerson and Casas
+(<a href="#ref-wilkersonLargeScaleComputerizedText2017"
+role="doc-biblioref">2017</a>)</span> .</li>
+</ul>
+<div class="sourceCode" id="cb8"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent"
+role="doc-bibliography">
+<div id="ref-grimmerTextDataNew2021" class="csl-entry"
+role="doc-biblioentry">
+Grimmer, Justin, Brandon M. Stewart, and Margaret E. Roberts. 2021.
+<em>Text as Data: A New Framework for Machine Learning and the Social
+Sciences.</em> S.l.: Princeton University Press.
+</div>
+<div id="ref-schoenfeldDiscursiveLandscapesUnsupervised2018"
+class="csl-entry" role="doc-biblioentry">
+Schoenfeld, Mirco, Steffen Eckhard, Ronny Patz, and Hilde van
+Meegdenburg. 2018. <span>“Discursive Landscapes and Unsupervised Topic
+Modeling in IR: A Validation of Text-as-Data Approaches Through a New
+Corpus of UN Security Council Speeches on Afghanistan.”</span> <a
+href="https://doi.org/10.48550/arXiv.1810.05572">https://doi.org/10.48550/arXiv.1810.05572</a>.
+</div>
+<div id="ref-wilkersonLargeScaleComputerizedText2017" class="csl-entry"
+role="doc-biblioentry">
+Wilkerson, John, and Andreu Casas. 2017. <span>“Large-Scale Computerized
+Text Analysis in Political Science: Opportunities and
+Challenges.”</span> <em>Annual Review of Political Science</em> 20 (1):
+529–44. <a
+href="https://doi.org/10.1146/annurev-polisci-052615-025542">https://doi.org/10.1146/annurev-polisci-052615-025542</a>.
+</div>
+</div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2446,11 +2915,23 @@ class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"><
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom"></div>
+<div class="appendix-bottom">
+<h3 id="references">References</h3>
+<div id="references-listing"></div>
+</div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <!--/radix_placeholder_navigation_after_body-->
