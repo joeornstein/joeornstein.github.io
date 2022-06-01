@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -85,29 +86,56 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
+<style>
+  div.csl-bib-body { }
+  div.csl-entry {
+    clear: both;
+    }
+  .hanging div.csl-entry {
+    margin-left:2em;
+    text-indent:-2em;
+  }
+  div.csl-left-margin {
+    min-width:2em;
+    float:left;
+  }
+  div.csl-right-inline {
+    margin-left:2em;
+    padding-left:1em;
+  }
+  div.csl-indent {
+    margin-left: 2em;
+  }
+</style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Text As Data: Under Construction</title>
+  <title>Text As Data: Sentiment Analysis</title>
 
+  <meta property="description" itemprop="description" content="Teaching the computer to understand feelings."/>
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="img/favicon_io/favicon.ico"/>
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Text As Data: Under Construction"/>
+  <meta property="og:title" content="Text As Data: Sentiment Analysis"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Teaching the computer to understand feelings."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Text As Data"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Text As Data: Under Construction"/>
+  <meta property="twitter:title" content="Text As Data: Sentiment Analysis"/>
+  <meta property="twitter:description" content="Teaching the computer to understand feelings."/>
 
   <!--/radix_placeholder_meta_tags-->
+  
+  <meta name="citation_reference" content="citation_title=Crowd-sourced Text Analysis: Reproducible and Agile Production of Political Data;citation_publication_date=2016;citation_volume=110;citation_doi=10.1017/S0003055416000058;citation_author=Kenneth Benoit;citation_author=Drew Conway;citation_author=Benjamin E. Lauderdale;citation_author=Michael Laver;citation_author=Slava Mikhaylov"/>
+  <meta name="citation_reference" content="citation_title=A Pairwise Comparison Framework for Fast, Flexible, and Reliable Human Coding of Political Texts;citation_publication_date=2017;citation_volume=111;citation_doi=10.1017/S0003055417000302;citation_author=David Carlson;citation_author=Jacob M. Montgomery"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title"]}},"value":[{"type":"character","attributes":{},"value":["Under Construction"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Sentiment Analysis"]},{"type":"character","attributes":{},"value":["Teaching the computer to understand feelings.\n"]},{"type":"character","attributes":{},"value":["references.bib"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -1028,10 +1056,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1861,6 +1885,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1875,6 +1905,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1974,6 +2029,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1996,7 +2053,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2345,7 +2402,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2365,7 +2422,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Under Construction","authors":[]}
+{"title":"Sentiment Analysis","description":"Teaching the computer to understand feelings.","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2408,6 +2465,7 @@ Model the Text
 <a href="federalist-papers.html">Federalist Paper Authorship</a>
 <a href="clustering.html">Clustering</a>
 <a href="LDA.html">Topic Models</a>
+<a href="sentiment-analysis.html">Sentiment Analysis</a>
 </div>
 </div>
 </div>
@@ -2429,16 +2487,182 @@ Model the Text
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Under Construction</h1>
+<h1>Sentiment Analysis</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-
+<p><p>Teaching the computer to understand feelings.</p></p>
 </div>
 
 
 <div class="d-article">
-<div class="sourceCode" id="cb1"><pre
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#hand-coding">Hand Coding</a></li>
+<li><a href="#dictionary-classification">Dictionary
+Classification</a></li>
+<li><a href="#up-next-supervised-learning">Up Next: Supervised
+Learning</a></li>
+<li><a href="#practice-problems">Practice Problems</a></li>
+<li><a href="#further-reading">Further Reading</a></li>
+</ul>
+</nav>
+</div>
+<p>For unsupervised learning models like <a
+href="clustering.html">k-means</a> and <a href="LDA.html">LDA</a>, the
+objective is often discovery. We have a set of unlabeled data, and we
+want to get a sense of how we might organize the documents, how we might
+sort them into buckets. But frequently social scientists turn to text
+data because we’re interested in <em>measuring</em> some concept that is
+tough to quantify in other ways. For this, we’ll want a different set of
+tools – particularly <em>supervised</em> learning methods – because we
+have an objective and we want to build a model that satisfies that
+objective.</p>
+<p>To illustrate the process of measurement using text data, let’s
+consider the field of <strong>sentiment analysis</strong>. We have a set
+of documents, and we’re interested in classifying the sentiment/emotion
+the author is trying to convey – positive, negative, or neutral. Here is
+a dataset of 945 tweets about the Supreme Court that I compiled for a
+project with Jake Truscott and Elise Blasingame.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/juliasilge/tidytext'>tidytext</a></span><span class='op'>)</span>
+
+<span class='co'># load the tweets</span>
+<span class='va'>tweets</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>'data/supreme-court-tweets.csv'</span><span class='op'>)</span>
+
+<span class='va'>tweets</span> |&gt; <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>tweet_id</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 945 x 4
+   text                                        expert1 expert2 expert3
+   &lt;chr&gt;                                         &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+ 1 &quot;Just in time for #PrideMonth #Pride2018 #~       1      -1      -1
+ 2 &quot;The silliness of the day-long kerfuffle o~       1      -1      -1
+ 3 &quot;The @Scotus ruling was a \U0001f967 pie-i~       1      -1       1
+ 4 &quot;Let’s be real, lame anti-gay cake probabl~       1       1      -1
+ 5 &quot;#ReligiousFreedom #SCOTUS \r\nWould a Mus~       1      -1      -1
+ 6 &quot;I’m happy SCOTUS ruled in favor of the ba~       1      -1      -1
+ 7 &quot;Breaking: Supreme Court rules New York pr~       1      -1       0
+ 8 &quot;SUPREME COURT: \r\n\r\nTRUMP IS NOT ABOVE~       1       1      -1
+ 9 &quot;Not gonna lie....shocked Kavanaugh rules ~      -1       1       1
+10 &quot;Gonna have a drink at “the low bar” to ce~      -1      -1       1
+# ... with 935 more rows</code></pre>
+</div>
+<h2 id="hand-coding">Hand Coding</h2>
+<p>The dataset contains the text of the tweet, plus three “expert”
+ratings on a scale from -1 (negative), 0 (neutral), to 1 (positive).
+Each author independently read and coded every tweet<a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+then discussed the cases where we disagreed, and went back for a second
+round of coding on those tweets where everyone produced a different
+measure. One way to assess how well we did at capturing sentiment is
+inter-coder reliability (aka <a
+href="https://en.wikipedia.org/wiki/Fleiss%27_kappa">Fleiss’ kappa</a>),
+which measures how frequently the coders agreed relative to chance, on a
+scale from -1 (completely disagreement on everything) to 1 (perfect
+agreement).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://www.r-project.org'>irr</a></span><span class='op'>)</span>
+<span class='va'>tweets</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>expert1</span>, <span class='va'>expert2</span>, <span class='va'>expert3</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://rdrr.io/pkg/irr/man/kappam.fleiss.html'>kappam.fleiss</a></span><span class='op'>(</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code> Fleiss&#39; Kappa for m Raters
+
+ Subjects = 920 
+   Raters = 3 
+    Kappa = 0.688 
+
+        z = 48.9 
+  p-value = 0 </code></pre>
+</div>
+<p>Interestingly, inter-coder reliability is much worse on the first 100
+tweets than on the last 845, suggesting that it took a while for us to
+get used to the task, and that we should go back and try those first 100
+tweets again.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tweets</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/ranking.html'>row_number</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>&lt;=</span> <span class='fl'>100</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>kappa <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/irr/man/kappam.fleiss.html'>kappam.fleiss</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>expert1</span>, <span class='va'>expert2</span>, <span class='va'>expert3</span><span class='op'>)</span><span class='op'>)</span><span class='op'>$</span><span class='va'>value</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 2 x 2
+  `row_number() &lt;= 100` kappa
+  &lt;lgl&gt;                 &lt;dbl&gt;
+1 FALSE                 0.719
+2 TRUE                  0.447</code></pre>
+</div>
+<h2 id="dictionary-classification">Dictionary Classification</h2>
+<p>UNDER CONSTRUCTION (SEE NOTES)</p>
+<h2 id="up-next-supervised-learning">Up Next: Supervised Learning</h2>
+<p>Both human-coding and dictionary classification are examples of
+<em>rule-based</em> measurement. You decide in advance exactly what
+steps you will take to measure each document, and then you (or your
+computer) follows the rules you set out. The problem with such
+rules-based measures is that they are either:</p>
+<ol type="1">
+<li>Not scalable (e.g. human-coding). For a dataset of 945 tweets, we
+were able to tackle it in relatively short order. But if we were
+interested in 100,000 tweets? Or a million tweets? There’s no way to
+scale that procedure, except with crowd coding on something like
+Amazon’s MTurk <span class="citation"
+data-cites="benoit2016 carlson2017">(<a href="#ref-benoit2016"
+role="doc-biblioref">Benoit et al. 2016</a>; <a href="#ref-carlson2017"
+role="doc-biblioref">Carlson and Montgomery 2017</a>)</span>, and that
+gets expensive quickly.</li>
+<li>Scalable, but terrible (e.g. dictionary methods). With dictionary
+methods, it’s trivial to classify a million tweets. But the results, as
+we have seen, are fairly crummy.</li>
+</ol>
+<p>The best alternative to rules-based classification is
+<em>statistical</em> classification, and that is the topic of the <a
+href="supervised-learning.html">next page</a>.</p>
+<h2 id="practice-problems">Practice Problems</h2>
+<ol type="1">
+<li>How accurate does the dictionary classifier need to be until it’s
+“good enough”? A useful benchmark is to compare your model against a
+<em>null model</em>. For example, in the Twitter corpus, how accurate is
+the null model “predict every tweet will be negative”?</li>
+<li>How accurate can you get the dictionary classifier to be, by varying
+the lexicon and modifying the word list to match our specific context
+(i.e. filtering out words whose dictionary meaning and context-specific
+meaning are different, like “Trump” and “Supreme”)?</li>
+</ol>
+<h2 id="further-reading">Further Reading</h2>
+<div class="sourceCode" id="cb4"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent"
+role="doc-bibliography">
+<div id="ref-benoit2016" class="csl-entry" role="doc-biblioentry">
+Benoit, Kenneth, Drew Conway, Benjamin E. Lauderdale, Michael Laver, and
+Slava Mikhaylov. 2016. <span>“Crowd-Sourced Text Analysis: Reproducible
+and Agile Production of Political Data.”</span> <em>American Political
+Science Review</em> 110 (2): 278–95. <a
+href="https://doi.org/10.1017/S0003055416000058">https://doi.org/10.1017/S0003055416000058</a>.
+</div>
+<div id="ref-carlson2017" class="csl-entry" role="doc-biblioentry">
+Carlson, David, and Jacob M. Montgomery. 2017. <span>“A Pairwise
+Comparison Framework for Fast, Flexible, and Reliable Human Coding of
+Political Texts.”</span> <em>American Political Science Review</em> 111
+(4): 835–43. <a
+href="https://doi.org/10.1017/S0003055417000302">https://doi.org/10.1017/S0003055417000302</a>.
+</div>
+</div>
+<section class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>Yes, it was dreadful and I don’t
+recommend trying this at home.<a href="#fnref1" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2450,7 +2674,10 @@ class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"><
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom"></div>
+<div class="appendix-bottom">
+<h3 id="references">References</h3>
+<div id="references-listing"></div>
+</div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <!--/radix_placeholder_navigation_after_body-->
