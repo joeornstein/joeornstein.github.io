@@ -2373,7 +2373,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
   <link href="site_libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
   <script src="site_libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
@@ -2415,8 +2415,8 @@ Harvest the Text
 </button>
 <div class="nav-dropdown-content">
 <a href="webscraping.html">Webscraping</a>
-<a href="OCR.html">Optical Character Recognition</a>
 <a href="twitter-api.html">APIs</a>
+<a href="OCR.html">Optical Character Recognition</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2526,8 +2526,8 @@ Alexander Hamilton’s word bag has a <em>lot</em> of the word “upon”.</p>
   <span class='fu'><a href='https://rdrr.io/pkg/wordcloud2/man/wordcloud2.html'>wordcloud2</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<div id="htmlwidget-d9c70cc2ff26b3318e49" style="width:624px;height:384px;" class="wordcloud2 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d9c70cc2ff26b3318e49">{"x":{"word":["although","always","commonly","consequently","considerable","heretofore","upon","whilst"],"freq":[1,62,23,4,46,13,374,1],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":0.481283422459893,"backgroundColor":"white","gridSize":0,"minRotation":-0.785398163397448,"maxRotation":0.785398163397448,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+<div id="htmlwidget-3d6a00cfe0388ccee466" style="width:624px;height:384px;" class="wordcloud2 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3d6a00cfe0388ccee466">{"x":{"word":["although","always","commonly","consequently","considerable","heretofore","upon","whilst"],"freq":[1,62,23,4,46,13,374,1],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":0.481283422459893,"backgroundColor":"white","gridSize":0,"minRotation":-0.785398163397448,"maxRotation":0.785398163397448,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
 </div>
 <p>By comparison, James Madison’s bag of words has relatively more
 “whilst”.</p>
@@ -2645,7 +2645,7 @@ vectors for each author and for the disputed paper.</p>
            0            1            1 </code></pre>
 </div>
 <p>Next we’ll use the <code>dmultinom()</code> function to estimate the
-likelihood that <code>fed18_vector</code> would have been drawn from
+likelihood that the <code>fed18_vector</code> would have been drawn from
 each of the authors’ bags of words.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">

@@ -2372,7 +2372,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2409,8 +2409,8 @@ Harvest the Text
 </button>
 <div class="nav-dropdown-content">
 <a href="webscraping.html">Webscraping</a>
-<a href="OCR.html">Optical Character Recognition</a>
 <a href="twitter-api.html">APIs</a>
+<a href="OCR.html">Optical Character Recognition</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2474,13 +2474,17 @@ Model the Text
 </ul>
 </nav>
 </div>
-<p>We’d like not just to count the frequency of words, but also get a
-sense of what the words <em>mean</em>. In a <a
-href="bag-of-words.html">bag of words representation</a>, we treat the
-words “president” and “executive” as having completely unique meaning.
-By comparison, a word embeddings approach encodes the fact that these
-words have some overlapping meaning by placing them close together in a
-vector space.</p>
+<p>Often, we’d like to not only count the frequency of words, but also
+get a sense of what the words <em>mean</em>. In a <a
+href="bag-of-words.html">bag of words representation</a>, we treat words
+words like “president” and “executive” as separate indices in a word
+count vector, implicitly assuming that they have completely unique
+meanings. But the statistical models we use to understand text data will
+perform better if words with similar meaning have similar
+representations. That is the purpose of the word embeddings approach,
+which represents each word as a vector, encoding the fact that
+“president” and “executive” have some overlapping meaning by placing
+their vectors close together.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="img/morpheus.jpg" width="262" /></p>
 </div>
