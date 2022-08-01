@@ -108,33 +108,32 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Text As Data: Sentiment Analysis</title>
+  <title>Text As Data: Supervised Learning</title>
 
-  <meta property="description" itemprop="description" content="Teaching the computer to understand feelings."/>
+  <meta property="description" itemprop="description" content="How to train a model that&#39;s good at predicting, but not...*too* good at predicting."/>
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="img/favicon_io/favicon.ico"/>
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Text As Data: Sentiment Analysis"/>
+  <meta property="og:title" content="Text As Data: Supervised Learning"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Teaching the computer to understand feelings."/>
+  <meta property="og:description" content="How to train a model that&#39;s good at predicting, but not...*too* good at predicting."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Text As Data"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Text As Data: Sentiment Analysis"/>
-  <meta property="twitter:description" content="Teaching the computer to understand feelings."/>
+  <meta property="twitter:title" content="Text As Data: Supervised Learning"/>
+  <meta property="twitter:description" content="How to train a model that&#39;s good at predicting, but not...*too* good at predicting."/>
 
   <!--/radix_placeholder_meta_tags-->
   
-  <meta name="citation_reference" content="citation_title=Crowd-sourced Text Analysis: Reproducible and Agile Production of Political Data;citation_publication_date=2016;citation_volume=110;citation_doi=10.1017/S0003055416000058;citation_author=Kenneth Benoit;citation_author=Drew Conway;citation_author=Benjamin E. Lauderdale;citation_author=Michael Laver;citation_author=Slava Mikhaylov"/>
-  <meta name="citation_reference" content="citation_title=A Pairwise Comparison Framework for Fast, Flexible, and Reliable Human Coding of Political Texts;citation_publication_date=2017;citation_volume=111;citation_doi=10.1017/S0003055417000302;citation_author=David Carlson;citation_author=Jacob M. Montgomery"/>
+  <meta name="citation_reference" content="citation_title=Text as data: A new framework for machine learning and the social sciences;citation_publication_date=2022;citation_publisher=Princeton University Press;citation_author=Justin Grimmer;citation_author=Margaret E. Roberts;citation_author=Brandon M. Stewart"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Sentiment Analysis"]},{"type":"character","attributes":{},"value":["Teaching the computer to understand feelings.\n"]},{"type":"character","attributes":{},"value":["references.bib"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Supervised Learning"]},{"type":"character","attributes":{},"value":["How to train a model that's good at predicting, but not...*too* good at predicting.\n"]},{"type":"character","attributes":{},"value":["references.bib"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2392,7 +2391,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Sentiment Analysis","description":"Teaching the computer to understand feelings.","authors":[]}
+{"title":"Supervised Learning","description":"How to train a model that's good at predicting, but not...*too* good at predicting.","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2457,10 +2456,11 @@ Model the Text
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Sentiment Analysis</h1>
+<h1>Supervised Learning</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Teaching the computer to understand feelings.</p></p>
+<p><p>How to train a model that’s good at predicting, but
+not…<em>too</em> good at predicting.</p></p>
 </div>
 
 
@@ -2469,330 +2469,426 @@ Model the Text
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#hand-coding">Hand Coding</a></li>
-<li><a href="#dictionary-classification">Dictionary
-Classification</a></li>
-<li><a href="#supervised-learning">Supervised Learning</a></li>
+<li><a href="#the-data">The Data</a></li>
+<li><a href="#underfitting-and-overfitting">Underfitting and
+Overfitting</a></li>
+<li><a href="#regularization-hitting-the-sweet-spot">Regularization:
+Hitting the Sweet Spot</a></li>
 <li><a href="#practice-problems">Practice Problems</a></li>
 <li><a href="#further-reading">Further Reading</a></li>
 </ul>
 </nav>
 </div>
-<p>For unsupervised learning models like <a
-href="clustering.html">k-means</a> and <a href="LDA.html">LDA</a>, the
-objective is often discovery. We have a set of unlabeled data, and we
-want to get a sense of how we might organize the documents – how we
-might sort them into buckets. But frequently social scientists turn to
-text data because we’re interested in <em>measuring</em> some concept
-that is tough to quantify in other ways. For this, we’ll want a
-different set of tools.</p>
-<p>To illustrate the process of measurement using text data, let’s
-consider the field of <strong>sentiment analysis</strong>. We have a set
-of documents, and we’re interested in classifying the sentiment/emotion
-the author is trying to convey – positive, negative, or neutral. Here is
-a dataset of 945 tweets about the Supreme Court that I compiled for a
-project with Jake Truscott and Elise Blasingame.</p>
+<p>At the end of the page on <a href="sentiment-analysis.html">sentiment
+analysis</a>, we lamented that hand-coding is too costly to scale, and
+rules-based classifiers are too inflexible to handle the subtleties of
+human language. On this page, we’ll demonstrate a different approach:
+take a corpus of pre-labeled documents, train a model to predict the
+labels, then use the predictions from that model to label other
+documents. This is called a <strong>supervised learning</strong>
+approach, and to illustrate, let’s replicate the exercise from Chapter
+23 of <span class="citation"
+data-cites="grimmerTextDataNew2022">Grimmer, Roberts, and Stewart (<a
+href="#ref-grimmerTextDataNew2022"
+role="doc-biblioref">2022</a>)</span>, predicting whether a set of
+tweets during the 2016 presidential election were written by Donald
+Trump or his campaign staff.</p>
+<h2 id="the-data">The Data</h2>
+<p>To start, let’s load the training data compiled by <a
+href="http://varianceexplained.org/r/trump-tweets/">David
+Robinson</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/juliasilge/tidytext'>tidytext</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidymodels.tidymodels.org'>tidymodels</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://lubridate.tidyverse.org'>lubridate</a></span><span class='op'>)</span>
 
-<span class='co'># load the tweets</span>
-<span class='va'>tweets</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>'data/supreme-court-tweets.csv'</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/connections.html'>url</a></span><span class='op'>(</span><span class='st'>"http://varianceexplained.org/files/trump_tweets_df.rda"</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='va'>tweets</span> |&gt; <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>tweet_id</span><span class='op'>)</span>
+<span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>trump_tweets_df</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code># A tibble: 945 x 4
-   text                                        expert1 expert2 expert3
-   &lt;chr&gt;                                         &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
- 1 &quot;Just in time for #PrideMonth #Pride2018 #~       1      -1      -1
- 2 &quot;The silliness of the day-long kerfuffle o~       1      -1      -1
- 3 &quot;The @Scotus ruling was a \U0001f967 pie-i~       1      -1       1
- 4 &quot;Let’s be real, lame anti-gay cake probabl~       1       1      -1
- 5 &quot;#ReligiousFreedom #SCOTUS \r\nWould a Mus~       1      -1      -1
- 6 &quot;I’m happy SCOTUS ruled in favor of the ba~       1      -1      -1
- 7 &quot;Breaking: Supreme Court rules New York pr~       1      -1       0
- 8 &quot;SUPREME COURT: \r\n\r\nTRUMP IS NOT ABOVE~       1       1      -1
- 9 &quot;Not gonna lie....shocked Kavanaugh rules ~      -1       1       1
-10 &quot;Gonna have a drink at “the low bar” to ce~      -1      -1       1
-# ... with 935 more rows</code></pre>
+<pre><code>Rows: 1,512
+Columns: 16
+$ text          &lt;chr&gt; &quot;My economic policy speech will be carried liv~
+$ favorited     &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALS~
+$ favoriteCount &lt;dbl&gt; 9214, 6981, 15724, 19837, 34051, 29831, 19223,~
+$ replyToSN     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA~
+$ created       &lt;dttm&gt; 2016-08-08 15:20:44, 2016-08-08 13:28:20, 201~
+$ truncated     &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALS~
+$ replyToSID    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA~
+$ id            &lt;chr&gt; &quot;762669882571980801&quot;, &quot;762641595439190016&quot;, &quot;7~
+$ replyToUID    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA~
+$ statusSource  &lt;chr&gt; &quot;&lt;a href=\&quot;http://twitter.com/download/android~
+$ screenName    &lt;chr&gt; &quot;realDonaldTrump&quot;, &quot;realDonaldTrump&quot;, &quot;realDon~
+$ retweetCount  &lt;dbl&gt; 3107, 2390, 6691, 6402, 11717, 9892, 5784, 793~
+$ isRetweet     &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALS~
+$ retweeted     &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALS~
+$ longitude     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA~
+$ latitude      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA~</code></pre>
 </div>
-<h2 id="hand-coding">Hand Coding</h2>
-<p>The dataset contains the text of the tweet, plus three “expert”
-ratings on a scale from -1 (negative), 0 (neutral), to 1 (positive).
-Each author independently read and coded each tweet<a href="#fn1"
-class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
-then discussed the cases where we disagreed, going back for a second
-round of coding on those tweets where everyone produced a different
-measure. One way to assess how well we did at capturing sentiment is
-inter-coder reliability (aka <a
-href="https://en.wikipedia.org/wiki/Fleiss%27_kappa">Fleiss’ kappa</a>),
-which measures how frequently the coders agreed relative to chance, on a
-scale from -1 (complete disagreement on everything) to 1 (perfect
-agreement on everything).</p>
+<p>Throughout the 2016 presidential campaign, candidate Trump sent
+tweets from his personal Android phone, while staffers ghost-wrote
+tweets from an iPhone or web client. This provides us with the labels we
+need to build our model.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://www.r-project.org'>irr</a></span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tweets</span> <span class='op'>&lt;-</span> <span class='va'>trump_tweets_df</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span>.id <span class='op'>=</span> <span class='va'>id</span>,
+         .source <span class='op'>=</span> <span class='va'>statusSource</span>,
+         .text <span class='op'>=</span> <span class='va'>text</span>,
+         .created <span class='op'>=</span> <span class='va'>created</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/extract.html'>extract</a></span><span class='op'>(</span><span class='va'>.source</span>, <span class='st'>'.source'</span>, <span class='st'>"Twitter for (.*?)&lt;"</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>.source</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'iPhone'</span>, <span class='st'>'Android'</span><span class='op'>)</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>.source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>.source</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='co'># (notice that I'm putting a dot in front of all these</span>
+<span class='co'># column names, on the off chance that words like "source"</span>
+<span class='co'># or "id" appear in the corpus after we tokenize)</span>
+
 <span class='va'>tweets</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>expert1</span>, <span class='va'>expert2</span>, <span class='va'>expert3</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://rdrr.io/pkg/irr/man/kappam.fleiss.html'>kappam.fleiss</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>.source</span>, hour <span class='op'>=</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/hour.html'>hour</a></span><span class='op'>(</span><span class='fu'><a href='https://lubridate.tidyverse.org/reference/with_tz.html'>with_tz</a></span><span class='op'>(</span><span class='va'>.created</span>, <span class='st'>"EST"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>percent <span class='op'>=</span> <span class='va'>n</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>hour</span>, <span class='va'>percent</span>, color <span class='op'>=</span> <span class='va'>.source</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>percent_format</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Hour of day (EST)"</span>,
+       y <span class='op'>=</span> <span class='st'>"% of tweets"</span>,
+       color <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code> Fleiss&#39; Kappa for m Raters
-
- Subjects = 920 
-   Raters = 3 
-    Kappa = 0.688 
-
-        z = 48.9 
-  p-value = 0 </code></pre>
+<p><img src="supervised-learning_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
 </div>
-<p>Manually labeling your documents has twin advantages of accuracy and
-transparency (when combined with a codebook describing why you coded
-things the way you did). But its main disadvantage is in scaling: it’s
-difficult, costly, and/or time-consuming to hand-code more than a few
-thousand documents this way. If we want to work with a larger corpus, we
-need an automated method. As a first pass, let’s consider dictionary
-classification.</p>
-<h2 id="dictionary-classification">Dictionary Classification</h2>
-<p>The dictionary method is pure bag of words. We count up the number of
-words with a positive sentiment and the number of words with a negative
-sentiment and take the difference. Tweets with more positive words than
-negative words are coded positive, and vice versa.</p>
-<p>To do so, we’ll join the tokenized text data with a <em>sentiment
-lexicon</em>, a list of words paired with their associated sentiment.
-The <code>tidytext</code> package comes with four sentiment lexicons
-built in.</p>
+<p>Trump is a very productive tweeter in the early morning and late
+evening. Next, let’s tokenize the tweets and convert into a
+document-term matrix. We’ll remove any stray HTML and rare words that
+only get used once or twice in the training set.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>'bing'</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code># A tibble: 6,786 x 2
-   word        sentiment
-   &lt;chr&gt;       &lt;chr&gt;    
- 1 2-faces     negative 
- 2 abnormal    negative 
- 3 abolish     negative 
- 4 abominable  negative 
- 5 abominably  negative 
- 6 abominate   negative 
- 7 abomination negative 
- 8 abort       negative 
- 9 aborted     negative 
-10 aborts      negative 
-# ... with 6,776 more rows</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>'afinn'</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code># A tibble: 2,477 x 2
-   word       value
-   &lt;chr&gt;      &lt;dbl&gt;
- 1 abandon       -2
- 2 abandoned     -2
- 3 abandons      -2
- 4 abducted      -2
- 5 abduction     -2
- 6 abductions    -2
- 7 abhor         -3
- 8 abhorred      -3
- 9 abhorrent     -3
-10 abhors        -3
-# ... with 2,467 more rows</code></pre>
-</div>
-<p>Since it is the most extensive, we’ll work with the <em>bing</em>
-lexicon in this tutorial.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tidy_tweets</span> <span class='op'>&lt;-</span> <span class='va'>tweets</span> |&gt; 
-  <span class='co'># tokenize to the word level</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>input <span class='op'>=</span> <span class='st'>'text'</span>,
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># pick the words to keep as predictors</span>
+<span class='va'>words_to_keep</span> <span class='op'>&lt;-</span> <span class='va'>tweets</span> |&gt;
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>input <span class='op'>=</span> <span class='st'>'.text'</span>,
                 output <span class='op'>=</span> <span class='st'>'word'</span><span class='op'>)</span> |&gt;
-  <span class='co'># join with the sentiment lexicon</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>inner_join</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>'bing'</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span> |&gt;
+  <span class='co'># remove numerals, URLs</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='st'>'.co|.com|.net|.edu|.gov|http'</span>, negate <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='st'>'[0-9]'</span>, negate <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> |&gt;
+  <span class='co'># remove rare words</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>n</span> <span class='op'>&gt;</span> <span class='fl'>2</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span>
 
-<span class='va'>tidy_tweets</span>
-</code></pre>
-</div>
-<pre><code># A tibble: 2,489 x 6
-   tweet_id                  expert1 expert2 expert3 word    sentiment
-   &lt;chr&gt;                       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;    
- 1 718152140305248257_2018-~       1      -1      -1 favor   positive 
- 2 718152140305248257_2018-~       1      -1      -1 mistake negative 
- 3 718152140305248257_2018-~       1      -1      -1 support positive 
- 4 718152140305248257_2018-~       1      -1      -1 support positive 
- 5 718152140305248257_2018-~       1      -1      -1 fake    negative 
- 6 718152140305248257_2018-~       1      -1      -1 rage    negative 
- 7 718152140305248257_2018-~       1      -1      -1 false   negative 
- 8 380268462_2018-06-05T04:~       1      -1      -1 master~ positive 
- 9 380268462_2018-06-05T04:~       1      -1      -1 fairly  positive 
-10 380268462_2018-06-05T04:~       1      -1      -1 excited positive 
-# ... with 2,479 more rows</code></pre>
-</div>
-<p>Now we have a dataframe with 2489 words from the tweets and their
-associated sentiment. We create a score for each document by counting
-the number of positive words minus the number of negative words, scaling
-by the total number of words matched to the sentiment lexicon.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tidy_tweets</span> <span class='op'>&lt;-</span> <span class='va'>tidy_tweets</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>tweet_id</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>positive_words <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>sentiment</span> <span class='op'>==</span> <span class='st'>'positive'</span><span class='op'>)</span>,
-            negative_words <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>sentiment</span> <span class='op'>==</span> <span class='st'>'negative'</span><span class='op'>)</span>,
-            sentiment_score <span class='op'>=</span> <span class='op'>(</span><span class='va'>positive_words</span> <span class='op'>-</span> <span class='va'>negative_words</span><span class='op'>)</span> <span class='op'>/</span>
-              <span class='op'>(</span><span class='va'>positive_words</span> <span class='op'>+</span> <span class='va'>negative_words</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'># tokenize</span>
+<span class='va'>tidy_tweets</span> <span class='op'>&lt;-</span> <span class='va'>tweets</span> |&gt;
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>input <span class='op'>=</span> <span class='st'>'.text'</span>,
+                output <span class='op'>=</span> <span class='st'>'word'</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>word</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='va'>words_to_keep</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>.id</span>, <span class='va'>word</span><span class='op'>)</span> |&gt;
+  <span class='co'># compute term frequencies</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/bind_tf_idf.html'>bind_tf_idf</a></span><span class='op'>(</span>term <span class='op'>=</span> <span class='st'>'word'</span>,
+              document <span class='op'>=</span> <span class='st'>'.id'</span>,
+              n <span class='op'>=</span> <span class='st'>'n'</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>.id</span>, <span class='va'>word</span>, <span class='va'>tf</span><span class='op'>)</span> |&gt;
+  <span class='co'># pivot wider into a document-term matrix</span>
+  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>id_cols <span class='op'>=</span> <span class='st'>'.id'</span>,
+              names_from <span class='op'>=</span> <span class='st'>'word'</span>,
+              values_from <span class='op'>=</span> <span class='st'>'tf'</span>,
+              values_fill <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>tidy_tweets</span>,
-       mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>sentiment_score</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>'black'</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>'Dictionary Sentiment Score'</span>,
-       y <span class='op'>=</span> <span class='st'>'Number of Tweets'</span><span class='op'>)</span>
-</code></pre>
-</div>
-<p><img src="sentiment-analysis_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
-</div>
-<p>Looking at the histogram of results, it seems like the dictionary
-classifier is labeling a <em>lot</em> of these tweets as positive. A lot
-more than our expert coders did. What’s going on?</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># find a tweet the experts coded as negative</span>
-<span class='co'># but the classifier coded as positive</span>
-<span class='va'>tweets</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>tidy_tweets</span>, by <span class='op'>=</span> <span class='st'>'tweet_id'</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>expert1</span> <span class='op'>==</span> <span class='op'>-</span><span class='fl'>1</span>, <span class='va'>expert2</span> <span class='op'>==</span> <span class='op'>-</span><span class='fl'>1</span>, <span class='va'>expert3</span> <span class='op'>==</span> <span class='op'>-</span><span class='fl'>1</span>,
-         <span class='va'>sentiment_score</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>[1] &quot;The NYS Supreme Court should hold their calendar and get Trump before Nov. That will make America great again. #TrumpTaxReturns \r\n#TrumpIsANationalDisgrace \r\n#TrumpMeltdown&quot;                                                                                                      
-[2] &quot;Thurgood Marshall’s successor on the Supreme Court was Clarence Thomas. I’ll never get over that.&quot;                                                                                                                                                                                     
-[3] &quot;If the supreme Court sides with Trump on his taxes we know it&#39;s all @senatemajldr doing for STACKING the court with bought and paid for judges like KAVANAUGH. We will have to increase pressure on @GOP up for re-election on their votes and hold them ACCOUNTABLE vote them all OUT&quot;</code></pre>
-</div>
-<p>Ah. Well that’s embarrassing. Seems the bing lexicon codes the words
-“trump” and “supreme” as positive.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>'bing'</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>word</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'trump'</span>,<span class='st'>'supreme'</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code># A tibble: 2 x 2
-  word    sentiment
-  &lt;chr&gt;   &lt;chr&gt;    
-1 supreme positive 
-2 trump   positive </code></pre>
-</div>
-<p>Perhaps this is an appropriate choice for the English language writ
-large, but for our specific corpus (tweets about Supreme Court cases
-during the Trump administration), it’s definitely inappropriate. Let’s
-see how the dictionary scores compare with the hand-coded scores.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tweets</span> <span class='op'>&lt;-</span> <span class='va'>tweets</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>tidy_tweets</span>, by <span class='op'>=</span> <span class='st'>'tweet_id'</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>expert_score <span class='op'>=</span> <span class='op'>(</span><span class='va'>expert1</span> <span class='op'>+</span> <span class='va'>expert2</span> <span class='op'>+</span> <span class='va'>expert3</span><span class='op'>)</span> <span class='op'>/</span> <span class='fl'>3</span><span class='op'>)</span> 
+<span class='co'># join with the training labels</span>
+<span class='va'>tidy_tweets</span> <span class='op'>&lt;-</span> <span class='va'>tweets</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>.id</span>, <span class='va'>.source</span>, <span class='va'>.created</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>right_join</a></span><span class='op'>(</span><span class='va'>tidy_tweets</span>, by <span class='op'>=</span> <span class='st'>'.id'</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>tweets</span>,
-       mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>expert_score</span>,
-                       y <span class='op'>=</span> <span class='va'>sentiment_score</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_jitter.html'>geom_jitter</a></span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.5</span>, width <span class='op'>=</span> <span class='fl'>0.05</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>'Hand-Coded Sentiment'</span>, 
-       y <span class='op'>=</span> <span class='st'>'Dictionary Sentiment'</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>tidy_tweets</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="sentiment-analysis_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
+<pre><code>[1] 1382 1156</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tidy_tweets</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
 </div>
-<p>On the whole, it’s pretty bad (correlation = 0.333). When the tweets
-are genuinely positive, it seems that they contain a lot of positive
-words, so the dictionary method mostly gets it right. But when the
-tweets are negative, there may be a lot of sarcastic use of positive
-words, which trips up the classifier. For instance:</p>
+<pre><code># A tibble: 6 x 5
+  .id           .source .created            makeamericagreatag~     of
+  &lt;chr&gt;         &lt;fct&gt;   &lt;dttm&gt;                            &lt;dbl&gt;  &lt;dbl&gt;
+1 762669882571~ Android 2016-08-08 15:20:44                   0 0     
+2 762641595439~ iPhone  2016-08-08 13:28:20                   0 0     
+3 762439658911~ iPhone  2016-08-08 00:05:54                   0 0     
+4 762425371874~ Android 2016-08-07 23:09:08                   0 0.0556
+5 762400869858~ Android 2016-08-07 21:31:46                   0 0     
+6 762284533341~ Android 2016-08-07 13:49:29                   0 0.0476</code></pre>
+</div>
+<h2 id="underfitting-and-overfitting">Underfitting and Overfitting</h2>
+<p>All supervised learning, in a nutshell, is an effort to find the
+sweet spot between a model that is too simple (underfitting) and one
+that is too complex (overfitting). With 1382 documents and 1153 possible
+predictors, there are an enormous number of possible models that we
+could fit.</p>
+<p>To discipline ourselves, it is good practice to split the dataset
+into two parts: the training set, which we use to fit the model, and the
+test set, which we use to evaluate the predictions and see whether we
+did a good job.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tweets</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>text</span>, <span class='st'>'sober'</span><span class='op'>)</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tweet_split</span> <span class='op'>&lt;-</span> <span class='fu'>initial_split</span><span class='op'>(</span><span class='va'>tidy_tweets</span>,
+                             prop <span class='op'>=</span> <span class='fl'>0.8</span><span class='op'>)</span>
+
+<span class='va'>train</span> <span class='op'>&lt;-</span> <span class='fu'>training</span><span class='op'>(</span><span class='va'>tweet_split</span><span class='op'>)</span>
+<span class='va'>test</span> <span class='op'>&lt;-</span> <span class='fu'>testing</span><span class='op'>(</span><span class='va'>tweet_split</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] &quot;I’m sure the news media will provide sober, nuanced analysis of Masterpiece Cake Shop. #SCOTUS&quot;</code></pre>
 </div>
-<p>We want an approach that better predicts which words are most
-strongly associated with negative/positive sentiment in our particular
-corpus. For that we’ll need…</p>
-<h2 id="supervised-learning">Supervised Learning</h2>
-<p>Both human coding and dictionary classification are examples of
-<em>rule-based</em> measurement. You decide in advance exactly what
-steps you will take to measure each document, and then you (or your
-computer) follow the rules you set out. The problem with such
-rules-based measures is that they are either:</p>
-<ol type="1">
-<li>Not scalable (e.g. human-coding). For a dataset of 945 tweets, we
-were able to tackle it in relatively short order. But if we were
-interested in 100,000 tweets? Or a million tweets? There’s no way to
-scale that procedure, except with crowd coding on something like
-Amazon’s MTurk <span class="citation"
-data-cites="benoit2016 carlson2017">(<a href="#ref-benoit2016"
-role="doc-biblioref">Benoit et al. 2016</a>; <a href="#ref-carlson2017"
-role="doc-biblioref">Carlson and Montgomery 2017</a>)</span>, and that
-gets expensive quickly.</li>
-<li>Scalable, but terrible (e.g. dictionary methods). With rules-based
-classification, it’s trivial to classify a million tweets. But the
-results, as we have seen, are often crummy.</li>
-</ol>
-<p>The best alternative to rules-based classification is
-<em>statistical</em> classification, and that is the topic of the page
-on <a href="supervised-learning.html">supervised learning</a>.</p>
+<p>For our first stab at a model, consider what we remember about
+Trump’s tweeting style. Words and phrases that were distinctly Trump
+2016, like “crooked”, “drain the swamp”, or “loser” might help predict
+whether it was him or a staffer doing the tweeting. Let’s fit a logistic
+regression including some of those keywords as predictors.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>model1</span> <span class='op'>&lt;-</span> <span class='fu'>logistic_reg</span><span class='op'>(</span><span class='op'>)</span> |&gt;
+  <span class='fu'>fit</span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>.source</span> <span class='op'>~</span> <span class='va'>crooked</span> <span class='op'>+</span> <span class='va'>dumb</span> <span class='op'>+</span> <span class='va'>emails</span> <span class='op'>+</span>
+        <span class='va'>crowds</span> <span class='op'>+</span> <span class='va'>hillary</span> <span class='op'>+</span> <span class='va'>winning</span> <span class='op'>+</span> <span class='va'>weak</span>,
+      data <span class='op'>=</span> <span class='va'>train</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>model1</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 8 x 5
+  term        estimate  std.error statistic p.value
+  &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 (Intercept)   -0.112     0.0646  -1.74     0.0820
+2 crooked      -10.6       5.61    -1.89     0.0587
+3 dumb        -341.    21260.      -0.0160   0.987 
+4 emails       310.    31433.       0.00986  0.992 
+5 crowds      -338.    20646.      -0.0164   0.987 
+6 hillary       -0.430     4.03    -0.107    0.915 
+7 winning       15.9      17.4      0.910    0.363 
+8 weak        -382.    17063.      -0.0224   0.982 </code></pre>
+</div>
+<p>This is a good start. Many of the words we chose are statistically
+significant predictors. But…</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># out-of-sample fit</span>
+<span class='va'>test</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model1</span>, <span class='va'>test</span><span class='op'>)</span><span class='op'>)</span> |&gt;
+  <span class='fu'>accuracy</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 1 x 3
+  .metric  .estimator .estimate
+  &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+1 accuracy binary         0.574</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>test</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model1</span>, <span class='va'>test</span><span class='op'>)</span><span class='op'>)</span> |&gt;
+  <span class='fu'>conf_mat</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>'heatmap'</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="supervised-learning_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
+</div>
+<p>The model does a terrible job at out-of-sample prediction. Without a
+lot of information to go on (most of the tweets don’t contain one of
+those seven words) it predicts that every tweet but one was written by
+Trump. This is the hallmark of an <em>underfit</em> model: it doesn’t do
+any better than a null model that just predicts the most common class
+for every document.</p>
+<p>What if we tried the opposite strategy, throwing <em>every</em> word
+into the model as a predictor? Would that perform better?</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># overfit</span>
+<span class='va'>model2</span> <span class='op'>&lt;-</span> <span class='fu'>logistic_reg</span><span class='op'>(</span><span class='op'>)</span> |&gt;
+  <span class='fu'>fit</span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>.source</span> <span class='op'>~</span> <span class='va'>.</span>,
+      data <span class='op'>=</span> <span class='va'>train</span> |&gt;
+        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>.id</span>, <span class='op'>-</span><span class='va'>.created</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>model2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 1,154 x 5
+   term                  estimate    std.error     statistic p.value
+   &lt;chr&gt;                    &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+ 1 (Intercept)           -2.22e16   428433735.    -51876465.       0
+ 2 makeamericagreatagain  2.56e16   429971626.     59516216.       0
+ 3 of                    -1.94e16   448759429.    -43236778.       0
+ 4 another                3.58e20 24267182028.  14734359938.       0
+ 5 best                   2.83e20 12899282154.  21976310671.       0
+ 6 `for`                  2.23e20  7083387182.  31422931882.       0
+ 7 golf                   6.60e20 20103285575.  32825158420.       0
+ 8 great                  6.02e16   784001592.     76832385.       0
+ 9 highly                -1.49e21 44774977456. -33241412991.       0
+10 thank                 -6.91e16  1292951204.    -53466715.       0
+# ... with 1,144 more rows</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># in-sample fit</span>
+<span class='va'>train</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model2</span>, <span class='va'>train</span><span class='op'>)</span><span class='op'>)</span> |&gt;
+  <span class='fu'>accuracy</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 1 x 3
+  .metric  .estimator .estimate
+  &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+1 accuracy binary         0.918</code></pre>
+</div>
+<p>Clearly, this 1154 parameter model does a great job predicting the
+training set. But how is the prediction accuracy on the held-out test
+set?</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># out-of-sample fit</span>
+<span class='va'>test</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model2</span>, <span class='va'>test</span><span class='op'>)</span><span class='op'>)</span> |&gt;
+  <span class='fu'>accuracy</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 1 x 3
+  .metric  .estimator .estimate
+  &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+1 accuracy binary         0.516</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>test</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model2</span>, <span class='va'>test</span><span class='op'>)</span><span class='op'>)</span> |&gt;
+  <span class='fu'>conf_mat</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>'heatmap'</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="supervised-learning_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
+</div>
+<p>This is a hallmark of overfitting. The model is so complex that it is
+mistaking noise for signal, incorporating every random word that gets
+written by Trump of a staffer as a parameter estimate. For example, in
+the training set, there are 14 tweets that use the word “another”, 10 by
+Trump and the rest by staffers. The overfit model takes this as evidence
+that “another” is a Trumpy word. But that’s just a weird eccentricity of
+the training set; in the test set “another” is used more often by
+staffers. As a result, the overfit model actually performs
+<em>worse</em> out-of-sample than the underfit model.</p>
+<p>While we want the model to do a good job minimizing prediction error
+in the training data, we also want to impose some constraint on how many
+words it can assign nonzero coefficients to. This is a job for
+regularization.</p>
+<h2 id="regularization-hitting-the-sweet-spot">Regularization: Hitting
+the Sweet Spot</h2>
+<p>One way to impose a complexity constraint on our logistic regression
+model is with the <a
+href="https://en.wikipedia.org/wiki/Lasso_(statistics)">LASSO</a>. This
+approach estimates a set of coefficients that maximizes the likelihood
+of the data, subject to the constraint that <span
+class="math inline">\(\sum |\beta| &lt; \frac{1}{\lambda}\)</span>. In
+other words, the sum total of the model’s coefficients can’t stray too
+far from zero. Let’s set that penalty term to 0.01 and see how we
+do.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># fit a regularized model (LASSO)</span>
+<span class='va'>model3</span> <span class='op'>&lt;-</span> <span class='fu'>logistic_reg</span><span class='op'>(</span>penalty <span class='op'>=</span> <span class='fl'>0.01</span>, mixture <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> |&gt;
+  <span class='fu'>set_engine</span><span class='op'>(</span><span class='st'>'glmnet'</span><span class='op'>)</span> |&gt;
+  <span class='fu'>fit</span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>.source</span> <span class='op'>~</span> <span class='va'>.</span>,
+      data <span class='op'>=</span> <span class='va'>train</span> |&gt;
+        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>.id</span>, <span class='op'>-</span><span class='va'>.created</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>model3</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 1,154 x 3
+   term                  estimate penalty
+   &lt;chr&gt;                    &lt;dbl&gt;   &lt;dbl&gt;
+ 1 (Intercept)              0.501    0.01
+ 2 makeamericagreatagain    2.66     0.01
+ 3 of                       0        0.01
+ 4 another                  0        0.01
+ 5 best                     0        0.01
+ 6 `for`                    0        0.01
+ 7 golf                     0        0.01
+ 8 great                   -0.527    0.01
+ 9 highly                   0        0.01
+10 thank                    9.84     0.01
+# ... with 1,144 more rows</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># in-sample fit</span>
+<span class='va'>train</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model3</span>, <span class='va'>train</span><span class='op'>)</span><span class='op'>)</span> |&gt;
+  <span class='fu'>accuracy</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 1 x 3
+  .metric  .estimator .estimate
+  &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+1 accuracy binary         0.944</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># out-of-sample fit</span>
+<span class='va'>test</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model3</span>, <span class='va'>test</span><span class='op'>)</span><span class='op'>)</span> |&gt;
+  <span class='fu'>accuracy</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code># A tibble: 1 x 3
+  .metric  .estimator .estimate
+  &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+1 accuracy binary         0.798</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>test</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model3</span>, <span class='va'>test</span><span class='op'>)</span><span class='op'>)</span> |&gt;
+  <span class='fu'>conf_mat</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>'heatmap'</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="supervised-learning_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
+</div>
+<p>Regularization is <em>powerful</em> stuff. Not only does the
+regularized model perform much better out-of-sample than the first two
+models, but it gives us a set of 347 nonzero coefficients that we can
+interpret as the most strongly predictive words for whether a tweet was
+written by Trump or not.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>model3</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>estimate</span> <span class='op'>!=</span> <span class='fl'>0</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>estimate</span>,
+                       y <span class='op'>=</span> <span class='fu'><a href='https://forcats.tidyverse.org/reference/fct_reorder.html'>fct_reorder</a></span><span class='op'>(</span><span class='va'>term</span>, <span class='va'>estimate</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>'Most Trumpy &lt; - &gt; Most Staffer-Speak'</span>,
+       y <span class='op'>=</span> <span class='st'>'Term'</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="supervised-learning_files/figure-html5/unnamed-chunk-10-1.png" width="624" height="2500" /></p>
+</div>
 <h2 id="practice-problems">Practice Problems</h2>
 <ol type="1">
-<li>How accurate does the dictionary classifier need to be until it’s
-“good enough”? A useful benchmark is to compare your model against a
-<em>null model</em>. For example, in the Twitter corpus, how accurate is
-the null model “predict every tweet will be negative”?</li>
-<li>How accurate can you get the dictionary classifier to be, by varying
-the lexicon and modifying the word list to match our specific context
-(i.e. filtering out words whose dictionary meaning and context-specific
-meaning are different, like “Trump” and “Supreme”)?</li>
+<li><p>Play around with the penalty hyperparameter until you find a
+better value for than 0.01. See the file
+<code>code/08_supervised-learning/predicting-trump-tweets-chap23.R</code>
+in the code repository for instructions more on tuning models through
+cross-validation with the <code>tidymodels</code> package.</p></li>
+<li><p>Fit a regularized logistic regression to predict whether the
+unattributed Federalist Papers were written by Hamilton or Madison,
+using the stop words document-term matrix we <a
+href="federalist-paper.html">created earlier</a>.</p></li>
 </ol>
 <h2 id="further-reading">Further Reading</h2>
 <ul>
-<li><a href="https://www.tidytextmining.com/sentiment.html">Silge &amp;
-Robinson, Chapter 2</a></li>
-<li>Grimmer, Stewart &amp; Roberts, Chapters 15-16</li>
+<li>David Robinson’s <a
+href="http://varianceexplained.org/r/trump-tweets/">original
+post</a>.</li>
+<li>Hvitfeldt &amp; Silge (2022), particularly <a
+href="https://smltar.com/mlclassification.html">Chapter 7</a></li>
+<li>Grimmer, Stewart &amp; Roberts, Chapters 17-19</li>
 </ul>
-<div class="sourceCode" id="cb9"><pre
+<div class="sourceCode" id="cb12"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent"
 role="doc-bibliography">
-<div id="ref-benoit2016" class="csl-entry" role="doc-biblioentry">
-Benoit, Kenneth, Drew Conway, Benjamin E. Lauderdale, Michael Laver, and
-Slava Mikhaylov. 2016. <span>“Crowd-Sourced Text Analysis: Reproducible
-and Agile Production of Political Data.”</span> <em>American Political
-Science Review</em> 110 (2): 278–95. <a
-href="https://doi.org/10.1017/S0003055416000058">https://doi.org/10.1017/S0003055416000058</a>.
-</div>
-<div id="ref-carlson2017" class="csl-entry" role="doc-biblioentry">
-Carlson, David, and Jacob M. Montgomery. 2017. <span>“A Pairwise
-Comparison Framework for Fast, Flexible, and Reliable Human Coding of
-Political Texts.”</span> <em>American Political Science Review</em> 111
-(4): 835–43. <a
-href="https://doi.org/10.1017/S0003055417000302">https://doi.org/10.1017/S0003055417000302</a>.
+<div id="ref-grimmerTextDataNew2022" class="csl-entry"
+role="doc-biblioentry">
+Grimmer, Justin, Margaret E. Roberts, and Brandon M. Stewart. 2022.
+<em>Text as Data: A New Framework for Machine Learning and the Social
+Sciences</em>. Princeton, New Jersey Oxford: Princeton University Press.
 </div>
 </div>
-<section class="footnotes footnotes-end-of-document"
-role="doc-endnotes">
-<hr />
-<ol>
-<li id="fn1" role="doc-endnote"><p>Yes, it was dreadful and I don’t
-recommend trying this at home.<a href="#fnref1" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2800,6 +2896,15 @@ role="doc-backlink">↩︎</a></p></li>
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
