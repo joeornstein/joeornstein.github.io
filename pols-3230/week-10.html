@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,13 +77,14 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
   <title>Political Analysis in R: Week 10</title>
@@ -456,7 +457,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   </style>
 
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
   <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -1863,7 +1864,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -2344,7 +2348,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2430,21 +2434,27 @@ Schedule
 <ul>
 <li><a href="#example-code">Example Code</a>
 <ul>
-<li><a href="#solution-1-look-at-cross-sections">Solution 1: Look at Cross-Sections</a></li>
-<li><a href="#solution-2-look-at-a-time-series">Solution 2: Look at a time series</a></li>
-<li><a href="#solution-3-make-a-movie">Solution 3: Make a movie!</a></li>
+<li><a href="#solution-1-look-at-cross-sections">Solution 1: Look at
+Cross-Sections</a></li>
+<li><a href="#solution-2-look-at-a-time-series">Solution 2: Look at a
+time series</a></li>
+<li><a href="#solution-3-make-a-movie">Solution 3: Make a
+movie!</a></li>
 </ul></li>
 <li><a href="#reading-assignments">Reading Assignments</a></li>
 <li><a href="#team-project">Team Project</a></li>
 </ul>
 </nav>
 </div>
-<p>This week, we discuss how to work with datasets that include information from multiple time periods.</p>
+<p>This week, we discuss how to work with datasets that include
+information from multiple time periods.</p>
 <h2 id="example-code">Example Code</h2>
-<p>Let’s look at the relationship between national income and life expectancy in the <code>gapminder</code> dataset. Do people in wealthier countries live longer on average?</p>
+<p>Let’s look at the relationship between national income and life
+expectancy in the <code>gapminder</code> dataset. Do people in wealthier
+countries live longer on average?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/jennybc/gapminder'>gapminder</a></span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>gapminder</span><span class='op'>)</span>
@@ -2460,23 +2470,26 @@ Schedule
 5 Afghanistan Asia       1972    36.1 13079460      740.
 6 Afghanistan Asia       1977    38.4 14880372      786.</code></pre>
 </div>
-<p>Notice that the <code>gapminder</code> dataset has country-level data on life expectancy, population, and GDP per capita every five years between 2007 and 2007. So when you plot it all together, it looks like this:</p>
+<p>Notice that the <code>gapminder</code> dataset has country-level data
+on life expectancy, population, and GDP per capita every five years
+between 2007 and 2007. So when you plot it all together, it looks like
+this:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>gapminder</span>,
-            mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>gdpPercap</span>,
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>gapminder</span>,
+            mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>gdpPercap</span>,
                           y <span class='op'>=</span> <span class='va'>lifeExp</span>,
                           color <span class='op'>=</span> <span class='va'>continent</span>,
                           size <span class='op'>=</span> <span class='va'>pop</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_point</span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>scale_x_log10</span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='va'><a href='https://scales.r-lib.org/reference/label_dollar.html'>dollar</a></span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>scale_size_continuous</span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='va'><a href='https://scales.r-lib.org/reference/label_number.html'>comma</a></span>,
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_log10</a></span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='va'><a href='https://scales.r-lib.org/reference/label_dollar.html'>dollar</a></span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_size.html'>scale_size_continuous</a></span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='va'><a href='https://scales.r-lib.org/reference/label_number.html'>comma</a></span>,
                         breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1e5</span>, <span class='fl'>5e5</span>,
                                    <span class='fl'>1e6</span>, <span class='fl'>5e6</span>,
                                    <span class='fl'>5e7</span>, <span class='fl'>2e8</span>,
                                    <span class='fl'>1e9</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>'GDP Per Capita'</span>,
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>'GDP Per Capita'</span>,
        y <span class='op'>=</span> <span class='st'>'Life Expectancy'</span>,
        color <span class='op'>=</span> <span class='st'>'Continent'</span>,
        size <span class='op'>=</span> <span class='st'>'Population'</span>,
@@ -2487,25 +2500,33 @@ Schedule
 </div>
 <p><img src="week-10_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
 </div>
-<p>It looks like a strong relationship between wealth and health, but maybe it’s just that both GDP and life expectancy have been increasing over time, which causes a <em>spurious correlation</em>. Like plotting <a href="https://tylervigen.com/view_correlation?id=1703">US margarine consumption and the divorce rates</a> over time. To be sure we know what’s going on, we want to take a few precautions.</p>
-<h3 id="solution-1-look-at-cross-sections">Solution 1: Look at Cross-Sections</h3>
-<p>Instead of plotting all the data at once, just filter out a single year and see if there’s a relationship. This is called taking a <strong>cross-section</strong>.</p>
+<p>It looks like a strong relationship between wealth and health, but
+maybe it’s just that both GDP and life expectancy have been increasing
+over time, which causes a <em>spurious correlation</em>. Like plotting
+<a href="https://tylervigen.com/view_correlation?id=1703">US margarine
+consumption and the divorce rates</a> over time. To be sure we know
+what’s going on, we want to take a few precautions.</p>
+<h3 id="solution-1-look-at-cross-sections">Solution 1: Look at
+Cross-Sections</h3>
+<p>Instead of plotting all the data at once, just filter out a single
+year and see if there’s a relationship. This is called taking a
+<strong>cross-section</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>gapminder</span>, <span class='va'>year</span> <span class='op'>==</span> <span class='fl'>2007</span><span class='op'>)</span>,
-            mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>gdpPercap</span>,
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>gapminder</span>, <span class='va'>year</span> <span class='op'>==</span> <span class='fl'>2007</span><span class='op'>)</span>,
+            mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>gdpPercap</span>,
                           y <span class='op'>=</span> <span class='va'>lifeExp</span>,
                           color <span class='op'>=</span> <span class='va'>continent</span>,
                           size <span class='op'>=</span> <span class='va'>pop</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_point</span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>scale_x_log10</span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='va'><a href='https://scales.r-lib.org/reference/label_dollar.html'>dollar</a></span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>scale_size_continuous</span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='va'><a href='https://scales.r-lib.org/reference/label_number.html'>comma</a></span>,
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_log10</a></span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='va'><a href='https://scales.r-lib.org/reference/label_dollar.html'>dollar</a></span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_size.html'>scale_size_continuous</a></span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='va'><a href='https://scales.r-lib.org/reference/label_number.html'>comma</a></span>,
                         breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1e5</span>, <span class='fl'>5e5</span>,
                                    <span class='fl'>1e6</span>, <span class='fl'>5e6</span>,
                                    <span class='fl'>5e7</span>, <span class='fl'>2e8</span>,
                                    <span class='fl'>1e9</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>'GDP Per Capita'</span>,
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>'GDP Per Capita'</span>,
        y <span class='op'>=</span> <span class='st'>'Life Expectancy'</span>,
        color <span class='op'>=</span> <span class='st'>'Continent'</span>,
        size <span class='op'>=</span> <span class='st'>'Population'</span>,
@@ -2515,24 +2536,29 @@ Schedule
 <p><img src="week-10_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
 </div>
 <p>Still a relationship!</p>
-<h3 id="solution-2-look-at-a-time-series">Solution 2: Look at a time series</h3>
-<p>Instead of looking at all the countries at once, let’s isolate a single country and see what’s happening to its GDP and life expectancy over time. The <code>geom_path()</code> layer connects points based on their order in the dataset (rather than their order on the x-axis like <code>geom_line()</code>).</p>
+<h3 id="solution-2-look-at-a-time-series">Solution 2: Look at a time
+series</h3>
+<p>Instead of looking at all the countries at once, let’s isolate a
+single country and see what’s happening to its GDP and life expectancy
+over time. The <code>geom_path()</code> layer connects points based on
+their order in the dataset (rather than their order on the x-axis like
+<code>geom_line()</code>).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>ggplot</span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>gapminder</span>, <span class='va'>country</span> <span class='op'>==</span> <span class='st'>'Poland'</span><span class='op'>)</span>,
-            mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>gdpPercap</span>,
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>gapminder</span>, <span class='va'>country</span> <span class='op'>==</span> <span class='st'>'Poland'</span><span class='op'>)</span>,
+            mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>gdpPercap</span>,
                           y <span class='op'>=</span> <span class='va'>lifeExp</span>,
                           label <span class='op'>=</span> <span class='va'>year</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_text</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_path</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>scale_x_log10</span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='va'><a href='https://scales.r-lib.org/reference/label_dollar.html'>dollar</a></span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>scale_size_continuous</span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='va'><a href='https://scales.r-lib.org/reference/label_number.html'>comma</a></span>,
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_text</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_path</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_log10</a></span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='va'><a href='https://scales.r-lib.org/reference/label_dollar.html'>dollar</a></span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_size.html'>scale_size_continuous</a></span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>scales</span><span class='fu'>::</span><span class='va'><a href='https://scales.r-lib.org/reference/label_number.html'>comma</a></span>,
                         breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1e5</span>, <span class='fl'>5e5</span>,
                                    <span class='fl'>1e6</span>, <span class='fl'>5e6</span>,
                                    <span class='fl'>5e7</span>, <span class='fl'>2e8</span>,
                                    <span class='fl'>1e9</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>'GDP Per Capita'</span>,
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>'GDP Per Capita'</span>,
        y <span class='op'>=</span> <span class='st'>'Life Expectancy'</span>,
        color <span class='op'>=</span> <span class='st'>'Continent'</span>,
        size <span class='op'>=</span> <span class='st'>'Population'</span>,
@@ -2542,25 +2568,39 @@ Schedule
 <p><img src="week-10_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
 </div>
 <h3 id="solution-3-make-a-movie">Solution 3: Make a movie!</h3>
-<p>Why <em>just</em> look at a cross-section or a time series, when you can do both simultaneously? Take that original plot object <code>p</code> and make the dots move over time:</p>
+<p>Why <em>just</em> look at a cross-section or a time series, when you
+can do both simultaneously? Take that original plot object
+<code>p</code> and make the dots move over time:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://gganimate.com'>gganimate</a></span><span class='op'>)</span>
 
-<span class='va'>p</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/pkg/gganimate/man/transition_time.html'>transition_time</a></span><span class='op'>(</span>time <span class='op'>=</span> <span class='va'>year</span><span class='op'>)</span>
+<span class='va'>p</span> <span class='op'>+</span> <span class='fu'><a href='https://gganimate.com/reference/transition_time.html'>transition_time</a></span><span class='op'>(</span>time <span class='op'>=</span> <span class='va'>year</span><span class='op'>)</span>
 </code></pre>
 </div>
-<p><img src="week-10_files/figure-html5/unnamed-chunk-5-1.gif" /><!-- --></p>
+<p><img
+src="week-10_files/figure-html5/unnamed-chunk-5-1.gif" /><!-- --></p>
 </div>
-<p>Now we can see the trajectory of individual countries over time (check out China - the big one!) and verify that the relationship between health and wealth is positive from the 1950s all the way to today.</p>
+<p>Now we can see the trajectory of individual countries over time
+(check out China - the big one!) and verify that the relationship
+between health and wealth is positive from the 1950s all the way to
+today.</p>
 <h2 id="reading-assignments">Reading Assignments</h2>
-<p>Next week, text as data! The following tutorial is your guide to the <code>tidytext</code> package, and make you’ve completed the instructions to sign up for the <a href="https://joeornstein.github.io/pols-3230/week-11.html#getting-twitter-data">Twitter API</a>.</p>
+<p>Next week, text as data! The following tutorial is your guide to the
+<code>tidytext</code> package, and make you’ve completed the
+instructions to sign up for the <a
+href="https://joeornstein.github.io/pols-3230/week-11.html#getting-twitter-data">Twitter
+API</a>.</p>
 <ul>
-<li><a href="https://juliasilge.shinyapps.io/learntidytext/#section-introduction">Text Mining with Tidy Data Principles</a></li>
+<li><a
+href="https://juliasilge.shinyapps.io/learntidytext/#section-introduction">Text
+Mining with Tidy Data Principles</a></li>
 </ul>
 <h2 id="team-project">Team Project</h2>
-<p>Create an animation of a time series dataset. Post the replication code to eLC.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Create an animation of a time series dataset. Post the replication
+code to eLC.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
