@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,7 +77,7 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
@@ -85,10 +85,32 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
+<style>
+  div.csl-bib-body { }
+  div.csl-entry {
+    clear: both;
+    }
+  .hanging div.csl-entry {
+    margin-left:2em;
+    text-indent:-2em;
+  }
+  div.csl-left-margin {
+    min-width:2em;
+    float:left;
+  }
+  div.csl-right-inline {
+    margin-left:2em;
+    padding-left:1em;
+  }
+  div.csl-indent {
+    margin-left: 2em;
+  }
+</style>
+
   <!--radix_placeholder_meta_tags-->
   <title>Introduction to Political Methodology</title>
 
-  <meta property="description" itemprop="description" content="A PhD-level course on understanding data"/>
+  <meta property="description" itemprop="description" content="How to learn from data"/>
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="img/favicon_io/favicon.ico"/>
 
@@ -97,24 +119,24 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Introduction to Political Methodology"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="A PhD-level course on understanding data"/>
+  <meta property="og:description" content="How to learn from data"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Introduction to Political Methodology"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Introduction to Political Methodology"/>
-  <meta property="twitter:description" content="A PhD-level course on understanding data"/>
+  <meta property="twitter:description" content="How to learn from data"/>
 
   <!--/radix_placeholder_meta_tags-->
   
-  <meta name="citation_reference" content="citation_title=How to take smart notes: One simple technique to boost writing, learning and thinkingfor students, academics and nonfiction book writers;citation_publication_date=2017;citation_author=SÃ¶nke Ahrens"/>
+  <meta name="citation_reference" content="citation_title=How to take smart notes: One simple technique to boost writing, learning and thinkingfor students, academics and nonfiction book writers;citation_publication_date=2017;citation_author=Sönke Ahrens"/>
   <meta name="citation_reference" content="citation_title=How To Remember Anything Forever-ish;citation_publication_date=2018;citation_author=Nicky Case"/>
   <meta name="citation_reference" content="citation_title=Excuse me, do you have a moment to talk about version control?;citation_publication_date=2017;citation_doi=10.7287/peerj.preprints.3159v2;citation_author=Jennifer Bryan"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","author","description","site","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Introduction to Political Methodology"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url","orcid_id"]}},"value":[{"type":"character","attributes":{},"value":["Joe Ornstein"]},{"type":"character","attributes":{},"value":["https://joeornstein.github.io/"]},{"type":"character","attributes":{},"value":["University of Georgia"]},{"type":"character","attributes":{},"value":["https://spia.uga.edu/departments-centers/department-of-political-science/"]},{"type":"character","attributes":{},"value":["0000-0002-5704-2098"]}]}]},{"type":"character","attributes":{},"value":["A PhD-level course on understanding data\n"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"character","attributes":{},"value":["references.bib"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","author","description","site","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Introduction to Political Methodology"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url","affiliation","affiliation_url","orcid_id"]}},"value":[{"type":"character","attributes":{},"value":["Joe Ornstein"]},{"type":"character","attributes":{},"value":["https://joeornstein.github.io/"]},{"type":"character","attributes":{},"value":["University of Georgia"]},{"type":"character","attributes":{},"value":["https://spia.uga.edu/departments-centers/department-of-political-science/"]},{"type":"character","attributes":{},"value":["0000-0002-5704-2098"]}]}]},{"type":"character","attributes":{},"value":["How to learn from data\n"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"character","attributes":{},"value":["references.bib"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -461,7 +483,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   </style>
 
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
   <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -1868,7 +1890,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -2349,7 +2374,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2369,7 +2394,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Introduction to Political Methodology","description":"A PhD-level course on understanding data","authors":[{"author":"Joe Ornstein","authorURL":"https://joeornstein.github.io/","affiliation":"University of Georgia","affiliationURL":"https://spia.uga.edu/departments-centers/department-of-political-science/","orcidID":"0000-0002-5704-2098"}]}
+{"title":"Introduction to Political Methodology","description":"How to learn from data","authors":[{"author":"Joe Ornstein","authorURL":"https://joeornstein.github.io/","affiliation":"University of Georgia","affiliationURL":"https://spia.uga.edu/departments-centers/department-of-political-science/","orcidID":"0000-0002-5704-2098"}]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2389,25 +2414,27 @@ Schedule
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
-<span class="nav-dropdown-header">PART 1: LOOK AT YOUR DATA</span>
+<span class="nav-dropdown-header">PART 1: DISCOVERY</span>
 <a href="week-01.html">Week 1: Getting Started</a>
-<a href="week-02.html">Week 2: Visualize Your Data</a>
-<a href="week-03.html">Week 3: Tidy Your Data</a>
-<a href="week-04.html">Week 4: Wrangle Your Data</a>
-<a href="week-05.html">Week 5: Describe Your Data</a>
-<a href="week-06.html">Week 6: Midterm Mini-Conference</a>
+<a href="week-02.html">Week 2: Describe Your Data</a>
+<a href="week-03.html">Week 3: Wrangle Your Data</a>
+<a href="week-04.html">Week 4: Visualize Your Data</a>
+<span class="nav-dropdown-header">Week 5: No Class (APSA)</span>
+<a href="week-06.html">Week 6: The Linear Model</a>
+<a href="week-07.html">Week 7: Midterm Mini-Conference</a>
 <hr/>
-<span class="nav-dropdown-header">PART 2: BUILD MODELS</span>
-<a href="week-07.html">Week 7: Optimization</a>
-<a href="week-08.html">Week 8: Causation</a>
+<span class="nav-dropdown-header">PART 2: CAUSALITY</span>
+<a href="week-08.html">Week 8: The Fundamental Problem</a>
 <a href="week-09.html">Week 9: Back Doors</a>
 <a href="week-10.html">Week 10: Front Doors</a>
+<hr/>
+<span class="nav-dropdown-header">PART 3: UNCERTAINTY</span>
 <a href="week-11.html">Week 11: Sampling</a>
 <a href="week-12.html">Week 12: Statistical Inference I</a>
 <a href="week-13.html">Week 13: Statistical Inference II</a>
 </div>
 </div>
-<a href="https://calendly.com/jornstein/15min">
+<a href="https://calendly.com/joeornstein/20min">
 <i class="fas fa-calendar-plus" aria-hidden="true"></i>
 </a>
 <a href="https://hypothes.is/groups/g7pXazQj/pols-7012-fall-2021">
@@ -2428,11 +2455,14 @@ Schedule
 <h1>Introduction to Political Methodology</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>A PhD-level course on understanding data</p></p>
+<p><p>How to learn from data</p></p>
 </div>
 
 <div class="d-byline">
-  Joe Ornstein <a href="https://joeornstein.github.io/" class="uri">https://joeornstein.github.io/</a> (University of Georgia)<a href="https://spia.uga.edu/departments-centers/department-of-political-science/" class="uri">https://spia.uga.edu/departments-centers/department-of-political-science/</a>
+  Joe Ornstein <a href="https://joeornstein.github.io/"
+class="uri">https://joeornstein.github.io/</a> (University of Georgia)<a
+href="https://spia.uga.edu/departments-centers/department-of-political-science/"
+class="uri">https://spia.uga.edu/departments-centers/department-of-political-science/</a>
   
 
 </div>
@@ -2442,78 +2472,188 @@ Schedule
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#overview">Overview</a></li>
-<li><a href="#getting-started">Getting Started</a>
+<li><a href="#overview" id="toc-overview">Overview</a></li>
+<li><a href="#getting-started" id="toc-getting-started">Getting
+Started</a>
 <ul>
-<li><a href="#data-analysis-r-and-rstudio">Data Analysis: R and RStudio</a></li>
-<li><a href="#version-control-git">Version Control: git</a></li>
-<li><a href="#reference-management-zotero">Reference Management: Zotero</a></li>
-<li><a href="#announcements-and-discussion-groupme">Announcements and Discussion: GroupMe</a></li>
-<li><a href="#social-annotation-hypothesis">Social Annotation: Hypothesis</a></li>
-<li><a href="#memory-aid-anki">Memory Aid: Anki</a></li>
-<li><a href="#note-taking-software-optional">Note-Taking Software (Optional)</a></li>
+<li><a href="#data-analysis-r-and-rstudio"
+id="toc-data-analysis-r-and-rstudio">Data Analysis (R and
+RStudio)</a></li>
+<li><a href="#optional-version-control-git"
+id="toc-optional-version-control-git">OPTIONAL: Version Control
+(git)</a></li>
+<li><a href="#optional-reference-management-zotero"
+id="toc-optional-reference-management-zotero">OPTIONAL: Reference
+Management (Zotero)</a></li>
+<li><a href="#optional-social-annotation-hypothesis"
+id="toc-optional-social-annotation-hypothesis">OPTIONAL: Social
+Annotation (Hypothesis)</a></li>
+<li><a href="#optional-memory-aid-anki"
+id="toc-optional-memory-aid-anki">OPTIONAL: Memory Aid (Anki)</a></li>
+<li><a href="#optional-note-taking-software"
+id="toc-optional-note-taking-software">OPTIONAL: Note-Taking
+Software</a></li>
 </ul></li>
 </ul>
 </nav>
 </div>
 <h2 id="overview">Overview</h2>
-<p>In this course, you will learn the math and coding skills you need to conduct quantitative social science research. In the first half of the semester, we’ll get comfortable working with data: cleaning it up, visualizing it, and summarizing it. In the second half of the semester, we’ll build statistical models to help us interpret our data, communicate uncertainty, and make causal claims. A key theme of the course is that, to deeply understand your data, you must do both.</p>
-<p>All the course materials you need will be available on this website. Check the Schedule tab for an overview of each week’s topics and assignments. On the navbar, you can also find links to <a href="syllabus/POLS-7012-syllabus.pdf">read the syllabus</a>, <a href="https://calendly.com/jornstein/15min">schedule an office hours appointment</a>, <a href="https://hypothes.is/groups/g7pXazQj/pols-7012-fall-2021">read your classmates’ comments on the readings</a>, and <a href="https://github.com/joeornstein/intro-political-methodology">visit the code repository</a>.</p>
+<p>In this course, you will learn the math and coding skills you need to
+conduct social science research. In the first half of the semester,
+we’ll get comfortable working with data: cleaning it up, visualizing it,
+and summarizing it. In the second half of the semester, we’ll build
+statistical models to help us interpret our data, communicate
+uncertainty, and make causal claims. A key theme of the course is that,
+to deeply understand your data, you must do both.</p>
+<p>All the course materials you need will be available on this website.
+Check the Schedule tab for an overview of each week’s topics and
+assignments. On the navbar, you can also find links to <a
+href="syllabus/POLS-7012-syllabus.pdf">read the syllabus</a>, <a
+href="https://calendly.com/jornstein/15min">schedule an office hours
+appointment</a>, <a
+href="https://hypothes.is/groups/g7pXazQj/pols-7012-fall-2021">read your
+classmates’ comments on the readings</a>, and <a
+href="https://github.com/joeornstein/intro-political-methodology">visit
+the code repository</a>.</p>
 <h2 id="getting-started">Getting Started</h2>
-<p>There is a <em>lot</em> of software to install for this class, but in the instructions below I’ve tried to make it as straightforward as possible. (And everything is free!) Before the end of our first week, please complete the following steps.</p>
+<p>There is a lot of software to install for this class, but in the
+instructions below I’ve tried to make it as straightforward as possible.
+(And everything is free!) Before the end of our first week, please
+complete the following steps.</p>
 <p><img src="img/wizard.jpg" /></p>
-<h3 id="data-analysis-r-and-rstudio">Data Analysis: R and RStudio</h3>
-<p>For starters, you will need <code>R</code>. The most current version is available <a href="https://cloud.r-project.org/">here</a>. To download, click link for your operating system (i.e. Mac, Windows, Linux), then follow the instructions on the page.</p>
-<p><code>R</code> is the programming language itself, but it comes with a pretty unfriendly interface.</p>
+<h3 id="data-analysis-r-and-rstudio">Data Analysis (R and RStudio)</h3>
+<p>For starters, you will need <code>R</code>. The most current version
+is available <a href="https://cloud.r-project.org/">here</a>. To
+download, click link for your operating system (i.e. Mac, Windows,
+Linux), then follow the instructions on the page.</p>
+<p><code>R</code> is the programming language itself, but it comes with
+a pretty unfriendly interface.</p>
 <p><img src="img/rterm.png" /></p>
-<p>You don’t want to do all your typing in that lonely black box. Instead, you want <strong>RStudio</strong>, a piece of software that makes <code>R</code> <em>much</em> prettier. Download the RStudio Desktop version <a href="https://www.rstudio.com/products/rstudio/download/#download">here</a>.</p>
-<h3 id="version-control-git">Version Control: git</h3>
-<p>Professional coders use a <strong>version control system</strong> called <code>git</code> to keep track of their code. If you’re on a Mac, your computer <em>probably</em> already has it installed.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> If not, or you use a PC, follow the installation instructions <a href="https://git-scm.com/downloads">here</a>.</p>
-<p>Once <code>git</code> is installed, it will want you to introduce yourself. To do so, follow these three steps:</p>
+<p>You don’t want to do all your typing in that lonely black box.
+Instead, you want <strong>RStudio</strong>, a piece of software that
+makes <code>R</code> <em>much</em> prettier. Download the RStudio
+Desktop version <a
+href="https://www.rstudio.com/products/rstudio/download/#download">here</a>.</p>
+<h3 id="optional-version-control-git">OPTIONAL: Version Control
+(git)</h3>
+<p>Professional coders use a <strong>version control system</strong>
+called <code>git</code> to keep track of their code. If you’re on a Mac,
+your computer <em>probably</em> already has it installed.<a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> If
+not, or you use a PC, follow the installation instructions <a
+href="https://git-scm.com/downloads">here</a>.</p>
+<p>Once <code>git</code> is installed, it will want you to introduce
+yourself. To do so, follow these three steps:</p>
 <ol type="1">
-<li><p>In RStudio, click <code>Tools &gt; Shell</code>. This will open your computer’s <a href="https://happygitwithr.com/shell.html">shell</a>, a program that runs other programs.</p></li>
-<li><p>Type and enter <code>git config --global user.name 'Jane Doe'</code> (substituting your name for Jane Doe).</p></li>
-<li><p>Type and enter <code>git config --global user.email 'jane@example.com'</code> (substituting your email for that fake email address).</p></li>
+<li><p>In RStudio, click <code>Tools &gt; Shell</code>. This will open
+your computer’s <a
+href="https://happygitwithr.com/shell.html">shell</a>, a program that
+runs other programs.</p></li>
+<li><p>Type and enter
+<code>git config --global user.name 'Jane Doe'</code> (substituting your
+name for Jane Doe).</p></li>
+<li><p>Type and enter
+<code>git config --global user.email 'jane@example.com'</code>
+(substituting your email for that fake email address).</p></li>
 </ol>
-<p>Using <code>git</code> to track changes in your code involves a bit of struggle on the front end, but it is well worth it <span class="citation" data-cites="bryan2017">(<a href="#ref-bryan2017" role="doc-biblioref">Bryan 2017</a>)</span>. I’ll walk you through the basics in class.</p>
-<h3 id="reference-management-zotero">Reference Management: Zotero</h3>
-<p>This software makes it blindingly simple to keep track of and format your citations. It also plays really nicely with RStudio. Download it <a href="https://www.zotero.org/">here</a> and follow the setup instructions. The <a href="https://chrome.google.com/webstore/detail/zotero-connector/ekhagklcjbdpajgpjgmbionohlpdbjgc?hl=en">Chrome extension</a> is particularly useful; anything you find on the Internet can be saved to your library with one click.</p>
-<p>After Zotero is installed, create a username and password (if you click the green sync button at the top right, it will prompt you to create an account).</p>
-<h3 id="announcements-and-discussion-groupme">Announcements and Discussion: GroupMe</h3>
-<p>Please <a href="https://groupme.com/join_group/62874918/MTotOtTJ">join our class GroupMe</a> to to receive announcements and participate in class discussions.</p>
-<h3 id="social-annotation-hypothesis">Social Annotation: Hypothesis</h3>
-<p>This semester, we’ll be using a <strong>social annotation</strong> platform called <a href="https://web.hypothes.is/">Hypothesis</a>. That way, everyone will be able to post comments/questions/concerns/memes directly into the reading assignments. Follow these steps to get started:</p>
+<p>Using <code>git</code> to track changes in your code involves a bit
+of struggle on the front end, but it is well worth it <span
+class="citation" data-cites="bryan2017">(<a href="#ref-bryan2017"
+role="doc-biblioref">Bryan 2017</a>)</span>. I’ll walk you through the
+basics in class.</p>
+<h3 id="optional-reference-management-zotero">OPTIONAL: Reference
+Management (Zotero)</h3>
+<p>This software makes it blindingly simple to keep track of and format
+your citations. It also plays really nicely with RStudio. Download it <a
+href="https://www.zotero.org/">here</a> and follow the setup
+instructions. The <a
+href="https://chrome.google.com/webstore/detail/zotero-connector/ekhagklcjbdpajgpjgmbionohlpdbjgc?hl=en">Chrome
+extension</a> is particularly useful; anything you find on the Internet
+can be saved to your library with one click.</p>
+<p>After Zotero is installed, create a username and password (if you
+click the green sync button at the top right, it will prompt you to
+create an account).</p>
+<h3 id="optional-social-annotation-hypothesis">OPTIONAL: Social
+Annotation (Hypothesis)</h3>
+<p>I have created a group for our class on a <strong>social
+annotation</strong> platform called <a
+href="https://web.hypothes.is/">Hypothesis</a>. That way, everyone will
+be able to post comments/questions/concerns/memes directly into the
+reading assignments. Follow these steps to get started:</p>
 <ol type="1">
-<li>Click the book icon in the top-right corner of the course website. This will take you to our <a href="https://hypothes.is/groups/g7pXazQj/pols-7012-fall-2021">Hypothesis Group Page</a>.</li>
-<li>If you don’t already have an account, you will be prompted to create one. Make your username something like <code>firstname_lastname</code> so we know who is posting!</li>
-<li>Hypothesis works best with Google Chrome. If you don’t have it, install it <a href="https://www.google.com/chrome/">here</a>.</li>
-<li>Install the <a href="https://chrome.google.com/webstore/detail/hypothesis-web-pdf-annota/bjfhmglciegochdpefhhlphglcehbmek?hl=en">Chrome extension</a>. When you do, it should take you to a welcome page with instructions on how to log in, pin the extension, and start annotating pages!</li>
+<li>Click the book icon in the top-right corner of the course website.
+This will take you to our <a
+href="https://hypothes.is/groups/g7pXazQj/pols-7012-fall-2021">Hypothesis
+Group Page</a>.</li>
+<li>If you don’t already have an account, you will be prompted to create
+one. Make your username something like <code>firstname_lastname</code>
+so we know who is posting!</li>
+<li>Hypothesis works best with Google Chrome. If you don’t have it,
+install it <a href="https://www.google.com/chrome/">here</a>.</li>
+<li>Install the <a
+href="https://chrome.google.com/webstore/detail/hypothesis-web-pdf-annota/bjfhmglciegochdpefhhlphglcehbmek?hl=en">Chrome
+extension</a>. When you do, it should take you to a welcome page with
+instructions on how to log in, pin the extension, and start annotating
+pages!</li>
 </ol>
 <p><img src="img/hypothesis-tutorial/extension-setup.png" /></p>
 <ol start="5" type="1">
-<li>Go to the <a href="syllabus/POLS-3230-syllabus.pdf">syllabus</a> and add your questions/comments/memes. Whenever you annotate a reading, just make sure that you are posting to the Group instead of Public (see the dropdown menu at the top of the extension).</li>
+<li>Go to the <a href="syllabus/POLS-3230-syllabus.pdf">syllabus</a> and
+add your questions/comments/memes. Whenever you annotate a reading, just
+make sure that you are posting to the Group instead of Public (see the
+dropdown menu at the top of the extension).</li>
 </ol>
-<h3 id="memory-aid-anki">Memory Aid: Anki</h3>
-<p>A lot of grad school – particularly the methods courses – involves rote memorization of things like formulas and code syntax. This is the boring and frustrating part, but there are ways to make it somewhat less boring and frustrating. Do yourself a favor and take 20 minutes and play through <span class="citation" data-cites="case2018"><a href="#ref-case2018" role="doc-biblioref">Case</a> (<a href="#ref-case2018" role="doc-biblioref">2018</a>)</span>. If you’re convinced, download <a href="https://apps.ankiweb.net/">Anki</a>. It’s not the prettiest spaced repetition software out there, but it is free, streamlined, highly customizable, and has a large, dedicated fanbase.</p>
-<h3 id="note-taking-software-optional">Note-Taking Software (Optional)</h3>
-<p>While we’re talking software, consider how you want to organize all the notes you generate in grad school. Information is going to be coming at you like a firehouse, and you’ll want a system that you can trust as your “external brain.”<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> I highly recommend reading <span class="citation" data-cites="ahrens2017"><a href="#ref-ahrens2017" role="doc-biblioref">Ahrens</a> (<a href="#ref-ahrens2017" role="doc-biblioref">2017</a>)</span>, a book that is much more fascinating than a book about note-taking should rightfully be.</p>
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<h3 id="optional-memory-aid-anki">OPTIONAL: Memory Aid (Anki)</h3>
+<p>A lot of grad school – particularly the methods courses – involves
+rote memorization of things like formulas and code syntax. This is the
+boring and frustrating part, but there are ways to make it somewhat less
+boring and frustrating. Do yourself a favor and take 20 minutes and play
+through <span class="citation" data-cites="case2018">Case (<a
+href="#ref-case2018" role="doc-biblioref">2018</a>)</span>. If you’re
+convinced, download <a href="https://apps.ankiweb.net/">Anki</a>. It’s
+not the prettiest spaced repetition software out there, but it is free,
+streamlined, highly customizable, and has a large, dedicated
+fanbase.</p>
+<h3 id="optional-note-taking-software">OPTIONAL: Note-Taking
+Software</h3>
+<p>While we’re talking software, consider how you want to organize all
+the notes you generate in grad school. Information is going to be coming
+at you like a firehouse, and you’ll want a system that you can trust as
+your “external brain”.<a href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a> I highly recommend reading <span
+class="citation" data-cites="ahrens2017">Ahrens (<a
+href="#ref-ahrens2017" role="doc-biblioref">2017</a>)</span>, a book
+that is much more fascinating than a book about note-taking should
+rightfully be.</p>
+<div id="refs" class="references csl-bib-body hanging-indent"
+role="doc-bibliography">
 <div id="ref-ahrens2017" class="csl-entry" role="doc-biblioentry">
-Ahrens, Sönke. 2017. <em>How to Take Smart Notes: One Simple Technique to Boost Writing, Learning and Thinking<span><span></span></span>for Students, Academics and Nonfiction Book Writers</em>.
+Ahrens, Sönke. 2017. <em>How to Take Smart Notes: One Simple Technique
+to Boost Writing, Learning and Thinking<span></span>for Students,
+Academics and Nonfiction Book Writers</em>.
 </div>
 <div id="ref-bryan2017" class="csl-entry" role="doc-biblioentry">
-Bryan, Jennifer. 2017. <span>“Excuse Me, Do You Have a Moment to Talk about Version Control?”</span> <a href="https://doi.org/10.7287/peerj.preprints.3159v2">https://doi.org/10.7287/peerj.preprints.3159v2</a>.
+Bryan, Jennifer. 2017. <span>“Excuse Me, Do You Have a Moment to Talk
+about Version Control?”</span> <a
+href="https://doi.org/10.7287/peerj.preprints.3159v2">https://doi.org/10.7287/peerj.preprints.3159v2</a>.
 </div>
 <div id="ref-case2018" class="csl-entry" role="doc-biblioentry">
-Case, Nicky. 2018. <span>“How To Remember Anything Forever-Ish.”</span> <a href="https://ncase.me/remember/">https://ncase.me/remember/</a>.
+Case, Nicky. 2018. <span>“How To Remember Anything Forever-Ish.”</span>
+<a href="https://ncase.me/remember/">https://ncase.me/remember/</a>.
 </div>
 </div>
-<section class="footnotes" role="doc-endnotes">
+<section class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>I think? If you’re on a Mac and you can’t get git to work, let me know!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>Don’t be like I was in grad school and write all your notes in a bunch of random notebooks that you throw in the trash at the end of the semester; so much wasted effort!</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<li id="fn1" role="doc-endnote"><p>I think? If you’re on a Mac and you
+can’t get git to work, let me know!<a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Don’t be like I was in grad school
+and write all your notes in a bunch of random notebooks that you throw
+in the trash at the end of the semester; so much wasted effort!</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></li>
 </ol>
 </section>

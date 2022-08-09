@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,7 +77,7 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
@@ -85,10 +85,11 @@ code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
+
   <!--radix_placeholder_meta_tags-->
   <title>Introduction to Political Methodology: Week 4</title>
 
-  <meta property="description" itemprop="description" content="Wrangling Your Data"/>
+  <meta property="description" itemprop="description" content="Visualize your data"/>
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="img/favicon_io/favicon.ico"/>
 
@@ -96,20 +97,20 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Introduction to Political Methodology: Week 4"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Wrangling Your Data"/>
+  <meta property="og:description" content="Visualize your data"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Introduction to Political Methodology"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Introduction to Political Methodology: Week 4"/>
-  <meta property="twitter:description" content="Wrangling Your Data"/>
+  <meta property="twitter:description" content="Visualize your data"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["Week 4"]},{"type":"character","attributes":{},"value":["Wrangling Your Data"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["Week 4"]},{"type":"character","attributes":{},"value":["Visualize your data"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -456,7 +457,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   </style>
 
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
   <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -1863,7 +1864,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -2344,7 +2348,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2364,7 +2368,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Week 4","description":"Wrangling Your Data","authors":[]}
+{"title":"Week 4","description":"Visualize your data","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2384,25 +2388,27 @@ Schedule
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
-<span class="nav-dropdown-header">PART 1: LOOK AT YOUR DATA</span>
+<span class="nav-dropdown-header">PART 1: DISCOVERY</span>
 <a href="week-01.html">Week 1: Getting Started</a>
-<a href="week-02.html">Week 2: Visualize Your Data</a>
-<a href="week-03.html">Week 3: Tidy Your Data</a>
-<a href="week-04.html">Week 4: Wrangle Your Data</a>
-<a href="week-05.html">Week 5: Describe Your Data</a>
-<a href="week-06.html">Week 6: Midterm Mini-Conference</a>
+<a href="week-02.html">Week 2: Describe Your Data</a>
+<a href="week-03.html">Week 3: Wrangle Your Data</a>
+<a href="week-04.html">Week 4: Visualize Your Data</a>
+<span class="nav-dropdown-header">Week 5: No Class (APSA)</span>
+<a href="week-06.html">Week 6: The Linear Model</a>
+<a href="week-07.html">Week 7: Midterm Mini-Conference</a>
 <hr/>
-<span class="nav-dropdown-header">PART 2: BUILD MODELS</span>
-<a href="week-07.html">Week 7: Optimization</a>
-<a href="week-08.html">Week 8: Causation</a>
+<span class="nav-dropdown-header">PART 2: CAUSALITY</span>
+<a href="week-08.html">Week 8: The Fundamental Problem</a>
 <a href="week-09.html">Week 9: Back Doors</a>
 <a href="week-10.html">Week 10: Front Doors</a>
+<hr/>
+<span class="nav-dropdown-header">PART 3: UNCERTAINTY</span>
 <a href="week-11.html">Week 11: Sampling</a>
 <a href="week-12.html">Week 12: Statistical Inference I</a>
 <a href="week-13.html">Week 13: Statistical Inference II</a>
 </div>
 </div>
-<a href="https://calendly.com/jornstein/15min">
+<a href="https://calendly.com/joeornstein/20min">
 <i class="fas fa-calendar-plus" aria-hidden="true"></i>
 </a>
 <a href="https://hypothes.is/groups/g7pXazQj/pols-7012-fall-2021">
@@ -2423,7 +2429,7 @@ Schedule
 <h1>Week 4</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Wrangling Your Data</p></p>
+<p><p>Visualize your data</p></p>
 </div>
 
 
@@ -2432,27 +2438,86 @@ Schedule
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#reading-assignments">Reading Assignments</a></li>
-<li><a href="#problem-set">Problem Set</a></li>
+<li><a href="#reading" id="toc-reading">Reading</a></li>
+<li><a href="#optional" id="toc-optional">Optional</a></li>
+<li><a href="#overview" id="toc-overview">Overview</a></li>
+<li><a href="#problem-set" id="toc-problem-set">Problem Set</a></li>
 </ul>
 </nav>
 </div>
-<p>Up to now, we’ve been working with pretty tidy datasets. Every column is a variable, every row is an observation, and every value is where it should be. But things are not always this way. More often than you’re going to like, data comes to you an unruly mess, and you’ll need to tidy it up before you can even start to explore it.</p>
-<p><img src="img/horst_tidyverse.jpg" /></p>
-<p>Over the next few weeks, we’ll learn some of the most important functions in the <code>tidyverse</code> for data importing, wrangling, and summarizing. We’ll introduce the essential <strong>summary statistics</strong> that we use to describe central tendency, variation, and correlation.</p>
-<h2 id="reading-assignments">Reading Assignments</h2>
-<p>Before next week, read up on:</p>
-<ol type="1">
-<li>How to <strong>join</strong> information from two dataframes together. <code>left_join()</code> is the most useful. Here’s a <a href="https://stat545.com/join-cheatsheet.html#left_joinsuperheroes-publishers">good explanation</a>, and here’s an <a href="https://rstudio.cloud/learn/primers/4.3">interactive primer</a>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
-<li><a href="https://tinystats.github.io/teacups-giraffes-and-statistics/index.html">Teacups, Giraffes, and Statistics</a> (Modules 1-5)</li>
-</ol>
+<h2 id="reading">Reading</h2>
+<ul>
+<li><a
+href="https://tinystats.github.io/teacups-giraffes-and-statistics/02_bellCurve.html">Teacup
+Giraffes</a>, The Normal Distribution</li>
+<li><a href="https://socviz.co/makeplot.html#makeplot">Healy Chapter
+3</a></li>
+<li><a href="https://socviz.co/groupfacettx.html">Healy Chapter
+4</a></li>
+<li><a href="https://socviz.co/workgeoms.html">Healy Chapter 5</a></li>
+<li>Read up on how to <strong>join</strong> information from two
+dataframes together. <code>left_join()</code> is the most useful. Here’s
+a <a
+href="https://stat545.com/join-cheatsheet.html#left_joinsuperheroes-publishers">good
+explanation</a>, and here’s an <a
+href="https://rstudio.cloud/learn/primers/4.3">interactive
+primer</a>.</li>
+</ul>
+<h2 id="optional">Optional</h2>
+<ul>
+<li><a href="https://socviz.co/lookatdata.html">Healy Chapter 1</a>: A
+nice review of the evidence on what makes an effective
+visualization.</li>
+<li>If you want to learn how to make maps in <code>ggplot</code>, <a
+href="https://socviz.co/maps.html">Healy Chapter 7</a> is a great
+resource.</li>
+<li>For more practice with <code>ggplot</code>, this <a
+href="https://r4ds.had.co.nz/data-visualisation.html">chapter</a> in
+Hadley Wickham’s book is a nice resource.<a href="#fn1"
+class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a></li>
+<li>The <a href="https://www.rstudio.com/resources/cheatsheets/">ggplot
+cheat sheet</a> is a useful reference.</li>
+</ul>
+<h2 id="overview">Overview</h2>
+<p>The brain is hardwired to detect patterns in images, and a
+well-crafted data visualization can take advantage of that fact to
+communicate lots of information in an aesthetically pleasing way. And
+it’s about more than communication. Charts can reveal patterns in data
+that summary statistics alone might miss, as the <a
+href="https://www.autodesk.com/research/publications/same-stats-different-graphs">Datasaurus
+Dozen</a> artfully reveals…</p>
+<p><img src="img/datasaurus-dozen.gif" /></p>
+<p>This week, we get deeper into building visualizations with the
+<code>ggplot2</code> package (a part of the <code>tidyverse</code>). It
+will take some time to learn all of the function syntax, so be patient
+with yourself. Once you get the hang of it, you’ll have an endlessly
+flexible tool for exploring and communicating patterns in your data.
+Let’s get started.</p>
 <h2 id="problem-set">Problem Set</h2>
-<p>No problem set due this week.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
-<section class="footnotes" role="doc-endnotes">
+<p>Using one of the datasets we’ve been working with in class, submit a
+data visualization using <code>ggplot</code>. Your submission
+should:</p>
+<ol type="1">
+<li>Communicate some interesting result</li>
+<li>Use more than one aesthetic</li>
+<li>Be easy to interpret at a glance (you can include a short caption –
+<code>labs(caption = ...)</code> – if you would like).</li>
+<li>Be <em>reproducible</em>; submit your figure as a <code>.png</code>
+file, plus the <code>.R</code> script that produced it.</li>
+</ol>
+<p>Consider this a friendly competition! I will look through the
+sumbmissions and pick my favorites, and their creators will receive
+honor, glory, and adoration.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<section class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>Warning: doesn’t play nice with Hypothesis highlights, but you can still leave page notes.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p>Hadley is the author of
+<code>ggplot</code>, so he knows a trick or two.<a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->

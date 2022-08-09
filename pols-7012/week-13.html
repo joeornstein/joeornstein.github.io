@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,12 +77,34 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+<style>
+  div.csl-bib-body { }
+  div.csl-entry {
+    clear: both;
+    }
+  .hanging div.csl-entry {
+    margin-left:2em;
+    text-indent:-2em;
+  }
+  div.csl-left-margin {
+    min-width:2em;
+    float:left;
+  }
+  div.csl-right-inline {
+    margin-left:2em;
+    padding-left:1em;
+  }
+  div.csl-indent {
+    margin-left: 2em;
+  }
 </style>
 
   <!--radix_placeholder_meta_tags-->
@@ -108,10 +130,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_meta_tags-->
   
   <meta name="citation_reference" content="citation_title=Statistical rethinking: A bayesian course with examples in r and stan;citation_publication_date=2020;citation_publisher=Taylor; Francis, CRC Press;citation_author=Richard McElreath"/>
-  <meta name="citation_reference" content="citation_title=Redefine statistical significance;citation_publication_date=2018;citation_volume=2;citation_doi=10.1038/s41562-017-0189-z;citation_author=Daniel J. Benjamin;citation_author=James O. Berger;citation_author=Magnus Johannesson;citation_author=Brian A. Nosek;citation_author=E.-J. Wagenmakers;citation_author=Richard Berk;citation_author=Kenneth A. Bollen;citation_author=BjÃ¶rn Brembs;citation_author=Lawrence Brown;citation_author=Colin Camerer;citation_author=David Cesarini;citation_author=Christopher D. Chambers;citation_author=Merlise Clyde;citation_author=Thomas D. Cook;citation_author=Paul De Boeck;citation_author=Zoltan Dienes;citation_author=Anna Dreber;citation_author=Kenny Easwaran;citation_author=Charles Efferson;citation_author=Ernst Fehr;citation_author=Fiona Fidler;citation_author=Andy P. Field;citation_author=Malcolm Forster;citation_author=Edward I. George;citation_author=Richard Gonzalez;citation_author=Steven Goodman;citation_author=Edwin Green;citation_author=Donald P. Green;citation_author=Anthony G. Greenwald;citation_author=Jarrod D. Hadfield;citation_author=Larry V. Hedges;citation_author=Leonhard Held;citation_author=Teck Hua Ho;citation_author=Herbert Hoijtink;citation_author=Daniel J. Hruschka;citation_author=Kosuke Imai;citation_author=Guido Imbens;citation_author=John P. A. Ioannidis;citation_author=Minjeong Jeon;citation_author=James Holland Jones;citation_author=Michael Kirchler;citation_author=David Laibson;citation_author=John List;citation_author=Roderick Little;citation_author=Arthur Lupia;citation_author=Edouard Machery;citation_author=Scott E. Maxwell;citation_author=Michael McCarthy;citation_author=Don A. Moore;citation_author=Stephen L. Morgan;citation_author=Marcus MunafÃ³;citation_author=Shinichi Nakagawa;citation_author=Brendan Nyhan;citation_author=Timothy H. Parker;citation_author=Luis Pericchi;citation_author=Marco Perugini;citation_author=Jeff Rouder;citation_author=Judith Rousseau;citation_author=Victoria Savalei;citation_author=Felix D. SchÃ¶nbrodt;citation_author=Thomas Sellke;citation_author=Betsy Sinclair;citation_author=Dustin Tingley;citation_author=Trisha Van Zandt;citation_author=Simine Vazire;citation_author=Duncan J. Watts;citation_author=Christopher Winship;citation_author=Robert L. Wolpert;citation_author=Yu Xie;citation_author=Cristobal Young;citation_author=Jonathan Zinman;citation_author=Valen E. Johnson"/>
+  <meta name="citation_reference" content="citation_title=Redefine statistical significance;citation_publication_date=2018;citation_volume=2;citation_doi=10.1038/s41562-017-0189-z;citation_author=Daniel J. Benjamin;citation_author=James O. Berger;citation_author=Magnus Johannesson;citation_author=Brian A. Nosek;citation_author=E.-J. Wagenmakers;citation_author=Richard Berk;citation_author=Kenneth A. Bollen;citation_author=Björn Brembs;citation_author=Lawrence Brown;citation_author=Colin Camerer;citation_author=David Cesarini;citation_author=Christopher D. Chambers;citation_author=Merlise Clyde;citation_author=Thomas D. Cook;citation_author=Paul De Boeck;citation_author=Zoltan Dienes;citation_author=Anna Dreber;citation_author=Kenny Easwaran;citation_author=Charles Efferson;citation_author=Ernst Fehr;citation_author=Fiona Fidler;citation_author=Andy P. Field;citation_author=Malcolm Forster;citation_author=Edward I. George;citation_author=Richard Gonzalez;citation_author=Steven Goodman;citation_author=Edwin Green;citation_author=Donald P. Green;citation_author=Anthony G. Greenwald;citation_author=Jarrod D. Hadfield;citation_author=Larry V. Hedges;citation_author=Leonhard Held;citation_author=Teck Hua Ho;citation_author=Herbert Hoijtink;citation_author=Daniel J. Hruschka;citation_author=Kosuke Imai;citation_author=Guido Imbens;citation_author=John P. A. Ioannidis;citation_author=Minjeong Jeon;citation_author=James Holland Jones;citation_author=Michael Kirchler;citation_author=David Laibson;citation_author=John List;citation_author=Roderick Little;citation_author=Arthur Lupia;citation_author=Edouard Machery;citation_author=Scott E. Maxwell;citation_author=Michael McCarthy;citation_author=Don A. Moore;citation_author=Stephen L. Morgan;citation_author=Marcus Munafó;citation_author=Shinichi Nakagawa;citation_author=Brendan Nyhan;citation_author=Timothy H. Parker;citation_author=Luis Pericchi;citation_author=Marco Perugini;citation_author=Jeff Rouder;citation_author=Judith Rousseau;citation_author=Victoria Savalei;citation_author=Felix D. Schönbrodt;citation_author=Thomas Sellke;citation_author=Betsy Sinclair;citation_author=Dustin Tingley;citation_author=Trisha Van Zandt;citation_author=Simine Vazire;citation_author=Duncan J. Watts;citation_author=Christopher Winship;citation_author=Robert L. Wolpert;citation_author=Yu Xie;citation_author=Cristobal Young;citation_author=Jonathan Zinman;citation_author=Valen E. Johnson"/>
   <meta name="citation_reference" content="citation_title=The harm done by tests of significance;citation_publication_date=2004;citation_volume=36;citation_doi=10.1016/S0001-4575(03)00036-8;citation_author=Ezra Hauer"/>
   <meta name="citation_reference" content="citation_title=Statistical Methods for Research Workers;citation_publication_date=1925;citation_publisher=Oliver; Boyd;citation_author=Ronald A. Fisher"/>
   <meta name="citation_reference" content="citation_title=Beyond power calculations: Assessing type s (sign) and type m (magnitude) errors;citation_publication_date=2014;citation_doi=10.1177/1745691614551642;citation_author=Andrew Gelman;citation_author=John Carlin"/>
+  <meta name="citation_reference" content="citation_title=Power failure: Why small sample size undermines the reliability of neuroscience;citation_publication_date=2013;citation_volume=14;citation_doi=10.1038/nrn3475;citation_author=Katherine S. Button;citation_author=John P. A. Ioannidis;citation_author=Claire Mokrysz;citation_author=Brian A. Nosek;citation_author=Jonathan Flint;citation_author=Emma S. J. Robinson;citation_author=Marcus R. Munafò"/>
+  <meta name="citation_reference" content="citation_title=Measurement error and the replication crisis;citation_publication_date=2017;citation_volume=355;citation_doi=10.1126/science.aal3618;citation_author=Eric Loken;citation_author=Andrew Gelman"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
@@ -462,7 +486,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   </style>
 
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
   <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -1869,7 +1893,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -2350,7 +2377,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2390,25 +2417,27 @@ Schedule
 <span class="down-arrow">&#x25BE;</span>
 </button>
 <div class="nav-dropdown-content">
-<span class="nav-dropdown-header">PART 1: LOOK AT YOUR DATA</span>
+<span class="nav-dropdown-header">PART 1: DISCOVERY</span>
 <a href="week-01.html">Week 1: Getting Started</a>
-<a href="week-02.html">Week 2: Visualize Your Data</a>
-<a href="week-03.html">Week 3: Tidy Your Data</a>
-<a href="week-04.html">Week 4: Wrangle Your Data</a>
-<a href="week-05.html">Week 5: Describe Your Data</a>
-<a href="week-06.html">Week 6: Midterm Mini-Conference</a>
+<a href="week-02.html">Week 2: Describe Your Data</a>
+<a href="week-03.html">Week 3: Wrangle Your Data</a>
+<a href="week-04.html">Week 4: Visualize Your Data</a>
+<span class="nav-dropdown-header">Week 5: No Class (APSA)</span>
+<a href="week-06.html">Week 6: The Linear Model</a>
+<a href="week-07.html">Week 7: Midterm Mini-Conference</a>
 <hr/>
-<span class="nav-dropdown-header">PART 2: BUILD MODELS</span>
-<a href="week-07.html">Week 7: Optimization</a>
-<a href="week-08.html">Week 8: Causation</a>
+<span class="nav-dropdown-header">PART 2: CAUSALITY</span>
+<a href="week-08.html">Week 8: The Fundamental Problem</a>
 <a href="week-09.html">Week 9: Back Doors</a>
 <a href="week-10.html">Week 10: Front Doors</a>
+<hr/>
+<span class="nav-dropdown-header">PART 3: UNCERTAINTY</span>
 <a href="week-11.html">Week 11: Sampling</a>
 <a href="week-12.html">Week 12: Statistical Inference I</a>
 <a href="week-13.html">Week 13: Statistical Inference II</a>
 </div>
 </div>
-<a href="https://calendly.com/jornstein/15min">
+<a href="https://calendly.com/joeornstein/20min">
 <i class="fas fa-calendar-plus" aria-hidden="true"></i>
 </a>
 <a href="https://hypothes.is/groups/g7pXazQj/pols-7012-fall-2021">
@@ -2438,23 +2467,45 @@ Schedule
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#confidence-intervals">Confidence Intervals</a></li>
-<li><a href="#a-wrinkle-t-tests">A Wrinkle: T-Tests</a></li>
-<li><a href="#some-points-of-caution">Some Points of Caution</a>
+<li><a href="#confidence-intervals"
+id="toc-confidence-intervals">Confidence Intervals</a></li>
+<li><a href="#a-wrinkle-t-tests" id="toc-a-wrinkle-t-tests">A Wrinkle:
+T-Tests</a></li>
+<li><a href="#some-points-of-caution"
+id="toc-some-points-of-caution">Some Points of Caution</a>
 <ul>
-<li><a href="#p-values-and-confidence-intervals-dont-mean-what-most-people-think-they-mean">1. P-values and confidence intervals don’t mean what most people think they mean</a></li>
-<li><a href="#dividing-results-into-significant-and-not-significant-is-silly">2. Dividing results into “significant” and “not significant” is silly</a></li>
+<li><a
+href="#p-values-and-confidence-intervals-dont-mean-what-most-people-think-they-mean"
+id="toc-p-values-and-confidence-intervals-dont-mean-what-most-people-think-they-mean">1.
+P-values and confidence intervals don’t mean what most people think they
+mean</a></li>
+<li><a
+href="#dividing-results-into-significant-and-not-significant-is-silly"
+id="toc-dividing-results-into-significant-and-not-significant-is-silly">2.
+Dividing results into “significant” and “not significant” is
+silly</a></li>
 </ul></li>
 </ul>
 </nav>
 </div>
 <h2 id="confidence-intervals">Confidence Intervals</h2>
-<p>Previously, we introduced the <strong>p-value</strong>, the probability of observing a value as extreme as your test statistic if the null hypothesis were true. A complementary concept is the <strong>confidence interval</strong>, which is a way to express the range of values that is consistent with your observed statistic. A 95% confidence interval, for example, is a set of values such that, in 95% of random samples, it will contain the true value.</p>
-<p>You can construct a 95% confidence interval by taking your sample estimate plus and minus 2 standard errors.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> If the sampling distribution is normal, then about 95% of the time that confidence interval will contain the true population parameter.</p>
-<p>To illustrate, let’s draw samples from CES and compute 95% confidence intervals for average age. The true average age is:</p>
+<p>Previously, we introduced the <strong>p-value</strong>, the
+probability of observing a value as extreme as your test statistic if
+the null hypothesis were true. A complementary concept is the
+<strong>confidence interval</strong>, which is a way to express the
+range of values that is consistent with your observed statistic. A 95%
+confidence interval, for example, is a set of values such that, in 95%
+of random samples, it will contain the true value.</p>
+<p>You can construct a 95% confidence interval by taking your sample
+estimate plus and minus 2 standard errors.<a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> If
+the sampling distribution is normal, then about 95% of the time that
+confidence interval will contain the true population parameter.</p>
+<p>To illustrate, let’s draw samples from CES and compute 95% confidence
+intervals for average age. The true average age is:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span> <span class='fu'><a href='https://rdrr.io/pkg/here/man/here.html'>here</a></span><span class='op'>(</span><span class='st'>'data/ces-2020/cleaned-CES.RData'</span><span class='op'>)</span> <span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span> <span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='st'>'data/ces-2020/cleaned-CES.RData'</span><span class='op'>)</span> <span class='op'>)</span>
 
 <span class='va'>truth</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>ces</span><span class='op'>$</span><span class='va'>age</span><span class='op'>)</span>
 
@@ -2468,9 +2519,9 @@ Schedule
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sample_size</span> <span class='op'>&lt;-</span> <span class='fl'>100</span>
 
-<span class='va'>sample_ages</span> <span class='op'>&lt;-</span> <span class='va'>ces</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>slice_sample</span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>sample_size</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>pull</span><span class='op'>(</span><span class='va'>age</span><span class='op'>)</span>
+<span class='va'>sample_ages</span> <span class='op'>&lt;-</span> <span class='va'>ces</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>sample_size</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>age</span><span class='op'>)</span>
 
 <span class='va'>estimate</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>sample_ages</span><span class='op'>)</span>
 
@@ -2489,17 +2540,22 @@ Schedule
 </div>
 <pre><code>[1] 42.3209 49.4591</code></pre>
 </div>
-<p>In class, we’ll do this a bunch of times, and see that the confidence interval captures the truth 95% of the time!</p>
+<p>In class, we’ll do this a bunch of times, and see that the confidence
+interval captures the truth 95% of the time!</p>
 <h2 id="a-wrinkle-t-tests">A Wrinkle: T-Tests</h2>
-<p>Up to now, we’ve been working with sample sizes that are large enough for their sampling distribution to be approximately normal. But the central limit theorem doesn’t hold unless there is a sufficiently large number of observations!</p>
-<p>How small is too small? Well, try computing those confidence intervals again, but with a sample size of 10.</p>
+<p>Up to now, we’ve been working with sample sizes that are large enough
+for their sampling distribution to be approximately normal. But the
+central limit theorem doesn’t hold unless there is a sufficiently large
+number of observations!</p>
+<p>How small is too small? Well, try computing those confidence
+intervals again, but with a sample size of 10.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sample_size</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
 
-<span class='va'>sample_ages</span> <span class='op'>&lt;-</span> <span class='va'>ces</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>slice_sample</span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>sample_size</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>pull</span><span class='op'>(</span><span class='va'>age</span><span class='op'>)</span>
+<span class='va'>sample_ages</span> <span class='op'>&lt;-</span> <span class='va'>ces</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>sample_size</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>age</span><span class='op'>)</span>
 
 <span class='va'>estimate</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>sample_ages</span><span class='op'>)</span>
 
@@ -2518,14 +2574,30 @@ Schedule
 </div>
 <pre><code>[1] 30.65159 57.94841</code></pre>
 </div>
-<p>If you repeat that enough times, you’ll see that the 95% confidence interval only contains the truth about 91% of the time. Our statistical test falls apart with small samples!</p>
-<p><a href="https://en.wikipedia.org/wiki/William_Sealy_Gosset">William Sealy Gosset</a> came across this problem while working at the Guinness Brewery in the early 1900s, conducting experiments to find the best variety of barley. Working with samples too small to rely on normal approximations, he developed what we now call the <strong>Student’s t test.</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
-<p>It goes like this. Instead of computing a statistic like the sample mean or difference-in-means, the researcher instead computes a <strong>t-statistic</strong>.</p>
+<p>If you repeat that enough times, you’ll see that the 95% confidence
+interval only contains the truth about 91% of the time. Our statistical
+test falls apart with small samples!</p>
+<p><a href="https://en.wikipedia.org/wiki/William_Sealy_Gosset">William
+Sealy Gosset</a> came across this problem while working at the Guinness
+Brewery in the early 1900s, conducting experiments to find the best
+variety of barley. Working with samples too small to rely on normal
+approximations, he developed what we now call the <strong>Student’s t
+test.</strong> <a href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a></p>
+<p>It goes like this. Instead of computing a statistic like the sample
+mean or difference-in-means, the researcher instead computes a
+<strong>t-statistic</strong>.</p>
 <p><span class="math display">\[
 t = \frac{\text{statistic} - H_0}{\text{standard error}}
 \]</span></p>
-<p>Essentially, the <span class="math inline">\(t\)</span> statistic tells you how many standard errors your observed statistic is from the null hypothesis. Gosset showed that the sampling distribution for this statistic follows a <strong>Student’s t distribution</strong>.</p>
-<p>To demonstrate what that looks like, let’s draw a bunch of samples from CES, compute the <span class="math inline">\(t\)</span> statistic for the age of each sample, and see what the sampling distribution of that <span class="math inline">\(t\)</span> statistic looks like:</p>
+<p>Essentially, the <span class="math inline">\(t\)</span> statistic
+tells you how many standard errors your observed statistic is from the
+null hypothesis. Gosset showed that the sampling distribution for this
+statistic follows a <strong>Student’s t distribution</strong>.</p>
+<p>To demonstrate what that looks like, let’s draw a bunch of samples
+from CES, compute the <span class="math inline">\(t\)</span> statistic
+for the age of each sample, and see what the sampling distribution of
+that <span class="math inline">\(t\)</span> statistic looks like:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># the true average age in the population</span>
@@ -2553,8 +2625,8 @@ t = \frac{\text{statistic} - H_0}{\text{standard error}}
 <span class='va'>sampling_distribution</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span><span class='op'>(</span><span class='fl'>25000</span>,
                                    <span class='fu'>get_t_statistic</span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>sample_size</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_histogram</span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>sampling_distribution</span>,
+<span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>sampling_distribution</span>,
                                y<span class='op'>=</span><span class='va'>..density..</span><span class='op'>)</span>,
                  binwidth <span class='op'>=</span> <span class='fl'>0.15</span>,
                  color <span class='op'>=</span> <span class='st'>'black'</span><span class='op'>)</span>
@@ -2563,7 +2635,8 @@ t = \frac{\text{statistic} - H_0}{\text{standard error}}
 </div>
 <p><img src="week-13_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
 </div>
-<p>That sampling distribution looks like a bell curve, but let’s overlay a normal distribution…</p>
+<p>That sampling distribution looks like a bell curve, but let’s overlay
+a normal distribution…</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># overlay normal distribution</span>
@@ -2577,7 +2650,7 @@ t = \frac{\text{statistic} - H_0}{\text{standard error}}
                 sd <span class='op'>=</span> <span class='va'>standard_error</span><span class='op'>)</span>
 
 <span class='va'>p</span> <span class='op'>&lt;-</span> <span class='va'>p</span> <span class='op'>+</span>
-  <span class='fu'>geom_line</span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>x</span>, y<span class='op'>=</span><span class='va'>f_norm</span><span class='op'>)</span>,
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>x</span>, y<span class='op'>=</span><span class='va'>f_norm</span><span class='op'>)</span>,
             color <span class='op'>=</span> <span class='st'>'red'</span><span class='op'>)</span>
 
 <span class='va'>p</span>
@@ -2585,7 +2658,11 @@ t = \frac{\text{statistic} - H_0}{\text{standard error}}
 </div>
 <p><img src="week-13_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
 </div>
-<p>The normal distribution is all wrong! It’s not peaky enough, and there are a bunch of outliers that the normal distribution doesn’t expect. Now let’s overlay a Student’s <span class="math inline">\(t\)</span> distribution with the <code>dt()</code> function…</p>
+<p>The normal distribution is all wrong! It’s not peaky enough, and
+there are a bunch of outliers that the normal distribution doesn’t
+expect. Now let’s overlay a Student’s <span
+class="math inline">\(t\)</span> distribution with the <code>dt()</code>
+function…</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># overlay a Student's t distribution</span>
@@ -2595,7 +2672,7 @@ t = \frac{\text{statistic} - H_0}{\text{standard error}}
 <span class='va'>f_t</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/TDist.html'>dt</a></span><span class='op'>(</span><span class='va'>x</span>, df <span class='op'>=</span> <span class='va'>sample_size</span> <span class='op'>-</span> <span class='fl'>1</span><span class='op'>)</span>
 
 <span class='va'>p</span> <span class='op'>&lt;-</span> <span class='va'>p</span> <span class='op'>+</span>
-  <span class='fu'>geom_line</span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>x</span>, y<span class='op'>=</span><span class='va'>f_t</span><span class='op'>)</span>,
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>x</span>, y<span class='op'>=</span><span class='va'>f_t</span><span class='op'>)</span>,
             color <span class='op'>=</span> <span class='st'>'blue'</span><span class='op'>)</span>
 
 <span class='va'>p</span>
@@ -2604,7 +2681,9 @@ t = \frac{\text{statistic} - H_0}{\text{standard error}}
 <p><img src="week-13_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
 </div>
 <p>Much better.</p>
-<p>Note that this distinction between the t distribution and the normal distribution only really matters when sample size is small. If we go back to drawing a sample of 100…</p>
+<p>Note that this distinction between the t distribution and the normal
+distribution only really matters when sample size is small. If we go
+back to drawing a sample of 100…</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># generate a sampling distribution with n=100</span>
@@ -2612,8 +2691,8 @@ t = \frac{\text{statistic} - H_0}{\text{standard error}}
 <span class='va'>sampling_distribution</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span><span class='op'>(</span><span class='fl'>25000</span>,
                                    <span class='fu'>get_t_statistic</span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>sample_size</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_histogram</span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>sampling_distribution</span>,
+<span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>sampling_distribution</span>,
                                y<span class='op'>=</span><span class='va'>..density..</span><span class='op'>)</span>,
                  binwidth <span class='op'>=</span> <span class='fl'>0.15</span>,
                  color <span class='op'>=</span> <span class='st'>'black'</span><span class='op'>)</span>
@@ -2629,7 +2708,7 @@ t = \frac{\text{statistic} - H_0}{\text{standard error}}
                 sd <span class='op'>=</span> <span class='va'>standard_error</span><span class='op'>)</span>
 
 <span class='va'>p</span> <span class='op'>&lt;-</span> <span class='va'>p</span> <span class='op'>+</span>
-  <span class='fu'>geom_line</span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>x</span>, y<span class='op'>=</span><span class='va'>f_norm</span><span class='op'>)</span>,
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>x</span>, y<span class='op'>=</span><span class='va'>f_norm</span><span class='op'>)</span>,
             color <span class='op'>=</span> <span class='st'>'red'</span><span class='op'>)</span>
 
 <span class='co'># overlay a Student's t distribution</span>
@@ -2639,7 +2718,7 @@ t = \frac{\text{statistic} - H_0}{\text{standard error}}
 <span class='va'>f_t</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/TDist.html'>dt</a></span><span class='op'>(</span><span class='va'>x</span>, df <span class='op'>=</span> <span class='va'>sample_size</span> <span class='op'>-</span> <span class='fl'>1</span><span class='op'>)</span>
 
 <span class='va'>p</span> <span class='op'>&lt;-</span> <span class='va'>p</span> <span class='op'>+</span>
-  <span class='fu'>geom_line</span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>x</span>, y<span class='op'>=</span><span class='va'>f_t</span><span class='op'>)</span>,
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>x</span>, y<span class='op'>=</span><span class='va'>f_t</span><span class='op'>)</span>,
             color <span class='op'>=</span> <span class='st'>'blue'</span><span class='op'>)</span>
 
 <span class='va'>p</span>
@@ -2647,38 +2726,93 @@ t = \frac{\text{statistic} - H_0}{\text{standard error}}
 </div>
 <p><img src="week-13_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
 </div>
-<p>…both distributions are essentially identical. But researchers tend to default to a t-test, because it works no matter what your sample size is.</p>
+<p>…both distributions are essentially identical. But researchers tend
+to default to a t-test, because it works no matter what your sample size
+is.</p>
 <h2 id="some-points-of-caution">Some Points of Caution</h2>
-<p>Let’s close our discussion of hypothesis testing with some notes of caution. P-values, confidence intervals, and “statistical significance” are widely misused, abused, and misunderstood. It’s worth taking a moment to consider what these tests can and cannot tell us.</p>
-<h3 id="p-values-and-confidence-intervals-dont-mean-what-most-people-think-they-mean">1. P-values and confidence intervals don’t mean what most people think they mean</h3>
-<p>When discussing the results of a hypothesis test, it is common even for knowledgeable researchers to slip into colloquial language, like “the p-value is 0.03, which means there’s a 3% chance that the null hypothesis is true.” Or “I’m 95% sure that the true value lies within this confidence interval.” These interpretations <em>seem</em> sensible, but they’re wrong in an important-to-understand way.</p>
-<p>A p-value tells us <em>the probability of the observing your statistic, conditional on the null hypothesis being true</em>. But that’s a bit of a bait-and-switch, because it’s not really the thing we want to know. Instead, we we want to know <em>the probability the null hypothesis is true, conditional on observing the statistic you did</em>. Fortunately, <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes Theorem</a> tells us how to go from one conditional probability to the other.</p>
+<p>Let’s close our discussion of hypothesis testing with some notes of
+caution. P-values, confidence intervals, and “statistical significance”
+are widely misused, abused, and misunderstood. It’s worth taking a
+moment to consider what these tests can and cannot tell us.</p>
+<h3
+id="p-values-and-confidence-intervals-dont-mean-what-most-people-think-they-mean">1.
+P-values and confidence intervals don’t mean what most people think they
+mean</h3>
+<p>When discussing the results of a hypothesis test, it is common even
+for knowledgeable researchers to slip into colloquial language, like
+“the p-value is 0.03, which means there’s a 3% chance that the null
+hypothesis is true”. Or “I’m 95% sure that the true value lies within
+this confidence interval”. These interpretations <em>seem</em>
+sensible, but they’re wrong in an important-to-understand way.</p>
+<p>A p-value tells us <em>the probability of the observing your
+statistic, conditional on the null hypothesis being true</em>. But
+that’s a bit of a bait-and-switch, because it’s not really the thing we
+want to know. Instead, we we want to know <em>the probability the null
+hypothesis is true, conditional on observing the statistic you did</em>.
+Fortunately, <a
+href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes Theorem</a>
+tells us how to go from one conditional probability to the other.</p>
 <p><span class="math display">\[
-P(H_0 | \text{statistic}) = \frac{P(\text{statistic}|H_0) \times P(H_0)}{P(\text{statistic})}
+P(H_0 | \text{statistic}) = \frac{P(\text{statistic}|H_0) \times
+P(H_0)}{P(\text{statistic})}
 \]</span></p>
-<p>The first term, <span class="math inline">\(P(\text{statistic}|H_0)\)</span>, is your p-value. The second term, <span class="math inline">\(P(H_0)\)</span>, is your <em>prior</em>, how likely you think the null hypothesis is before you even look at your data. The third term, <span class="math inline">\(P(\text{statistic})\)</span> turns out to be surprisingly difficult to compute, which is why Bayesian statistics didn’t really take off until we got really powerful personal computers.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> The key takeaway is that not all p-values are created equal. A small p-value in favor of a dodgy hypothesis can still be considered weak evidence.</p>
-<p><a href="https://xkcd.com/1132/"><img src="img/frequentists_vs_bayesians_2x.png" width="600" /></a></p>
-<h3 id="dividing-results-into-significant-and-not-significant-is-silly">2. Dividing results into “significant” and “not significant” is silly</h3>
-<p>Humans crave certainty, but a p-value alone cannot give us the certainty we crave. It cannot tell us whether our result is “real” or not. So over the past century, the scientific community has developed a convention of dividing results into “statistically significant” and “not statistically significant” based on whether the p-value in a null hypothesis test is less than 0.05 – that is, if the chance of the null hypothesis producing our result is less than five percent.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
-<p>But this convention is silly at best, harmful at worst. Silly because there’s no meaningful sense in which a study with p=0.049 is “significant” but a study with p=0.051 is “insignificant.” Imposing an arbitrary threshold does not add clarity to the research prcess, and when combined with <strong>publication bias</strong> – the tendency of journals to only publish statistically significant results – the practice only serves to distort the published literature with wildly exaggerated claims. <span class="citation" data-cites="gelman2014a"><a href="#ref-gelman2014a" role="doc-biblioref">Gelman and Carlin</a> (<a href="#ref-gelman2014a" role="doc-biblioref">2014</a>)</span> call this “Type M error” and it works like this:</p>
-<p>Suppose 200 researchers each survey a random sample of 100 Americans to see if people who use social media are more likely to support an assault rifle ban. Their study only gets published if their p-value is less than 0.05.</p>
+<p>The first term, <span
+class="math inline">\(P(\text{statistic}|H_0)\)</span>, is your p-value.
+The second term, <span class="math inline">\(P(H_0)\)</span>, is your
+<em>prior</em>, how likely you think the null hypothesis is before you
+even look at your data. The third term, <span
+class="math inline">\(P(\text{statistic})\)</span> turns out to be
+surprisingly difficult to compute, which is why Bayesian statistics
+didn’t really take off until we got really powerful personal
+computers.<a href="#fn3" class="footnote-ref" id="fnref3"
+role="doc-noteref"><sup>3</sup></a> The key takeaway is that not all
+p-values are created equal. A small p-value in favor of a dodgy
+hypothesis can still be considered weak evidence.</p>
+<p><a href="https://xkcd.com/1132/"><img
+src="img/frequentists_vs_bayesians_2x.png" width="600" /></a></p>
+<h3
+id="dividing-results-into-significant-and-not-significant-is-silly">2.
+Dividing results into “significant” and “not significant” is silly</h3>
+<p>Humans crave certainty, but a p-value alone cannot give us the
+certainty we crave. It cannot tell us whether our result is “real” or
+not. So over the past century, the scientific community has developed a
+convention of dividing results into “statistically significant” and “not
+statistically significant” based on whether the p-value in a null
+hypothesis test is less than 0.05 – that is, if the chance of the null
+hypothesis producing our result is less than five percent.<a href="#fn4"
+class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>But this convention is silly at best, harmful at worst. Silly because
+there’s no meaningful sense in which a study with p=0.049 is
+“significant” but a study with p=0.051 is “insignificant”. Imposing an
+arbitrary threshold does not add clarity to the research prcess, and
+when combined with <strong>publication bias</strong> – the tendency of
+journals to only publish statistically significant results – the
+practice only serves to distort the published literature with wildly
+exaggerated claims. <span class="citation"
+data-cites="gelman2014a">Gelman and Carlin (<a href="#ref-gelman2014a"
+role="doc-biblioref">2014</a>)</span> call this “Type M error” and it
+works like this:</p>
+<p>Suppose 200 researchers each survey a random sample of 100 Americans
+to see if people who use social media are more likely to support an
+assault rifle ban. Their study only gets published if their p-value is
+less than 0.05.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span> <span class='fu'><a href='https://rdrr.io/pkg/here/man/here.html'>here</a></span><span class='op'>(</span><span class='st'>'data/ces-2020/cleaned-CES.RData'</span><span class='op'>)</span> <span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span> <span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='st'>'data/ces-2020/cleaned-CES.RData'</span><span class='op'>)</span> <span class='op'>)</span>
 
 <span class='co'># clean up the data</span>
-<span class='va'>ces</span> <span class='op'>&lt;-</span> <span class='va'>ces</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>select</span><span class='op'>(</span><span class='va'>social_media_24h</span>, <span class='va'>assault_rifle_ban</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+<span class='va'>ces</span> <span class='op'>&lt;-</span> <span class='va'>ces</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>social_media_24h</span>, <span class='va'>assault_rifle_ban</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
   <span class='co'># remove rows with missing data</span>
-  <span class='va'>na.omit</span> <span class='op'>%&gt;%</span> 
+  <span class='va'>na.omit</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
   <span class='co'># convert to 0-1</span>
-  <span class='fu'>mutate</span><span class='op'>(</span>social_media_24h <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>social_media_24h</span> <span class='op'>==</span> <span class='st'>'Yes'</span><span class='op'>)</span>,
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>social_media_24h <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>social_media_24h</span> <span class='op'>==</span> <span class='st'>'Yes'</span><span class='op'>)</span>,
          assault_rifle_ban <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>assault_rifle_ban</span> <span class='op'>==</span> <span class='st'>'Support'</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># the true difference in the population</span>
-<span class='va'>ces</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>social_media_24h</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>summarize</span><span class='op'>(</span>pct_support_ban <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>assault_rifle_ban</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>ces</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>social_media_24h</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>pct_support_ban <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>assault_rifle_ban</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
 <pre><code># A tibble: 2 x 2
@@ -2687,20 +2821,22 @@ P(H_0 | \text{statistic}) = \frac{P(\text{statistic}|H_0) \times P(H_0)}{P(\text
 1                0           0.641
 2                1           0.644</code></pre>
 </div>
-<p>The true difference is basically zero; social media users are 0.3% more likely to support an assault rifle ban. But our 200 scientists get results all over the map:</p>
+<p>The true difference is basically zero; social media users are 0.3%
+more likely to support an assault rifle ban. But our 200 scientists get
+results all over the map:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span><span class='op'>(</span><span class='fl'>200</span>,
-                     <span class='va'>ces</span> <span class='op'>%&gt;%</span> 
-                       <span class='fu'>slice_sample</span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-                       <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>assault_rifle_ban</span> <span class='op'>~</span> <span class='va'>social_media_24h</span>, data <span class='op'>=</span> <span class='va'>.</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-                       <span class='va'>coef</span> <span class='op'>%&gt;%</span> 
+                     <span class='va'>ces</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+                       <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+                       <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>assault_rifle_ban</span> <span class='op'>~</span> <span class='va'>social_media_24h</span>, data <span class='op'>=</span> <span class='va'>.</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+                       <span class='va'>coef</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
                        <span class='va'>last</span><span class='op'>)</span>
 
-<span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'>ggplot</span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'>aes</span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>results</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>geom_histogram</span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>'black'</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>labs</span><span class='op'>(</span>x<span class='op'>=</span><span class='st'>'Estimate'</span>,
+<span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>results</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>'black'</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='st'>'Estimate'</span>,
        y <span class='op'>=</span> <span class='st'>'Number of Studies'</span><span class='op'>)</span>
 
 <span class='va'>p</span>
@@ -2708,44 +2844,126 @@ P(H_0 | \text{statistic}) = \frac{P(\text{statistic}|H_0) \times P(H_0)}{P(\text
 </div>
 <p><img src="week-13_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
 </div>
-<p>The standard error of the difference-in-means estimator is roughly 0.1, so any estimate greater than 0.2 or less than -0.2 will be deemed “statistically significant” and published. And we’ll have roughly five studies saying that social media makes you 20% more liberal, and five studies saying that social media makes you 20% more conservative.</p>
-<p>This example is somewhat contrived, but the <strong>replication crisis</strong> in psychology <span class="citation" data-cites="button2013 loken2017">(<a href="#ref-button2013" role="doc-biblioref">Button et al. 2013</a>; <a href="#ref-loken2017" role="doc-biblioref">Loken and Gelman 2017</a>)</span> has highlighted how small sample sizes and a statistical significance requirement for publication have resulted in a literature littered with extreme claims that fail to replicate.</p>
-<p>To make matters worse, <span class="citation" data-cites="hauer2004"><a href="#ref-hauer2004" role="doc-biblioref">Hauer</a> (<a href="#ref-hauer2004" role="doc-biblioref">2004</a>)</span> describes how the dominance of statistical significance testing has imposed enormous costs when applied life-and-death questions like “does increasing speed limits cause more auto fatalities?”:</p>
+<p>The standard error of the difference-in-means estimator is roughly
+0.1, so any estimate greater than 0.2 or less than -0.2 will be deemed
+“statistically significant” and published. And we’ll have roughly five
+studies saying that social media makes you 20% more liberal, and five
+studies saying that social media makes you 20% more conservative.</p>
+<p>This example is somewhat contrived, but the <strong>replication
+crisis</strong> in psychology <span class="citation"
+data-cites="button2013 loken2017">(<a href="#ref-button2013"
+role="doc-biblioref">Button et al. 2013</a>; <a href="#ref-loken2017"
+role="doc-biblioref">Loken and Gelman 2017</a>)</span> has highlighted
+how small sample sizes and a statistical significance requirement for
+publication have resulted in a literature littered with extreme claims
+that fail to replicate.</p>
+<p>To make matters worse, <span class="citation"
+data-cites="hauer2004">Hauer (<a href="#ref-hauer2004"
+role="doc-biblioref">2004</a>)</span> describes how the dominance of
+statistical significance testing has imposed enormous costs when applied
+life-and-death questions like “does increasing speed limits cause more
+auto fatalities?”:</p>
 <blockquote>
-<p>The problem is clear. Researchers obtain real data which, while noisy, time and again point in a certain direction. However, instead of saying: “here is my estimate of the safety effect, here is its precision, and this is how what I found relates to previous findings,” the data is processed by NHST, and the researcher says, correctly but pointlessly: “I cannot be sure that the safety effect is not zero.” Occasionally, the researcher adds, this time incorrectly and unjustifiably, a statement to the effect that: “since the result is not statistically significant, it is best to assume the safety effect to be zero.” In this manner, good data are drained of real content, the direction of empirical conclusions reversed, and ordinary human and scientific reasoning is turned on its head for the sake of a venerable ritual.</p>
+<p>The problem is clear. Researchers obtain real data which, while
+noisy, time and again point in a certain direction. However, instead of
+saying: “here is my estimate of the safety effect, here is its
+precision, and this is how what I found relates to previous findings”,
+the data is processed by NHST, and the researcher says, correctly but
+pointlessly: “I cannot be sure that the safety effect is not zero”.
+Occasionally, the researcher adds, this time incorrectly and
+unjustifiably, a statement to the effect that: “since the result is not
+statistically significant, it is best to assume the safety effect to be
+zero”. In this manner, good data are drained of real content, the
+direction of empirical conclusions reversed, and ordinary human and
+scientific reasoning is turned on its head for the sake of a venerable
+ritual.</p>
 </blockquote>
-<p>Many scientists think the problem is that 0.05 is too high a threshold, and advocate using something like 0.005 instead <span class="citation" data-cites="benjamin2018">(<a href="#ref-benjamin2018" role="doc-biblioref">Benjamin et al. 2018</a>)</span>. With respect to the 72 authors of that paper I just cited (many of whom I deeply admire), my own preference is to abandon statistical significance rather than redefine it. Reducing the threshold to 0.005 solves neither the harms discussed by <span class="citation" data-cites="hauer2004"><a href="#ref-hauer2004" role="doc-biblioref">Hauer</a> (<a href="#ref-hauer2004" role="doc-biblioref">2004</a>)</span> nor the Type M distortions discussed by <span class="citation" data-cites="gelman2014a"><a href="#ref-gelman2014a" role="doc-biblioref">Gelman and Carlin</a> (<a href="#ref-gelman2014a" role="doc-biblioref">2014</a>)</span>. Those can only be solved by research transparency and human judgment.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<p>Many scientists think the problem is that 0.05 is too high a
+threshold, and advocate using something like 0.005 instead <span
+class="citation" data-cites="benjamin2018">(<a href="#ref-benjamin2018"
+role="doc-biblioref">Benjamin et al. 2018</a>)</span>. With respect to
+the 72 authors of that paper I just cited (many of whom I deeply
+admire), my own preference is to abandon statistical significance rather
+than redefine it. Reducing the threshold to 0.005 solves neither the
+harms discussed by <span class="citation" data-cites="hauer2004">Hauer
+(<a href="#ref-hauer2004" role="doc-biblioref">2004</a>)</span> nor the
+Type M distortions discussed by <span class="citation"
+data-cites="gelman2014a">Gelman and Carlin (<a href="#ref-gelman2014a"
+role="doc-biblioref">2014</a>)</span>. Those can only be solved by
+research transparency and human judgment.</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent"
+role="doc-bibliography">
 <div id="ref-benjamin2018" class="csl-entry" role="doc-biblioentry">
-Benjamin, Daniel J., James O. Berger, Magnus Johannesson, Brian A. Nosek, E.-J. Wagenmakers, Richard Berk, Kenneth A. Bollen, et al. 2018. <span>“Redefine Statistical Significance.”</span> <em>Nature Human Behaviour</em> 2 (1): 6–10. <a href="https://doi.org/10.1038/s41562-017-0189-z">https://doi.org/10.1038/s41562-017-0189-z</a>.
+Benjamin, Daniel J., James O. Berger, Magnus Johannesson, Brian A.
+Nosek, E.-J. Wagenmakers, Richard Berk, Kenneth A. Bollen, et al. 2018.
+<span>“Redefine Statistical Significance.”</span> <em>Nature Human
+Behaviour</em> 2 (1): 6–10. <a
+href="https://doi.org/10.1038/s41562-017-0189-z">https://doi.org/10.1038/s41562-017-0189-z</a>.
 </div>
 <div id="ref-button2013" class="csl-entry" role="doc-biblioentry">
-Button, Katherine S., John P. A. Ioannidis, Claire Mokrysz, Brian A. Nosek, Jonathan Flint, Emma S. J. Robinson, and Marcus R. Munafò. 2013. <span>“Power Failure: Why Small Sample Size Undermines the Reliability of Neuroscience.”</span> <em>Nature Reviews Neuroscience</em> 14 (5): 365–76. <a href="https://doi.org/10.1038/nrn3475">https://doi.org/10.1038/nrn3475</a>.
+Button, Katherine S., John P. A. Ioannidis, Claire Mokrysz, Brian A.
+Nosek, Jonathan Flint, Emma S. J. Robinson, and Marcus R. Munafò. 2013.
+<span>“Power Failure: Why Small Sample Size Undermines the Reliability
+of Neuroscience.”</span> <em>Nature Reviews Neuroscience</em> 14 (5):
+365–76. <a
+href="https://doi.org/10.1038/nrn3475">https://doi.org/10.1038/nrn3475</a>.
 </div>
 <div id="ref-fisher1925" class="csl-entry" role="doc-biblioentry">
-Fisher, Ronald A. 1925. <em>Statistical Methods for Research Workers</em>. Oliver; Boyd.
+Fisher, Ronald A. 1925. <em>Statistical Methods for Research
+Workers</em>. Oliver; Boyd.
 </div>
 <div id="ref-gelman2014a" class="csl-entry" role="doc-biblioentry">
-Gelman, Andrew, and John Carlin. 2014. <span>“Beyond Power Calculations: Assessing Type s (Sign) and Type m (Magnitude) Errors.”</span> <em>Perspectives on Psychological Science</em>, 1–11. <a href="https://doi.org/10.1177/1745691614551642">https://doi.org/10.1177/1745691614551642</a>.
+Gelman, Andrew, and John Carlin. 2014. <span>“Beyond Power Calculations:
+Assessing Type s (Sign) and Type m (Magnitude) Errors.”</span>
+<em>Perspectives on Psychological Science</em>, 1–11. <a
+href="https://doi.org/10.1177/1745691614551642">https://doi.org/10.1177/1745691614551642</a>.
 </div>
 <div id="ref-hauer2004" class="csl-entry" role="doc-biblioentry">
-Hauer, Ezra. 2004. <span>“The Harm Done by Tests of Significance.”</span> <em>Accident Analysis &amp; Prevention</em> 36 (3): 495–500. <a href="https://doi.org/10.1016/S0001-4575(03)00036-8">https://doi.org/10.1016/S0001-4575(03)00036-8</a>.
+Hauer, Ezra. 2004. <span>“The Harm Done by Tests of
+Significance.”</span> <em>Accident Analysis &amp; Prevention</em> 36
+(3): 495–500. <a
+href="https://doi.org/10.1016/S0001-4575(03)00036-8">https://doi.org/10.1016/S0001-4575(03)00036-8</a>.
 </div>
 <div id="ref-loken2017" class="csl-entry" role="doc-biblioentry">
-Loken, Eric, and Andrew Gelman. 2017. <span>“Measurement Error and the Replication Crisis.”</span> <em>Science</em> 355 (6325): 584–85. <a href="https://doi.org/10.1126/science.aal3618">https://doi.org/10.1126/science.aal3618</a>.
+Loken, Eric, and Andrew Gelman. 2017. <span>“Measurement Error and the
+Replication Crisis.”</span> <em>Science</em> 355 (6325): 584–85. <a
+href="https://doi.org/10.1126/science.aal3618">https://doi.org/10.1126/science.aal3618</a>.
 </div>
 <div id="ref-mcelreath2020" class="csl-entry" role="doc-biblioentry">
-McElreath, Richard. 2020. <em>Statistical Rethinking: A Bayesian Course with Examples in r and Stan</em>. 2nd ed. CRC Texts in Statistical Science. Boca Raton: Taylor; Francis, CRC Press.
+McElreath, Richard. 2020. <em>Statistical Rethinking: A Bayesian Course
+with Examples in r and Stan</em>. 2nd ed. CRC Texts in Statistical
+Science. Boca Raton: Taylor; Francis, CRC Press.
 </div>
 </div>
-<section class="footnotes" role="doc-endnotes">
+<section class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>Again, technically 1.96 standard errors, but 2 standard errors is a useful shorthand.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>Gosset published his results under the pseudonym “Student,” because his employer did not want other breweries to catch on and start using t-tests.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3" role="doc-endnote"><p>If all this intrigues you, may I suggest reading my favorite statistics book of all time – <em>Statistical Rethinking</em> <span class="citation" data-cites="mcelreath2020">(<a href="#ref-mcelreath2020" role="doc-biblioref">McElreath 2020</a>)</span>? I considered assigning it for this class, but honestly you need to have first thought about statistics before you can benefit from rethinking about statistics.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4" role="doc-endnote"><p>Remarkably, the entire edifice of p &lt; 0.05 denoting “statistical significance” is drawn from an offhand comment Ronald Fisher wrote on <a href="https://archive.org/details/statisticalmethoe7fish/page/46/mode/2up">page 45</a> of <em>Statistical Methods for Research Workers</em> <span class="citation" data-cites="fisher1925">(<a href="#ref-fisher1925" role="doc-biblioref">Fisher 1925</a>)</span>, calling it “convenient.”<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p>Again, technically 1.96 standard
+errors, but 2 standard errors is a useful shorthand.<a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>Gosset published his results under
+the pseudonym “Student”, because his employer did not want other
+breweries to catch on and start using t-tests.<a href="#fnref2"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>If all this intrigues you, may I
+suggest reading my favorite statistics book of all time –
+<em>Statistical Rethinking</em> <span class="citation"
+data-cites="mcelreath2020">(<a href="#ref-mcelreath2020"
+role="doc-biblioref">McElreath 2020</a>)</span>? I considered assigning
+it for this class, but honestly you need to have first thought about
+statistics before you can benefit from rethinking about statistics.<a
+href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>Remarkably, the entire edifice of p
+&lt; 0.05 denoting “statistical significance” is drawn from an offhand
+comment Ronald Fisher wrote on <a
+href="https://archive.org/details/statisticalmethoe7fish/page/46/mode/2up">page
+45</a> of <em>Statistical Methods for Research Workers</em> <span
+class="citation" data-cites="fisher1925">(<a href="#ref-fisher1925"
+role="doc-biblioref">Fisher 1925</a>)</span>, calling it “convenient”.<a
+href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
