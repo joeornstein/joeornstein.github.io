@@ -129,11 +129,13 @@ There are three things we cannot learn about from individual stories:
 
 class: center, middle, inverse
 
-# Part 1: Discovery
+# Part 1: Getting Your Stories Straight
+
+## (Measurement and Description)
 
 ---
 
-## Part 1: Discovery
+## Part 1: Getting Your Stories Straight
 
 --
 
@@ -158,7 +160,7 @@ This is a **dataset**.
 
 ---
 
-## Part 1: Discovery
+## Part 1: Getting Your Stories Straight
 
 ```{r}
 set.seed(42)
@@ -187,7 +189,7 @@ It's difficult to make sense of 100 stories all at once.
 
 ---
 
-## Part 1: Discovery
+## Part 1: Getting Your Stories Straight
 
 ```{r, echo = TRUE}
 dataset |> 
@@ -213,11 +215,13 @@ dataset |>
 
 class: center, middle, inverse
 
-# Part 2: Causality
+# Part 2: What If?
+
+## (Counterfactuals and Causality)
 
 ---
 
-## Part 2: Causality
+## Part 2: Counterfactuals and Causality
 
 ```{r}
 dataset |> 
@@ -239,7 +243,7 @@ dataset |>
 
 ---
 
-## Part 2: Causality
+## Part 2: Counterfactuals and Causality
 
 - You've likely guessed the problem.
 
@@ -265,7 +269,7 @@ dataset |>
 
 ---
 
-## Part 2: Causality
+## Part 2: Counterfactuals and Causality
 
 In POLS 7012, we learn a few techniques for making the right comparisons.
 
@@ -304,7 +308,7 @@ In POLS 7012, we learn a few techniques for making the right comparisons.
 
 ---
 
-## Part 2: Causality
+## Part 2: Counterfactuals and Causality
 
 In POLS 7012, we learn a few techniques for making the right comparisons.
 
@@ -318,7 +322,9 @@ knitr::include_graphics('img/card-2009.png')
 
 class: center, middle, inverse
 
-# Part 3: Uncertainty
+# Part 3: How Many Stories Is Enough?
+
+## (Uncertainty and Statistical Inference)
 
 ---
 
@@ -407,7 +413,7 @@ This semester, we'll learn to:
 
 --
 
-2. Become familiar with statsitical programming
+2. Become familiar with some programming basics
 
 --
 
