@@ -3,3 +3,9 @@
 .RData
 .Rproj.user
 packrat/lib*/
+
+# raw data folders
+raw/
+
+# dross folders
+_dross/
