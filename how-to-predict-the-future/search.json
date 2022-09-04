@@ -5,5 +5,19 @@
     "title": "Fall 2022 Predictions",
     "section": "Week 1 (8/30)",
     "text": "Week 1 (8/30)\nWe began our forecasting challenge with a few light-hearted questions to help calibrate our ability to assign probabilities."
+  },
+  {
+    "objectID": "index.html#leaderboard",
+    "href": "index.html#leaderboard",
+    "title": "Fall 2022 Predictions",
+    "section": "Leaderboard",
+    "text": "Leaderboard\n\n\n\n\n\nRank\nName\nBrier Score\n\n\n\n\n1\nJoseph Kennedy\n0.0025\n\n\n2\nPatrick Egan\n0.0072\n\n\n3\nArianna Ycaza\n0.0100\n\n\n4\nHannah Jones\n0.0100\n\n\n5\nMeredith Stevens\n0.0100\n\n\n6\nNoah Herndon\n0.0100\n\n\n7\nJoe Ornstein\n0.0121\n\n\n8\nDavid Barrero\n0.0225\n\n\n9\nEdward Cox\n0.0225\n\n\n10\nJeremy Lee\n0.0225\n\n\n11\nMac Kinnebrew\n0.0225\n\n\n12\nAndrew Decker\n0.0400\n\n\n13\nIan Driggers\n0.0625"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Be humble. Think in terms of probabilities rather than certainties.\nConsider multiple perspectives."
   }
 ]
