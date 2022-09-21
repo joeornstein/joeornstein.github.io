@@ -11,7 +11,7 @@
     "href": "index.html#leaderboard",
     "title": "Fall 2022 Predictions",
     "section": "Leaderboard",
-    "text": "Leaderboard\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\naudrey Vaughan\n1/1\n0.0025\n\n\n2\nJoseph Kennedy\n1/1\n0.0025\n\n\n3\nPatrick Egan\n1/1\n0.0072\n\n\n4\nAdam Szczupak\n1/1\n0.0100\n\n\n5\nArianna Ycaza\n1/1\n0.0100\n\n\n6\nHannah Jones\n1/1\n0.0100\n\n\n7\nMeredith Stevens\n1/1\n0.0100\n\n\n8\nNoah Herndon\n1/1\n0.0100\n\n\n9\nJoe Ornstein\n1/1\n0.0121\n\n\n10\nDavid Barrero\n1/1\n0.0225\n\n\n11\nEdward Cox\n1/1\n0.0225\n\n\n12\nJeremy Lee\n1/1\n0.0225\n\n\n13\nMac Kinnebrew\n1/1\n0.0225\n\n\n14\nAndrew Decker\n1/1\n0.0400\n\n\n15\nIan Driggers\n1/1\n0.0625\n\n\n16\nNicholas Chao\n1/1\n0.0625"
+    "text": "Leaderboard\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nJoe Ornstein\n2/2\n0.0125\n\n\n2\nPatrick Egan\n2/2\n0.0172\n\n\n3\naudrey Vaughan\n2/2\n0.0250\n\n\n4\nAdam Szczupak\n2/2\n0.0269\n\n\n5\nMac Kinnebrew\n2/2\n0.0325\n\n\n6\nAndrew Decker\n2/2\n0.0500\n\n\n7\nNoah Herndon\n2/2\n0.0500\n\n\n8\nNicholas Chao\n2/2\n0.0625\n\n\n9\nMeredith Stevens\n2/2\n0.0725\n\n\n10\nDavid Barrero\n2/2\n0.1125\n\n\n11\nHannah Jones\n2/2\n0.2125\n\n\n12\nIan Driggers\n2/2\n0.2225\n\n\n13\nArianna Ycaza\n1/2\n0.3700\n\n\n14\nJoseph Kennedy\n1/2\n0.4250\n\n\n15\nEdward Cox\n1/2\n0.7450\n\n\n16\nJeremy Lee\n1/2\n0.7450"
   },
   {
     "objectID": "about.html",
@@ -33,5 +33,12 @@
     "title": "Fall 2022 Predictions",
     "section": "Week 2 (9/7)",
     "text": "Week 2 (9/7)"
+  },
+  {
+    "objectID": "index.html#week-3-921",
+    "href": "index.html#week-3-921",
+    "title": "Fall 2022 Predictions",
+    "section": "Week 3 (9/21)",
+    "text": "Week 3 (9/21)"
   }
 ]
