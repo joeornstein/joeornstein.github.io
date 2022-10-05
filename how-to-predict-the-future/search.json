@@ -35,10 +35,17 @@
     "text": "Week 4 (9/28)"
   },
   {
+    "objectID": "index.html#week-5-105",
+    "href": "index.html#week-5-105",
+    "title": "Fall 2022 Predictions",
+    "section": "Week 5 (10/5)",
+    "text": "Week 5 (10/5)"
+  },
+  {
     "objectID": "index.html#leaderboard",
     "href": "index.html#leaderboard",
     "title": "Fall 2022 Predictions",
     "section": "Leaderboard",
-    "text": "Leaderboard\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nJoe Ornstein\n3/3\n0.0050\n\n\n2\nPatrick Egan\n3/3\n0.0058\n\n\n3\nNoah Herndon\n3/3\n0.0200\n\n\n4\nNicholas Chao\n3/3\n0.0208\n\n\n5\nAudrey Vaughan\n3/3\n0.0217\n\n\n6\nAdam Szczupak\n3/3\n0.0237\n\n\n7\nAndrew Decker\n3/3\n0.0300\n\n\n8\nMeredith Stevens\n2/2\n0.0362\n\n\n9\nDavid Barrero\n3/3\n0.0383\n\n\n10\nMac Kinnebrew\n3/3\n0.0408\n\n\n11\nHannah Jones\n3/3\n0.1008\n\n\n12\nIan Driggers\n2/3\n0.1575\n\n\n13\nArianna Ycaza\n2/3\n0.1642\n\n\n14\nEdward Cox\n2/3\n0.2484\n\n\n15\nJeremy Lee\n2/3\n0.2517\n\n\n16\nJoe Kennedy\n1/3\n0.2825\n\n\n17\nOlivia West\n0/1\n0.3600"
+    "text": "Leaderboard\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nAudrey Vaughan\n4/4\n0.0219\n\n\n2\nNicholas Chao\n4/4\n0.0312\n\n\n3\nDavid Barrero\n4/4\n0.0344\n\n\n4\nPatrick Egan\n3/4\n0.0694\n\n\n5\nNoah Herndon\n3/4\n0.1050\n\n\n6\nJoe Ornstein\n3/4\n0.1094\n\n\n7\nHannah Jones\n4/4\n0.1098\n\n\n8\nMac Kinnebrew\n3/4\n0.1206\n\n\n9\nAdam Szczupak\n3/4\n0.1333\n\n\n10\nAndrew Decker\n3/4\n0.1450\n\n\n11\nIan Driggers\n3/4\n0.1581\n\n\n12\nJeremy Lee\n3/4\n0.1887\n\n\n13\nArianna Ycaza\n2/4\n0.2131\n\n\n14\nMeredith Stevens\n2/4\n0.2644\n\n\n15\nJoe Kennedy\n1/4\n0.3175\n\n\n16\nEdward Cox\n2/4\n0.3269\n\n\n17\nOlivia West\n0/4\n0.3488\n\n\n18\nCharlie Estabrook\n0/4\n0.4425"
   }
 ]
