@@ -2538,21 +2538,21 @@ columns look like this:</p>
 </code></pre>
 </div>
 <pre><code># A tibble: 6 x 717
-   ...1    caseid commonweight commonpostweight vvweight vvweight_post
-  &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt;    &lt;dbl&gt;         &lt;dbl&gt;
-1     1    1.23e9        0.783            0.666    0.851         0.607
-2     2    1.23e9        1.34             1.44    NA            NA    
-3     3    1.23e9        0.406            0.342   NA            NA    
-4     4    1.23e9        0.958            0.822    1.04          1.00 
-5     5    1.23e9        0.195            0.162   NA            NA    
-6     6    1.23e9        1.06             0.880    1.15          0.988
-# ... with 711 more variables: tookpost &lt;dbl&gt;, CCEStake &lt;dbl&gt;,
-#   birthyr &lt;dbl&gt;, gender &lt;dbl&gt;, educ &lt;dbl&gt;, race &lt;dbl&gt;,
+   ...1 caseid commo~1 commo~2 vvwei~3 vvwei~4 tookp~5 CCESt~6 birthyr
+  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1     1 1.23e9   0.783   0.666   0.851   0.607       2       1    1966
+2     2 1.23e9   1.34    1.44   NA      NA           2       1    1955
+3     3 1.23e9   0.406   0.342  NA      NA           2       1    1946
+4     4 1.23e9   0.958   0.822   1.04    1.00        2       1    1962
+5     5 1.23e9   0.195   0.162  NA      NA           2       1    1967
+6     6 1.23e9   1.06    0.880   1.15    0.988       2       1    1961
+# ... with 708 more variables: gender &lt;dbl&gt;, educ &lt;dbl&gt;, race &lt;dbl&gt;,
 #   race_other &lt;chr&gt;, hispanic &lt;dbl&gt;, CC20_hisp_1 &lt;dbl&gt;,
 #   CC20_hisp_2 &lt;dbl&gt;, CC20_hisp_3 &lt;dbl&gt;, CC20_hisp_4 &lt;dbl&gt;,
 #   CC20_hisp_5 &lt;dbl&gt;, CC20_hisp_6 &lt;dbl&gt;, CC20_hisp_7 &lt;dbl&gt;,
 #   CC20_hisp_8 &lt;dbl&gt;, CC20_hisp_9 &lt;dbl&gt;, CC20_hisp_10 &lt;dbl&gt;,
-#   CC20_hisp_11 &lt;dbl&gt;, CC20_hisp_12 &lt;dbl&gt;, CC20_hisp_t &lt;chr&gt;, ...</code></pre>
+#   CC20_hisp_11 &lt;dbl&gt;, CC20_hisp_12 &lt;dbl&gt;, CC20_hisp_t &lt;chr&gt;,
+#   CC20_asian_1 &lt;dbl&gt;, CC20_asian_2 &lt;dbl&gt;, CC20_asian_3 &lt;dbl&gt;, ...</code></pre>
 </div>
 <h3 id="recoding-variables">Recoding Variables</h3>
 <p>Now that we have the dataset loaded into memory, let’s find the
