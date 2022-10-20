@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -788,6 +789,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
 
   .html-widget {
@@ -1029,10 +1031,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
-  }
-
-  .figure img {
-    width: 100%;
   }
 
   .figure .caption {
@@ -1864,9 +1862,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -1878,6 +1888,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1977,6 +2012,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1999,7 +2036,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2348,7 +2385,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2447,77 +2484,37 @@ Schedule
 </div>
 <h2 id="reading">Reading</h2>
 <ul>
-<li><a
-href="https://tinystats.github.io/teacups-giraffes-and-statistics/02_bellCurve.html">Teacup
-Giraffes</a>, The Normal Distribution</li>
-<li><a href="https://socviz.co/makeplot.html#makeplot">Healy Chapter
-3</a></li>
-<li><a href="https://socviz.co/groupfacettx.html">Healy Chapter
-4</a></li>
+<li><a href="https://tinystats.github.io/teacups-giraffes-and-statistics/02_bellCurve.html">Teacup Giraffes</a>, The Normal Distribution</li>
+<li><a href="https://socviz.co/makeplot.html#makeplot">Healy Chapter 3</a></li>
+<li><a href="https://socviz.co/groupfacettx.html">Healy Chapter 4</a></li>
 <li><a href="https://socviz.co/workgeoms.html">Healy Chapter 5</a></li>
-<li>Read up on how to <strong>join</strong> information from two
-dataframes together. <code>left_join()</code> is the most useful. Here’s
-a <a
-href="https://stat545.com/join-cheatsheet.html#left_joinsuperheroes-publishers">good
-explanation</a>, and here’s an <a
-href="https://rstudio.cloud/learn/primers/4.3">interactive
-primer</a>.</li>
+<li>Read up on how to <strong>join</strong> information from two dataframes together. <code>left_join()</code> is the most useful. Here’s a <a href="https://stat545.com/join-cheatsheet.html#left_joinsuperheroes-publishers">good explanation</a>, and here’s an <a href="https://rstudio.cloud/learn/primers/4.3">interactive primer</a>.</li>
 </ul>
 <h2 id="optional">Optional</h2>
 <ul>
-<li><a href="https://socviz.co/lookatdata.html">Healy Chapter 1</a>: A
-nice review of the evidence on what makes an effective
-visualization.</li>
-<li>If you want to learn how to make maps in <code>ggplot</code>, <a
-href="https://socviz.co/maps.html">Healy Chapter 7</a> is a great
-resource.</li>
-<li>For more practice with <code>ggplot</code>, this <a
-href="https://r4ds.had.co.nz/data-visualisation.html">chapter</a> in
-Hadley Wickham’s book is a nice resource.<a href="#fn1"
-class="footnote-ref" id="fnref1"
-role="doc-noteref"><sup>1</sup></a></li>
-<li>The <a href="https://www.rstudio.com/resources/cheatsheets/">ggplot
-cheat sheet</a> is a useful reference.</li>
+<li><a href="https://socviz.co/lookatdata.html">Healy Chapter 1</a>: A nice review of the evidence on what makes an effective visualization.</li>
+<li>If you want to learn how to make maps in <code>ggplot</code>, <a href="https://socviz.co/maps.html">Healy Chapter 7</a> is a great resource.</li>
+<li>For more practice with <code>ggplot</code>, this <a href="https://r4ds.had.co.nz/data-visualisation.html">chapter</a> in Hadley Wickham’s book is a nice resource.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li>The <a href="https://www.rstudio.com/resources/cheatsheets/">ggplot cheat sheet</a> is a useful reference.</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>The brain is hardwired to detect patterns in images, and a
-well-crafted data visualization can take advantage of that fact to
-communicate lots of information in an aesthetically pleasing way. And
-it’s about more than communication. Charts can reveal patterns in data
-that summary statistics alone might miss, as the <a
-href="https://www.autodesk.com/research/publications/same-stats-different-graphs">Datasaurus
-Dozen</a> artfully reveals…</p>
+<p>The brain is hardwired to detect patterns in images, and a well-crafted data visualization can take advantage of that fact to communicate lots of information in an aesthetically pleasing way. And it’s about more than communication. Charts can reveal patterns in data that summary statistics alone might miss, as the <a href="https://www.autodesk.com/research/publications/same-stats-different-graphs">Datasaurus Dozen</a> artfully reveals…</p>
 <p><img src="img/datasaurus-dozen.gif" /></p>
-<p>This week, we get deeper into building visualizations with the
-<code>ggplot2</code> package (a part of the <code>tidyverse</code>). It
-will take some time to learn all of the function syntax, so be patient
-with yourself. Once you get the hang of it, you’ll have an endlessly
-flexible tool for exploring and communicating patterns in your data.
-Let’s get started.</p>
+<p>This week, we get deeper into building visualizations with the <code>ggplot2</code> package (a part of the <code>tidyverse</code>). It will take some time to learn all of the function syntax, so be patient with yourself. Once you get the hang of it, you’ll have an endlessly flexible tool for exploring and communicating patterns in your data. Let’s get started.</p>
 <h2 id="problem-set">Problem Set</h2>
-<p>Using one of the datasets we’ve been working with in class, submit a
-data visualization using <code>ggplot</code>. Your submission
-should:</p>
+<p>Using one of the datasets we’ve been working with in class, submit a data visualization using <code>ggplot</code>. Your submission should:</p>
 <ol type="1">
 <li>Communicate some interesting result</li>
 <li>Use more than one aesthetic</li>
-<li>Be easy to interpret at a glance (you can include a short caption –
-<code>labs(caption = ...)</code> – if you would like).</li>
-<li>Be <em>reproducible</em>; submit your figure as a <code>.png</code>
-file, plus the <code>.R</code> script that produced it.</li>
+<li>Be easy to interpret at a glance (you can include a short caption – <code>labs(caption = ...)</code> – if you would like).</li>
+<li>Be <em>reproducible</em>; submit your figure as a <code>.png</code> file, plus the <code>.R</code> script that produced it.</li>
 </ol>
-<p>Consider this a friendly competition! I will look through the
-sumbmissions and pick my favorites, and their creators will receive
-honor, glory, and adoration.</p>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
-<section class="footnotes footnotes-end-of-document"
-role="doc-endnotes">
+<p>Consider this a friendly competition! I will look through the sumbmissions and pick my favorites, and their creators will receive honor, glory, and adoration.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<section class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>Hadley is the author of
-<code>ggplot</code>, so he knows a trick or two.<a href="#fnref1"
-class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p>Hadley is the author of <code>ggplot</code>, so he knows a trick or two.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->

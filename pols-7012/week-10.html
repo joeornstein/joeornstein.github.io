@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -129,9 +130,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_meta_tags-->
   
-  <meta name="citation_reference" content="citation_title=Civic honesty around the globe;citation_publication_date=2019;citation_volume=365;citation_doi=10.1126/science.aau8712;citation_author=Alain Cohn;citation_author=Michel André Maréchal;citation_author=David Tannenbaum;citation_author=Christian Lukas Zünd"/>
-  <meta name="citation_reference" content="citation_title=The incumbency curse: Weak parties, term limits, and unfulfilled accountability;citation_publication_date=2017;citation_volume=111;citation_doi=10.1017/S0003055416000575;citation_author=Marko Klašnja;citation_author=Rocio Titiunik"/>
-  <meta name="citation_reference" content="citation_title=The effect: An introduction to research design and causality;citation_publication_date=2021;citation_publisher=CHAPMAN &amp; HALL CRC;citation_author=Nick Huntington-Klein"/>
+  <meta name="citation_reference" content="citation_title=Civic honesty around the globe;citation_volume=365;citation_doi=10.1126/science.aau8712;citation_author=Alain Cohn;citation_author=Michel André Maréchal;citation_author=David Tannenbaum;citation_author=Christian Lukas Zünd"/>
+  <meta name="citation_reference" content="citation_title=The incumbency curse: Weak parties, term limits, and unfulfilled accountability;citation_volume=111;citation_doi=10.1017/S0003055416000575;citation_author=Marko Klašnja;citation_author=Rocio Titiunik"/>
+  <meta name="citation_reference" content="citation_title=The effect: An introduction to research design and causality;citation_publisher=CHAPMAN &amp; HALL CRC;citation_author=Nick Huntington-Klein"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
@@ -813,6 +814,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
 
   .html-widget {
@@ -1054,10 +1056,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
-  }
-
-  .figure img {
-    width: 100%;
   }
 
   .figure .caption {
@@ -1889,9 +1887,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -1903,6 +1913,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -2002,6 +2037,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -2024,7 +2061,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2373,7 +2410,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2465,8 +2502,7 @@ Schedule
 <ul>
 <li><a href="#readings" id="toc-readings">Readings</a>
 <ul>
-<li><a href="#further-reading" id="toc-further-reading">Further
-Reading</a></li>
+<li><a href="#further-reading" id="toc-further-reading">Further Reading</a></li>
 </ul></li>
 <li><a href="#overview" id="toc-overview">Overview</a></li>
 <li><a href="#problem-set" id="toc-problem-set">Problem Set</a></li>
@@ -2475,59 +2511,28 @@ Reading</a></li>
 </div>
 <h2 id="readings">Readings</h2>
 <ul>
-<li><a
-href="https://theeffectbook.net/ch-FindingFrontDoors.html"><em>The
-Effect</em>, Chapter 9 (Finding Front Doors)</a></li>
+<li><a href="https://theeffectbook.net/ch-FindingFrontDoors.html"><em>The Effect</em>, Chapter 9 (Finding Front Doors)</a></li>
 </ul>
 <h3 id="further-reading">Further Reading</h3>
-<p>If you’re interested in learning more about these methods and don’t
-want to wait until I teach a standalone class on causal inference, check
-out chapters 19 and 20 in <span class="citation"
-data-cites="huntington-klein2021">Huntington-Klein (<a
-href="#ref-huntington-klein2021"
-role="doc-biblioref">2021</a>)</span>.</p>
+<p>If you’re interested in learning more about these methods and don’t want to wait until I teach a standalone class on causal inference, check out chapters 19 and 20 in <span class="citation" data-cites="huntington-klein2021">Huntington-Klein (<a href="#ref-huntington-klein2021" role="doc-biblioref">2021</a>)</span>.</p>
 <h2 id="overview">Overview</h2>
-<p>This week, the instrumental variable approach to causal inference.
-We’ll talk experiments, two-stage least squares, and regression
-discontinuity designs.</p>
+<p>This week, the instrumental variable approach to causal inference. We’ll talk experiments, two-stage least squares, and regression discontinuity designs.</p>
 <h2 id="problem-set">Problem Set</h2>
 <p>In a knitted R script (or Rmd), complete the following problems:</p>
 <ol type="1">
-<li>Using the replication data from the <span class="citation"
-data-cites="cohn2019">Cohn et al. (<a href="#ref-cohn2019"
-role="doc-biblioref">2019</a>)</span> wallet experiment, estimate the
-average treatment effect of money for (a) men only, (b) women only, (c)
-public institutions only, (d) people who seemed to understand what the
-experimenter was saying. Do there seem to be heterogeneous treatment
-effects? Can we interpret these estimates as causal? Why or why
-not?</li>
-<li>Estimate the incumbency advantage/disadvantage in other (non-Brazil)
-Latin American countries from the <span class="citation"
-data-cites="klanja2017">Klašnja and Titiunik (<a href="#ref-klanja2017"
-role="doc-biblioref">2017</a>)</span> dataset. Plot the data, faceting
-by country.</li>
+<li>Using the replication data from the <span class="citation" data-cites="cohn2019">Cohn et al. (<a href="#ref-cohn2019" role="doc-biblioref">2019</a>)</span> wallet experiment, estimate the average treatment effect of money for (a) men only, (b) women only, (c) public institutions only, (d) people who seemed to understand what the experimenter was saying. Do there seem to be heterogeneous treatment effects? Can we interpret these estimates as causal? Why or why not?</li>
+<li>Estimate the incumbency advantage/disadvantage in other (non-Brazil) Latin American countries from the <span class="citation" data-cites="klanja2017">Klašnja and Titiunik (<a href="#ref-klanja2017" role="doc-biblioref">2017</a>)</span> dataset. Plot the data, faceting by country.</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
-<div id="refs" class="references csl-bib-body hanging-indent"
-role="doc-bibliography">
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-cohn2019" class="csl-entry" role="doc-biblioentry">
-Cohn, Alain, Michel André Maréchal, David Tannenbaum, and Christian
-Lukas Zünd. 2019. <span>“Civic Honesty Around the Globe.”</span>
-<em>Science</em> 365 (6448): 70–73. <a
-href="https://doi.org/10.1126/science.aau8712">https://doi.org/10.1126/science.aau8712</a>.
+Cohn, Alain, Michel André Maréchal, David Tannenbaum, and Christian Lukas Zünd. 2019. <span>“Civic Honesty Around the Globe.”</span> <em>Science</em> 365 (6448): 70–73. <a href="https://doi.org/10.1126/science.aau8712">https://doi.org/10.1126/science.aau8712</a>.
 </div>
-<div id="ref-huntington-klein2021" class="csl-entry"
-role="doc-biblioentry">
-Huntington-Klein, Nick. 2021. <em>The Effect: An Introduction to
-Research Design and Causality</em>. S.l.: CHAPMAN &amp; HALL CRC. <a
-href="https://theeffectbook.net/index.html">https://theeffectbook.net/index.html</a>.
+<div id="ref-huntington-klein2021" class="csl-entry" role="doc-biblioentry">
+Huntington-Klein, Nick. 2021. <em>The Effect: An Introduction to Research Design and Causality</em>. S.l.: CHAPMAN &amp; HALL CRC. <a href="https://theeffectbook.net/index.html">https://theeffectbook.net/index.html</a>.
 </div>
 <div id="ref-klanja2017" class="csl-entry" role="doc-biblioentry">
-Klašnja, Marko, and Rocio Titiunik. 2017. <span>“The Incumbency Curse:
-Weak Parties, Term Limits, and Unfulfilled Accountability.”</span>
-<em>The American Political Science Review</em> 111 (1): 129–48. <a
-href="https://doi.org/10.1017/S0003055416000575">https://doi.org/10.1017/S0003055416000575</a>.
+Klašnja, Marko, and Rocio Titiunik. 2017. <span>“The Incumbency Curse: Weak Parties, Term Limits, and Unfulfilled Accountability.”</span> <em>The American Political Science Review</em> 111 (1): 129–48. <a href="https://doi.org/10.1017/S0003055416000575">https://doi.org/10.1017/S0003055416000575</a>.
 </div>
 </div>
 <!--radix_placeholder_article_footer-->
