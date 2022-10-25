@@ -2724,16 +2724,17 @@ Schedule
 <p><span class="math display">\[
 \text{Standard Error} = \frac{\sigma}{\sqrt{n}}
 \]</span></p>
-<p>If the population distribution has higher variance, so will your sampling distribution, because you can draw a wider range of samples. And standard error decreases with the square root of n. If you quadruple your sample size, you cut standard error in half.</p>
+<p>For those interested in the derivation, it’s in the footnotes.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
+<p>If the population distribution has higher variance, so too will your sampling distribution, because you can draw a wider range of samples. And if you draw a larger sample, the variance of the sampling distribution decreases. More precisely, the standard error decreases with the square root of <span class="math inline">\(n\)</span>. If you quadruple your sample size, you cut standard error in half.</p>
 <p>In the limit, as your sample size gets bigger and bigger, the standard error approaches (but never quite reaches) zero. This is the <strong>Law of Large Numbers</strong>. Bigger datasets mean more confidence in your estimate. Formally, we say that the sample mean <em>converges in probability</em> to its expected value.</p>
 <h2 id="problem-set">Problem Set</h2>
 <p>Imagine we were interested in studying whether American men were more or less likely than American women to support import tariffs on Chinese goods.</p>
 <ol type="1">
 <li>Load <code>data/ces-2020/cleaned-CES.RData</code>.</li>
 <li>What percent of CES respondents support tariffs on China?</li>
-<li>What is the difference between men and women in support for tariffs?</li>
-<li>Write a function that draws a sample of 100 respondents and returns a sample estimate of the difference between men and women in support for tariffs.</li>
-<li>Using that function, generate a sampling distribution for this difference-in-means.</li>
+<li>What percent of women support tariffs on China? What percent of men support tariffs on China? What is the difference between these two values (aka the <strong>difference in means</strong>)?</li>
+<li>Write a function that draws a sample of 100 respondents and returns a sample estimate of the difference between men and women’s support for tariffs.</li>
+<li>Using that function, generate a sampling distribution for this difference in means.</li>
 <li>Plot your sampling distribution. Confirm that it is centered around the truth.</li>
 <li>How far away from the truth can these sample estimates get? What is the maximum value? What is the minimum value? What is the standard deviation of the sampling distribution?</li>
 </ol>
@@ -2756,6 +2757,17 @@ McElreath, Richard. 2020. <em>Statistical Rethinking: A Bayesian Course with Exa
 <li id="fn5" role="doc-endnote"><p>Recall that the variance of a distribution is the <a href="https://tinystats.github.io/teacups-giraffes-and-statistics/04_variance.html">average squared distance from the mean</a>, and the standard deviation is the square root of variance.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn6" role="doc-endnote"><p><a href="https://1.bp.blogspot.com/-GbgoSNOuSm0/WilbpekABZI/AAAAAAAAFxQ/kHfvPEHMGgQ7egYL6v4NZaaygWaIaAuxgCLcBGAs/s1600/technically_correct.png">Technically</a> it’s a binomial distribution, but we can reserve that distinction for a footnote because binomial distributions are approximately normal when the sample size is large enough.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn7" role="doc-endnote"><p>How large is “sufficiently large”? I don’t want to give a definitive number, because people will yell at me on Twitter. But, as you see in the figure above, 100 is clearly big enough. 50 might even be okay. Less than 25 is pushing your luck.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8" role="doc-endnote"><p>The sample mean is the sum of your all your sample values <span class="math inline">\((X)\)</span> divided by the sample size <span class="math inline">\((n)\)</span>.</p>
+<p><span class="math display">\[\bar{X} = \frac{\sum{X_i}}{n}\]</span></p>
+<p>The variance of that statistic is:</p>
+<p><span class="math display">\[
+\text{Var}(\bar{X}) = \text{Var}\left(\frac{\sum{X_i}}{n}\right)
+\]</span></p>
+<p>One property of variance is that <span class="math inline">\(\text{Var}(ax) = a^2\text{Var}(X)\)</span> for any constant <span class="math inline">\(a\)</span>. If <span class="math inline">\(\text{Var}(X_i) = \sigma^2\)</span>, then:</p>
+<p><span class="math display">\[
+\text{Var}\left(\frac{\sum{X_i}}{n}\right) = \frac{1}{n^2} (n\sigma) = \frac{\sigma^2}{n}
+\]</span></p>
+<p>The square root of that variance, <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span>, is the standard error of th mean.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
