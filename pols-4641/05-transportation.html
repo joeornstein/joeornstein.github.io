@@ -789,7 +789,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
-    font-size: 100%;
   }
 
   .html-widget {
@@ -1862,21 +1861,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        const citeChild = $(this).children()[0]
-        // Do not process if @xyz has been used without escaping and without bibliography activated
-        // https://github.com/rstudio/distill/issues/466
-        if (citeChild === undefined) return true
-
-        if (citeChild.nodeName == "D-FOOTNOTE") {
-          var fn = citeChild
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
           $(this).html(fn.shadowRoot.querySelector("sup"))
           $(this).id = fn.id
           fn.remove()
         }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          // Could use CSS.escape too here, we insure backward compatibility in navigator
-          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -2385,7 +2378,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2439,7 +2432,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>Transportation</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Why we move the way we do, and how it shapes our lives and our politics.</p></p>
+<p><p>Why we move the way we do, and how it shapes our lives and our
+politics.</p></p>
 </div>
 
 
@@ -2457,28 +2451,34 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <li><a href="#highways" id="toc-highways">Highways</a>
 <ul>
 <li><a href="#books-1" id="toc-books-1">Books</a></li>
-<li><a href="#research-papers" id="toc-research-papers">Research Papers</a></li>
+<li><a href="#research-papers" id="toc-research-papers">Research
+Papers</a></li>
 <li><a href="#videos" id="toc-videos">Videos</a></li>
 <li><a href="#other-media-1" id="toc-other-media-1">Other Media</a></li>
 </ul></li>
-<li><a href="#walkability-and-transit" id="toc-walkability-and-transit">Walkability and Transit</a>
+<li><a href="#walkability-and-transit"
+id="toc-walkability-and-transit">Walkability and Transit</a>
 <ul>
 <li><a href="#books-2" id="toc-books-2">Books</a></li>
-<li><a href="#research-papers-1" id="toc-research-papers-1">Research Papers</a></li>
+<li><a href="#research-papers-1" id="toc-research-papers-1">Research
+Papers</a></li>
 <li><a href="#videos-1" id="toc-videos-1">Videos</a></li>
 <li><a href="#other-media-2" id="toc-other-media-2">Other Media</a></li>
 </ul></li>
 <li><a href="#parking" id="toc-parking">Parking</a>
 <ul>
 <li><a href="#books-3" id="toc-books-3">Books</a></li>
-<li><a href="#research-papers-2" id="toc-research-papers-2">Research Papers</a></li>
+<li><a href="#research-papers-2" id="toc-research-papers-2">Research
+Papers</a></li>
 <li><a href="#videos-2" id="toc-videos-2">Videos</a></li>
 <li><a href="#other-media-3" id="toc-other-media-3">Other Media</a></li>
 </ul></li>
-<li><a href="#shrinking-cities" id="toc-shrinking-cities">Shrinking Cities</a>
+<li><a href="#shrinking-cities" id="toc-shrinking-cities">Shrinking
+Cities</a>
 <ul>
 <li><a href="#books-4" id="toc-books-4">Books</a></li>
-<li><a href="#research-papers-3" id="toc-research-papers-3">Research Papers</a></li>
+<li><a href="#research-papers-3" id="toc-research-papers-3">Research
+Papers</a></li>
 <li><a href="#podcasts-1" id="toc-podcasts-1">Podcasts</a></li>
 <li><a href="#other-media-4" id="toc-other-media-4">Other Media</a></li>
 </ul></li>
@@ -2488,31 +2488,55 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h2 id="urban-renewal">Urban Renewal</h2>
 <h3 id="books">Books</h3>
 <ul>
-<li><p>Caro, Robert A. 1975. <a href="https://www.amazon.com/Power-Broker-Robert-Moses-Fall/dp/0394720245">The Power Broker: Robert Moses and the Fall of New York.</a> Introduction.</p></li>
-<li><p>Scott, James C. 1998. <a href="https://libcom.org/files/Seeing%20Like%20a%20State%20-%20James%20C.%20Scott.pdf">Seeing like a State: How Certain Schemes to Improve the Human Condition Have Failed.</a>, particularly Chapters 2 and 4.</p>
+<li><p>Caro, Robert A. 1975. <a
+href="https://www.amazon.com/Power-Broker-Robert-Moses-Fall/dp/0394720245">The
+Power Broker: Robert Moses and the Fall of New York.</a>
+Introduction.</p></li>
+<li><p>Scott, James C. 1998. <a
+href="https://libcom.org/files/Seeing%20Like%20a%20State%20-%20James%20C.%20Scott.pdf">Seeing
+like a State: How Certain Schemes to Improve the Human Condition Have
+Failed.</a>, particularly Chapters 2 and 4.</p>
 <ul>
-<li>See also <a href="https://slatestarcodex.com/2017/03/16/book-review-seeing-like-a-state/">Scott Alexander’s Book Review</a></li>
+<li>See also <a
+href="https://slatestarcodex.com/2017/03/16/book-review-seeing-like-a-state/">Scott
+Alexander’s Book Review</a></li>
 </ul></li>
-<li><p>Jacobs, Jane. 1961. <a href="http://www.petkovstudio.com/bg/wp-content/uploads/2017/03/The-Death-and-Life-of-Great-American-Cities_Jane-Jacobs-Complete-book.pdf">The Death and Life of Great American Cities.</a></p></li>
+<li><p>Jacobs, Jane. 1961. <a
+href="http://www.petkovstudio.com/bg/wp-content/uploads/2017/03/The-Death-and-Life-of-Great-American-Cities_Jane-Jacobs-Complete-book.pdf">The
+Death and Life of Great American Cities.</a></p></li>
 </ul>
 <h3 id="podcasts">Podcasts</h3>
 <ul>
-<li><a href="https://99percentinvisible.org/episode/bijlmer-city-future-part-1/">Bijlmer - City of the Future (99 Percent Invisible)</a></li>
+<li><a
+href="https://99percentinvisible.org/episode/bijlmer-city-future-part-1/">Bijlmer
+- City of the Future (99 Percent Invisible)</a></li>
 </ul>
 <h3 id="other-media">Other Media</h3>
 <ul>
-<li>Queen, Henry (2020). <a href="https://www.redandblack.com/athensnews/the-story-behind-linnentown-why-athens-residents-are-speaking-out-decades-after-their-community-s/article_a899c21c-3aa3-11eb-9b2f-13b4471b0a88.html">The Story Behind Linnentown</a>, <em>The Red &amp; Black</em>.</li>
+<li>Queen, Henry (2020). <a
+href="https://www.redandblack.com/athensnews/the-story-behind-linnentown-why-athens-residents-are-speaking-out-decades-after-their-community-s/article_a899c21c-3aa3-11eb-9b2f-13b4471b0a88.html">The
+Story Behind Linnentown</a>, <em>The Red &amp; Black</em>.</li>
 </ul>
 <h2 id="highways">Highways</h2>
 <h3 id="books-1">Books</h3>
 <ul>
-<li>Nall, Clayton (2018). <a href="https://www.amazon.com/Road-Inequality-Federal-Polarized-Undermined/dp/1108405495">The Road to Inequality: How the Federal Highway Program Polarized America and Undermined Cities.</a> Cambridge University Press.</li>
+<li>Nall, Clayton (2018). <a
+href="https://www.amazon.com/Road-Inequality-Federal-Polarized-Undermined/dp/1108405495">The
+Road to Inequality: How the Federal Highway Program Polarized America
+and Undermined Cities.</a> Cambridge University Press.</li>
 </ul>
 <h3 id="research-papers">Research Papers</h3>
 <ul>
-<li><p>Baum-Snow (2007). <a href="readings/Baum-Snow%20-%202007%20-%20Did%20Highways%20Cause%20Suburbanization.pdf">Did Highways Cause Suburbanization?</a></p></li>
-<li><p>Duranton &amp; Turner (2011). <a href="readings/Duranton,%20Turner%20-%202011%20-%20The%20fundamental%20law%20of%20road%20congestion%20Evidence%20from%20US%20cities.pdf">The fundamental law of road congestion: Evidence from US cities</a></p></li>
-<li><p>Nall (2015). <a href="readings/Nall%20-%202015%20-%20The%20Political%20Consequences%20of%20Spatial%20Policies%20How%20Interstate%20Highways%20Facilitated%20Geographic%20Polarization.pdf">The Political Consequences of Spatial Policies: How Interstate Highways Facilitated Geographic Polarization</a></p></li>
+<li><p>Baum-Snow (2007). <a
+href="readings/Baum-Snow%20-%202007%20-%20Did%20Highways%20Cause%20Suburbanization.pdf">Did
+Highways Cause Suburbanization?</a></p></li>
+<li><p>Duranton &amp; Turner (2011). <a
+href="readings/Duranton,%20Turner%20-%202011%20-%20The%20fundamental%20law%20of%20road%20congestion%20Evidence%20from%20US%20cities.pdf">The
+fundamental law of road congestion: Evidence from US cities</a></p></li>
+<li><p>Nall (2015). <a
+href="readings/Nall%20-%202015%20-%20The%20Political%20Consequences%20of%20Spatial%20Policies%20How%20Interstate%20Highways%20Facilitated%20Geographic%20Polarization.pdf">The
+Political Consequences of Spatial Policies: How Interstate Highways
+Facilitated Geographic Polarization</a></p></li>
 </ul>
 <h3 id="videos">Videos</h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -2521,27 +2545,63 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <h3 id="other-media-1">Other Media</h3>
 <ul>
-<li><p><a href="http://iqc.ou.edu/urbanchange">Before and After Aerial Photos of American Cities</a></p></li>
-<li><p>Laskow, Sarah. 2015. <a href="http://www.atlasobscura.com/articles/in-1919-dwight-d-eisenhower-suffered-through-historys-worst-cross-country-road-trip">“The Harrowing Tale of American History’s Worst Cross-Country Road Trip.”</a> <em>Atlas Obscura</em>.</p></li>
-<li><p>Black, Brian C. <a href="https://www.nytimes.com/2019/07/07/opinion/the-most-important-road-trip-in-american-history.html">“The Most Important Road Trip in American History.”</a> <em>The New York Times</em>, July 7, 2019.</p></li>
-<li><p>Semuels, Alana. <a href="https://www.theatlantic.com/business/archive/2016/03/role-of-highways-in-american-poverty/474282/">“The Role of Highways in American Poverty.”</a> The Atlantic, March 18, 2016.</p></li>
-<li><p>Stromberg, Joseph. <a href="https://www.vox.com/2015/5/14/8605917/highways-interstate-cities-history">“Highways Gutted American Cities. So Why Did They Build Them?”</a> Vox, May 14, 2015.</p></li>
-<li><p><a href="https://www.cnu.org/our-projects/highways-boulevards">Highways to Boulevards</a></p></li>
-<li><p>Poston, Ben, and Liam Dillon. <a href="https://www.latimes.com/california/story/2021-11-11/how-we-reported-the-story-on-freeway-displacements">“How We Reported the Story on Highway Displacements.”</a> <em>Los Angeles Times</em>, November 11, 2021.</p></li>
-<li><p>Herriges, Daniel. <a href="https://www.strongtowns.org/journal/2018/10/17/the-difference-between-mobility-and-accessibility">“The Difference Between Mobility and Accessibility.”</a> <em>Strong Towns</em>, October 17, 2018.</p></li>
+<li><p><a href="http://iqc.ou.edu/urbanchange">Before and After Aerial
+Photos of American Cities</a></p></li>
+<li><p>Laskow, Sarah. 2015. <a
+href="http://www.atlasobscura.com/articles/in-1919-dwight-d-eisenhower-suffered-through-historys-worst-cross-country-road-trip">“The
+Harrowing Tale of American History’s Worst Cross-Country Road Trip.”</a>
+<em>Atlas Obscura</em>.</p></li>
+<li><p>Black, Brian C. <a
+href="https://www.nytimes.com/2019/07/07/opinion/the-most-important-road-trip-in-american-history.html">“The
+Most Important Road Trip in American History.”</a> <em>The New York
+Times</em>, July 7, 2019.</p></li>
+<li><p>Semuels, Alana. <a
+href="https://www.theatlantic.com/business/archive/2016/03/role-of-highways-in-american-poverty/474282/">“The
+Role of Highways in American Poverty.”</a> The Atlantic, March 18,
+2016.</p></li>
+<li><p>Stromberg, Joseph. <a
+href="https://www.vox.com/2015/5/14/8605917/highways-interstate-cities-history">“Highways
+Gutted American Cities. So Why Did They Build Them?”</a> Vox, May 14,
+2015.</p></li>
+<li><p><a
+href="https://www.cnu.org/our-projects/highways-boulevards">Highways to
+Boulevards</a></p></li>
+<li><p>Poston, Ben, and Liam Dillon. <a
+href="https://www.latimes.com/california/story/2021-11-11/how-we-reported-the-story-on-freeway-displacements">“How
+We Reported the Story on Highway Displacements.”</a> <em>Los Angeles
+Times</em>, November 11, 2021.</p></li>
+<li><p>Herriges, Daniel. <a
+href="https://www.strongtowns.org/journal/2018/10/17/the-difference-between-mobility-and-accessibility">“The
+Difference Between Mobility and Accessibility.”</a> <em>Strong
+Towns</em>, October 17, 2018.</p></li>
 </ul>
 <h2 id="walkability-and-transit">Walkability and Transit</h2>
 <h3 id="books-2">Books</h3>
 <ul>
-<li><p>Speck, Jeff. <a href="https://www.amazon.com/Walkable-City-Downtown-Save-America/dp/0865477728">Walkable City: How Downtown Can Save America, One Step at a Time.</a> New York: North Point Press, 2013.</p></li>
-<li><p>Jacobs, Jane. <a href="http://www.petkovstudio.com/bg/wp-content/uploads/2017/03/The-Death-and-Life-of-Great-American-Cities_Jane-Jacobs-Complete-book.pdf">The Death and Life of Great American Cities.</a> Vintage Books, 1961. <em>Particularly part 1, chapter 9 and chapter 18</em>.</p></li>
+<li><p>Speck, Jeff. <a
+href="https://www.amazon.com/Walkable-City-Downtown-Save-America/dp/0865477728">Walkable
+City: How Downtown Can Save America, One Step at a Time.</a> New York:
+North Point Press, 2013.</p></li>
+<li><p>Jacobs, Jane. <a
+href="http://www.petkovstudio.com/bg/wp-content/uploads/2017/03/The-Death-and-Life-of-Great-American-Cities_Jane-Jacobs-Complete-book.pdf">The
+Death and Life of Great American Cities.</a> Vintage Books, 1961.
+<em>Particularly part 1, chapter 9 and chapter 18</em>.</p></li>
 </ul>
 <h3 id="research-papers-1">Research Papers</h3>
 <ul>
-<li><p>de Benedictis-Kessner &amp; Palmer (2020). <a href="readings/de%20Benedictis-Kessner%20and%20Palmer%20-%202020%20-%20Driving%20Turnout.pdf">Driving Turnout</a></p></li>
-<li><p>Kahneman et al. (2004). <a href="readings/Kahneman%20et%20al.%20-%202004%20-%20A%20Survey%20Method%20for%20Characterizing%20Daily%20Life%20Expe.pdf">A Survey Method for Characterizing Daily Life Experience</a></p></li>
-<li><p>Baum-Snow &amp; Kahn (2005). <a href="readings/Baum-Snow,%20Kahn%20-%202005%20-%20Effects%20of%20Urban%20Rail%20Transit%20Expansions%20Evidence%20from%20Sixteen%20Cities,%201970-2000.pdf">Effects of Urban Rail Transit Expansions Evidence from Sixteen Cities, 1970-2000</a></p></li>
-<li><p>Southworth (2005). <a href="readings/Southworth%20-%202005%20-%20Designing%20the%20Walkable%20City.pdf">Designing the Walkable City</a></p></li>
+<li><p>de Benedictis-Kessner &amp; Palmer (2020). <a
+href="readings/de%20Benedictis-Kessner%20and%20Palmer%20-%202020%20-%20Driving%20Turnout.pdf">Driving
+Turnout</a></p></li>
+<li><p>Kahneman et al. (2004). <a
+href="readings/Kahneman%20et%20al.%20-%202004%20-%20A%20Survey%20Method%20for%20Characterizing%20Daily%20Life%20Expe.pdf">A
+Survey Method for Characterizing Daily Life Experience</a></p></li>
+<li><p>Baum-Snow &amp; Kahn (2005). <a
+href="readings/Baum-Snow,%20Kahn%20-%202005%20-%20Effects%20of%20Urban%20Rail%20Transit%20Expansions%20Evidence%20from%20Sixteen%20Cities,%201970-2000.pdf">Effects
+of Urban Rail Transit Expansions Evidence from Sixteen Cities,
+1970-2000</a></p></li>
+<li><p>Southworth (2005). <a
+href="readings/Southworth%20-%202005%20-%20Designing%20the%20Walkable%20City.pdf">Designing
+the Walkable City</a></p></li>
 </ul>
 <h3 id="videos-1">Videos</h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -2550,25 +2610,54 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <h3 id="other-media-2">Other Media</h3>
 <ul>
-<li><p>Vanderbilt, Tom. <a href="http://www.slate.com/articles/life/walking/2012/04/why_don_t_americans_walk_more_the_crisis_of_pedestrianism_.html">“The Crisis in American Walking.”</a> Slate, April 10, 2012.</p></li>
-<li><p>Quednau, Rachel. <a href="https://www.strongtowns.org/journal/2018/1/16/why-walkable-streets-are-more-economically-productive">“Why Walkable Streets Are More Economically Productive.”</a> <em>Strong Towns</em>, January 18, 2018.</p></li>
-<li><p>Herriges, Daniel. <a href="https://www.strongtowns.org/journal/2018/10/17/the-difference-between-mobility-and-accessibility">“The Difference Between Mobility and Accessibility.”</a> <em>Strong Towns</em>, October 17, 2018.</p></li>
-<li><p>Simpson, Brett. 2021. <a href="https://www.theatlantic.com/ideas/archive/2021/10/end-police-violence-get-rid-traffic-cop/620378/">“Why Cars Don’t Deserve the Right of Way.”</a> <em>The Atlantic</em>.</p></li>
-<li><p>Yglesias, Matthew. “<a href="https://www.slowboring.com/p/bus-best-practice">How to Make the Bus Better</a>,” March 23, 2021.</p></li>
-<li><p>Roberts, Sam. <a href="https://www.nytimes.com/2011/03/21/nyregion/21grid.html">“200th Birthday for the Map That Made New York.”</a> <em>The New York Times</em>, March 21, 2011, sec. New York.</p></li>
-<li><p>Zee, Renate van der. <a href="https://www.theguardian.com/cities/2015/may/05/amsterdam-bicycle-capital-world-transport-cycling-kindermoord">“How Amsterdam Became the Bicycle Capital of the World.”</a> <em>The Guardian</em>, May 5, 2015.</p></li>
-<li><p>Streetsblog USA. <a href="https://usa.streetsblog.org/2014/09/03/wowza-scale-maps-of-barcelona-and-atlanta-show-the-waste-of-sprawl/">“Scale Maps of Barcelona and Atlanta Show the Waste of Sprawl,”</a> September 3, 2014.</p></li>
-<li><p><a href="https://www.reddit.com/r/dataisbeautiful/comments/ckm21v/population_density_and_transit_in_12_cities_oc/">Population Density and Transit in 12 Cities</a>. Reddit (2020).</p></li>
+<li><p>Vanderbilt, Tom. <a
+href="http://www.slate.com/articles/life/walking/2012/04/why_don_t_americans_walk_more_the_crisis_of_pedestrianism_.html">“The
+Crisis in American Walking.”</a> Slate, April 10, 2012.</p></li>
+<li><p>Quednau, Rachel. <a
+href="https://www.strongtowns.org/journal/2018/1/16/why-walkable-streets-are-more-economically-productive">“Why
+Walkable Streets Are More Economically Productive.”</a> <em>Strong
+Towns</em>, January 18, 2018.</p></li>
+<li><p>Herriges, Daniel. <a
+href="https://www.strongtowns.org/journal/2018/10/17/the-difference-between-mobility-and-accessibility">“The
+Difference Between Mobility and Accessibility.”</a> <em>Strong
+Towns</em>, October 17, 2018.</p></li>
+<li><p>Simpson, Brett. 2021. <a
+href="https://www.theatlantic.com/ideas/archive/2021/10/end-police-violence-get-rid-traffic-cop/620378/">“Why
+Cars Don’t Deserve the Right of Way.”</a> <em>The
+Atlantic</em>.</p></li>
+<li><p>Yglesias, Matthew. “<a
+href="https://www.slowboring.com/p/bus-best-practice">How to Make the
+Bus Better</a>,” March 23, 2021.</p></li>
+<li><p>Roberts, Sam. <a
+href="https://www.nytimes.com/2011/03/21/nyregion/21grid.html">“200th
+Birthday for the Map That Made New York.”</a> <em>The New York
+Times</em>, March 21, 2011, sec. New York.</p></li>
+<li><p>Zee, Renate van der. <a
+href="https://www.theguardian.com/cities/2015/may/05/amsterdam-bicycle-capital-world-transport-cycling-kindermoord">“How
+Amsterdam Became the Bicycle Capital of the World.”</a> <em>The
+Guardian</em>, May 5, 2015.</p></li>
+<li><p>Streetsblog USA. <a
+href="https://usa.streetsblog.org/2014/09/03/wowza-scale-maps-of-barcelona-and-atlanta-show-the-waste-of-sprawl/">“Scale
+Maps of Barcelona and Atlanta Show the Waste of Sprawl,”</a> September
+3, 2014.</p></li>
+<li><p><a
+href="https://www.reddit.com/r/dataisbeautiful/comments/ckm21v/population_density_and_transit_in_12_cities_oc/">Population
+Density and Transit in 12 Cities</a>. Reddit (2020).</p></li>
 </ul>
 <h2 id="parking">Parking</h2>
 <h3 id="books-3">Books</h3>
 <ul>
-<li>Shoup, Donald C. <em>The High Cost of Free Parking</em>. Chicago: American Planning Association, 2005.</li>
+<li>Shoup, Donald C. <em>The High Cost of Free Parking</em>. Chicago:
+American Planning Association, 2005.</li>
 </ul>
 <h3 id="research-papers-2">Research Papers</h3>
 <ul>
-<li><p>Shoup (2004). <a href="readings/Shoup%20-%202004%20-%20The%20ideal%20source%20of%20local%20public%20revenue.pdf">The ideal source of local public revenue</a></p></li>
-<li><p>Shoup (1999). <a href="readings/Shoup%20-%201999%20-%20The%20trouble%20with%20minimum%20parking%20requirements.pdf">The trouble with minimum parking requirements</a></p></li>
+<li><p>Shoup (2004). <a
+href="readings/Shoup%20-%202004%20-%20The%20ideal%20source%20of%20local%20public%20revenue.pdf">The
+ideal source of local public revenue</a></p></li>
+<li><p>Shoup (1999). <a
+href="readings/Shoup%20-%201999%20-%20The%20trouble%20with%20minimum%20parking%20requirements.pdf">The
+trouble with minimum parking requirements</a></p></li>
 </ul>
 <h3 id="videos-2">Videos</h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -2579,32 +2668,63 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <h3 id="other-media-3">Other Media</h3>
 <ul>
-<li>Goodyear, Sarah. <a href="https://www.bloomberg.com/news/articles/2014-06-05/how-parking-lots-became-the-scourge-of-american-downtowns">“How Parking Lots Became the Scourge of American Downtowns.”</a> <em>Bloomberg CityLab</em>, June 5, 2014.</li>
+<li>Goodyear, Sarah. <a
+href="https://www.bloomberg.com/news/articles/2014-06-05/how-parking-lots-became-the-scourge-of-american-downtowns">“How
+Parking Lots Became the Scourge of American Downtowns.”</a>
+<em>Bloomberg CityLab</em>, June 5, 2014.</li>
 </ul>
 <h2 id="shrinking-cities">Shrinking Cities</h2>
 <h3 id="books-4">Books</h3>
 <ul>
-<li>Glaeser, Edward. <a href="(http://www.smart-city.institute/library/book/triumph_of_the_city.pdf)">Triumph of the City: How Our Greatest Invention Makes Us Richer, Smarter, Greener, Healthier, and Happier.</a> New York: Penguin Books, 2014. <em>Chapter 2</em></li>
+<li>Glaeser, Edward. <a
+href="(http://www.smart-city.institute/library/book/triumph_of_the_city.pdf)">Triumph
+of the City: How Our Greatest Invention Makes Us Richer, Smarter,
+Greener, Healthier, and Happier.</a> New York: Penguin Books, 2014.
+<em>Chapter 2</em></li>
 </ul>
 <h3 id="research-papers-3">Research Papers</h3>
 <ul>
-<li><p>Glaeser &amp; Gyourko (2005). <a href="readings/Glaeser,%20Gyourko%20-%202005%20-%20Urban%20Decline%20and%20Durable%20Housing.pdf">Urban Decline and Durable Housing</a></p></li>
-<li><p>Schleicher (2017). <a href="readings/Schleicher%20-%202017%20-%20Stuck!%20The%20Law%20and%20Economics%20of%20Residential%20Stagna.pdf">Stuck!</a></p></li>
-<li><p>Manville &amp; Kuhlmann (2018). <a href="readings/Manville%20and%20Kuhlmann%20-%202018%20-%20The%20Social%20and%20Fiscal%20Consequences%20of%20Urban%20Declin.pdf">The Social and Fiscal Consequences of Urban Decline: Evidence from Large American Cities, 1980–2010.</a> <em>Urban Affairs Review</em> 54, no. 3 (May 1, 2018): 451–89.</p></li>
-<li><p>Branas et al. (2018). <a href="readings/Branas%20et%20al.%20-%202018%20-%20Citywide%20cluster%20randomized%20trial%20to%20restore%20blighted%20vacant%20land.pdf">Citywide cluster randomized trial to restore blighted vacant land</a></p></li>
+<li><p>Glaeser &amp; Gyourko (2005). <a
+href="readings/Glaeser,%20Gyourko%20-%202005%20-%20Urban%20Decline%20and%20Durable%20Housing.pdf">Urban
+Decline and Durable Housing</a></p></li>
+<li><p>Schleicher (2017). <a
+href="readings/Schleicher%20-%202017%20-%20Stuck!%20The%20Law%20and%20Economics%20of%20Residential%20Stagna.pdf">Stuck!</a></p></li>
+<li><p>Manville &amp; Kuhlmann (2018). <a
+href="readings/Manville%20and%20Kuhlmann%20-%202018%20-%20The%20Social%20and%20Fiscal%20Consequences%20of%20Urban%20Declin.pdf">The
+Social and Fiscal Consequences of Urban Decline: Evidence from Large
+American Cities, 1980–2010.</a> <em>Urban Affairs Review</em> 54, no. 3
+(May 1, 2018): 451–89.</p></li>
+<li><p>Branas et al. (2018). <a
+href="readings/Branas%20et%20al.%20-%202018%20-%20Citywide%20cluster%20randomized%20trial%20to%20restore%20blighted%20vacant%20land.pdf">Citywide
+cluster randomized trial to restore blighted vacant land</a></p></li>
 </ul>
 <h3 id="podcasts-1">Podcasts</h3>
 <ul>
-<li><a href="https://99percentinvisible.org/episode/dollhouses-st-louis/">Dollhouses of St. Louis</a>. 2017. <em>99 Percent Invisible</em>.</li>
+<li><a
+href="https://99percentinvisible.org/episode/dollhouses-st-louis/">Dollhouses
+of St. Louis</a>. 2017. <em>99 Percent Invisible</em>.</li>
 </ul>
 <h3 id="other-media-4">Other Media</h3>
 <ul>
-<li><p>Mackun, Paul, Joshua Comenetz, and Lindsay Spell. 2021. <a href="https://www.census.gov/library/stories/2021/08/more-than-half-of-united-states-counties-were-smaller-in-2020-than-in-2010.html">“More Than Half of U.S. Counties Were Smaller in 2020 Than in 2010.”</a> Census.gov.</p></li>
-<li><p>Benfield, Kaid. 2011. <a href="https://www.theatlantic.com/national/archive/2011/06/detroit-the-shrinking-city-that-isnt-actually-shrinking/240193/">“Detroit: The ‘Shrinking City’ That Isn’t Actually Shrinking.”</a> <em>The Atlantic</em>.</p></li>
-<li><p>Hendy, Richard. <a href="http://www.theguardian.com/cities/2014/aug/15/yubari-japan-city-learns-die-lost-population-detroit">“Yubari, Japan: A City Learns How to Die.”</a> The Guardian, August 15, 2014.</p></li>
-<li><p>Yglesias, Matthew. <a href="https://www.vox.com/2019/8/15/20804284/place-based-visa-heartland-visa-community-revitalization">“Pete Buttigieg’s Plan to Use Immigration to Revitalize Shrinking Communities, Explained.”</a> <em>Vox</em>, August 15, 2019.</p></li>
+<li><p>Mackun, Paul, Joshua Comenetz, and Lindsay Spell. 2021. <a
+href="https://www.census.gov/library/stories/2021/08/more-than-half-of-united-states-counties-were-smaller-in-2020-than-in-2010.html">“More
+Than Half of U.S. Counties Were Smaller in 2020 Than in 2010.”</a>
+Census.gov.</p></li>
+<li><p>Benfield, Kaid. 2011. <a
+href="https://www.theatlantic.com/national/archive/2011/06/detroit-the-shrinking-city-that-isnt-actually-shrinking/240193/">“Detroit:
+The ‘Shrinking City’ That Isn’t Actually Shrinking.”</a> <em>The
+Atlantic</em>.</p></li>
+<li><p>Hendy, Richard. <a
+href="http://www.theguardian.com/cities/2014/aug/15/yubari-japan-city-learns-die-lost-population-detroit">“Yubari,
+Japan: A City Learns How to Die.”</a> The Guardian, August 15,
+2014.</p></li>
+<li><p>Yglesias, Matthew. <a
+href="https://www.vox.com/2019/8/15/20804284/place-based-visa-heartland-visa-community-revitalization">“Pete
+Buttigieg’s Plan to Use Immigration to Revitalize Shrinking Communities,
+Explained.”</a> <em>Vox</em>, August 15, 2019.</p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
