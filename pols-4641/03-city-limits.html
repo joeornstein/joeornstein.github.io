@@ -789,6 +789,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
 
   .html-widget {
@@ -1861,15 +1862,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
-          var fn = $(this).children()[0]
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
           $(this).html(fn.shadowRoot.querySelector("sup"))
           $(this).id = fn.id
           fn.remove()
         }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -2378,7 +2385,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2411,14 +2418,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="nav-right">
 <a href="index.html">Home</a>
 <a href="syllabus/POLS-4641-syllabus.pdf">Syllabus</a>
-<a href="https://docs.google.com/spreadsheets/d/1h3YM0lDiWlpzPOEcoctetjLCQDTKT_gtOswrW1dQwyA/edit?usp=sharing">
+<a href="https://docs.google.com/spreadsheets/d/12a5mE-qxsg_m47bSt2t3PnnQu6zLRQ9DePzw3ObePRc/edit?usp=sharing">
 <i class="fas fa-calendar-alt" aria-hidden="true"></i>
 </a>
 <a href="https://calendly.com/joeornstein/20min">
 <i class="fas fa-comments" aria-hidden="true"></i>
 </a>
-<a href="https://hypothes.is/groups/dAPDR274/pols-4641-spring-2022">
-<i class="fas fa-book-open" aria-hidden="true"></i>
+<a href="https://forms.gle/HoM73touBPBiqWUN8">
+<i class="fas fa-question" aria-hidden="true"></i>
 </a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
@@ -2432,9 +2439,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>City Limits</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Some fundamental difficulties that arise when you divide political
-authority between thousands of overlapping, quasi-independent local
-governments.</p></p>
+<p><p>Some fundamental difficulties that arise when you divide political authority between thousands of overlapping, quasi-independent local governments.</p></p>
 </div>
 
 
@@ -2443,27 +2448,22 @@ governments.</p></p>
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#vertical-fragmentation"
-id="toc-vertical-fragmentation">Vertical Fragmentation</a>
+<li><a href="#vertical-fragmentation" id="toc-vertical-fragmentation">Vertical Fragmentation</a>
 <ul>
 <li><a href="#books" id="toc-books">Books</a></li>
-<li><a href="#research-papers" id="toc-research-papers">Research
-Papers</a></li>
+<li><a href="#research-papers" id="toc-research-papers">Research Papers</a></li>
 <li><a href="#videos" id="toc-videos">Videos</a></li>
 </ul></li>
 <li><a href="#city-limits" id="toc-city-limits">City Limits</a>
 <ul>
 <li><a href="#books-1" id="toc-books-1">Books</a></li>
-<li><a href="#research-papers-1" id="toc-research-papers-1">Research
-Papers</a></li>
+<li><a href="#research-papers-1" id="toc-research-papers-1">Research Papers</a></li>
 <li><a href="#other-media" id="toc-other-media">Other Media</a></li>
 </ul></li>
-<li><a href="#the-race-to-the-bottom"
-id="toc-the-race-to-the-bottom">The Race To The Bottom</a>
+<li><a href="#the-race-to-the-bottom" id="toc-the-race-to-the-bottom">The Race To The Bottom</a>
 <ul>
 <li><a href="#books-2" id="toc-books-2">Books</a></li>
-<li><a href="#research-articles" id="toc-research-articles">Research
-Articles</a></li>
+<li><a href="#research-articles" id="toc-research-articles">Research Articles</a></li>
 <li><a href="#videos-1" id="toc-videos-1">Videos</a></li>
 <li><a href="#podcasts" id="toc-podcasts">Podcasts</a></li>
 <li><a href="#other-media-1" id="toc-other-media-1">Other Media</a></li>
@@ -2471,16 +2471,14 @@ Articles</a></li>
 <li><a href="#tax-the-land" id="toc-tax-the-land">Tax The Land</a>
 <ul>
 <li><a href="#books-3" id="toc-books-3">Books</a></li>
-<li><a href="#research-papers-2" id="toc-research-papers-2">Research
-Papers</a></li>
+<li><a href="#research-papers-2" id="toc-research-papers-2">Research Papers</a></li>
 <li><a href="#videos-2" id="toc-videos-2">Videos</a></li>
 <li><a href="#other-media-2" id="toc-other-media-2">Other Media</a></li>
 </ul></li>
 <li><a href="#stadiums" id="toc-stadiums">Stadiums</a>
 <ul>
 <li><a href="#books-4" id="toc-books-4">Books</a></li>
-<li><a href="#research-papers-3" id="toc-research-papers-3">Research
-Papers</a></li>
+<li><a href="#research-papers-3" id="toc-research-papers-3">Research Papers</a></li>
 <li><a href="#videos-3" id="toc-videos-3">Videos</a></li>
 <li><a href="#other-media-3" id="toc-other-media-3">Other Media</a></li>
 </ul></li>
@@ -2490,21 +2488,12 @@ Papers</a></li>
 <h2 id="vertical-fragmentation">Vertical Fragmentation</h2>
 <h3 id="books">Books</h3>
 <ul>
-<li><p>Berry, Christopher R. 2009. <a
-href="https://www.amazon.com/Imperfect-Union-Representation-Governments-Institutions/dp/0521758351">Imperfect
-Union: Representation and Taxation in Multilevel Governments.</a>
-Cambridge University Press. (particularly chapters 1 &amp; 2)</p></li>
-<li><p>Payson, Julia. 2022. <a
-href="https://www.amazon.com/When-Cities-Lobby-Governments-Politics/dp/0197615279">When
-Cities Lobby: How Local Governments Compete for Power in State
-Politics.</a> New York, NY: Oxford University Press. <em>Particularly
-chapters 1-3</em>.</p></li>
+<li><p>Berry, Christopher R. 2009. <a href="https://www.amazon.com/Imperfect-Union-Representation-Governments-Institutions/dp/0521758351">Imperfect Union: Representation and Taxation in Multilevel Governments.</a> Cambridge University Press. (particularly chapters 1 &amp; 2)</p></li>
+<li><p>Payson, Julia. 2022. <a href="https://www.amazon.com/When-Cities-Lobby-Governments-Politics/dp/0197615279">When Cities Lobby: How Local Governments Compete for Power in State Politics.</a> New York, NY: Oxford University Press. <em>Particularly chapters 1-3</em>.</p></li>
 </ul>
 <h3 id="research-papers">Research Papers</h3>
 <ul>
-<li>Berry (2008). <a
-href="readings/Berry%20-%202008%20-%20Piling%20on%20Multilevel%20government%20and%20the%20fiscal%20common-pool.pdf">Piling
-on: Multilevel government and the fiscal common-pool</a></li>
+<li>Berry (2008). <a href="readings/Berry%20-%202008%20-%20Piling%20on%20Multilevel%20government%20and%20the%20fiscal%20common-pool.pdf">Piling on: Multilevel government and the fiscal common-pool</a></li>
 </ul>
 <h3 id="videos">Videos</h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -2514,69 +2503,34 @@ on: Multilevel government and the fiscal common-pool</a></li>
 <h2 id="city-limits">City Limits</h2>
 <h3 id="books-1">Books</h3>
 <ul>
-<li>Peterson, Paul E. 1981. <em>City Limits</em>. Chicago: University of
-Chicago Press.</li>
+<li>Peterson, Paul E. 1981. <em>City Limits</em>. Chicago: University of Chicago Press.</li>
 </ul>
 <h3 id="research-papers-1">Research Papers</h3>
 <ul>
-<li><p>Einstein &amp; Kogan (2015). <a
-href="readings/Einstein,%20Kogan%20-%202015%20-%20Pushing%20the%20City%20Limits%20Policy%20Responsiveness%20in%20Municipal%20Government.pdf">Pushing
-the City Limits Policy Responsiveness in Municipal
-Government</a></p></li>
-<li><p>Hajnal &amp; Trounstine (2010). <a
-href="readings/Hajnal,%20Trounstine%20-%202010%20-%20Who%20or%20What%20Governs%20The%20Effects%20of%20Economics,%20Politics,%20Institutions,%20and%20Needs%20on%20Local%20Spending.pdf">Who
-or What Governs?</a></p></li>
-<li><p>Tausanovitch &amp; Warshaw (2014). <a
-href="readings/Tausanovitch,%20Warshaw%20-%202014%20-%20Representation%20in%20Municipal%20Government.pdf">Representation
-in Municipal Government</a></p></li>
-<li><p>Anzia (2020). <a
-href="readings/Anzia%20-%202020%20-%20Pensions%20in%20the%20Trenches.pdf">Pensions
-in the Trenches</a></p></li>
-<li><p>Ong (2014). <a
-href="readings/Ong%20-%202014%20-%20State-Led%20Urbanization%20in%20China.pdf">State-Led
-Urbanization in China</a></p></li>
-<li><p>Spruyt (1994). <a
-href="readings/Spruyt%20-%201994%20-%20Institutional%20selection%20in%20international%20relations%20state%20anarchy%20as%20order.pdf">Institutional
-selection in international relations</a></p></li>
+<li><p>Einstein &amp; Kogan (2015). <a href="readings/Einstein,%20Kogan%20-%202015%20-%20Pushing%20the%20City%20Limits%20Policy%20Responsiveness%20in%20Municipal%20Government.pdf">Pushing the City Limits Policy Responsiveness in Municipal Government</a></p></li>
+<li><p>Hajnal &amp; Trounstine (2010). <a href="readings/Hajnal,%20Trounstine%20-%202010%20-%20Who%20or%20What%20Governs%20The%20Effects%20of%20Economics,%20Politics,%20Institutions,%20and%20Needs%20on%20Local%20Spending.pdf">Who or What Governs?</a></p></li>
+<li><p>Tausanovitch &amp; Warshaw (2014). <a href="readings/Tausanovitch,%20Warshaw%20-%202014%20-%20Representation%20in%20Municipal%20Government.pdf">Representation in Municipal Government</a></p></li>
+<li><p>Anzia (2020). <a href="readings/Anzia%20-%202020%20-%20Pensions%20in%20the%20Trenches.pdf">Pensions in the Trenches</a></p></li>
+<li><p>Ong (2014). <a href="readings/Ong%20-%202014%20-%20State-Led%20Urbanization%20in%20China.pdf">State-Led Urbanization in China</a></p></li>
+<li><p>Spruyt (1994). <a href="readings/Spruyt%20-%201994%20-%20Institutional%20selection%20in%20international%20relations%20state%20anarchy%20as%20order.pdf">Institutional selection in international relations</a></p></li>
 </ul>
 <h3 id="other-media">Other Media</h3>
 <ul>
-<li><p>Chait, Jonathan. 2014. <a
-href="https://nymag.com/intelligencer/2014/09/ferguson-worst-governments.html">Why
-The Worst Governments Are Local Governments</a> (New York
-Magazine)</p></li>
-<li><p><a
-href="https://www.bloomberg.com/news/articles/2020-04-22/seven-years-after-bankruptcy-city-of-detroit-faces-a-new-crisis">Seven
-Years After Bankruptcy, Detroit Faces a New Crisis</a> (Bloomberg,
-2020)</p></li>
-<li><p><a
-href="https://www.newyorker.com/news/news-desk/the-night-new-york-saved-itself-from-bankruptcy">The
-Night New York Saved Itself From Bankruptcy</a> (<em>The New
-Yorker</em>, 2015)</p></li>
+<li><p>Chait, Jonathan. 2014. <a href="https://nymag.com/intelligencer/2014/09/ferguson-worst-governments.html">Why The Worst Governments Are Local Governments</a> (New York Magazine)</p></li>
+<li><p><a href="https://www.bloomberg.com/news/articles/2020-04-22/seven-years-after-bankruptcy-city-of-detroit-faces-a-new-crisis">Seven Years After Bankruptcy, Detroit Faces a New Crisis</a> (Bloomberg, 2020)</p></li>
+<li><p><a href="https://www.newyorker.com/news/news-desk/the-night-new-york-saved-itself-from-bankruptcy">The Night New York Saved Itself From Bankruptcy</a> (<em>The New Yorker</em>, 2015)</p></li>
 </ul>
 <h2 id="the-race-to-the-bottom">The Race To The Bottom</h2>
 <h3 id="books-2">Books</h3>
 <ul>
-<li>Jensen, Nathan M., and Edmund J. Malesky. 2018. <a
-href="https://www.cambridge.org/core/books/incentives-to-pander/E0003C20215EDA5047EA0831FEEB6D92">Incentives
-to Pander: How Politicians Use Corporate Welfare for Political Gain.</a>
-Cambridge University Press.</li>
+<li>Jensen, Nathan M., and Edmund J. Malesky. 2018. <a href="https://www.cambridge.org/core/books/incentives-to-pander/E0003C20215EDA5047EA0831FEEB6D92">Incentives to Pander: How Politicians Use Corporate Welfare for Political Gain.</a> Cambridge University Press.</li>
 </ul>
 <h3 id="research-articles">Research Articles</h3>
 <ul>
-<li><p>Jensen et al. (2015). <a
-href="readings/Jensen%20et%20al.%20-%202015%20-%20Competing%20for%20global%20capital%20or%20local%20voters.pdf">Competing
-for global capital or local voters?</a></p></li>
-<li><p>Cai, Treisman (2005). <a
-href="readings/Cai,%20Treisman%20-%202005%20-%20Does%20Competition%20for%20Capital%20Discipline%20Governments%20Decentralization,%20Globalization,%20and%20Public%20Policy.pdf">Does
-Competition for Capital Discipline Governments?</a></p></li>
-<li><p>Guo (2009). <a
-href="readings/Guo%20-%202009%20-%20China&#39;s%20Local%20Political%20Budget%20Cycles.pdf">China’s
-Local Political Budget Cycles</a></p></li>
-<li><p>Lu &amp; Landry (2014). <a
-href="readings/Lu,%20Landry%20-%202014%20-%20Show%20Me%20the%20Money%20Interjurisdiction%20Political%20Competition%20and%20Fiscal%20Extraction%20in%20China.pdf">Show
-Me the Money Interjurisdiction Political Competition and Fiscal
-Extraction in China</a></p></li>
+<li><p>Jensen et al. (2015). <a href="readings/Jensen%20et%20al.%20-%202015%20-%20Competing%20for%20global%20capital%20or%20local%20voters.pdf">Competing for global capital or local voters?</a></p></li>
+<li><p>Cai, Treisman (2005). <a href="readings/Cai,%20Treisman%20-%202005%20-%20Does%20Competition%20for%20Capital%20Discipline%20Governments%20Decentralization,%20Globalization,%20and%20Public%20Policy.pdf">Does Competition for Capital Discipline Governments?</a></p></li>
+<li><p>Guo (2009). <a href="readings/Guo%20-%202009%20-%20China&#39;s%20Local%20Political%20Budget%20Cycles.pdf">China’s Local Political Budget Cycles</a></p></li>
+<li><p>Lu &amp; Landry (2014). <a href="readings/Lu,%20Landry%20-%202014%20-%20Show%20Me%20the%20Money%20Interjurisdiction%20Political%20Competition%20and%20Fiscal%20Extraction%20in%20China.pdf">Show Me the Money Interjurisdiction Political Competition and Fiscal Extraction in China</a></p></li>
 </ul>
 <h3 id="videos-1">Videos</h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -2589,54 +2543,29 @@ Extraction in China</a></p></li>
 </div>
 <h3 id="podcasts">Podcasts</h3>
 <ul>
-<li><a href="https://gimletmedia.com/shows/reply-all/wbhjwd">Negative
-Mount Pleasant</a> <em>Reply All</em>, Dec 6, 2018.</li>
+<li><a href="https://gimletmedia.com/shows/reply-all/wbhjwd">Negative Mount Pleasant</a> <em>Reply All</em>, Dec 6, 2018.</li>
 </ul>
 <h3 id="other-media-1">Other Media</h3>
 <ul>
-<li><p>Florida, Richard. 2018. <a
-href="https://www.bloomberg.com/news/articles/2018-05-24/how-politicians-pander-to-voters-using-corporate-incentives">“How
-Politicians Pander to Voters Using Corporate Incentives”</a>
-<em>Bloomberg CityLab</em>.</p></li>
-<li><p>Thompson, Derek. 2018. <a
-href="https://www.theatlantic.com/ideas/archive/2018/11/amazons-hq2-spectacle-should-be-illegal/575539/">“Amazon’s
-HQ2 Spectacle Isn’t Just Shameful—It Should Be Illegal.”</a> <em>The
-Atlantic</em>.</p></li>
-<li><p>Perkins, Tom. 2020. <a
-href="https://www.theguardian.com/us-news/2020/dec/08/wisconsin-foxconn-factory-residents-displaced">“‘They
-Demolished My House for This?’ Residents Outraged by the Foxconn Factory
-That Fizzled.”</a> <em>The Guardian</em>.</p></li>
+<li><p>Florida, Richard. 2018. <a href="https://www.bloomberg.com/news/articles/2018-05-24/how-politicians-pander-to-voters-using-corporate-incentives">“How Politicians Pander to Voters Using Corporate Incentives”</a> <em>Bloomberg CityLab</em>.</p></li>
+<li><p>Thompson, Derek. 2018. <a href="https://www.theatlantic.com/ideas/archive/2018/11/amazons-hq2-spectacle-should-be-illegal/575539/">“Amazon’s HQ2 Spectacle Isn’t Just Shameful—It Should Be Illegal.”</a> <em>The Atlantic</em>.</p></li>
+<li><p>Perkins, Tom. 2020. <a href="https://www.theguardian.com/us-news/2020/dec/08/wisconsin-foxconn-factory-residents-displaced">“‘They Demolished My House for This?’ Residents Outraged by the Foxconn Factory That Fizzled.”</a> <em>The Guardian</em>.</p></li>
 </ul>
 <h2 id="tax-the-land">Tax The Land</h2>
 <h3 id="books-3">Books</h3>
 <ul>
 <li><p>George, Henry. 1879. <em>Progress and Poverty.</em></p>
 <ul>
-<li><p>A nice abridged version: Brown, Harry Gunnison. 1929.
-<em>Significant Paragraphs from Henry George’s Progress and
-Poverty.</em> New York: Robert Schalkenbach Foundation.</p></li>
-<li><p>An entertaining book review by <a
-href="https://astralcodexten.substack.com/p/your-book-review-progress-and-poverty">Lars
-Doucet</a>.</p></li>
+<li><p>A nice abridged version: Brown, Harry Gunnison. 1929. <em>Significant Paragraphs from Henry George’s Progress and Poverty.</em> New York: Robert Schalkenbach Foundation.</p></li>
+<li><p>An entertaining book review by <a href="https://astralcodexten.substack.com/p/your-book-review-progress-and-poverty">Lars Doucet</a>.</p></li>
 </ul></li>
 </ul>
 <h3 id="research-papers-2">Research Papers</h3>
 <ul>
-<li><p>Goldstein et al. (2020). <a
-href="readings/Goldstein%20et%20al.%20-%202020%20-%20Exploitative%20Revenues,%20Law%20Enforcement,%20and%20the%20Qu.pdf">Exploitative
-Revenues, Law Enforcement, and the Quality of Government
-Service</a></p></li>
-<li><p>Sances &amp; You (2017). <a
-href="readings/Sances%20and%20You%20-%202017%20-%20Who%20Pays%20for%20Government%20Descriptive%20Representatio.pdf">Who
-Pays for Government Descriptive Representation and Exploitative Revenue
-Sources</a></p></li>
-<li><p>Berry (2021). <a
-href="readings/Berry%20-%202021%20-%20Reassessing%20the%20Property%20Tax.pdf">Reassessing
-the Property Tax</a></p></li>
-<li><p>Sances (2016). <a
-href="readings/Sances%20-%202016%20-%20The%20Distributional%20Impact%20of%20Greater%20Responsiveness%20Evidence%20from%20New%20York%20Towns.pdf">The
-Distributional Impact of Greater Responsiveness Evidence from New York
-Towns</a></p></li>
+<li><p>Goldstein et al. (2020). <a href="readings/Goldstein%20et%20al.%20-%202020%20-%20Exploitative%20Revenues,%20Law%20Enforcement,%20and%20the%20Qu.pdf">Exploitative Revenues, Law Enforcement, and the Quality of Government Service</a></p></li>
+<li><p>Sances &amp; You (2017). <a href="readings/Sances%20and%20You%20-%202017%20-%20Who%20Pays%20for%20Government%20Descriptive%20Representatio.pdf">Who Pays for Government Descriptive Representation and Exploitative Revenue Sources</a></p></li>
+<li><p>Berry (2021). <a href="readings/Berry%20-%202021%20-%20Reassessing%20the%20Property%20Tax.pdf">Reassessing the Property Tax</a></p></li>
+<li><p>Sances (2016). <a href="readings/Sances%20-%202016%20-%20The%20Distributional%20Impact%20of%20Greater%20Responsiveness%20Evidence%20from%20New%20York%20Towns.pdf">The Distributional Impact of Greater Responsiveness Evidence from New York Towns</a></p></li>
 </ul>
 <h3 id="videos-2">Videos</h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -2645,31 +2574,18 @@ Towns</a></p></li>
 </div>
 <h3 id="other-media-2">Other Media</h3>
 <ul>
-<li><p>McIntire, Mike, and Michael H. Keller. 2021. <a
-href="https://www.nytimes.com/2021/10/31/us/police-ticket-quotas-money-funding.html">“The
-Demand for Money Behind Many Police Traffic Stops.”</a> The New York
-Times. (November 1, 2021).</p></li>
-<li><p>Johnson, Walter. 2015. <a
-href="https://www.theatlantic.com/politics/archive/2015/04/fergusons-fortune-500-company/390492/">“Ferguson’s
-Fortune 500 Company”</a>.</p></li>
-<li><p>Herriges, Daniel. <a
-href="https://www.strongtowns.org/journal/2019/3/7/rewarding-neglect-and-punishing-investment-in-struggling-neighborhoods">“Rewarding
-Neglect and Punishing Investment in Struggling Neighborhoods.”</a>
-<em>Strong Towns</em>, March 7, 2019.</p></li>
+<li><p>McIntire, Mike, and Michael H. Keller. 2021. <a href="https://www.nytimes.com/2021/10/31/us/police-ticket-quotas-money-funding.html">“The Demand for Money Behind Many Police Traffic Stops.”</a> The New York Times. (November 1, 2021).</p></li>
+<li><p>Johnson, Walter. 2015. <a href="https://www.theatlantic.com/politics/archive/2015/04/fergusons-fortune-500-company/390492/">“Ferguson’s Fortune 500 Company”</a>.</p></li>
+<li><p>Herriges, Daniel. <a href="https://www.strongtowns.org/journal/2019/3/7/rewarding-neglect-and-punishing-investment-in-struggling-neighborhoods">“Rewarding Neglect and Punishing Investment in Struggling Neighborhoods.”</a> <em>Strong Towns</em>, March 7, 2019.</p></li>
 </ul>
 <h2 id="stadiums">Stadiums</h2>
 <h3 id="books-4">Books</h3>
 <ul>
-<li>Noll, Roger G., and Andrew S. Zimbalist, eds. 1997. <a
-href="https://www.brookings.edu/book/sports-jobs-and-taxes/">Sports,
-Jobs, and Taxes: The Economic Impact of Sports Teams and Stadiums.</a>
-Washington D.C: Brookings Institution Press.</li>
+<li>Noll, Roger G., and Andrew S. Zimbalist, eds. 1997. <a href="https://www.brookings.edu/book/sports-jobs-and-taxes/">Sports, Jobs, and Taxes: The Economic Impact of Sports Teams and Stadiums.</a> Washington D.C: Brookings Institution Press.</li>
 </ul>
 <h3 id="research-papers-3">Research Papers</h3>
 <ul>
-<li>Siegfried &amp; Zimbalist (2002). <a
-href="readings/Siegfried%20and%20Zimbalist%20-%202002%20-%20A%20Note%20on%20the%20Local%20Economic%20Impact%20of%20Sports%20Expenditures.pdf">A
-Note on the Local Economic Impact of Sports Expenditures</a></li>
+<li>Siegfried &amp; Zimbalist (2002). <a href="readings/Siegfried%20and%20Zimbalist%20-%202002%20-%20A%20Note%20on%20the%20Local%20Economic%20Impact%20of%20Sports%20Expenditures.pdf">A Note on the Local Economic Impact of Sports Expenditures</a></li>
 </ul>
 <h3 id="videos-3">Videos</h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -2678,16 +2594,10 @@ Note on the Local Economic Impact of Sports Expenditures</a></li>
 </div>
 <h3 id="other-media-3">Other Media</h3>
 <ul>
-<li><p>Paulas, Rick. 2018. <a
-href="https://www.theatlantic.com/technology/archive/2018/11/sports-stadiums-can-be-bad-cities/576334/">“Sports
-Stadiums Are a Bad Deal for Cities.”</a> <em>The Atlantic</em>.</p></li>
-<li><p>deMause, Neil. 2017. <a
-href="https://www.theguardian.com/sport/2017/sep/29/why-are-georgia-taxpayers-paying-700m-for-a-new-nfl-stadium">“Why
-Are Georgia Taxpayers Paying $700m for a New NFL Stadium?”</a> <em>The
-Guardian</em>.</p></li>
+<li><p>Paulas, Rick. 2018. <a href="https://www.theatlantic.com/technology/archive/2018/11/sports-stadiums-can-be-bad-cities/576334/">“Sports Stadiums Are a Bad Deal for Cities.”</a> <em>The Atlantic</em>.</p></li>
+<li><p>deMause, Neil. 2017. <a href="https://www.theguardian.com/sport/2017/sep/29/why-are-georgia-taxpayers-paying-700m-for-a-new-nfl-stadium">“Why Are Georgia Taxpayers Paying $700m for a New NFL Stadium?”</a> <em>The Guardian</em>.</p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
