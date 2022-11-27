@@ -137,6 +137,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta name="citation_reference" content="citation_title=Beyond power calculations: Assessing type s (sign) and type m (magnitude) errors;citation_doi=10.1177/1745691614551642;citation_author=Andrew Gelman;citation_author=John Carlin"/>
   <meta name="citation_reference" content="citation_title=Power failure: Why small sample size undermines the reliability of neuroscience;citation_volume=14;citation_doi=10.1038/nrn3475;citation_author=Katherine S. Button;citation_author=John P. A. Ioannidis;citation_author=Claire Mokrysz;citation_author=Brian A. Nosek;citation_author=Jonathan Flint;citation_author=Emma S. J. Robinson;citation_author=Marcus R. Munafò"/>
   <meta name="citation_reference" content="citation_title=Measurement error and the replication crisis;citation_volume=355;citation_doi=10.1126/science.aal3618;citation_author=Eric Loken;citation_author=Andrew Gelman"/>
+  <meta name="citation_reference" content="citation_title=Unrepresentative big surveys significantly overestimated US vaccine uptake;citation_publisher=Nature Publishing Group;citation_doi=10.1038/s41586-021-04198-4;citation_issn=1476-4687;citation_author=Valerie C. Bradley;citation_author=Shiro Kuriwaki;citation_author=Michael Isakov;citation_author=Dino Sejdinovic;citation_author=Xiao-Li Meng;citation_author=Seth Flaxman"/>
+  <meta name="citation_reference" content="citation_title=Statistical paradises and paradoxes in big data (I): Law of large populations, big data paradox, and the 2016 us presidential election;citation_volume=12;citation_doi=10.1214/18-AOAS1161SF;citation_author=Xiao Li Meng"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
@@ -2510,6 +2512,7 @@ Schedule
 <ul>
 <li><a href="#p-values-and-confidence-intervals-dont-mean-what-most-people-think-they-mean" id="toc-p-values-and-confidence-intervals-dont-mean-what-most-people-think-they-mean">1. P-values and confidence intervals don’t mean what most people think they mean</a></li>
 <li><a href="#dividing-results-into-significant-and-not-significant-is-silly" id="toc-dividing-results-into-significant-and-not-significant-is-silly">2. Dividing results into “significant” and “not significant” is silly</a></li>
+<li><a href="#big-data-can-be-wildly-misleading" id="toc-big-data-can-be-wildly-misleading">3. “Big Data” can be wildly misleading</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -2533,8 +2536,8 @@ Schedule
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>sample_size</span> <span class='op'>&lt;-</span> <span class='fl'>100</span></span>
 <span></span>
-<span><span class='va'>sample_ages</span> <span class='op'>&lt;-</span> <span class='va'>ces</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>sample_size</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span><span class='va'>sample_ages</span> <span class='op'>&lt;-</span> <span class='va'>ces</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>sample_size</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>age</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='va'>estimate</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>sample_ages</span><span class='op'>)</span></span>
@@ -2560,8 +2563,8 @@ Schedule
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>sample_size</span> <span class='op'>&lt;-</span> <span class='fl'>10</span></span>
 <span></span>
-<span><span class='va'>sample_ages</span> <span class='op'>&lt;-</span> <span class='va'>ces</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>sample_size</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span><span class='va'>sample_ages</span> <span class='op'>&lt;-</span> <span class='va'>ces</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>sample_size</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>age</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='va'>estimate</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>sample_ages</span><span class='op'>)</span></span>
@@ -2708,7 +2711,7 @@ t = \frac{\text{statistic} - H_0}{\text{standard error}}
 <h2 id="some-points-of-caution">Some Points of Caution</h2>
 <p>Let’s close our discussion of hypothesis testing with some notes of caution. P-values, confidence intervals, and “statistical significance” are widely misused, abused, and misunderstood. It’s worth taking a moment to consider what these tests can and cannot tell us.</p>
 <h3 id="p-values-and-confidence-intervals-dont-mean-what-most-people-think-they-mean">1. P-values and confidence intervals don’t mean what most people think they mean</h3>
-<p>When discussing the results of a hypothesis test, it is common even for knowledgeable researchers to slip into colloquial language, like “the p-value is 0.03, which means there’s a 3% chance that the null hypothesis is true”. Or “I’m 95% sure that the true value lies within this confidence interval”. These interpretations <em>seem</em> sensible, but they’re wrong in an important-to-understand way.</p>
+<p>When discussing the results of a hypothesis test, it is common even for knowledgeable researchers to slip into colloquial language, like “the p-value is 0.03, which means there’s a 3% chance that the null hypothesis is true”. Or “I’m 95% sure that the true value lies within this confidence interval”. These interpretations <em>seem</em> sensible, but they’re wrong in an important-to-understand way.</p>
 <p>A p-value tells us <em>the probability of the observing your statistic, conditional on the null hypothesis being true</em>. But that’s a bit of a bait-and-switch, because it’s not really the thing we want to know. Instead, we we want to know <em>the probability the null hypothesis is true, conditional on observing the statistic you did</em>. Fortunately, <a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes Theorem</a> tells us how to go from one conditional probability to the other.</p>
 <p><span class="math display">\[
 P(H_0 | \text{statistic}) = \frac{P(\text{statistic}|H_0) \times P(H_0)}{P(\text{statistic})}
@@ -2724,17 +2727,17 @@ P(H_0 | \text{statistic}) = \frac{P(\text{statistic}|H_0) \times P(H_0)}{P(\text
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span> <span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='st'>'data/ces-2020/cleaned-CES.RData'</span><span class='op'>)</span> <span class='op'>)</span></span>
 <span></span>
 <span><span class='co'># clean up the data</span></span>
-<span><span class='va'>ces</span> <span class='op'>&lt;-</span> <span class='va'>ces</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>social_media_24h</span>, <span class='va'>assault_rifle_ban</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span><span class='va'>ces</span> <span class='op'>&lt;-</span> <span class='va'>ces</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>social_media_24h</span>, <span class='va'>assault_rifle_ban</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
 <span>  <span class='co'># remove rows with missing data</span></span>
-<span>  <span class='va'>na.omit</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/stats/na.fail.html'>na.omit</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
 <span>  <span class='co'># convert to 0-1</span></span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>social_media_24h <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>social_media_24h</span> <span class='op'>==</span> <span class='st'>'Yes'</span><span class='op'>)</span>,</span>
 <span>         assault_rifle_ban <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>assault_rifle_ban</span> <span class='op'>==</span> <span class='st'>'Support'</span><span class='op'>)</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='co'># the true difference in the population</span></span>
-<span><span class='va'>ces</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>social_media_24h</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span><span class='va'>ces</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>social_media_24h</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
 <span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>pct_support_ban <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>assault_rifle_ban</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code># A tibble: 2 × 2
@@ -2747,11 +2750,11 @@ P(H_0 | \text{statistic}) = \frac{P(\text{statistic}|H_0) \times P(H_0)}{P(\text
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span><span class='op'>(</span><span class='fl'>200</span>,</span>
-<span>                     <span class='va'>ces</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
-<span>                       <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
-<span>                       <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>assault_rifle_ban</span> <span class='op'>~</span> <span class='va'>social_media_24h</span>, data <span class='op'>=</span> <span class='va'>.</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
-<span>                       <span class='va'>coef</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
-<span>                       <span class='va'>last</span><span class='op'>)</span></span>
+<span>                     <span class='va'>ces</span> <span class='op'>|&gt;</span> </span>
+<span>                       <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>                       <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>assault_rifle_ban</span> <span class='op'>~</span> <span class='va'>social_media_24h</span>, data <span class='op'>=</span> <span class='va'>_</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>                       <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>                       <span class='fu'><a href='https://dplyr.tidyverse.org/reference/nth.html'>last</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>results</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>'black'</span><span class='op'>)</span> <span class='op'>+</span></span>
@@ -2771,10 +2774,51 @@ P(H_0 | \text{statistic}) = \frac{P(\text{statistic}|H_0) \times P(H_0)}{P(\text
 </blockquote>
 <p>Many scientists think the problem is that 0.05 is too high a threshold, and advocate using something like 0.005 instead <span class="citation" data-cites="benjamin2018">(<a href="#ref-benjamin2018" role="doc-biblioref">Benjamin et al. 2018</a>)</span>. With respect to the 72 authors of that paper I just cited (many of whom I deeply admire), my own preference is to abandon statistical significance rather than redefine it. Reducing the threshold to 0.005 solves neither the harms discussed by <span class="citation" data-cites="hauer2004">Hauer (<a href="#ref-hauer2004" role="doc-biblioref">2004</a>)</span> nor the Type M distortions discussed by <span class="citation" data-cites="gelman2014a">Gelman and Carlin (<a href="#ref-gelman2014a" role="doc-biblioref">2014</a>)</span>. Those can only be solved by research transparency and human judgment.</p>
 <p><a href="https://xkcd.com/882/"><img src="img/significant.png" width="600" /></a></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<h3 id="big-data-can-be-wildly-misleading">3. “Big Data” can be wildly misleading</h3>
+<p>In November 2022, Elon Musk conducted the following Twitter poll.</p>
+<p><a href="https://twitter.com/elonmusk/status/1593767953706921985"><img src="img/musk-poll.png" width="500" /></a></p>
+<p>With over 15 million votes, the poll estimated that 51.8% of Twitter users wanted Trump back on the platform. Let’s put a 95% confidence interval around that estimate.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># a bit over 15 million respondents</span></span>
+<span><span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>15085458</span></span>
+<span></span>
+<span><span class='co'># here's that poll as a vector</span></span>
+<span><span class='va'>poll</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='va'>n</span> <span class='op'>*</span> <span class='fl'>0.518</span><span class='op'>)</span>,</span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='va'>n</span> <span class='op'>*</span> <span class='fl'>0.482</span><span class='op'>)</span></span>
+<span><span class='op'>)</span></span>
+<span></span>
+<span></span>
+<span><span class='co'># approximately normal sampling distribution,</span></span>
+<span><span class='co'># mean = 51.8</span></span>
+<span><span class='co'># standard error = sd / sqrt(n) </span></span>
+<span><span class='va'>estimate</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>poll</span><span class='op'>)</span></span>
+<span><span class='va'>sd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>poll</span><span class='op'>)</span></span>
+<span><span class='va'>se</span> <span class='op'>&lt;-</span> <span class='va'>sd</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># the 95% confidence interval is plus/minus 1.96 standard errors</span></span>
+<span><span class='va'>confidence_interval</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
+<span>  <span class='va'>estimate</span> <span class='op'>-</span> <span class='fl'>1.96</span><span class='op'>*</span><span class='va'>se</span>,</span>
+<span>  <span class='va'>estimate</span> <span class='op'>+</span> <span class='fl'>1.96</span><span class='op'>*</span><span class='va'>se</span></span>
+<span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>confidence_interval</span></span></code></pre>
+</div>
+<pre><code>[1] 0.5177479 0.5182522</code></pre>
+</div>
+<p>Our 95% confidence interval ranges from 51.77% to 51.83%. By the standards of the data we’ve been working with in class, this is an <em>incredibly</em> precise estimate! With giant sample sizes come teeny tiny standard errors.</p>
+<p>But, what does that actually mean? Does it mean we’re 95% confident that somewhere between 51.77% and 51.83% of Twitter users support reinstating Donald Trump?</p>
+<p>Here’s where insisting on the pedantic definition of confidence intervals really starts to come in handy. A confidence interval doesn’t say “I’m 95% confident the value is in here”. It says “if we draw a bunch of random samples from the population, then the confidence interval will contain the true value 95% of the time”. But there’s no reason to believe that Musk’s poll is a random sample. Certain people were more likely than others to see and respond to the poll, and it’s unlikely that the people who responded are perfectly representative of the population of Twitter users.</p>
+<p>What inferences can we make about the population using this sample? The surprising answer is…basically nothing! Because we have no way of knowing whether Trump supporters were more or less likely to answer Musk’s poll (and by how much), even a sample size as large as 15 million doesn’t permit us to make valid inferences beyond the sample. In fact, a truly random sample of 1,000 Twitter users would do a <em>much</em> better job estimating what the broader population thinks than this non-representative poll of 15 million.</p>
+<p>The key takeaway here is that data <em>quality</em> matters far more than data <em>quantity.</em> For more on this “Big Data Paradox”, I highly recommend the <span class="citation" data-cites="bradleyUnrepresentativeBigSurveys2021">Bradley et al. (<a href="#ref-bradleyUnrepresentativeBigSurveys2021" role="doc-biblioref">2021</a>)</span> paper on how surveys of millions of social media users wildly mis-estimated the COVID-19 vaccination rate, while a carefully-constructed random sample of 1,000 performed much better. For a more technical (but still delightful) description of the trouble with Big Data, see <span class="citation" data-cites="mengStatisticalParadisesParadoxes2018">Meng (<a href="#ref-mengStatisticalParadisesParadoxes2018" role="doc-biblioref">2018</a>)</span>.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-benjamin2018" class="csl-entry" role="doc-biblioentry">
 Benjamin, Daniel J., James O. Berger, Magnus Johannesson, Brian A. Nosek, E.-J. Wagenmakers, Richard Berk, Kenneth A. Bollen, et al. 2018. <span>“Redefine Statistical Significance.”</span> <em>Nature Human Behaviour</em> 2 (1): 6–10. <a href="https://doi.org/10.1038/s41562-017-0189-z">https://doi.org/10.1038/s41562-017-0189-z</a>.
+</div>
+<div id="ref-bradleyUnrepresentativeBigSurveys2021" class="csl-entry" role="doc-biblioentry">
+Bradley, Valerie C., Shiro Kuriwaki, Michael Isakov, Dino Sejdinovic, Xiao-Li Meng, and Seth Flaxman. 2021. <span>“Unrepresentative Big Surveys Significantly Overestimated <span>US</span> Vaccine Uptake.”</span> <em>Nature</em>, December, 1–6. <a href="https://doi.org/10.1038/s41586-021-04198-4">https://doi.org/10.1038/s41586-021-04198-4</a>.
 </div>
 <div id="ref-button2013" class="csl-entry" role="doc-biblioentry">
 Button, Katherine S., John P. A. Ioannidis, Claire Mokrysz, Brian A. Nosek, Jonathan Flint, Emma S. J. Robinson, and Marcus R. Munafò. 2013. <span>“Power Failure: Why Small Sample Size Undermines the Reliability of Neuroscience.”</span> <em>Nature Reviews Neuroscience</em> 14 (5): 365–76. <a href="https://doi.org/10.1038/nrn3475">https://doi.org/10.1038/nrn3475</a>.
@@ -2793,6 +2837,9 @@ Loken, Eric, and Andrew Gelman. 2017. <span>“Measurement Error and the Replica
 </div>
 <div id="ref-mcelreath2020" class="csl-entry" role="doc-biblioentry">
 McElreath, Richard. 2020. <em>Statistical Rethinking: A Bayesian Course with Examples in r and Stan</em>. 2nd ed. CRC Texts in Statistical Science. Boca Raton: Taylor; Francis, CRC Press.
+</div>
+<div id="ref-mengStatisticalParadisesParadoxes2018" class="csl-entry" role="doc-biblioentry">
+Meng, Xiao Li. 2018. <span>“Statistical Paradises and Paradoxes in Big Data (<span>I</span>): <span>Law</span> of Large Populations, Big Data Paradox, and the 2016 Us Presidential Election.”</span> <em>Annals of Applied Statistics</em> 12 (2): 685–726. <a href="https://doi.org/10.1214/18-AOAS1161SF">https://doi.org/10.1214/18-AOAS1161SF</a>.
 </div>
 </div>
 <section class="footnotes footnotes-end-of-document" role="doc-endnotes">

@@ -74,6 +74,13 @@
     "href": "index.html#leaderboard",
     "title": "Fall 2022 Predictions",
     "section": "Leaderboard",
-    "text": "Leaderboard\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nDavid Barrero\n17/23\n0.1568\n\n\n2\nClass Average\n20/23\n0.1823\n\n\n3\nJeremy Lee\n17/23\n0.1864\n\n\n4\nNicholas Chao\n15/23\n0.1908\n\n\n5\nAudrey Vaughan\n16/23\n0.2034\n\n\n6\nAdam Szczupak\n18/23\n0.2083\n\n\n7\nArianna Ycaza\n13/23\n0.2330\n\n\n8\nHannah Jones\n13/23\n0.2439\n\n\n9\nJoe Kennedy\n13/23\n0.2446\n\n\n10\nPatrick Egan\n16/23\n0.2477\n\n\n11\nJoe Ornstein\n13/23\n0.2488\n\n\n12\nOlivia West\n11/23\n0.2511\n\n\n13\nAndrew Decker\n13/23\n0.2632\n\n\n14\nEdward Cox\n14/23\n0.2815\n\n\n15\nMac Kinnebrew\n10/23\n0.2923\n\n\n16\nCharlie Estabrook\n11/23\n0.3116\n\n\n17\nNoah Herndon\n11/23\n0.3201\n\n\n18\nMeredith Stevens\n9/23\n0.3256\n\n\n19\nIan Driggers\n8/23\n0.4446"
+    "text": "Leaderboard\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nJeremy Lee\n22/28\n0.1623\n\n\n2\nNicholas Chao\n19/28\n0.1760\n\n\n3\nDavid Barrero\n19/28\n0.1867\n\n\n4\nClass Average\n22/28\n0.1947\n\n\n5\nAudrey Vaughan\n19/28\n0.2227\n\n\n6\nHannah Jones\n17/28\n0.2390\n\n\n7\nArianna Ycaza\n15/28\n0.2513\n\n\n8\nAdam Szczupak\n20/28\n0.2587\n\n\n9\nAndrew Decker\n16/28\n0.2662\n\n\n10\nJoe Kennedy\n14/28\n0.2664\n\n\n11\nJoe Ornstein\n15/28\n0.2743\n\n\n12\nPatrick Egan\n17/28\n0.2863\n\n\n13\nOlivia West\n12/28\n0.2978\n\n\n14\nNoah Herndon\n14/28\n0.3127\n\n\n15\nEdward Cox\n15/28\n0.3155\n\n\n16\nMac Kinnebrew\n10/28\n0.3312\n\n\n17\nMeredith Stevens\n12/28\n0.3345\n\n\n18\nCharlie Estabrook\n12/28\n0.3394\n\n\n19\nIan Driggers\n10/28\n0.4600"
+  },
+  {
+    "objectID": "index.html#calibration-plots",
+    "href": "index.html#calibration-plots",
+    "title": "Fall 2022 Predictions",
+    "section": "Calibration Plots",
+    "text": "Calibration Plots"
   }
 ]
