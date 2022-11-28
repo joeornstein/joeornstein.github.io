@@ -2537,8 +2537,8 @@ Schedule
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>sample_size</span> <span class='op'>&lt;-</span> <span class='fl'>100</span></span>
 <span></span>
 <span><span class='va'>sample_ages</span> <span class='op'>&lt;-</span> <span class='va'>ces</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>sample_size</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>age</span><span class='op'>)</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>sample_size</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>age</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='va'>estimate</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>sample_ages</span><span class='op'>)</span></span>
 <span></span>
@@ -2564,8 +2564,8 @@ Schedule
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>sample_size</span> <span class='op'>&lt;-</span> <span class='fl'>10</span></span>
 <span></span>
 <span><span class='va'>sample_ages</span> <span class='op'>&lt;-</span> <span class='va'>ces</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>sample_size</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>age</span><span class='op'>)</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>sample_size</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>age</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='va'>estimate</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>sample_ages</span><span class='op'>)</span></span>
 <span></span>
@@ -2728,17 +2728,17 @@ P(H_0 | \text{statistic}) = \frac{P(\text{statistic}|H_0) \times P(H_0)}{P(\text
 <span></span>
 <span><span class='co'># clean up the data</span></span>
 <span><span class='va'>ces</span> <span class='op'>&lt;-</span> <span class='va'>ces</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>social_media_24h</span>, <span class='va'>assault_rifle_ban</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/select.html'>select</a></span><span class='op'>(</span><span class='va'>social_media_24h</span>, <span class='va'>assault_rifle_ban</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
 <span>  <span class='co'># remove rows with missing data</span></span>
 <span>  <span class='fu'><a href='https://rdrr.io/r/stats/na.fail.html'>na.omit</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
 <span>  <span class='co'># convert to 0-1</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>social_media_24h <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>social_media_24h</span> <span class='op'>==</span> <span class='st'>'Yes'</span><span class='op'>)</span>,</span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/mutate.html'>mutate</a></span><span class='op'>(</span>social_media_24h <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>social_media_24h</span> <span class='op'>==</span> <span class='st'>'Yes'</span><span class='op'>)</span>,</span>
 <span>         assault_rifle_ban <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>assault_rifle_ban</span> <span class='op'>==</span> <span class='st'>'Support'</span><span class='op'>)</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='co'># the true difference in the population</span></span>
 <span><span class='va'>ces</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>social_media_24h</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>pct_support_ban <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>assault_rifle_ban</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>social_media_24h</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/summarise.html'>summarize</a></span><span class='op'>(</span>pct_support_ban <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>assault_rifle_ban</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code># A tibble: 2 × 2
   social_media_24h pct_support_ban
@@ -2751,10 +2751,10 @@ P(H_0 | \text{statistic}) = \frac{P(\text{statistic}|H_0) \times P(H_0)}{P(\text
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>results</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span><span class='op'>(</span><span class='fl'>200</span>,</span>
 <span>                     <span class='va'>ces</span> <span class='op'>|&gt;</span> </span>
-<span>                       <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>                       <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
 <span>                       <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>assault_rifle_ban</span> <span class='op'>~</span> <span class='va'>social_media_24h</span>, data <span class='op'>=</span> <span class='va'>_</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
 <span>                       <span class='fu'><a href='https://rdrr.io/r/stats/coef.html'>coef</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
-<span>                       <span class='fu'><a href='https://dplyr.tidyverse.org/reference/nth.html'>last</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>                       <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/nth.html'>last</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>results</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>'black'</span><span class='op'>)</span> <span class='op'>+</span></span>
@@ -2812,6 +2812,7 @@ P(H_0 | \text{statistic}) = \frac{P(\text{statistic}|H_0) \times P(H_0)}{P(\text
 <p>Here’s where insisting on the pedantic definition of confidence intervals really starts to come in handy. A confidence interval doesn’t say “I’m 95% confident the value is in here”. It says “if we draw a bunch of random samples from the population, then the confidence interval will contain the true value 95% of the time”. But there’s no reason to believe that Musk’s poll is a random sample. Certain people were more likely than others to see and respond to the poll, and it’s unlikely that the people who responded are perfectly representative of the population of Twitter users.</p>
 <p>What inferences can we make about the population using this sample? The surprising answer is…basically nothing! Because we have no way of knowing whether Trump supporters were more or less likely to answer Musk’s poll (and by how much), even a sample size as large as 15 million doesn’t permit us to make valid inferences beyond the sample. In fact, a truly random sample of 1,000 Twitter users would do a <em>much</em> better job estimating what the broader population thinks than this non-representative poll of 15 million.</p>
 <p>The key takeaway here is that data <em>quality</em> matters far more than data <em>quantity.</em> For more on this “Big Data Paradox”, I highly recommend the <span class="citation" data-cites="bradleyUnrepresentativeBigSurveys2021">Bradley et al. (<a href="#ref-bradleyUnrepresentativeBigSurveys2021" role="doc-biblioref">2021</a>)</span> paper on how surveys of millions of social media users wildly mis-estimated the COVID-19 vaccination rate, while a carefully-constructed random sample of 1,000 performed much better. For a more technical (but still delightful) description of the trouble with Big Data, see <span class="citation" data-cites="mengStatisticalParadisesParadoxes2018">Meng (<a href="#ref-mengStatisticalParadisesParadoxes2018" role="doc-biblioref">2018</a>)</span>.</p>
+<p><a href="https://xkcd.com/2618/"><img src="img/selection_bias.png" width="300" /></a></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-benjamin2018" class="csl-entry" role="doc-biblioentry">

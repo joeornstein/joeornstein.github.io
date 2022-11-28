@@ -2530,7 +2530,7 @@ Schedule
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># take the babynames dataset</span></span>
 <span><span class='va'>babynames</span> <span class='op'>|&gt;</span> </span>
 <span>  <span class='co'># keep only babies born in the year 2000</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>year</span> <span class='op'>==</span> <span class='fl'>2000</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>year</span> <span class='op'>==</span> <span class='fl'>2000</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
 <span>  <span class='co'># pipe that dataset into a ggplot with the variable n on the x-axis</span></span>
 <span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>n</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
 <span>  <span class='co'># add a *histogram* geometry</span></span>
@@ -2552,8 +2552,8 @@ Schedule
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>babynames</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>year</span> <span class='op'>==</span> <span class='fl'>2000</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>total_babies <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>year</span> <span class='op'>==</span> <span class='fl'>2000</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/summarise.html'>summarize</a></span><span class='op'>(</span>total_babies <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code># A tibble: 1 × 1
   total_babies
@@ -2564,8 +2564,8 @@ Schedule
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>babynames</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>year</span> <span class='op'>==</span> <span class='fl'>2000</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>median_popularity <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/median.html'>median</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>,</span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>year</span> <span class='op'>==</span> <span class='fl'>2000</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/summarise.html'>summarize</a></span><span class='op'>(</span>median_popularity <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/median.html'>median</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>,</span>
 <span>            mean_popularity <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code># A tibble: 1 × 2
@@ -2579,9 +2579,9 @@ Schedule
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>babynames</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>year</span> <span class='op'>==</span> <span class='fl'>2000</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>sex</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>median_popularity <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/median.html'>median</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>,</span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>year</span> <span class='op'>==</span> <span class='fl'>2000</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>sex</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/summarise.html'>summarize</a></span><span class='op'>(</span>median_popularity <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/median.html'>median</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>,</span>
 <span>            mean_popularity <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code># A tibble: 2 × 3

@@ -2536,7 +2536,7 @@ Schedule
 <span><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='st'>'data/ces-2020/cleaned-CES.RData'</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='co'># recode TV news viewership as a 0-1 variable</span></span>
-<span><span class='va'>ces</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span><span class='va'>ces</span>, tv_news_24h <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>tv_news_24h</span> <span class='op'>==</span> <span class='st'>'Yes'</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+<span><span class='va'>ces</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/mutate.html'>mutate</a></span><span class='op'>(</span><span class='va'>ces</span>, tv_news_24h <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>tv_news_24h</span> <span class='op'>==</span> <span class='st'>'Yes'</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>What percent of this population (CES respondents) watched TV news in the past 24 hours?</p>
@@ -2551,7 +2551,7 @@ Schedule
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># pull a sample</span></span>
-<span><span class='va'>sample_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span><span class='va'>ces</span>, n <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span></span>
+<span><span class='va'>sample_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/slice.html'>slice_sample</a></span><span class='op'>(</span><span class='va'>ces</span>, n <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span></span>
 <span></span>
 <span><span class='co'># what percent of the sample watched TV news recently?</span></span>
 <span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>sample_data</span><span class='op'>$</span><span class='va'>tv_news_24h</span><span class='op'>)</span></span></code></pre>
@@ -2565,9 +2565,9 @@ Schedule
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>get_sample_mean</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>sample_size</span> <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span><span class='op'>{</span></span>
 <span>  <span class='va'>ces</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
 <span>    <span class='co'># draw a sample</span></span>
-<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>sample_size</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>    <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>sample_size</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
 <span>    <span class='co'># pull the TV news variable</span></span>
-<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>tv_news_24h</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>    <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>tv_news_24h</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
 <span>    <span class='co'># return the mean</span></span>
 <span>    <span class='va'>mean</span></span>
 <span><span class='op'>}</span></span>
