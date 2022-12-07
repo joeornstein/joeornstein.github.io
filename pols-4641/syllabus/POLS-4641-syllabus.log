@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.7.30) (preloaded format=pdflatex 2022.8.4)  18 NOV 2022 14:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.7.30) (preloaded format=pdflatex 2022.8.4)  7 DEC 2022 14:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -666,11 +666,11 @@ Package rerunfilecheck Info: File `POLS-4641-syllabus.out' has not changed.
 Here is how much of TeX's memory you used:
  13650 strings out of 478337
  222135 string characters out of 2835723
- 540971 words of memory out of 3000000
+ 539971 words of memory out of 3000000
  31906 multiletter control sequences out of 15000+600000
  474197 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,11n,91p,927b,623s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 87i,11n,91p,990b,625s stack positions out of 10000i,1000n,20000p,200000b,80000s
  <C:\Users\jo22058\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
 rm1095.pk><C:/Users/jo22058/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmbx10.pfb><C:/Users/jo22058/AppData/Local/Programs/MiKTeX/fonts/type
@@ -679,7 +679,7 @@ sfonts/cm/cmbx10.pfb><C:/Users/jo22058/AppData/Local/Programs/MiKTeX/fonts/type
 grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/jo22058/AppData
 /Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/jo220
 58/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on POLS-4641-syllabus.pdf (3 pages, 758419 bytes).
+Output written on POLS-4641-syllabus.pdf (3 pages, 758448 bytes).
 PDF statistics:
  74 PDF objects out of 1000 (max. 8388607)
  10 named destinations out of 1000 (max. 500000)
