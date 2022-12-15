@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.7.30) (preloaded format=pdflatex 2022.8.4)  7 DEC 2022 14:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.7.30) (preloaded format=pdflatex 2022.8.4)  12 DEC 2022 14:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -644,7 +644,16 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[2] 
+[2]
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[3] 
 AED: lastpage setting LastPage
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -654,7 +663,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[3]
+[4]
 
 Package caption Warning: Unused \captionsetup[lstlisting] on input line 33.
 See the caption package documentation for explanation.
@@ -664,13 +673,13 @@ Package rerunfilecheck Info: File `POLS-4641-syllabus.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 13650 strings out of 478337
- 222135 string characters out of 2835723
- 539971 words of memory out of 3000000
+ 13651 strings out of 478337
+ 222141 string characters out of 2835723
+ 540971 words of memory out of 3000000
  31906 multiletter control sequences out of 15000+600000
  474197 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,11n,91p,990b,625s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 87i,11n,91p,1033b,625s stack positions out of 10000i,1000n,20000p,200000b,80000s
  <C:\Users\jo22058\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
 rm1095.pk><C:/Users/jo22058/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmbx10.pfb><C:/Users/jo22058/AppData/Local/Programs/MiKTeX/fonts/type
@@ -679,9 +688,9 @@ sfonts/cm/cmbx10.pfb><C:/Users/jo22058/AppData/Local/Programs/MiKTeX/fonts/type
 grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/jo22058/AppData
 /Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/jo220
 58/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on POLS-4641-syllabus.pdf (3 pages, 758448 bytes).
+Output written on POLS-4641-syllabus.pdf (4 pages, 759387 bytes).
 PDF statistics:
- 74 PDF objects out of 1000 (max. 8388607)
- 10 named destinations out of 1000 (max. 500000)
+ 79 PDF objects out of 1000 (max. 8388607)
+ 11 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
