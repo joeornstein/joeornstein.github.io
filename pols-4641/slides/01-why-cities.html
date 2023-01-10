@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Why Cities?</title>
+    <meta charset="utf-8" />
+    <script src="01-why-cities_files/header-attrs-2.14/header-attrs.js"></script>
+    <link href="01-why-cities_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="01-why-cities_files/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Why Cities?
+]
+
+---
+
+
+&lt;style type="text/css"&gt;
+.cite {
+  font-weight: bold;
+  font-size: 0.75em;
+  color: #BA0C2F;
+}
+&lt;/style&gt;
+
+
+
+
+## Fill in the blank:
+
+In the United States (minus Alaska and Hawaii), half of the population lives on roughly \_\_\_\_\_% of the land.
+
+---
+
+## Fill in the blank:
+
+In the United States (minus Alaska and Hawaii), half of the population lives on roughly **1%** of the land.
+
+&lt;img src="img/tracts50.png" width="800" style="display: block; margin: auto;" /&gt;
+
+???
+
+Northeast Megalopolis: ~50 million
+Greater Los Angeles: ~20 million
+Texas Triangle: ~20 million
+Chicagoland: ~10 million
+Metro Atlanta: ~5 million
+
+
+---
+
+## Why Cities?
+
+In a country with so much open space, why do we crowd ourselves into relatively small areas?
+
+--
+
+- Today, we'll introduce a concept from economics called **increasing returns to scale** (aka **economies of scale**)
+
+--
+
+- This concept not only explains why cities exist, but also implies a number of other interesting facts about cities:
+
+--
+
+  - Why cities promotes economic growth
+
+  - The origins of urbanization
+  
+  - Path dependence
+
+
+---
+
+## Increasing Returns to Scale
+
+--
+
+Imagine a [perfectly circular medieval city](https://www.google.com/maps/place/33057+Palmanova,+Province+of+Udine,+Italy/@45.9062316,13.3034413,2296m/data=!3m1!1e3!4m5!3m4!1s0x477bb089f331a869:0x5d2129dbb7a04c79!8m2!3d45.909424!4d13.3057286).
+
+&lt;img src="img/circle.png" width="350" style="display: block; margin: auto;" /&gt;
+
+--
+
+- The **area** of the circle represents how many people the city can hold. 
+
+- The **circumference** of the circle represents how much wall you need to build to protect them.
+
+---
+
+## Increasing Returns to Scale
+
+$$
+\text{Wall Cost Per Person} = \frac{2 \pi R}{\pi R^2} = \frac{2}{R}
+$$
+
+--
+
+&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-4-1.png" width="700" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Increasing Returns to Scale
+
+Double the size of the city, and the size of the necessary infrastructure increases by *less* than double.
+
+&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-5-1.png" width="700" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Increasing Returns to Scale
+
+&lt;img src="img/dincecco-onorato.png" width="600" style="display: block; margin: auto;" /&gt;
+
+.cite[Dincecco &amp; Onorato (2016)]
+
+???
+
+Tough to untangle causality here, but places with more widespread warfare in the millenium before the Industrial Revolution became more urbanized!
+
+---
+
+## Increasing Returns to Scale
+
+This is eerily similar to the geometric scaling laws we see in nature. 
+
+--
+
+- Double the size of an animal, and the energy necessary to keep it alive less than doubles!
+
+&lt;img src="img/metabolic-scaling.jpeg" width="500" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Increasing Returns to Scale
+
+--
+
+- These *geometric* economies to scale apply not only to city walls, but to other, more modern, infrastructure needs, like pipes, power lines, and roads.
+
+--
+
+  - The math is a bit more complicated, though .cite[(Bettencourt, 2013)].
+  
+--
+
+&lt;img src="img/maersk.jpg" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Increasing Returns to Scale
+
+Another source of increasing returns comes from the way businesses operate.
+
+--
+
+&lt;img src="img/cheese.png" width="600" style="display: block; margin: auto;" /&gt;
+
+--
+
+Each block of cheese costs you `\(c\)` dollars, and you sell it for `\(p\)` dollars. You also have *fixed costs* of `\(F\)` dollars each month (rent, wages, electricity, etc.).
+
+--
+
+How many blocks of cheese do you need to sell to stay in business?
+
+---
+
+## Increasing Returns to Scale
+
+$$
+\text{Units Sold} &gt; \frac{F}{p - c}
+$$
+--
+
+This explains why:
+
+- Businesses with large fixed costs (major league sports stadiums, live theater, museums, **zoos**) only operate in big cities.
+
+- Niche businesses (weird restaurants, esoteric bookstores, artisan cheese shops) typically operate in larger markets too.
+
+???
+
+Doesn't matter how many people visit your zoo. You gotta feed that elephant 350 pounds of vegetation every day.
+
+---
+
+## Increasing Returns to Scale
+
+.cite[Schiff (2015):]
+
+&lt;img src="img/schiff-2015-fig-1.png" width="600" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+## Increasing Returns to Scale
+
+&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-11-1.png" width="600" style="display: block; margin: auto;" /&gt;
+
+???
+
+Pop Quiz: Which is the smallest metro area to have a major league team? (Green Bay! Likely because they're the only fan-owned team in the NFL.)
+
+---
+
+## Cities and Economic Growth
+
+Because cities make more types of economic activity possible, countries with more cities tend to be richer.
+
+--
+
+&lt;img src="img/gapminder.png" width="600" style="display: block; margin: auto;" /&gt;
+
+(Source: [Gapminder](https://www.gapminder.org/tools/#$model$markers$bubble$encoding$size$scale$extent@:0&amp;:0.74;;;&amp;y$data$concept=income_per_person_gdppercapita_ppp_inflation_adjusted&amp;space@=country&amp;=time;;&amp;scale$domain:null&amp;zoomed@:224&amp;:209113;&amp;type:null;;&amp;x$data$concept=urban_population_percent_of_total&amp;space@=country&amp;=time;;&amp;scale$domain:null&amp;zoomed@:2.08&amp;:100;&amp;type:null;;&amp;color$data$concept=flag_svg&amp;source=country_flags;&amp;scale$type:null&amp;domain:null&amp;zoomed:null;;&amp;frame$speed:100&amp;value=1981;;;;;&amp;chart-type=bubbles&amp;url=v1))
+
+???
+
+In the animation, highlight in particular the different trajectories of India and China. India started wealthier on average than China. Now the average Indian is half as wealthy as the average Chinese person, and half as many live in cities. Not a coincidence!
+
+---
+
+## Origins of Urbanization
+
+Why are some countries more urban while others are predominantly rural? When should we expect a country to **urbanize**?
+
+--
+
+To answer these questions, consider a stripped-down version of the mathematical model in .cite[Krugman (1991)]:
+
+--
+
+.pull-left[
+  
+- Three villages: A, B, and C
+
+- `\(N\)` people total. `\(F\)` people are farmers. `\(N-F\)` are weavers.
+
+- It costs $1 for a solitary weaver to make a shirt.
+
+- There are **economies of scale**. It only costs $(1 - c) to make a shirt if all the weavers work together in one place.
+
+- It costs `\(T\)` to transport a shirt to another village.
+
+]
+
+.pull-right[
+&lt;img src="img/krugman.png" width="400" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Origins of Urbanization
+
+When does it cost less to make all your shirts in one location and ship them to the others?
+
+--
+
+$$
+(1-c)N + TF &lt; 1N
+$$
+---
+
+## Origins of Urbanization
+
+When does it cost less to make all your shirts in one location and ship them to the others?
+
+`$$\underbrace{(1-c)N}_\text{factory production cost} + \underbrace{TF}_\text{transport cost} &lt; \underbrace{1N}_\text{village production cost}$$`
+--
+
+Do some algebra, and you can find the conditions under which agglomeration is cheaper:
+
+--
+
+`$$T\left(\frac{F}{N}\right) &lt; c$$`
+
+--
+
+In other words, you should expect countries to urbanize when:
+
+- Transportation is cheap
+- The share of the population in agriculture is low
+- Cost-savings from scale economies are large
+
+---
+
+## Origins of Urbanization
+
+&lt;img src="img/urban-pop-usa.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Origins of Urbanization
+
+&lt;img src="img/urban-pop-usa-highlighted.png" width="600" style="display: block; margin: auto;" /&gt;
+
+What happened here??
+
+
+---
+
+## Origins of Urbanization
+
+.pull-left[
+  - ["2nd Agricultural Revolution"](https://en.wikipedia.org/wiki/British_Agricultural_Revolution)
+]
+
+.pull-right[
+&lt;img src="img/second-agricultural-revolution.png" width="600" style="display: block; margin: auto;" /&gt;
+]
+
+
+
+---
+
+## Origins of Urbanization
+
+.pull-left[
+- "2nd Agricultural Revolution"
+  
+- Factory production
+]
+
+.pull-right[
+&lt;img src="img/factory.jpg" width="600" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Origins of Urbanization
+
+.pull-left[
+- "2nd Agricultural Revolution"
+  
+- Factory production
+
+- New forms of transportation
+]
+
+.pull-right[
+&lt;img src="img/canals.jpg" width="600" style="display: block; margin: auto;" /&gt;&lt;img src="img/locomotive.jpg" width="600" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+
+## A Puzzle: Clusters of Industry
+
+
+The Krugman model explains why an *individual* firm would locate in a city, but why would *multiple*, competing firms locate in the same place?
+
+--
+
+&lt;img src="img/silicon-valley.png" width="600" style="display: block; margin: auto;" /&gt;
+
+???
+
+Why do you get clusters of industry?
+
+- Finance in New York
+
+- Films in Los Angeles
+
+- Tech in San Francisco
+
+- Cars in Detroit
+
+- Hip hop in Atlanta
+
+---
+
+## A Puzzle: Clusters of Industry
+
+
+The Krugman model explains why an *individual* firm would locate in a city, but why would *multiple*, competing firms locate in the same place?
+
+&lt;img src="img/silicon-valley-logos.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Spillover Effects
+
+Why is it valuable to locate in the same city as your competitors?
+
+--
+
+&lt;br&gt;
+
+.pull-left[
+
+
+
+- **Forward Linkages**
+
+- Backward Linkages
+
+- Labor Market Pooling
+
+- Knowledge Spillovers
+]
+
+.pull-right[
+theatergoers
+]
+
+
+---
+
+Limits to Growth: Congestion
+
+Power Law Distribution
+
+---
+
+Path Dependence
+
+---
+
+How does it end?? (Death of Distance?)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
