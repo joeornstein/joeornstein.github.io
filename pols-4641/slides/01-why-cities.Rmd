@@ -416,7 +416,6 @@ knitr::include_graphics('img/locomotive.jpg')
 ```
 ]
 
-
 ---
 
 ## A Puzzle: Clusters of Industry
@@ -477,7 +476,9 @@ Why is it valuable to locate in the same city as your competitors?
 ]
 
 .pull-right[
-theatergoers
+```{r}
+knitr::include_graphics('img/Metropolitan_Opera_House,_a_concert_by_pianist_Josef_Hofmann_-_NARA_541890_-_Edit.jpg')
+```
 ]
 
 ---
@@ -500,7 +501,9 @@ Why is it valuable to locate in the same city as your competitors?
 ]
 
 .pull-right[
-suppliers
+```{r}
+knitr::include_graphics('img/Automotive-Factory-Parts_in_Bins.jpg')
+```
 ]
 
 ---
@@ -523,22 +526,209 @@ Why is it valuable to locate in the same city as your competitors?
 ]
 
 .pull-right[
-
+```{r}
+knitr::include_graphics('img/job-seekers.jpg')
+```
 ]
 
 
+---
+
+## Spillover Effects
+
+Why is it valuable to locate in the same city as your competitors?
+
+<br>
+
+.pull-left[
+
+- Forward Linkages
+
+- Backward Linkages
+
+- Labor Market Pooling
+
+- **Knowledge Spillovers**
+]
+
+.pull-right[
+```{r}
+knitr::include_graphics('img/knowledge-spillovers.png')
+```
+]
+
 
 ---
 
-## Congestion Externalities (Limits to Growth)
+class: center, middle, inverse
 
-If 
+## Path Dependence
+
+---
+
+## Path Dependence
+
+- The Krugman model tells us **when** countries will urbanize.
+
+--
+
+- But does it tell us **where** they will urbanize?
+
+--
+
+```{r, out.width = '400'}
+knitr::include_graphics('img/krugman.png')
+```
+
+--
+
+- Villages A, B, and C are all equally likely to become the city!
+
+--
+
+- And once an industry locates somewhere, powerful forces (forward and backward linkages, labor market pooling, knowledge spillovers), conspire to keep it there.
+
+???
+
+(If you've taken economics before, notice that this is very different than the idea of "comparative advantage". One location specializes in shirt-making and the others specialize in agriculture, but not because of any particular locational advantage...)
 
 ---
 
-Path Dependence
+class: center, middle
+
+### **Path Dependence**: History has enduring influence!
 
 ---
+
+## Stories about Path Dependence
+
+- **Story 1:** The Fall Line
+
+- **Story 2:** Hiroshima and Nagasaki
+
+- **Story 3:** Pirates of the Mediterranean
+
+- **Story 4:** QWERTY Keyboards
+
+---
+
+## Story 1: The Fall Line
+
+```{r}
+knitr::include_graphics('img/cretaceous.png')
+```
+
+---
+
+## Story 1: The Fall Line
+
+```{r}
+knitr::include_graphics('img/portage.jpeg')
+```
+
+---
+
+## Story 1: The Fall Line
+
+```{r}
+knitr::include_graphics('img/watermill.jpg')
+```
+
+---
+
+## Story 1: The Fall Line
+
+```{r}
+knitr::include_graphics('img/bleakley-lin-fig-a1.png')
+```
+
+---
+
+## Story 2: Hiroshima and Nagasaki
+
+```{r}
+knitr::include_graphics('img/nagasaki.jpg')
+```
+
+???
+
+Hundreds of thousands of people dead. Roughly 70% of the buildings destroyed.
+
+---
+
+## Story 2: Hiroshima and Nagasaki
+
+```{r}
+knitr::include_graphics('img/hiroshima.webp')
+```
+
+???
+
+As a high schooler, I honestly just assumed that Hiroshima and Nagasaki were no longer cities.
+
+---
+
+## Story 2: Hiroshima and Nagasaki
+
+```{r}
+knitr::include_graphics('img/Atomic_Bomb_Dome_and_Motoyaso_River,_Hiroshima,_Northwest_view_20190417_1.jpg')
+```
+
+???
+
+Thriving city of roughly 1.2 million people
+
+---
+
+## Story 2: Hiroshima and Nagasaki
+
+.cite[Davis & Weinstein (2002):]
+
+```{r}
+knitr::include_graphics('img/davis-fig-2.png')
+```
+
+???
+
+As if nothing happened! By 1975, both cities are *exactly* where you would have predicted their population to be if you just naively projected forward their growth rates, without knowing anything about the war. 
+
+A remarkable example of path dependence. Even in a situation where so many people died, others evacuated, 70% of the buildings destroyed, stigma surrounding radiation, the cities still survived.
+
+---
+
+## Story 3: Pirates of the Mediterranean
+
+```{r, out.width = '400'}
+knitr::include_graphics('img/pirate-attacks.png')
+```
+
+---
+
+## Story 3: Pirates of the Mediterranean
+
+```{r, out.width='800'}
+knitr::include_graphics('img/italian-cities.png')
+```
+
+???
+
+Even 500 years afterwards, you still get this inefficient location of Italian urban activity. It would be more efficient for these places to be on the seaside, where you can have a port and trade. But path dependence locks you into this weird historical trajectory.
+
+---
+
+## Story 4: QWERTY
+
+--
+
+Why is history "sticky"?
+
+```{r}
+knitr::include_graphics('img/QWERTY_keyboard.jpg')
+```
+
+
+---
+
 
 class: center, middle, inverse
 
@@ -554,5 +744,5 @@ The COVID-19 pandemic led many to predict that cities would become obsolete.
 
 - Fears of contagion reduce the value that people place on dense city living.
 
-Do you agree with these predictions? What do you expect the "city of the future" to look like?
+In light of what we've learned today, do you agree with these predictions? What do you expect the "city of the future" to look like?
 

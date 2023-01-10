@@ -789,7 +789,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
-    font-size: 100%;
   }
 
   .html-widget {
@@ -1862,21 +1861,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        const citeChild = $(this).children()[0]
-        // Do not process if @xyz has been used without escaping and without bibliography activated
-        // https://github.com/rstudio/distill/issues/466
-        if (citeChild === undefined) return true
-
-        if (citeChild.nodeName == "D-FOOTNOTE") {
-          var fn = citeChild
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
           $(this).html(fn.shadowRoot.querySelector("sup"))
           $(this).id = fn.id
           fn.remove()
         }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          // Could use CSS.escape too here, we insure backward compatibility in navigator
-          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -2385,7 +2378,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2422,10 +2415,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <i class="fas fa-calendar-alt" aria-hidden="true"></i>
 </a>
 <a href="https://calendly.com/joeornstein/20min">
-<i class="fas fa-clock" aria-hidden="true"></i>
+<i class="fas fa-comments" aria-hidden="true"></i>
 </a>
 <a href="https://forms.gle/HoM73touBPBiqWUN8">
-<i class="fas fa-comments" aria-hidden="true"></i>
+<i class="fas fa-question" aria-hidden="true"></i>
 </a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
@@ -2439,7 +2432,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>Why Cities?</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Economies of scale, economic geography, and how the deep past affects our cities today</p></p>
+<p><p>Economies of scale, economic geography, and how the deep past
+affects our cities today</p></p>
 </div>
 
 
@@ -2449,25 +2443,35 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h3>Contents</h3>
 <ul>
 <li><a href="#slides" id="toc-slides">Slides</a></li>
-<li><a href="#urban-economics" id="toc-urban-economics">Urban Economics</a>
+<li><a href="#urban-economics" id="toc-urban-economics">Urban
+Economics</a>
 <ul>
 <li><a href="#books" id="toc-books">Books</a></li>
-<li><a href="#research-papers" id="toc-research-papers">Research Papers</a></li>
+<li><a href="#research-papers" id="toc-research-papers">Research
+Papers</a></li>
 </ul></li>
-<li><a href="#path-dependence" id="toc-path-dependence">Path Dependence</a>
+<li><a href="#path-dependence" id="toc-path-dependence">Path
+Dependence</a>
 <ul>
-<li><a href="#research-papers-1" id="toc-research-papers-1">Research Papers</a></li>
+<li><a href="#research-papers-1" id="toc-research-papers-1">Research
+Papers</a></li>
 <li><a href="#other-media" id="toc-other-media">Other Media</a></li>
 </ul></li>
-<li><a href="#the-origins-of-urban-civilization" id="toc-the-origins-of-urban-civilization">The Origins of Urban Civilization</a>
+<li><a href="#the-origins-of-urban-civilization"
+id="toc-the-origins-of-urban-civilization">The Origins of Urban
+Civilization</a>
 <ul>
 <li><a href="#books-1" id="toc-books-1">Books</a></li>
-<li><a href="#research-papers-2" id="toc-research-papers-2">Research Papers</a></li>
+<li><a href="#research-papers-2" id="toc-research-papers-2">Research
+Papers</a></li>
 </ul></li>
-<li><a href="#urbanization-and-economic-development-today" id="toc-urbanization-and-economic-development-today">Urbanization and Economic Development Today</a>
+<li><a href="#urbanization-and-economic-development-today"
+id="toc-urbanization-and-economic-development-today">Urbanization and
+Economic Development Today</a>
 <ul>
 <li><a href="#books-2" id="toc-books-2">Books</a></li>
-<li><a href="#research-papers-3" id="toc-research-papers-3">Research Papers</a></li>
+<li><a href="#research-papers-3" id="toc-research-papers-3">Research
+Papers</a></li>
 <li><a href="#podcasts" id="toc-podcasts">Podcasts</a></li>
 <li><a href="#other-media-1" id="toc-other-media-1">Other Media</a></li>
 </ul></li>
@@ -2481,86 +2485,182 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <ul>
 <li><a href="slides/01-why-cities.html">Full Screen Version</a></li>
-<li><a href="https://docs.google.com/document/d/1NMTMyhPYnXNEmH8pNbyHJ2P5n0aROOxCvt9hMXfLUvw/edit?usp=sharing">Companion Essay: Why Cities?</a></li>
-<li><a href="https://docs.google.com/document/d/1DSlOPyuGdwCBWWnBqSyhgoSjsCAvDnl-Ip-ykLnVHFM/edit?usp=sharing">Companion Essay: Path Dependence</a></li>
+<li><a
+href="https://docs.google.com/document/d/1NMTMyhPYnXNEmH8pNbyHJ2P5n0aROOxCvt9hMXfLUvw/edit?usp=sharing">Companion
+Essay: Why Cities?</a></li>
+<li><a
+href="https://docs.google.com/document/d/1DSlOPyuGdwCBWWnBqSyhgoSjsCAvDnl-Ip-ykLnVHFM/edit?usp=sharing">Companion
+Essay: Path Dependence</a></li>
 </ul>
 <h2 id="urban-economics">Urban Economics</h2>
 <h3 id="books">Books</h3>
 <ul>
-<li><p><a href="http://www.smart-city.institute/library/book/triumph_of_the_city.pdf">Glaeser, Edward. 2014. Triumph of the City: How Our Greatest Invention Makes Us Richer, Smarter, Greener, Healthier, and Happier. New York: Penguin Books.</a></p></li>
-<li><p>Brueckner, Jan K. (2011). <em>Lectures on Urban Economics</em>. Cambridge, Mass: MIT Press.</p></li>
-<li><p>Krugman, Paul R. (1991). <em>Geography and Trade</em>. Cambridge, Mass: MIT Press.</p></li>
-<li><p>Bertaud, Alain (2018). <em>Order Without Design: How Markets Shape Cities</em>. Cambridge, Massachusetts: MIT Press.</p></li>
+<li><p><a
+href="http://www.smart-city.institute/library/book/triumph_of_the_city.pdf">Glaeser,
+Edward. 2014. Triumph of the City: How Our Greatest Invention Makes Us
+Richer, Smarter, Greener, Healthier, and Happier. New York: Penguin
+Books.</a></p></li>
+<li><p>Brueckner, Jan K. (2011). <em>Lectures on Urban Economics</em>.
+Cambridge, Mass: MIT Press.</p></li>
+<li><p>Krugman, Paul R. (1991). <em>Geography and Trade</em>. Cambridge,
+Mass: MIT Press.</p></li>
+<li><p>Bertaud, Alain (2018). <em>Order Without Design: How Markets
+Shape Cities</em>. Cambridge, Massachusetts: MIT Press.</p></li>
 </ul>
 <h3 id="research-papers">Research Papers</h3>
 <ul>
-<li><p>Krugman (1991). <a href="readings/Krugman%20-%201991%20-%20Increasing%20Returns%20and%20Economic%20Geography.pdf">Increasing Returns and Economic Geography</a></p></li>
-<li><p>Bettencourt (2013). <a href="readings/Bettencourt%20-%202013%20-%20The%20Origins%20of%20Scaling%20in%20Cities.pdf">The Origins of Scaling in Cities</a></p></li>
-<li><p>Bettencourt et al. (2007). <a href="readings/Bettencourt%20et%20al.%20-%202007%20-%20Growth,%20innovation,%20scaling,%20and%20the%20pace%20of%20life%20in%20cities.pdf">Growth, innovation, scaling, and the pace of life in cities</a></p></li>
-<li><p>Carlino, Chatterjee, &amp; Hunt (2007). <a href="readings/Carlino,%20Chatterjee,%20Hunt%20-%202007%20-%20Urban%20density%20and%20the%20rate%20of%20invention.pdf">Urban density and the rate of invention</a></p></li>
-<li><p>Eeckhout (2004). <a href="readings/Eeckhout%20-%202004%20-%20Gibrat&#39;s%20Law%20for%20(All)%20Cities.pdf">Gibrat’s Law for (All) Cities</a></p></li>
-<li><p>Glaeser (2002). <a href="readings/Glaeser%20-%202002%20-%20Cities%20and%20Warfare%20The%20Impact%20of%20Terrorism%20on%20Urban%20Form.pdf">Cities and Warfare</a></p></li>
-<li><p>Glaeser, Kolko, &amp; Saiz (2001). <a href="readings/Glaeser,%20Kolko,%20Saiz%20-%202001%20-%20Consumer%20city.pdf">Consumer city</a></p></li>
-<li><p>Schiff (2015). <a href="readings/Schiff%20-%202015%20-%20Cities%20and%20product%20variety%20Evidence%20from%20restaurants.pdf">Cities and product variety: Evidence from restaurants</a></p></li>
+<li><p>Krugman (1991). <a
+href="readings/Krugman%20-%201991%20-%20Increasing%20Returns%20and%20Economic%20Geography.pdf">Increasing
+Returns and Economic Geography</a></p></li>
+<li><p>Bettencourt (2013). <a
+href="readings/Bettencourt%20-%202013%20-%20The%20Origins%20of%20Scaling%20in%20Cities.pdf">The
+Origins of Scaling in Cities</a></p></li>
+<li><p>Bettencourt et al. (2007). <a
+href="readings/Bettencourt%20et%20al.%20-%202007%20-%20Growth,%20innovation,%20scaling,%20and%20the%20pace%20of%20life%20in%20cities.pdf">Growth,
+innovation, scaling, and the pace of life in cities</a></p></li>
+<li><p>Carlino, Chatterjee, &amp; Hunt (2007). <a
+href="readings/Carlino,%20Chatterjee,%20Hunt%20-%202007%20-%20Urban%20density%20and%20the%20rate%20of%20invention.pdf">Urban
+density and the rate of invention</a></p></li>
+<li><p>Eeckhout (2004). <a
+href="readings/Eeckhout%20-%202004%20-%20Gibrat&#39;s%20Law%20for%20(All)%20Cities.pdf">Gibrat’s
+Law for (All) Cities</a></p></li>
+<li><p>Glaeser (2002). <a
+href="readings/Glaeser%20-%202002%20-%20Cities%20and%20Warfare%20The%20Impact%20of%20Terrorism%20on%20Urban%20Form.pdf">Cities
+and Warfare</a></p></li>
+<li><p>Glaeser, Kolko, &amp; Saiz (2001). <a
+href="readings/Glaeser,%20Kolko,%20Saiz%20-%202001%20-%20Consumer%20city.pdf">Consumer
+city</a></p></li>
+<li><p>Schiff (2015). <a
+href="readings/Schiff%20-%202015%20-%20Cities%20and%20product%20variety%20Evidence%20from%20restaurants.pdf">Cities
+and product variety: Evidence from restaurants</a></p></li>
 </ul>
 <h2 id="path-dependence">Path Dependence</h2>
 <h3 id="research-papers-1">Research Papers</h3>
 <ul>
-<li><p>Bleakley &amp; Lin (2012). <a href="readings/Bleakley,%20Lin%20-%202012%20-%20Portage%20and%20path%20dependence.pdf">Portage and path dependence</a></p></li>
-<li><p>Davis &amp; Weinstein (2002). <a href="readings/Davis,%20Weinstein%20-%202002%20-%20Bones,%20Bombs,%20and%20Breakpoints%20The%20Geography%20of%20Economic%20Activity.pdf">Bones, Bombs, and Breakpoints The Geography of Economic Activity</a></p></li>
-<li><p>Accetturo et al. (2020). <a href="readings/Accetturo%20et%20al.%20-%202020%20-%20Pirate%20Attacks%20and%20the%20Shape%20of%20the%20Italian%20Urban%20System.pdf">Pirate Attacks and the Shape of the Italian Urban System</a></p></li>
-<li><p>Page (2006). <a href="readings/Page%20-%202006%20-%20Path%20Dependence.pdf">Path Dependence</a></p></li>
-<li><p>David (1985). <a href="readings/David%20-%201985%20-%20Clio%20and%20the%20Economics%20of%20QWERTY.pdf">Clio and the Economics of QWERTY</a></p></li>
+<li><p>Bleakley &amp; Lin (2012). <a
+href="readings/Bleakley,%20Lin%20-%202012%20-%20Portage%20and%20path%20dependence.pdf">Portage
+and path dependence</a></p></li>
+<li><p>Davis &amp; Weinstein (2002). <a
+href="readings/Davis,%20Weinstein%20-%202002%20-%20Bones,%20Bombs,%20and%20Breakpoints%20The%20Geography%20of%20Economic%20Activity.pdf">Bones,
+Bombs, and Breakpoints The Geography of Economic Activity</a></p></li>
+<li><p>Accetturo et al. (2020). <a
+href="readings/Accetturo%20et%20al.%20-%202020%20-%20Pirate%20Attacks%20and%20the%20Shape%20of%20the%20Italian%20Urban%20System.pdf">Pirate
+Attacks and the Shape of the Italian Urban System</a></p></li>
+<li><p>Page (2006). <a
+href="readings/Page%20-%202006%20-%20Path%20Dependence.pdf">Path
+Dependence</a></p></li>
+<li><p>David (1985). <a
+href="readings/David%20-%201985%20-%20Clio%20and%20the%20Economics%20of%20QWERTY.pdf">Clio
+and the Economics of QWERTY</a></p></li>
 </ul>
 <h3 id="other-media">Other Media</h3>
 <ul>
-<li>Pendle, George. 2015. <a href="http://www.atlasobscura.com/articles/from-the-bedspread-capital-of-the-world-to-the-carpet-capital-of-the-world">“Dalton, GA: How a Bedspread Fiefdom Became A Carpet Kingdom.”</a> <em>Atlas Obscura</em>.</li>
+<li>Pendle, George. 2015. <a
+href="http://www.atlasobscura.com/articles/from-the-bedspread-capital-of-the-world-to-the-carpet-capital-of-the-world">“Dalton,
+GA: How a Bedspread Fiefdom Became A Carpet Kingdom.”</a> <em>Atlas
+Obscura</em>.</li>
 </ul>
-<h2 id="the-origins-of-urban-civilization">The Origins of Urban Civilization</h2>
+<h2 id="the-origins-of-urban-civilization">The Origins of Urban
+Civilization</h2>
 <h3 id="books-1">Books</h3>
 <ul>
-<li><p>Scott, James C. (2017). <a href="https://astudygroup.files.wordpress.com/2018/01/against-the-grain_-a-deep-histo-james-c-scott.pdf">Against the Grain: A Deep History of the Earliest States. New Haven: Yale University Press.</a>, Introduction and Chapters 4-6.</p>
+<li><p>Scott, James C. (2017). <a
+href="https://astudygroup.files.wordpress.com/2018/01/against-the-grain_-a-deep-histo-james-c-scott.pdf">Against
+the Grain: A Deep History of the Earliest States. New Haven: Yale
+University Press.</a>, Introduction and Chapters 4-6.</p>
 <ul>
-<li>See also <a href="https://slatestarcodex.com/2019/10/14/book-review-against-the-grain/">Scott Alexander’s book review</a>.</li>
+<li>See also <a
+href="https://slatestarcodex.com/2019/10/14/book-review-against-the-grain/">Scott
+Alexander’s book review</a>.</li>
 </ul></li>
-<li><p>Henrich, Joseph Patrick (2020). <a href="https://eds.s.ebscohost.com/eds/detail/detail?vid=1&amp;sid=3f2e7826-b865-4bc1-aa6b-5c951b0f9c9f%40redis&amp;bdata=JkF1dGhUeXBlPWlwLHNoaWImc2l0ZT1lZHMtbGl2ZQ%3d%3d#AN=uga.9949353872002959&amp;db=cat06564a">The WEIRDest People in the World: How the West Became Psychologically Peculiar and Particularly Prosperous.</a> New York: Farrar, Straus and Giroux. <em>Particularly the Introduction, Chapter 9, and Appendix 3.</em></p></li>
+<li><p>Henrich, Joseph Patrick (2020). <a
+href="https://eds.s.ebscohost.com/eds/detail/detail?vid=1&amp;sid=3f2e7826-b865-4bc1-aa6b-5c951b0f9c9f%40redis&amp;bdata=JkF1dGhUeXBlPWlwLHNoaWImc2l0ZT1lZHMtbGl2ZQ%3d%3d#AN=uga.9949353872002959&amp;db=cat06564a">The
+WEIRDest People in the World: How the West Became Psychologically
+Peculiar and Particularly Prosperous.</a> New York: Farrar, Straus and
+Giroux. <em>Particularly the Introduction, Chapter 9, and Appendix
+3.</em></p></li>
 </ul>
 <h3 id="research-papers-2">Research Papers</h3>
 <ul>
-<li><p>Nunn &amp; Qian (2011). <a href="readings/Nunn,%20Qian%20-%202011%20-%20The%20potato&#39;s%20contribution%20to%20population%20and%20urbanization%20Evidence%20from%20a%20historical%20experiment.pdf">The potato’s contribution to population and urbanization</a></p></li>
-<li><p>De Long &amp; Shleifer (1993). <a href="readings/De%20Long,%20Shleifer%20-%201993%20-%20Princes%20and%20Merchants%20European%20City%20Growth%20before%20the%20Industrial%20Revolution.pdf">Princes and Merchants: European City Growth before the Industrial Revolution</a></p></li>
-<li><p>Voigtländer &amp; Voth (2013). <a href="readings/Voigtlander,%20Voth%20-%202013%20-%20The%20three%20horsemen%20of%20riches%20Plague,%20war,%20and%20urbanization%20in%20early%20modern%20Europe.pdf">The three horsemen of riches Plague, war, and urbanization in early modern Europe</a></p></li>
-<li><p>Stasavage (2014). <a href="readings/Stasavage%20-%202014%20-%20Was%20Weber%20Right%20The%20Role%20of%20Urban%20Autonomy%20in%20Europe&#39;s%20Rise.pdf">Was Weber Right? The Role of Urban Autonomy in Europe’s Rise</a></p></li>
-<li><p>Dincecco &amp; Onorato (2016). <a href="readings/Dincecco,%20Onorato%20-%202016%20-%20Military%20conflict%20and%20the%20rise%20of%20urban%20Europe.pdf">Military conflict and the rise of urban Europe</a></p></li>
-<li><p>Bosker et al. (2013). <a href="readings/Bosker%20et%20al.%20-%202013%20-%20From%20Baghdad%20to%20London%20Unraveling%20Urban%20Developme.pdf">From Baghdad to London: Unraveling Urban Development</a></p></li>
-<li><p>Mayshar et al. (2021). <a href="readings/Mayshar%20et%20al.%20-%202021%20-%20The%20Origin%20of%20the%20State%20Land%20Productivity%20or%20Appr.pdf">The Origin of the State: Land Productivity or Appropriability?</a></p></li>
-<li><p>Olson (1993). <a href="readings/Olson%20-%201993%20-%20Dictatorship,%20Democracy,%20and%20Development.pdf">Dictatorship, Democracy, and Development</a></p></li>
+<li><p>Nunn &amp; Qian (2011). <a
+href="readings/Nunn,%20Qian%20-%202011%20-%20The%20potato&#39;s%20contribution%20to%20population%20and%20urbanization%20Evidence%20from%20a%20historical%20experiment.pdf">The
+potato’s contribution to population and urbanization</a></p></li>
+<li><p>De Long &amp; Shleifer (1993). <a
+href="readings/De%20Long,%20Shleifer%20-%201993%20-%20Princes%20and%20Merchants%20European%20City%20Growth%20before%20the%20Industrial%20Revolution.pdf">Princes
+and Merchants: European City Growth before the Industrial
+Revolution</a></p></li>
+<li><p>Voigtländer &amp; Voth (2013). <a
+href="readings/Voigtlander,%20Voth%20-%202013%20-%20The%20three%20horsemen%20of%20riches%20Plague,%20war,%20and%20urbanization%20in%20early%20modern%20Europe.pdf">The
+three horsemen of riches Plague, war, and urbanization in early modern
+Europe</a></p></li>
+<li><p>Stasavage (2014). <a
+href="readings/Stasavage%20-%202014%20-%20Was%20Weber%20Right%20The%20Role%20of%20Urban%20Autonomy%20in%20Europe&#39;s%20Rise.pdf">Was
+Weber Right? The Role of Urban Autonomy in Europe’s Rise</a></p></li>
+<li><p>Dincecco &amp; Onorato (2016). <a
+href="readings/Dincecco,%20Onorato%20-%202016%20-%20Military%20conflict%20and%20the%20rise%20of%20urban%20Europe.pdf">Military
+conflict and the rise of urban Europe</a></p></li>
+<li><p>Bosker et al. (2013). <a
+href="readings/Bosker%20et%20al.%20-%202013%20-%20From%20Baghdad%20to%20London%20Unraveling%20Urban%20Developme.pdf">From
+Baghdad to London: Unraveling Urban Development</a></p></li>
+<li><p>Mayshar et al. (2021). <a
+href="readings/Mayshar%20et%20al.%20-%202021%20-%20The%20Origin%20of%20the%20State%20Land%20Productivity%20or%20Appr.pdf">The
+Origin of the State: Land Productivity or Appropriability?</a></p></li>
+<li><p>Olson (1993). <a
+href="readings/Olson%20-%201993%20-%20Dictatorship,%20Democracy,%20and%20Development.pdf">Dictatorship,
+Democracy, and Development</a></p></li>
 </ul>
-<h2 id="urbanization-and-economic-development-today">Urbanization and Economic Development Today</h2>
+<h2 id="urbanization-and-economic-development-today">Urbanization and
+Economic Development Today</h2>
 <h3 id="books-2">Books</h3>
 <ul>
-<li><p>Glaeser, Edward (2014). <a href="http://www.smart-city.institute/library/book/triumph_of_the_city.pdf">Triumph of the City: How Our Greatest Invention Makes Us Richer, Smarter, Greener, Healthier, and Happier.</a> New York: Penguin Books.</p></li>
-<li><p>Wallace, Jeremy L. (2014). <a href="https://ebookcentral.proquest.com/lib/ugalib/reader.action?docID=1696422">Cities and Stability: Urbanization, Redistribution, &amp; Regime Survival in China.</a> New York: Oxford University Press.</p></li>
+<li><p>Glaeser, Edward (2014). <a
+href="http://www.smart-city.institute/library/book/triumph_of_the_city.pdf">Triumph
+of the City: How Our Greatest Invention Makes Us Richer, Smarter,
+Greener, Healthier, and Happier.</a> New York: Penguin Books.</p></li>
+<li><p>Wallace, Jeremy L. (2014). <a
+href="https://ebookcentral.proquest.com/lib/ugalib/reader.action?docID=1696422">Cities
+and Stability: Urbanization, Redistribution, &amp; Regime Survival in
+China.</a> New York: Oxford University Press.</p></li>
 </ul>
 <h3 id="research-papers-3">Research Papers</h3>
 <ul>
-<li><p>Ades &amp; Glaeser (1995). <a href="readings/Ades,%20Glaeser%20-%201995%20-%20Trade%20and%20Circuses%20Explaining%20Urban%20Giants.pdf">Trade and Circuses: Explaining Urban Giants</a></p></li>
-<li><p>Krugman &amp; Livas Elizondo (1996). <a href="readings/Krugman,%20Livas%20Elizondo%20-%201996%20-%20Trade%20policy%20and%20the%20Third%20World%20metropolis.pdf">Trade policy and the Third World metropolis</a></p></li>
-<li><p>Wallace (2013). <a href="readings/Wallace%20-%202013%20-%20Cities,%20Redistribution,%20and%20Authoritarian%20Regime%20Survival.pdf">Cities, Redistribution, and Authoritarian Regime Survival</a></p></li>
-<li><p>Glaeser (2011). <a href="readings/Glaeser%20-%202011%20-%20Cities,%20Productivity,%20and%20Quality%20of%20Life.pdf">Cities, Productivity, and Quality of Life</a></p></li>
-<li><p>Xu et al. (2021). <a href="readings/Xu%20et%20al.%20-%202021%20-%20Global%20urbanicity%20is%20associated%20with%20brain%20and%20beh.pdf">Global urbanicity is associated with brain and behavior</a></p></li>
-<li><p>Cohn et al. (2019). <a href="readings/Cohn%20et%20al.%20-%202019%20-%20Civic%20honesty%20around%20the%20globe.pdf">Civic honesty around the globe</a></p></li>
+<li><p>Ades &amp; Glaeser (1995). <a
+href="readings/Ades,%20Glaeser%20-%201995%20-%20Trade%20and%20Circuses%20Explaining%20Urban%20Giants.pdf">Trade
+and Circuses: Explaining Urban Giants</a></p></li>
+<li><p>Krugman &amp; Livas Elizondo (1996). <a
+href="readings/Krugman,%20Livas%20Elizondo%20-%201996%20-%20Trade%20policy%20and%20the%20Third%20World%20metropolis.pdf">Trade
+policy and the Third World metropolis</a></p></li>
+<li><p>Wallace (2013). <a
+href="readings/Wallace%20-%202013%20-%20Cities,%20Redistribution,%20and%20Authoritarian%20Regime%20Survival.pdf">Cities,
+Redistribution, and Authoritarian Regime Survival</a></p></li>
+<li><p>Glaeser (2011). <a
+href="readings/Glaeser%20-%202011%20-%20Cities,%20Productivity,%20and%20Quality%20of%20Life.pdf">Cities,
+Productivity, and Quality of Life</a></p></li>
+<li><p>Xu et al. (2021). <a
+href="readings/Xu%20et%20al.%20-%202021%20-%20Global%20urbanicity%20is%20associated%20with%20brain%20and%20beh.pdf">Global
+urbanicity is associated with brain and behavior</a></p></li>
+<li><p>Cohn et al. (2019). <a
+href="readings/Cohn%20et%20al.%20-%202019%20-%20Civic%20honesty%20around%20the%20globe.pdf">Civic
+honesty around the globe</a></p></li>
 </ul>
 <h3 id="podcasts">Podcasts</h3>
 <ul>
-<li><a href="https://99percentinvisible.org/episode/post-narco-urbanism/">Post-Narco Urbanism</a>. <em>99 Percent Invisible</em>, June 29, 2018.</li>
+<li><a
+href="https://99percentinvisible.org/episode/post-narco-urbanism/">Post-Narco
+Urbanism</a>. <em>99 Percent Invisible</em>, June 29, 2018.</li>
 </ul>
 <h3 id="other-media-1">Other Media</h3>
 <ul>
-<li><p>Kennedy, Merrit. <a href="https://www.npr.org/2019/04/29/718234878/indonesia-plans-to-move-its-capital-out-of-jakarta-a-city-thats-sinking">“Indonesia Plans To Move Its Capital Out Of Jakarta, A City That’s Sinking.”</a> NPR, April 29, 2019.</p></li>
-<li><p>Romer, Paul. <a href="https://paulromer.net/urbanization-passes-the-pritchett-test/">“Urbanization Passes the Pritchett Test,”</a> May 5, 2015.</p></li>
+<li><p>Kennedy, Merrit. <a
+href="https://www.npr.org/2019/04/29/718234878/indonesia-plans-to-move-its-capital-out-of-jakarta-a-city-thats-sinking">“Indonesia
+Plans To Move Its Capital Out Of Jakarta, A City That’s Sinking.”</a>
+NPR, April 29, 2019.</p></li>
+<li><p>Romer, Paul. <a
+href="https://paulromer.net/urbanization-passes-the-pritchett-test/">“Urbanization
+Passes the Pritchett Test,”</a> May 5, 2015.</p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
