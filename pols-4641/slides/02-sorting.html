@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Sorting &amp; Segregation</title>
+    <meta charset="utf-8" />
+    <script src="02-sorting_files/header-attrs-2.14/header-attrs.js"></script>
+    <link href="02-sorting_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="02-sorting_files/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Sorting &amp; Segregation
+]
+
+---
+
+
+&lt;style type="text/css"&gt;
+.cite {
+  font-weight: bold;
+  font-size: 0.75em;
+  color: #BA0C2F;
+}
+&lt;/style&gt;
+
+
+
+
+## Today
+
+Three stories about how our cities are divided:
+
+--
+
+- By Political Party
+
+--
+
+- By Race
+
+--
+
+- By Land Use
+
+
+---
+
+class: center, middle, inverse
+
+# Story 1: 
+
+# The Density Divide
+
+---
+
+## Let's Play The Google Street View Game
+
+&lt;br&gt;
+
+<a href="https://www.nytimes.com/interactive/2021/upshot/trump-biden-geography-quiz.html">
+<img src="img/street-view-game.png"/>
+</a>
+
+
+---
+
+## Densely Populated Places Are More Democratic
+
+<a href="https://www.nytimes.com/interactive/2018/upshot/election-2016-voting-precinct-maps.html">
+<img src="img/2016-map.png"/>
+</a>
+
+
+---
+
+## Why Are We Sorted?
+
+.pull-left[
+
+- **Selective Migration**
+
+- Party Polarization: Age
+
+- Party Polarization: Race
+
+- Party Polarization: Personality
+
+]
+
+.pull-right[
+&lt;img src="img/big-sort-cover.jpg" width="300" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Why Are We Sorted?
+
+.pull-left[
+
+- **Selective Migration**
+
+  - Caveats: .cite[Mummolo &amp; Nall (2017)]
+
+- Party Polarization: Age
+
+- Party Polarization: Race
+
+- Party Polarization: Personality
+
+]
+
+.pull-right[
+&lt;img src="img/big-sort-cover.jpg" width="300" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+
+## Why Are We Sorted?
+
+.pull-left[
+
+- Selective Migration
+
+  - **Caveats: .cite[Mummolo &amp; Nall (2017)]**
+
+- Party Polarization: Age/Race
+
+- Party Polarization: Personality
+
+]
+
+.pull-right[
+&lt;img src="img/mummolo-nall-fig3.png" width="600" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+When you ask people what they're looking for in a neighborhood, and look at actual migration patterns, "partisanship of neighbors" rarely cracks the top 50 in the list of concerns.
+
+---
+
+## Why Are We Sorted?
+
+.pull-left[
+
+- Selective Migration
+
+  - Caveats: .cite[Mummolo &amp; Nall (2017)]
+
+- **Party Polarization: Age/Race**
+
+- Party Polarization: Personality
+
+]
+
+.pull-right[
+&lt;img src="02-sorting_files/figure-html/unnamed-chunk-7-1.png" width="600" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+
+## Why Are We Sorted?
+
+.pull-left[
+
+- Selective Migration
+
+  - Caveats: .cite[Mummolo &amp; Nall (2017)]
+
+- **Party Polarization: Age/Race**
+
+- Party Polarization: Personality
+
+]
+
+.pull-right[
+&lt;img src="img/census-age.png" width="600" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+## Why Are We Sorted?
+
+.pull-left[
+
+- Selective Migration
+
+  - Caveats: .cite[Mummolo &amp; Nall (2017)]
+
+- Party Polarization: Age/Race
+
+- **Party Polarization: Personality**
+
+]
+
+.pull-right[
+&lt;img src="img/openness.png" width="240" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+
+
+
+## Why Does It Matter?
+
+--
+
+- **Affective Polarization**: If your only exposure to members the other party is on the Internet, then you're less likely to view them favorably.
+
+--
+
+- **Political Geography**: With single-member districts, the party that is densely packed into cities has a structural disadvantage in electoral politics.
+
+--
+
+<a href="http://gametheorytest.com/gerry/game/">
+<img src="img/mander.jpg" style="display: block; margin-left: auto; margin-right: auto;"/>
+</a>
+
+
+---
+
+## Why Does It Matter?
+
+.pull-left[
+&lt;img src="img/georgia-congressional-map.png" width="600" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+.pull-right[
+&lt;img src="img/illinois-congressional-district-map.png" width="600" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+[Atlanta Magazine](https://www.atlantamagazine.com/news-culture-articles/heres-how-redistricting-changed-georgias-2022-maps-for-the-house-state-senate-and-u-s-house/)
+
+
+---
+
+&lt;img src="img/why-cities-lose-cover.png" width="400" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: center, middle, inverse
+
+# Story 2: 
+
+# Why Your Neighbors All Look Like You
+
+
+---
+
+## Residential Segregation
+
+Think for a moment about the neighborhood where you grew up.
+
+<a href="https://forms.gle/WaXEEVcKnoAcg5Rr5">
+<img src="img/segregation-quiz.png"/>
+</a>
+
+
+???
+
+https://docs.google.com/spreadsheets/d/1qn-49VIEQfKy26uBrtfY2H4MTYjhF5SDhkQ6Hkt0Q6Q/edit?usp=sharing
+
+---
+
+## The Dot Map
+
+<a href="https://www.arcgis.com/apps/mapviewer/index.html?webmap=30d2e10d4d694b3eb4dc4d2e58dbb5a5">
+<img src="img/the-dot-map.png"/>
+</a>
+
+
+---
+
+## Why Are We Segregated?
+
+--
+
+One set of explanations emphasizes *de jure* segregation. Laws that deliberately created segregated neighborhoods.
+
+--
+
+.pull-left[
+
+- **Jim Crow Laws**
+
+- Racial Covenants
+
+- Redlining
+
+]
+
+
+.pull-right[
+&lt;img src="img/JimCrowInDurhamNC.jpg" width="600" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+- HITLER'S LOVE LIFE REVEALED!!
+- But in the country more broadly, there were a multitude of laws and governmental interventions that segregated the housing market. 
+
+---
+
+
+## Why Are We Segregated?
+
+
+One set of explanations emphasizes *de jure* segregation. Laws that deliberately created segregated neighborhoods.
+
+
+.pull-left[
+
+- Jim Crow Laws
+
+- **Racial Covenants**
+
+- Redlining
+
+]
+
+
+.pull-right[
+&lt;img src="img/racial-covenant.jpg" width="600" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+
+
+## Why Are We Segregated?
+
+
+One set of explanations emphasizes *de jure* segregation. Laws that deliberately created segregated neighborhoods.
+
+
+.pull-left[
+
+- Jim Crow Laws
+
+- Racial Covenants
+
+- **Redlining**
+
+]
+
+
+.pull-right[
+&lt;img src="img/atlanta-holc.jpg" width="600" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+New Deal Era federal agencies (like HOLC, the Home Owner's Loan Corporation) designed to help people finance their homes were more likely to extend loans in less "risky" neighborhoods. Guess which areas they colored in red (risky)? Cities that HOLC appraised are more likely to be segregated today, and have larger racial wealth gaps (Faber)
+
+
+
+
+---
+
+.pull-left[
+&lt;img src="img/color-of-law-cover.jpg" width="600" style="display: block; margin: auto;" /&gt;
+]
+
+
+.pull-right[
+
+
+&lt;img src="img/segregation-by-design-cover.png" width="600" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+
+## Why Are We Segregated?
+
+Another set of explanations emphasizes *de facto* segregation. People prefer living near similar people.
+
+--
+
+<a href="https://ncase.me/polygons/">
+<img src="img/polygons.png" style="display: block; margin-left: auto; margin-right: auto;"/>
+</a>
+
+---
+
+## Why Does It Matter?
+
+--
+
+- So much *economic opportunity* is linked to our neighborhoods .cite[(Chetty et al.)].
+
+--
+
+- Racially segregated cities are more politically polarized .cite[Trounstine (2015)].
+
+--
+
+- **Contact Hypothesis:** We're more likely to trust and understand people if we interact with them regularly .cite[Carrell et al. (2015); Brown et al. (2021).]
+
+--
+
+Fortunately, there is some good news:
+
+&lt;img src="img/dissimilarity-indices-brookings.png" width="400" style="display: block; margin: auto;" /&gt;
+
+???
+
+Dissimilarity index: roughly speaking, what percent of people need to move before an area becomes perfectly integrated? In Detroit in 2000, it was about 85%. But now it's 15 points lower! Diversification of downtowns, plus increasing numbers of Black Americans moving to suburbs, means that we've started making a dent in racial segregation. Still a long way to go, but I for one am cautiously optimistic.
+
+---
+
+
+
+class: center, middle, inverse
+
+# Story 3: 
+
+# The High Modernists
+
+### (Or, Why You Can't Get Anywhere Without A Car)
+
+---
+
+## Zoning
+
+&lt;br&gt;
+
+&lt;img src="img/sim-city-zones.jpg" width="800" style="display: block; margin: auto;" /&gt;
+
+???
+
+In SimCity, the very first thing you do is segregate your city...by land use. Houses go here, shops go here, the landfill and coal power plants go way off in the corner.
+
+---
+
+## Zoning
+
+This is pretty true to life. Nearly every city in the United States has a map like this:
+
+&lt;img src="img/acc-zoning-map.jpg" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Zoning
+
+It didn't used to be this way...
+
+[![](img/bologna-aerial.png)](https://www.google.com/maps/@44.4940617,11.3440081,2243m/data=!3m1!1e3)
+
+???
+
+In any pre-modern city, there's city planning, sure. You lay out the roads, you set aside some public space for a plaza, but the idea of dividing up a city into "zones", each with their own particular purpose, is a thoroughly modern, 20th century, invention.
+
+---
+
+## The Happy Bedtime Story About Zoning
+
+&lt;img src="img/DALL·E 2023-01-24 16.52.24 - Dad reading happy children a bedtime story, watercolor painting.png" width="500" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Pittsburgh, 1940s
+
+.pull-left[
+&lt;img src="img/pittsburgh-1.jpg" width="200" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="img/pittsburgh-2.jpg" width="250" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right[
+
+&lt;img src="img/pittsburgh-4.jpg" width="300" style="display: block; margin: auto;" /&gt;
+
+]
+
+Image Credit: [Bloomberg / University of Pittsburgh](https://www.bloomberg.com/news/articles/2012-06-05/what-pittsburgh-looked-like-when-it-decided-it-had-a-pollution-problem)
+
+
+???
+
+Bloomberg published this series of photographs from Pittsburgh back in its steel-producing heyday that I love.
+
+https://www.bloomberg.com/news/articles/2012-06-05/what-pittsburgh-looked-like-when-it-decided-it-had-a-pollution-problem
+
+---
+
+
+## Negative Externalities
+
+Some land uses impose *negative externalities* on others. 
+
+--
+
+&lt;img src="img/houses-next-to-factory.jpg" width="600" style="display: block; margin: auto;" /&gt;
+
+--
+
+The free market alone has a hard time handling negative externalities. And so the government steps in, using zoning to separate incompatible uses. 
+
+
+
+
+???
+
+- Some uses of land impose *negative externalities* on other people. And it's not easy for private citizens to negotiate the problem away.
+- One of the key roles of government is to resolve these sorts of collective action problems.
+- Zoning separates these incompatible uses. 
+
+---
+
+## *Euclid v. Ambler* (1926)
+
+&lt;br&gt;
+
+&lt;img src="img/euclid-zoning-map.jpg" width="600" style="display: block; margin: auto;" /&gt;
+
+???
+
+In our happy story, towns like Euclid OH create land use maps to separate incompatible uses. Ambler Realty sues, arguing that the village violated the 14th amendment, seizing the value of its land without due process. The practice gets upheld by the Supreme Court in 1926. 
+
+---
+
+## Pittsburgh Today
+
+&lt;img src="img/pittsburgh-today.jpg" width="800" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+&lt;img src="img/zoning-rules-cover.jpg" width="400" style="display: block; margin: auto;" /&gt;
+
+---
+
+## The Gritty Rebooted Bedtime Story About Zoning
+
+&lt;img src="img/DALL·E 2023-01-24 16.58.34 - Dad telling his children a scary bedtime story, watercolor painting..png" width="450" style="display: block; margin: auto;" /&gt;
+
+---
+
+## New York, 1880s
+
+&lt;img src="img/gilded-age.png" width="700" style="display: block; margin: auto;" /&gt;
+
+???
+
+My guilty pleasure TV: HBO's the Gilded Age. Real Housewives of New York, but in 1880. You know, the new money Vanderbilt stand-ins build a gaudy Upper East Side mansion directly across from the old money Van Rhijns, but the Astors obviously can't let them into polite society just because they have a lot of money I mean for God's sakes their chef isn't even from France and they eat with all the wrong silverware.
+
+---
+
+## New York, 1880s
+
+.pull-left[
+
+&lt;br&gt;
+
+&lt;br&gt; 
+
+Where do you build your gaudy New York City mansion in the 1880s?
+
+- 61st Street and 5th Avenue
+
+(Historical Path Dependence Alert!)
+
+]
+
+
+.pull-right[
+<a href="https://iiif-prod.nypl.org/index.php?id=1691409&amp;t=g">
+<img src="img/nyc-1871.jpg" width="350" style="display: block; margin-left: auto; margin-right: auto;"/>
+</a>
+]
+
+???
+
+At any rate, where do the wealthiest New Yorkers live? 61st street and 5th Avenue. Why? Well, before New York had a zoning code, it's the closest you can be to the Financial District while safely avoiding the poors and the factories. Factories can't be far away from rail depots or the docks, because that's where you load and unload your goods. Poor people in their apartment buildings can't be far from the street car lines.
+
+- This is *pre-zoning*, so the Astors and Vanderbilts can't keep slaughterhouses away from their grand houses by making it illegal. Instead, they simply build their houses *here*, where you can still ride a carriage to get downtown, but away from the street cars and elevated railways and docks. (Historical path dependence alert! The Upper East Side is still the place where all the New York old money live today, despite the original reason for living there disappearing.)
+
+
+---
+
+## The Internal Combustion Engine Changes Everything
+
+--
+
+.pull-left[
+
+**1904-1905:**
+
+&lt;img src="img/nyc-bus.jpg" width="300" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="img/double-decker-bus.jpeg" width="300" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+.pull-right[
+
+**1917:**
+
+&lt;img src="img/model-tt.jpg" width="500" style="display: block; margin: auto;" /&gt;
+
+&lt;br&gt; 
+
+Suddenly, industry is not confined to the railyards and the docks, and the apartment buildings are not confined to the streetcar lines!
+
+]
+
+
+???
+
+- Trucks (model-tt, rolled out in 1917) and buses (nyc-bus, 1904, and double-decker (1905). https://ephemeralnewyork.wordpress.com/tag/first-bus-new-york-city/
+- Suddenly, industry is not confined to the docks and the railroad lines, and poor people can live *anywhere*. Naturally, the city's monied classes are outraged, and lobby for change. 
+
+
+---
+
+## New York's First Zoning Map (1916)
+
+&lt;img src="img/nyc-zoning-maps-1916.png" width="600" style="display: block; margin: auto;" /&gt;
+
+???
+
+At first, rudimentary height restrictions (what multiple of street size your building can be without setbacks.)
+
+---
+
+## The High Modernists
+
+Adoption of zoning codes coincides with a movement that James Scott calls "High Modernism".
+
+--
+
+.pull-left[
+&lt;img src="img/le-corbusier.jpg" width="270" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="img/le-corbusier-paris.png" width="600" style="display: block; margin: auto;" /&gt;
+]
+
+--
+
+&lt;br&gt;
+
+Characterized by a love of rectangles, open space, strict separation of uses, and a general zest for tearing everything down and starting over.
+
+???
+
+Le Corbusier / High Modernists viewed pre-modern cities as dirty, unorganized, and in need of rationalist urban planning.
+
+
+---
+
+## Why Does It Matter?
+
+--
+
+- Strict zoning regulations create housing shortages (more on this in the **Housing** module).
+
+--
+
+- Single-use zoning strains transportation systems by putting distance between where people live, work, and play (more on this in the **Transportation** module).
+
+--
+
+- Strict separation of uses saps cities of *life*.
+
+.pull-left[
+&lt;img src="img/suburban-street.jpg" width="300" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="img/down-town-athens.jpeg" width="600" style="display: block; margin: auto;" /&gt;
+]
+
+
+???
+
+- Manhattan has fewer people today than it did a hundred years ago when it created its first zoning map.
+- I encourage you to take the next few weeks walking around Athens, and think about the way you *feel* in different places. Which places feel alive? Which places feel dead? Chances are the living places contain a mixture of uses, such that there's always somebody there doing something.
+
+
+---
+
+
+.pull-left[
+&lt;img src="img/arbitrary-lines-cover.png" width="200" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="img/zoning-of-america-cover.jpg" width="200" style="display: block; margin: auto;" /&gt;
+]
+
+
+.pull-right[
+&lt;img src="img/seeing-like-a-state-cover.png" width="200" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="img/death-and-life-cover.png" width="200" style="display: block; margin: auto;" /&gt;
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

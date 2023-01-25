@@ -2,17 +2,31 @@ Our cities are sorted by:
 
 - Political Party
 
-- Race & Income
+- By Political Party
 
-- Function
+- By Race
+
+- By Use
 
 
 
 
 # Partisan Sorting
 
-Start with the Biden-or-Trump street view game.
+Start with the Biden-or-Trump street view game. Show the incredibly detailed map. Show Rodden correlations between density and pct dem
 
+## Where It Comes From
+
+- One Theory: The Big Sort. We've increasingly moved towards people who share our views, isolating ourselves in echo chambers.
+   - Problems with this theory: actual data of moving patterns don't suggest that Democrats are more likely to move to Democratic neighborhoods. People *say* that they want to, but it's rarely among the most important factors when picking a new home (proximity to job, school, price, etc.)
+- A Better Theory: The Parties Themselves Have Sorted
+ - Parties are increasingly sorted based on: Age, Race, Personality.
+- https://www.census.gov/content/dam/Census/library/visualizations/2022/comm/county-median-age.jpg
+
+- openness, brexit. Openness to experience correlated with liberalism, and high openness people are more likely to live in dense places. Makes sense. If dense places contain a larger diversity of experiences, as we discussed last week, then people who value diverse experiences more should be more likely to shell out money to live there.
+
+
+## Why It Matters
 
 
 
@@ -22,6 +36,10 @@ Start with recall your childhood home. If you were to randomly pick 10 neighbors
 Google form that.
 (How many would be the same economic class?)
 
+American cities are deeply divided by race. Just explore the dot map.
+
+Broadly speaking, there's two 
+
 
 
 
@@ -30,3 +48,21 @@ Google form that.
 How many people have played SimCity? Or something similar? 
 First thing you do is create *zones*. A residential zone where people can live. A commercial zone where people can buy stuff. An industrial zone where people can make stuff.
 But the idea of separating cities into zones on a map is a thoroughly modern invention, and there's good reason to believe that it's unhealthy for our cities.
+
+## The Happy Bedtime Story about Zoning
+
+- Smoggy Pittsburgh. Some uses of land impose *negative externalities* on other people. And it's not easy for private citizens to negotiate the problem away.
+- One of the key roles of government is to resolve these sorts of collective action problems and mitigate negative externalities.
+- Zoning separates these incompatible uses. Towns like Euclid OH create land use maps to separate incompatible uses, gets upheld by the Supreme Court. Zoning map of Pittsburgh and today the air is clean. Hooray!
+
+## The Gritty Rebooted Bedtime Story about Zoning
+
+- Gilded Age is my guilty TV pleasure
+- Petit Chateau 660 Fifth Ave
+
+- https://digitalcollections.nypl.org/items/77b1f5b0-c5aa-012f-c093-58d385a7bc34#/?uuid=5fd5626f-c11d-bf29-e040-e00a1806082e
+- This is *pre-zoning*, so the Astors and Vanderbilts can't keep slaughterhouses away from their grand houses by making it illegal. Instead, they simply build their houses *here*, where you can still ride a carriage to get downtown, but away from the street cars and elevated railways and docks. (Historical path dependence alert! The Upper East Side is still the place where all the New York old money live today, despite the original reason for living there disappearing.)
+- Why did we only get a zoning map of NYC in 1916?
+- Trucks (model-tt, rolled out in 1917) and buses (nyc-bus, 1904, and double-decker (1905). https://ephemeralnewyork.wordpress.com/tag/first-bus-new-york-city/
+- Suddenly, industry is not confined to the docks and the railroad lines, and poor people can live *anywhere*. Naturally, the city's monied classes are outraged, and lobby for change. 
+- 1916 Zoning Map.
