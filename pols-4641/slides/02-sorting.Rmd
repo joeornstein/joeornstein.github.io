@@ -694,7 +694,7 @@ knitr::include_graphics('img/double-decker-bus.jpeg')
 **1917:**
 
 ```{r, out.width = 500}
-knitr::include_graphics('img/model-tt.jpg')
+knitr::include_graphics('img/model-tt.JPG')
 ```
 
 <br> 
