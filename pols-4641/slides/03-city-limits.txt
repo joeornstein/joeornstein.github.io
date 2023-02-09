@@ -4,4 +4,6 @@ Roughly 90,000
 
 https://www.census.gov/newsroom/releases/archives/governments/cb12-161.html
 
+From 2017: https://data.census.gov/table?q=census+of+governments&text=census+of+governments&tid=GOVSTIMESERIES.CG00ORG01
+
 Is this too many? Too few? What are the consequences of having so many overlapping sources of political power?

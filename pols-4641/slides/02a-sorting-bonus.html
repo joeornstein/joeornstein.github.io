@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>A River Runs Through It:</title>
+    <meta charset="utf-8" />
+    <script src="02a-sorting-bonus_files/header-attrs-2.14/header-attrs.js"></script>
+    <link href="02a-sorting-bonus_files/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="02a-sorting-bonus_files/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# A River Runs Through It:
+]
+.subtitle[
+## The Geography of Income Segregation
+]
+
+---
+
+
+&lt;style type="text/css"&gt;
+.cite {
+  font-weight: bold;
+  font-size: 0.75em;
+  color: #BA0C2F;
+}
+&lt;/style&gt;
+
+
+
+
+## Question
+
+- Why, anecdotally, does it seem like "the south side" often contains the poorest neighborhoods of a city?
+
+--
+
+- Is this true generally in the United States?
+
+--
+
+- If so, *why??*
+
+--
+
+- Could it have something to do with geographic features?
+
+  - People prefer not to be downstream / downwind of manufacturing? 
+  
+  - If so, we'd expect the poor side of town to frequently line up with the direction of flow of the city's river.
+  
+---
+
+## Data Collection
+
+<a href="https://www.opportunityatlas.org/">
+<img src="img/atl-opportunity.png" style="display: block; margin-left: auto; margin-right: auto; width: 400px"/>
+</a>
+  
+  
+---
+
+## Data Collection
+
+In the 50 largest cities in the United States, here's the neighborhood geometry breakdown:
+
+--
+
+.pull-left[
+
+&lt;br&gt;
+
+
+|       | Num. Cities|  %|
+|:------|-----------:|--:|
+|west   |           4|  8|
+|center |           8| 16|
+|north  |          10| 20|
+|east   |          11| 22|
+|south  |          17| 34|
+]
+
+.pull-right[
+**South Side:** Los Angeles, Chicago, Phoenix, San Antonio, San Diego, Dallas, Columbus, Boston, Detroit, Baltimore, Albuquerque, Fresno, Tucson, Atlanta, Colorado Springs, Virginia Beach, Long Beach
+
+**North Side:** New York, Philadelphia, San Jose, Charlotte, Denver, Nashville, Portland, Milwaukee, Miami, Tulsa
+
+**East Side:** Houston, Austin, Fort Worth, San Francisco, Seattle, Washington, Kansas City, Omaha, Raleigh, Bakersfield, Arlington
+
+**West Side:** Jacksonville, Louisville, Memphis, Oakland
+
+]
+
+---
+
+
+## Data Analysis
+
+How *weird* is it that there are only 4 cities with poor west sides, but 17 cities with poor south sides? 
+
+--
+
+This is where probability and statistics comes in handy.
+
+- Is this a pattern you wouldn't expect to observe by chance alone?
+
+--
+
+So we create a thought experiment:
+
+![](img/d4.gif)
+
+--
+
+Repeat that 42 times (one for each city with an obvious geographic divide):
+
+--
+
+
+```
+
+ east south  west north 
+    9    10    10    13 
+```
+
+---
+
+## Data Analysis
+
+If you repeat that exercise over and over, generating 10,000 sets of 42 randomly generated cities, how often are there only four cities with poor west sides?
+
+&lt;img src="02a-sorting-bonus_files/figure-html/unnamed-chunk-5-1.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Data Analysis
+
+And what's the chance that you at least 17 cities with poor south sides?
+
+&lt;img src="02a-sorting-bonus_files/figure-html/unnamed-chunk-6-1.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Data Collection: River Flow
+
+&lt;img src="img/google-rivers.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Data Analysis: River Flow
+
+- Are poor neighborhoods more likely to be downriver? We can use similar statistical methods to answer this question.
+
+--
+
+- To be extra generous to the hypothesis, if a river flows "southwest", I'll count both the south and west of the city as being downriver. 
+
+  - This means there's a roughly 3/8 chance that river flow and neighborhood orientation line up.
+
+--
+
+Here are the actual results (out of 39 cities with major rivers flowing through them):
+
+
+|Downriver? | Num. Cities|
+|:----------|-----------:|
+|no         |          20|
+|yes        |          19|
+
+--
+
+I leave the full statistical analysis as an exercise to the reader.
+
+---
+
+## Conclusion
+
+- As best I can tell, the poor side of US cities is most likely to be the south side, but not more likely than chance alone would suggest.
+
+  - More data and more careful measurement could resolve the question more definitively.
+  
+--
+
+- There is no clear tendency for the poor side of a city to be downriver.
+
+--
+
+- There is some [interesting evidence](https://www.theguardian.com/cities/2017/may/12/blowing-wind-cities-poor-east-ends) that cities in England are more likely to have poor *east* sides, perhaps due to the direction of prevailing winds.
+
+![](img/london-east-side.png)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

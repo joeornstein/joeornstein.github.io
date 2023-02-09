@@ -1,0 +1,271 @@
+---
+title: "A River Runs Through It:"
+subtitle: "The Geography of Income Segregation"
+# author: "Joe Ornstein"
+# date: "September 30, 2020"
+output:
+  xaringan::moon_reader:
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+# subtitle: 'POLS 7012: Introduction to Political Methodology'
+# institute: University of Georgia
+---
+
+```{css, echo = FALSE}
+.cite {
+  font-weight: bold;
+  font-size: 0.75em;
+  color: #BA0C2F;
+}
+```
+
+```{r Setup, include=FALSE}
+library(tidyverse)
+set.seed(42)
+theme_set(theme_minimal(base_size = 16))
+knitr::opts_chunk$set(comment=NA, fig.width=7, fig.height=5,
+                      fig.align = 'center', out.width = 600,
+                      message=FALSE, warning=FALSE, echo=FALSE)
+
+image_link <- function(image,url,...){
+  htmltools::a(
+    href=url,
+    htmltools::img(src=image,...)
+    )
+}
+```
+
+
+## Question
+
+- Why, anecdotally, does it seem like "the south side" often contains the poorest neighborhoods of a city?
+
+--
+
+- Is this true generally in the United States?
+
+--
+
+- If so, *why??*
+
+--
+
+- Could it have something to do with geographic features?
+
+  - People prefer not to be downstream / downwind of manufacturing? 
+  
+  - If so, we'd expect the poor side of town to frequently line up with the direction of flow of the city's river.
+  
+---
+
+## Data Collection
+
+```{r, fig.align='center'}
+image_link('img/atl-opportunity.png', 'https://www.opportunityatlas.org/', style="display: block; margin-left: auto; margin-right: auto; width: 400px")
+```
+  
+  
+---
+
+## Data Collection
+
+In the 50 largest cities in the United States, here's the neighborhood geometry breakdown:
+
+--
+
+.pull-left[
+
+<br>
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(ggrepel)
+
+d <- read_xlsx('data/rough-side.xlsx') |>
+  clean_names()
+
+
+d |>
+  count(rough_side) |>
+  mutate(pct = n / sum(n) * 100) |>
+  arrange(pct) |>
+  rename(` ` = rough_side, `Num. Cities` = n, `%` = pct) |>
+  knitr::kable()
+```
+]
+
+.pull-right[
+**South Side:** `r d |> filter(rough_side == 'south') |> pull(city)`
+
+**North Side:** `r d |> filter(rough_side == 'north') |> pull(city)`
+
+**East Side:** `r d |> filter(rough_side == 'east') |> pull(city)`
+
+**West Side:** `r d |> filter(rough_side == 'west') |> pull(city)`
+
+]
+
+---
+
+
+## Data Analysis
+
+How *weird* is it that there are only 4 cities with poor west sides, but 17 cities with poor south sides? 
+
+--
+
+This is where probability and statistics comes in handy.
+
+- Is this a pattern you wouldn't expect to observe by chance alone?
+
+--
+
+So we create a thought experiment:
+
+![](img/d4.gif)
+
+--
+
+Repeat that 42 times (one for each city with an obvious geographic divide):
+
+--
+
+```{r}
+
+# roll 1d4
+d4 <- function(){
+  return(sample(c('north', 'south', 'east', 'west'), size = 1))
+}
+
+# roll 42 d4s
+num_with_direction <- d |> filter(rough_side != 'center') |> nrow()
+
+get_min <- function(){
+
+  replicate(num_with_direction, d4()) |>
+    table() |>
+    min()
+}
+
+get_max <- function(){
+
+  replicate(num_with_direction, d4()) |>
+    table() |>
+    max()
+}
+
+replicate(num_with_direction, d4()) |>
+  table() |> 
+  sort()
+
+```
+
+---
+
+## Data Analysis
+
+If you repeat that exercise over and over, generating 10,000 sets of 42 randomly generated cities, how often are there only four cities with poor west sides?
+
+```{r}
+num_west <- d |> filter(rough_side == 'west') |> nrow()
+sampling_distribution <- replicate(1e4, get_min())
+
+pval <- sum(sampling_distribution <= num_west) / length(sampling_distribution)
+
+ggplot(mapping = aes(x=sampling_distribution)) +
+  geom_histogram(stat = 'count', color = 'black', mapping = aes(fill = sampling_distribution <= num_west)) +
+  scale_x_discrete(limits = seq(2,12, 2)) +
+  theme_classic() +
+  labs(x = 'Number of Cities With Poor West Sides',
+       y = 'Frequency',
+       caption = paste0('p = ', round(pval, 2))) +
+  scale_fill_manual(values = c('gray', 'red')) +
+  theme(legend.position = 'none')
+```
+
+---
+
+## Data Analysis
+
+And what's the chance that you at least 17 cities with poor south sides?
+
+```{r}
+num_south <- d |> filter(rough_side == 'south') |> nrow()
+get_max <- function(){
+
+  replicate(num_with_direction, d4()) |>
+    table() |>
+    max()
+}
+
+sampling_distribution <- replicate(1e4, get_max())
+
+pval <- sum(sampling_distribution >= num_south) / length(sampling_distribution)
+
+ggplot(mapping = aes(x=sampling_distribution)) +
+  geom_histogram(stat = 'count', color = 'black', mapping = aes(fill = sampling_distribution >= num_south)) +
+  theme_classic() +
+  labs(x = 'Number of Cities With Poor South Sides',
+       y = 'Frequency',
+       caption = paste0('p = ', round(pval, 2))) +
+  scale_fill_manual(values = c('gray', 'red')) +
+  theme(legend.position = 'none')
+```
+
+---
+
+## Data Collection: River Flow
+
+```{r}
+knitr::include_graphics('img/google-rivers.png')
+```
+
+---
+
+## Data Analysis: River Flow
+
+- Are poor neighborhoods more likely to be downriver? We can use similar statistical methods to answer this question.
+
+--
+
+- To be extra generous to the hypothesis, if a river flows "southwest", I'll count both the south and west of the city as being downriver. 
+
+  - This means there's a roughly 3/8 chance that river flow and neighborhood orientation line up.
+
+--
+
+Here are the actual results (out of 39 cities with major rivers flowing through them):
+
+```{r}
+d |>
+  filter(!is.na(river_direction)) |>
+  mutate(match = if_else(str_detect(river_direction, rough_side), 'yes', 'no')) |> 
+  count(match) |> 
+  rename(`Downriver?` = match, `Num. Cities` = n) |> 
+  knitr::kable()
+```
+
+--
+
+I leave the full statistical analysis as an exercise to the reader.
+
+---
+
+## Conclusion
+
+- As best I can tell, the poor side of US cities is most likely to be the south side, but not more likely than chance alone would suggest.
+
+  - More data and more careful measurement could resolve the question more definitively.
+  
+--
+
+- There is no clear tendency for the poor side of a city to be downriver.
+
+--
+
+- There is some [interesting evidence](https://www.theguardian.com/cities/2017/may/12/blowing-wind-cities-poor-east-ends) that cities in England are more likely to have poor *east* sides, perhaps due to the direction of prevailing winds.
+
+![](img/london-east-side.png)
