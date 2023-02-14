@@ -7,3 +7,21 @@ https://www.census.gov/newsroom/releases/archives/governments/cb12-161.html
 From 2017: https://data.census.gov/table?q=census+of+governments&text=census+of+governments&tid=GOVSTIMESERIES.CG00ORG01
 
 Is this too many? Too few? What are the consequences of having so many overlapping sources of political power?
+
+Is it good or bad that we have so many governments? Unfortunately, it's too complicated for me to say with any great certainty.
+Instead, today I'm going to show you that there are some ways in which fragmentation is Good, some ways in which it's bad, and some ways it gets Ugly.
+
+
+
+
+Good:
+- Tiebout Sorting
+- Tax Competition / Leviathan Hypothesis(?) / Not sure the current thinking here, but we can default to Rodden (2003).
+
+Bad:
+- Coordination Problems, Vertical Fragmentation, Special Districts, Inefficiencies (Dutch Amalgamation)
+- Trains
+
+Ugly:
+- Race to the bottom, incentives to pander, city limits, stadiums
+  - Kansas City, prisoner's dilemma
