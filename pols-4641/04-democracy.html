@@ -789,6 +789,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
 
   .html-widget {
@@ -1861,15 +1862,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
-          var fn = $(this).children()[0]
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
           $(this).html(fn.shadowRoot.querySelector("sup"))
           $(this).id = fn.id
           fn.remove()
         }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -2378,7 +2385,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2432,9 +2439,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>Local Democracy</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>How to organize your city government to ensure that residents are
-adequately represented, public officials are held accountable for their
-actions, corruption is minimized, and good policy is rewarded.</p></p>
+<p><p>How to organize your city government to ensure that residents are adequately represented, public officials are held accountable for their actions, corruption is minimized, and good policy is rewarded.</p></p>
 </div>
 
 
@@ -2443,234 +2448,136 @@ actions, corruption is minimized, and good policy is rewarded.</p></p>
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#machine-politics" id="toc-machine-politics">Machine
-Politics</a>
+<li><a href="#slides" id="toc-slides">Slides</a></li>
+<li><a href="#machine-politics" id="toc-machine-politics">Machine Politics</a>
 <ul>
 <li><a href="#books" id="toc-books">Books</a></li>
-<li><a href="#research-papers" id="toc-research-papers">Research
-Papers</a></li>
+<li><a href="#research-papers" id="toc-research-papers">Research Papers</a></li>
 <li><a href="#other-media" id="toc-other-media">Other Media</a></li>
 </ul></li>
 <li><a href="#corruption" id="toc-corruption">Corruption</a>
 <ul>
-<li><a href="#research-papers-1" id="toc-research-papers-1">Research
-Papers</a></li>
+<li><a href="#research-papers-1" id="toc-research-papers-1">Research Papers</a></li>
 <li><a href="#podcasts" id="toc-podcasts">Podcasts</a></li>
 <li><a href="#other-media-1" id="toc-other-media-1">Other Media</a></li>
 </ul></li>
-<li><a href="#political-institutions"
-id="toc-political-institutions">Political Institutions</a>
+<li><a href="#political-institutions" id="toc-political-institutions">Political Institutions</a>
 <ul>
 <li><a href="#books-1" id="toc-books-1">Books</a></li>
-<li><a href="#research-papers-2" id="toc-research-papers-2">Research
-Papers</a></li>
+<li><a href="#research-papers-2" id="toc-research-papers-2">Research Papers</a></li>
 </ul></li>
-<li><a href="#election-timing" id="toc-election-timing">Election
-Timing</a>
+<li><a href="#election-timing" id="toc-election-timing">Election Timing</a>
 <ul>
-<li><a href="#research-papers-3" id="toc-research-papers-3">Research
-Papers</a></li>
+<li><a href="#research-papers-3" id="toc-research-papers-3">Research Papers</a></li>
 </ul></li>
 <li><a href="#local-media" id="toc-local-media">Local Media</a>
 <ul>
 <li><a href="#books-2" id="toc-books-2">Books</a></li>
-<li><a href="#research-papers-4" id="toc-research-papers-4">Research
-Papers</a></li>
+<li><a href="#research-papers-4" id="toc-research-papers-4">Research Papers</a></li>
 <li><a href="#videos" id="toc-videos">Videos</a></li>
 <li><a href="#other-media-2" id="toc-other-media-2">Other Media</a></li>
 </ul></li>
-<li><a href="#political-parties" id="toc-political-parties">Political
-Parties</a>
+<li><a href="#political-parties" id="toc-political-parties">Political Parties</a>
 <ul>
-<li><a href="#research-papers-5" id="toc-research-papers-5">Research
-Papers</a></li>
+<li><a href="#research-papers-5" id="toc-research-papers-5">Research Papers</a></li>
 <li><a href="#other-media-3" id="toc-other-media-3">Other Media</a></li>
 </ul></li>
 <li><a href="#police-reform" id="toc-police-reform">Police Reform</a>
 <ul>
-<li><a href="#research-papers-6" id="toc-research-papers-6">Research
-Papers</a></li>
+<li><a href="#research-papers-6" id="toc-research-papers-6">Research Papers</a></li>
 <li><a href="#other-media-4" id="toc-other-media-4">Other Media</a></li>
 </ul></li>
 </ul>
 </nav>
 </div>
+<h2 id="slides">Slides</h2>
+<div class="layout-chunk" data-layout="l-body">
+<iframe src="slides/04-strengthening-local-democracy.html" width="624" height="400px" data-external="1">
+</iframe>
+</div>
+<ul>
+<li><a href="slides/04-strengthening-local-democracy.html">Full Screen Version</a></li>
+</ul>
 <h2 id="machine-politics">Machine Politics</h2>
 <h3 id="books">Books</h3>
 <ul>
-<li><p><a href="https://www.gutenberg.org/ebooks/2810">Plunkitt of
-Tammany Hall</a></p></li>
-<li><p>Steffens, Lincoln. 1904. <a
-href="https://www.gutenberg.org/ebooks/54710">The Shame of the
-Cities</a></p></li>
+<li><p><a href="https://www.gutenberg.org/ebooks/2810">Plunkitt of Tammany Hall</a></p></li>
+<li><p>Steffens, Lincoln. 1904. <a href="https://www.gutenberg.org/ebooks/54710">The Shame of the Cities</a></p></li>
 </ul>
 <h3 id="research-papers">Research Papers</h3>
 <ul>
-<li><p>Reid &amp; Kurth (1992). <a
-href="readings/Reid%20and%20Kurth%20-%201992%20-%20The%20Rise%20and%20Fall%20of%20Urban%20Political%20Patronage%20Mac.pdf">The
-Rise and Fall of Urban Political Patronage Machines</a></p></li>
-<li><p>Wolfinger (1972). <a
-href="readings/Wolfinger%20-%201972%20-%20Why%20Political%20Machines%20Have%20Not%20Withered%20Away%20and%20Other%20Revisionist%20Thoughts.pdf">Why
-Political Machines Have Not Withered Away and Other Revisionist
-Thoughts</a></p></li>
-<li><p>Scott (1969). <a
-href="readings/Scott%20-%201969%20-%20Corruption,%20Machine%20Politics,%20and%20Political%20Change.pdf">Corruption,
-Machine Politics, and Political Change</a></p></li>
+<li><p>Reid &amp; Kurth (1992). <a href="readings/Reid%20and%20Kurth%20-%201992%20-%20The%20Rise%20and%20Fall%20of%20Urban%20Political%20Patronage%20Mac.pdf">The Rise and Fall of Urban Political Patronage Machines</a></p></li>
+<li><p>Wolfinger (1972). <a href="readings/Wolfinger%20-%201972%20-%20Why%20Political%20Machines%20Have%20Not%20Withered%20Away%20and%20Other%20Revisionist%20Thoughts.pdf">Why Political Machines Have Not Withered Away and Other Revisionist Thoughts</a></p></li>
+<li><p>Scott (1969). <a href="readings/Scott%20-%201969%20-%20Corruption,%20Machine%20Politics,%20and%20Political%20Change.pdf">Corruption, Machine Politics, and Political Change</a></p></li>
 </ul>
 <h3 id="other-media">Other Media</h3>
 <ul>
-<li>Lechtzin, Jeremy. 2021. <a
-href="https://www.nytimes.com/interactive/2021/01/27/nyregion/brooklyn-streets-numbers-renaming.html">“150
-Years Ago Brooklyn Renumbered All Its Streets. It Was a Disaster.”</a>
-The New York Times.</li>
+<li>Lechtzin, Jeremy. 2021. <a href="https://www.nytimes.com/interactive/2021/01/27/nyregion/brooklyn-streets-numbers-renaming.html">“150 Years Ago Brooklyn Renumbered All Its Streets. It Was a Disaster.”</a> The New York Times.</li>
 </ul>
 <h2 id="corruption">Corruption</h2>
 <h3 id="research-papers-1">Research Papers</h3>
 <ul>
-<li><p>Fisman &amp; Miguel (2007). <a
-href="readings/Fisman%20and%20Miguel%20-%202007%20-%20Corruption,%20Norms,%20and%20Legal%20Enforcement.pdf">Corruption,
-Norms, and Legal Enforcement</a></p></li>
-<li><p>Ferraz &amp; Finan (2008). <a
-href="readings/Ferraz%20and%20Finan%20-%202008%20-%20Exposing%20Corrupt%20Politicians%20The%20Effects%20of%20Brazi.pdf">Exposing
-Corrupt Politicians</a></p></li>
-<li><p>Ferraz &amp; Finan (2011). <a
-href="readings/Ferraz,%20Finan%20-%202011%20-%20Electoral%20Accountability%20and%20Corruption%20Evidence%20from%20the%20Audits%20of%20Local%20Governments.pdf">Electoral
-Accountability and Corruption: Evidence from the Audits of Local
-Governments</a></p></li>
-<li><p>Campante &amp; Do (2014). <a
-href="readings/Campante,%20Do%20-%202014%20-%20Isolated%20capital%20cities,%20accountability,%20and%20corruption%20Evidence%20from%20US%20States.pdf">Isolated
-capital cities, accountability, and corruption</a></p></li>
-<li><p>Benito, Guillamon, &amp; Bastida (2015). <a
-href="readings/Benito,%20Guillamon,%20Bastida%20-%202015%20-%20Determinants%20of%20urban%20political%20corruption%20in%20local%20governments.pdf">Determinants
-of urban political corruption in local governments</a></p></li>
-<li><p>Knutsen et al. (2017). <a
-href="readings/Knutsen%20et%20al.%20-%202017%20-%20Mining%20and%20Local%20Corruption%20in%20Africa.pdf">Mining
-and Local Corruption in Africa</a></p></li>
-<li><p>Bergh, Fink, &amp; Ohrvall (2017). <a
-href="readings/Bergh,%20Fink,%20Ohrvall%20-%202017%20-%20More%20politicians,%20more%20corruption%20evidence%20from%20Swedish%20municipalities.pdf">More
-politicians, more corruption: evidence from Swedish
-municipalities</a></p></li>
-<li><p>Pereira &amp; Fernandez‐Vazquez (2022). <a
-href="readings/Pereira%20and%20Fernandez‐Vazquez%20-%202022%20-%20Does%20Electing%20Women%20Reduce%20Corruption%20A%20Regressio.pdf">Does
-Electing Women Reduce Corruption?</a></p></li>
+<li><p>Fisman &amp; Miguel (2007). <a href="readings/Fisman%20and%20Miguel%20-%202007%20-%20Corruption,%20Norms,%20and%20Legal%20Enforcement.pdf">Corruption, Norms, and Legal Enforcement</a></p></li>
+<li><p>Ferraz &amp; Finan (2008). <a href="readings/Ferraz%20and%20Finan%20-%202008%20-%20Exposing%20Corrupt%20Politicians%20The%20Effects%20of%20Brazi.pdf">Exposing Corrupt Politicians</a></p></li>
+<li><p>Ferraz &amp; Finan (2011). <a href="readings/Ferraz,%20Finan%20-%202011%20-%20Electoral%20Accountability%20and%20Corruption%20Evidence%20from%20the%20Audits%20of%20Local%20Governments.pdf">Electoral Accountability and Corruption: Evidence from the Audits of Local Governments</a></p></li>
+<li><p>Campante &amp; Do (2014). <a href="readings/Campante,%20Do%20-%202014%20-%20Isolated%20capital%20cities,%20accountability,%20and%20corruption%20Evidence%20from%20US%20States.pdf">Isolated capital cities, accountability, and corruption</a></p></li>
+<li><p>Benito, Guillamon, &amp; Bastida (2015). <a href="readings/Benito,%20Guillamon,%20Bastida%20-%202015%20-%20Determinants%20of%20urban%20political%20corruption%20in%20local%20governments.pdf">Determinants of urban political corruption in local governments</a></p></li>
+<li><p>Knutsen et al. (2017). <a href="readings/Knutsen%20et%20al.%20-%202017%20-%20Mining%20and%20Local%20Corruption%20in%20Africa.pdf">Mining and Local Corruption in Africa</a></p></li>
+<li><p>Bergh, Fink, &amp; Ohrvall (2017). <a href="readings/Bergh,%20Fink,%20Ohrvall%20-%202017%20-%20More%20politicians,%20more%20corruption%20evidence%20from%20Swedish%20municipalities.pdf">More politicians, more corruption: evidence from Swedish municipalities</a></p></li>
+<li><p>Pereira &amp; Fernandez‐Vazquez (2022). <a href="readings/Pereira%20and%20Fernandez‐Vazquez%20-%202022%20-%20Does%20Electing%20Women%20Reduce%20Corruption%20A%20Regressio.pdf">Does Electing Women Reduce Corruption?</a></p></li>
 </ul>
 <h3 id="podcasts">Podcasts</h3>
 <ul>
-<li><a href="https://www.crimetownshow.com/episode-1">Crimetown, Season
-1</a></li>
+<li><a href="https://www.crimetownshow.com/episode-1">Crimetown, Season 1</a></li>
 </ul>
 <h3 id="other-media-1">Other Media</h3>
 <ul>
-<li><p>Fausset, Richard, Monica Davey, and Tim Arango. 2019. <a
-href="https://www.nytimes.com/2019/02/05/us/fbi-corruption-investigations.html">“‘It’s
-the Human Way’: Corruption Scandals Play Out in Big Cities Across
-U.S.”</a> <em>The New York Times</em>.</p></li>
-<li><p>Shenker, Jack. 2016. “<a
-href="https://www.theguardian.com/cities/2016/jun/21/which-most-corrupt-cities-in-world">Which
-Are the Most Corrupt Cities in the World?</a>” The Guardian.</p></li>
-<li><p>Taibbi, Matt. 2021. <a
-href="https://taibbi.substack.com/p/just-how-rigged-is-the-rigged-game">“Just
-How Rigged Is the ‘Rigged Game’?”</a></p></li>
+<li><p>Fausset, Richard, Monica Davey, and Tim Arango. 2019. <a href="https://www.nytimes.com/2019/02/05/us/fbi-corruption-investigations.html">“‘It’s the Human Way’: Corruption Scandals Play Out in Big Cities Across U.S.”</a> <em>The New York Times</em>.</p></li>
+<li><p>Shenker, Jack. 2016. “<a href="https://www.theguardian.com/cities/2016/jun/21/which-most-corrupt-cities-in-world">Which Are the Most Corrupt Cities in the World?</a>” The Guardian.</p></li>
+<li><p>Taibbi, Matt. 2021. <a href="https://taibbi.substack.com/p/just-how-rigged-is-the-rigged-game">“Just How Rigged Is the ‘Rigged Game’?”</a></p></li>
 </ul>
 <h2 id="political-institutions">Political Institutions</h2>
 <h3 id="books-1">Books</h3>
 <ul>
-<li>Anzia, Sarah F. 2022. <a
-href="https://press.uchicago.edu/ucp/books/book/chicago/L/bo151021813.html">Local
-Interests: Politics, Policy, and Interest Groups in US City
-Governments.</a> Chicago, IL: University of Chicago Press.</li>
+<li>Anzia, Sarah F. 2022. <a href="https://press.uchicago.edu/ucp/books/book/chicago/L/bo151021813.html">Local Interests: Politics, Policy, and Interest Groups in US City Governments.</a> Chicago, IL: University of Chicago Press.</li>
 </ul>
 <h3 id="research-papers-2">Research Papers</h3>
 <ul>
-<li><p>Trounstine &amp; Valdini (2008). <a
-href="readings/Trounstine,%20Valdini%20-%202008%20-%20The%20context%20matters.pdf">The
-context matters</a></p></li>
-<li><p>Trebbi, Aghion, &amp; Alesina (2008). <a
-href="readings/Trebbi,%20Aghion,%20Alesina%20-%202008%20-%20Electoral%20Rules%20and%20Minority%20Representation%20in%20U.S.%20Cities.pdf">Electoral
-Rules and Minority Representation in U.S. Cities</a></p></li>
-<li><p>Tausanovitch &amp; Warshaw (2014). <a
-href="readings/Tausanovitch,%20Warshaw%20-%202014%20-%20Representation%20in%20Municipal%20Government.pdf">Representation
-in Municipal Government</a></p></li>
-<li><p>Payson (2017). <a
-href="readings/Payson%20-%202017%20-%20When%20Are%20Local%20Incumbents%20Held%20Accountable%20for%20Government%20Performance%20Evidence%20from%20US%20School%20Districts.pdf">When
-Are Local Incumbents Held Accountable for Government Performance?
-Evidence from US School Districts</a></p></li>
-<li><p>Jensen et al. (2015). <a
-href="readings/Jensen%20et%20al.%20-%202015%20-%20Competing%20for%20global%20capital%20or%20local%20voters.pdf">Competing
-for global capital or local voters?</a></p></li>
-<li><p>Klasnja &amp; Titiunik (2017) <a
-href="readings/Klasnja,%20Titiunik%20-%202017%20-%20The%20Incumbency%20Curse%20Weak%20Parties,%20Term%20Limits,%20and%20Unfulfilled%20Accountability.pdf">The
-Incumbency Curse: Weak Parties, Term Limits, and Unfulfilled
-Accountability</a></p></li>
-<li><p>Baqir (2002). <a
-href="readings/Baqir%20-%202002%20-%20Districting%20and%20Government%20Overspending.pdf">Districting
-and Government Overspending</a></p></li>
-<li><p>Pettersson-Lidbom (2012). <a
-href="readings/Pettersson-Lidbom%20-%202012%20-%20Does%20the%20size%20of%20the%20legislature%20affect%20the%20size%20of%20government%20Evidence%20from%20two%20natural%20experiments.pdf">Does
-the size of the legislature affect the size of government? Evidence from
-two natural experiments</a></p></li>
+<li><p>Trounstine &amp; Valdini (2008). <a href="readings/Trounstine,%20Valdini%20-%202008%20-%20The%20context%20matters.pdf">The context matters</a></p></li>
+<li><p>Trebbi, Aghion, &amp; Alesina (2008). <a href="readings/Trebbi,%20Aghion,%20Alesina%20-%202008%20-%20Electoral%20Rules%20and%20Minority%20Representation%20in%20U.S.%20Cities.pdf">Electoral Rules and Minority Representation in U.S. Cities</a></p></li>
+<li><p>Tausanovitch &amp; Warshaw (2014). <a href="readings/Tausanovitch,%20Warshaw%20-%202014%20-%20Representation%20in%20Municipal%20Government.pdf">Representation in Municipal Government</a></p></li>
+<li><p>Payson (2017). <a href="readings/Payson%20-%202017%20-%20When%20Are%20Local%20Incumbents%20Held%20Accountable%20for%20Government%20Performance%20Evidence%20from%20US%20School%20Districts.pdf">When Are Local Incumbents Held Accountable for Government Performance? Evidence from US School Districts</a></p></li>
+<li><p>Jensen et al. (2015). <a href="readings/Jensen%20et%20al.%20-%202015%20-%20Competing%20for%20global%20capital%20or%20local%20voters.pdf">Competing for global capital or local voters?</a></p></li>
+<li><p>Klasnja &amp; Titiunik (2017) <a href="readings/Klasnja,%20Titiunik%20-%202017%20-%20The%20Incumbency%20Curse%20Weak%20Parties,%20Term%20Limits,%20and%20Unfulfilled%20Accountability.pdf">The Incumbency Curse: Weak Parties, Term Limits, and Unfulfilled Accountability</a></p></li>
+<li><p>Baqir (2002). <a href="readings/Baqir%20-%202002%20-%20Districting%20and%20Government%20Overspending.pdf">Districting and Government Overspending</a></p></li>
+<li><p>Pettersson-Lidbom (2012). <a href="readings/Pettersson-Lidbom%20-%202012%20-%20Does%20the%20size%20of%20the%20legislature%20affect%20the%20size%20of%20government%20Evidence%20from%20two%20natural%20experiments.pdf">Does the size of the legislature affect the size of government? Evidence from two natural experiments</a></p></li>
 </ul>
 <h2 id="election-timing">Election Timing</h2>
 <h3 id="research-papers-3">Research Papers</h3>
 <ul>
-<li><p>Anzia (2012). <a
-href="readings/Anzia%20-%202012%20-%20Partisan%20Power%20Play%20The%20Origins%20of%20Local%20Election%20Timing%20as%20an%20American%20Political%20Institution.pdf">Partisan
-Power Play: The Origins of Local Election Timing as an American
-Political Institution</a></p></li>
-<li><p>Berry &amp; Gersen (2010). <a
-href="readings/Berry,%20Gersen%20-%202010%20-%20The%20Timing%20of%20Elections.pdf">The
-Timing of Elections</a></p></li>
-<li><p>Hajnal &amp; Lewis (2003). <a
-href="readings/Hajnal,%20Lewis%20-%202003%20-%20Municipal%20institutions%20and%20voter%20turnout%20in%20local%20elections.pdf">Municipal
-institutions and voter turnout in local elections</a></p></li>
-<li><p>Anzia (2011). <a
-href="readings/Anzia%20-%202011%20-%20Election%20Timing%20and%20the%20Electoral%20Influence%20of%20Interest%20Groups.pdf">Election
-Timing and the Electoral Influence of Interest Groups</a></p></li>
-<li><p>de Benedictis-Kessner (2018). <a
-href="readings/de%20Benedictis-Kessner%20-%202018%20-%20Off-Cycle%20and%20Out%20of%20Office.pdf">Off-Cycle
-and Out of Office</a></p></li>
-<li><p>Kogan et al. (2018). <a
-href="readings/Kogan%20et%20al.%20-%202018%20-%20Election%20Timing,%20Electorate%20Composition,%20and%20Policy%20Outcomes.pdf">Election
-Timing, Electorate Composition, and Policy Outcomes</a></p></li>
+<li><p>Anzia (2012). <a href="readings/Anzia%20-%202012%20-%20Partisan%20Power%20Play%20The%20Origins%20of%20Local%20Election%20Timing%20as%20an%20American%20Political%20Institution.pdf">Partisan Power Play: The Origins of Local Election Timing as an American Political Institution</a></p></li>
+<li><p>Berry &amp; Gersen (2010). <a href="readings/Berry,%20Gersen%20-%202010%20-%20The%20Timing%20of%20Elections.pdf">The Timing of Elections</a></p></li>
+<li><p>Hajnal &amp; Lewis (2003). <a href="readings/Hajnal,%20Lewis%20-%202003%20-%20Municipal%20institutions%20and%20voter%20turnout%20in%20local%20elections.pdf">Municipal institutions and voter turnout in local elections</a></p></li>
+<li><p>Anzia (2011). <a href="readings/Anzia%20-%202011%20-%20Election%20Timing%20and%20the%20Electoral%20Influence%20of%20Interest%20Groups.pdf">Election Timing and the Electoral Influence of Interest Groups</a></p></li>
+<li><p>de Benedictis-Kessner (2018). <a href="readings/de%20Benedictis-Kessner%20-%202018%20-%20Off-Cycle%20and%20Out%20of%20Office.pdf">Off-Cycle and Out of Office</a></p></li>
+<li><p>Kogan et al. (2018). <a href="readings/Kogan%20et%20al.%20-%202018%20-%20Election%20Timing,%20Electorate%20Composition,%20and%20Policy%20Outcomes.pdf">Election Timing, Electorate Composition, and Policy Outcomes</a></p></li>
 </ul>
 <h2 id="local-media">Local Media</h2>
 <h3 id="books-2">Books</h3>
 <ul>
-<li>Hopkins, Daniel J. 2018. <a
-href="https://press.uchicago.edu/ucp/books/book/chicago/I/bo27596045.html">The
-Increasingly United States: How and Why American Political Behavior
-Nationalized.</a> University of Chicago Press. <em>Particularly Chapter
-9</em>.</li>
+<li>Hopkins, Daniel J. 2018. <a href="https://press.uchicago.edu/ucp/books/book/chicago/I/bo27596045.html">The Increasingly United States: How and Why American Political Behavior Nationalized.</a> University of Chicago Press. <em>Particularly Chapter 9</em>.</li>
 </ul>
 <h3 id="research-papers-4">Research Papers</h3>
 <ul>
-<li><p>Mondak (1995). <a
-href="readings/Mondak%20-%201995%20-%20Newspapers%20and%20Political%20Awareness.pdf">Newspapers
-and Political Awareness</a></p></li>
-<li><p>George &amp; Waldfogel (2006). <a
-href="readings/George%20and%20Waldfogel%20-%202006%20-%20The%20New%20York%20Times%20and%20the%20Market%20for%20Local%20News.pdf">The
-New York Times and the Market for Local News</a></p></li>
-<li><p>Gentzkow (2006). <a
-href="readings/Gentzkow%20-%202006%20-%20Television%20and%20Voter%20Turnout.pdf">Television
-and Voter Turnout</a></p></li>
-<li><p>Ferraz &amp; Finan (2008). <a
-href="readings/Ferraz%20and%20Finan%20-%202008%20-%20Exposing%20Corrupt%20Politicians%20The%20Effects%20of%20Brazi.pdf">Exposing
-Corrupt Politicians</a></p></li>
-<li><p>Gerber et al. (2009). <a
-href="readings/Gerber%20et%20al.%20-%202009%20-%20Does%20the%20Media%20Matter%20A%20Field%20Experiment%20Measurin.pdf">Does
-the Media Matter? A Field Experiment</a></p></li>
-<li><p>Campante &amp; Do (2014). <a
-href="readings/Campante,%20Do%20-%202014%20-%20Isolated%20capital%20cities,%20accountability,%20and%20corruption%20Evidence%20from%20US%20States.pdf">Isolated
-capital cities, accountability, and corruption</a></p></li>
-<li><p>Hayes &amp; Lawless (2018). <a
-href="readings/Hayes%20and%20Lawless%20-%202018%20-%20The%20Decline%20of%20Local%20News%20and%20Its%20Effects%20New%20Evi.pdf">The
-Decline of Local News and Its Effects</a></p></li>
-<li><p>Martin &amp; McCrain (2019). <a
-href="readings/Martin%20and%20McCrain%20-%202019%20-%20Local%20News%20and%20National%20Politics.pdf">Local
-News and National Politics</a></p></li>
-<li><p>Moskowitz (2021). <a
-href="readings/Moskowitz%20-%202021%20-%20Local%20News,%20Information,%20and%20the%20Nationalization%20o.pdf">Local
-News, Information, and the Nationalization of US Elections</a></p></li>
+<li><p>Mondak (1995). <a href="readings/Mondak%20-%201995%20-%20Newspapers%20and%20Political%20Awareness.pdf">Newspapers and Political Awareness</a></p></li>
+<li><p>George &amp; Waldfogel (2006). <a href="readings/George%20and%20Waldfogel%20-%202006%20-%20The%20New%20York%20Times%20and%20the%20Market%20for%20Local%20News.pdf">The New York Times and the Market for Local News</a></p></li>
+<li><p>Gentzkow (2006). <a href="readings/Gentzkow%20-%202006%20-%20Television%20and%20Voter%20Turnout.pdf">Television and Voter Turnout</a></p></li>
+<li><p>Ferraz &amp; Finan (2008). <a href="readings/Ferraz%20and%20Finan%20-%202008%20-%20Exposing%20Corrupt%20Politicians%20The%20Effects%20of%20Brazi.pdf">Exposing Corrupt Politicians</a></p></li>
+<li><p>Gerber et al. (2009). <a href="readings/Gerber%20et%20al.%20-%202009%20-%20Does%20the%20Media%20Matter%20A%20Field%20Experiment%20Measurin.pdf">Does the Media Matter? A Field Experiment</a></p></li>
+<li><p>Campante &amp; Do (2014). <a href="readings/Campante,%20Do%20-%202014%20-%20Isolated%20capital%20cities,%20accountability,%20and%20corruption%20Evidence%20from%20US%20States.pdf">Isolated capital cities, accountability, and corruption</a></p></li>
+<li><p>Hayes &amp; Lawless (2018). <a href="readings/Hayes%20and%20Lawless%20-%202018%20-%20The%20Decline%20of%20Local%20News%20and%20Its%20Effects%20New%20Evi.pdf">The Decline of Local News and Its Effects</a></p></li>
+<li><p>Martin &amp; McCrain (2019). <a href="readings/Martin%20and%20McCrain%20-%202019%20-%20Local%20News%20and%20National%20Politics.pdf">Local News and National Politics</a></p></li>
+<li><p>Moskowitz (2021). <a href="readings/Moskowitz%20-%202021%20-%20Local%20News,%20Information,%20and%20the%20Nationalization%20o.pdf">Local News, Information, and the Nationalization of US Elections</a></p></li>
 </ul>
 <h3 id="videos">Videos</h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -2681,97 +2588,44 @@ News, Information, and the Nationalization of US Elections</a></p></li>
 </div>
 <h3 id="other-media-2">Other Media</h3>
 <ul>
-<li>Thompson, Ben. <a
-href="https://stratechery.com/2017/the-local-news-business-model/">“The
-Local News Business Model.”</a> <em>Stratechery</em>, May 9, 2017.</li>
+<li>Thompson, Ben. <a href="https://stratechery.com/2017/the-local-news-business-model/">“The Local News Business Model.”</a> <em>Stratechery</em>, May 9, 2017.</li>
 </ul>
 <h2 id="political-parties">Political Parties</h2>
 <h3 id="research-papers-5">Research Papers</h3>
 <ul>
-<li><p>Schleicher (2007). <a
-href="readings/Schleicher%20-%202007%20-%20Why%20Is%20There%20No%20Partisan%20Competition%20in%20City%20Council%20Elections.pdf">Why
-Is There No Partisan Competition in City Council Elections?</a></p></li>
-<li><p>de Benedictis-Kessner &amp; Warshaw (2016). <a
-href="readings/de%20Benedictis-Kessner,%20Warshaw%20-%202016%20-%20Mayoral%20Partisanship%20and%20Municipal%20Fiscal%20Policy.pdf">Mayoral
-Partisanship and Municipal Fiscal Policy</a></p></li>
-<li><p>Trounstine (2006). <a
-href="readings/Trounstine%20-%202006%20-%20Dominant%20regimes%20and%20the%20demise%20of%20urban%20democracy.pdf">Dominant
-regimes and the demise of urban democracy</a></p></li>
-<li><p>Berry and Fowler (2021). <a
-href="readings/Berry%20and%20Fowler%20-%202021%20-%20Leadership%20or%20luck.pdf">Leadership
-or luck?</a></p></li>
-<li><p>Dynes &amp; Holbein (2020). <a
-href="readings/Dynes%20and%20Holbein%20-%202020%20-%20Noisy%20Retrospection%20The%20Effect%20of%20Party%20Control%20o.pdf">Noisy
-Retrospection The Effect of Party Control on Policy
-Outcomes</a></p></li>
+<li><p>Schleicher (2007). <a href="readings/Schleicher%20-%202007%20-%20Why%20Is%20There%20No%20Partisan%20Competition%20in%20City%20Council%20Elections.pdf">Why Is There No Partisan Competition in City Council Elections?</a></p></li>
+<li><p>de Benedictis-Kessner &amp; Warshaw (2016). <a href="readings/de%20Benedictis-Kessner,%20Warshaw%20-%202016%20-%20Mayoral%20Partisanship%20and%20Municipal%20Fiscal%20Policy.pdf">Mayoral Partisanship and Municipal Fiscal Policy</a></p></li>
+<li><p>Trounstine (2006). <a href="readings/Trounstine%20-%202006%20-%20Dominant%20regimes%20and%20the%20demise%20of%20urban%20democracy.pdf">Dominant regimes and the demise of urban democracy</a></p></li>
+<li><p>Berry and Fowler (2021). <a href="readings/Berry%20and%20Fowler%20-%202021%20-%20Leadership%20or%20luck.pdf">Leadership or luck?</a></p></li>
+<li><p>Dynes &amp; Holbein (2020). <a href="readings/Dynes%20and%20Holbein%20-%202020%20-%20Noisy%20Retrospection%20The%20Effect%20of%20Party%20Control%20o.pdf">Noisy Retrospection The Effect of Party Control on Policy Outcomes</a></p></li>
 </ul>
 <h3 id="other-media-3">Other Media</h3>
 <ul>
-<li>Oklobdzija, Stan. <a
-href="https://www.slowboring.com/p/cities-democracy-multiparty">“America’s
-Cities Need Multi-Party Democracy,”</a> October 2, 2021.</li>
+<li>Oklobdzija, Stan. <a href="https://www.slowboring.com/p/cities-democracy-multiparty">“America’s Cities Need Multi-Party Democracy,”</a> October 2, 2021.</li>
 </ul>
 <h2 id="police-reform">Police Reform</h2>
 <h3 id="research-papers-6">Research Papers</h3>
 <ul>
-<li><p>Rushin (2019). <a
-href="readings/Rushin%20-%202019%20-%20Police%20Disciplinary%20Appeals.pdf">Police
-Disciplinary Appeals</a></p></li>
-<li><p>Devi &amp; Fryer (2020). <a
-href="readings/Devi%20and%20Fryer%20-%202020%20-%20Policing%20the%20Police.pdf">Policing
-the Police</a></p></li>
-<li><p>Chalfin et al. (2020). <a
-href="readings/Chalfin%20et%20al.%20-%202020%20-%20Police%20Force%20Size%20and%20Civilian%20Race.pdf">Police
-Force Size and Civilian Race</a></p></li>
-<li><p>Ba et al. (2021). <a
-href="readings/Ba%20et%20al.%20-%202021%20-%20The%20role%20of%20officer%20race%20and%20gender%20in%20police-civi.pdf">The
-role of officer race and gender in police-civilian interactions in
-Chicago</a></p></li>
-<li><p>Yokum et al. (2019). <a
-href="readings/Yokum%20et%20al.%20-%202019%20-%20A%20randomized%20control%20trial%20evaluating%20the%20effects%20.pdf">A
-randomized control trial evaluating the effects of police body-worn
-cameras</a></p></li>
-<li><p>Williams et al. (2021). <a
-href="readings/Williams%20et%20al.%20-%202021%20-%20Body-Worn%20Cameras%20In%20Policing%20Benefits%20And%20Costs.pdf">Body-Worn
-Cameras In Policing Benefits And Costs</a></p></li>
-<li><p>Wood et al. (2020). <a
-href="readings/Wood%20et%20al.%20-%202020%20-%20Procedural%20justice%20training%20reduces%20police%20use%20of%20.pdf">Procedural
-justice training reduces police use of force</a></p></li>
-<li><p>Goldstein (2021). <a
-href="readings/Goldstein%20-%202021%20-%20Senior%20Citizens%20as%20a%20Pro-Police%20Interest%20Group.pdf">Senior
-Citizens as a Pro-Police Interest Group</a></p></li>
-<li><p>Makowsky et al. (2019). <a
-href="readings/Makowsky%20et%20al.%20-%202019%20-%20To%20Serve%20and%20Collect.pdf">To
-Serve and Collect</a></p></li>
-<li><p>Shoub et al. (2022). <a
-href="readings/Shoub%20et%20al.%20-%202022%20-%20Do%20Female%20Officers%20Police%20Differently%20Evidence%20fr.pdf">Do
-Female Officers Police Differently?</a></p></li>
+<li><p>Rushin (2019). <a href="readings/Rushin%20-%202019%20-%20Police%20Disciplinary%20Appeals.pdf">Police Disciplinary Appeals</a></p></li>
+<li><p>Devi &amp; Fryer (2020). <a href="readings/Devi%20and%20Fryer%20-%202020%20-%20Policing%20the%20Police.pdf">Policing the Police</a></p></li>
+<li><p>Chalfin et al. (2020). <a href="readings/Chalfin%20et%20al.%20-%202020%20-%20Police%20Force%20Size%20and%20Civilian%20Race.pdf">Police Force Size and Civilian Race</a></p></li>
+<li><p>Ba et al. (2021). <a href="readings/Ba%20et%20al.%20-%202021%20-%20The%20role%20of%20officer%20race%20and%20gender%20in%20police-civi.pdf">The role of officer race and gender in police-civilian interactions in Chicago</a></p></li>
+<li><p>Yokum et al. (2019). <a href="readings/Yokum%20et%20al.%20-%202019%20-%20A%20randomized%20control%20trial%20evaluating%20the%20effects%20.pdf">A randomized control trial evaluating the effects of police body-worn cameras</a></p></li>
+<li><p>Williams et al. (2021). <a href="readings/Williams%20et%20al.%20-%202021%20-%20Body-Worn%20Cameras%20In%20Policing%20Benefits%20And%20Costs.pdf">Body-Worn Cameras In Policing Benefits And Costs</a></p></li>
+<li><p>Wood et al. (2020). <a href="readings/Wood%20et%20al.%20-%202020%20-%20Procedural%20justice%20training%20reduces%20police%20use%20of%20.pdf">Procedural justice training reduces police use of force</a></p></li>
+<li><p>Goldstein (2021). <a href="readings/Goldstein%20-%202021%20-%20Senior%20Citizens%20as%20a%20Pro-Police%20Interest%20Group.pdf">Senior Citizens as a Pro-Police Interest Group</a></p></li>
+<li><p>Makowsky et al. (2019). <a href="readings/Makowsky%20et%20al.%20-%202019%20-%20To%20Serve%20and%20Collect.pdf">To Serve and Collect</a></p></li>
+<li><p>Shoub et al. (2022). <a href="readings/Shoub%20et%20al.%20-%202022%20-%20Do%20Female%20Officers%20Police%20Differently%20Evidence%20fr.pdf">Do Female Officers Police Differently?</a></p></li>
 </ul>
 <h3 id="other-media-4">Other Media</h3>
 <ul>
-<li><p>Yglesias, Matthew. <a
-href="https://www.slowboring.com/p/fixing-the-police-will-take-more">“Fixing
-the Police Will Take More Funding, Not Less,”</a> January 25,
-2021.</p></li>
-<li><p>Friedersdorf, Conor. <a
-href="https://www.theatlantic.com/politics/archive/2014/12/how-police-unions-keep-abusive-cops-on-the-street/383258/">“How
-Police Unions and Arbitrators Keep Abusive Cops on the Street.”</a>
-<em>The Atlantic</em>, December 2, 2014.</p></li>
-<li><p>Simpson, Brett. 2021. <a
-href="https://www.theatlantic.com/ideas/archive/2021/10/end-police-violence-get-rid-traffic-cop/620378/">“Why
-Cars Don’t Deserve the Right of Way.”</a> <em>The
-Atlantic</em>.</p></li>
-<li><p>Gerety, Rowan Moore. <a
-href="https://www.theatlantic.com/politics/archive/2020/12/cahoots-program-may-reduce-likelihood-of-police-violence/617477/">“An
-Alternative to Police That Police Can Get Behind.”</a> <em>The
-Atlantic</em>, December 28, 2020.</p></li>
-<li><p>Archibald, John. <a
-href="https://www.al.com/news/2022/01/police-in-this-tiny-alabama-town-suck-drivers-into-legal-black-hole.html">“Police
-in This Tiny Alabama Town Suck Drivers into Legal ‘Black Hole.’”</a>
-<em>al.com</em>, January 19, 2022.</p></li>
+<li><p>Yglesias, Matthew. <a href="https://www.slowboring.com/p/fixing-the-police-will-take-more">“Fixing the Police Will Take More Funding, Not Less,”</a> January 25, 2021.</p></li>
+<li><p>Friedersdorf, Conor. <a href="https://www.theatlantic.com/politics/archive/2014/12/how-police-unions-keep-abusive-cops-on-the-street/383258/">“How Police Unions and Arbitrators Keep Abusive Cops on the Street.”</a> <em>The Atlantic</em>, December 2, 2014.</p></li>
+<li><p>Simpson, Brett. 2021. <a href="https://www.theatlantic.com/ideas/archive/2021/10/end-police-violence-get-rid-traffic-cop/620378/">“Why Cars Don’t Deserve the Right of Way.”</a> <em>The Atlantic</em>.</p></li>
+<li><p>Gerety, Rowan Moore. <a href="https://www.theatlantic.com/politics/archive/2020/12/cahoots-program-may-reduce-likelihood-of-police-violence/617477/">“An Alternative to Police That Police Can Get Behind.”</a> <em>The Atlantic</em>, December 28, 2020.</p></li>
+<li><p>Archibald, John. <a href="https://www.al.com/news/2022/01/police-in-this-tiny-alabama-town-suck-drivers-into-legal-black-hole.html">“Police in This Tiny Alabama Town Suck Drivers into Legal ‘Black Hole.’”</a> <em>al.com</em>, January 19, 2022.</p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

@@ -789,6 +789,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
 
   .html-widget {
@@ -1861,15 +1862,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
-          var fn = $(this).children()[0]
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
           $(this).html(fn.shadowRoot.querySelector("sup"))
           $(this).id = fn.id
           fn.remove()
         }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -2378,7 +2385,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2432,8 +2439,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>Housing</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Why the rent is too d$&amp;mn high, and why it’s so hard to
-fix.</p></p>
+<p><p>Why the rent is too d$&amp;mn high, and why it’s so hard to fix.</p></p>
 </div>
 
 
@@ -2442,31 +2448,25 @@ fix.</p></p>
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#housing-affordability"
-id="toc-housing-affordability">Housing Affordability</a>
+<li><a href="#housing-affordability" id="toc-housing-affordability">Housing Affordability</a>
 <ul>
 <li><a href="#books" id="toc-books">Books</a></li>
-<li><a href="#research-papers" id="toc-research-papers">Research
-Papers</a></li>
+<li><a href="#research-papers" id="toc-research-papers">Research Papers</a></li>
 <li><a href="#videos" id="toc-videos">Videos</a></li>
 <li><a href="#podcasts" id="toc-podcasts">Podcasts</a></li>
 <li><a href="#other-media" id="toc-other-media">Other Media</a></li>
 </ul></li>
-<li><a href="#zoning-politics" id="toc-zoning-politics">Zoning
-Politics</a>
+<li><a href="#zoning-politics" id="toc-zoning-politics">Zoning Politics</a>
 <ul>
 <li><a href="#books-1" id="toc-books-1">Books</a></li>
-<li><a href="#research-papers-1" id="toc-research-papers-1">Research
-Papers</a></li>
+<li><a href="#research-papers-1" id="toc-research-papers-1">Research Papers</a></li>
 <li><a href="#podcasts-1" id="toc-podcasts-1">Podcasts</a></li>
 <li><a href="#other-media-1" id="toc-other-media-1">Other Media</a></li>
 </ul></li>
-<li><a href="#housing-insecurity" id="toc-housing-insecurity">Housing
-Insecurity</a>
+<li><a href="#housing-insecurity" id="toc-housing-insecurity">Housing Insecurity</a>
 <ul>
 <li><a href="#books-2" id="toc-books-2">Books</a></li>
-<li><a href="#research-papers-2" id="toc-research-papers-2">Research
-Papers</a></li>
+<li><a href="#research-papers-2" id="toc-research-papers-2">Research Papers</a></li>
 <li><a href="#videos-1" id="toc-videos-1">Videos</a></li>
 <li><a href="#podcasts-2" id="toc-podcasts-2">Podcasts</a></li>
 <li><a href="#other-media-2" id="toc-other-media-2">Other Media</a></li>
@@ -2477,42 +2477,19 @@ Papers</a></li>
 <h2 id="housing-affordability">Housing Affordability</h2>
 <h3 id="books">Books</h3>
 <ul>
-<li><p>Yglesias, Matthew (2012). <a
-href="https://www.amazon.com/Rent-Too-Damn-High-Matters-ebook/dp/B0078XGJXO">The
-Rent Is Too Damn High: What To Do About It, and Why It Matters More Than
-You Think.</a> Simon &amp; Schuster.</p></li>
-<li><p>Bertaud, Alain (2018). <a
-href="https://www.amazon.com/Order-without-Design-Markets-Cities/dp/0262038765/ref=pd_lpo_3?pd_rd_i=0262038765&amp;psc=1">Order
-without Design: How Markets Shape Cities.</a> Cambridge, Massachusetts:
-MIT Press. <em>Chapter 6</em>.</p></li>
+<li><p>Yglesias, Matthew (2012). <a href="https://www.amazon.com/Rent-Too-Damn-High-Matters-ebook/dp/B0078XGJXO">The Rent Is Too Damn High: What To Do About It, and Why It Matters More Than You Think.</a> Simon &amp; Schuster.</p></li>
+<li><p>Bertaud, Alain (2018). <a href="https://www.amazon.com/Order-without-Design-Markets-Cities/dp/0262038765/ref=pd_lpo_3?pd_rd_i=0262038765&amp;psc=1">Order without Design: How Markets Shape Cities.</a> Cambridge, Massachusetts: MIT Press. <em>Chapter 6</em>.</p></li>
 </ul>
 <h3 id="research-papers">Research Papers</h3>
 <ul>
-<li><p>Glaeser, Gyourko, &amp; Saks (2005). <a
-href="readings/Glaeser,%20Gyourko,%20Saks%20-%202005%20-%20Why%20Is%20Manhattan%20So%20Expensive%20Regulation%20and%20the%20Rise%20in%20Housing%20Prices.pdf">Why
-Is Manhattan So Expensive?</a></p></li>
-<li><p>Glaeser &amp; Gyourko (2018). <a
-href="readings/Glaeser%20and%20Gyourko%20-%202018%20-%20The%20Economic%20Implications%20of%20Housing%20Supply.pdf">The
-Economic Implications of Housing Supply</a></p></li>
-<li><p>Lewyn (2005). <a
-href="readings/Lewyn%20-%202005%20-%20How%20Overregulation%20Creates%20Sprawl%20(Even%20in%20a%20City%20without%20Zoning).pdf">How
-Overregulation Creates Sprawl (Even in a City without
-Zoning)</a></p></li>
-<li><p>Pennington (2022). <a
-href="readings/Pennington%20-%20Does%20Building%20New%20Housing%20Cause%20Displacement%20The%20.pdf">Does
-Building New Housing Cause Displacement?</a></p></li>
-<li><p>Hsieh and Moretti (2019). <a
-href="readings/Hsieh%20and%20Moretti%20-%202019%20-%20Housing%20Constraints%20and%20Spatial%20Misallocation.pdf">Housing
-Constraints and Spatial Misallocation</a></p></li>
-<li><p>Schleicher (2017). <a
-href="readings/Schleicher%20-%202017%20-%20Stuck!%20The%20Law%20and%20Economics%20of%20Residential%20Stagna.pdf">Stuck!</a></p></li>
-<li><p>Saiz (2010). <a
-href="readings/Saiz%20-%202010%20-%20The%20Geographic%20Determinants%20of%20Housing%20Supply.pdf">The
-Geographic Determinants of Housing Supply</a></p></li>
-<li><p>Dericks and Koster (2021). <a
-href="readings/Dericks%20and%20Koster%20-%202021%20-%20The%20billion%20pound%20drop%20the%20Blitz%20and%20agglomeratio.pdf">The
-billion pound drop: the Blitz and agglomeration economies in
-London</a></p></li>
+<li><p>Glaeser, Gyourko, &amp; Saks (2005). <a href="readings/Glaeser,%20Gyourko,%20Saks%20-%202005%20-%20Why%20Is%20Manhattan%20So%20Expensive%20Regulation%20and%20the%20Rise%20in%20Housing%20Prices.pdf">Why Is Manhattan So Expensive?</a></p></li>
+<li><p>Glaeser &amp; Gyourko (2018). <a href="readings/Glaeser%20and%20Gyourko%20-%202018%20-%20The%20Economic%20Implications%20of%20Housing%20Supply.pdf">The Economic Implications of Housing Supply</a></p></li>
+<li><p>Lewyn (2005). <a href="readings/Lewyn%20-%202005%20-%20How%20Overregulation%20Creates%20Sprawl%20(Even%20in%20a%20City%20without%20Zoning).pdf">How Overregulation Creates Sprawl (Even in a City without Zoning)</a></p></li>
+<li><p>Pennington (2022). <a href="readings/Pennington%20-%20Does%20Building%20New%20Housing%20Cause%20Displacement%20The%20.pdf">Does Building New Housing Cause Displacement?</a></p></li>
+<li><p>Hsieh and Moretti (2019). <a href="readings/Hsieh%20and%20Moretti%20-%202019%20-%20Housing%20Constraints%20and%20Spatial%20Misallocation.pdf">Housing Constraints and Spatial Misallocation</a></p></li>
+<li><p>Schleicher (2017). <a href="readings/Schleicher%20-%202017%20-%20Stuck!%20The%20Law%20and%20Economics%20of%20Residential%20Stagna.pdf">Stuck!</a></p></li>
+<li><p>Saiz (2010). <a href="readings/Saiz%20-%202010%20-%20The%20Geographic%20Determinants%20of%20Housing%20Supply.pdf">The Geographic Determinants of Housing Supply</a></p></li>
+<li><p>Dericks and Koster (2021). <a href="readings/Dericks%20and%20Koster%20-%202021%20-%20The%20billion%20pound%20drop%20the%20Blitz%20and%20agglomeratio.pdf">The billion pound drop: the Blitz and agglomeration economies in London</a></p></li>
 </ul>
 <h3 id="videos">Videos</h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -2525,126 +2502,57 @@ London</a></p></li>
 </div>
 <h3 id="podcasts">Podcasts</h3>
 <ul>
-<li><a
-href="https://99percentinvisible.org/episode/the-missing-middle/">The
-Missing Middle</a>. <em>99 Percent Invisible</em>, May 17, 2022.</li>
+<li><a href="https://99percentinvisible.org/episode/the-missing-middle/">The Missing Middle</a>. <em>99 Percent Invisible</em>, May 17, 2022.</li>
 </ul>
 <h3 id="other-media">Other Media</h3>
 <ul>
-<li><p>Bowman, Sam, John Myers, and Ben Southwood. 2021. <a
-href="https://www.worksinprogress.co/issue/the-housing-theory-of-everything/">“The
-Housing Theory of Everything.”</a> <em>Works in Progress</em>.</p></li>
-<li><p>Bui, Quoctrung, Matt A.V. Chaban, and Jeremy White. <a
-href="https://www.nytimes.com/interactive/2016/05/19/upshot/forty-percent-of-manhattans-buildings-could-not-be-built-today.html">“40
-Percent of the Buildings in Manhattan Could Not Be Built Today.”</a> The
-New York Times (May 20, 2016).</p></li>
-<li><p>Herriges, Daniel. <a
-href="https://www.strongtowns.org/journal/2018/7/25/why-are-developers-only-building-luxury-housing">“‘Why
-Are Developers Only Building Luxury Housing?’”</a> <em>Strong
-Towns</em>, July 25, 2018.</p></li>
-<li><p>Sisson, Patrick. <a
-href="https://archive.curbed.com/2018/12/4/18125536/real-estate-modern-apartment-architecture">“Why
-Do All New Apartment Buildings Look the Same?”</a> Curbed, December 4,
-2018.</p></li>
-<li><p>Fox, Justin. <a
-href="https://www.bloomberg.com/news/features/2019-02-13/why-america-s-new-apartment-buildings-all-look-the-same">“Why
-America’s New Apartment Buildings All Look the Same.”</a> <em>Bloomberg
-Businessweek</em>, February 13, 2019.</p></li>
-<li><p>Demsas, Jerusalem. <a
-href="https://www.vox.com/22650806/gentrification-affordable-housing-low-income-housing">“In
-Defense of the ‘Gentrification Building.’”</a> <em>Vox</em>, September
-10, 2021.</p></li>
-<li><p>Yglesias, Matthew. <a
-href="https://www.slowboring.com/p/induced-demand">“The “induced Demand“
-Case against YIMBYism Is Wrong.”</a> <em>Slow Boring</em>, January 27,
-2021.</p></li>
-<li><p><a href="https://missingmiddlehousing.com/">The Missing
-Middle</a></p></li>
-<li><p>Herriges, Daniel. <a
-href="https://www.strongtowns.org/journal/2019/7/3/making-normal-neighborhoods-legal-again">“Making
-Normal Neighborhoods Legal Again.”</a> <em>Strong Towns</em>, July 3,
-2019.</p></li>
+<li><p>Bowman, Sam, John Myers, and Ben Southwood. 2021. <a href="https://www.worksinprogress.co/issue/the-housing-theory-of-everything/">“The Housing Theory of Everything.”</a> <em>Works in Progress</em>.</p></li>
+<li><p>Bui, Quoctrung, Matt A.V. Chaban, and Jeremy White. <a href="https://www.nytimes.com/interactive/2016/05/19/upshot/forty-percent-of-manhattans-buildings-could-not-be-built-today.html">“40 Percent of the Buildings in Manhattan Could Not Be Built Today.”</a> The New York Times (May 20, 2016).</p></li>
+<li><p>Herriges, Daniel. <a href="https://www.strongtowns.org/journal/2018/7/25/why-are-developers-only-building-luxury-housing">“‘Why Are Developers Only Building Luxury Housing?’”</a> <em>Strong Towns</em>, July 25, 2018.</p></li>
+<li><p>Sisson, Patrick. <a href="https://archive.curbed.com/2018/12/4/18125536/real-estate-modern-apartment-architecture">“Why Do All New Apartment Buildings Look the Same?”</a> Curbed, December 4, 2018.</p></li>
+<li><p>Fox, Justin. <a href="https://www.bloomberg.com/news/features/2019-02-13/why-america-s-new-apartment-buildings-all-look-the-same">“Why America’s New Apartment Buildings All Look the Same.”</a> <em>Bloomberg Businessweek</em>, February 13, 2019.</p></li>
+<li><p>Demsas, Jerusalem. <a href="https://www.vox.com/22650806/gentrification-affordable-housing-low-income-housing">“In Defense of the ‘Gentrification Building.’”</a> <em>Vox</em>, September 10, 2021.</p></li>
+<li><p>Yglesias, Matthew. <a href="https://www.slowboring.com/p/induced-demand">“The “induced Demand“ Case against YIMBYism Is Wrong.”</a> <em>Slow Boring</em>, January 27, 2021.</p></li>
+<li><p><a href="https://missingmiddlehousing.com/">The Missing Middle</a></p></li>
+<li><p>Herriges, Daniel. <a href="https://www.strongtowns.org/journal/2019/7/3/making-normal-neighborhoods-legal-again">“Making Normal Neighborhoods Legal Again.”</a> <em>Strong Towns</em>, July 3, 2019.</p></li>
 </ul>
 <h2 id="zoning-politics">Zoning Politics</h2>
 <h3 id="books-1">Books</h3>
 <ul>
-<li><p>Fischel, William A. (2001). <a
-href="https://www.hup.harvard.edu/catalog.php?isbn=9780674015951">The
-Homevoter Hypothesis: How Home Values Influence Local Government
-Taxation, School Finance, and Land-Use Policies.</a> Cambridge, MA:
-Harvard University Press.</p></li>
-<li><p>Einstein, Glick, &amp; Palmer (2019). <a
-href="https://www.cambridge.org/core/books/neighborhood-defenders/0677F4F75667B490CBC7A98396DD527A">Neighborhood
-Defenders: Participatory Politics and America’s Housing
-Crisis</a></p></li>
+<li><p>Fischel, William A. (2001). <a href="https://www.hup.harvard.edu/catalog.php?isbn=9780674015951">The Homevoter Hypothesis: How Home Values Influence Local Government Taxation, School Finance, and Land-Use Policies.</a> Cambridge, MA: Harvard University Press.</p></li>
+<li><p>Einstein, Glick, &amp; Palmer (2019). <a href="https://www.cambridge.org/core/books/neighborhood-defenders/0677F4F75667B490CBC7A98396DD527A">Neighborhood Defenders: Participatory Politics and America’s Housing Crisis</a></p></li>
 </ul>
 <h3 id="research-papers-1">Research Papers</h3>
 <ul>
-<li><p>Schleicher (2013). <a
-href="readings/Schleicher%20-%202013%20-%20City%20Unplanning.pdf">City
-Unplanning</a></p></li>
-<li><p>Einstein, Ornstein &amp; Palmer (2022). <a
-href="readings/Einstein%20et%20al.%20-%202022%20-%20Who%20Represents%20the%20Renters.pdf">Who
-Reprsents The Renters?</a></p></li>
-<li><p>Trounstine (2021). <a
-href="readings/Trounstine%20-%202021%20-%20You%20Won&#39;t%20be%20My%20Neighbor%20Opposition%20to%20High%20Densi.pdf">You
-Won’t be My Neighbor</a></p></li>
-<li><p>Marble and Nall (2021). <a
-href="readings/Marble%20and%20Nall%20-%202021%20-%20Where%20Self-Interest%20Trumps%20Ideology%20Liberal%20Homeo.pdf">Where
-Self-Interest Trumps Ideology</a></p></li>
-<li><p>Einstein et al. (2019). <a
-href="readings/Einstein%20et%20al.%20-%202019%20-%20Who%20Participates%20in%20Local%20Government%20Evidence%20fro.pdf">Who
-Participates in Local Government?</a></p></li>
-<li><p>Fischel (2016). <a
-href="readings/Fischel%20-%202016%20-%20The%20Rise%20of%20the%20Homevoters.pdf">The
-Rise of the Homevoters</a></p></li>
+<li><p>Schleicher (2013). <a href="readings/Schleicher%20-%202013%20-%20City%20Unplanning.pdf">City Unplanning</a></p></li>
+<li><p>Einstein, Ornstein &amp; Palmer (2022). <a href="readings/Einstein%20et%20al.%20-%202022%20-%20Who%20Represents%20the%20Renters.pdf">Who Reprsents The Renters?</a></p></li>
+<li><p>Trounstine (2021). <a href="readings/Trounstine%20-%202021%20-%20You%20Won&#39;t%20be%20My%20Neighbor%20Opposition%20to%20High%20Densi.pdf">You Won’t be My Neighbor</a></p></li>
+<li><p>Marble and Nall (2021). <a href="readings/Marble%20and%20Nall%20-%202021%20-%20Where%20Self-Interest%20Trumps%20Ideology%20Liberal%20Homeo.pdf">Where Self-Interest Trumps Ideology</a></p></li>
+<li><p>Einstein et al. (2019). <a href="readings/Einstein%20et%20al.%20-%202019%20-%20Who%20Participates%20in%20Local%20Government%20Evidence%20fro.pdf">Who Participates in Local Government?</a></p></li>
+<li><p>Fischel (2016). <a href="readings/Fischel%20-%202016%20-%20The%20Rise%20of%20the%20Homevoters.pdf">The Rise of the Homevoters</a></p></li>
 </ul>
 <h3 id="podcasts-1">Podcasts</h3>
 <ul>
-<li><a
-href="https://podcasts.apple.com/us/podcast/neighborhood-defenders/id1042433083?i=1000461440534">Neighborhood
-Defenders</a>. 2020. <em>The Weeds</em>.</li>
+<li><a href="https://podcasts.apple.com/us/podcast/neighborhood-defenders/id1042433083?i=1000461440534">Neighborhood Defenders</a>. 2020. <em>The Weeds</em>.</li>
 </ul>
 <h3 id="other-media-1">Other Media</h3>
 <ul>
-<li><p><a
-href="https://twitter.com/NimbyPatrol/status/1416832198800515073">All
-the Memes</a></p></li>
-<li><p><a href="https://techcrunch.com/2014/04/14/sf-housing/">How
-Burrowing Owls Lead to Vomiting Anarchists (Or SF’s Housing Crisis
-Explained)</a></p></li>
+<li><p><a href="https://twitter.com/NimbyPatrol/status/1416832198800515073">All the Memes</a></p></li>
+<li><p><a href="https://techcrunch.com/2014/04/14/sf-housing/">How Burrowing Owls Lead to Vomiting Anarchists (Or SF’s Housing Crisis Explained)</a></p></li>
 </ul>
 <h2 id="housing-insecurity">Housing Insecurity</h2>
 <h3 id="books-2">Books</h3>
 <ul>
-<li>Desmond, Matthew. <a
-href="https://www.amazon.com/Evicted-Poverty-Profit-American-City/dp/0553447459">Evicted:
-Poverty and Profit in the American City.</a> First Edition. New York:
-Crown Publishers, 2016.</li>
+<li>Desmond, Matthew. <a href="https://www.amazon.com/Evicted-Poverty-Profit-American-City/dp/0553447459">Evicted: Poverty and Profit in the American City.</a> First Edition. New York: Crown Publishers, 2016.</li>
 </ul>
 <h3 id="research-papers-2">Research Papers</h3>
 <ul>
-<li><p>Culhane et al. (2002). <a
-href="readings/Culhane%20et%20al.%20-%202002%20-%20Public%20service%20reductions%20associated%20with%20placemen.pdf">Public
-service reductions associated with placement in supportive
-housing</a></p></li>
-<li><p>Tsemberis et al. (2004). <a
-href="readings/Tsemberis%20et%20al.%20-%202004%20-%20Housing%20First,%20Consumer%20Choice,%20and%20Harm%20Reduction.pdf">Housing
-First, Consumer Choice, and Harm Reduction</a></p></li>
-<li><p>Quigley and Raphael (2001). <a
-href="readings/Quigley%20and%20Raphael%20-%202001%20-%20The%20Economics%20Of%20Homelessness%20The%20Evidence%20From%20N.pdf">The
-Economics Of Homelessness</a></p></li>
-<li><p>Chyn (2018). <a
-href="readings/Chyn%20-%202018%20-%20Moved%20to%20Opportunity%20The%20Long-Run%20Effects%20of%20Publ.pdf">Moved
-to Opportunity: The Long-Run Effects of Public Housing Demolition on
-Children</a></p></li>
-<li><p>Enos (2016). <a
-href="readings/Enos%20-%202016%20-%20What%20the%20Demolition%20of%20Public%20Housing%20Teaches%20Us%20about%20the%20Impact%20of%20Racial%20Threat%20on%20Political%20Behavior.pdf">What
-the Demolition of Public Housing Teaches Us about the Impact of Racial
-Threat on Political Behavior</a></p></li>
-<li><p>Chua (2014). <a
-href="readings/Chua%20-%202014%20-%20Navigating%20Between%20Limits%20The%20Future%20of%20Public%20Ho.pdf">Navigating
-Between Limits: The Future of Public Housing in Singapore</a></p></li>
+<li><p>Culhane et al. (2002). <a href="readings/Culhane%20et%20al.%20-%202002%20-%20Public%20service%20reductions%20associated%20with%20placemen.pdf">Public service reductions associated with placement in supportive housing</a></p></li>
+<li><p>Tsemberis et al. (2004). <a href="readings/Tsemberis%20et%20al.%20-%202004%20-%20Housing%20First,%20Consumer%20Choice,%20and%20Harm%20Reduction.pdf">Housing First, Consumer Choice, and Harm Reduction</a></p></li>
+<li><p>Quigley and Raphael (2001). <a href="readings/Quigley%20and%20Raphael%20-%202001%20-%20The%20Economics%20Of%20Homelessness%20The%20Evidence%20From%20N.pdf">The Economics Of Homelessness</a></p></li>
+<li><p>Chyn (2018). <a href="readings/Chyn%20-%202018%20-%20Moved%20to%20Opportunity%20The%20Long-Run%20Effects%20of%20Publ.pdf">Moved to Opportunity: The Long-Run Effects of Public Housing Demolition on Children</a></p></li>
+<li><p>Enos (2016). <a href="readings/Enos%20-%202016%20-%20What%20the%20Demolition%20of%20Public%20Housing%20Teaches%20Us%20about%20the%20Impact%20of%20Racial%20Threat%20on%20Political%20Behavior.pdf">What the Demolition of Public Housing Teaches Us about the Impact of Racial Threat on Political Behavior</a></p></li>
+<li><p>Chua (2014). <a href="readings/Chua%20-%202014%20-%20Navigating%20Between%20Limits%20The%20Future%20of%20Public%20Ho.pdf">Navigating Between Limits: The Future of Public Housing in Singapore</a></p></li>
 </ul>
 <h3 id="videos-1">Videos</h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -2656,47 +2564,23 @@ Between Limits: The Future of Public Housing in Singapore</a></p></li>
 </iframe>
 </div>
 <ul>
-<li><a
-href="https://galileo-usg-uga-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=01GALI_USG_ALMA51184900970002931&amp;context=L&amp;vid=UGA&amp;lang=en_US&amp;search_scope=UGA&amp;adaptor=Local%20Search%20Engine&amp;tab=default_tab&amp;query=any,contains,pruitt%20igoe%20myth&amp;offset=0">The
-Pruitt-Igoe Myth</a>. 2011. <em>Film available through UGA Library at
-the link.</em></li>
+<li><a href="https://galileo-usg-uga-primo.hosted.exlibrisgroup.com/primo-explore/fulldisplay?docid=01GALI_USG_ALMA51184900970002931&amp;context=L&amp;vid=UGA&amp;lang=en_US&amp;search_scope=UGA&amp;adaptor=Local%20Search%20Engine&amp;tab=default_tab&amp;query=any,contains,pruitt%20igoe%20myth&amp;offset=0">The Pruitt-Igoe Myth</a>. 2011. <em>Film available through UGA Library at the link.</em></li>
 </ul>
 <h3 id="podcasts-2">Podcasts</h3>
 <ul>
-<li><p><a href="https://99percentinvisible.org/need/">According to
-Need</a> (a project of 99% Invisible). 2021.</p></li>
-<li><p><a
-href="https://99percentinvisible.org/episode/episode-44-the-pruitt-igoe-myth/">The
-Pruitt-Igoe Myth</a>. <em>99 Percent Invisible</em>, January 6,
-2012.</p></li>
+<li><p><a href="https://99percentinvisible.org/need/">According to Need</a> (a project of 99% Invisible). 2021.</p></li>
+<li><p><a href="https://99percentinvisible.org/episode/episode-44-the-pruitt-igoe-myth/">The Pruitt-Igoe Myth</a>. <em>99 Percent Invisible</em>, January 6, 2012.</p></li>
 </ul>
 <h3 id="other-media-2">Other Media</h3>
 <ul>
-<li><p>Yglesias, Matthew. <a
-href="https://www.slowboring.com/p/homelessness-housing">“Homelessness
-Is About Housing.”</a> <em>Slow Boring</em>, May 17, 2021.</p></li>
-<li><p>Barry-Jester, Anna Maria, and Angela Hart. <a
-href="https://www.latimes.com/homeless-housing/story/2020-10-07/california-rural-homeless-coronavirus-train-wreck">“This
-Was Supposed to Be the Year for California’s Homeless. Instead It’s a
-Slow ‘Train Wreck.’”</a> <em>Los Angeles Times</em>, October 7,
-2020.</p></li>
-<li><p>Klein, Ezra. <a
-href="https://www.nytimes.com/2022/10/23/opinion/los-angeles-homelessness-affordable-housing.html">“The
-Way Los Angeles Is Trying to Solve Homelessness Is ‘Absolutely
-Insane.’”</a> <em>The New York Times</em>. (October 23, 2022).</p></li>
-<li><p>Gladwell, Malcolm. <a
-href="Gladwell%20-%202006%20-%20Million-Dollar%20Murray">“Million-Dollar
-Murray.”</a> <em>The New Yorker</em>, 2006.</p></li>
-<li><p>Williams, Paul. <a
-href="https://www.noemamag.com/public-housing-for-all">“Public Housing
-For All.”</a> <em>NOEMA</em>, August 26, 2021.</p></li>
-<li><p>Phillips, Shane. <a
-href="http://www.betterinstitutions.com/blog/2021/2/2/rental-pension-social-housing-compete-with-homeownership">A
-‘Rental Pension’ Program to Compete with Homeownership</a>. <em>Better
-Institutions</em>, 2021.</p></li>
+<li><p>Yglesias, Matthew. <a href="https://www.slowboring.com/p/homelessness-housing">“Homelessness Is About Housing.”</a> <em>Slow Boring</em>, May 17, 2021.</p></li>
+<li><p>Barry-Jester, Anna Maria, and Angela Hart. <a href="https://www.latimes.com/homeless-housing/story/2020-10-07/california-rural-homeless-coronavirus-train-wreck">“This Was Supposed to Be the Year for California’s Homeless. Instead It’s a Slow ‘Train Wreck.’”</a> <em>Los Angeles Times</em>, October 7, 2020.</p></li>
+<li><p>Klein, Ezra. <a href="https://www.nytimes.com/2022/10/23/opinion/los-angeles-homelessness-affordable-housing.html">“The Way Los Angeles Is Trying to Solve Homelessness Is ‘Absolutely Insane.’”</a> <em>The New York Times</em>. (October 23, 2022).</p></li>
+<li><p>Gladwell, Malcolm. <a href="Gladwell%20-%202006%20-%20Million-Dollar%20Murray">“Million-Dollar Murray.”</a> <em>The New Yorker</em>, 2006.</p></li>
+<li><p>Williams, Paul. <a href="https://www.noemamag.com/public-housing-for-all">“Public Housing For All.”</a> <em>NOEMA</em>, August 26, 2021.</p></li>
+<li><p>Phillips, Shane. <a href="http://www.betterinstitutions.com/blog/2021/2/2/rental-pension-social-housing-compete-with-homeownership">A ‘Rental Pension’ Program to Compete with Homeownership</a>. <em>Better Institutions</em>, 2021.</p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
