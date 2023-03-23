@@ -1,2 +1,43 @@
-- Geometry problem (cars, capuccinos, etc.)
+
+
+1. Remember in our stories about path dependence I showed you this pretty remarkable chart (hiroshima and nagasaki catch-up growth)
+    - Within a decade, these cities were back to their pre-war populations, and within two decades they were back to where you would have expected if the bombs hadn't been dropped at all.
+    - Today, I want to compare that with the population trajectories of several US cities during the same time period. (build this up in R)
+
+  - Why such different trajectories? Because while the Japanese were undertaking a systematic effort to rebuild their cities after the war, the United States was undertaking a similarly ambitious effort to destroy our cities and replace them with something else. It was ironically called "Urban Renewal", and it 
+
+  - Take a moment to explore the pre-post highway maps.
+    - Did two things: (1) destroyed neighborhoods (most often majority-Black) and (2) enabled a wave of suburbanization, emptying out the urban core of nearly every major metro in the country.
+    - eisenhower-interstate-map and Baum-Snow. Cities that were hubs of the Interstate network got more "rays", which in turn led to more suburbanization. An extra Interstate Highway is associated with an X% population decline in the central city.
+    - some evidence that this turbo-charged the geographic polarization we discussed earlier in the semester (Nall, 2018 charts)
+
+
+2. Cars Are A Geometry Problem
+- Fundamentally a geometry problem (cars, capuccinos, etc.)
+30-people-getting-coffee.png
+   1. Cars are big (the famous cars, bikes, buses, pedestrians picture)   
+   2. Land in cities is scarce. (almost by definition, a city is a place where there are lots of people per unit of land; land is scarce and expensive). https://placeslab.org/fmv-usa/
+   3. Cities with car-oriented transportation systems are inherently self-limiting. 
+      - Anytime the population grows, land per person grows more scarce, but you need to set aside a larger and larger proportion of that land for cars.
+      - Converting more land to auto infrastructure often backfires (Fundamental Law of Road Congestion)    
+
+
+Look at satellite maps of major US cities and see how much of this valuable land is dedicated to moving or parking cars.
+
+- Poll: how many parking spaces are there in the United States? (it's more than you think)
+  - About 2 billion for 250 million cars (8 parking spaces per car, ).
+  - This is a policy choice! Nearly every city in America includes mandatory off-street parking requirements in their zoning code. (look at Athens-Clarke County). (should we link to videos?)
+  - Embed: https://www.youtube.com/embed/skm6hp99-5A?start=16
+
+
+
+3. Shrinking Cities
+
+  - Declining population created decades of problems in central cities. Glaeser & Gyourkou Durable Housing paper figure. When demand for a living in a particular city falls, it translates into dramatic decreases in property values. US cities rely on property taxes for revenue, which meant decades of financial crisis, as cities had difficulty paying for public services, police, schools, etc. 
+     - This creates a *feedback loop*. Shrinking population reduces the value of city services, which causes more people to want to leave.
+     - The United States is unique among wealthy nations where the term "inner city" is used to describe poor neighborhoods. In most countries, the "inner city" is where the rich people live. paris-rents.png
+     - This is the strange result of our transportation policy choices.
+     - It's only in recent decades that we've seen a reversal of this trend, and walkable central city neighborhoods are in increasingly high demand. In our next module: what this does to the housing market, and how policy can repond....(???)
+
+
 - Side-by-side downtown Athens and Walmart (walkable places are more productive)
