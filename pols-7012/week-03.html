@@ -789,7 +789,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
-    font-size: 100%;
   }
 
   .html-widget {
@@ -1862,21 +1861,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        const citeChild = $(this).children()[0]
-        // Do not process if @xyz has been used without escaping and without bibliography activated
-        // https://github.com/rstudio/distill/issues/466
-        if (citeChild === undefined) return true
-
-        if (citeChild.nodeName == "D-FOOTNOTE") {
-          var fn = citeChild
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
           $(this).html(fn.shadowRoot.querySelector("sup"))
           $(this).id = fn.id
           fn.remove()
         }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          // Could use CSS.escape too here, we insure backward compatibility in navigator
-          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -2385,7 +2378,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2448,7 +2441,7 @@ Schedule
 <a href="https://calendly.com/joeornstein/20min">
 <i class="fas fa-calendar-plus" aria-hidden="true"></i>
 </a>
-<a href="https://hypothes.is/groups/g7pXazQj/pols-7012-fall-2021">
+<a href="https://hypothes.is/groups/rG8XJMGw/pols-7012-fall-2023">
 <i class="fas fa-book-open" aria-hidden="true"></i>
 </a>
 <a href="https://github.com/joeornstein/intro-political-methodology">
@@ -2477,14 +2470,19 @@ Schedule
 <ul>
 <li><a href="#reading" id="toc-reading">Reading</a>
 <ul>
-<li><a href="#optional-practice" id="toc-optional-practice">Optional Practice</a></li>
+<li><a href="#optional-practice" id="toc-optional-practice">Optional
+Practice</a></li>
 </ul></li>
 <li><a href="#overview" id="toc-overview">Overview</a>
 <ul>
-<li><a href="#importing-the-data" id="toc-importing-the-data">Importing The Data</a></li>
-<li><a href="#recoding-variables" id="toc-recoding-variables">Recoding Variables</a></li>
-<li><a href="#joining-datasets" id="toc-joining-datasets">Joining Datasets</a></li>
-<li><a href="#selecting-variables" id="toc-selecting-variables">Selecting Variables</a></li>
+<li><a href="#importing-the-data" id="toc-importing-the-data">Importing
+The Data</a></li>
+<li><a href="#recoding-variables" id="toc-recoding-variables">Recoding
+Variables</a></li>
+<li><a href="#joining-datasets" id="toc-joining-datasets">Joining
+Datasets</a></li>
+<li><a href="#selecting-variables"
+id="toc-selecting-variables">Selecting Variables</a></li>
 </ul></li>
 <li><a href="#problem-set" id="toc-problem-set">Problem Set</a></li>
 </ul>
@@ -2492,72 +2490,109 @@ Schedule
 </div>
 <h2 id="reading">Reading</h2>
 <ul>
-<li><a href="https://tinystats.github.io/teacups-giraffes-and-statistics/04_variance.html">Teacup Giraffes</a>: Spread of the Data</li>
-<li><a href="https://allisonhorst.shinyapps.io/dplyr-learnr/">Wrangling Penguins</a></li>
-<li><a href="https://r4ds.had.co.nz/wrangle-intro.html">R4DS Chapter 9: Wrangle</a></li>
-<li><a href="https://r4ds.had.co.nz/data-import.html">R4DS Chapter 11: Import</a> (skip sections 11.3 and 11.4)</li>
-<li><a href="https://r4ds.had.co.nz/tidy-data.html">R4DS Chapter 12: Tidy Data</a></li>
+<li><a
+href="https://tinystats.github.io/teacups-giraffes-and-statistics/04_variance.html">Teacup
+Giraffes</a>: Spread of the Data</li>
+<li><a href="https://allisonhorst.shinyapps.io/dplyr-learnr/">Wrangling
+Penguins</a></li>
+<li><a href="https://r4ds.had.co.nz/wrangle-intro.html">R4DS Chapter 9:
+Wrangle</a></li>
+<li><a href="https://r4ds.had.co.nz/data-import.html">R4DS Chapter 11:
+Import</a> (skip sections 11.3 and 11.4)</li>
+<li><a href="https://r4ds.had.co.nz/tidy-data.html">R4DS Chapter 12:
+Tidy Data</a></li>
 </ul>
 <h3 id="optional-practice">Optional Practice</h3>
 <ul>
-<li><a href="https://rstudio.cloud/learn/primers/4">Tidy Your Data</a> (RStudio Primer)</li>
-<li>I’m assigning what I think are the crucial chapters of R4DS, but if you really want to get deep into <code>R</code> programming, feel free to look over the chapters we skipped. In particular, the chapter on “Strings” if you want to work with text data, and “Dates &amp; Times” if you want to work with time series.</li>
+<li><a href="https://rstudio.cloud/learn/primers/4">Tidy Your Data</a>
+(RStudio Primer)</li>
+<li>I’m assigning what I think are the crucial chapters of R4DS, but if
+you really want to get deep into <code>R</code> programming, feel free
+to look over the chapters we skipped. In particular, the chapter on
+“Strings” if you want to work with text data, and “Dates &amp; Times” if
+you want to work with time series.</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>Up to now, we’ve been working with pretty tidy datasets. Every column is a variable, every row is an observation, and every value is where it should be. But things are not always this way. More often than you’re going to like, data comes to you an unruly mess, and you’ll need to tidy it up before you can even start to explore it.</p>
-<p>This week, we’ll learn some of the most important functions in the <code>tidyverse</code> for data importing, wrangling, and summarizing.</p>
+<p>Up to now, we’ve been working with pretty tidy datasets. Every column
+is a variable, every row is an observation, and every value is where it
+should be. But things are not always this way. More often than you’re
+going to like, data comes to you an unruly mess, and you’ll need to tidy
+it up before you can even start to explore it.</p>
+<p>This week, we’ll learn some of the most important functions in the
+<code>tidyverse</code> for data importing, wrangling, and
+summarizing.</p>
 <p><img src="img/horst_tidyverse.jpg" /></p>
-<p>In your <a href="week-02.html#problem-set">last problem set</a>, you worked with a tidied up version of the Cooperative Election Study (CES) from 2020. Let’s look at the steps I took to import and clean up that dataset.</p>
+<p>In your <a href="week-02.html#problem-set">last problem set</a>, you
+worked with a tidied up version of the Cooperative Election Study (CES)
+from 2020. Let’s look at the steps I took to import and clean up that
+dataset.</p>
 <h3 id="importing-the-data">Importing The Data</h3>
-<p>The CES is a survey of a representative sample of 50,000+ American adults, conducted every election year by a large consortium of universities. The data going back to 2006 is available <a href="https://cces.gov.harvard.edu/">here</a>. Go to that site and download the 2020 dataset, a 180 megabyte monster called <code>CES20_Common_OUTPUT_vv.csv</code>.</p>
-<p>The <code>.csv</code> extension at the end of the file means that it is a “comma separated value” file. This is a file where all of the values are separated by commas. Looks something like this:</p>
+<p>The CES is a survey of a representative sample of 50,000+ American
+adults, conducted every election year by a large consortium of
+universities. The data going back to 2006 is available <a
+href="https://cces.gov.harvard.edu/">here</a>. Go to that site and
+download the 2020 dataset, a 180 megabyte monster called
+<code>CES20_Common_OUTPUT_vv.csv</code>.</p>
+<p>The <code>.csv</code> extension at the end of the file means that it
+is a “comma separated value” file. This is a file where all of the
+values are separated by commas. Looks something like this:</p>
 <pre><code>name, age, party
 &#39;Joe&#39;, 35, &#39;Bull Moose&#39;
 &#39;Fiona&#39;, 6, &#39;Birthday&#39;
 &#39;Avery&#39;, 3, &#39;Know Nothing&#39;</code></pre>
-<p>It’s a nice standardized way to represent datasets, and fortunately for us, the <code>read_csv()</code> function allows us to read such files into <code>R</code>. Let’s create an object called <code>ces_raw</code> from that raw dataset.</p>
+<p>It’s a nice standardized way to represent datasets, and fortunately
+for us, the <code>read_csv()</code> function allows us to read such
+files into <code>R</code>. Let’s create an object called
+<code>ces_raw</code> from that raw dataset.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
-<span></span>
-<span><span class='va'>ces_raw</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/readr/man/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>'data/raw/CES20_Common_OUTPUT_vv.csv'</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+
+<span class='va'>ces_raw</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>'data/raw/CES20_Common_OUTPUT_vv.csv'</span><span class='op'>)</span>
+</code></pre>
 </div>
 </div>
 <p>This dataset has a lot of information.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>ces_raw</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>ces_raw</span><span class='op'>)</span>
+</code></pre>
 </div>
 <pre><code>[1] 61000   717</code></pre>
 </div>
-<p>61,000 rows and 717 columns, to be precise. The first few rows and columns look like this:</p>
+<p>61,000 rows and 717 columns, to be precise. The first few rows and
+columns look like this:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>ces_raw</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>ces_raw</span><span class='op'>)</span>
+</code></pre>
 </div>
 <pre><code># A tibble: 6 × 717
-   ...1 caseid commo…¹ commo…² vvwei…³ vvwei…⁴ tookp…⁵ CCESt…⁶ birthyr
-  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1     1 1.23e9   0.783   0.666   0.851   0.607       2       1    1966
-2     2 1.23e9   1.34    1.44   NA      NA           2       1    1955
-3     3 1.23e9   0.406   0.342  NA      NA           2       1    1946
-4     4 1.23e9   0.958   0.822   1.04    1.00        2       1    1962
-5     5 1.23e9   0.195   0.162  NA      NA           2       1    1967
-6     6 1.23e9   1.06    0.880   1.15    0.988       2       1    1961
-# … with 708 more variables: gender &lt;dbl&gt;, educ &lt;dbl&gt;, race &lt;dbl&gt;,
+   ...1    caseid commonweight commonpostweight vvweight vvweight_post
+  &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt;    &lt;dbl&gt;         &lt;dbl&gt;
+1     1    1.23e9        0.783            0.666    0.851         0.607
+2     2    1.23e9        1.34             1.44    NA            NA    
+3     3    1.23e9        0.406            0.342   NA            NA    
+4     4    1.23e9        0.958            0.822    1.04          1.00 
+5     5    1.23e9        0.195            0.162   NA            NA    
+6     6    1.23e9        1.06             0.880    1.15          0.988
+# ℹ 711 more variables: tookpost &lt;dbl&gt;, CCEStake &lt;dbl&gt;,
+#   birthyr &lt;dbl&gt;, gender &lt;dbl&gt;, educ &lt;dbl&gt;, race &lt;dbl&gt;,
 #   race_other &lt;chr&gt;, hispanic &lt;dbl&gt;, CC20_hisp_1 &lt;dbl&gt;,
 #   CC20_hisp_2 &lt;dbl&gt;, CC20_hisp_3 &lt;dbl&gt;, CC20_hisp_4 &lt;dbl&gt;,
 #   CC20_hisp_5 &lt;dbl&gt;, CC20_hisp_6 &lt;dbl&gt;, CC20_hisp_7 &lt;dbl&gt;,
 #   CC20_hisp_8 &lt;dbl&gt;, CC20_hisp_9 &lt;dbl&gt;, CC20_hisp_10 &lt;dbl&gt;,
-#   CC20_hisp_11 &lt;dbl&gt;, CC20_hisp_12 &lt;dbl&gt;, CC20_hisp_t &lt;chr&gt;,
-#   CC20_asian_1 &lt;dbl&gt;, CC20_asian_2 &lt;dbl&gt;, CC20_asian_3 &lt;dbl&gt;, …</code></pre>
+#   CC20_hisp_11 &lt;dbl&gt;, CC20_hisp_12 &lt;dbl&gt;, CC20_hisp_t &lt;chr&gt;, …</code></pre>
 </div>
 <h3 id="recoding-variables">Recoding Variables</h3>
-<p>Now that we have the dataset loaded into memory, let’s find the variables we’re interested in keeping and clean them up a bit. For example, gender is coded as a 1 or 2.</p>
+<p>Now that we have the dataset loaded into memory, let’s find the
+variables we’re interested in keeping and clean them up a bit. For
+example, gender is coded as a 1 or 2.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ces_raw</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/count.html'>count</a></span><span class='op'>(</span><span class='va'>gender</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ces_raw</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>gender</span><span class='op'>)</span>
+</code></pre>
 </div>
 <pre><code># A tibble: 2 × 2
   gender     n
@@ -2565,14 +2600,18 @@ Schedule
 1      1 25791
 2      2 35209</code></pre>
 </div>
-<p>Let’s make this more readable. The codebook (available at the same site where you downloaded the data) says that 1 is male and 2 is female. We can create a new version of the gender column using the <code>mutate()</code> and <code>if_else()</code> functions.</p>
+<p>Let’s make this more readable. The codebook (available at the same
+site where you downloaded the data) says that 1 is male and 2 is female.
+We can create a new version of the gender column using the
+<code>mutate()</code> and <code>if_else()</code> functions.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ces_clean</span> <span class='op'>&lt;-</span> <span class='va'>ces_raw</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/mutate.html'>mutate</a></span><span class='op'>(</span>gender <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/if_else.html'>if_else</a></span><span class='op'>(</span><span class='va'>gender</span> <span class='op'>==</span> <span class='fl'>1</span>, <span class='st'>'Male'</span>, <span class='st'>'Female'</span><span class='op'>)</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='va'>ces_clean</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/count.html'>count</a></span><span class='op'>(</span><span class='va'>gender</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ces_clean</span> <span class='op'>&lt;-</span> <span class='va'>ces_raw</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>gender <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span><span class='va'>gender</span> <span class='op'>==</span> <span class='fl'>1</span>, <span class='st'>'Male'</span>, <span class='st'>'Female'</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>ces_clean</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>gender</span><span class='op'>)</span>
+</code></pre>
 </div>
 <pre><code># A tibble: 2 × 2
   gender     n
@@ -2583,8 +2622,9 @@ Schedule
 <p>What about the education variable (<code>educ</code>)?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ces_clean</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/count.html'>count</a></span><span class='op'>(</span><span class='va'>educ</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ces_clean</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>educ</span><span class='op'>)</span>
+</code></pre>
 </div>
 <pre><code># A tibble: 6 × 2
    educ     n
@@ -2596,18 +2636,21 @@ Schedule
 5     5 14152
 6     6  8378</code></pre>
 </div>
-<p>That’s a lot of categories to clean up. We can combine the <code>mutate()</code> function with <code>case_when()</code> to recode a bunch of different values at the same time.</p>
+<p>That’s a lot of categories to clean up. We can combine the
+<code>mutate()</code> function with <code>case_when()</code> to recode a
+bunch of different values at the same time.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ces_clean</span> <span class='op'>&lt;-</span> <span class='va'>ces_clean</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/mutate.html'>mutate</a></span><span class='op'>(</span>educ <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/case_when.html'>case_when</a></span><span class='op'>(</span><span class='va'>educ</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>'No HS'</span>,</span>
-<span>                          <span class='va'>educ</span> <span class='op'>==</span> <span class='fl'>2</span> <span class='op'>~</span> <span class='st'>'High school graduate'</span>,</span>
-<span>                          <span class='va'>educ</span> <span class='op'>==</span> <span class='fl'>3</span> <span class='op'>~</span> <span class='st'>'Some college'</span>,</span>
-<span>                          <span class='va'>educ</span> <span class='op'>==</span> <span class='fl'>4</span> <span class='op'>~</span> <span class='st'>'2-year'</span>,</span>
-<span>                          <span class='va'>educ</span> <span class='op'>==</span> <span class='fl'>5</span> <span class='op'>~</span> <span class='st'>'4-year'</span>,</span>
-<span>                          <span class='va'>educ</span> <span class='op'>==</span> <span class='fl'>6</span> <span class='op'>~</span> <span class='st'>'Post-grad'</span><span class='op'>)</span><span class='op'>)</span></span>
-<span><span class='va'>ces_clean</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/count.html'>count</a></span><span class='op'>(</span><span class='va'>educ</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ces_clean</span> <span class='op'>&lt;-</span> <span class='va'>ces_clean</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>educ <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span><span class='va'>educ</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>'No HS'</span>,
+                          <span class='va'>educ</span> <span class='op'>==</span> <span class='fl'>2</span> <span class='op'>~</span> <span class='st'>'High school graduate'</span>,
+                          <span class='va'>educ</span> <span class='op'>==</span> <span class='fl'>3</span> <span class='op'>~</span> <span class='st'>'Some college'</span>,
+                          <span class='va'>educ</span> <span class='op'>==</span> <span class='fl'>4</span> <span class='op'>~</span> <span class='st'>'2-year'</span>,
+                          <span class='va'>educ</span> <span class='op'>==</span> <span class='fl'>5</span> <span class='op'>~</span> <span class='st'>'4-year'</span>,
+                          <span class='va'>educ</span> <span class='op'>==</span> <span class='fl'>6</span> <span class='op'>~</span> <span class='st'>'Post-grad'</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>ces_clean</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>educ</span><span class='op'>)</span>
+</code></pre>
 </div>
 <pre><code># A tibble: 6 × 2
   educ                     n
@@ -2619,19 +2662,26 @@ Schedule
 5 Post-grad             8378
 6 Some college         13330</code></pre>
 </div>
-<p>Now the variable has the correct labels, but notice that the order in that table is kind of weird. We tend to think of education as an <strong>ordinal</strong> variable, because there’s a natural order from least to most educated. But <code>R</code> doesn’t know that yet. It just thinks of <code>educ</code> as a character variable, and lists them in alphabetical order. We can tell <code>R</code> about the variable order by recoding <code>educ</code> as a <strong>factor</strong>.</p>
+<p>Now the variable has the correct labels, but notice that the order in
+that table is kind of weird. We tend to think of education as an
+<strong>ordinal</strong> variable, because there’s a natural order from
+least to most educated. But <code>R</code> doesn’t know that yet. It
+just thinks of <code>educ</code> as a character variable, and lists them
+in alphabetical order. We can tell <code>R</code> about the variable
+order by recoding <code>educ</code> as a <strong>factor</strong>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ces_clean</span> <span class='op'>&lt;-</span> <span class='va'>ces_clean</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/mutate.html'>mutate</a></span><span class='op'>(</span>educ <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>educ</span>,</span>
-<span>                       levels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'No HS'</span>, </span>
-<span>                                  <span class='st'>'High school graduate'</span>,</span>
-<span>                                  <span class='st'>'Some college'</span>,</span>
-<span>                                  <span class='st'>'2-year'</span>,</span>
-<span>                                  <span class='st'>'4-year'</span>,</span>
-<span>                                  <span class='st'>'Post-grad'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
-<span><span class='va'>ces_clean</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/count.html'>count</a></span><span class='op'>(</span><span class='va'>educ</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ces_clean</span> <span class='op'>&lt;-</span> <span class='va'>ces_clean</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>educ <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>educ</span>,
+                       levels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'No HS'</span>, 
+                                  <span class='st'>'High school graduate'</span>,
+                                  <span class='st'>'Some college'</span>,
+                                  <span class='st'>'2-year'</span>,
+                                  <span class='st'>'4-year'</span>,
+                                  <span class='st'>'Post-grad'</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>ces_clean</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>educ</span><span class='op'>)</span>
+</code></pre>
 </div>
 <pre><code># A tibble: 6 × 2
   educ                     n
@@ -2644,11 +2694,14 @@ Schedule
 6 Post-grad             8378</code></pre>
 </div>
 <p>Much better!</p>
-<p>There’s a variable in CES called <code>birthyr</code>. What if we wanted to know the respondents age in 2020 instead? The <code>mutate()</code> function can help us here too.</p>
+<p>There’s a variable in CES called <code>birthyr</code>. What if we
+wanted to know the respondents age in 2020 instead? The
+<code>mutate()</code> function can help us here too.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ces_clean</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/count.html'>count</a></span><span class='op'>(</span><span class='va'>birthyr</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ces_clean</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>birthyr</span><span class='op'>)</span>
+</code></pre>
 </div>
 <pre><code># A tibble: 78 × 2
    birthyr     n
@@ -2663,13 +2716,14 @@ Schedule
  8    1932    55
  9    1933    76
 10    1934   109
-# … with 68 more rows</code></pre>
+# ℹ 68 more rows</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ces_clean</span> <span class='op'>&lt;-</span> <span class='va'>ces_clean</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/mutate.html'>mutate</a></span><span class='op'>(</span>age <span class='op'>=</span> <span class='fl'>2020</span> <span class='op'>-</span> <span class='va'>birthyr</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='va'>ces_clean</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/count.html'>count</a></span><span class='op'>(</span><span class='va'>birthyr</span>, <span class='va'>age</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ces_clean</span> <span class='op'>&lt;-</span> <span class='va'>ces_clean</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>age <span class='op'>=</span> <span class='fl'>2020</span> <span class='op'>-</span> <span class='va'>birthyr</span><span class='op'>)</span>
+
+<span class='va'>ces_clean</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>birthyr</span>, <span class='va'>age</span><span class='op'>)</span>
+</code></pre>
 </div>
 <pre><code># A tibble: 78 × 3
    birthyr   age     n
@@ -2684,14 +2738,17 @@ Schedule
  8    1932    88    55
  9    1933    87    76
 10    1934    86   109
-# … with 68 more rows</code></pre>
+# ℹ 68 more rows</code></pre>
 </div>
 <h3 id="joining-datasets">Joining Datasets</h3>
-<p>Here’s another messy feature of this dataset. Every respondent has a variable called <code>inputstate</code>, representing the state where they live.</p>
+<p>Here’s another messy feature of this dataset. Every respondent has a
+variable called <code>inputstate</code>, representing the state where
+they live.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ces_clean</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/count.html'>count</a></span><span class='op'>(</span><span class='va'>inputstate</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ces_clean</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>inputstate</span><span class='op'>)</span>
+</code></pre>
 </div>
 <pre><code># A tibble: 51 × 2
    inputstate     n
@@ -2706,17 +2763,22 @@ Schedule
  8         10   240
  9         11   197
 10         12  4615
-# … with 41 more rows</code></pre>
+# ℹ 41 more rows</code></pre>
 </div>
-<p>But it’s a number! Not, like, the actual name of the state, which would be more useful to me. I don’t know all 51 state <a href="https://www.nrcs.usda.gov/wps/portal/nrcs/detail/?cid=nrcs143_013696">FIPS codes</a> by heart, but fortunately I have a dataset that includes every state’s name and FIPS code.</p>
+<p>But it’s a number! Not, like, the actual name of the state, which
+would be more useful to me. I don’t know all 51 state <a
+href="https://www.nrcs.usda.gov/wps/portal/nrcs/detail/?cid=nrcs143_013696">FIPS
+codes</a> by heart, but fortunately I have a dataset that includes every
+state’s name and FIPS code.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>state_fips</span> <span class='op'>&lt;-</span> <span class='fu'>tidycensus</span><span class='fu'>::</span><span class='va'><a href='https://walker-data.com/tidycensus/reference/fips_codes.html'>fips_codes</a></span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/mutate.html'>mutate</a></span><span class='op'>(</span>inputstate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>state_code</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/select.html'>select</a></span><span class='op'>(</span><span class='va'>inputstate</span>, <span class='va'>state_name</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>state_fips</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>state_fips</span> <span class='op'>&lt;-</span> <span class='fu'>tidycensus</span><span class='fu'>::</span><span class='va'><a href='https://walker-data.com/tidycensus/reference/fips_codes.html'>fips_codes</a></span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>inputstate <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>state_code</span><span class='op'>)</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>inputstate</span>, <span class='va'>state_name</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>state_fips</span><span class='op'>)</span>
+</code></pre>
 </div>
 <pre><code>    inputstate state_name
 1            1    Alabama
@@ -2726,14 +2788,16 @@ Schedule
 194          6 California
 252          8   Colorado</code></pre>
 </div>
-<p>And I can <strong>join</strong> that information with the CES data like this.</p>
+<p>And I can <strong>join</strong> that information with the CES data
+like this.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ces_clean</span> <span class='op'>&lt;-</span> <span class='va'>ces_clean</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>state_fips</span>, by <span class='op'>=</span> <span class='st'>'inputstate'</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='va'>ces_clean</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/count.html'>count</a></span><span class='op'>(</span><span class='va'>inputstate</span>, <span class='va'>state_name</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ces_clean</span> <span class='op'>&lt;-</span> <span class='va'>ces_clean</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>state_fips</span>, by <span class='op'>=</span> <span class='st'>'inputstate'</span><span class='op'>)</span>
+
+<span class='va'>ces_clean</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>inputstate</span>, <span class='va'>state_name</span><span class='op'>)</span>
+</code></pre>
 </div>
 <pre><code># A tibble: 51 × 3
    inputstate state_name               n
@@ -2748,16 +2812,18 @@ Schedule
  8         10 Delaware               240
  9         11 District of Columbia   197
 10         12 Florida               4615
-# … with 41 more rows</code></pre>
+# ℹ 41 more rows</code></pre>
 </div>
 <h3 id="selecting-variables">Selecting Variables</h3>
-<p>Finally, we can use the <code>select()</code> function to keep only the columns we want, and drop the columns we don’t want.</p>
+<p>Finally, we can use the <code>select()</code> function to keep only
+the columns we want, and drop the columns we don’t want.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ces_clean</span> <span class='op'>&lt;-</span> <span class='va'>ces_clean</span> <span class='op'>|&gt;</span> </span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/dplyr/man/select.html'>select</a></span><span class='op'>(</span><span class='va'>caseid</span>, <span class='va'>gender</span>, <span class='va'>educ</span>, <span class='va'>age</span>, <span class='va'>state_name</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>ces_clean</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ces_clean</span> <span class='op'>&lt;-</span> <span class='va'>ces_clean</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>caseid</span>, <span class='va'>gender</span>, <span class='va'>educ</span>, <span class='va'>age</span>, <span class='va'>state_name</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>ces_clean</span><span class='op'>)</span>
+</code></pre>
 </div>
 <pre><code># A tibble: 6 × 5
       caseid gender educ           age state_name   
@@ -2769,23 +2835,36 @@ Schedule
 5 1232494829 Male   4-year          53 Illinois     
 6 1232473675 Male   Some college    59 Ohio         </code></pre>
 </div>
-<p>And you can save your cleaned up version of the data to an .RData file with the <code>save()</code> function.</p>
+<p>And you can save your cleaned up version of the data to an .RData
+file with the <code>save()</code> function.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/save.html'>save</a></span><span class='op'>(</span><span class='va'>ces_clean</span>, file <span class='op'>=</span> <span class='st'>'data/ces-clean.RData'</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/save.html'>save</a></span><span class='op'>(</span><span class='va'>ces_clean</span>, file <span class='op'>=</span> <span class='st'>'data/ces-clean.RData'</span><span class='op'>)</span>
+</code></pre>
 </div>
 </div>
 <h2 id="problem-set">Problem Set</h2>
-<p>Just like last week, we’re going to be summarizing different variables from the CES dataset. But this time, you’ll need to use the codebook to identify which variables contain the information you want, tidy them up, and then summarize. Write an R script that performs these tasks, compile a PDF report, and submit the report.</p>
+<p>Just like last week, we’re going to be summarizing different
+variables from the CES dataset. But this time, you’ll need to use the
+codebook to identify which variables contain the information you want,
+tidy them up, and then summarize. Write an R script that performs these
+tasks, compile a PDF report, and submit the report.</p>
 <p>Here are the questions I’d like you to answer:</p>
 <ol type="1">
-<li><p>Are labor union members more likely to be Democrats or Republicans?</p></li>
-<li><p>What is the median age of people with landline phones, compared to those who only have cell phones?</p></li>
-<li><p>Are people who read the newspaper more likely to correctly answer the questions about who controls the US House of Representatives and US Senate?</p></li>
-<li><p>Which religious groups are the most and least likely to support making abortion illegal in all circumstances?</p></li>
-<li><p>Pick one other variable you find interesting and describe it.</p></li>
+<li><p>Are labor union members more likely to be Democrats or
+Republicans?</p></li>
+<li><p>What is the median age of people with landline phones, compared
+to those who only have cell phones?</p></li>
+<li><p>Are people who read the newspaper more likely to correctly answer
+the questions about who controls the US House of Representatives and US
+Senate?</p></li>
+<li><p>Which religious groups are the most and least likely to support
+making abortion illegal in all circumstances?</p></li>
+<li><p>Pick one other variable you find interesting and describe
+it.</p></li>
 </ol>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
