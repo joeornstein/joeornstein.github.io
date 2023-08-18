@@ -1,5 +1,5 @@
 ---
-title: "Why Cities?"
+title: "Foundations"
 # subtitle: "Introduction to Political Methodology"
 # author: "Joe Ornstein"
 # date: "September 30, 2020"
@@ -22,6 +22,7 @@ output:
 
 ```{r Setup, include=FALSE}
 library(tidyverse)
+library(here)
 theme_set(theme_minimal(base_size = 16))
 knitr::opts_chunk$set(comment=NA, fig.width=7, fig.height=5,
                       fig.align = 'center', out.width = 600,
@@ -51,111 +52,292 @@ Texas Triangle: ~20 million
 Chicagoland: ~10 million
 Metro Atlanta: ~5 million
 
+---
+
+## Land Values
+
+Let's play **The Price Is Right**. How much did this 6.5 acre lot sell for in April?
+
+--
+
+[![](img/2-woodpecker-blind.png)](https://www.google.com/maps/place/2+Woodpecker+Trail,+Twin+City,+GA+30471/@32.5408803,-82.1596253,642m/data=!3m1!1e3!4m5!3m4!1s0x88fa0bb81013c68b:0x8cceffedeeb62f6f!8m2!3d32.5409024!4d-82.1567244?entry=ttu)
+
+???
+
+Actual retail price:
+
+![](img/2-woodpecker.png)
+
+About $5,175 per acre.
+
+---
+
+## Land Values
+
+Next item on **The Price Is Right**: this 9400 sq. foot lot (about 1/5 acre) in Atlanta.
+
+[![](img/712-pearce-blinded.png)](https://www.google.com/maps/place/712+Pearce+St+SW,+Atlanta,+GA+30310/@33.735582,-84.4315899,6142m/data=!3m1!1e3!4m6!3m5!1s0x88f503112142a50b:0xc48f55ac55c1c458!8m2!3d33.72919!4d-84.410953!16s%2Fg%2F11c20_408r?entry=ttu)
+
+???
+
+Actual Retail Price:
+
+![](img/712-pearce.png)
+
+About $1 million per acre!!
+
+---
+
+## Land Values
+
+Last item on **The Price Is Right**: this vacant lot in Brooklyn, NY.
+
+[![](img/88-schermerhorn-blinded.png)](https://www.google.com/maps/place/88+Schermerhorn+St,+Brooklyn,+NY+11201/@40.6988093,-74.0290343,10153m/data=!3m1!1e3!4m6!3m5!1s0x89c25a4eeb5072b9:0x1699dfec9d9cc7c9!8m2!3d40.6903751!4d-73.9904225!16s%2Fg%2F11hds309dq?entry=ttu)
+
+???
+
+Actual Retail Price:
+
+![](img/88-schermerhorn.png)
+
+Roughly $150 million per acre.
+
+[Zillow Link](https://www.zillow.com/homedetails/88-Schermerhorn-St-Brooklyn-NY-11201/338819772_zpid/)
+
+[Project Link](https://www.dannyforster.com/project/brooklyn-motto-hotel-architecture-project-brooklyn-new-york/)
+
 
 ---
 
 ## Why Cities?
 
-In a country with so much open space, why do we crowd ourselves into relatively small areas?
+Why are some places on the map in such high demand compared to others? In a country with so much space, why do we crowd ourselves so much? And pay so much for it?
 
 --
 
-- Today, we'll introduce a concept from economics called **increasing returns to scale** (aka **economies of scale**)
+- To answer these questions, today we'll introduce the concept of **scale economies**.
 
 --
 
-- This concept not only explains why cities exist, but also implies a number of other interesting facts about cities:
+- Scale economies are the benefits that come from bringing large numbers of people together in one place.
 
 --
 
-  - Why cities promotes economic growth
+- Three sources of scale economies that we'll discuss:
 
-  - The origins of urbanization
+  - Geometry
   
-  - Path dependence
-
+  - Fixed Costs
+  
+  - Network Effects
 
 ---
 
-## Increasing Returns to Scale
+class: center, middle, inverse
+
+# Scale Economies from Geometry
+
+---
+
+## Scale Economies from Geometry
+
+To illustrate this idea, let's take a tour of some famous city walls.
 
 --
 
-Imagine a [perfectly circular medieval city](https://www.google.com/maps/place/33057+Palmanova,+Province+of+Udine,+Italy/@45.9062316,13.3034413,2296m/data=!3m1!1e3!4m5!3m4!1s0x477bb089f331a869:0x5d2129dbb7a04c79!8m2!3d45.909424!4d13.3057286).
-
-```{r, out.width='350'}
-knitr::include_graphics('img/circle.png')
-```
+- First Stop: [Monteriggioni, Italy](https://earth.google.com/web/search/Monteriggioni,+Province+of+Siena,+Italy/@43.38945675,11.22413305,265.92426554a,742.63459661d,35y,0h,45t,0r/data=CpIBGmgSYgolMHgxMzJhMmUyNzQ3YzA4YmQxOjB4ODQ0YjNkZjIwZjNiNjRjZBnwQRn077FFQCG3v2mwX3ImQConTW9udGVyaWdnaW9uaSwgUHJvdmluY2Ugb2YgU2llbmEsIEl0YWx5GAIgASImCiQJNWVAMIDcNEARNGVAMIDcNMAZyVTNncCoRUAhnnOmQcuuTcAoAg)
 
 --
 
-- The **area** of the circle represents how many people the city can hold. 
-
-- The **circumference** of the circle represents how much wall you need to build to protect them.
-
----
-
-## Increasing Returns to Scale
-
-$$
-\text{Wall Cost Per Person} = \frac{2 \pi R}{\pi R^2} = \frac{2}{R}
-$$
+- Second Stop: [Carcassone, France](https://earth.google.com/web/search/Carcassonne,+France/@43.20639725,2.36586874,139.23666918a,1092.56384986d,35y,358.03767514h,0t,0r/data=Cn4aVBJOCiUweDEyYWUyYzM5MDExNmJkOGI6MHhlMjhmZGYzYjc3YTExNGM3GbbB5KFKm0VAIQSicfJs0AJAKhNDYXJjYXNzb25uZSwgRnJhbmNlGAEgASImCiQJYh1wouWaRUARjlsPyvCZRUAZfSnBqbsBA0Ah1tih9dzYAkA)
 
 --
 
-```{r, fig.width=5, fig.height=3, fig.retina=3, out.width='700'}
-R <- seq(1, 10, 0.1)
-cpp <- 2/R
+- Third Stop: [Palmanova, Italy](https://earth.google.com/web/search/Palmanova,+Province+of+Udine,+Italy/@45.90266633,13.31645381,21.35961588a,5104.81359948d,35y,0h,0t,0r/data=CigiJgokCUNusu1QLkhAEWLf9HkKEUhAGTJrnHxjzTBAIW6I8m71BzBA)
 
-ggplot(mapping = aes(x=pi*R^2, y=cpp)) +
-  geom_line() +
-  theme_minimal() +
-  labs(x = 'City Size (A)',
-       y = 'Wall Cost Per Unit Area')
-```
+--
 
----
+- Fourth Stop: [Bruges, Belgium](https://earth.google.com/web/search/Bruges,+Belgium/@51.26078315,3.22210815,1.4800063a,46551.80501176d,35y,0h,0t,0r/data=CnoaUBJKCiUweDQ3YzM1MGQwYzExZTQyMGQ6MHgxYWEyZjM1YWM4ODM0ZGY3GSm65G7GmklAIfbYTHRMzAlAKg9CcnVnZXMsIEJlbGdpdW0YAiABIiYKJAliHXCi5ZpFQBGOWw_K8JlFQBl9KcGpuwEDQCHW2KH13NgCQA)
 
-## Increasing Returns to Scale
+--
 
-Double the size of the city, and the size of the necessary infrastructure increases by *less* than double.
+- Fifth Stop: [Xi'An, China](https://earth.google.com/web/search/Xi%27An,+Shaanxi,+China/@34.25938035,108.96720885,406.98459581a,122967.04510274d,35y,0h,0t,0r/data=CoABGlYSUAolMHgzNjYzNzllOTIyYWMxN2I5OjB4ODVkNDY2ZmRhNzk0NTgyZRmp6cQvBiJBQCGqVJreDz1bQCoVWGknQW4sIFNoYWFueGksIENoaW5hGAIgASImCiQJFFZjzDSySUARCoQ1iFmQSUAZaALbmlhADUAhqMqrq2hNBkA)
 
-```{r, fig.width=5, fig.height=3, fig.retina=3, out.width='700'}
+--
 
-A <- c(1, 2, 5, 10, 20, 50, 100)
-
-ggplot(mapping = aes(x=A, y=2 * sqrt(A / pi) * pi)) +
-  geom_point() +
-  theme_minimal() +
-  labs(x = 'City Area',
-       y = 'Necessary Wall Size') +
-  scale_x_log10(limits = c(1, 150)) +
-  scale_y_log10(limits = c(3, 40))
-```
+- Final Stop: [Paris, France](https://earth.google.com/web/search/Paris,+France/@48.85885485,2.347035,35.23780348a,24471.33975347d,35y,0h,0t,0r/data=CncaTRJHCiQweDQ3ZTY2ZTFmMDZlMmI3MGY6MHg0MGI4MmMzNjg4Yzk0NjAZ26UNh6VtSEAh2Hort1nRAkAqDVBhcmlzLCBGcmFuY2UYAiABIiYKJAk4-Wt6niFBQBGx3abwLRxBQBnpcN4yTT5bQCGkp32gpTdbQA)
 
 ---
 
-## Increasing Returns to Scale
+## Scale Economies
+
+Double the length of the wall, and you *quadruple* the size of the city you can protect.
 
 ```{r}
-knitr::include_graphics('img/dincecco-onorato.png')
+library(readxl)
+walls <- read_xlsx('data/walls.xlsx') |> 
+  filter(!(city %in% c('Constantinople (413)')))
+
+W <- seq(min(walls$`length (km)`),36,0.01)
+A <- 1/(4*pi)*W^2
+
+library(ggrepel)
+ggplot(data = walls |> 
+                    filter(city %in% c("Xi'An (1370)", 'Paris (1846)',
+                                       "Bruges (1128)", "Monteriggioni (1219)", "Palmanova (1593)", "Carcassonne (1130)"))) +
+  theme_minimal() +
+  labs(x = 'Wall Length (km)', y = 'City Size (sq. km)') +
+       #y = expression(paste('City Size (',km^{2},')'))) +
+  geom_point(mapping = aes(x=`length (km)`, y=`area (km2)`)) +
+  geom_text_repel(mapping = aes(x=`length (km)`, y=`area (km2)`,
+                           label = city))
 ```
 
-.cite[Dincecco & Onorato (2016)]
+---
+
+
+## Scale Economies from Geometry
+
+To see why, imagine a perfectly circular medieval city.
+
+```{r, out.width='300'}
+knitr::include_graphics('img/circle.png')
+```
+--
+
+- The **area** of the city is $A = \pi R^2$. The **circumference** is the length of the wall you need $(C = 2\pi R)$.
+
+--
+
+- Do some algebra, and you get $A = \frac{1}{4\pi} C^2$.
+
+---
+
+## Scale Economies
+
+Double the length of the wall, and you *quadruple* the size of the city you can protect.
+
+```{r}
+
+W <- seq(min(walls$`length (km)`),36,0.01)
+A <- 1/(4*pi)*W^2
+
+ggplot() +
+  theme_minimal() +
+  labs(x = 'Wall Length (km)', y = 'City Size (sq. km)') +
+       #y = expression(paste('City Size (',km^{2},')'))) +
+  geom_point(data = walls |> 
+                    filter(city %in% c("Xi'An (1370)", 'Paris (1846)',
+                                       "Bruges (1128)", "Monteriggioni (1219)", "Palmanova (1593)", "Carcassonne (1130)")),
+       mapping = aes(x=`length (km)`, y=`area (km2)`)) +
+  geom_text_repel(data = walls |> 
+                    filter(city %in% c("Xi'An (1370)", 'Paris (1846)',
+                                       "Bruges (1128)", "Monteriggioni (1219)", "Palmanova (1593)", "Carcassonne (1130)")),
+       mapping = aes(x=`length (km)`, y=`area (km2)`,
+                           label = city)) +
+  geom_line(mapping = aes(x=W, y=A), linetype = 'dashed')
+```
+
+---
+
+## Scale Economies from Geometry
+
+Put another way: big cities are cheaper to protect on a per-person basis. Double the size of a city, and you *less* than double the size of the necessary wall.
+
+```{r}
+library(ggrepel)
+ggplot() +
+  geom_line(mapping = aes(y=W, x=A), linetype = 'dashed') +
+  theme_minimal() +
+  labs(y = 'Wall Length (km)', x = 'City Size (sq. km)') +
+       #y = expression(paste('City Size (',km^{2},')'))) +
+  geom_point(data = walls |> 
+                    filter(city %in% c("Xi'An (1370)", 'Paris (1846)',
+                                       "Bruges (1128)", "Monteriggioni (1219)", "Palmanova (1593)", "Carcassonne (1130)")),
+             mapping = aes(y=`length (km)`, x=`area (km2)`)) +
+  geom_text_repel(data = walls |> 
+                    filter(city %in% c("Xi'An (1370)", 'Paris (1846)',
+                                       "Bruges (1128)", "Monteriggioni (1219)", "Palmanova (1593)", "Carcassonne (1130)")),
+             mapping = aes(y=`length (km)`, x=`area (km2)`,
+                           label = city)) + 
+  scale_y_log10(limits = c(min(walls$`length (km)`),max(walls$`length (km)`))) +
+  scale_x_log10(limits = c(min(walls$`area (km2)`),max(walls$`area (km2)`)))
+```
 
 ???
 
-Tough to untangle causality here, but places with more widespread warfare in the millenium before the Industrial Revolution became more urbanized!
+Richter scale is logarithmic (e.g. a magnitude 8 earthquake is 10 times more powerful than a magnitude 7 earthquake).
 
 ---
 
-## Increasing Returns to Scale
+## Scale Economies from Geometry
+
+This sort of relationship holds for other (more modern) infrastructure as well, like streets.
+
+--
+
+```{r, out.width='60%'}
+knitr::include_graphics('img/StreetMap - Athens-Clarke County unified government (balance).png')
+```
+
+--
+
+Athens has 1,274 kilometers of streets for 128,000 people -- roughly 10 meters per person.
+
+???
+
+Enough to stretch from here to Dallas, TX!
+
+---
+
+## Scale Economies from Geometry
+
+Atlanta is 4x larger than Athens. About half a million people live in the city.
+
+--
+
+```{r, out.width = '50%'}
+knitr::include_graphics('img/StreetMap - Atlanta.png')
+```
+
+But it only has about twice the length of roadway (3,052 km) -- 6 meters per person.
+
+---
+
+## Scale Economies from Geometry
+
+Philadelphia is about 3x bigger than Atlanta (1.6 million people). 
+
+--
+
+```{r, out.width = '55%'}
+knitr::include_graphics('img/StreetMap - Philadelphia.png')
+```
+
+But it only has about 1.5x the length of roadways (4,539 km) -- 3 meters per person.
+
+???
+
+Shipping containers scale similarly: volume is $L^3$, but metal is proportional to $6L^2$.
+
+---
+
+## Scale Economies from Geometry
+
+```{r}
+roads <- c(1274, 3052, 4539)
+pop <- c(128000, 500000, 1600000)
+```
+
+---
+
+## Scale Economies
 
 This is eerily similar to the geometric scaling laws we see in nature. 
 
 --
 
-- Double the size of an animal, and the energy necessary to keep it alive less than doubles!
+- Double the size of an animal, and the energy necessary to keep it alive less than doubles.
 
 ```{r, out.width='500'}
 knitr::include_graphics('img/metabolic-scaling.jpeg')
@@ -163,25 +345,13 @@ knitr::include_graphics('img/metabolic-scaling.jpeg')
 
 ---
 
-## Increasing Returns to Scale
+class: center, middle, inverse
 
---
-
-- These *geometric* economies to scale apply not only to city walls, but to other, more modern, infrastructure needs, like pipes, power lines, and roads.
-
---
-
-  - The math is a bit more complicated, though .cite[(Bettencourt, 2013)].
-  
---
-
-```{r}
-knitr::include_graphics('img/maersk.jpg')
-```
+## Scale Economies from Fixed Costs
 
 ---
 
-## Increasing Returns to Scale
+## Scale Economies from Fixed Costs
 
 Another source of increasing returns comes from the way businesses operate.
 
@@ -193,24 +363,46 @@ knitr::include_graphics('img/cheese.png')
 
 --
 
-Each block of cheese costs you $c$ dollars, and you sell it for $p$ dollars. You also have *fixed costs* of $F$ dollars each month (rent, wages, electricity, etc.).
+Each block of cheese costs you $c$ dollars (marginal costs). You also have *fixed costs* of $F$ dollars each month (rent, wages, electricity, etc.).
 
 --
 
-How many blocks of cheese do you need to sell to stay in business?
+If you sell $x$ blocks of cheese, then your average cost is:
+
+$$
+\frac{F + cx}{x}
+$$
 
 ---
 
-## Increasing Returns to Scale
+## Scale Economies from Fixed Costs
 
-$$
-\text{Units Sold} > \frac{F}{p - c}
-$$
+Let's say your fixed costs are \$10,000 and marginal costs are \$5. 
+
+```{r}
+fixed <- 10000
+marginal <- 5
+
+x <- seq(0,100,1)
+cost <- (fixed + marginal * x) / x
+
+ggplot(mapping = aes(x=x, y=cost)) +
+  geom_line(linetype = 'solid') +
+  labs(x = 'Cheese Blocks Sold', y = 'Average Cost')
+
+```
+
 --
+
+Unless you can sell cheese blocks for $5000 each, you need a large number of customers in order to cover your fixed costs!
+
+---
+
+## Scale Economies from Fixed Costs
 
 This explains why:
 
-- Businesses with large fixed costs (major league sports stadiums, live theater, museums, **zoos**) only operate in big cities.
+- Businesses with large fixed costs (major league sports stadiums, live theater, museums, **zoos**) can only operate in big cities.
 
 - Niche businesses (weird restaurants, esoteric bookstores, artisan cheese shops) typically operate in larger markets too.
 
@@ -220,7 +412,7 @@ Doesn't matter how many people visit your zoo. You gotta feed that elephant 350 
 
 ---
 
-## Increasing Returns to Scale
+## Scale Economies
 
 .cite[Schiff (2015):]
 
@@ -232,7 +424,7 @@ knitr::include_graphics('img/schiff-2015-fig-1.png')
 
 ---
 
-## Increasing Returns to Scale
+## Scale Economies
 
 ```{r}
 library(readxl)
@@ -261,167 +453,33 @@ data |>
 
 Pop Quiz: Which is the smallest metro area to have a major league team? (Green Bay! Likely because they're the only fan-owned team in the NFL.)
 
----
-
-## Cities and Economic Growth
-
-Because cities make more types of economic activity possible, countries with more cities tend to be richer.
-
---
-
-```{r}
-knitr::include_graphics('img/gapminder.png')
-```
-
-(Source: [Gapminder](https://www.gapminder.org/tools/#$model$markers$bubble$encoding$size$scale$extent@:0&:0.74;;;&y$data$concept=income_per_person_gdppercapita_ppp_inflation_adjusted&space@=country&=time;;&scale$domain:null&zoomed@:224&:209113;&type:null;;&x$data$concept=urban_population_percent_of_total&space@=country&=time;;&scale$domain:null&zoomed@:2.08&:100;&type:null;;&color$data$concept=flag_svg&source=country_flags;&scale$type:null&domain:null&zoomed:null;;&frame$speed:100&value=1981;;;;;&chart-type=bubbles&url=v1))
-
-???
-
-In the animation, highlight in particular the different trajectories of India and China. India started wealthier on average than China. Now the average Indian is half as wealthy as the average Chinese person, and half as many live in cities. Not a coincidence!
+Atlanta Falcons spend $230 million each year in player salaries alone. You can only cover fixed costs like that if you sell a *lot* of tickets. You need to operate in a big market.
 
 ---
 
-## Origins of Urbanization
+class: center, middle, inverse
 
-Why are some countries more urban while others are predominantly rural? When should we expect a country to **urbanize**?
-
---
-
-To answer these questions, consider a stripped-down version of the mathematical model in .cite[Krugman (1991)]:
-
---
-
-.pull-left[
-  
-- Three villages: A, B, and C
-
-- $N$ people total. $F$ people are farmers. $N-F$ are weavers.
-
-- It costs $1 for a solitary weaver to make a shirt.
-
-- There are **economies of scale**. It only costs $(1 - c) to make a shirt if all the weavers work together in one place.
-
-- It costs $T$ to transport a shirt to another village.
-
-]
-
-.pull-right[
-```{r, out.width=400}
-knitr::include_graphics('img/krugman.png')
-```
-]
+# Scale Economies from Network Effects
 
 ---
 
-## Origins of Urbanization
+## Scale Economies from Network Effects
 
-When does it cost less to make all your shirts in one location and ship them to the others?
-
---
-
-$$
-(1-c)N + TF < 1N
-$$
----
-
-## Origins of Urbanization
-
-When does it cost less to make all your shirts in one location and ship them to the others?
-
-$$\underbrace{(1-c)N}_\text{factory production cost} + \underbrace{TF}_\text{transport cost} < \underbrace{1N}_\text{village production cost}$$
---
-
-Do some algebra, and you can find the conditions under which agglomeration is cheaper:
-
---
-
-$$T\left(\frac{F}{N}\right) < c$$
-
---
-
-In other words, you should expect countries to urbanize when:
-
-- Transportation is cheap
-- The share of the population in agriculture is low
-- Cost-savings from scale economies are large
-
----
-
-## Origins of Urbanization
-
-```{r}
-knitr::include_graphics('img/urban-pop-usa.png')
-```
-
----
-
-## Origins of Urbanization
-
-```{r}
-knitr::include_graphics('img/urban-pop-usa-highlighted.png')
-```
-
-What happened here??
-
-
----
-
-## Origins of Urbanization
-
-.pull-left[
-  - ["2nd Agricultural Revolution"](https://en.wikipedia.org/wiki/British_Agricultural_Revolution)
-]
-
-.pull-right[
-```{r}
-knitr::include_graphics('img/second-agricultural-revolution.png')
-```
-]
 
 
 
 ---
 
-## Origins of Urbanization
+class: center, middle, inverse
 
-.pull-left[
-- "2nd Agricultural Revolution"
-  
-- Factory production
-]
-
-.pull-right[
-```{r}
-knitr::include_graphics('img/factory.jpg')
-```
-]
-
----
-
-## Origins of Urbanization
-
-.pull-left[
-- "2nd Agricultural Revolution"
-  
-- Factory production
-
-- New forms of transportation
-]
-
-.pull-right[
-```{r}
-knitr::include_graphics('img/canals.jpg')
-
-knitr::include_graphics('img/locomotive.jpg')
-```
-]
+# Agglomeration Effects
 
 ---
 
 ## A Puzzle: Clusters of Industry
 
 
-The Krugman model explains why an *individual* firm would locate in a city, but why would *multiple*, competing firms locate in the same place?
+Scale economies explain why individual organizations would want to locate in large markets, but why would *multiple*, competing firms locate in the same place?
 
 --
 
@@ -448,7 +506,8 @@ Why do you get clusters of industry? What are some other clusters?
 ## A Puzzle: Clusters of Industry
 
 
-The Krugman model explains why an *individual* firm would locate in a city, but why would *multiple*, competing firms locate in the same place?
+Scale economies explain why individual organizations would want to locate in large markets, but why would *multiple*, competing firms locate in the same place?
+
 
 ```{r}
 knitr::include_graphics('img/silicon-valley-logos.png')
@@ -456,7 +515,7 @@ knitr::include_graphics('img/silicon-valley-logos.png')
 
 ---
 
-## Spillover Effects
+## Agglomeration Economies
 
 Why is it valuable to locate in the same city as your competitors?
 
@@ -483,7 +542,7 @@ knitr::include_graphics('img/Metropolitan_Opera_House,_a_concert_by_pianist_Jose
 
 ---
 
-## Spillover Effects
+## Agglomeration Economies
 
 Why is it valuable to locate in the same city as your competitors?
 
@@ -508,7 +567,7 @@ knitr::include_graphics('img/Automotive-Factory-Parts_in_Bins.jpg')
 
 ---
 
-## Spillover Effects
+## Agglomeration Economies
 
 Why is it valuable to locate in the same city as your competitors?
 
@@ -534,7 +593,7 @@ knitr::include_graphics('img/job-seekers.jpg')
 
 ---
 
-## Spillover Effects
+## Agglomeration Economies
 
 Why is it valuable to locate in the same city as your competitors?
 
@@ -562,11 +621,111 @@ knitr::include_graphics('img/knowledge-spillovers.png')
 
 class: center, middle, inverse
 
-## Path Dependence
+## Power Laws
 
 ---
 
-## Path Dependence
+## Warmup
+
+Let's try to name as many US cities as we can in the [City Quiz](https://cityquiz.io/quizzes/usa).
+
+- How many cities do you need to name before you reach 10% of the US urban population? 15%? 20%? 25%?
+
+???
+
+**The Best Possible Scores**:
+
+- 5%: 3 cities (Chicago)
+- 10%: 10 cities (San Jose)
+- 15%: 27 cities (Detroit)
+- 20%: 54 cities (Cleveland)
+- 25%: 101 cities (Hialeah, FL)
+- 30%: 171 cities (Killeen, TX)
+- 35%: 272 cities (Temecula, CA)
+
+---
+
+## City Size Distribution
+
+```{r}
+library(readxl)
+d <- read_xlsx('data/us-cities.xlsx')
+
+d <- arrange(d, -pop2020)
+d$rank <- 1:nrow(d)
+
+d$cumulative_pop2020 <- cumsum(d$pop2020)
+urban_pop <- 260638021
+d$pct_urban <- d$cumulative_pop2020 / urban_pop * 100
+
+# remove footnotes
+d$city <- str_remove_all(d$city, '\\[.*\\]')
+
+ggplot(data = d,
+       mapping = aes(x=rank, y=pct_urban)) +
+  geom_point(alpha = 0.2) +
+  geom_text(data = d |> 
+                    filter(city %in% c('Chicago', 'San Jose', 'Detroit', 'Cleveland',
+                                       'Hialeah', 'Killeen', 'Temecula')),
+                  mapping = aes(label = city)) +
+  labs(x = 'Number of Cities',
+       y = '% of Urban Population')
+```
+
+---
+
+## Power Law Distribution
+
+Once again, if you make the axes logarithmic, everything fits nicely on a straight line!
+
+```{r}
+ggplot(data = d,
+       mapping = aes(x=rank, y=pct_urban)) +
+  geom_point(alpha = 0.2) +
+  geom_text(data = d |> 
+                    filter(city %in% c('Chicago', 'San Jose', 'Detroit', 'Cleveland',
+                                       'Hialeah', 'Killeen', 'Temecula')),
+                  mapping = aes(label = city)) +
+  # geom_text_repel(mapping = aes(label = city)) +
+  labs(x = 'Number of Cities',
+       y = '% of Urban Population') +
+  scale_x_log10() +
+  scale_y_log10()
+
+
+
+
+## Probability Distribution
+# library(ggrepel)
+# ggplot(data = d,
+#        mapping = aes(x=pop2020, y=rank)) +
+#   geom_point(alpha = 0.5) +
+#   geom_text_repel(mapping = aes(label=city)) +
+#   labs(x = 'Population (2020)',
+#        y = 'Rank') +
+#   scale_x_log10(labels = scales::comma_format()) +
+#   scale_y_log10()
+```
+
+???
+
+TODO:
+
+- Power laws are ubiquitous (word use, wealth)
+- Where do power laws come from? Preferential attachment game (agglomeration economies and preferential attachment / the "Matthew Effect").
+- Primate cities: cities that are much bigger than you would expect given power laws. 
+
+
+
+---
+
+class: center, middle, inverse
+
+## Historical Path Dependence
+
+---
+
+## Historical Path Dependence
 
 - The Krugman model tells us **when** countries will urbanize.
 
@@ -692,7 +851,7 @@ knitr::include_graphics('img/davis-fig-2.png')
 
 As if nothing happened! By 1975, both cities are *exactly* where you would have predicted their population to be if you just naively projected forward their growth rates, without knowing anything about the war. 
 
-A remarkable example of path dependence. Even in a situation where so many people died, others evacuated, 70% of the buildings destroyed, stigma surrounding radiation, the cities still survived.
+A remarkable example of Historical Path Dependence. Even in a situation where so many people died, others evacuated, 70% of the buildings destroyed, stigma surrounding radiation, the cities still survived.
 
 ---
 
@@ -725,24 +884,4 @@ Why is history "sticky"?
 ```{r}
 knitr::include_graphics('img/QWERTY_keyboard.jpg')
 ```
-
-
----
-
-
-class: center, middle, inverse
-
-## Discussion
-
----
-
-## Discussion
-
-The COVID-19 pandemic led many to predict that cities would become obsolete. 
-
-- New communication technologies (Zoom, the Metaverse) reduce the value of face-to-face communication, so firms no longer need to agglomerate in a single place.
-
-- Fears of contagion reduce the value that people place on dense city living.
-
-In light of what we've learned today, do you agree with these predictions? What do you expect the "city of the future" to look like?
 

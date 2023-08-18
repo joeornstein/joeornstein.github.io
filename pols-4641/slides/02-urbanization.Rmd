@@ -1,0 +1,533 @@
+---
+title: "Urbanization"
+# subtitle: "Introduction to Political Methodology"
+# author: "Joe Ornstein"
+# date: "September 30, 2020"
+output:
+  xaringan::moon_reader:
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+# subtitle: 'POLS 7012: Introduction to Political Methodology'
+# institute: University of Georgia
+---
+
+```{css, echo = FALSE}
+.cite {
+  font-weight: bold;
+  font-size: 0.75em;
+  color: #BA0C2F;
+}
+```
+
+```{r Setup, include=FALSE}
+library(tidyverse)
+theme_set(theme_minimal(base_size = 16))
+knitr::opts_chunk$set(comment=NA, fig.width=7, fig.height=5,
+                      fig.align = 'center', out.width = 600,
+                      message=FALSE, warning=FALSE, echo=FALSE)
+```
+
+
+
+---
+
+## Scale Economies
+
+```{r}
+knitr::include_graphics('img/dincecco-onorato.png')
+```
+
+.cite[Dincecco & Onorato (2016)]
+
+???
+
+Tough to untangle causality here, but places with more widespread warfare in the millenium before the Industrial Revolution became more urbanized!
+
+
+
+---
+
+## Cities and Economic Growth
+
+Because cities make more types of economic activity possible, countries with more cities tend to be richer.
+
+--
+
+```{r}
+knitr::include_graphics('img/gapminder.png')
+```
+
+(Source: [Gapminder](https://www.gapminder.org/tools/#$model$markers$bubble$encoding$size$scale$extent@:0&:0.74;;;&y$data$concept=income_per_person_gdppercapita_ppp_inflation_adjusted&space@=country&=time;;&scale$domain:null&zoomed@:224&:209113;&type:null;;&x$data$concept=urban_population_percent_of_total&space@=country&=time;;&scale$domain:null&zoomed@:2.08&:100;&type:null;;&color$data$concept=flag_svg&source=country_flags;&scale$type:null&domain:null&zoomed:null;;&frame$speed:100&value=1981;;;;;&chart-type=bubbles&url=v1))
+
+???
+
+In the animation, highlight in particular the different trajectories of India and China. India started wealthier on average than China. Now the average Indian is half as wealthy as the average Chinese person, and half as many live in cities. Not a coincidence!
+
+---
+
+## Origins of Urbanization
+
+Why are some countries more urban while others are predominantly rural? When should we expect a country to **urbanize**?
+
+--
+
+To answer these questions, consider a stripped-down version of the mathematical model in .cite[Krugman (1991)]:
+
+--
+
+.pull-left[
+  
+- Three villages: A, B, and C
+
+- $N$ people total. $F$ people are farmers. $N-F$ are weavers.
+
+- It costs $1 for a solitary weaver to make a shirt.
+
+- There are **economies of scale**. It only costs $(1 - c) to make a shirt if all the weavers work together in one place.
+
+- It costs $T$ to transport a shirt to another village.
+
+]
+
+.pull-right[
+```{r, out.width=400}
+knitr::include_graphics('img/krugman.png')
+```
+]
+
+---
+
+## Origins of Urbanization
+
+When does it cost less to make all your shirts in one location and ship them to the others?
+
+--
+
+$$
+(1-c)N + TF < 1N
+$$
+---
+
+## Origins of Urbanization
+
+When does it cost less to make all your shirts in one location and ship them to the others?
+
+$$\underbrace{(1-c)N}_\text{factory production cost} + \underbrace{TF}_\text{transport cost} < \underbrace{1N}_\text{village production cost}$$
+--
+
+Do some algebra, and you can find the conditions under which agglomeration is cheaper:
+
+--
+
+$$T\left(\frac{F}{N}\right) < c$$
+
+--
+
+In other words, you should expect countries to urbanize when:
+
+- Transportation is cheap
+- The share of the population in agriculture is low
+- Cost-savings from scale economies are large
+
+---
+
+## Origins of Urbanization
+
+```{r}
+knitr::include_graphics('img/urban-pop-usa.png')
+```
+
+---
+
+## Origins of Urbanization
+
+```{r}
+knitr::include_graphics('img/urban-pop-usa-highlighted.png')
+```
+
+What happened here??
+
+
+---
+
+## Origins of Urbanization
+
+.pull-left[
+  - ["2nd Agricultural Revolution"](https://en.wikipedia.org/wiki/British_Agricultural_Revolution)
+]
+
+.pull-right[
+```{r}
+knitr::include_graphics('img/second-agricultural-revolution.png')
+```
+]
+
+
+
+---
+
+## Origins of Urbanization
+
+.pull-left[
+- "2nd Agricultural Revolution"
+  
+- Factory production
+]
+
+.pull-right[
+```{r}
+knitr::include_graphics('img/factory.jpg')
+```
+]
+
+---
+
+## Origins of Urbanization
+
+.pull-left[
+- "2nd Agricultural Revolution"
+  
+- Factory production
+
+- New forms of transportation
+]
+
+.pull-right[
+```{r}
+knitr::include_graphics('img/canals.jpg')
+
+knitr::include_graphics('img/locomotive.jpg')
+```
+]
+
+---
+
+## A Puzzle: Clusters of Industry
+
+
+The Krugman model explains why an *individual* firm would locate in a city, but why would *multiple*, competing firms locate in the same place?
+
+--
+
+```{r}
+knitr::include_graphics('img/silicon-valley.png')
+```
+
+???
+
+Why do you get clusters of industry? What are some other clusters?
+
+- Finance in New York
+
+- Films in Los Angeles
+
+- Tech in San Francisco
+
+- Cars in Detroit
+
+- Hip hop in Atlanta
+
+---
+
+## A Puzzle: Clusters of Industry
+
+
+The Krugman model explains why an *individual* firm would locate in a city, but why would *multiple*, competing firms locate in the same place?
+
+```{r}
+knitr::include_graphics('img/silicon-valley-logos.png')
+```
+
+---
+
+## Spillover Effects
+
+Why is it valuable to locate in the same city as your competitors?
+
+--
+
+<br>
+
+.pull-left[
+
+- **Forward Linkages**
+
+- Backward Linkages
+
+- Labor Market Pooling
+
+- Knowledge Spillovers
+]
+
+.pull-right[
+```{r}
+knitr::include_graphics('img/Metropolitan_Opera_House,_a_concert_by_pianist_Josef_Hofmann_-_NARA_541890_-_Edit.jpg')
+```
+]
+
+---
+
+## Spillover Effects
+
+Why is it valuable to locate in the same city as your competitors?
+
+<br>
+
+.pull-left[
+
+- Forward Linkages
+
+- **Backward Linkages**
+
+- Labor Market Pooling
+
+- Knowledge Spillovers
+]
+
+.pull-right[
+```{r}
+knitr::include_graphics('img/Automotive-Factory-Parts_in_Bins.jpg')
+```
+]
+
+---
+
+## Spillover Effects
+
+Why is it valuable to locate in the same city as your competitors?
+
+<br>
+
+.pull-left[
+
+- Forward Linkages
+
+- Backward Linkages
+
+- **Labor Market Pooling**
+
+- Knowledge Spillovers
+]
+
+.pull-right[
+```{r}
+knitr::include_graphics('img/job-seekers.jpg')
+```
+]
+
+
+---
+
+## Spillover Effects
+
+Why is it valuable to locate in the same city as your competitors?
+
+<br>
+
+.pull-left[
+
+- Forward Linkages
+
+- Backward Linkages
+
+- Labor Market Pooling
+
+- **Knowledge Spillovers**
+]
+
+.pull-right[
+```{r}
+knitr::include_graphics('img/knowledge-spillovers.png')
+```
+]
+
+
+---
+
+class: center, middle, inverse
+
+## Path Dependence
+
+---
+
+## Path Dependence
+
+- The Krugman model tells us **when** countries will urbanize.
+
+--
+
+- But does it tell us **where** they will urbanize?
+
+--
+
+```{r, out.width = '400'}
+knitr::include_graphics('img/krugman.png')
+```
+
+--
+
+- Villages A, B, and C are all equally likely to become the city!
+
+--
+
+- And once an industry locates somewhere, powerful forces (forward and backward linkages, labor market pooling, knowledge spillovers), conspire to keep it there.
+
+???
+
+(If you've taken economics before, notice that this is very different than the idea of "comparative advantage". One location specializes in shirt-making and the others specialize in agriculture, but not because of any particular locational advantage...)
+
+---
+
+class: center, middle
+
+### **Path Dependence**: History has enduring influence!
+
+---
+
+## Stories about Path Dependence
+
+- **Story 1:** The Fall Line
+
+- **Story 2:** Hiroshima and Nagasaki
+
+- **Story 3:** Pirates of the Mediterranean
+
+- **Story 4:** QWERTY Keyboards
+
+---
+
+## Story 1: The Fall Line
+
+```{r}
+knitr::include_graphics('img/cretaceous.png')
+```
+
+---
+
+## Story 1: The Fall Line
+
+```{r}
+knitr::include_graphics('img/portage.jpeg')
+```
+
+---
+
+## Story 1: The Fall Line
+
+```{r}
+knitr::include_graphics('img/watermill.jpg')
+```
+
+---
+
+## Story 1: The Fall Line
+
+```{r}
+knitr::include_graphics('img/bleakley-lin-fig-a1.png')
+```
+
+---
+
+## Story 2: Hiroshima and Nagasaki
+
+```{r}
+knitr::include_graphics('img/nagasaki.jpg')
+```
+
+???
+
+Hundreds of thousands of people dead. Roughly 70% of the buildings destroyed.
+
+---
+
+## Story 2: Hiroshima and Nagasaki
+
+```{r}
+knitr::include_graphics('img/hiroshima.webp')
+```
+
+???
+
+As a high schooler, I honestly just assumed that Hiroshima and Nagasaki were no longer cities.
+
+---
+
+## Story 2: Hiroshima and Nagasaki
+
+```{r}
+knitr::include_graphics('img/Atomic_Bomb_Dome_and_Motoyaso_River,_Hiroshima,_Northwest_view_20190417_1.jpg')
+```
+
+???
+
+Thriving city of roughly 1.2 million people
+
+---
+
+## Story 2: Hiroshima and Nagasaki
+
+.cite[Davis & Weinstein (2002):]
+
+```{r}
+knitr::include_graphics('img/davis-fig-2.png')
+```
+
+???
+
+As if nothing happened! By 1975, both cities are *exactly* where you would have predicted their population to be if you just naively projected forward their growth rates, without knowing anything about the war. 
+
+A remarkable example of path dependence. Even in a situation where so many people died, others evacuated, 70% of the buildings destroyed, stigma surrounding radiation, the cities still survived.
+
+---
+
+## Story 3: Pirates of the Mediterranean
+
+```{r, out.width = '400'}
+knitr::include_graphics('img/pirate-attacks.png')
+```
+
+---
+
+## Story 3: Pirates of the Mediterranean
+
+```{r, out.width='800'}
+knitr::include_graphics('img/italian-cities.png')
+```
+
+???
+
+Even 500 years afterwards, you still get this inefficient location of Italian urban activity. It would be more efficient for these places to be on the seaside, where you can have a port and trade. But path dependence locks you into this weird historical trajectory.
+
+---
+
+## Story 4: QWERTY
+
+--
+
+Why is history "sticky"?
+
+```{r}
+knitr::include_graphics('img/QWERTY_keyboard.jpg')
+```
+
+
+---
+
+
+class: center, middle, inverse
+
+## Discussion
+
+---
+
+## Discussion
+
+The COVID-19 pandemic led many to predict that cities would become obsolete. 
+
+- New communication technologies (Zoom, the Metaverse) reduce the value of face-to-face communication, so firms no longer need to agglomerate in a single place.
+
+- Fears of contagion reduce the value that people place on dense city living.
+
+In light of what we've learned today, do you agree with these predictions? What do you expect the "city of the future" to look like?
+
