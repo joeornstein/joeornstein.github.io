@@ -250,23 +250,21 @@ Philadelphia is about 3x bigger than Atlanta (1.6 million people).
 
 But it only has about 1.5x the length of roadways (4,539 km) -- 3 meters per person.
 
+???
+
+Shipping containers scale similarly: volume is `\(L^3\)`, but metal is proportional to `\(6L^2\)`.
+
 ---
 
 ## Scale Economies from Geometry
 
-A shipping container
-
-&lt;img src="img/ft-container-ships.png" width="600" style="display: block; margin: auto;" /&gt;
-
-&lt;img src="img/maersk.jpg" width="600" style="display: block; margin: auto;" /&gt;
-
 
 
 ---
 
-## Scale Economies
+## Scale Economies from Geometry
 
-This is eerily similar to the geometric scaling laws we see in nature. 
+This is all eerily similar to the geometric scaling laws we see in nature. 
 
 --
 
@@ -276,27 +274,13 @@ This is eerily similar to the geometric scaling laws we see in nature.
 
 ---
 
-## Scale Economies
+class: center, middle, inverse
 
---
-
-- These *geometric* economies to scale apply not only to city walls, but to other, more modern, infrastructure needs, like pipes, power lines, and roads.
-
-
-  
+## Scale Economies from Fixed Costs
 
 ---
 
-Division of labor
-
-???
-
-One guy makes a sandwich from scratch in six months (video [here](https://www.youtube.com/watch?v=URvWSsAgtJE); trigger warning: murder).
-
----
-
-
-## Scale Economies
+## Scale Economies from Fixed Costs
 
 Another source of increasing returns comes from the way businesses operate.
 
@@ -306,24 +290,35 @@ Another source of increasing returns comes from the way businesses operate.
 
 --
 
-Each block of cheese costs you `\(c\)` dollars, and you sell it for `\(p\)` dollars. You also have *fixed costs* of `\(F\)` dollars each month (rent, wages, electricity, etc.).
+Each block of cheese costs you `\(c\)` dollars (marginal costs). You also have *fixed costs* of `\(F\)` dollars each month (rent, wages, electricity, etc.).
 
 --
 
-How many blocks of cheese do you need to sell to stay in business?
+If you sell `\(x\)` blocks of cheese, then your average cost is:
+
+$$
+\frac{F + cx}{x}
+$$
 
 ---
 
-## Scale Economies
+## Scale Economies from Fixed Costs
 
-$$
-\text{Units Sold} &gt; \frac{F}{p - c}
-$$
+Let's say your fixed costs are \$10,000 and marginal costs are \$5. 
+
+&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-13-1.png" width="600" style="display: block; margin: auto;" /&gt;
+
 --
+
+Unless you can sell cheese blocks for $5000 each, you need a large number of customers in order to cover your fixed costs!
+
+---
+
+## Scale Economies from Fixed Costs
 
 This explains why:
 
-- Businesses with large fixed costs (major league sports stadiums, live theater, museums, **zoos**) only operate in big cities.
+- Businesses with large fixed costs (major league sports stadiums, live theater, museums, **zoos**) can only operate in big cities.
 
 - Niche businesses (weird restaurants, esoteric bookstores, artisan cheese shops) typically operate in larger markets too.
 
@@ -333,7 +328,7 @@ Doesn't matter how many people visit your zoo. You gotta feed that elephant 350 
 
 ---
 
-## Scale Economies
+## Scale Economies from Fixed Costs
 
 .cite[Schiff (2015):]
 
@@ -343,7 +338,7 @@ Doesn't matter how many people visit your zoo. You gotta feed that elephant 350 
 
 ---
 
-## Scale Economies
+## Scale Economies from Fixed Costs
 
 &lt;img src="01-why-cities_files/figure-html/unnamed-chunk-15-1.png" width="600" style="display: block; margin: auto;" /&gt;
 
@@ -351,12 +346,43 @@ Doesn't matter how many people visit your zoo. You gotta feed that elephant 350 
 
 Pop Quiz: Which is the smallest metro area to have a major league team? (Green Bay! Likely because they're the only fan-owned team in the NFL.)
 
+Atlanta Falcons spend $230 million each year in player salaries alone. You can only cover fixed costs like that if you sell a *lot* of tickets. You need to operate in a big market.
+
+---
+
+class: center, middle, inverse
+
+# Scale Economies from Network Effects
+
+---
+
+## Scale Economies from Network Effects
+
+
+.pull-left[
+&lt;img src="img/metcalfe.svg" width="50%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+- 1 telephone is useless. There's no one to talk to.
+
+- Larger networks are increasingly more valuable, because the number of possible connections scales with `\(n^2\)`.
+
+&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-17-1.png" width="600" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+class: center, middle, inverse
+
+# Agglomeration Effects
+
 ---
 
 ## A Puzzle: Clusters of Industry
 
 
-Scale economies why individual organizations would want to grow and locate in cities, but why would *multiple*, competing firms locate in the same place?
+Scale economies explain why individual organizations would want to locate in large markets, but why would *multiple*, competing firms locate in the same place?
 
 --
 
@@ -381,7 +407,7 @@ Why do you get clusters of industry? What are some other clusters?
 ## A Puzzle: Clusters of Industry
 
 
-Scale economies why individual organizations would want to grow and locate in cities, but why would *multiple*, competing firms locate in the same place?
+Scale economies explain why individual organizations would want to locate in large markets, but why would *multiple*, competing firms locate in the same place?
 
 
 &lt;img src="img/silicon-valley-logos.png" width="600" style="display: block; margin: auto;" /&gt;
@@ -492,35 +518,37 @@ class: center, middle, inverse
 
 ## Warmup
 
-Try to name as many US cities as you can with the [City Quiz](https://cityquiz.io/quizzes/usa).
+Let's try to name as many US cities as we can in the [City Quiz](https://cityquiz.io/quizzes/usa).
 
 - How many cities do you need to name before you reach 10% of the US urban population? 15%? 20%? 25%?
 
---
+???
 
 **The Best Possible Scores**:
 
 - 5%: 3 cities (Chicago)
-- 10%: 10 cities (Austin)
-- 15%: 27 cities (Louisville)
+- 10%: 10 cities (San Jose)
+- 15%: 27 cities (Detroit)
 - 20%: 54 cities (Cleveland)
-- 25%: 101 cities (Tacoma)
-- 30%: 171 cities (Springfield, MA)
+- 25%: 101 cities (Hialeah, FL)
+- 30%: 171 cities (Killeen, TX)
 - 35%: 272 cities (Temecula, CA)
 
 ---
 
-## Power Law Distribution
+## City Size Distribution
 
-&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-22-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-## Power Law Distribution
-
-&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-23-1.png" width="600" style="display: block; margin: auto;" /&gt;
+&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-24-1.png" width="600" style="display: block; margin: auto;" /&gt;
 
 ---
+
+## Power Law Distribution
+
+Once again, if you make the axes logarithmic, everything fits nicely on a straight line!
+
+&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-25-1.png" width="600" style="display: block; margin: auto;" /&gt;
+
+???
 
 TODO:
 
@@ -538,39 +566,7 @@ class: center, middle, inverse
 
 ---
 
-## Historical Path Dependence
-
-- The Krugman model tells us **when** countries will urbanize.
-
---
-
-- But does it tell us **where** they will urbanize?
-
---
-
-&lt;img src="img/krugman.png" width="400" style="display: block; margin: auto;" /&gt;
-
---
-
-- Villages A, B, and C are all equally likely to become the city!
-
---
-
-- And once an industry locates somewhere, powerful forces (forward and backward linkages, labor market pooling, knowledge spillovers), conspire to keep it there.
-
-???
-
-(If you've taken economics before, notice that this is very different than the idea of "comparative advantage". One location specializes in shirt-making and the others specialize in agriculture, but not because of any particular locational advantage...)
-
----
-
-class: center, middle
-
-### **Path Dependence**: History has enduring influence!
-
----
-
-## Stories about Path Dependence
+## Stories about Historical Path Dependence
 
 - **Story 1:** The Fall Line
 
@@ -674,6 +670,30 @@ Why is history "sticky"?
 
 &lt;img src="img/QWERTY_keyboard.jpg" width="600" style="display: block; margin: auto;" /&gt;
 
+???
+
+
+## Historical Path Dependence
+
+- The Krugman model tells us **when** countries will urbanize.
+
+--
+
+- But does it tell us **where** they will urbanize?
+
+--
+
+&lt;img src="img/krugman.png" width="400" style="display: block; margin: auto;" /&gt;
+
+--
+
+- Villages A, B, and C are all equally likely to become the city!
+
+--
+
+- And once an industry locates somewhere, powerful forces (forward and backward linkages, labor market pooling, knowledge spillovers), conspire to keep it there.
+
+(If you've taken economics before, notice that this is very different than the idea of "comparative advantage". One location specializes in shirt-making and the others specialize in agriculture, but not because of any particular locational advantage...)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

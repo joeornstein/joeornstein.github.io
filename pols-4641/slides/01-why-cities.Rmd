@@ -331,9 +331,9 @@ pop <- c(128000, 500000, 1600000)
 
 ---
 
-## Scale Economies
+## Scale Economies from Geometry
 
-This is eerily similar to the geometric scaling laws we see in nature. 
+This is all eerily similar to the geometric scaling laws we see in nature. 
 
 --
 
@@ -412,7 +412,7 @@ Doesn't matter how many people visit your zoo. You gotta feed that elephant 350 
 
 ---
 
-## Scale Economies
+## Scale Economies from Fixed Costs
 
 .cite[Schiff (2015):]
 
@@ -424,7 +424,7 @@ knitr::include_graphics('img/schiff-2015-fig-1.png')
 
 ---
 
-## Scale Economies
+## Scale Economies from Fixed Costs
 
 ```{r}
 library(readxl)
@@ -466,7 +466,26 @@ class: center, middle, inverse
 ## Scale Economies from Network Effects
 
 
+.pull-left[
+```{r, out.width = '50%'}
+knitr::include_graphics('img/metcalfe.svg')
+```
+]
 
+.pull-right[
+- 1 telephone is useless. There's no one to talk to.
+
+- Larger networks are increasingly more valuable, because the number of possible connections scales with $n^2$.
+
+```{r}
+n <- 1:20
+y <- n*(n-1)/2
+
+ggplot(mapping = aes(x=n,y=y)) +
+  geom_point() +
+  labs(x = 'Number of Nodes', y = 'Number of Connections')
+```
+]
 
 ---
 
@@ -725,41 +744,7 @@ class: center, middle, inverse
 
 ---
 
-## Historical Path Dependence
-
-- The Krugman model tells us **when** countries will urbanize.
-
---
-
-- But does it tell us **where** they will urbanize?
-
---
-
-```{r, out.width = '400'}
-knitr::include_graphics('img/krugman.png')
-```
-
---
-
-- Villages A, B, and C are all equally likely to become the city!
-
---
-
-- And once an industry locates somewhere, powerful forces (forward and backward linkages, labor market pooling, knowledge spillovers), conspire to keep it there.
-
-???
-
-(If you've taken economics before, notice that this is very different than the idea of "comparative advantage". One location specializes in shirt-making and the others specialize in agriculture, but not because of any particular locational advantage...)
-
----
-
-class: center, middle
-
-### **Path Dependence**: History has enduring influence!
-
----
-
-## Stories about Path Dependence
+## Stories about Historical Path Dependence
 
 - **Story 1:** The Fall Line
 
@@ -885,3 +870,29 @@ Why is history "sticky"?
 knitr::include_graphics('img/QWERTY_keyboard.jpg')
 ```
 
+???
+
+
+## Historical Path Dependence
+
+- The Krugman model tells us **when** countries will urbanize.
+
+--
+
+- But does it tell us **where** they will urbanize?
+
+--
+
+```{r, out.width = '400'}
+knitr::include_graphics('img/krugman.png')
+```
+
+--
+
+- Villages A, B, and C are all equally likely to become the city!
+
+--
+
+- And once an industry locates somewhere, powerful forces (forward and backward linkages, labor market pooling, knowledge spillovers), conspire to keep it there.
+
+(If you've taken economics before, notice that this is very different than the idea of "comparative advantage". One location specializes in shirt-making and the others specialize in agriculture, but not because of any particular locational advantage...)
