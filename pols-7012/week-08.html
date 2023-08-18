@@ -789,7 +789,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
-    font-size: 100%;
   }
 
   .html-widget {
@@ -1862,21 +1861,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        const citeChild = $(this).children()[0]
-        // Do not process if @xyz has been used without escaping and without bibliography activated
-        // https://github.com/rstudio/distill/issues/466
-        if (citeChild === undefined) return true
-
-        if (citeChild.nodeName == "D-FOOTNOTE") {
-          var fn = citeChild
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
           $(this).html(fn.shadowRoot.querySelector("sup"))
           $(this).id = fn.id
           fn.remove()
         }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          // Could use CSS.escape too here, we insure backward compatibility in navigator
-          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -2385,7 +2378,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2448,7 +2441,7 @@ Schedule
 <a href="https://calendly.com/joeornstein/20min">
 <i class="fas fa-calendar-plus" aria-hidden="true"></i>
 </a>
-<a href="https://hypothes.is/groups/g7pXazQj/pols-7012-fall-2021">
+<a href="https://hypothes.is/groups/rG8XJMGw/pols-7012-fall-2023">
 <i class="fas fa-book-open" aria-hidden="true"></i>
 </a>
 <a href="https://github.com/joeornstein/intro-political-methodology">
@@ -2466,7 +2459,8 @@ Schedule
 <h1>Week 8</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Correlation does not imply causation (but it’s a good place to start)</p></p>
+<p><p>Correlation does not imply causation (but it’s a good place to
+start)</p></p>
 </div>
 
 
@@ -2482,12 +2476,17 @@ Schedule
 </nav>
 </div>
 <h2 id="reading">Reading</h2>
-<p>Our guide to causal inference is <em>The Effect</em>, by Nick Huntington-Klein. The whole book is great, but start with:</p>
+<p>Our guide to causal inference is <em>The Effect</em>, by Nick
+Huntington-Klein. The whole book is great, but start with:</p>
 <ul>
-<li><a href="https://theeffectbook.net/ch-CausalDiagrams.html">Chapter 6: Causal Diagrams</a></li>
-<li><a href="https://theeffectbook.net/ch-DrawingCausalDiagrams.html">Chapter 7: Drawing Causal Diagrams</a></li>
+<li><a href="https://theeffectbook.net/ch-CausalDiagrams.html">Chapter
+6: Causal Diagrams</a></li>
+<li><a
+href="https://theeffectbook.net/ch-DrawingCausalDiagrams.html">Chapter
+7: Drawing Causal Diagrams</a></li>
 </ul>
-<p><a href="https://xkcd.com/552/"><img src="img/xkcd_correlation.png" /></a></p>
+<p><a href="https://xkcd.com/552/"><img
+src="img/xkcd_correlation.png" /></a></p>
 <h2 id="slides">Slides</h2>
 <div class="layout-chunk" data-layout="l-body">
 <iframe src="slides/08-causation.html" width="624" height="400px" data-external="1">
@@ -2495,8 +2494,13 @@ Schedule
 </div>
 <p><a href="slides/08-causation.html">(Full Screen Version)</a></p>
 <h2 id="problem-set">Problem Set</h2>
-<p>Consider a research question you’re interested in and draw a DAG to represent the web of relevant causal relationships - <code>R</code> or by hand are both acceptable. What are the backdoor paths between your treatment and outcome (i.e. alternative explanations)? What variables must you condition on to close them?</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>Consider a research question you’re interested in and draw a DAG to
+represent the web of relevant causal relationships - <code>R</code> or
+by hand are both acceptable. What are the backdoor paths between your
+treatment and outcome (i.e. alternative explanations)? What variables
+must you condition on to close them?</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
