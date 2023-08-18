@@ -377,7 +377,7 @@ $$
 
 ## Scale Economies from Fixed Costs
 
-Let's say your fixed costs are \$10,000 and marginal costs are \$5. 
+Let's say your fixed costs are $10,000 and marginal costs are $5. 
 
 ```{r}
 fixed <- 10000
@@ -872,26 +872,17 @@ knitr::include_graphics('img/QWERTY_keyboard.jpg')
 
 ???
 
-
-## Historical Path Dependence
+Historical Path Dependence
 
 - The Krugman model tells us **when** countries will urbanize.
 
---
-
 - But does it tell us **where** they will urbanize?
-
---
 
 ```{r, out.width = '400'}
 knitr::include_graphics('img/krugman.png')
 ```
 
---
-
 - Villages A, B, and C are all equally likely to become the city!
-
---
 
 - And once an industry locates somewhere, powerful forces (forward and backward linkages, labor market pooling, knowledge spillovers), conspire to keep it there.
 
