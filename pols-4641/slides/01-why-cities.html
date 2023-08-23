@@ -3,7 +3,7 @@
   <head>
     <title>Foundations</title>
     <meta charset="utf-8" />
-    <script src="01-why-cities_files/header-attrs-2.20/header-attrs.js"></script>
+    <script src="01-why-cities_files/header-attrs-2.14/header-attrs.js"></script>
     <link href="01-why-cities_files/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="01-why-cities_files/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
   </head>
@@ -558,7 +558,7 @@ class: center, middle, inverse
 
 ## Warmup
 
-Let's try to name as many US cities as we can in the [City Quiz](https://cityquiz.io/quizzes/usa).
+Let's try our hand again at the [City Quiz](https://cityquiz.io/quizzes/usa). This time, we'll focus on cities in the United States only.
 
 - How many cities do you need to name before you reach 10% of the US urban population? 15%? 20%? 25%?
 
@@ -582,34 +582,113 @@ Let's try to name as many US cities as we can in the [City Quiz](https://cityqui
 
 ---
 
-## Power Law Distribution
+## City Size Distribution
 
-Once again, if you plot it on a logarithmic scale, everything fits nicely on a straight line!
+Once again, if you plot these on a logarithmic scale, everything fits nicely on a straight line!
 
 &lt;img src="01-why-cities_files/figure-html/unnamed-chunk-26-1.png" width="600" style="display: block; margin: auto;" /&gt;
 
 ---
 
+## Power Law
 
+The city size distribution is **long tailed**. A few big cities dominate.
 
-???
-
-TODO:
-
-- Power laws are ubiquitous (word use, wealth)
-- Where do power laws come from? Preferential attachment game (agglomeration economies and preferential attachment / the "Matthew Effect").
-- Primate cities: cities that are much bigger than you would expect given power laws. 
-
-
+&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-27-1.png" width="600" style="display: block; margin: auto;" /&gt;
 
 ---
 
-## Power Laws
+## Power Law
 
-These sorts of distributions arise from a process of **preferential attachment**.
+A **power law distribution** is a long-tailed distribution that falls on a straight line when you plot it logarithmically.
 
-[![](img/preferential-attachment.png)](https://www.netlogoweb.org/launch#https://www.netlogoweb.org/assets/modelslib/Sample%20Models/Networks/Preferential%20Attachment.nlogo)
+&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-28-1.png" width="600" style="display: block; margin: auto;" /&gt;
 
+???
+
+- Power laws are ubiquitous (word use, wealth)
+- Where do power laws come from? Preferential attachment game (agglomeration economies and preferential attachment / the "Matthew Effect").
+- Next module we'll discuss "primate cities": cities that are much bigger than you would expect given power laws. 
+
+---
+
+## Power Laws Are Everywhere!
+
+--
+
+*Gutenberg-Richter Law*:
+
+&lt;br&gt;
+
+&lt;img src="img/gutenberg-richter.png" width="600" style="display: block; margin: auto;" /&gt;
+
+???
+
+Image Source: Nate Silver (2012). Signal &amp; The Noise, pg. 153.
+
+---
+
+## Power Laws Are Everywhere!
+
+*The Forbes 400 (2022)*:
+
+&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-30-1.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Power Laws Are Everywhere!
+
+*The Forbes 400 (2022)*:
+
+&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-31-1.png" width="600" style="display: block; margin: auto;" /&gt;
+
+???
+
+This one isn't perfect, because there are three Waltons and two Koch's screwing with my distribution.
+
+---
+
+## Power Laws Are Everywhere!
+
+*Google Web Trillion Word Corpus*:
+
+--
+
+&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-32-1.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Power Laws Are Everywhere!
+
+*Google Web Trillion Word Corpus*:
+
+&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-33-1.png" width="600" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Power Laws Are Everywhere!
+
+*Social Media Followers*:
+
+[![](img/top-50-influencers.png)](https://www.visualcapitalist.com/wp-content/uploads/2021/05/Top-50-Social-Media-Influencers-2.jpg)
+
+???
+
+Image Source: [Visual Capitalist](https://www.visualcapitalist.com/worlds-top-50-influencers-across-social-media-platforms/)
+
+---
+
+## Where Do Power Laws Come From?
+
+These sorts of distributions arise from the **Matthew Effect**.
+
+&gt; For to every one who has will more be given, and he will have abundance; but from him who has not, even what he has will be taken away.
+
+&gt; —Matthew 25:29
+
+&lt;img src="img/preferential-attachment-network.png" width="35%" style="display: block; margin: auto;" /&gt;
+
+Also known as [Preferential Attachment](https://www.netlogoweb.org/launch#https://www.netlogoweb.org/assets/modelslib/Sample%20Models/Networks/Preferential%20Attachment.nlogo).
 
 ---
 

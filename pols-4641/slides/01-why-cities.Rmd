@@ -27,6 +27,13 @@ theme_set(theme_minimal(base_size = 16))
 knitr::opts_chunk$set(comment=NA, fig.width=7, fig.height=5,
                       fig.align = 'center', out.width = 600,
                       message=FALSE, warning=FALSE, echo=FALSE)
+
+image_link <- function(image,url,...){
+  htmltools::a(
+    href=url,
+    htmltools::img(src=image,...)
+    )
+}
 ```
 
 
@@ -688,7 +695,7 @@ class: center, middle, inverse
 
 ## Warmup
 
-Let's try to name as many US cities as we can in the [City Quiz](https://cityquiz.io/quizzes/usa).
+Let's try our hand again at the [City Quiz](https://cityquiz.io/quizzes/usa). This time, we'll focus on cities in the United States only.
 
 - How many cities do you need to name before you reach 10% of the US urban population? 15%? 20%? 25%?
 
@@ -735,9 +742,9 @@ ggplot(data = d,
 
 ---
 
-## Power Law Distribution
+## City Size Distribution
 
-Once again, if you plot it on a logarithmic scale, everything fits nicely on a straight line!
+Once again, if you plot these on a logarithmic scale, everything fits nicely on a straight line!
 
 ```{r}
 ggplot(data = d,
@@ -756,46 +763,198 @@ ggplot(data = d,
 
 ---
 
+## Power Law
+
+The city size distribution is **long tailed**. A few big cities dominate.
+
 ```{r}
-## Probability Distribution
-# library(ggrepel)
-# ggplot(data = d,
-#        mapping = aes(x=pop2020, y=rank)) +
-#   geom_point(alpha = 0.5) +
-#   geom_text_repel(mapping = aes(label=city)) +
-#   labs(x = 'Population (2020)',
-#        y = 'Rank') +
-#   scale_x_log10(labels = scales::comma_format()) +
-#   scale_y_log10()
-```
 
-???
-
-TODO:
-
-- Power laws are ubiquitous (word use, wealth)
-- Where do power laws come from? Preferential attachment game (agglomeration economies and preferential attachment / the "Matthew Effect").
-- Primate cities: cities that are much bigger than you would expect given power laws. 
-
-```{r, echo = FALSE}
-# library(readxl)
-# forbes <- read_xlsx('data/forbes400-2022.xlsx')
-# 
-# ggplot(data = forbes,
-#        mapping = aes(x=`Net Worth (billions)`, y=Rank)) + 
-#   geom_point() +
-#   scale_x_log10() +
-#   scale_y_log10()
+library(ggrepel)
+ggplot(data = d,
+       mapping = aes(x=pop2020, y=rank)) +
+  geom_point(alpha = 0.5) +
+  geom_text_repel(data = d |> 
+                    filter(city %in% c('New York', 'Los Angeles', 'Houston', 'Atlanta')),
+                  mapping = aes(label=city)) +
+  labs(x = 'Population (2020)',
+       y = 'Number of Cities') +
+  scale_x_continuous(labels = scales::comma_format()) +
+  scale_y_continuous()
 ```
 
 ---
 
-## Power Laws
+## Power Law
 
-These sorts of distributions arise from a process of **preferential attachment**.
+A **power law distribution** is a long-tailed distribution that falls on a straight line when you plot it logarithmically.
 
-[![](img/preferential-attachment.png)](https://www.netlogoweb.org/launch#https://www.netlogoweb.org/assets/modelslib/Sample%20Models/Networks/Preferential%20Attachment.nlogo)
+```{r}
 
+library(ggrepel)
+ggplot(data = d,
+       mapping = aes(x=pop2020, y=rank)) +
+  geom_point(alpha = 0.5) +
+  geom_text_repel(data = d |> 
+                    filter(city %in% c('New York', 'Los Angeles', 'Houston', 'Atlanta')),
+                  mapping = aes(label=city)) +
+  labs(x = 'Population (2020)',
+       y = 'Number of Cities') +
+  scale_x_log10(labels = scales::comma_format()) +
+  scale_y_log10() +
+  geom_smooth(color = 'black',
+              linewidth = 0.5,
+              se = FALSE)
+```
+
+???
+
+- Power laws are ubiquitous (word use, wealth)
+- Where do power laws come from? Preferential attachment game (agglomeration economies and preferential attachment / the "Matthew Effect").
+- Next module we'll discuss "primate cities": cities that are much bigger than you would expect given power laws. 
+
+---
+
+## Power Laws Are Everywhere!
+
+--
+
+*Gutenberg-Richter Law*:
+
+<br>
+
+```{r}
+knitr::include_graphics('img/gutenberg-richter.png')
+```
+
+???
+
+Image Source: Nate Silver (2012). Signal & The Noise, pg. 153.
+
+---
+
+## Power Laws Are Everywhere!
+
+*The Forbes 400 (2022)*:
+
+```{r, echo = FALSE}
+library(readxl)
+forbes <- read_xlsx('data/forbes400-2022.xlsx')
+
+ggplot(data = forbes,
+       mapping = aes(x=`Net Worth (billions)`, y=Rank)) +
+  geom_point() +
+  geom_text_repel(data = forbes |> 
+                    slice_max(`Net Worth (billions)`,
+                              n = 5),
+                  mapping = aes(label = Name))
+```
+
+---
+
+## Power Laws Are Everywhere!
+
+*The Forbes 400 (2022)*:
+
+```{r, echo = FALSE}
+ggplot(data = forbes,
+       mapping = aes(x=`Net Worth (billions)`, y=Rank)) +
+  geom_point() +
+  scale_x_log10(breaks = c(10,20,40,80,160,320)) +
+  scale_y_log10()
+```
+
+???
+
+This one isn't perfect, because there are three Waltons and two Koch's screwing with my distribution.
+
+---
+
+## Power Laws Are Everywhere!
+
+*Google Web Trillion Word Corpus*:
+
+--
+
+```{r}
+library(tidyverse)
+
+words <- read_csv('data/unigram_freq.csv') |> 
+  mutate(rank = 1:n())
+
+ggplot(data = words |> 
+               slice_max(count, n = 10000),
+             mapping = aes(x=count/1e6, y=rank)) +
+  geom_point(alpha = 0.5) +
+  geom_text_repel(data = words |> filter(word %in% c('the','a','about', 'city', 'foot', 'graphs')),
+                  mapping = aes(label = word)) +
+  scale_x_continuous(labels = scales::comma_format()) +
+  scale_y_continuous(labels = scales::comma_format()) +
+  labs(x = 'Number of Uses (Millions)', y = 'Rank')
+
+# # cumulative frequency
+# magnitude <- 10 ^ (4:10)
+# count <- map_int( magnitude, ~sum(words$count > .x))
+# 
+# ggplot(mapping = aes(x = magnitude, 
+#                      y = count)) +
+#   geom_point() +
+#   scale_x_log10(labels = scales::comma) +
+#   scale_y_log10(labels = scales::comma) +
+#   theme_bw() +
+#   labs(x = 'Number of Uses', y = 'Number of Words') +
+#   geom_smooth(method = 'lm', se = FALSE, color = 'gray')
+```
+
+---
+
+## Power Laws Are Everywhere!
+
+*Google Web Trillion Word Corpus*:
+
+```{r}
+library(tidyverse)
+
+words <- read_csv('data/unigram_freq.csv') |> 
+  mutate(rank = 1:n())
+
+ggplot(data = words |> 
+               slice_max(count, n = 10000),
+             mapping = aes(x=count/1e6, y=rank)) +
+  geom_point(alpha = 0.5) +
+  geom_text_repel(data = words |> filter(word %in% c('the','a','about', 'city', 'foot', 'graphs')),
+                  mapping = aes(label = word)) +
+  scale_x_log10(labels = scales::comma_format()) +
+  scale_y_log10(labels = scales::comma_format()) +
+  labs(x = 'Number of Uses (Millions)', y = 'Rank')
+```
+
+---
+
+## Power Laws Are Everywhere!
+
+*Social Media Followers*:
+
+[![](img/top-50-influencers.png)](https://www.visualcapitalist.com/wp-content/uploads/2021/05/Top-50-Social-Media-Influencers-2.jpg)
+
+???
+
+Image Source: [Visual Capitalist](https://www.visualcapitalist.com/worlds-top-50-influencers-across-social-media-platforms/)
+
+---
+
+## Where Do Power Laws Come From?
+
+These sorts of distributions arise from the **Matthew Effect**.
+
+> For to every one who has will more be given, and he will have abundance; but from him who has not, even what he has will be taken away.
+
+> —Matthew 25:29
+
+```{r, out.width='35%', fig.align='center'}
+knitr::include_graphics('img/preferential-attachment-network.png')
+```
+
+Also known as [Preferential Attachment](https://www.netlogoweb.org/launch#https://www.netlogoweb.org/assets/modelslib/Sample%20Models/Networks/Preferential%20Attachment.nlogo).
 
 ---
 
