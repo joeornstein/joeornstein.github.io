@@ -6,6 +6,7 @@ packrat/lib*/
 
 # raw data folders
 raw/
+glove.6B/
 
 # dross folders
 _dross/

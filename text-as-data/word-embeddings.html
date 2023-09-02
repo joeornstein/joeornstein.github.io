@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -129,8 +130,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_meta_tags-->
   
-  <meta name="citation_reference" content="citation_title=Text as data: A new framework for machine learning and the social sciences.;citation_publication_date=2021;citation_publisher=Princeton University Press;citation_author=Justin Grimmer;citation_author=Brandon M. Stewart;citation_author=Margaret E. Roberts"/>
-  <meta name="citation_reference" content="citation_title=Word embeddings: What works, what doesn’t, and how to tell the difference for applied research;citation_publication_date=2021;citation_doi=10.1086/715162;citation_author=Pedro L. Rodriguez;citation_author=Arthur Spirling"/>
+  <meta name="citation_reference" content="citation_title=Text as data: A new framework for machine learning and the social sciences.;citation_publisher=Princeton University Press;citation_author=Justin Grimmer;citation_author=Brandon M. Stewart;citation_author=Margaret E. Roberts"/>
+  <meta name="citation_reference" content="citation_title=Word embeddings: What works, what doesn’t, and how to tell the difference for applied research;citation_doi=10.1086/715162;citation_author=Pedro L. Rodriguez;citation_author=Arthur Spirling"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
@@ -812,6 +813,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
 
   .html-widget {
@@ -1053,10 +1055,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
-  }
-
-  .figure img {
-    width: 100%;
   }
 
   .figure .caption {
@@ -1888,9 +1886,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -1902,6 +1912,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -2001,6 +2036,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -2023,7 +2060,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2372,7 +2409,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2409,7 +2446,7 @@ Harvest the Text
 </button>
 <div class="nav-dropdown-content">
 <a href="webscraping.html">Webscraping</a>
-<a href="twitter-api.html">APIs</a>
+<a href="APIs.html">APIs</a>
 <a href="OCR.html">Optical Character Recognition</a>
 </div>
 </div>
@@ -2437,6 +2474,7 @@ Model the Text
 <a href="LDA.html">Topic Models</a>
 <a href="sentiment-analysis.html">Sentiment Analysis</a>
 <a href="supervised-learning.html">Supervised Learning</a>
+<a href="LLMs.html">Large Language Models</a>
 </div>
 </div>
 </div>
@@ -2470,160 +2508,159 @@ Model the Text
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#practice-problems" id="toc-practice-problems">Practice
-Problems</a></li>
-<li><a href="#further-reading" id="toc-further-reading">Further
-Reading</a></li>
+<li><a href="#practice-problems" id="toc-practice-problems">Practice Problems</a></li>
+<li><a href="#further-reading" id="toc-further-reading">Further Reading</a></li>
 </ul>
 </nav>
 </div>
-<p>Often, we’d like to not only count the frequency of words, but also
-get a sense of what the words <em>mean</em>. In a <a
-href="bag-of-words.html">bag of words representation</a>, we treat words
-words like “president” and “executive” as separate indices in a word
-count vector, implicitly assuming that they have completely unique
-meanings. But the statistical models we use to understand text data will
-perform better if words with similar meaning have similar
-representations. That is the purpose of the word embeddings approach,
-which represents each word as a vector, encoding the fact that
-“president” and “executive” have some overlapping meaning by placing
-their vectors close together.</p>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="img/morpheus.jpg" width="262" /></p>
+<p><img src="img/morpheus.jpg" /><!-- --></p>
 </div>
-<p>The <code>textdata</code> package is a useful interface for
-downloading pre-trained word embeddings like GloVe. These off-the-shelf
-word embeddings tend to do a pretty good job at capturing meaning, even
-for political science specific applications <span class="citation"
-data-cites="rodriguezWordEmbeddingsWhat2021">(<a
-href="#ref-rodriguezWordEmbeddingsWhat2021"
-role="doc-biblioref">Rodriguez and Spirling 2021</a>)</span>.</p>
+<p>Often, we’d like to not only count the frequency of words, but also get a sense of what the words <em>mean</em>. In a <a href="bag-of-words.html">bag of words representation</a>, we treat words words like “president” and “executive” as separate indices in a word count vector, implicitly assuming that they have completely unique meanings. But the statistical models we use to understand text data will perform better if words with similar meaning have similar representations. That is the purpose of the word embeddings approach, which represents each word as a vector, encoding the fact that “president” and “executive” have some overlapping meaning by placing their vectors close together.</p>
+<p>In this exercise, we’ll work with a set of pre-trained word embeddings called <a href="https://nlp.stanford.edu/projects/glove/">GloVe</a>. These off-the-shelf word embeddings tend to do a pretty good job at capturing meaning, even for political science specific applications <span class="citation" data-cites="rodriguezWordEmbeddingsWhat2021">(<a href="#ref-rodriguezWordEmbeddingsWhat2021" role="doc-biblioref">Rodriguez and Spirling 2021</a>)</span>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/juliasilge/tidytext'>tidytext</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/EmilHvitfeldt/textdata'>textdata</a></span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/juliasilge/tidytext'>tidytext</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://text2vec.org'>text2vec</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>For expository purposes, let’s just get 400,000 of the
-100-dimensional word embeddings:</p>
+<p>For expository purposes, let’s download the 100-dimensional word embeddings <a href="https://nlp.stanford.edu/data/glove.6B.zip">here</a>. That link downloads a zipped folder called ‘glove.6B/’. Unzip it and make sure it is in your ‘data/’ folder.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>glove</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/textdata/man/embedding_glove.html'>embedding_glove6b</a></span><span class='op'>(</span>dimensions <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>glove</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_table.html'>read_table</a></span><span class='op'>(</span><span class='st'>"data/glove.6B/glove.6B.100d.txt"</span>, </span>
+<span>                    col_names <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>This comes to us as a matrix, but we can pivot it into a tidy
-dataframe.</p>
+<p>Converting this dataframe to a matrix object makes mathematical operations <em>much</em> faster.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tidy_glove</span> <span class='op'>&lt;-</span> <span class='va'>glove</span> |&gt;
-  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_longer.html'>pivot_longer</a></span><span class='op'>(</span><span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>contains</a></span><span class='op'>(</span><span class='st'>"d"</span><span class='op'>)</span>,
-               names_to <span class='op'>=</span> <span class='st'>"dimension"</span><span class='op'>)</span>
-
-<span class='va'>tidy_glove</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>vocab</span> <span class='op'>&lt;-</span> <span class='va'>glove</span><span class='op'>$</span><span class='va'>X1</span></span>
+<span></span>
+<span><span class='va'>glove</span> <span class='op'>&lt;-</span> <span class='va'>glove</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>X2</span><span class='op'>:</span><span class='va'>X101</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span><span class='op'>(</span><span class='va'>glove</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>vocab</span></span></code></pre>
 </div>
-<pre><code># A tibble: 40,000,000 x 3
-   token dimension   value
-   &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;
- 1 the   d1        -0.0382
- 2 the   d2        -0.245 
- 3 the   d3         0.728 
- 4 the   d4        -0.400 
- 5 the   d5         0.0832
- 6 the   d6         0.0440
- 7 the   d7        -0.391 
- 8 the   d8         0.334 
- 9 the   d9        -0.575 
-10 the   d10        0.0875
-# ... with 39,999,990 more rows</code></pre>
 </div>
-<p>It’s difficult to visualize and interpret a 100-dimensional vector
-space, but we can explore which words have the highest cosine
-similarity. By looking at a word’s “nearest neighbors”, we can get a
-sense of the meaning that GloVe is assigning to it. The following
-function, adapted from <a href="https://smltar.com/embeddings.html">Emil
-Hvitfeldt and Julia Silge</a>, performs that computation.</p>
+<p>It’s difficult to visualize and interpret a 100-dimensional vector space, but we can explore which words have similar meaning by looking at their cosine similarity.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/dgrtwo/widyr'>widyr</a></span><span class='op'>)</span>
-<span class='va'>nearest_neighbors</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>token</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='va'>df</span> |&gt;
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/rename.html'>rename</a></span><span class='op'>(</span>item1 <span class='op'>=</span> <span class='va'>token</span><span class='op'>)</span> |&gt;
-    <span class='fu'><a href='https://rdrr.io/pkg/widyr/man/widely.html'>widely</a></span><span class='op'>(</span>
-      <span class='op'>~</span> <span class='op'>{</span>
-        <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='va'>.</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='va'>token</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>.</span><span class='op'>)</span><span class='op'>)</span>, <span class='op'>]</span>
-        <span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span><span class='op'>(</span><span class='va'>.</span> <span class='op'>*</span> <span class='va'>y</span><span class='op'>)</span> <span class='op'>/</span>
-          <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowSums</a></span><span class='op'>(</span><span class='va'>.</span> <span class='op'>^</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>.</span><span class='op'>[</span><span class='va'>token</span>, <span class='op'>]</span> <span class='op'>^</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-        <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='va'>res</span>, ncol <span class='op'>=</span> <span class='fl'>1</span>, dimnames <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-      <span class='op'>}</span>,
-      sort <span class='op'>=</span> <span class='cn'>TRUE</span>,
-      maximum_size <span class='op'>=</span> <span class='cn'>NULL</span>
-    <span class='op'>)</span><span class='op'>(</span><span class='va'>item1</span>, <span class='va'>dimension</span>, <span class='va'>value</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>item2</span><span class='op'>)</span>
-<span class='op'>}</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># define cosine similarity</span></span>
+<span><span class='va'>cosine_similarity</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x1</span>, <span class='va'>x2</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>x1</span><span class='op'>*</span><span class='va'>x2</span><span class='op'>)</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>x1</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>x2</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='op'>}</span></span>
+<span></span>
+<span><span class='fu'>cosine_similarity</span><span class='op'>(</span><span class='va'>glove</span><span class='op'>[</span><span class='st'>'president'</span>,<span class='op'>]</span>, </span>
+<span>                  <span class='va'>glove</span><span class='op'>[</span><span class='st'>'executive'</span>,<span class='op'>]</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 0.6637274</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>cosine_similarity</span><span class='op'>(</span><span class='va'>glove</span><span class='op'>[</span><span class='st'>'president'</span>,<span class='op'>]</span>, </span>
+<span>                  <span class='va'>glove</span><span class='op'>[</span><span class='st'>'legislative'</span>,<span class='op'>]</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 0.4405054</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>cosine_similarity</span><span class='op'>(</span><span class='va'>glove</span><span class='op'>[</span><span class='st'>'president'</span>,<span class='op'>]</span>, </span>
+<span>                  <span class='va'>glove</span><span class='op'>[</span><span class='st'>'judicial'</span>,<span class='op'>]</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] 0.363681</code></pre>
+</div>
+<p>By looking at a word’s “nearest neighbors” in GLoVe-space, we can get a sense of its meaning. The following function, adapted from <a href="https://smltar.com/embeddings.html">Emil Hvitfeldt and Julia Silge</a>, performs that computation.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>nearest_glove_neighbors</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>n</span> <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/text2vec/man/similarities.html'>sim2</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>glove</span>,</span>
+<span>     y <span class='op'>=</span> <span class='va'>glove</span><span class='op'>[</span><span class='va'>word</span>, , drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>]</span>,</span>
+<span>     method <span class='op'>=</span> <span class='st'>'cosine'</span>,</span>
+<span>     norm <span class='op'>=</span> <span class='st'>'l2'</span><span class='op'>)</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>]</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span>decreasing <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span></span>
+<span><span class='op'>}</span></span></code></pre>
 </div>
 </div>
 <p>What words are most closely associated with the word “democracy”?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>nearest_neighbors</span><span class='op'>(</span><span class='va'>tidy_glove</span>, <span class='st'>'democracy'</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>nearest_glove_neighbors</span><span class='op'>(</span><span class='st'>'democracy'</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 400,000 x 2
-   item1        value
-   &lt;chr&gt;        &lt;dbl&gt;
- 1 democracy    1    
- 2 freedom      0.739
- 3 unity        0.710
- 4 independence 0.700
- 5 political    0.677
- 6 movement     0.669
- 7 opposition   0.666
- 8 peace        0.665
- 9 freedoms     0.663
-10 peaceful     0.663
-# ... with 399,990 more rows</code></pre>
+<pre><code>      democracy         freedom           unity    independence 
+      1.0000000       0.7387126       0.7104656       0.7001239 
+      political        movement      opposition           peace 
+      0.6768800       0.6690903       0.6657763       0.6654979 
+       freedoms        peaceful       pluralism      revolution 
+      0.6632308       0.6627046       0.6584346       0.6490769 
+democratization  reconciliation          regime          reform 
+      0.6479734       0.6455120       0.6426720       0.6425315 
+     solidarity       stability       socialist         reforms 
+      0.6411311       0.6383692       0.6335430       0.6330405 
+   dictatorship      democratic      multiparty       socialism 
+      0.6287793       0.6263217       0.6260686       0.6223621 
+     leadership      prosperity        politics          rights 
+      0.6219702       0.6176357       0.6171205       0.6147376 
+       struggle   establishment       communist             pro 
+      0.6096227       0.6075584       0.6072464       0.6015733 
+          human        equality   globalization      repression 
+      0.6000897       0.5962141       0.5942674       0.5911100 
+           rule           party       elections       communism 
+      0.5904003       0.5897764       0.5890823       0.5866827 
+        country           junta        progress      government 
+      0.5859989       0.5846966       0.5846514       0.5792781 
+     governance         support         leaders        economic 
+      0.5790971       0.5778673       0.5744629       0.5720127 
+ constitutional        dialogue      secularism          social 
+      0.5718961       0.5716203       0.5705830       0.5704782 
+     dissidents         society    constitution            hope 
+      0.5679337       0.5672875       0.5638954       0.5630879 
+        respect       activists         restore          nation 
+      0.5617298       0.5615236       0.5610132       0.5600489 
+       activism          ideals       coalition   revolutionary 
+      0.5597208       0.5589497       0.5566700       0.5547408 
+         leader           civic         myanmar         secular 
+      0.5542812       0.5517091       0.5508700       0.5501198 
+      undermine        autonomy        protests          ruling 
+      0.5498861       0.5495106       0.5479063       0.5467623 
+        dignity      principles       integrity         process 
+      0.5460128       0.5457307       0.5447343       0.5434307 
+        promote      legitimacy      transition        activist 
+      0.5433193       0.5414689       0.5408329       0.5402462 
+            suu        citizens     integration         dissent 
+      0.5398066       0.5395628       0.5394340       0.5394053 
+        efforts            free       apartheid      supporters 
+      0.5377405       0.5369167       0.5349902       0.5346813 
+           pro-        monarchy          ensure      capitalism 
+      0.5346307       0.5335712       0.5335646       0.5330306 
+    sovereignty           power      capitalist       crackdown 
+      0.5324788       0.5313657       0.5309806       0.5306148 
+        decades          agenda        uprising             kyi 
+      0.5303713       0.5301271       0.5286190       0.5285096 </code></pre>
 </div>
 <h2 id="practice-problems">Practice Problems</h2>
 <ol type="1">
-<li>Explore some of the stereotypes reflected in the GloVe embeddings.
-How close is the word “professor” to female names compared to male
-names? Hispanic names?</li>
-<li>What about words that are ambiguous without context, like “bill” or
-“share”?</li>
+<li>Explore some of the stereotypes reflected in the GloVe embeddings. How close is the word “professor” to female names compared to male names? Hispanic names?</li>
+<li>What about words that are ambiguous without context, like “bill” or “share”? What are their nearest neighbors?</li>
 </ol>
 <h2 id="further-reading">Further Reading</h2>
 <ul>
-<li><p><span class="citation"
-data-cites="grimmerTextDataNew2021">Grimmer, Stewart, and Roberts (<a
-href="#ref-grimmerTextDataNew2021"
-role="doc-biblioref">2021</a>)</span>, Chapter 8.</p></li>
-<li><p><a href="https://smltar.com/embeddings.html">Hvitfeldt &amp;
-Silge</a>, Chapter 5.</p></li>
+<li><p><span class="citation" data-cites="grimmerTextDataNew2021">Grimmer, Stewart, and Roberts (<a href="#ref-grimmerTextDataNew2021" role="doc-biblioref">2021</a>)</span>, Chapter 8.</p></li>
+<li><p><a href="https://smltar.com/embeddings.html">Hvitfeldt &amp; Silge</a>, Chapter 5.</p></li>
 </ul>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
-<div id="refs" class="references csl-bib-body hanging-indent"
-role="doc-bibliography">
-<div id="ref-grimmerTextDataNew2021" class="csl-entry"
-role="doc-biblioentry">
-Grimmer, Justin, Brandon M. Stewart, and Margaret E. Roberts. 2021.
-<em>Text as Data: A New Framework for Machine Learning and the Social
-Sciences.</em> S.l.: Princeton University Press.
+<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-grimmerTextDataNew2021" class="csl-entry" role="doc-biblioentry">
+Grimmer, Justin, Brandon M. Stewart, and Margaret E. Roberts. 2021. <em>Text as Data: A New Framework for Machine Learning and the Social Sciences.</em> S.l.: Princeton University Press.
 </div>
-<div id="ref-rodriguezWordEmbeddingsWhat2021" class="csl-entry"
-role="doc-biblioentry">
-Rodriguez, Pedro L., and Arthur Spirling. 2021. <span>“Word Embeddings:
-What Works, What Doesn<span>’</span>t, and How to Tell the Difference
-for Applied Research.”</span> <em>The Journal of Politics</em>, May,
-000–000. <a
-href="https://doi.org/10.1086/715162">https://doi.org/10.1086/715162</a>.
+<div id="ref-rodriguezWordEmbeddingsWhat2021" class="csl-entry" role="doc-biblioentry">
+Rodriguez, Pedro L., and Arthur Spirling. 2021. <span>“Word Embeddings: What Works, What Doesn<span>’</span>t, and How to Tell the Difference for Applied Research.”</span> <em>The Journal of Politics</em>, May, 000–000. <a href="https://doi.org/10.1086/715162">https://doi.org/10.1086/715162</a>.
 </div>
 </div>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>See <code>code/03_word-embeddings/federalist-embeddings.R</code> if you are interested in how to train word embeddings on your own corpus.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

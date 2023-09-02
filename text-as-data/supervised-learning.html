@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -129,7 +130,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_meta_tags-->
   
-  <meta name="citation_reference" content="citation_title=Text as data: A new framework for machine learning and the social sciences;citation_publication_date=2022;citation_publisher=Princeton University Press;citation_author=Justin Grimmer;citation_author=Margaret E. Roberts;citation_author=Brandon M. Stewart"/>
+  <meta name="citation_reference" content="citation_title=Text as data: A new framework for machine learning and the social sciences;citation_publisher=Princeton University Press;citation_author=Justin Grimmer;citation_author=Margaret E. Roberts;citation_author=Brandon M. Stewart"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
@@ -811,6 +812,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
 
   .html-widget {
@@ -1052,10 +1054,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
-  }
-
-  .figure img {
-    width: 100%;
   }
 
   .figure .caption {
@@ -1887,9 +1885,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -1901,6 +1911,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -2000,6 +2035,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -2022,7 +2059,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2371,7 +2408,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2408,7 +2445,7 @@ Harvest the Text
 </button>
 <div class="nav-dropdown-content">
 <a href="webscraping.html">Webscraping</a>
-<a href="twitter-api.html">APIs</a>
+<a href="APIs.html">APIs</a>
 <a href="OCR.html">Optical Character Recognition</a>
 </div>
 </div>
@@ -2436,6 +2473,7 @@ Model the Text
 <a href="LDA.html">Topic Models</a>
 <a href="sentiment-analysis.html">Sentiment Analysis</a>
 <a href="supervised-learning.html">Supervised Learning</a>
+<a href="LLMs.html">Large Language Models</a>
 </div>
 </div>
 </div>
@@ -2460,8 +2498,7 @@ Model the Text
 <h1>Supervised Learning</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>How to train a model that’s good at predicting, but
-not…<em>too</em> good at predicting.</p></p>
+<p><p>How to train a model that’s good at predicting, but not…<em>too</em> good at predicting.</p></p>
 </div>
 
 
@@ -2471,195 +2508,151 @@ not…<em>too</em> good at predicting.</p></p>
 <h3>Contents</h3>
 <ul>
 <li><a href="#the-data" id="toc-the-data">The Data</a></li>
-<li><a href="#underfitting-and-overfitting"
-id="toc-underfitting-and-overfitting">Underfitting and
-Overfitting</a></li>
-<li><a href="#regularization-hitting-the-sweet-spot"
-id="toc-regularization-hitting-the-sweet-spot">Regularization: Hitting
-the Sweet Spot</a></li>
-<li><a href="#practice-problems" id="toc-practice-problems">Practice
-Problems</a></li>
-<li><a href="#further-reading" id="toc-further-reading">Further
-Reading</a></li>
+<li><a href="#underfitting-and-overfitting" id="toc-underfitting-and-overfitting">Underfitting and Overfitting</a></li>
+<li><a href="#regularization-hitting-the-sweet-spot" id="toc-regularization-hitting-the-sweet-spot">Regularization: Hitting the Sweet Spot</a></li>
+<li><a href="#practice-problems" id="toc-practice-problems">Practice Problems</a></li>
+<li><a href="#further-reading" id="toc-further-reading">Further Reading</a></li>
 </ul>
 </nav>
 </div>
-<p>At the end of the page on <a href="sentiment-analysis.html">sentiment
-analysis</a>, we lamented that hand-coding is too costly to scale, and
-rules-based classifiers are too inflexible to handle the subtleties of
-human language. On this page, we’ll demonstrate a different approach:
-take a corpus of pre-labeled documents, train a model to predict the
-labels, then use the predictions from that model to label other
-documents. This is called a <strong>supervised learning</strong>
-approach, and to illustrate, let’s replicate the exercise from Chapter
-23 of <span class="citation"
-data-cites="grimmerTextDataNew2022">Grimmer, Roberts, and Stewart (<a
-href="#ref-grimmerTextDataNew2022"
-role="doc-biblioref">2022</a>)</span>, predicting whether a set of
-tweets during the 2016 presidential election were written by Donald
-Trump or his campaign staff.</p>
+<p>At the end of the page on <a href="sentiment-analysis.html">sentiment analysis</a>, we lamented that hand-coding is too costly to scale, and rules-based classifiers are too inflexible to handle the subtleties of human language. On this page, we’ll demonstrate a different approach: take a corpus of pre-labeled documents, train a model to predict the labels, then use the predictions from that model to label other documents. This is called a <strong>supervised learning</strong> approach, and to illustrate, let’s replicate the exercise from Chapter 23 of <span class="citation" data-cites="grimmerTextDataNew2022">Grimmer, Roberts, and Stewart (<a href="#ref-grimmerTextDataNew2022" role="doc-biblioref">2022</a>)</span>, predicting whether a set of tweets during the 2016 presidential election were written by Donald Trump or his campaign staff.</p>
 <h2 id="the-data">The Data</h2>
-<p>To start, let’s load the training data compiled by <a
-href="http://varianceexplained.org/r/trump-tweets/">David
-Robinson</a>.</p>
+<p>To start, let’s load the training data compiled by <a href="http://varianceexplained.org/r/trump-tweets/">David Robinson</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/juliasilge/tidytext'>tidytext</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidymodels.tidymodels.org'>tidymodels</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://lubridate.tidyverse.org'>lubridate</a></span><span class='op'>)</span>
-
-<span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/connections.html'>url</a></span><span class='op'>(</span><span class='st'>"http://varianceexplained.org/files/trump_tweets_df.rda"</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>trump_tweets_df</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/juliasilge/tidytext'>tidytext</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidymodels.tidymodels.org'>tidymodels</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://lubridate.tidyverse.org'>lubridate</a></span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/connections.html'>url</a></span><span class='op'>(</span><span class='st'>"http://varianceexplained.org/files/trump_tweets_df.rda"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>trump_tweets_df</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>Rows: 1,512
 Columns: 16
-$ text          &lt;chr&gt; &quot;My economic policy speech will be carried liv~
-$ favorited     &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALS~
-$ favoriteCount &lt;dbl&gt; 9214, 6981, 15724, 19837, 34051, 29831, 19223,~
-$ replyToSN     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA~
-$ created       &lt;dttm&gt; 2016-08-08 15:20:44, 2016-08-08 13:28:20, 201~
-$ truncated     &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALS~
-$ replyToSID    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA~
-$ id            &lt;chr&gt; &quot;762669882571980801&quot;, &quot;762641595439190016&quot;, &quot;7~
-$ replyToUID    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA~
-$ statusSource  &lt;chr&gt; &quot;&lt;a href=\&quot;http://twitter.com/download/android~
-$ screenName    &lt;chr&gt; &quot;realDonaldTrump&quot;, &quot;realDonaldTrump&quot;, &quot;realDon~
-$ retweetCount  &lt;dbl&gt; 3107, 2390, 6691, 6402, 11717, 9892, 5784, 793~
-$ isRetweet     &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALS~
-$ retweeted     &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALS~
-$ longitude     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA~
-$ latitude      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA~</code></pre>
+$ text          &lt;chr&gt; &quot;My economic policy speech will be carried liv…
+$ favorited     &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALS…
+$ favoriteCount &lt;dbl&gt; 9214, 6981, 15724, 19837, 34051, 29831, 19223,…
+$ replyToSN     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ created       &lt;dttm&gt; 2016-08-08 15:20:44, 2016-08-08 13:28:20, 201…
+$ truncated     &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALS…
+$ replyToSID    &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ id            &lt;chr&gt; &quot;762669882571980801&quot;, &quot;762641595439190016&quot;, &quot;7…
+$ replyToUID    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ statusSource  &lt;chr&gt; &quot;&lt;a href=\&quot;http://twitter.com/download/android…
+$ screenName    &lt;chr&gt; &quot;realDonaldTrump&quot;, &quot;realDonaldTrump&quot;, &quot;realDon…
+$ retweetCount  &lt;dbl&gt; 3107, 2390, 6691, 6402, 11717, 9892, 5784, 793…
+$ isRetweet     &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALS…
+$ retweeted     &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALS…
+$ longitude     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+$ latitude      &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…</code></pre>
 </div>
-<p>Throughout the 2016 presidential campaign, candidate Trump sent
-tweets from his personal Android phone, while staffers ghost-wrote
-tweets from an iPhone or web client. This provides us with the labels we
-need to build our model.</p>
+<p>Throughout the 2016 presidential campaign, candidate Trump sent tweets from his personal Android phone, while staffers ghost-wrote tweets from an iPhone or web client. This provides us with the labels we need to build our model.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tweets</span> <span class='op'>&lt;-</span> <span class='va'>trump_tweets_df</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span>.id <span class='op'>=</span> <span class='va'>id</span>,
-         .source <span class='op'>=</span> <span class='va'>statusSource</span>,
-         .text <span class='op'>=</span> <span class='va'>text</span>,
-         .created <span class='op'>=</span> <span class='va'>created</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/extract.html'>extract</a></span><span class='op'>(</span><span class='va'>.source</span>, <span class='st'>'.source'</span>, <span class='st'>"Twitter for (.*?)&lt;"</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>.source</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'iPhone'</span>, <span class='st'>'Android'</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>.source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>.source</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='co'># (notice that I'm putting a dot in front of all these</span>
-<span class='co'># column names, on the off chance that words like "source"</span>
-<span class='co'># or "id" appear in the corpus after we tokenize)</span>
-
-<span class='va'>tweets</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>.source</span>, hour <span class='op'>=</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/hour.html'>hour</a></span><span class='op'>(</span><span class='fu'><a href='https://lubridate.tidyverse.org/reference/with_tz.html'>with_tz</a></span><span class='op'>(</span><span class='va'>.created</span>, <span class='st'>"EST"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>percent <span class='op'>=</span> <span class='va'>n</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>hour</span>, <span class='va'>percent</span>, color <span class='op'>=</span> <span class='va'>.source</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>percent_format</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Hour of day (EST)"</span>,
-       y <span class='op'>=</span> <span class='st'>"% of tweets"</span>,
-       color <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>tweets</span> <span class='op'>&lt;-</span> <span class='va'>trump_tweets_df</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span>.id <span class='op'>=</span> <span class='va'>id</span>,</span>
+<span>         .source <span class='op'>=</span> <span class='va'>statusSource</span>,</span>
+<span>         .text <span class='op'>=</span> <span class='va'>text</span>,</span>
+<span>         .created <span class='op'>=</span> <span class='va'>created</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/extract.html'>extract</a></span><span class='op'>(</span><span class='va'>.source</span>, <span class='st'>'.source'</span>, <span class='st'>"Twitter for (.*?)&lt;"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>.source</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'iPhone'</span>, <span class='st'>'Android'</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>.source <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>.source</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># (notice that I'm putting a dot in front of all these</span></span>
+<span><span class='co'># column names, on the off chance that words like "source"</span></span>
+<span><span class='co'># or "id" appear in the corpus after we tokenize)</span></span>
+<span></span>
+<span><span class='va'>tweets</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>.source</span>, hour <span class='op'>=</span> <span class='fu'><a href='https://lubridate.tidyverse.org/reference/hour.html'>hour</a></span><span class='op'>(</span><span class='fu'><a href='https://lubridate.tidyverse.org/reference/with_tz.html'>with_tz</a></span><span class='op'>(</span><span class='va'>.created</span>, <span class='st'>"EST"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>percent <span class='op'>=</span> <span class='va'>n</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>hour</span>, <span class='va'>percent</span>, color <span class='op'>=</span> <span class='va'>.source</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_y_continuous</a></span><span class='op'>(</span>labels <span class='op'>=</span> <span class='fu'>percent_format</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Hour of day (EST)"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"% of tweets"</span>,</span>
+<span>       color <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="supervised-learning_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
 </div>
-<p>Trump is a very productive tweeter in the early morning and late
-evening. Next, let’s tokenize the tweets and convert into a
-document-term matrix. We’ll remove any stray HTML and rare words that
-only get used once or twice in the training set.</p>
+<p>Trump is a very productive tweeter in the early morning and late evening. Next, let’s tokenize the tweets and convert into a document-term matrix. We’ll remove any stray HTML and rare words that only get used once or twice in the training set.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># pick the words to keep as predictors</span>
-<span class='va'>words_to_keep</span> <span class='op'>&lt;-</span> <span class='va'>tweets</span> |&gt;
-  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>input <span class='op'>=</span> <span class='st'>'.text'</span>,
-                output <span class='op'>=</span> <span class='st'>'word'</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span> |&gt;
-  <span class='co'># remove numerals, URLs</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='st'>'.co|.com|.net|.edu|.gov|http'</span>, negate <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='st'>'[0-9]'</span>, negate <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='co'># remove rare words</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>n</span> <span class='op'>&gt;</span> <span class='fl'>2</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span>
-
-<span class='co'># tokenize</span>
-<span class='va'>tidy_tweets</span> <span class='op'>&lt;-</span> <span class='va'>tweets</span> |&gt;
-  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>input <span class='op'>=</span> <span class='st'>'.text'</span>,
-                output <span class='op'>=</span> <span class='st'>'word'</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>word</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='va'>words_to_keep</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>.id</span>, <span class='va'>word</span><span class='op'>)</span> |&gt;
-  <span class='co'># compute term frequencies</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/bind_tf_idf.html'>bind_tf_idf</a></span><span class='op'>(</span>term <span class='op'>=</span> <span class='st'>'word'</span>,
-              document <span class='op'>=</span> <span class='st'>'.id'</span>,
-              n <span class='op'>=</span> <span class='st'>'n'</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>.id</span>, <span class='va'>word</span>, <span class='va'>tf</span><span class='op'>)</span> |&gt;
-  <span class='co'># pivot wider into a document-term matrix</span>
-  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>id_cols <span class='op'>=</span> <span class='st'>'.id'</span>,
-              names_from <span class='op'>=</span> <span class='st'>'word'</span>,
-              values_from <span class='op'>=</span> <span class='st'>'tf'</span>,
-              values_fill <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
-
-<span class='co'># join with the training labels</span>
-<span class='va'>tidy_tweets</span> <span class='op'>&lt;-</span> <span class='va'>tweets</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>.id</span>, <span class='va'>.source</span>, <span class='va'>.created</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>right_join</a></span><span class='op'>(</span><span class='va'>tidy_tweets</span>, by <span class='op'>=</span> <span class='st'>'.id'</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>tidy_tweets</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># pick the words to keep as predictors</span></span>
+<span><span class='va'>words_to_keep</span> <span class='op'>&lt;-</span> <span class='va'>tweets</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>input <span class='op'>=</span> <span class='st'>'.text'</span>,</span>
+<span>                output <span class='op'>=</span> <span class='st'>'word'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># remove numerals, URLs</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='st'>'.co|.com|.net|.edu|.gov|http'</span>, negate <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='st'>'[0-9]'</span>, negate <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># remove rare words</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>n</span> <span class='op'>&gt;</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># tokenize</span></span>
+<span><span class='va'>tidy_tweets</span> <span class='op'>&lt;-</span> <span class='va'>tweets</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>input <span class='op'>=</span> <span class='st'>'.text'</span>,</span>
+<span>                output <span class='op'>=</span> <span class='st'>'word'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>word</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='va'>words_to_keep</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>.id</span>, <span class='va'>word</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># compute term frequencies</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/bind_tf_idf.html'>bind_tf_idf</a></span><span class='op'>(</span>term <span class='op'>=</span> <span class='st'>'word'</span>,</span>
+<span>              document <span class='op'>=</span> <span class='st'>'.id'</span>,</span>
+<span>              n <span class='op'>=</span> <span class='st'>'n'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>.id</span>, <span class='va'>word</span>, <span class='va'>tf</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># pivot wider into a document-term matrix</span></span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>id_cols <span class='op'>=</span> <span class='st'>'.id'</span>,</span>
+<span>              names_from <span class='op'>=</span> <span class='st'>'word'</span>,</span>
+<span>              values_from <span class='op'>=</span> <span class='st'>'tf'</span>,</span>
+<span>              values_fill <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># join with the training labels</span></span>
+<span><span class='va'>tidy_tweets</span> <span class='op'>&lt;-</span> <span class='va'>tweets</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>.id</span>, <span class='va'>.source</span>, <span class='va'>.created</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>right_join</a></span><span class='op'>(</span><span class='va'>tidy_tweets</span>, by <span class='op'>=</span> <span class='st'>'.id'</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>tidy_tweets</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 1382 1156</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tidy_tweets</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>tidy_tweets</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span></span></code></pre>
 </div>
-<pre><code># A tibble: 6 x 5
-  .id           .source .created            makeamericagreatag~     of
-  &lt;chr&gt;         &lt;fct&gt;   &lt;dttm&gt;                            &lt;dbl&gt;  &lt;dbl&gt;
-1 762669882571~ Android 2016-08-08 15:20:44                   0 0     
-2 762641595439~ iPhone  2016-08-08 13:28:20                   0 0     
-3 762439658911~ iPhone  2016-08-08 00:05:54                   0 0     
-4 762425371874~ Android 2016-08-07 23:09:08                   0 0.0556
-5 762400869858~ Android 2016-08-07 21:31:46                   0 0     
-6 762284533341~ Android 2016-08-07 13:49:29                   0 0.0476</code></pre>
+<pre><code># A tibble: 6 × 5
+  .id         .source .created            makeamericagreatagain     of
+  &lt;chr&gt;       &lt;fct&gt;   &lt;dttm&gt;                              &lt;dbl&gt;  &lt;dbl&gt;
+1 7626698825… Android 2016-08-08 15:20:44                     0 0     
+2 7626415954… iPhone  2016-08-08 13:28:20                     0 0     
+3 7624396589… iPhone  2016-08-08 00:05:54                     0 0     
+4 7624253718… Android 2016-08-07 23:09:08                     0 0.0556
+5 7624008698… Android 2016-08-07 21:31:46                     0 0     
+6 7622845333… Android 2016-08-07 13:49:29                     0 0.0476</code></pre>
 </div>
 <h2 id="underfitting-and-overfitting">Underfitting and Overfitting</h2>
-<p>All supervised learning, in a nutshell, is an effort to find the
-sweet spot between a model that is too simple (underfitting) and one
-that is too complex (overfitting). With 1382 documents and 1153 possible
-predictors, there are an enormous number of possible models that we
-could fit.</p>
-<p>To discipline ourselves, it is good practice to split the dataset
-into two parts: the training set, which we use to fit the model, and the
-test set, which we use to evaluate the predictions and see whether we
-did a good job.</p>
+<p>All supervised learning, in a nutshell, is an effort to find the sweet spot between a model that is too simple (underfitting) and one that is too complex (overfitting). With 1382 documents and 1153 possible predictors, there are an enormous number of possible models that we could fit.</p>
+<p>To discipline ourselves, it is good practice to split the dataset into two parts: the training set, which we use to fit the model, and the test set, which we use to evaluate the predictions and see whether we did a good job.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tweet_split</span> <span class='op'>&lt;-</span> <span class='fu'>initial_split</span><span class='op'>(</span><span class='va'>tidy_tweets</span>,
-                             prop <span class='op'>=</span> <span class='fl'>0.8</span><span class='op'>)</span>
-
-<span class='va'>train</span> <span class='op'>&lt;-</span> <span class='fu'>training</span><span class='op'>(</span><span class='va'>tweet_split</span><span class='op'>)</span>
-<span class='va'>test</span> <span class='op'>&lt;-</span> <span class='fu'>testing</span><span class='op'>(</span><span class='va'>tweet_split</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>tweet_split</span> <span class='op'>&lt;-</span> <span class='fu'>initial_split</span><span class='op'>(</span><span class='va'>tidy_tweets</span>,</span>
+<span>                             prop <span class='op'>=</span> <span class='fl'>0.8</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>train</span> <span class='op'>&lt;-</span> <span class='fu'>training</span><span class='op'>(</span><span class='va'>tweet_split</span><span class='op'>)</span></span>
+<span><span class='va'>test</span> <span class='op'>&lt;-</span> <span class='fu'>testing</span><span class='op'>(</span><span class='va'>tweet_split</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>For our first stab at a model, consider what we remember about
-Trump’s tweeting style. Words and phrases that were distinctly Trump
-2016, like “crooked”, “drain the swamp”, or “loser” might help predict
-whether it was him or a staffer doing the tweeting. Let’s fit a logistic
-regression including some of those keywords as predictors.</p>
+<p>For our first stab at a model, consider what we remember about Trump’s tweeting style. Words and phrases that were distinctly Trump 2016, like “crooked”, “drain the swamp”, or “loser” might help predict whether it was him or a staffer doing the tweeting. Let’s fit a logistic regression including some of those keywords as predictors.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>model1</span> <span class='op'>&lt;-</span> <span class='fu'>logistic_reg</span><span class='op'>(</span><span class='op'>)</span> |&gt;
-  <span class='fu'>fit</span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>.source</span> <span class='op'>~</span> <span class='va'>crooked</span> <span class='op'>+</span> <span class='va'>dumb</span> <span class='op'>+</span> <span class='va'>emails</span> <span class='op'>+</span>
-        <span class='va'>crowds</span> <span class='op'>+</span> <span class='va'>hillary</span> <span class='op'>+</span> <span class='va'>winning</span> <span class='op'>+</span> <span class='va'>weak</span>,
-      data <span class='op'>=</span> <span class='va'>train</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>model1</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>model1</span> <span class='op'>&lt;-</span> <span class='fu'>logistic_reg</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>fit</span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>.source</span> <span class='op'>~</span> <span class='va'>crooked</span> <span class='op'>+</span> <span class='va'>dumb</span> <span class='op'>+</span> <span class='va'>emails</span> <span class='op'>+</span></span>
+<span>        <span class='va'>crowds</span> <span class='op'>+</span> <span class='va'>hillary</span> <span class='op'>+</span> <span class='va'>winning</span> <span class='op'>+</span> <span class='va'>weak</span>,</span>
+<span>      data <span class='op'>=</span> <span class='va'>train</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>model1</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 8 x 5
+<pre><code># A tibble: 8 × 5
   term        estimate  std.error statistic p.value
   &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
 1 (Intercept)   -0.112     0.0646  -1.74     0.0820
@@ -2671,49 +2664,39 @@ regression including some of those keywords as predictors.</p>
 7 winning       15.9      17.4      0.910    0.363 
 8 weak        -382.    17063.      -0.0224   0.982 </code></pre>
 </div>
-<p>This is a good start. Many of the words we chose are statistically
-significant predictors. But…</p>
+<p>This is a good start. Many of the words we chose are statistically significant predictors. But…</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># out-of-sample fit</span>
-<span class='va'>test</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model1</span>, <span class='va'>test</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='fu'>accuracy</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># out-of-sample fit</span></span>
+<span><span class='va'>test</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind_cols.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model1</span>, <span class='va'>test</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>accuracy</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 1 x 3
+<pre><code># A tibble: 1 × 3
   .metric  .estimator .estimate
   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
 1 accuracy binary         0.574</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>test</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model1</span>, <span class='va'>test</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='fu'>conf_mat</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>'heatmap'</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>test</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind_cols.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model1</span>, <span class='va'>test</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>conf_mat</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>'heatmap'</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="supervised-learning_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
 </div>
-<p>The model does a terrible job at out-of-sample prediction. Without a
-lot of information to go on (most of the tweets don’t contain one of
-those seven words) it predicts that every tweet but one was written by
-Trump. This is the hallmark of an <em>underfit</em> model: it doesn’t do
-any better than a null model that just predicts the most common class
-for every document.</p>
-<p>What if we tried the opposite strategy, throwing <em>every</em> word
-into the model as a predictor? Would that perform better?</p>
+<p>The model does a terrible job at out-of-sample prediction. Without a lot of information to go on (most of the tweets don’t contain one of those seven words) it predicts that every tweet but one was written by Trump. This is the hallmark of an <em>underfit</em> model: it doesn’t do any better than a null model that just predicts the most common class for every document.</p>
+<p>What if we tried the opposite strategy, throwing <em>every</em> word into the model as a predictor? Would that perform better?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># overfit</span>
-<span class='va'>model2</span> <span class='op'>&lt;-</span> <span class='fu'>logistic_reg</span><span class='op'>(</span><span class='op'>)</span> |&gt;
-  <span class='fu'>fit</span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>.source</span> <span class='op'>~</span> <span class='va'>.</span>,
-      data <span class='op'>=</span> <span class='va'>train</span> |&gt;
-        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>.id</span>, <span class='op'>-</span><span class='va'>.created</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>model2</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># overfit</span></span>
+<span><span class='va'>model2</span> <span class='op'>&lt;-</span> <span class='fu'>logistic_reg</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>fit</span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>.source</span> <span class='op'>~</span> <span class='va'>.</span>,</span>
+<span>      data <span class='op'>=</span> <span class='va'>train</span> <span class='op'>|&gt;</span></span>
+<span>        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>.id</span>, <span class='op'>-</span><span class='va'>.created</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>model2</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 1,154 x 5
+<pre><code># A tibble: 1,154 × 5
    term                  estimate    std.error     statistic p.value
    &lt;chr&gt;                    &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;   &lt;dbl&gt;
  1 (Intercept)           -2.22e16   428433735.    -51876465.       0
@@ -2726,80 +2709,54 @@ into the model as a predictor? Would that perform better?</p>
  8 great                  6.02e16   784001592.     76832385.       0
  9 highly                -1.49e21 44774977456. -33241412991.       0
 10 thank                 -6.91e16  1292951204.    -53466715.       0
-# ... with 1,144 more rows</code></pre>
+# ℹ 1,144 more rows</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># in-sample fit</span>
-<span class='va'>train</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model2</span>, <span class='va'>train</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='fu'>accuracy</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># in-sample fit</span></span>
+<span><span class='va'>train</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind_cols.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model2</span>, <span class='va'>train</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>accuracy</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 1 x 3
+<pre><code># A tibble: 1 × 3
   .metric  .estimator .estimate
   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
 1 accuracy binary         0.918</code></pre>
 </div>
-<p>Clearly, this 1154 parameter model does a great job predicting the
-training set. But how is the prediction accuracy on the held-out test
-set?</p>
+<p>Clearly, this 1154 parameter model does a great job predicting the training set. But how is the prediction accuracy on the held-out test set?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># out-of-sample fit</span>
-<span class='va'>test</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model2</span>, <span class='va'>test</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='fu'>accuracy</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># out-of-sample fit</span></span>
+<span><span class='va'>test</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind_cols.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model2</span>, <span class='va'>test</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>accuracy</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 1 x 3
+<pre><code># A tibble: 1 × 3
   .metric  .estimator .estimate
   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
 1 accuracy binary         0.516</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>test</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model2</span>, <span class='va'>test</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='fu'>conf_mat</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>'heatmap'</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>test</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind_cols.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model2</span>, <span class='va'>test</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>conf_mat</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>'heatmap'</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="supervised-learning_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
 </div>
-<p>This is a hallmark of overfitting. The model is so complex that it is
-mistaking noise for signal, incorporating every random word that gets
-written by Trump of a staffer as a parameter estimate. For example, in
-the training set, there are 14 tweets that use the word “another”, 10 by
-Trump and the rest by staffers. The overfit model takes this as evidence
-that “another” is a Trumpy word. But that’s just a weird eccentricity of
-the training set; in the test set “another” is used more often by
-staffers. As a result, the overfit model actually performs
-<em>worse</em> out-of-sample than the underfit model.</p>
-<p>While we want the model to do a good job minimizing prediction error
-in the training data, we also want to impose some constraint on how many
-words it can assign nonzero coefficients to. This is a job for
-regularization.</p>
-<h2 id="regularization-hitting-the-sweet-spot">Regularization: Hitting
-the Sweet Spot</h2>
-<p>One way to impose a complexity constraint on our logistic regression
-model is with the <a
-href="https://en.wikipedia.org/wiki/Lasso_(statistics)">LASSO</a>. This
-approach estimates a set of coefficients that maximizes the likelihood
-of the data, subject to the constraint that <span
-class="math inline">\(\sum |\beta| &lt; \frac{1}{\lambda}\)</span>. In
-other words, the sum total of the model’s coefficients can’t stray too
-far from zero. Let’s set that penalty term to 0.01 and see how we
-do.</p>
+<p>This is a hallmark of overfitting. The model is so complex that it is mistaking noise for signal, incorporating every random word that gets written by Trump of a staffer as a parameter estimate. For example, in the training set, there are 14 tweets that use the word “another”, 10 by Trump and the rest by staffers. The overfit model takes this as evidence that “another” is a Trumpy word. But that’s just a weird eccentricity of the training set; in the test set “another” is used more often by staffers. As a result, the overfit model actually performs <em>worse</em> out-of-sample than the underfit model.</p>
+<p>While we want the model to do a good job minimizing prediction error in the training data, we also want to impose some constraint on how many words it can assign nonzero coefficients to. This is a job for regularization.</p>
+<h2 id="regularization-hitting-the-sweet-spot">Regularization: Hitting the Sweet Spot</h2>
+<p>One way to impose a complexity constraint on our logistic regression model is with the <a href="https://en.wikipedia.org/wiki/Lasso_(statistics)">LASSO</a>. This approach estimates a set of coefficients that maximizes the likelihood of the data, subject to the constraint that <span class="math inline">\(\sum |\beta| &lt; \frac{1}{\lambda}\)</span>. In other words, the sum total of the model’s coefficients can’t stray too far from zero. Let’s set that penalty term to 0.01 and see how we do.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># fit a regularized model (LASSO)</span>
-<span class='va'>model3</span> <span class='op'>&lt;-</span> <span class='fu'>logistic_reg</span><span class='op'>(</span>penalty <span class='op'>=</span> <span class='fl'>0.01</span>, mixture <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> |&gt;
-  <span class='fu'>set_engine</span><span class='op'>(</span><span class='st'>'glmnet'</span><span class='op'>)</span> |&gt;
-  <span class='fu'>fit</span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>.source</span> <span class='op'>~</span> <span class='va'>.</span>,
-      data <span class='op'>=</span> <span class='va'>train</span> |&gt;
-        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>.id</span>, <span class='op'>-</span><span class='va'>.created</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>model3</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># fit a regularized model (LASSO)</span></span>
+<span><span class='va'>model3</span> <span class='op'>&lt;-</span> <span class='fu'>logistic_reg</span><span class='op'>(</span>penalty <span class='op'>=</span> <span class='fl'>0.01</span>, mixture <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>set_engine</span><span class='op'>(</span><span class='st'>'glmnet'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>fit</span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>.source</span> <span class='op'>~</span> <span class='va'>.</span>,</span>
+<span>      data <span class='op'>=</span> <span class='va'>train</span> <span class='op'>|&gt;</span></span>
+<span>        <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>.id</span>, <span class='op'>-</span><span class='va'>.created</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>model3</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 1,154 x 3
+<pre><code># A tibble: 1,154 × 3
    term                  estimate penalty
    &lt;chr&gt;                    &lt;dbl&gt;   &lt;dbl&gt;
  1 (Intercept)              0.501    0.01
@@ -2812,86 +2769,63 @@ do.</p>
  8 great                   -0.527    0.01
  9 highly                   0        0.01
 10 thank                    9.84     0.01
-# ... with 1,144 more rows</code></pre>
+# ℹ 1,144 more rows</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># in-sample fit</span>
-<span class='va'>train</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model3</span>, <span class='va'>train</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='fu'>accuracy</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># in-sample fit</span></span>
+<span><span class='va'>train</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind_cols.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model3</span>, <span class='va'>train</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>accuracy</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 1 x 3
+<pre><code># A tibble: 1 × 3
   .metric  .estimator .estimate
   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
 1 accuracy binary         0.944</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># out-of-sample fit</span>
-<span class='va'>test</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model3</span>, <span class='va'>test</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='fu'>accuracy</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># out-of-sample fit</span></span>
+<span><span class='va'>test</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind_cols.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model3</span>, <span class='va'>test</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>accuracy</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code># A tibble: 1 x 3
+<pre><code># A tibble: 1 × 3
   .metric  .estimator .estimate
   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
 1 accuracy binary         0.798</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>test</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model3</span>, <span class='va'>test</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='fu'>conf_mat</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>'heatmap'</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>test</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind_cols.html'>bind_cols</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span><span class='op'>(</span><span class='va'>model3</span>, <span class='va'>test</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'>conf_mat</span><span class='op'>(</span>truth <span class='op'>=</span> <span class='va'>.source</span>, estimate <span class='op'>=</span> <span class='va'>.pred_class</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/autoplot.html'>autoplot</a></span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>'heatmap'</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="supervised-learning_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
 </div>
-<p>Regularization is <em>powerful</em> stuff. Not only does the
-regularized model perform much better out-of-sample than the first two
-models, but it gives us a set of 347 nonzero coefficients that we can
-interpret as the most strongly predictive words for whether a tweet was
-written by Trump or not.</p>
+<p>Regularization is <em>powerful</em> stuff. Not only does the regularized model perform much better out-of-sample than the first two models, but it gives us a set of 347 nonzero coefficients that we can interpret as the most strongly predictive words for whether a tweet was written by Trump or not.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>model3</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>estimate</span> <span class='op'>!=</span> <span class='fl'>0</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>estimate</span>,
-                       y <span class='op'>=</span> <span class='fu'><a href='https://forcats.tidyverse.org/reference/fct_reorder.html'>fct_reorder</a></span><span class='op'>(</span><span class='va'>term</span>, <span class='va'>estimate</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>'Most Trumpy &lt; - &gt; Most Staffer-Speak'</span>,
-       y <span class='op'>=</span> <span class='st'>'Term'</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://generics.r-lib.org/reference/tidy.html'>tidy</a></span><span class='op'>(</span><span class='va'>model3</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>estimate</span> <span class='op'>!=</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>estimate</span>,</span>
+<span>                       y <span class='op'>=</span> <span class='fu'><a href='https://forcats.tidyverse.org/reference/fct_reorder.html'>fct_reorder</a></span><span class='op'>(</span><span class='va'>term</span>, <span class='va'>estimate</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>'Most Trumpy &lt; - &gt; Most Staffer-Speak'</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>'Term'</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="supervised-learning_files/figure-html5/unnamed-chunk-10-1.png" width="624" height="2500" /></p>
 </div>
 <h2 id="practice-problems">Practice Problems</h2>
 <ol type="1">
-<li><p>Play around with the penalty hyperparameter until you find a
-better value for than 0.01. See the file
-<code>code/08_supervised-learning/predicting-trump-tweets-chap23.R</code>
-in the code repository for instructions more on tuning models through
-cross-validation with the <code>tidymodels</code> package.</p></li>
-<li><p>Fit a regularized logistic regression to predict whether the
-unattributed Federalist Papers were written by Hamilton or Madison,
-using the stop words document-term matrix we <a
-href="federalist-paper.html">created earlier</a>.</p></li>
+<li><p>Play around with the penalty hyperparameter until you find a better value for than 0.01. See the file <code>code/08_supervised-learning/predicting-trump-tweets-chap23.R</code> in the code repository for instructions more on tuning models through cross-validation with the <code>tidymodels</code> package.</p></li>
+<li><p>Fit a regularized logistic regression to predict whether the unattributed Federalist Papers were written by Hamilton or Madison, using the stop words document-term matrix we <a href="federalist-paper.html">created earlier</a>.</p></li>
 </ol>
 <h2 id="further-reading">Further Reading</h2>
 <ul>
-<li>David Robinson’s <a
-href="http://varianceexplained.org/r/trump-tweets/">original
-post</a>.</li>
-<li>Hvitfeldt &amp; Silge (2022), particularly <a
-href="https://smltar.com/mlclassification.html">Chapter 7</a></li>
+<li>David Robinson’s <a href="http://varianceexplained.org/r/trump-tweets/">original post</a>.</li>
+<li>Hvitfeldt &amp; Silge (2022), particularly <a href="https://smltar.com/mlclassification.html">Chapter 7</a></li>
 <li>Grimmer, Stewart &amp; Roberts, Chapters 17-19</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
-<div id="refs" class="references csl-bib-body hanging-indent"
-role="doc-bibliography">
-<div id="ref-grimmerTextDataNew2022" class="csl-entry"
-role="doc-biblioentry">
-Grimmer, Justin, Margaret E. Roberts, and Brandon M. Stewart. 2022.
-<em>Text as Data: A New Framework for Machine Learning and the Social
-Sciences</em>. Princeton, New Jersey Oxford: Princeton University Press.
+<div class="sourceCode" id="cb12"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-grimmerTextDataNew2022" class="csl-entry" role="doc-biblioentry">
+Grimmer, Justin, Margaret E. Roberts, and Brandon M. Stewart. 2022. <em>Text as Data: A New Framework for Machine Learning and the Social Sciences</em>. Princeton, New Jersey Oxford: Princeton University Press.
 </div>
 </div>
 <!--radix_placeholder_article_footer-->

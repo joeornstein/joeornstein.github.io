@@ -88,7 +88,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>Text As Data: Application Programming Interfaces</title>
+  <title>Text As Data: Application Programming Interfaces (APIs)</title>
 
   <meta property="description" itemprop="description" content="When webscraping is too difficult and/or impolite"/>
 
@@ -96,7 +96,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Text As Data: Application Programming Interfaces"/>
+  <meta property="og:title" content="Text As Data: Application Programming Interfaces (APIs)"/>
   <meta property="og:type" content="article"/>
   <meta property="og:description" content="When webscraping is too difficult and/or impolite"/>
   <meta property="og:locale" content="en_US"/>
@@ -104,14 +104,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Text As Data: Application Programming Interfaces"/>
+  <meta property="twitter:title" content="Text As Data: Application Programming Interfaces (APIs)"/>
   <meta property="twitter:description" content="When webscraping is too difficult and/or impolite"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["Application Programming Interfaces"]},{"type":"character","attributes":{},"value":["When webscraping is too difficult and/or impolite"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["Application Programming Interfaces (APIs)"]},{"type":"character","attributes":{},"value":["When webscraping is too difficult and/or impolite"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2405,7 +2405,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Application Programming Interfaces","description":"When webscraping is too difficult and/or impolite","authors":[]}
+{"title":"Application Programming Interfaces (APIs)","description":"When webscraping is too difficult and/or impolite","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2422,7 +2422,7 @@ Harvest the Text
 </button>
 <div class="nav-dropdown-content">
 <a href="webscraping.html">Webscraping</a>
-<a href="apis.html">APIs</a>
+<a href="APIs.html">APIs</a>
 <a href="OCR.html">Optical Character Recognition</a>
 </div>
 </div>
@@ -2450,6 +2450,7 @@ Model the Text
 <a href="LDA.html">Topic Models</a>
 <a href="sentiment-analysis.html">Sentiment Analysis</a>
 <a href="supervised-learning.html">Supervised Learning</a>
+<a href="LLMs.html">Large Language Models</a>
 </div>
 </div>
 </div>
@@ -2471,7 +2472,7 @@ Model the Text
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Application Programming Interfaces</h1>
+<h1>Application Programming Interfaces (APIs)</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 <p><p>When webscraping is too difficult and/or impolite</p></p>
@@ -2764,17 +2765,12 @@ SECTION 11000. SHORT TITLE, ETC.
 <h3 id="step-1-get-the-video-id">Step 1: Get the video ID</h3>
 <p>Suppose we want the transcript of this YouTube video:</p>
 <div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/include_url.html'>include_url</a></span><span class='op'>(</span><span class='st'>'https://www.youtube.com/watch?v=mLyOj_QD4a4'</span><span class='op'>)</span></span></code></pre>
-</div>
-<iframe src="https://www.youtube.com/watch?v=mLyOj_QD4a4" width="624" height="400px" data-external="1">
+<iframe src="https://www.youtube.com/embed/mLyOj_QD4a4?si=K6GPbav85zny_OeB" width="624" height="400px" data-external="1">
 </iframe>
 </div>
-<p>Note that the quality of these auto-generated transcripts can vary significantly, depending on audio quality. You can click the CC button in the bottom right of the video to get a sense of the quality of the closed captions.</p>
-<p>To get the transcript of this video, we’ll need the video ID, which you can find at the end of the video’s URL (e.g. the bolded text here):</p>
-<blockquote>
+<p>You can click the CC button in the bottom right of the video to see YouTube’s auto-generated transcript. Note that the quality of these transcripts can vary significantly, depending on the quality of the audio.</p>
+<p>To get the transcript using <code>R</code>, we’ll need the video ID, which you can find at the end of the video’s URL (the bolded text here):</p>
 <p><a href="https://www.youtube.com/watch?v=" class="uri">https://www.youtube.com/watch?v=</a><strong>mLyOj_QD4a4</strong></p>
-</blockquote>
 <h3 id="step-2-create-a-python-object">Step 2: Create a Python object</h3>
 <p>Next, we’ll <em>import</em> the Python module, creating an object called <code>youtubecaption</code>.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2856,19 +2852,21 @@ $duration
 </div>
 </div>
 <p>Notice that I’ve written this function with two inputs: the video ID and an option to create transcripts for videos in different languages. For a list of available language codes, see the ISO 639-1 column <a href="https://www.loc.gov/standards/iso639-2/php/code_list.php">here</a>.</p>
-<p>To verify that the function works, let’s pull the transcript of the <a href="https://www.youtube.com/watch?v=gzcBTUvVp7M">2023 State of the Union Address</a>:</p>
+<p>To verify that the function works, let’s pull the transcript of the <a href="https://www.youtube.com/watch?v=gzcBTUvVp7M">2023 State of the Union Address</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>sotu_transcript</span> <span class='op'>&lt;-</span> <span class='fu'>get_youtube_transcript</span><span class='op'>(</span>video_id <span class='op'>=</span> <span class='st'>'gzcBTUvVp7M'</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='fu'><a href='https://rdrr.io/r/base/substr.html'>substr</a></span><span class='op'>(</span><span class='va'>sotu_transcript</span>, <span class='fl'>1</span>, <span class='fl'>1000</span><span class='op'>)</span></span></code></pre>
+<span><span class='va'>sotu_transcript</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/base/substr.html'>substr</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>1000</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>[1] &quot; foreign Mr Speaker the president of the United States [Applause] thank you [Applause] foreign foreign [Applause] foreign foreign [Applause] [Applause] foreign [Applause] members of Congress I have the high privilege and the distinct honor to present to you the president of the United States Mr Speaker thank you you can smile it&#39;s okay thank you thank you thank you thank you please Mr Speaker Madam vice president our first lady and second gentleman good to see you guys up there members of Congress by the way chief justice I may need a court order she gets to go to the the game tomorrow next week I have to stay home got to work something out here members of the cabinet leaders of our military chief justice associate Justice and retired Justice Supreme Court and to you my fellow Americans you know I start tonight by congratulating 118th Congress and the new Speaker of the House Kevin McCarthy speaker I don&#39;t want to ruin your reputation but I look forward to working with you and I want t&quot;</code></pre>
+<pre><code> foreign Mr Speaker the president of the United States [Applause] thank you [Applause] foreign foreign [Applause] foreign foreign [Applause] [Applause] foreign [Applause] members of Congress I have the high privilege and the distinct honor to present to you the president of the United States Mr Speaker thank you you can smile it&#39;s okay thank you thank you thank you thank you please Mr Speaker Madam vice president our first lady and second gentleman good to see you guys up there members of Congress by the way chief justice I may need a court order she gets to go to the the game tomorrow next week I have to stay home got to work something out here members of the cabinet leaders of our military chief justice associate Justice and retired Justice Supreme Court and to you my fellow Americans you know I start tonight by congratulating 118th Congress and the new Speaker of the House Kevin McCarthy speaker I don&#39;t want to ruin your reputation but I look forward to working with you and I want t</code></pre>
 </div>
 <h2 id="practice-problems">Practice Problems</h2>
 <ol type="1">
 <li><p>Get the full text of the <a href="https://www.congress.gov/bill/111th-congress/house-bill/3590">Patient Protection and Affordable Care Act (2010)</a>.</p></li>
-<li><p>Using the <code>get_bill_text()</code> function we created, create a dataframe where each row is a bill, and include columns for <code>congress</code>, <code>billType</code>, <code>billNumber</code>, and <code>full_text</code>. Collect the full text for at least 10 bills.</p></li>
+<li><p>Create a dataframe with information on several Congressional bills, including columns for <code>congress</code>, <code>billType</code>, <code>billNumber</code>, and <code>full_text</code>. Using the <code>get_bill_text()</code> function we created, collect the full text for at least 10 bills in this dataframe.</p></li>
 <li><p>Create a function to get the Congressional Research Service’s <em>summary</em> of a bill from the congress.gov API. You’ll need to check the documentation to figure out how to format the URL for the correct API endpoint.</p></li>
 <li><p>The <a href="bag-of-words.html">sotu</a> package is missing some of the most recent State of the Union addresses. See if you can collect their transcripts through YouTube. How is the quality of those transcripts?</p></li>
 </ol>

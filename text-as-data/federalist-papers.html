@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -129,9 +130,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_meta_tags-->
   
-  <meta name="citation_reference" content="citation_title=Text as data: A new framework for machine learning and the social sciences.;citation_publication_date=2021;citation_publisher=Princeton University Press;citation_author=Justin Grimmer;citation_author=Brandon M. Stewart;citation_author=Margaret E. Roberts"/>
-  <meta name="citation_reference" content="citation_title=Inference and disputed authorship: The federalist;citation_publication_date=1964;citation_publisher=Addison-Wesley;citation_author=Frederick Mosteller;citation_author=David L. Wallace"/>
-  <meta name="citation_reference" content="citation_title=Quantitative social science: An introduction;citation_publication_date=2017;citation_publisher=Princeton University Press;citation_author=Kosuke Imai"/>
+  <meta name="citation_reference" content="citation_title=Text as data: A new framework for machine learning and the social sciences.;citation_publisher=Princeton University Press;citation_author=Justin Grimmer;citation_author=Brandon M. Stewart;citation_author=Margaret E. Roberts"/>
+  <meta name="citation_reference" content="citation_title=Inference and disputed authorship: The federalist;citation_publisher=Addison-Wesley;citation_author=Frederick Mosteller;citation_author=David L. Wallace"/>
+  <meta name="citation_reference" content="citation_title=Quantitative social science: An introduction;citation_publisher=Princeton University Press;citation_author=Kosuke Imai"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
@@ -813,6 +814,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
 
   .html-widget {
@@ -1054,10 +1056,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
-  }
-
-  .figure img {
-    width: 100%;
   }
 
   .figure .caption {
@@ -1889,9 +1887,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -1903,6 +1913,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -2002,6 +2037,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -2024,7 +2061,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2373,8 +2410,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
-  <script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+  <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+  <script src="site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
   <link href="site_libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
   <script src="site_libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
   <script src="site_libs/wordcloud2-0.0.1/hover.js"></script>
@@ -2415,7 +2452,7 @@ Harvest the Text
 </button>
 <div class="nav-dropdown-content">
 <a href="webscraping.html">Webscraping</a>
-<a href="twitter-api.html">APIs</a>
+<a href="APIs.html">APIs</a>
 <a href="OCR.html">Optical Character Recognition</a>
 </div>
 </div>
@@ -2443,6 +2480,7 @@ Model the Text
 <a href="LDA.html">Topic Models</a>
 <a href="sentiment-analysis.html">Sentiment Analysis</a>
 <a href="supervised-learning.html">Supervised Learning</a>
+<a href="LLMs.html">Large Language Models</a>
 </div>
 </div>
 </div>
@@ -2476,623 +2514,514 @@ Model the Text
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#multinomial-model" id="toc-multinomial-model">Multinomial
-Model</a></li>
-<li><a href="#vector-space-model" id="toc-vector-space-model">Vector
-Space Model</a></li>
-<li><a href="#validation-validation-validation"
-id="toc-validation-validation-validation">Validation, Validation,
-Validation</a></li>
-<li><a href="#practice-problems" id="toc-practice-problems">Practice
-Problems</a></li>
+<li><a href="#get-the-data" id="toc-get-the-data">Get The Data</a></li>
+<li><a href="#multinomial-model" id="toc-multinomial-model">Multinomial Model</a></li>
+<li><a href="#vector-space-model" id="toc-vector-space-model">Vector Space Model</a></li>
+<li><a href="#validation-validation-validation" id="toc-validation-validation-validation">Validation, Validation, Validation</a></li>
+<li><a href="#practice-problems" id="toc-practice-problems">Practice Problems</a></li>
 </ul>
 </nav>
 </div>
-<p>A great entry point for modeling text as data is the now classic
-problem of guessing who wrote 15 disputed Federalist Papers <span
-class="citation"
-data-cites="mostellerInferenceDisputedAuthorship1964">(<a
-href="#ref-mostellerInferenceDisputedAuthorship1964"
-role="doc-biblioref">Mosteller and Wallace 1964</a>)</span>. To do so,
-we’ll look at the distribution of words that Hamilton, Madison, and Jay
-tend to write and try to detect their stylistic patterns in the disputed
-texts. We’ll use two approaches, outlined in <span class="citation"
-data-cites="grimmerTextDataNew2021">Grimmer, Stewart, and Roberts (<a
-href="#ref-grimmerTextDataNew2021" role="doc-biblioref">2021</a>)</span>
-Chapters 6 and 7: the multinomial model and the vector space model.</p>
+<p>A great entry point for modeling text as data is the now classic problem of guessing who wrote 15 disputed Federalist Papers <span class="citation" data-cites="mostellerInferenceDisputedAuthorship1964">(<a href="#ref-mostellerInferenceDisputedAuthorship1964" role="doc-biblioref">Mosteller and Wallace 1964</a>)</span>. To do so, we’ll look at the distribution of words that Hamilton, Madison, and Jay tend to write and try to detect their stylistic patterns in the disputed texts. We’ll use two approaches, outlined in <span class="citation" data-cites="grimmerTextDataNew2021">Grimmer, Stewart, and Roberts (<a href="#ref-grimmerTextDataNew2021" role="doc-biblioref">2021</a>)</span> Chapters 6 and 7: the multinomial model and the vector space model.</p>
+<h2 id="get-the-data">Get The Data</h2>
+<p>We’ll start by <a href="webscraping.html">scraping</a> the Federalist Paper corpus from Project Gutenberg.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/juliasilge/tidytext'>tidytext</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rvest.tidyverse.org/'>rvest</a></span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># read the raw HTML</span></span>
+<span><span class='va'>page</span> <span class='op'>&lt;-</span> <span class='fu'><a href='http://xml2.r-lib.org/reference/read_xml.html'>read_html</a></span><span class='op'>(</span><span class='st'>'https://www.gutenberg.org/cache/epub/18/pg18-images.html'</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># get all the chapters</span></span>
+<span><span class='va'>chapters</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rvest.tidyverse.org/reference/html_element.html'>html_elements</a></span><span class='op'>(</span><span class='va'>page</span>, <span class='st'>'.chapter'</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># get just the text from each chapter</span></span>
+<span><span class='va'>text</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rvest.tidyverse.org/reference/html_text.html'>html_text2</a></span><span class='op'>(</span><span class='va'>chapters</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># get rid of the slightly different version of Federalist 70</span></span>
+<span><span class='va'>d</span> <span class='op'>&lt;-</span> <span class='va'>d</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>text</span>, <span class='st'>'slightly different version'</span>, negate <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># create a column for the title and attributed author</span></span>
+<span><span class='va'>d</span> <span class='op'>&lt;-</span> <span class='va'>d</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>author <span class='op'>=</span> <span class='va'>text</span> <span class='op'>|&gt;</span></span>
+<span>           <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_extract.html'>str_extract</a></span><span class='op'>(</span><span class='st'>'HAMILTON AND MADISON|HAMILTON OR MADISON|HAMILTON|MADISON|JAY'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>           <span class='fu'><a href='https://stringr.tidyverse.org/reference/case.html'>str_to_title</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
+<span>         title <span class='op'>=</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_extract.html'>str_extract</a></span><span class='op'>(</span><span class='va'>text</span>, <span class='st'>'No. [A-Z].*'</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
 <h2 id="multinomial-model">Multinomial Model</h2>
-<p>To motivate this model, suppose that each author owns a literal bag
-of words. When they are writing, they randomly draw each word from the
-bag, replacing it when they’re done writing it down. Evidently,
-Alexander Hamilton’s word bag has a <em>lot</em> of the word “upon”.</p>
+<p>To motivate this model, suppose that each author owns a literal bag of words. When they are writing, they randomly draw each word from the bag, replacing it when they’re done writing it down. Evidently, Alexander Hamilton’s word bag has a <em>lot</em> of the word “upon”.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/juliasilge/tidytext'>tidytext</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/lchiffon/wordcloud2'>wordcloud2</a></span><span class='op'>)</span>
-
-<span class='va'>tidy_federalist</span> <span class='op'>&lt;-</span> <span class='fu'>corpus</span><span class='fu'>::</span><span class='va'><a href='https://leslie-huang.github.io/r-corpus/reference/federalist.html'>federalist</a></span> |&gt; 
-  <span class='co'># tokenize to the word level</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>input <span class='op'>=</span> <span class='st'>'text'</span>,
-                output <span class='op'>=</span> <span class='st'>'word'</span><span class='op'>)</span>
-
-<span class='co'># keep only a selection of stop words</span>
-<span class='va'>interesting_words</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'although'</span>, <span class='st'>'always'</span>, 
-                     <span class='st'>'commonly'</span>, <span class='st'>'consequently'</span>,
-                     <span class='st'>'considerable'</span>, <span class='st'>'heretofore'</span>, 
-                     <span class='st'>'upon'</span>, <span class='st'>'whilst'</span><span class='op'>)</span>
-
-<span class='va'>tidy_federalist</span> <span class='op'>&lt;-</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>tidy_federalist</span>,
-                         <span class='va'>word</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='va'>interesting_words</span><span class='op'>)</span>
-
-<span class='va'>tidy_federalist</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>author</span> <span class='op'>==</span> <span class='st'>'Hamilton'</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://rdrr.io/pkg/wordcloud2/man/wordcloud2.html'>wordcloud2</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>tidy_federalist</span> <span class='op'>&lt;-</span> <span class='va'>d</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='co'># tokenize to the word level</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>input <span class='op'>=</span> <span class='st'>'text'</span>,</span>
+<span>                output <span class='op'>=</span> <span class='st'>'word'</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># keep only a selection of stop words</span></span>
+<span><span class='va'>interesting_words</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'although'</span>, <span class='st'>'always'</span>, </span>
+<span>                     <span class='st'>'commonly'</span>, <span class='st'>'consequently'</span>,</span>
+<span>                     <span class='st'>'considerable'</span>, <span class='st'>'heretofore'</span>, </span>
+<span>                     <span class='st'>'upon'</span>, <span class='st'>'whilst'</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>tidy_federalist</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>tidy_federalist</span>,</span>
+<span>                          <span class='va'>word</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='va'>interesting_words</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/lchiffon/wordcloud2'>wordcloud2</a></span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>tidy_federalist</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>author</span> <span class='op'>==</span> <span class='st'>'Hamilton'</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/wordcloud2/man/wordcloud2.html'>wordcloud2</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
-<div id="htmlwidget-ddc637bc875371cf35fe" style="width:624px;height:384px;" class="wordcloud2 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ddc637bc875371cf35fe">{"x":{"word":["although","always","commonly","consequently","considerable","heretofore","upon","whilst"],"freq":[1,62,23,4,46,13,374,1],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":0.481283422459893,"backgroundColor":"white","gridSize":0,"minRotation":-0.785398163397448,"maxRotation":0.785398163397448,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+<div class="wordcloud2 html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-aa79d2eb3c59ea0e2cd4" style="width:624px;height:384px;"></div>
+<script type="application/json" data-for="htmlwidget-aa79d2eb3c59ea0e2cd4">{"x":{"word":["although","always","commonly","consequently","considerable","heretofore","upon","whilst"],"freq":[1,62,23,4,46,13,374,1],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":0.481283422459893,"backgroundColor":"white","gridSize":0,"minRotation":-0.7853981633974483,"maxRotation":0.7853981633974483,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
 </div>
-<p>By comparison, James Madison’s bag of words has relatively more
-“whilst”.</p>
+<p>By comparison, James Madison’s bag of words has relatively more “whilst”.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tidy_federalist</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>author</span> <span class='op'>==</span> <span class='st'>'Madison'</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>tidy_federalist</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>author</span> <span class='op'>==</span> <span class='st'>'Madison'</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>  word          n
-1 although      7
-2 always        7
-3 consequently 12
-4 considerable  5
-5 heretofore    1
-6 upon          7
-7 whilst       12</code></pre>
+<pre><code># A tibble: 7 × 2
+  word             n
+  &lt;chr&gt;        &lt;int&gt;
+1 although         8
+2 always           7
+3 consequently    13
+4 considerable     5
+5 heretofore       1
+6 upon             7
+7 whilst          12</code></pre>
 </div>
-<p>Obviously this model leaves out a lot of detail about how authors
-actually write. It ignores word order, syntax, meaning, context, and
-intent. But for certain questions, such a simplified model may
-nevertheless prove useful. Let’s consider Federalist Paper No. 18,
-counting the frequency of “upon”, “whilst”, and the other interesting
-stop words listed above.<a href="#fn1" class="footnote-ref" id="fnref1"
-role="doc-noteref"><sup>1</sup></a></p>
+<p>Obviously this model leaves out a lot of detail about how authors actually write. It ignores word order, syntax, meaning, context, and intent. But for certain questions, such a simplified model may nevertheless prove useful. Let’s consider Federalist Paper No. 18, counting the frequency of “upon”, “whilst”, and the other interesting stop words listed above.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tidy_federalist</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>name</span> <span class='op'>==</span> <span class='st'>'Federalist No. 18'</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>tidy_federalist</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>title</span> <span class='op'>==</span> <span class='st'>'No. XVIII.'</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>  word         n
-1 always       1
-2 considerable 1
-3 upon         1
-4 whilst       1</code></pre>
+<pre><code># A tibble: 4 × 2
+  word             n
+  &lt;chr&gt;        &lt;int&gt;
+1 always           1
+2 considerable     1
+3 upon             1
+4 whilst           1</code></pre>
 </div>
-<p>What’s the likelihood that this set of word counts would have been
-generated by random draws from Hamilton’s bag of words, compared to
-Madison’s or Jay’s? (What’s the chance that Hamilton would have written
-a paper with so few “upon”s?) To estimate, we’ll first compute the word
-vectors for each author and for the disputed paper.</p>
+<p>What’s the likelihood that this set of word counts would have been generated by random draws from Hamilton’s bag of words, compared to Madison’s or Jay’s? (What’s the chance that Hamilton would have written a paper with so few “upon”s?) To estimate, we’ll first compute the word vectors for each author and for the disputed paper.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># get the frequencies of the interesting words in each author's corpus</span>
-<span class='va'>bags_of_words</span> <span class='op'>&lt;-</span> <span class='va'>tidy_federalist</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>author</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Hamilton'</span>, <span class='st'>'Madison'</span>, <span class='st'>'Jay'</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='co'># convert these to factors so count() doesn't drop the zero counts</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>author <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>author</span><span class='op'>)</span>,
-         word <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>author</span>, <span class='va'>word</span>, .drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> |&gt;
-  <span class='co'># sort the words in alphabetical order</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='va'>author</span>, <span class='va'>word</span><span class='op'>)</span>
-
-<span class='co'># pull the vectors for Hamilton, Madison, and Jay</span>
-<span class='va'>hamilton_vector</span> <span class='op'>&lt;-</span> <span class='va'>bags_of_words</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>author</span> <span class='op'>==</span> <span class='st'>'Hamilton'</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> |&gt;
-  <span class='co'># add names to make the vector more readable</span>
-  <span class='fu'><a href='https://purrr.tidyverse.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='va'>interesting_words</span><span class='op'>)</span>
-
-<span class='va'>hamilton_vector</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># get the frequencies of the interesting words in each author's corpus</span></span>
+<span><span class='va'>bags_of_words</span> <span class='op'>&lt;-</span> <span class='va'>tidy_federalist</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>author</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Hamilton'</span>, <span class='st'>'Madison'</span>, <span class='st'>'Jay'</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># convert these to factors so count() doesn't drop the zero counts</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>author <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>author</span><span class='op'>)</span>,</span>
+<span>         word <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>author</span>, <span class='va'>word</span>, .drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># sort the words in alphabetical order</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='va'>author</span>, <span class='va'>word</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># pull the vectors for Hamilton, Madison, and Jay</span></span>
+<span><span class='va'>hamilton_vector</span> <span class='op'>&lt;-</span> <span class='va'>bags_of_words</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>author</span> <span class='op'>==</span> <span class='st'>'Hamilton'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># add names to make the vector more readable</span></span>
+<span>  <span class='fu'><a href='https://rlang.r-lib.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='va'>interesting_words</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>hamilton_vector</span></span></code></pre>
 </div>
 <pre><code>    although       always     commonly consequently considerable 
            1           62           23            4           46 
   heretofore         upon       whilst 
           13          374            1 </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>madison_vector</span> <span class='op'>&lt;-</span> <span class='va'>bags_of_words</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>author</span> <span class='op'>==</span> <span class='st'>'Madison'</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> |&gt;
-  <span class='co'># add names to make the vector more readable</span>
-  <span class='fu'><a href='https://purrr.tidyverse.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='va'>interesting_words</span><span class='op'>)</span>
-
-<span class='va'>madison_vector</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>madison_vector</span> <span class='op'>&lt;-</span> <span class='va'>bags_of_words</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>author</span> <span class='op'>==</span> <span class='st'>'Madison'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># add names to make the vector more readable</span></span>
+<span>  <span class='fu'><a href='https://rlang.r-lib.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='va'>interesting_words</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>madison_vector</span></span></code></pre>
 </div>
 <pre><code>    although       always     commonly consequently considerable 
-           7            7            0           12            5 
+           8            7            0           13            5 
   heretofore         upon       whilst 
            1            7           12 </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>jay_vector</span> <span class='op'>&lt;-</span> <span class='va'>bags_of_words</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>author</span> <span class='op'>==</span> <span class='st'>'Jay'</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> |&gt;
-  <span class='co'># add names to make the vector more readable</span>
-  <span class='fu'><a href='https://purrr.tidyverse.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='va'>interesting_words</span><span class='op'>)</span>
-
-<span class='va'>jay_vector</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>jay_vector</span> <span class='op'>&lt;-</span> <span class='va'>bags_of_words</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>author</span> <span class='op'>==</span> <span class='st'>'Jay'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># add names to make the vector more readable</span></span>
+<span>  <span class='fu'><a href='https://rlang.r-lib.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='va'>interesting_words</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>jay_vector</span></span></code></pre>
 </div>
 <pre><code>    although       always     commonly consequently considerable 
            5            8            1            4            1 
   heretofore         upon       whilst 
            1            1            0 </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># now get the vector for Federalist No. 18</span>
-<span class='va'>fed18_vector</span> <span class='op'>&lt;-</span> <span class='va'>tidy_federalist</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>word <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>name</span> <span class='op'>==</span> <span class='st'>'Federalist No. 18'</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, .drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> |&gt;
-  <span class='co'># add names to make the vector more readable</span>
-  <span class='fu'><a href='https://purrr.tidyverse.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='va'>interesting_words</span><span class='op'>)</span>
-
-<span class='va'>fed18_vector</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># now get the vector for Federalist No. 18</span></span>
+<span><span class='va'>fed18_vector</span> <span class='op'>&lt;-</span> <span class='va'>tidy_federalist</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>word <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>title</span> <span class='op'>==</span> <span class='st'>'No. XVIII.'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, .drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># add names to make the vector more readable</span></span>
+<span>  <span class='fu'><a href='https://rlang.r-lib.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='va'>interesting_words</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>fed18_vector</span></span></code></pre>
 </div>
 <pre><code>    although       always     commonly consequently considerable 
            0            1            0            0            1 
   heretofore         upon       whilst 
            0            1            1 </code></pre>
 </div>
-<p>Next we’ll use the <code>dmultinom()</code> function to estimate the
-likelihood that the <code>fed18_vector</code> would have been drawn from
-each of the authors’ bags of words.</p>
+<p>Next we’ll use the <code>dmultinom()</code> function to estimate the likelihood that the <code>fed18_vector</code> would have been drawn from each of the authors’ bags of words.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed18_vector</span>,
-          prob <span class='op'>=</span> <span class='va'>hamilton_vector</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed18_vector</span>,</span>
+<span>          prob <span class='op'>=</span> <span class='va'>hamilton_vector</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0.0003395527</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed18_vector</span>,
-          prob <span class='op'>=</span> <span class='va'>madison_vector</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed18_vector</span>,</span>
+<span>          prob <span class='op'>=</span> <span class='va'>madison_vector</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>[1] 0.01042985</code></pre>
+<pre><code>[1] 0.008942421</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed18_vector</span>,
-          prob <span class='op'>=</span> <span class='va'>jay_vector</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed18_vector</span>,</span>
+<span>          prob <span class='op'>=</span> <span class='va'>jay_vector</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0</code></pre>
 </div>
-<p>The computation above makes a very strong assumption about Jay:
-because he never uses the word “whilst” in any of his Federalist papers,
-we assume that he would <em>never</em> <em>ever</em> use the word whilst
-in another paper. We can do better by regularizing our estimates, adding
-a small positive number to each vector (Laplace smoothing) to encode the
-possibility that Jay might someday use the word “whilst”, even if we’ve
-never seen him do it.</p>
+<p>The computation above makes a very strong assumption about Jay: because he never uses the word “whilst” in any of his Federalist papers, we assume that he would <em>never</em> <em>ever</em> use the word whilst in another paper. We can do better by regularizing our estimates, adding a small positive number to each vector (Laplace smoothing) to encode the possibility that Jay might someday use the word “whilst”, even if we’ve never seen him do it.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>hamilton_likelihood</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed18_vector</span>,
-                                 prob <span class='op'>=</span> <span class='va'>hamilton_vector</span> <span class='op'>+</span> <span class='fl'>0.1</span><span class='op'>)</span>
-
-<span class='va'>madison_likelihood</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed18_vector</span>,
-                                prob <span class='op'>=</span> <span class='va'>madison_vector</span> <span class='op'>+</span> <span class='fl'>0.1</span><span class='op'>)</span>
-
-<span class='va'>jay_likelihood</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed18_vector</span>,
-                            prob <span class='op'>=</span> <span class='va'>jay_vector</span> <span class='op'>+</span> <span class='fl'>0.1</span><span class='op'>)</span>
-
-<span class='co'># likelihood ratios</span>
-<span class='va'>madison_likelihood</span> <span class='op'>/</span> <span class='va'>hamilton_likelihood</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>hamilton_likelihood</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed18_vector</span>,</span>
+<span>                                 prob <span class='op'>=</span> <span class='va'>hamilton_vector</span> <span class='op'>+</span> <span class='fl'>0.1</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>madison_likelihood</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed18_vector</span>,</span>
+<span>                                prob <span class='op'>=</span> <span class='va'>madison_vector</span> <span class='op'>+</span> <span class='fl'>0.1</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>jay_likelihood</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed18_vector</span>,</span>
+<span>                            prob <span class='op'>=</span> <span class='va'>jay_vector</span> <span class='op'>+</span> <span class='fl'>0.1</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># likelihood ratios</span></span>
+<span><span class='va'>madison_likelihood</span> <span class='op'>/</span> <span class='va'>hamilton_likelihood</span></span></code></pre>
 </div>
-<pre><code>[1] 27.8199</code></pre>
+<pre><code>[1] 23.90813</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>madison_likelihood</span> <span class='op'>/</span> <span class='va'>jay_likelihood</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>madison_likelihood</span> <span class='op'>/</span> <span class='va'>jay_likelihood</span></span></code></pre>
 </div>
-<pre><code>[1] 99.56548</code></pre>
+<pre><code>[1] 85.56551</code></pre>
 </div>
-<p>Since this paper is roughly 28 times more likely to have been
-generated from Madison’s bag of words over Hamilton’s (and roughly 100
-times more likely than Jay’s), we can conclude with some degree of
-confidence that he was the author.</p>
+<p>Since this paper is roughly 24 times more likely to have been generated from Madison’s bag of words over Hamilton’s (and roughly 86 times more likely than Jay’s), we can conclude with some degree of confidence that he was the author.</p>
 <h2 id="vector-space-model">Vector Space Model</h2>
-<p>Another way to model the bag of words is to think of each set of word
-counts as a multidimensional vector. The angle between two such vectors
-gives us a sense of the two documents’ similarity to one another. If the
-angle is zero, then both documents have the exact same mix of words
-(though maybe one document is longer than the other). If the angle is 90
-degrees, then the two documents are <em>orthogonal</em> – as different a
-mix of words as they possibly could be.</p>
-<p>Cosine similarity captures this idea, because the cosine of 90
-degrees is zero, and the cosine of 0 degrees is 1. Let’s compute the
-cosine similarity between Madison, Hamilton, and Jay’s known writings
-with the term vector from the disputed Federalist No. 18.</p>
+<p>Another way to model the bag of words is to think of each set of word counts as a multidimensional vector. The angle between two such vectors gives us a sense of the two documents’ similarity to one another. If the angle is zero, then both documents have the exact same mix of words (though maybe one document is longer than the other). If the angle is 90 degrees, then the two documents are <em>orthogonal</em> – as different a mix of words as they possibly could be.</p>
+<p>Cosine similarity captures this idea, because the cosine of 90 degrees is zero, and the cosine of 0 degrees is 1. Let’s compute the cosine similarity between Madison, Hamilton, and Jay’s known writings with the term vector from the disputed Federalist No. 18.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># define cosine similarity</span>
-<span class='va'>cosine_similarity</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x1</span>, <span class='va'>x2</span><span class='op'>)</span><span class='op'>{</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>x1</span><span class='op'>*</span><span class='va'>x2</span><span class='op'>)</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>x1</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>x2</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-<span class='co'># get the cosine similarity for Federalist 18 with all the authors</span>
-<span class='fu'>cosine_similarity</span><span class='op'>(</span><span class='va'>fed18_vector</span>, <span class='va'>hamilton_vector</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># define cosine similarity</span></span>
+<span><span class='va'>cosine_similarity</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x1</span>, <span class='va'>x2</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>x1</span><span class='op'>*</span><span class='va'>x2</span><span class='op'>)</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>x1</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>x2</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='op'>}</span></span>
+<span></span>
+<span><span class='co'># get the cosine similarity for Federalist 18 with all the authors</span></span>
+<span><span class='fu'>cosine_similarity</span><span class='op'>(</span><span class='va'>fed18_vector</span>, <span class='va'>hamilton_vector</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0.630843</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>cosine_similarity</span><span class='op'>(</span><span class='va'>fed18_vector</span>, <span class='va'>madison_vector</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>cosine_similarity</span><span class='op'>(</span><span class='va'>fed18_vector</span>, <span class='va'>madison_vector</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>[1] 0.721907</code></pre>
+<pre><code>[1] 0.6924889</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>cosine_similarity</span><span class='op'>(</span><span class='va'>fed18_vector</span>, <span class='va'>jay_vector</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>cosine_similarity</span><span class='op'>(</span><span class='va'>fed18_vector</span>, <span class='va'>jay_vector</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0.4789131</code></pre>
 </div>
-<p>This yields a similar result to what we found with the multinomial
-model. The cosine similarity between the disputed paper and Madison’s
-other papers is largest, suggesting he is the author.</p>
-<h2 id="validation-validation-validation">Validation, Validation,
-Validation</h2>
-<p>Whenever you develop a method to measure or predict some quantity of
-interest, it is imperative that you first assess its performance against
-a known benchmark before applying it to new data. This process is called
-<em>validation</em>, and <span class="citation"
-data-cites="grimmerTextDataNew2021">Grimmer, Stewart, and Roberts (<a
-href="#ref-grimmerTextDataNew2021" role="doc-biblioref">2021</a>)</span>
-repeatedly emphasize how central it is to the text-as-data workflow. So
-the procedure we just created predicts that Madison wrote Federalist
-No. 18. How much should we trust that prediction?</p>
-<p>To gain confidence in our approach, let’s see what it predicts for
-papers where authorship is <em>not</em> in dispute. If it correctly
-predicts the authors of the known texts, then we can be more certain
-it’s doing a good job with the unknown texts.</p>
-<p>For the validation test, we’ll repeat the same steps as before,
-except we hold out the validation set when training the model. If we’re
-trying to predict whether Madison wrote Federalist 10, then it would be
-cheating to include Federalist 10 in the vector of things we know about
-Madison’s writing style.</p>
+<p>This yields a similar result to what we found with the multinomial model. The cosine similarity between the disputed paper and Madison’s other papers is largest, suggesting he is the author.</p>
+<h2 id="validation-validation-validation">Validation, Validation, Validation</h2>
+<p>Whenever you develop a method to measure or predict some quantity of interest, it is imperative that you first assess its performance against a known benchmark before applying it to new data. This process is called <em>validation</em>, and <span class="citation" data-cites="grimmerTextDataNew2021">Grimmer, Stewart, and Roberts (<a href="#ref-grimmerTextDataNew2021" role="doc-biblioref">2021</a>)</span> repeatedly emphasize how central it is to the text-as-data workflow. So the procedure we just created predicts that Madison wrote Federalist No. 18. How much should we trust that prediction?</p>
+<p>To gain confidence in our approach, let’s see what it predicts for papers where authorship is <em>not</em> in dispute. If it correctly predicts the authors of the known texts, then we can be more certain it’s doing a good job with the unknown texts.</p>
+<p>For the validation test, we’ll repeat the same steps as before, except we hold out the validation set when training the model. If we’re trying to predict whether Madison wrote Federalist 10, then it would be cheating to include Federalist 10 in the vector of things we know about Madison’s writing style.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># get the Federalist 10 word count vector</span>
-<span class='va'>fed10_vector</span> <span class='op'>&lt;-</span> <span class='va'>tidy_federalist</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>word <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>name</span> <span class='op'>==</span> <span class='st'>'Federalist No. 10'</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, .drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> |&gt;
-  <span class='co'># add names to make the vector more readable</span>
-  <span class='fu'><a href='https://purrr.tidyverse.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='va'>interesting_words</span><span class='op'>)</span>
-
-<span class='va'>fed10_vector</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># get the Federalist 10 word count vector</span></span>
+<span><span class='va'>fed10_vector</span> <span class='op'>&lt;-</span> <span class='va'>tidy_federalist</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>word <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>title</span> <span class='op'>==</span> <span class='st'>'No. X.'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, .drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># add names to make the vector more readable</span></span>
+<span>  <span class='fu'><a href='https://rlang.r-lib.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='va'>interesting_words</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>fed10_vector</span></span></code></pre>
 </div>
 <pre><code>    although       always     commonly consequently considerable 
            0            2            0            1            0 
   heretofore         upon       whilst 
            0            0            0 </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Recompute Madison's word count vector, omitting Federalist 10</span>
-<span class='va'>madison_vector</span> <span class='op'>&lt;-</span> <span class='va'>tidy_federalist</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>word <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>name</span> <span class='op'>!=</span> <span class='st'>'Federalist No. 10'</span>,
-         <span class='va'>author</span> <span class='op'>==</span> <span class='st'>'Madison'</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, .drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://purrr.tidyverse.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='va'>interesting_words</span><span class='op'>)</span>
-
-<span class='va'>madison_vector</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Recompute Madison's word count vector, omitting Federalist 10</span></span>
+<span><span class='va'>madison_vector</span> <span class='op'>&lt;-</span> <span class='va'>tidy_federalist</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>word <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>title</span> <span class='op'>!=</span> <span class='st'>'No. X.'</span>,</span>
+<span>         <span class='va'>author</span> <span class='op'>==</span> <span class='st'>'Madison'</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, .drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://rlang.r-lib.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='va'>interesting_words</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>madison_vector</span></span></code></pre>
 </div>
 <pre><code>    although       always     commonly consequently considerable 
-           7            5            0           11            5 
+           8            5            0           12            5 
   heretofore         upon       whilst 
            1            7           12 </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed10_vector</span>,
-          prob <span class='op'>=</span> <span class='va'>hamilton_vector</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed10_vector</span>,</span>
+<span>          prob <span class='op'>=</span> <span class='va'>hamilton_vector</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0.0003206053</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed10_vector</span>,
-          prob <span class='op'>=</span> <span class='va'>madison_vector</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed10_vector</span>,</span>
+<span>          prob <span class='op'>=</span> <span class='va'>madison_vector</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>[1] 0.007459852</code></pre>
+<pre><code>[1] 0.0072</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed10_vector</span>,
-          prob <span class='op'>=</span> <span class='va'>jay_vector</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed10_vector</span>,</span>
+<span>          prob <span class='op'>=</span> <span class='va'>jay_vector</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0.08292841</code></pre>
 </div>
-<p>Already we can see a problem. The words we chose before may do a good
-job distinguishing between Hamilton and Madison (it’s
-<em>inconceivable</em> that Hamilton would have written an entire paper
-without a single use of the word “upon”, so the model correctly rules
-him out), but it struggles with distinguishing Jay’s style from
-Madison’s style, especially for a paper that only contains 3 of the
-chosen stop words. Because the word “always” appears the most
-frequently, the model incorrectly predicts that Jay wrote Federalist
-No. 10, not Madison.</p>
-<p>Let’s see if we can find a set of <em>discriminating words</em> that
-do a better job distinguishing between all three authors.<a href="#fn2"
-class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> To
-do so, I’ll start with the list of stop words from <span
-class="citation"
-data-cites="mostellerInferenceDisputedAuthorship1964">Mosteller and
-Wallace (<a href="#ref-mostellerInferenceDisputedAuthorship1964"
-role="doc-biblioref">1964</a>)</span> and add in the list of stop words
-from the <code>tidytext</code> package.</p>
+<p>Already we can see a problem. The words we chose before may do a good job distinguishing between Hamilton and Madison (it’s <em>inconceivable</em> that Hamilton would have written an entire paper without a single use of the word “upon”, so the model correctly rules him out), but it struggles with distinguishing Jay’s style from Madison’s style, especially for a paper that only contains 3 of the chosen stop words. Because the word “always” appears the most frequently, the model incorrectly predicts that Jay wrote Federalist No. 10, not Madison.</p>
+<p>Let’s see if we can find a set of <em>discriminating words</em> that do a better job distinguishing between all three authors.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> To do so, I’ll start with the list of stop words from <span class="citation" data-cites="mostellerInferenceDisputedAuthorship1964">Mosteller and Wallace (<a href="#ref-mostellerInferenceDisputedAuthorship1964" role="doc-biblioref">1964</a>)</span> and add in the list of stop words from the <code>tidytext</code> package.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>mw1964_words</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a"</span>, <span class='st'>"all"</span>, <span class='st'>"also"</span>, <span class='st'>"an"</span>, <span class='st'>"and"</span>, <span class='st'>"any"</span>, <span class='st'>"are"</span>, <span class='st'>"as"</span>, <span class='st'>"at"</span>, <span class='st'>"be"</span>, <span class='st'>"been"</span>, <span class='st'>"but"</span>, <span class='st'>"by"</span>, <span class='st'>"can"</span>, <span class='st'>"do"</span>, <span class='st'>"down"</span>,
-                  <span class='st'>"even"</span>, <span class='st'>"every"</span>, <span class='st'>"for"</span>, <span class='st'>"from"</span>, <span class='st'>"had"</span>, <span class='st'>"has"</span>, <span class='st'>"have"</span>, <span class='st'>"her"</span>, <span class='st'>"his"</span>, <span class='st'>"if"</span>, <span class='st'>"in"</span>, <span class='st'>"into"</span>, <span class='st'>"is"</span>, <span class='st'>"it"</span>, <span class='st'>"its"</span>,
-                  <span class='st'>"may"</span>, <span class='st'>"more"</span>, <span class='st'>"must"</span>, <span class='st'>"my"</span>, <span class='st'>"no"</span>, <span class='st'>"not"</span>, <span class='st'>"now"</span>, <span class='st'>"of"</span>, <span class='st'>"on"</span>, <span class='st'>"one"</span>, <span class='st'>"only"</span>, <span class='st'>"or"</span>, <span class='st'>"our"</span>, <span class='st'>"shall"</span>, <span class='st'>"should"</span>,
-                  <span class='st'>"so"</span>, <span class='st'>"some"</span>, <span class='st'>"such"</span>, <span class='st'>"than"</span>, <span class='st'>"that"</span>, <span class='st'>"the"</span>, <span class='st'>"their"</span>, <span class='st'>"then"</span>, <span class='st'>"there"</span>, <span class='st'>"things"</span>, <span class='st'>"this"</span>, <span class='st'>"to"</span>, <span class='st'>"up"</span>, <span class='st'>"upon"</span>,
-                  <span class='st'>"was"</span>, <span class='st'>"were"</span>, <span class='st'>"what"</span>, <span class='st'>"when"</span>, <span class='st'>"which"</span>, <span class='st'>"who"</span>, <span class='st'>"will"</span>, <span class='st'>"with"</span>, <span class='st'>"would"</span>, <span class='st'>"your"</span><span class='op'>)</span>
-
-<span class='va'>all_stopwords</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://generics.r-lib.org/reference/setops.html'>union</a></span><span class='op'>(</span><span class='va'>mw1964_words</span>, <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_stopwords.html'>get_stopwords</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>word</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>mw1964_words</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a"</span>, <span class='st'>"all"</span>, <span class='st'>"also"</span>, <span class='st'>"an"</span>, <span class='st'>"and"</span>, <span class='st'>"any"</span>, <span class='st'>"are"</span>, <span class='st'>"as"</span>, <span class='st'>"at"</span>, <span class='st'>"be"</span>, <span class='st'>"been"</span>, <span class='st'>"but"</span>, <span class='st'>"by"</span>, <span class='st'>"can"</span>, <span class='st'>"do"</span>, <span class='st'>"down"</span>,</span>
+<span>                  <span class='st'>"even"</span>, <span class='st'>"every"</span>, <span class='st'>"for"</span>, <span class='st'>"from"</span>, <span class='st'>"had"</span>, <span class='st'>"has"</span>, <span class='st'>"have"</span>, <span class='st'>"her"</span>, <span class='st'>"his"</span>, <span class='st'>"if"</span>, <span class='st'>"in"</span>, <span class='st'>"into"</span>, <span class='st'>"is"</span>, <span class='st'>"it"</span>, <span class='st'>"its"</span>,</span>
+<span>                  <span class='st'>"may"</span>, <span class='st'>"more"</span>, <span class='st'>"must"</span>, <span class='st'>"my"</span>, <span class='st'>"no"</span>, <span class='st'>"not"</span>, <span class='st'>"now"</span>, <span class='st'>"of"</span>, <span class='st'>"on"</span>, <span class='st'>"one"</span>, <span class='st'>"only"</span>, <span class='st'>"or"</span>, <span class='st'>"our"</span>, <span class='st'>"shall"</span>, <span class='st'>"should"</span>,</span>
+<span>                  <span class='st'>"so"</span>, <span class='st'>"some"</span>, <span class='st'>"such"</span>, <span class='st'>"than"</span>, <span class='st'>"that"</span>, <span class='st'>"the"</span>, <span class='st'>"their"</span>, <span class='st'>"then"</span>, <span class='st'>"there"</span>, <span class='st'>"things"</span>, <span class='st'>"this"</span>, <span class='st'>"to"</span>, <span class='st'>"up"</span>, <span class='st'>"upon"</span>,</span>
+<span>                  <span class='st'>"was"</span>, <span class='st'>"were"</span>, <span class='st'>"what"</span>, <span class='st'>"when"</span>, <span class='st'>"which"</span>, <span class='st'>"who"</span>, <span class='st'>"will"</span>, <span class='st'>"with"</span>, <span class='st'>"would"</span>, <span class='st'>"your"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>all_stopwords</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://generics.r-lib.org/reference/setops.html'>union</a></span><span class='op'>(</span><span class='va'>mw1964_words</span>, <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_stopwords.html'>get_stopwords</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>word</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>This yields a list of 186 potential words. Next, we’ll count up how
-frequently each author used each word, keeping only the words that one
-author used three times more frequently than another auhor (the number
-three is arbitrary, but as we’ll see it yields a manageable list of
-distinctive words).</p>
+<p>This yields a list of 186 potential words. Next, we’ll count up how frequently each author used each word, keeping only the words that one author used three times more frequently than another auhor (the number three is arbitrary, but as we’ll see it yields a manageable list of distinctive words).</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>tidy_federalist</span> <span class='op'>&lt;-</span> <span class='fu'>corpus</span><span class='fu'>::</span><span class='va'><a href='https://leslie-huang.github.io/r-corpus/reference/federalist.html'>federalist</a></span> |&gt;
-  <span class='co'># tokenize to the word level</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>input <span class='op'>=</span> <span class='st'>'text'</span>,
-                output <span class='op'>=</span> <span class='st'>'word'</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>word</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='va'>all_stopwords</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>author <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>author</span><span class='op'>)</span>,
-         word <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='va'>frequency_table</span> <span class='op'>&lt;-</span> <span class='va'>tidy_federalist</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>author</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Hamilton'</span>, <span class='st'>'Jay'</span>, <span class='st'>'Madison'</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>author</span>, <span class='va'>word</span>, .drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='st'>'author'</span>,
-              values_from <span class='op'>=</span> <span class='st'>'n'</span><span class='op'>)</span> |&gt;
-  <span class='co'># normalize by each author's number of words</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Hamilton <span class='op'>=</span> <span class='va'>Hamilton</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>Hamilton</span><span class='op'>)</span>,
-         Jay <span class='op'>=</span> <span class='va'>Jay</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>Jay</span><span class='op'>)</span>,
-         Madison <span class='op'>=</span> <span class='va'>Madison</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>Madison</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Hamilton_Jay <span class='op'>=</span> <span class='va'>Hamilton</span> <span class='op'>/</span> <span class='va'>Jay</span>,
-         Hamilton_Madison <span class='op'>=</span> <span class='va'>Hamilton</span> <span class='op'>/</span> <span class='va'>Madison</span>,
-         Jay_Madison <span class='op'>=</span> <span class='va'>Jay</span> <span class='op'>/</span> <span class='va'>Madison</span><span class='op'>)</span> |&gt;
-  <span class='co'># just keep the words that one author uses 3 times more often than another</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Hamilton_Jay</span> <span class='op'>&gt;</span> <span class='fl'>3</span> <span class='op'>|</span>
-           <span class='va'>Hamilton_Jay</span> <span class='op'>&lt;</span> <span class='fl'>0.33333</span> <span class='op'>|</span>
-           <span class='va'>Hamilton_Madison</span> <span class='op'>&gt;</span> <span class='fl'>3</span> <span class='op'>|</span>
-           <span class='va'>Hamilton_Madison</span> <span class='op'>&lt;</span> <span class='fl'>0.33333</span> <span class='op'>|</span>
-           <span class='va'>Jay_Madison</span> <span class='op'>&gt;</span> <span class='fl'>3</span> <span class='op'>|</span>
-           <span class='va'>Jay_Madison</span> <span class='op'>&lt;</span> <span class='fl'>0.33333</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>tidy_federalist</span> <span class='op'>&lt;-</span> <span class='va'>d</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># tokenize to the word level</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>input <span class='op'>=</span> <span class='st'>'text'</span>,</span>
+<span>                output <span class='op'>=</span> <span class='st'>'word'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>word</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='va'>all_stopwords</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>author <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>author</span><span class='op'>)</span>,</span>
+<span>         word <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>frequency_table</span> <span class='op'>&lt;-</span> <span class='va'>tidy_federalist</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>author</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'Hamilton'</span>, <span class='st'>'Jay'</span>, <span class='st'>'Madison'</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>author</span>, <span class='va'>word</span>, .drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='st'>'author'</span>,</span>
+<span>              values_from <span class='op'>=</span> <span class='st'>'n'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># normalize by each author's number of words</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Hamilton <span class='op'>=</span> <span class='va'>Hamilton</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>Hamilton</span><span class='op'>)</span>,</span>
+<span>         Jay <span class='op'>=</span> <span class='va'>Jay</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>Jay</span><span class='op'>)</span>,</span>
+<span>         Madison <span class='op'>=</span> <span class='va'>Madison</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>Madison</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>Hamilton_Jay <span class='op'>=</span> <span class='va'>Hamilton</span> <span class='op'>/</span> <span class='va'>Jay</span>,</span>
+<span>         Hamilton_Madison <span class='op'>=</span> <span class='va'>Hamilton</span> <span class='op'>/</span> <span class='va'>Madison</span>,</span>
+<span>         Jay_Madison <span class='op'>=</span> <span class='va'>Jay</span> <span class='op'>/</span> <span class='va'>Madison</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># just keep the words that one author uses 3 times more often than another</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Hamilton_Jay</span> <span class='op'>&gt;</span> <span class='fl'>3</span> <span class='op'>|</span></span>
+<span>           <span class='va'>Hamilton_Jay</span> <span class='op'>&lt;</span> <span class='fl'>0.33333</span> <span class='op'>|</span></span>
+<span>           <span class='va'>Hamilton_Madison</span> <span class='op'>&gt;</span> <span class='fl'>3</span> <span class='op'>|</span></span>
+<span>           <span class='va'>Hamilton_Madison</span> <span class='op'>&lt;</span> <span class='fl'>0.33333</span> <span class='op'>|</span></span>
+<span>           <span class='va'>Jay_Madison</span> <span class='op'>&gt;</span> <span class='fl'>3</span> <span class='op'>|</span></span>
+<span>           <span class='va'>Jay_Madison</span> <span class='op'>&lt;</span> <span class='fl'>0.33333</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>This leaves us with 38 words to include in our multinomial model /
-document vectors.</p>
+<p>This leaves us with 38 words to include in our multinomial model / document vectors.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>interesting_words</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>frequency_table</span><span class='op'>$</span><span class='va'>word</span><span class='op'>)</span>
-
-<span class='va'>interesting_words</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>interesting_words</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>frequency_table</span><span class='op'>$</span><span class='va'>word</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>interesting_words</span></span></code></pre>
 </div>
 <pre><code> [1] about      above      again      also       before     below     
- [7] did        down       during     every      further    here      
-[13] hers       herself    himself    his        how        itself    
-[19] me         my         myself     off        ought      our       
-[25] ours       ourselves  over       she        theirs     there     
-[31] through    up         upon       when       where      while     
-[37] whom       yourselves
-38 Levels: about above again also before below did down ... yourselves</code></pre>
+ [7] did        down       during     every      further    having    
+[13] here       hers       herself    himself    his        how       
+[19] itself     me         my         myself     off        ought     
+[25] our        ours       ourselves  over       she        theirs    
+[31] there      through    up         upon       when       where     
+[37] while      whom       yourselves
+39 Levels: about above again also before below did down ... yourselves</code></pre>
 </div>
 <p>Let’s see how the modified list performs on the validation test.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># keep only the new list of words</span>
-<span class='va'>tidy_federalist</span> <span class='op'>&lt;-</span>
-  <span class='va'>tidy_federalist</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>word</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='va'>interesting_words</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>word <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='co'># compute the new Federalist 10 vector</span>
-<span class='va'>fed10_vector</span> <span class='op'>&lt;-</span> <span class='va'>tidy_federalist</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>name</span> <span class='op'>==</span> <span class='st'>'Federalist No. 10'</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, .drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> |&gt;
-  <span class='co'># add names to make the vector more readable</span>
-  <span class='fu'><a href='https://purrr.tidyverse.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='va'>interesting_words</span><span class='op'>)</span>
-
-<span class='va'>fed10_vector</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># keep only the new list of words</span></span>
+<span><span class='va'>tidy_federalist</span> <span class='op'>&lt;-</span></span>
+<span>  <span class='va'>tidy_federalist</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>word</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='va'>interesting_words</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>word <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># compute the new Federalist 10 vector</span></span>
+<span><span class='va'>fed10_vector</span> <span class='op'>&lt;-</span> <span class='va'>tidy_federalist</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>title</span> <span class='op'>==</span> <span class='st'>'No. X.'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, .drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># add names to make the vector more readable</span></span>
+<span>  <span class='fu'><a href='https://rlang.r-lib.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='va'>interesting_words</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>fed10_vector</span></span></code></pre>
 </div>
 <pre><code>     about      above      again       also     before      below 
          0          0          2          0          0          0 
-       did       down     during      every    further       here 
+       did       down     during      every    further     having 
          0          0          0          3          0          1 
-      hers    herself    himself        his        how     itself 
-         0          0          1          8          0          2 
-        me         my     myself        off      ought        our 
-         1          0          0          0          2          8 
-      ours  ourselves       over        she     theirs      there 
-         0          0          6          0          0          6 
-   through         up       upon       when      where      while 
-         2          1          0          2          2          0 
-      whom yourselves 
-         0          0 </code></pre>
+      here       hers    herself    himself        his        how 
+         1          0          0          1          8          0 
+    itself         me         my     myself        off      ought 
+         2          1          0          0          0          2 
+       our       ours  ourselves       over        she     theirs 
+         8          0          0          6          0          0 
+     there    through         up       upon       when      where 
+         6          2          1          0          2          2 
+     while       whom yourselves 
+         0          0          0 </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># get word count vectors for each author</span>
-<span class='va'>madison_vector</span> <span class='op'>&lt;-</span> <span class='va'>tidy_federalist</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>name</span> <span class='op'>!=</span> <span class='st'>'Federalist No. 10'</span>,
-         <span class='va'>author</span> <span class='op'>==</span> <span class='st'>'Madison'</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, .drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://purrr.tidyverse.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='va'>interesting_words</span><span class='op'>)</span>
-
-<span class='va'>madison_vector</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># get word count vectors for each author</span></span>
+<span><span class='va'>madison_vector</span> <span class='op'>&lt;-</span> <span class='va'>tidy_federalist</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>title</span> <span class='op'>!=</span> <span class='st'>'No. X.'</span>,</span>
+<span>         <span class='va'>author</span> <span class='op'>==</span> <span class='st'>'Madison'</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, .drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://rlang.r-lib.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='va'>interesting_words</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>madison_vector</span></span></code></pre>
 </div>
 <pre><code>     about      above      again       also     before      below 
-         1          2         11         30         13          2 
-       did       down     during      every    further       here 
-         3          3         11         83         16         22 
-      hers    herself    himself        his        how     itself 
-         1          2          6         48         13         26 
-        me         my     myself        off      ought        our 
-         3          3          4          1         57         41 
-      ours  ourselves       over        she     theirs      there 
-         0          3         31          3          2         27 
-   through         up       upon       when      where      while 
-         6          2          7         18         32          0 
-      whom yourselves 
-         9          0 </code></pre>
+         1          2         11         31         13          2 
+       did       down     during      every    further     having 
+         3          3         11         91         18          7 
+      here       hers    herself    himself        his        how 
+        23          1          2          6         49         13 
+    itself         me         my     myself        off      ought 
+        27          3          4          4          1         59 
+       our       ours  ourselves       over        she     theirs 
+        41          0          3         37          3          2 
+     there    through         up       upon       when      where 
+        29          6          2          7         20         35 
+     while       whom yourselves 
+         0          9          0 </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>hamilton_vector</span> <span class='op'>&lt;-</span> <span class='va'>tidy_federalist</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>author</span> <span class='op'>==</span> <span class='st'>'Hamilton'</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, .drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://purrr.tidyverse.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='va'>interesting_words</span><span class='op'>)</span>
-
-<span class='va'>hamilton_vector</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>hamilton_vector</span> <span class='op'>&lt;-</span> <span class='va'>tidy_federalist</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>author</span> <span class='op'>==</span> <span class='st'>'Hamilton'</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, .drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://rlang.r-lib.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='va'>interesting_words</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>hamilton_vector</span></span></code></pre>
 </div>
 <pre><code>     about      above      again       also     before      below 
-        20          5          5         35         31          2 
-       did       down     during      every    further       here 
-        12         14         17        179         29         33 
-      hers    herself    himself        his        how     itself 
-         0          5         34        239         53         81 
-        me         my     myself        off      ought        our 
-        15         39         15          3        159        191 
-      ours  ourselves       over        she     theirs      there 
-         7         21         65         16          1        379 
-   through         up       upon       when      where      while 
-        27         34        374        110         86         36 
-      whom yourselves 
-        34          0 </code></pre>
+        20          5          5         36         31          2 
+       did       down     during      every    further     having 
+        12         14         17        179         33         32 
+      here       hers    herself    himself        his        how 
+        33          0          5         34        239         53 
+    itself         me         my     myself        off      ought 
+        81         15         39         15          3        159 
+       our       ours  ourselves       over        she     theirs 
+       191          7         21         65         16          1 
+     there    through         up       upon       when      where 
+       379         27         34        374        110         86 
+     while       whom yourselves 
+        36         34          0 </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>jay_vector</span> <span class='op'>&lt;-</span> <span class='va'>tidy_federalist</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>author</span> <span class='op'>==</span> <span class='st'>'Jay'</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, .drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> |&gt; 
-  <span class='fu'><a href='https://purrr.tidyverse.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='va'>interesting_words</span><span class='op'>)</span>
-
-<span class='va'>jay_vector</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>jay_vector</span> <span class='op'>&lt;-</span> <span class='va'>tidy_federalist</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>author</span> <span class='op'>==</span> <span class='st'>'Jay'</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>word</span>, .drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://rlang.r-lib.org/reference/set_names.html'>set_names</a></span><span class='op'>(</span><span class='va'>interesting_words</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>jay_vector</span></span></code></pre>
 </div>
 <pre><code>     about      above      again       also     before      below 
          0          2          1         11          0          0 
-       did       down     during      every    further       here 
-         6          0          0          5          0          1 
-      hers    herself    himself        his        how     itself 
-         0          0          0          5          9          1 
-        me         my     myself        off      ought        our 
-         3          3          0          1          2         38 
-      ours  ourselves       over        she     theirs      there 
-         0          3          2          4          1         10 
-   through         up       upon       when      where      while 
-         0          0          1         15          2          2 
-      whom yourselves 
-        10          1 </code></pre>
+       did       down     during      every    further     having 
+         6          0          0          5          0          5 
+      here       hers    herself    himself        his        how 
+         1          0          0          0          5          9 
+    itself         me         my     myself        off      ought 
+         1          3          3          0          1          2 
+       our       ours  ourselves       over        she     theirs 
+        38          0          3          2          4          1 
+     there    through         up       upon       when      where 
+        10          0          0          1         15          2 
+     while       whom yourselves 
+         2         10          1 </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed10_vector</span>,
-          prob <span class='op'>=</span> <span class='va'>madison_vector</span> <span class='op'>+</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>/</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed10_vector</span>,
-          prob <span class='op'>=</span> <span class='va'>hamilton_vector</span> <span class='op'>+</span> <span class='fl'>0.1</span><span class='op'>)</span> 
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed10_vector</span>,</span>
+<span>          prob <span class='op'>=</span> <span class='va'>madison_vector</span> <span class='op'>+</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>/</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed10_vector</span>,</span>
+<span>          prob <span class='op'>=</span> <span class='va'>hamilton_vector</span> <span class='op'>+</span> <span class='fl'>0.1</span><span class='op'>)</span> </span></code></pre>
 </div>
-<pre><code>[1] 72.57105</code></pre>
+<pre><code>[1] 76.72475</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed10_vector</span>,
-          prob <span class='op'>=</span> <span class='va'>madison_vector</span> <span class='op'>+</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>/</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed10_vector</span>,
-          prob <span class='op'>=</span> <span class='va'>jay_vector</span> <span class='op'>+</span> <span class='fl'>0.1</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed10_vector</span>,</span>
+<span>          prob <span class='op'>=</span> <span class='va'>madison_vector</span> <span class='op'>+</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>/</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/stats/Multinom.html'>dmultinom</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>fed10_vector</span>,</span>
+<span>          prob <span class='op'>=</span> <span class='va'>jay_vector</span> <span class='op'>+</span> <span class='fl'>0.1</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>[1] 1.140731e+12</code></pre>
+<pre><code>[1] 1.164301e+12</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>cosine_similarity</span><span class='op'>(</span><span class='va'>madison_vector</span>, <span class='va'>fed10_vector</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>cosine_similarity</span><span class='op'>(</span><span class='va'>madison_vector</span>, <span class='va'>fed10_vector</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>[1] 0.747645</code></pre>
+<pre><code>[1] 0.7437931</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>cosine_similarity</span><span class='op'>(</span><span class='va'>hamilton_vector</span>, <span class='va'>fed10_vector</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>cosine_similarity</span><span class='op'>(</span><span class='va'>hamilton_vector</span>, <span class='va'>fed10_vector</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>[1] 0.7205429</code></pre>
+<pre><code>[1] 0.7210126</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>cosine_similarity</span><span class='op'>(</span><span class='va'>jay_vector</span>, <span class='va'>fed10_vector</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>cosine_similarity</span><span class='op'>(</span><span class='va'>jay_vector</span>, <span class='va'>fed10_vector</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>[1] 0.6565746</code></pre>
+<pre><code>[1] 0.6583766</code></pre>
 </div>
-<p>This is much nicer. Both methods now correctly identify Madison as
-the author of Federalist 10. A more thorough model-development loop
-might iterate through validation and refinement a few more times,
-holding out a different validation set each time. But this is the basic
-workflow.</p>
+<p>This is much nicer. Both methods now correctly identify Madison as the author of Federalist 10. A more thorough model-development loop might iterate through validation and refinement a few more times, holding out a different validation set each time. But this is the basic workflow.</p>
 <h2 id="practice-problems">Practice Problems</h2>
 <ol type="1">
-<li>Conduct more validation tests on undisputed Federalist Papers to see
-if the list of words we came up with in the last section does a good
-job.</li>
-<li>See if you can create a model that accurately classifies whether a
-<a href="bag-of-words.html">State of the Union speech</a> was delivered
-in the 19th or 20th century.</li>
+<li>Conduct more validation tests on undisputed Federalist Papers to see if the list of words we came up with in the last section does a good job.</li>
+<li>See if you can create a model that accurately classifies whether a <a href="bag-of-words.html">State of the Union speech</a> was delivered in the 19th or 20th century.</li>
 </ol>
-<div class="sourceCode" id="cb30"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
-<div id="refs" class="references csl-bib-body hanging-indent"
-role="doc-bibliography">
-<div id="ref-grimmerTextDataNew2021" class="csl-entry"
-role="doc-biblioentry">
-Grimmer, Justin, Brandon M. Stewart, and Margaret E. Roberts. 2021.
-<em>Text as Data: A New Framework for Machine Learning and the Social
-Sciences.</em> S.l.: Princeton University Press.
+<div class="sourceCode" id="cb30"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-grimmerTextDataNew2021" class="csl-entry" role="doc-biblioentry">
+Grimmer, Justin, Brandon M. Stewart, and Margaret E. Roberts. 2021. <em>Text as Data: A New Framework for Machine Learning and the Social Sciences.</em> S.l.: Princeton University Press.
 </div>
-<div id="ref-imaiQuantitativeSocialScience2017" class="csl-entry"
-role="doc-biblioentry">
-Imai, Kosuke. 2017. <em>Quantitative Social Science: An
-Introduction</em>. Princeton: Princeton University Press.
+<div id="ref-imaiQuantitativeSocialScience2017" class="csl-entry" role="doc-biblioentry">
+Imai, Kosuke. 2017. <em>Quantitative Social Science: An Introduction</em>. Princeton: Princeton University Press.
 </div>
-<div id="ref-mostellerInferenceDisputedAuthorship1964" class="csl-entry"
-role="doc-biblioentry">
-Mosteller, Frederick, and David L. Wallace. 1964. <em>Inference and
-Disputed Authorship: The Federalist</em>. Addison-Wesley.
+<div id="ref-mostellerInferenceDisputedAuthorship1964" class="csl-entry" role="doc-biblioentry">
+Mosteller, Frederick, and David L. Wallace. 1964. <em>Inference and Disputed Authorship: The Federalist</em>. Addison-Wesley.
 </div>
 </div>
-<section class="footnotes footnotes-end-of-document"
-role="doc-endnotes">
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>This list was inspired by Chapter 5
-of <span class="citation"
-data-cites="imaiQuantitativeSocialScience2017">Imai (<a
-href="#ref-imaiQuantitativeSocialScience2017"
-role="doc-biblioref">2017</a>)</span>. More on how to identify
-discriminating words in a later section.<a href="#fnref1"
-class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>See <span class="citation"
-data-cites="grimmerTextDataNew2021">Grimmer, Stewart, and Roberts (<a
-href="#ref-grimmerTextDataNew2021" role="doc-biblioref">2021</a>)</span>
-Chapter 11 for more on this process.<a href="#fnref2"
-class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>This list was inspired by Chapter 5 of <span class="citation" data-cites="imaiQuantitativeSocialScience2017">Imai (<a href="#ref-imaiQuantitativeSocialScience2017" role="doc-biblioref">2017</a>)</span>. More on how to identify discriminating words in a later section.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>See <span class="citation" data-cites="grimmerTextDataNew2021">Grimmer, Stewart, and Roberts (<a href="#ref-grimmerTextDataNew2021" role="doc-biblioref">2021</a>)</span> Chapter 11 for more on this process.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->

@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,9 +74,9 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
 code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
@@ -129,7 +130,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_meta_tags-->
   
-  <meta name="citation_reference" content="citation_title=Text as data: A new framework for machine learning and the social sciences.;citation_publication_date=2021;citation_publisher=Princeton University Press;citation_author=Justin Grimmer;citation_author=Brandon M. Stewart;citation_author=Margaret E. Roberts"/>
+  <meta name="citation_reference" content="citation_title=Text as data: A new framework for machine learning and the social sciences.;citation_publisher=Princeton University Press;citation_author=Justin Grimmer;citation_author=Brandon M. Stewart;citation_author=Margaret E. Roberts"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
@@ -811,6 +812,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
 
   .html-widget {
@@ -1052,10 +1054,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
-  }
-
-  .figure img {
-    width: 100%;
   }
 
   .figure .caption {
@@ -1887,9 +1885,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -1901,6 +1911,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -2000,6 +2035,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -2022,7 +2059,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2371,7 +2408,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2408,7 +2445,7 @@ Harvest the Text
 </button>
 <div class="nav-dropdown-content">
 <a href="webscraping.html">Webscraping</a>
-<a href="twitter-api.html">APIs</a>
+<a href="APIs.html">APIs</a>
 <a href="OCR.html">Optical Character Recognition</a>
 </div>
 </div>
@@ -2436,6 +2473,7 @@ Model the Text
 <a href="LDA.html">Topic Models</a>
 <a href="sentiment-analysis.html">Sentiment Analysis</a>
 <a href="supervised-learning.html">Supervised Learning</a>
+<a href="LLMs.html">Large Language Models</a>
 </div>
 </div>
 </div>
@@ -2460,8 +2498,7 @@ Model the Text
 <h1>Clustering</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>For when we don’t really know what we’re looking for in our data
-and just want the computer to tell us what it sees.</p></p>
+<p><p>For when we don’t really know what we’re looking for in our data and just want the computer to tell us what it sees.</p></p>
 </div>
 
 
@@ -2470,89 +2507,51 @@ and just want the computer to tell us what it sees.</p></p>
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#k-means-clustering" id="toc-k-means-clustering">K-means
-Clustering</a></li>
-<li><a href="#validation-validation-validation"
-id="toc-validation-validation-validation">Validation, Validation,
-Validation</a></li>
-<li><a href="#clustering-with-word-embeddings"
-id="toc-clustering-with-word-embeddings">Clustering with Word
-Embeddings</a></li>
-<li><a href="#practice-problems" id="toc-practice-problems">Practice
-Problems</a></li>
+<li><a href="#k-means-clustering" id="toc-k-means-clustering">K-means Clustering</a></li>
+<li><a href="#validation-validation-validation" id="toc-validation-validation-validation">Validation, Validation, Validation</a></li>
+<li><a href="#clustering-with-word-embeddings" id="toc-clustering-with-word-embeddings">Clustering with Word Embeddings</a></li>
+<li><a href="#practice-problems" id="toc-practice-problems">Practice Problems</a></li>
 </ul>
 </nav>
 </div>
-<p>Broadly speaking, we can divide the approaches for modeling text data
-into two camps: supervised learning and unsupervised learning. <a
-href="sentiment-analysis.html">Supervised learning</a> approaches tend
-to be the most familiar to social scientists – there is some outcome
-we’d like to predict, so we fit a function of observable covariates to
-try and predict it. In the context of text as data, this means we have a
-set of labeled documents, and we fit a model to see how well we can
-predict the labels (e.g. predicting the authorship of the <a
-href="federalist-papers.html">Federalist Papers</a>).</p>
-<p>Unsupervised learning, by comparison, is less about prediction and
-more about <em>discovery</em>. You start with a set of
-<em>unlabeled</em> documents, and ask the computer to see if it can find
-a sensible way to organize them. Are there patterns of language that
-distinguish one set of documents from others? What words can help
-identify a cluster of documents, by appearing within them more
-frequently than one would expect by chance? These sorts of approaches,
-which include both clustering and <a href="LDA.html">topic models</a>,
-require a healthy dose of human judgment to derive meaningful insights,
-and they often serve as the first stage of a research agenda that moves
-from discovery to explanation, prediction, and inference.</p>
+<p>Broadly speaking, we can divide the approaches for modeling text data into two camps: supervised learning and unsupervised learning. <a href="sentiment-analysis.html">Supervised learning</a> approaches tend to be the most familiar to social scientists – there is some outcome we’d like to predict, so we fit a function of observable covariates to try and predict it. In the context of text as data, this means we have a set of labeled documents, and we fit a model to see how well we can predict the labels (e.g. predicting the authorship of the <a href="federalist-papers.html">Federalist Papers</a>).</p>
+<p>Unsupervised learning, by comparison, is less about prediction and more about <em>discovery</em>. You start with a set of <em>unlabeled</em> documents, and ask the computer to see if it can find a sensible way to organize them. Are there patterns of language that distinguish one set of documents from others? What words can help identify a cluster of documents, by appearing within them more frequently than one would expect by chance? These sorts of approaches, which include both clustering and <a href="LDA.html">topic models</a>, require a healthy dose of human judgment to derive meaningful insights, and they often serve as the first stage of a research agenda that moves from discovery to explanation, prediction, and inference.</p>
 <h2 id="k-means-clustering">K-means Clustering</h2>
-<p>Chapter 12 of <span class="citation"
-data-cites="grimmerTextDataNew2021">Grimmer, Stewart, and Roberts (<a
-href="#ref-grimmerTextDataNew2021" role="doc-biblioref">2021</a>)</span>
-introduces the dataset of Congressional press releases that
-@grimmerRepresentationalStyleCongress2013 explores in his study of
-representational style. Using a k-means clustering model, he developed a
-set of categories to describe these ways that members of Congress
-communicate with their constituents, discovering new categories that
-were previously understudied by political scientists. The full dataset
-is available <a
-href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=hdl:1902.1/14596">here</a>,
-and I’ve included the press releases from Senator Lautenberg on the
-course repository. Let’s load and tidy the data, representing each press
-release as a bag of word stems.</p>
+<p>Chapter 12 of <span class="citation" data-cites="grimmerTextDataNew2021">Grimmer, Stewart, and Roberts (<a href="#ref-grimmerTextDataNew2021" role="doc-biblioref">2021</a>)</span> introduces the dataset of Congressional press releases that @grimmerRepresentationalStyleCongress2013 explores in his study of representational style. Using a k-means clustering model, he developed a set of categories to describe these ways that members of Congress communicate with their constituents, discovering new categories that were previously understudied by political scientists. The full dataset is available <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=hdl:1902.1/14596">here</a>, and I’ve included the press releases from Senator Lautenberg on the course repository. Let’s load and tidy the data, representing each press release as a bag of word stems.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/juliasilge/tidytext'>tidytext</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/nalimilan/R.TeMiS'>SnowballC</a></span><span class='op'>)</span>
-
-<span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='st'>'data/press-releases/lautenberg-press-releases.RData'</span><span class='op'>)</span>
-
-<span class='va'>tidy_press_releases</span> <span class='op'>&lt;-</span> <span class='va'>df</span> |&gt;
-  <span class='co'># remove the preamble common to each press release</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_replace.html'>str_replace_all</a></span><span class='op'>(</span><span class='va'>text</span>,
-                                pattern <span class='op'>=</span> <span class='st'>'     Senator Frank R  Lautenberg                                                                                                                      Press Release        of        Senator Lautenberg                                                                                '</span>,
-                                replacement <span class='op'>=</span> <span class='st'>''</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='co'># tokenize to the word level</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>input <span class='op'>=</span> <span class='st'>'text'</span>,
-                output <span class='op'>=</span> <span class='st'>'word'</span><span class='op'>)</span> |&gt;
-  <span class='co'># remove stop words</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter-joins.html'>anti_join</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_stopwords.html'>get_stopwords</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='co'># remove numerals</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='st'>'[0-9]'</span>, negate <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='co'># create word stems</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>word_stem <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/SnowballC/man/wordStem.html'>wordStem</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>word_stem</span> <span class='op'>!=</span> <span class='st'>''</span><span class='op'>)</span> |&gt; 
-  <span class='co'># count up bag of word stems</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>word_stem</span><span class='op'>)</span> |&gt; 
-  <span class='co'># compute term frequency</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/bind_tf_idf.html'>bind_tf_idf</a></span><span class='op'>(</span>term <span class='op'>=</span> <span class='st'>'word_stem'</span>,
-              document <span class='op'>=</span> <span class='st'>'id'</span>,
-              n <span class='op'>=</span> <span class='st'>'n'</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>tf_idf</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='va'>tidy_press_releases</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/juliasilge/tidytext'>tidytext</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/nalimilan/R.TeMiS'>SnowballC</a></span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='st'>'data/press-releases/lautenberg-press-releases.RData'</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>tidy_press_releases</span> <span class='op'>&lt;-</span> <span class='va'>df</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># remove the preamble common to each press release</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_replace.html'>str_replace_all</a></span><span class='op'>(</span><span class='va'>text</span>,</span>
+<span>                                pattern <span class='op'>=</span> <span class='st'>'     Senator Frank R  Lautenberg                                                                                                                      Press Release        of        Senator Lautenberg                                                                                '</span>,</span>
+<span>                                replacement <span class='op'>=</span> <span class='st'>''</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># tokenize to the word level</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>input <span class='op'>=</span> <span class='st'>'text'</span>,</span>
+<span>                output <span class='op'>=</span> <span class='st'>'word'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># remove stop words</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter-joins.html'>anti_join</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_stopwords.html'>get_stopwords</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># remove numerals</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='st'>'[0-9]'</span>, negate <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># create word stems</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>word_stem <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/SnowballC/man/wordStem.html'>wordStem</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>word_stem</span> <span class='op'>!=</span> <span class='st'>''</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='co'># count up bag of word stems</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>word_stem</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='co'># compute term frequency</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/bind_tf_idf.html'>bind_tf_idf</a></span><span class='op'>(</span>term <span class='op'>=</span> <span class='st'>'word_stem'</span>,</span>
+<span>              document <span class='op'>=</span> <span class='st'>'id'</span>,</span>
+<span>              n <span class='op'>=</span> <span class='st'>'n'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>tf_idf</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>tidy_press_releases</span></span></code></pre>
 </div>
-<pre><code># A tibble: 81,504 x 6
+<pre><code># A tibble: 81,504 × 6
       id word_stem     n      tf   idf  tf_idf
    &lt;int&gt; &lt;chr&gt;     &lt;int&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
  1     1 account       2 0.00654 1.86  0.0121 
@@ -2565,19 +2564,17 @@ release as a bag of word stems.</p>
  8     1 april         2 0.00654 2.18  0.0143 
  9     1 ask           1 0.00327 2.13  0.00698
 10     1 assault       2 0.00654 3.93  0.0257 
-# ... with 81,494 more rows</code></pre>
+# ℹ 81,494 more rows</code></pre>
 </div>
-<p>Next, we’ll convert that tidy dataframe into a document-term
-matrix.</p>
+<p>Next, we’ll convert that tidy dataframe into a document-term matrix.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># create document-term matrix</span>
-<span class='va'>lautenberg_dtm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/document_term_casters.html'>cast_dtm</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>tidy_press_releases</span>,
-                           document <span class='op'>=</span> <span class='st'>'id'</span>,
-                           term <span class='op'>=</span> <span class='st'>'word_stem'</span>,
-                           value <span class='op'>=</span> <span class='st'>'tf'</span><span class='op'>)</span>
-<span class='va'>lautenberg_dtm</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># create document-term matrix</span></span>
+<span><span class='va'>lautenberg_dtm</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/document_term_casters.html'>cast_dtm</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>tidy_press_releases</span>,</span>
+<span>                           document <span class='op'>=</span> <span class='st'>'id'</span>,</span>
+<span>                           term <span class='op'>=</span> <span class='st'>'word_stem'</span>,</span>
+<span>                           value <span class='op'>=</span> <span class='st'>'tf'</span><span class='op'>)</span></span>
+<span><span class='va'>lautenberg_dtm</span></span></code></pre>
 </div>
 <pre><code>&lt;&lt;DocumentTermMatrix (documents: 558, terms: 7073)&gt;&gt;
 Non-/sparse entries: 81504/3865230
@@ -2585,69 +2582,50 @@ Sparsity           : 98%
 Maximal term length: 33
 Weighting          : term frequency (tf)</code></pre>
 </div>
-<p>The k-means clustering algorithm searches for a set of <span
-class="math inline">\(k\)</span> centroids that yield the smallest sum
-of squared distances between the observations and their nearest
-centroid. If each document is represented by a vector of term
-frequencies, then k-means produces <span
-class="math inline">\(k\)</span> sets of documents that have the most
-similar usages of words.<a href="#fn1" class="footnote-ref" id="fnref1"
-role="doc-noteref"><sup>1</sup></a></p>
+<p>The k-means clustering algorithm searches for a set of <span class="math inline">\(k\)</span> centroids that yield the smallest sum of squared distances between the observations and their nearest centroid. If each document is represented by a vector of term frequencies, then k-means produces <span class="math inline">\(k\)</span> sets of documents that have the most similar usages of words.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>42</span><span class='op'>)</span>
-
-<span class='va'>km</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/kmeans.html'>kmeans</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>lautenberg_dtm</span>,
-             centers <span class='op'>=</span> <span class='fl'>4</span>,
-             nstart <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>km</span><span class='op'>$</span><span class='va'>cluster</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>42</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>km</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/kmeans.html'>kmeans</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>lautenberg_dtm</span>,</span>
+<span>             centers <span class='op'>=</span> <span class='fl'>4</span>,</span>
+<span>             nstart <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>km</span><span class='op'>$</span><span class='va'>cluster</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>
   1   2   3   4 
 158  53 264  83 </code></pre>
 </div>
-<p>Making sense of this algorithm’s output is tricky. Sure, we
-simplified the problem a bit. We started with 558 documents, each
-represented by a 7,073-dimensional vector. Now we have 4 document
-<em>clusters</em>, each represented by a 7,073-dimensional vector.</p>
+<p>Making sense of this algorithm’s output is tricky. Sure, we simplified the problem a bit. We started with 558 documents, each represented by a 7,073-dimensional vector. Now we have 4 document <em>clusters</em>, each represented by a 7,073-dimensional vector.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="img/thanks.gif" /><!-- --></p>
 </div>
 <p>So…what do we do with those?</p>
-<p>One of the most common ways to interpret the k-means clusters is to
-generate a list of the most distinctive words from each cluster. Then we
-can look at which words show up more frequently in one cluster than any
-other, and use that information to assign labels to the clusters.</p>
+<p>One of the most common ways to interpret the k-means clusters is to generate a list of the most distinctive words from each cluster. Then we can look at which words show up more frequently in one cluster than any other, and use that information to assign labels to the clusters.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># function to find the words that are most overrepresented in the cluster mean for a given cluster</span>
-<span class='va'>get_top_words</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>centers</span>, <span class='va'>cluster_of_interest</span>, <span class='va'>n</span> <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span><span class='op'>{</span>
-  <span class='op'>(</span><span class='va'>centers</span><span class='op'>[</span><span class='va'>cluster_of_interest</span>,<span class='op'>]</span> <span class='op'>-</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colMeans</a></span><span class='op'>(</span><span class='va'>centers</span><span class='op'>[</span><span class='op'>-</span><span class='va'>cluster_of_interest</span>,<span class='op'>]</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-    <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span>decreasing <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> |&gt;
-    <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>
-<span class='op'>}</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># function to find the words that are most overrepresented in the cluster mean for a given cluster</span></span>
+<span><span class='va'>get_top_words</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>centers</span>, <span class='va'>cluster_of_interest</span>, <span class='va'>n</span> <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>  <span class='op'>(</span><span class='va'>centers</span><span class='op'>[</span><span class='va'>cluster_of_interest</span>,<span class='op'>]</span> <span class='op'>-</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colMeans</a></span><span class='op'>(</span><span class='va'>centers</span><span class='op'>[</span><span class='op'>-</span><span class='va'>cluster_of_interest</span>,<span class='op'>]</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>    <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span>decreasing <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>    <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span></span>
+<span><span class='op'>}</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>get_top_words</span><span class='op'>(</span><span class='va'>km</span><span class='op'>$</span><span class='va'>centers</span>, <span class='fl'>1</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>get_top_words</span><span class='op'>(</span><span class='va'>km</span><span class='op'>$</span><span class='va'>centers</span>, <span class='fl'>1</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>        new      jersei    menendez        fund     project 
 0.020521488 0.017404097 0.007306990 0.006406194 0.004548713 
     million       feder          nj     program         sen 
 0.003967707 0.003579091 0.003422422 0.003390473 0.003174855 </code></pre>
 </div>
-<p>It looks like that first cluster contains words related to New
-Jersey-specific projects. Maybe we’ll call this category “credit
-claiming”.</p>
+<p>It looks like that first cluster contains words related to New Jersey-specific projects. Maybe we’ll call this category “credit claiming”.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>get_top_words</span><span class='op'>(</span><span class='va'>km</span><span class='op'>$</span><span class='va'>centers</span>, <span class='fl'>2</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>get_top_words</span><span class='op'>(</span><span class='va'>km</span><span class='op'>$</span><span class='va'>centers</span>, <span class='fl'>2</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>      secur      chemic    homeland        port     protect 
 0.047101748 0.017238562 0.012628968 0.009966087 0.005874105 
@@ -2657,61 +2635,50 @@ claiming”.</p>
 <p>The second cluster contains words related to security.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>get_top_words</span><span class='op'>(</span><span class='va'>km</span><span class='op'>$</span><span class='va'>centers</span>, <span class='fl'>3</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>get_top_words</span><span class='op'>(</span><span class='va'>km</span><span class='op'>$</span><span class='va'>centers</span>, <span class='fl'>3</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>     legisl         sen    american        bill         epa 
 0.003556391 0.002868324 0.002606283 0.002589137 0.002394477 
         act      famili      victim        year      amtrak 
 0.002078147 0.001866299 0.001717110 0.001707263 0.001613547 </code></pre>
 </div>
-<p>The third cluster has words related to various pieces of legislation
-and Senate business.</p>
+<p>The third cluster has words related to various pieces of legislation and Senate business.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>get_top_words</span><span class='op'>(</span><span class='va'>km</span><span class='op'>$</span><span class='va'>centers</span>, <span class='fl'>4</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>get_top_words</span><span class='op'>(</span><span class='va'>km</span><span class='op'>$</span><span class='va'>centers</span>, <span class='fl'>4</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>     presid        bush   statement       senat     comment 
 0.019325460 0.015638002 0.007088761 0.004435791 0.004353666 
        unit       elect      follow        issu         tax 
 0.004192093 0.004036246 0.003940064 0.003897682 0.003500055 </code></pre>
 </div>
-<p>And the final cluster looks like the “partisan taunting” category
-dicussed in the book.</p>
-<h2 id="validation-validation-validation">Validation, Validation,
-Validation</h2>
-<p>To validate our manually-assigned cluster labels, we want to go back
-to the text and check to see if they do a good job summarizing the
-documents. If not, we should modify our cluster labels or try a
-different value for <span class="math inline">\(k\)</span>.</p>
+<p>And the final cluster looks like the “partisan taunting” category dicussed in the book.</p>
+<h2 id="validation-validation-validation">Validation, Validation, Validation</h2>
+<p>To validate our manually-assigned cluster labels, we want to go back to the text and check to see if they do a good job summarizing the documents. If not, we should modify our cluster labels or try a different value for <span class="math inline">\(k\)</span>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cluster_assignments</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>id <span class='op'>=</span> <span class='va'>km</span><span class='op'>$</span><span class='va'>cluster</span> |&gt; 
-                                <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='op'>)</span> |&gt; 
-                                <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='op'>)</span>,
-                              cluster <span class='op'>=</span> <span class='va'>km</span><span class='op'>$</span><span class='va'>cluster</span><span class='op'>)</span>
-
-<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='va'>df</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>cluster_assignments</span>,
-            by <span class='op'>=</span> <span class='st'>'id'</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>cluster_assignments</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>id <span class='op'>=</span> <span class='va'>km</span><span class='op'>$</span><span class='va'>cluster</span> <span class='op'>|&gt;</span> </span>
+<span>                                <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>                                <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
+<span>                              cluster <span class='op'>=</span> <span class='va'>km</span><span class='op'>$</span><span class='va'>cluster</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='va'>df</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>cluster_assignments</span>,</span>
+<span>            by <span class='op'>=</span> <span class='st'>'id'</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>If we pull a random document from Cluster 1, it should be related to
-New Jersey in some way.</p>
+<p>If we pull a random document from Cluster 1, it should be related to New Jersey in some way.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>print_text</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span><span class='op'>{</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_wrap.html'>str_wrap</a></span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span>, sep <span class='op'>=</span> <span class='st'>'\n'</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-<span class='va'>df</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>cluster</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span> |&gt; 
-  <span class='fu'>print_text</span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>print_text</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_wrap.html'>str_wrap</a></span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span>, sep <span class='op'>=</span> <span class='st'>'\n'</span><span class='op'>)</span></span>
+<span><span class='op'>}</span></span>
+<span></span>
+<span><span class='va'>df</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>cluster</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'>print_text</span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>Senator Frank R Lautenberg Press Release of Senator Lautenberg Lautenberg
 Menendez Announce 21 Million for Improvements in Screening Areas at Newark
@@ -2733,16 +2700,14 @@ this thriving center of travel The funds were awarded by the Federal Aviation
 Administration to the Port Authority of New York and New Jersey which operates
 the airport Questions or Comments</code></pre>
 </div>
-<p>If we pull a random document from Cluster 2, it should be about
-security.</p>
+<p>If we pull a random document from Cluster 2, it should be about security.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>cluster</span> <span class='op'>==</span> <span class='fl'>2</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span> |&gt; 
-  <span class='fu'>print_text</span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>df</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>cluster</span> <span class='op'>==</span> <span class='fl'>2</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'>print_text</span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>Senator Frank R Lautenberg Press Release of Senator Lautenberg Lautenberg
 Pallone Menendez Blast Proposal to Block New Jersey s Chemical Security
@@ -2774,16 +2739,14 @@ and Pallone have introduced comprehensive chemical security bills in previous
 Congresses and announced their intention to do so during this Congress Questions
 or Comments</code></pre>
 </div>
-<p>If we pull a random document from Cluster 3, it be about legislation
-and/or Senate business.</p>
+<p>If we pull a random document from Cluster 3, it be about legislation and/or Senate business.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>cluster</span> <span class='op'>==</span> <span class='fl'>3</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span> |&gt; 
-  <span class='fu'>print_text</span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>df</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>cluster</span> <span class='op'>==</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'>print_text</span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>Senator Frank R Lautenberg Press Release of Senator Lautenberg Lautenberg
 Specter Introduce Bill To Give Justice To Victims of State Sponsored Terrorism
@@ -2825,16 +2788,14 @@ Cornyn R TX Hillary Clinton D NY Lindsey Graham R SC Diane Feinstein D CA Joseph
 Lieberman I CT Charles Schumer D NY Norm Coleman R MN Robert Casey D PA Susan
 Collins R ME and Ted Stevens R AK Questions or Comments</code></pre>
 </div>
-<p>And a random document from Cluster 4 should contain some form of
-“partisan taunting”.</p>
+<p>And a random document from Cluster 4 should contain some form of “partisan taunting”.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>cluster</span> <span class='op'>==</span> <span class='fl'>4</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span> |&gt; 
-  <span class='fu'>print_text</span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>df</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>cluster</span> <span class='op'>==</span> <span class='fl'>4</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>text</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'>print_text</span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>Senator Frank R Lautenberg Press Release of Senator Lautenberg Lautenberg
 Outraged Over Bush Admin Decision to Let Libya Off the Hook for Pan Am 103
@@ -2865,44 +2826,28 @@ Pan Am flight 103 over Lockerbie Scotland on December 21st 1988 that killed 270
 people Of the 189 Americans who died as a result of the bombing 38 were from New
 Jersey Questions or Comments</code></pre>
 </div>
-<h2 id="clustering-with-word-embeddings">Clustering with Word
-Embeddings</h2>
-<p>In that last clustering exercise, we represented each document as a
-vector of word counts. This can lead us astray when the documents are
-very short but our vocabulary is very large. For example, Senator
-Lautenberg has a number of press releases that I would classify as being
-about the environment, but the <a href="bag-of-words.html">Bag of
-Words</a> has no idea that words like “preservation”, “mercury”, and
-“rivers” might belong in the same category.</p>
-<p>When documents are as brief as these press releases, one could
-potentially represent them with the average <a
-href="word-embeddings.html">word embedding</a> of the words in each
-document. The k-means clustering algorithm then works in the same way,
-except that it is assigning clusters within a vector space corresponding
-to the <em>meaning</em> of the documents (in a sense) rather than a
-vector space that’s just counting up the frequency of words.</p>
-<p>Let’s give it a try, shall we? First, get the word embeddings from
-the <code>textdata</code> package.</p>
+<h2 id="clustering-with-word-embeddings">Clustering with Word Embeddings</h2>
+<p>In that last clustering exercise, we represented each document as a vector of word counts. This can lead us astray when the documents are very short but our vocabulary is very large. For example, Senator Lautenberg has a number of press releases that I would classify as being about the environment, but the <a href="bag-of-words.html">Bag of Words</a> has no idea that words like “preservation”, “mercury”, and “rivers” might belong in the same category.</p>
+<p>When documents are as brief as these press releases, one could potentially represent them with the average <a href="word-embeddings.html">word embedding</a> of the words in each document. The k-means clustering algorithm then works in the same way, except that it is assigning clusters within a vector space corresponding to the <em>meaning</em> of the documents (in a sense) rather than a vector space that’s just counting up the frequency of words.</p>
+<p>Let’s give it a try, shall we? First, get the word embeddings from the <code>textdata</code> package.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/EmilHvitfeldt/textdata'>textdata</a></span><span class='op'>)</span>
-
-<span class='co'># get the glove embedding vectors</span>
-<span class='va'>glove</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/textdata/man/embedding_glove.html'>embedding_glove6b</a></span><span class='op'>(</span>dimensions <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
-
-<span class='co'># convert to a matrix (it will make the computation easier)</span>
-<span class='va'>glove_tokens</span> <span class='op'>&lt;-</span> <span class='va'>glove</span><span class='op'>$</span><span class='va'>token</span>
-
-<span class='va'>glove</span> <span class='op'>&lt;-</span> <span class='va'>glove</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>token</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://tibble.tidyverse.org/reference/rownames.html'>rownames</a></span><span class='op'>(</span><span class='va'>glove</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>glove_tokens</span>
-
-<span class='va'>glove</span><span class='op'>[</span><span class='fl'>100</span><span class='op'>:</span><span class='fl'>120</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># get the glove embedding vectors</span></span>
+<span><span class='va'>glove</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_table.html'>read_table</a></span><span class='op'>(</span><span class='st'>"data/glove.6B/glove.6B.100d.txt"</span>, </span>
+<span>                    col_names <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># convert to a matrix (it will make the computation easier)</span></span>
+<span><span class='va'>vocab</span> <span class='op'>&lt;-</span> <span class='va'>glove</span><span class='op'>$</span><span class='va'>X1</span></span>
+<span></span>
+<span><span class='va'>glove</span> <span class='op'>&lt;-</span> <span class='va'>glove</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>X2</span><span class='op'>:</span><span class='va'>X101</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span><span class='op'>(</span><span class='va'>glove</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>vocab</span></span>
+<span></span>
+<span><span class='va'>glove</span><span class='op'>[</span><span class='fl'>100</span><span class='op'>:</span><span class='fl'>120</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span></span></code></pre>
 </div>
-<pre><code>               d1        d2        d3
+<pre><code>               X2        X3        X4
 u.s.     0.323960  0.598100  1.237800
 so      -0.395510  0.546600  0.503150
 them    -0.101310  0.109410  0.240650
@@ -2925,186 +2870,147 @@ like    -0.268700  0.817080  0.698960
 between  0.082441 -0.040760  0.525170
 did      0.304490 -0.196280  0.202250</code></pre>
 </div>
-<p>Next, we’ll tokenize the press releases, removing stop words and
-keeping only the words available in the GloVe lexicon.</p>
+<p>Next, we’ll tokenize the press releases, removing stop words and keeping only the words available in the GloVe lexicon.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># get all the press releases and count up the words for each</span>
-<span class='va'>tidy_press_releases</span> <span class='op'>&lt;-</span> <span class='va'>df</span> |&gt;
-  <span class='co'># get rid of the earlier cluster assignments</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>cluster</span>, <span class='op'>-</span><span class='va'>date</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_replace.html'>str_replace_all</a></span><span class='op'>(</span><span class='va'>text</span>,
-                                pattern <span class='op'>=</span> <span class='st'>'     Senator Frank R  Lautenberg                                                                                                                      Press Release        of        Senator Lautenberg                                                                                '</span>,
-                                replacement <span class='op'>=</span> <span class='st'>''</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='co'># tokenize to the word level</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>input <span class='op'>=</span> <span class='st'>'text'</span>,
-                output <span class='op'>=</span> <span class='st'>'word'</span><span class='op'>)</span> |&gt;
-  <span class='co'># remove stop words</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter-joins.html'>anti_join</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_stopwords.html'>get_stopwords</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='co'># remove numerals</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='st'>'[0-9]'</span>, negate <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-  <span class='co'># remove the words that aren't in the glove lexicon</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>word</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='va'>glove_tokens</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># get all the press releases and count up the words for each</span></span>
+<span><span class='va'>tidy_press_releases</span> <span class='op'>&lt;-</span> <span class='va'>df</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># get rid of the earlier cluster assignments</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>cluster</span>, <span class='op'>-</span><span class='va'>date</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_replace.html'>str_replace_all</a></span><span class='op'>(</span><span class='va'>text</span>,</span>
+<span>                                pattern <span class='op'>=</span> <span class='st'>'     Senator Frank R  Lautenberg                                                                                                                      Press Release        of        Senator Lautenberg                                                                                '</span>,</span>
+<span>                                replacement <span class='op'>=</span> <span class='st'>''</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># tokenize to the word level</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>input <span class='op'>=</span> <span class='st'>'text'</span>,</span>
+<span>                output <span class='op'>=</span> <span class='st'>'word'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># remove stop words</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter-joins.html'>anti_join</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_stopwords.html'>get_stopwords</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># remove numerals</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='st'>'[0-9]'</span>, negate <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># remove the words that aren't in the glove lexicon</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>word</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='va'>vocab</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>Next, compute the average word embedding of each word in the
-document. I’m going to do it with a <code>for</code> loop, because I
-can’t think of a more elegant solution.</p>
+<p>Next, compute the average word embedding of each word in the document. I’m going to do it with a <code>for</code> loop, because I can’t think of a more elegant solution.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># create an empty matrix called document embeddings</span>
-<span class='va'>document_embeddings</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>nrow <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>,
-                              ncol <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
-
-<span class='kw'>for</span><span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
-
-  <span class='va'>list_of_words</span> <span class='op'>&lt;-</span> <span class='va'>tidy_press_releases</span> |&gt;
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>id</span> <span class='op'>==</span> <span class='va'>i</span><span class='op'>)</span> |&gt;
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span>
-
-  <span class='va'>document_embeddings</span><span class='op'>[</span><span class='va'>i</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colMeans</a></span><span class='op'>(</span><span class='va'>glove</span><span class='op'>[</span><span class='va'>list_of_words</span>,<span class='op'>]</span><span class='op'>)</span>
-
-<span class='op'>}</span>
-
-<span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>document_embeddings</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># create an empty matrix called document embeddings</span></span>
+<span><span class='va'>document_embeddings</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>nrow <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>,</span>
+<span>                              ncol <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='kw'>for</span><span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span></span>
+<span></span>
+<span>  <span class='va'>list_of_words</span> <span class='op'>&lt;-</span> <span class='va'>tidy_press_releases</span> <span class='op'>|&gt;</span></span>
+<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>id</span> <span class='op'>==</span> <span class='va'>i</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span></span>
+<span></span>
+<span>  <span class='va'>document_embeddings</span><span class='op'>[</span><span class='va'>i</span>,<span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colMeans</a></span><span class='op'>(</span><span class='va'>glove</span><span class='op'>[</span><span class='va'>list_of_words</span>,<span class='op'>]</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='op'>}</span></span>
+<span></span>
+<span><span class='fu'><a href='https://pillar.r-lib.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>document_embeddings</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code> num [1:558, 1:100] 0.0489 0.0433 0.0581 -0.0696 -0.0526 ...</code></pre>
 </div>
-<p>Now we have a matrix that represents each press release as a
-100-dimensional vector. Using k-means, we will identify 6 clusters that
-best describe those document vectors.</p>
+<p>Now we have a matrix that represents each press release as a 100-dimensional vector. Using k-means, we will identify 6 clusters that best describe those document vectors.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>km</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/kmeans.html'>kmeans</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>document_embeddings</span>,
-             centers <span class='op'>=</span> <span class='fl'>6</span>,
-             nstart <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
-
-<span class='co'># merge the cluster assignments back with the documents</span>
-<span class='va'>cluster_assignments</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>id <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>558</span>,
-                              cluster <span class='op'>=</span> <span class='va'>km</span><span class='op'>$</span><span class='va'>cluster</span><span class='op'>)</span>
-
-<span class='va'>df</span> <span class='op'>&lt;-</span> <span class='va'>df</span> |&gt;
-  <span class='co'># remove the earlier cluster assignment from bag of words</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>cluster</span><span class='op'>)</span> |&gt;
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>cluster_assignments</span>,
-            by <span class='op'>=</span> <span class='st'>'id'</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>cluster</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>km</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/kmeans.html'>kmeans</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>document_embeddings</span>,</span>
+<span>             centers <span class='op'>=</span> <span class='fl'>6</span>,</span>
+<span>             nstart <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># merge the cluster assignments back with the documents</span></span>
+<span><span class='va'>cluster_assignments</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>id <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>558</span>,</span>
+<span>                              cluster <span class='op'>=</span> <span class='va'>km</span><span class='op'>$</span><span class='va'>cluster</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='va'>df</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='co'># remove the earlier cluster assignment from bag of words</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>cluster</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>cluster_assignments</span>,</span>
+<span>            by <span class='op'>=</span> <span class='st'>'id'</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>cluster</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>
   1   2   3   4   5   6 
  74 101  50  81 158  94 </code></pre>
 </div>
-<p>You’ll note, if you’re playing along at home, that this line of code
-was <em>much</em> quicker than when we estimated k-means on the
-7,073-dimensional bag of words vectors. Let’s look at the most
-over-represented words in each cluster.</p>
+<p>You’ll note, if you’re playing along at home, that this line of code was <em>much</em> quicker than when we estimated k-means on the 7,073-dimensional bag of words vectors. Let’s look at the most over-represented words in each cluster.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># a function to get the most over-represented words by cluster</span>
-<span class='va'>get_top_words</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>tidy_press_releases</span>, <span class='va'>cluster_of_interest</span><span class='op'>)</span><span class='op'>{</span>
-  <span class='va'>tidy_press_releases</span> |&gt;
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>word</span><span class='op'>)</span> |&gt;
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>cluster_assignments</span>, by <span class='op'>=</span> <span class='st'>'id'</span><span class='op'>)</span> |&gt;
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>in_cluster <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span><span class='va'>cluster</span> <span class='op'>==</span> <span class='va'>cluster_of_interest</span>,
-                                <span class='st'>'within_cluster'</span>, <span class='st'>'outside_cluster'</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-    <span class='co'># count the words in each cluster</span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>in_cluster</span>, <span class='va'>word</span><span class='op'>)</span> |&gt;
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-    <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='st'>'in_cluster'</span>,
-                values_from <span class='op'>=</span> <span class='st'>'n'</span>,
-                values_fill <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span> |&gt;
-    <span class='co'># compute word shares</span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>within_cluster <span class='op'>=</span> <span class='va'>within_cluster</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>within_cluster</span><span class='op'>)</span>,
-           outside_cluster <span class='op'>=</span> <span class='va'>outside_cluster</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>outside_cluster</span><span class='op'>)</span><span class='op'>)</span> |&gt;
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>delta <span class='op'>=</span> <span class='va'>within_cluster</span> <span class='op'>-</span> <span class='va'>outside_cluster</span><span class='op'>)</span> |&gt;
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>delta</span><span class='op'>)</span> |&gt;
-    <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span> |&gt;
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-<span class='fu'>get_top_words</span><span class='op'>(</span><span class='va'>tidy_press_releases</span>, <span class='fl'>1</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># a function to get the most over-represented words by cluster</span></span>
+<span><span class='va'>get_top_words</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>tidy_press_releases</span>, <span class='va'>cluster_of_interest</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>  <span class='va'>tidy_press_releases</span> <span class='op'>|&gt;</span></span>
+<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/count.html'>count</a></span><span class='op'>(</span><span class='va'>id</span>, <span class='va'>word</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>cluster_assignments</span>, by <span class='op'>=</span> <span class='st'>'id'</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>in_cluster <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/if_else.html'>if_else</a></span><span class='op'>(</span><span class='va'>cluster</span> <span class='op'>==</span> <span class='va'>cluster_of_interest</span>,</span>
+<span>                                <span class='st'>'within_cluster'</span>, <span class='st'>'outside_cluster'</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>    <span class='co'># count the words in each cluster</span></span>
+<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>in_cluster</span>, <span class='va'>word</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>    <span class='fu'><a href='https://tidyr.tidyverse.org/reference/pivot_wider.html'>pivot_wider</a></span><span class='op'>(</span>names_from <span class='op'>=</span> <span class='st'>'in_cluster'</span>,</span>
+<span>                values_from <span class='op'>=</span> <span class='st'>'n'</span>,</span>
+<span>                values_fill <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>    <span class='co'># compute word shares</span></span>
+<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>within_cluster <span class='op'>=</span> <span class='va'>within_cluster</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>within_cluster</span><span class='op'>)</span>,</span>
+<span>           outside_cluster <span class='op'>=</span> <span class='va'>outside_cluster</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>outside_cluster</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>delta <span class='op'>=</span> <span class='va'>within_cluster</span> <span class='op'>-</span> <span class='va'>outside_cluster</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>delta</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>    <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span></span>
+<span><span class='op'>}</span></span>
+<span></span>
+<span><span class='fu'>get_top_words</span><span class='op'>(</span><span class='va'>tidy_press_releases</span>, <span class='fl'>1</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code> [1] &quot;new&quot;      &quot;jersey&quot;   &quot;river&quot;    &quot;million&quot;  &quot;county&quot;   &quot;project&quot; 
  [7] &quot;menendez&quot; &quot;funds&quot;    &quot;center&quot;   &quot;projects&quot;</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>get_top_words</span><span class='op'>(</span><span class='va'>tidy_press_releases</span>, <span class='fl'>2</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>get_top_words</span><span class='op'>(</span><span class='va'>tidy_press_releases</span>, <span class='fl'>2</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code> [1] &quot;epa&quot;           &quot;facilities&quot;    &quot;environmental&quot; &quot;waste&quot;        
  [5] &quot;buildings&quot;     &quot;water&quot;         &quot;site&quot;          &quot;chemicals&quot;    
  [9] &quot;global&quot;        &quot;act&quot;          </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>get_top_words</span><span class='op'>(</span><span class='va'>tidy_press_releases</span>, <span class='fl'>3</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>get_top_words</span><span class='op'>(</span><span class='va'>tidy_press_releases</span>, <span class='fl'>3</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code> [1] &quot;judge&quot;    &quot;court&quot;    &quot;honor&quot;    &quot;nfl&quot;      &quot;iraq&quot;     &quot;senator&quot; 
  [7] &quot;alito&quot;    &quot;national&quot; &quot;de&quot;       &quot;memorial&quot;</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>get_top_words</span><span class='op'>(</span><span class='va'>tidy_press_releases</span>, <span class='fl'>4</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>get_top_words</span><span class='op'>(</span><span class='va'>tidy_press_releases</span>, <span class='fl'>4</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code> [1] &quot;new&quot;            &quot;rail&quot;           &quot;amtrak&quot;        
  [4] &quot;security&quot;       &quot;transportation&quot; &quot;passenger&quot;     
  [7] &quot;jersey&quot;         &quot;airport&quot;        &quot;faa&quot;           
 [10] &quot;port&quot;          </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>get_top_words</span><span class='op'>(</span><span class='va'>tidy_press_releases</span>, <span class='fl'>5</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>get_top_words</span><span class='op'>(</span><span class='va'>tidy_press_releases</span>, <span class='fl'>5</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code> [1] &quot;s&quot;              &quot;president&quot;      &quot;bush&quot;          
  [4] &quot;security&quot;       &quot;terrorism&quot;      &quot;administration&quot;
  [7] &quot;victims&quot;        &quot;u&quot;              &quot;lautenberg&quot;    
 [10] &quot;d&quot;             </code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>get_top_words</span><span class='op'>(</span><span class='va'>tidy_press_releases</span>, <span class='fl'>6</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>get_top_words</span><span class='op'>(</span><span class='va'>tidy_press_releases</span>, <span class='fl'>6</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code> [1] &quot;health&quot;    &quot;children&quot;  &quot;care&quot;      &quot;programs&quot;  &quot;medicare&quot; 
  [6] &quot;education&quot; &quot;military&quot;  &quot;drug&quot;      &quot;coverage&quot;  &quot;budget&quot;   </code></pre>
 </div>
-<p>These seem like pretty cohesive categories! And now there’s a cluster
-for press releases about the environment, consistent with my earlier
-hunch.</p>
+<p>These seem like pretty cohesive categories! And now there’s a cluster for press releases about the environment, consistent with my earlier hunch.</p>
 <h2 id="practice-problems">Practice Problems</h2>
 <ol type="1">
-<li><p>Try changing the value of <span class="math inline">\(k\)</span>
-and see if the cluster assignments seem to improve. Look for cluster
-labels that are <em>exclusive</em> (topics aren’t overlapping; words
-that are supposed to distinguish one cluster don’t frequently appear in
-other clusters) and <em>cohesive</em> (it’s easy to identify a unique
-topic for each cluster).</p></li>
-<li><p>When we estimated k-means with document embeddings, the top words
-in one cluster included ‘judge’, ‘court’, and ‘alito’, which seems
-pretty cohesive. But they also included ‘nfl’ and ‘iraq’, which seem
-out-of-place. Investigate some of the documents included in this
-cluster. Is there something linking them together, or is this just a
-poor fit?</p></li>
+<li><p>Try changing the value of <span class="math inline">\(k\)</span> and see if the cluster assignments seem to improve. Look for cluster labels that are <em>exclusive</em> (topics aren’t overlapping; words that are supposed to distinguish one cluster don’t frequently appear in other clusters) and <em>cohesive</em> (it’s easy to identify a unique topic for each cluster).</p></li>
+<li><p>When we estimated k-means with document embeddings, the top words in one cluster included ‘judge’, ‘court’, and ‘alito’, which seems pretty cohesive. But they also included ‘nfl’ and ‘iraq’, which seem out-of-place. Investigate some of the documents included in this cluster. Is there something linking them together, or is this just a poor fit?</p></li>
 </ol>
-<div class="sourceCode" id="cb21"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
-<div id="refs" class="references csl-bib-body hanging-indent"
-role="doc-bibliography">
-<div id="ref-grimmerTextDataNew2021" class="csl-entry"
-role="doc-biblioentry">
-Grimmer, Justin, Brandon M. Stewart, and Margaret E. Roberts. 2021.
-<em>Text as Data: A New Framework for Machine Learning and the Social
-Sciences.</em> S.l.: Princeton University Press.
+<div class="sourceCode" id="cb21"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-grimmerTextDataNew2021" class="csl-entry" role="doc-biblioentry">
+Grimmer, Justin, Brandon M. Stewart, and Margaret E. Roberts. 2021. <em>Text as Data: A New Framework for Machine Learning and the Social Sciences.</em> S.l.: Princeton University Press.
 </div>
 </div>
-<section class="footnotes footnotes-end-of-document"
-role="doc-endnotes">
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1" role="doc-endnote"><p>Allison Horst has a delightful
-illustrated explanation of how the algorithm works on <a
-href="https://www.tidymodels.org/learn/statistics/k-means/">this
-page</a>.<a href="#fnref1" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Allison Horst has a delightful illustrated explanation of how the algorithm works on <a href="https://www.tidymodels.org/learn/statistics/k-means/">this page</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
