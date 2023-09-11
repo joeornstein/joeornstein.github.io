@@ -40,16 +40,18 @@ By our [best estimates](https://www.un.org/en/dayof8billion), the world's popula
 
 The majority of these people live in cities.
 
-```{r}
+
+```{r, out.width='70%'}
 knitr::include_graphics('img/global-urbanization.png')
 ```
 
+
 --
 
 $$
-\frac{3.35 \text{ billion}}{60 \text{y} \times 365.25 \text{d} \times 24\text{h} \times 60\text{m} \times 60\text{s}} =
+\frac{3.35 \text{ billion}}{60 \text{y} \times 365.25 \text{d} \times 24\text{h} \times 60\text{m} \times 60\text{s}} \approx 2
 $$
---
+???
 
 Roughly 2 people added to cities per *second* over a period of 60 years!
 
@@ -62,7 +64,9 @@ https://medium.com/@paigevsmyth/day-58-global-urbanization-slope-chart-629bc9080
 
 ## Urbanization
 
-Much of this growth today is in Southeast Asia and Africa.
+Which city do you think is growing the fastest (people per hour)?
+
+--
 
 ```{r, out.width='120%'}
 knitr::include_graphics('img/guardian-urban-growth-per-hour.png')
@@ -72,11 +76,13 @@ knitr::include_graphics('img/guardian-urban-growth-per-hour.png')
 
 https://www.theguardian.com/cities/2015/nov/23/cities-in-numbers-how-patterns-of-urban-growth-change-the-world#:~:text=Of%20the%20Urban%20Age%20cities,at%209%20and%2010%20people%2F
 
+https://www.thecable.ng/lagos-population-rises-by-85-people-per-hour-says-wef#:~:text=The%20World%20Economic%20Forum%20(WEF,and%2010%20people%20per%20hour.
+
 ---
 
 ## Urbanization
 
-For all the reasons we discussed in Module 1 (Foundations), cities create economic opportunities for people, so countries that have urbanized tend to be wealthier.
+For all the reasons we discussed in Module 1, cities create economic opportunities. Urbanized countries tend to be wealthier.
 
 --
 
@@ -92,7 +98,7 @@ In the animation, highlight in particular the different trajectories of India an
 
 ---
 
-## Urbanization of the Globe
+## Urbanization
 
 This week:
 
@@ -150,7 +156,7 @@ knitr::include_graphics('img/krugman.png')
 
 ## Theory
 
-When does it cost less to make all your shirts in one location and ship them to the others?
+When does make sense to produce all the shirts in one location and ship them to the other locations?
 
 --
 
@@ -161,7 +167,7 @@ $$
 
 ## Theory
 
-When does it cost less to make all your shirts in one location and ship them to the others?
+When does make sense to produce all the shirts in one location and ship them to the other locations?
 
 $$\underbrace{(1-c)N}_\text{factory production cost} + \underbrace{TF}_\text{transport cost} < \underbrace{1N}_\text{village production cost}$$
 --
@@ -177,7 +183,7 @@ $$T\left(\frac{F}{N}\right) < c$$
 In other words, you should expect countries to urbanize when:
 
 - **Transportation** is cheap $(T)$
-- **Agricultural productivity** is high ($\frac{F}{N}$ small)
+- **Agricultural productivity** is high $(\frac{F}{N}$ small)
 - Cost-savings from **scale economies** are large $(c)$
 
 ---
@@ -338,12 +344,4 @@ This will set the stage for a number of topics we'll talk about in Module 3, inc
 class: center, middle, inverse
 
 # The First Cities (~3000 BC)
-
----
-
-## The First Cities (~3000 BC)
-
-
-
-
 
