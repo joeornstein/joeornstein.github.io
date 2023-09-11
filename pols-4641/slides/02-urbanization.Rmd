@@ -28,29 +28,55 @@ knitr::opts_chunk$set(comment=NA, fig.width=7, fig.height=5,
                       message=FALSE, warning=FALSE, echo=FALSE)
 ```
 
-
-
 ---
 
-## Scale Economies
+## Urbanization
+
+--
+
+By our [best estimates](https://www.un.org/en/dayof8billion), the world's population reached 8 billion in November 2022.
+
+--
+
+The majority of these people live in cities.
 
 ```{r}
-knitr::include_graphics('img/dincecco-onorato.png')
+knitr::include_graphics('img/global-urbanization.png')
 ```
 
-.cite[Dincecco & Onorato (2016)]
+--
+
+$$
+\frac{3.35 \text{ billion}}{60 \text{y} \times 365.25 \text{d} \times 24\text{h} \times 60\text{m} \times 60\text{s}} =
+$$
+--
+
+Roughly 2 people added to cities per *second* over a period of 60 years!
+
 
 ???
 
-Tough to untangle causality here, but places with more widespread warfare in the millenium before the Industrial Revolution became more urbanized!
-
-
+https://medium.com/@paigevsmyth/day-58-global-urbanization-slope-chart-629bc90800ef
 
 ---
 
-## Cities and Economic Growth
+## Urbanization
 
-Because cities make more types of economic activity possible, countries with more cities tend to be richer.
+Much of this growth today is in Southeast Asia and Africa.
+
+```{r, out.width='120%'}
+knitr::include_graphics('img/guardian-urban-growth-per-hour.png')
+```
+
+???
+
+https://www.theguardian.com/cities/2015/nov/23/cities-in-numbers-how-patterns-of-urban-growth-change-the-world#:~:text=Of%20the%20Urban%20Age%20cities,at%209%20and%2010%20people%2F
+
+---
+
+## Urbanization
+
+For all the reasons we discussed in Module 1 (Foundations), cities create economic opportunities for people, so countries that have urbanized tend to be wealthier.
 
 --
 
@@ -66,13 +92,37 @@ In the animation, highlight in particular the different trajectories of India an
 
 ---
 
-## Origins of Urbanization
+## Urbanization of the Globe
 
-Why are some countries more urban while others are predominantly rural? When should we expect a country to **urbanize**?
+This week:
 
 --
 
-To answer these questions, consider a stripped-down version of the mathematical model in .cite[Krugman (1991)]:
+- Why do some countries urbanize while others have remained predominantly rural?
+
+--
+
+- What explains "waves" of urbanization throughout human history?
+
+--
+
+- How does living in cities transform a society?
+
+---
+
+class: center, middle, inverse
+
+# Theory
+
+---
+
+## Theory
+
+When should we expect a country to **urbanize**?
+
+--
+
+To get some intuition, let's consider a stripped-down version of the mathematical model in .cite[Krugman (1991)]:
 
 --
 
@@ -84,7 +134,7 @@ To answer these questions, consider a stripped-down version of the mathematical 
 
 - It costs $1 for a solitary weaver to make a shirt.
 
-- There are **economies of scale**. It only costs $(1 - c) to make a shirt if all the weavers work together in one place.
+- There are **scale economies**. It only costs $(1 - c) to make a shirt if all the weavers work together in one place.
 
 - It costs $T$ to transport a shirt to another village.
 
@@ -98,7 +148,7 @@ knitr::include_graphics('img/krugman.png')
 
 ---
 
-## Origins of Urbanization
+## Theory
 
 When does it cost less to make all your shirts in one location and ship them to the others?
 
@@ -109,14 +159,14 @@ $$
 $$
 ---
 
-## Origins of Urbanization
+## Theory
 
 When does it cost less to make all your shirts in one location and ship them to the others?
 
 $$\underbrace{(1-c)N}_\text{factory production cost} + \underbrace{TF}_\text{transport cost} < \underbrace{1N}_\text{village production cost}$$
 --
 
-Do some algebra, and you can find the conditions under which agglomeration is cheaper:
+Divide each side by $N$, add $c - 1$, and you get the conditions under which agglomeration is cheaper:
 
 --
 
@@ -126,13 +176,64 @@ $$T\left(\frac{F}{N}\right) < c$$
 
 In other words, you should expect countries to urbanize when:
 
-- Transportation is cheap
-- The share of the population in agriculture is low
-- Cost-savings from scale economies are large
+- **Transportation** is cheap $(T)$
+- **Agricultural productivity** is high ($\frac{F}{N}$ small)
+- Cost-savings from **scale economies** are large $(c)$
 
 ---
 
-## Origins of Urbanization
+class: center, middle, inverse
+
+# Four Waves of Urbanization
+
+---
+
+## Four Waves of Urbanization
+
+Over the next week, we'll talk about four significant periods of urbanization in human history. 
+
+--
+
+- The United States (19th Century)
+
+--
+
+- The First Cities (~3000 BC)
+
+--
+
+- Pre-Industrial Europe (1300-1800)
+
+--
+
+- China (20th and 21st Centuries)
+
+--
+
+Each one was preceded by new technologies that:
+
+--
+
+- Reduced the cost of **transportation**
+
+--
+
+- Increased **agricultural productivity**
+
+--
+
+- Facilitated **scale economies**
+
+
+---
+
+class: center, middle
+
+# The United States Urbanizes (19th Century)
+
+---
+
+## US Urbanization (19th Century)
 
 ```{r}
 knitr::include_graphics('img/urban-pop-usa.png')
@@ -140,7 +241,7 @@ knitr::include_graphics('img/urban-pop-usa.png')
 
 ---
 
-## Origins of Urbanization
+## US Urbanization (19th Century)
 
 ```{r}
 knitr::include_graphics('img/urban-pop-usa-highlighted.png')
@@ -148,10 +249,13 @@ knitr::include_graphics('img/urban-pop-usa-highlighted.png')
 
 What happened here??
 
+???
+
+Take a minute to discuss with your group. We're looking for technologies that improved transportation, agricultural productivity, and facilitated scale economies
 
 ---
 
-## Origins of Urbanization
+## US Urbanization (19th Century)
 
 .pull-left[
   - ["2nd Agricultural Revolution"](https://en.wikipedia.org/wiki/British_Agricultural_Revolution)
@@ -160,19 +264,24 @@ What happened here??
 .pull-right[
 ```{r}
 knitr::include_graphics('img/second-agricultural-revolution.png')
+
+knitr::include_graphics('img/steam-thresher.jpg')
 ```
 ]
 
+???
+
+In 1800s, 90% of Americans lived on farms. Today, it's roughly 1 percent.
 
 
 ---
 
-## Origins of Urbanization
+## US Urbanization (19th Century)
 
 .pull-left[
 - "2nd Agricultural Revolution"
   
-- Factory production
+- Improved methods of factory production
 ]
 
 .pull-right[
@@ -181,14 +290,18 @@ knitr::include_graphics('img/factory.jpg')
 ```
 ]
 
+???
+
+At the very same time that productivity improvements made it so that fewer people needed to work on farms, we had new technologies that made it particularly lucrative to agglomerate laborers into cities.
+
 ---
 
-## Origins of Urbanization
+## US Urbanization (19th Century)
 
 .pull-left[
 - "2nd Agricultural Revolution"
   
-- Factory production
+- Improved methods of factory production
 
 - New forms of transportation
 ]
@@ -201,333 +314,36 @@ knitr::include_graphics('img/locomotive.jpg')
 ```
 ]
 
+
 ---
 
-## A Puzzle: Clusters of Industry
+## US Urbanization (19th Century)
 
-
-The Krugman model explains why an *individual* firm would locate in a city, but why would *multiple*, competing firms locate in the same place?
+These three technological advances -- improvements in transportation, agriculture, and scale economies -- transformed US society. From a country where 90% of people lived on farms to a predominantly urban nation within 50 years. 
 
 --
 
 ```{r}
-knitr::include_graphics('img/silicon-valley.png')
+knitr::include_graphics('img/great-migration.png')
 ```
+
+One of the historical legacies of this era is the "Great Migration".
 
 ???
 
-Why do you get clusters of industry? What are some other clusters?
-
-- Finance in New York
-
-- Films in Los Angeles
-
-- Tech in San Francisco
-
-- Cars in Detroit
-
-- Hip hop in Atlanta
-
----
-
-## A Puzzle: Clusters of Industry
-
-
-The Krugman model explains why an *individual* firm would locate in a city, but why would *multiple*, competing firms locate in the same place?
-
-```{r}
-knitr::include_graphics('img/silicon-valley-logos.png')
-```
-
----
-
-## Spillover Effects
-
-Why is it valuable to locate in the same city as your competitors?
-
---
-
-<br>
-
-.pull-left[
-
-- **Forward Linkages**
-
-- Backward Linkages
-
-- Labor Market Pooling
-
-- Knowledge Spillovers
-]
-
-.pull-right[
-```{r}
-knitr::include_graphics('img/Metropolitan_Opera_House,_a_concert_by_pianist_Josef_Hofmann_-_NARA_541890_-_Edit.jpg')
-```
-]
-
----
-
-## Spillover Effects
-
-Why is it valuable to locate in the same city as your competitors?
-
-<br>
-
-.pull-left[
-
-- Forward Linkages
-
-- **Backward Linkages**
-
-- Labor Market Pooling
-
-- Knowledge Spillovers
-]
-
-.pull-right[
-```{r}
-knitr::include_graphics('img/Automotive-Factory-Parts_in_Bins.jpg')
-```
-]
-
----
-
-## Spillover Effects
-
-Why is it valuable to locate in the same city as your competitors?
-
-<br>
-
-.pull-left[
-
-- Forward Linkages
-
-- Backward Linkages
-
-- **Labor Market Pooling**
-
-- Knowledge Spillovers
-]
-
-.pull-right[
-```{r}
-knitr::include_graphics('img/job-seekers.jpg')
-```
-]
-
-
----
-
-## Spillover Effects
-
-Why is it valuable to locate in the same city as your competitors?
-
-<br>
-
-.pull-left[
-
-- Forward Linkages
-
-- Backward Linkages
-
-- Labor Market Pooling
-
-- **Knowledge Spillovers**
-]
-
-.pull-right[
-```{r}
-knitr::include_graphics('img/knowledge-spillovers.png')
-```
-]
-
+This will set the stage for a number of topics we'll talk about in Module 3, including residential segregation in US cities and the nature of US political parties.
 
 ---
 
 class: center, middle, inverse
 
-## Path Dependence
+# The First Cities (~3000 BC)
 
 ---
 
-## Path Dependence
+## The First Cities (~3000 BC)
 
-- The Krugman model tells us **when** countries will urbanize.
 
---
 
-- But does it tell us **where** they will urbanize?
 
---
-
-```{r, out.width = '400'}
-knitr::include_graphics('img/krugman.png')
-```
-
---
-
-- Villages A, B, and C are all equally likely to become the city!
-
---
-
-- And once an industry locates somewhere, powerful forces (forward and backward linkages, labor market pooling, knowledge spillovers), conspire to keep it there.
-
-???
-
-(If you've taken economics before, notice that this is very different than the idea of "comparative advantage". One location specializes in shirt-making and the others specialize in agriculture, but not because of any particular locational advantage...)
-
----
-
-class: center, middle
-
-### **Path Dependence**: History has enduring influence!
-
----
-
-## Stories about Path Dependence
-
-- **Story 1:** The Fall Line
-
-- **Story 2:** Hiroshima and Nagasaki
-
-- **Story 3:** Pirates of the Mediterranean
-
-- **Story 4:** QWERTY Keyboards
-
----
-
-## Story 1: The Fall Line
-
-```{r}
-knitr::include_graphics('img/cretaceous.png')
-```
-
----
-
-## Story 1: The Fall Line
-
-```{r}
-knitr::include_graphics('img/portage.jpeg')
-```
-
----
-
-## Story 1: The Fall Line
-
-```{r}
-knitr::include_graphics('img/watermill.jpg')
-```
-
----
-
-## Story 1: The Fall Line
-
-```{r}
-knitr::include_graphics('img/bleakley-lin-fig-a1.png')
-```
-
----
-
-## Story 2: Hiroshima and Nagasaki
-
-```{r}
-knitr::include_graphics('img/nagasaki.jpg')
-```
-
-???
-
-Hundreds of thousands of people dead. Roughly 70% of the buildings destroyed.
-
----
-
-## Story 2: Hiroshima and Nagasaki
-
-```{r}
-knitr::include_graphics('img/hiroshima.webp')
-```
-
-???
-
-As a high schooler, I honestly just assumed that Hiroshima and Nagasaki were no longer cities.
-
----
-
-## Story 2: Hiroshima and Nagasaki
-
-```{r}
-knitr::include_graphics('img/Atomic_Bomb_Dome_and_Motoyaso_River,_Hiroshima,_Northwest_view_20190417_1.jpg')
-```
-
-???
-
-Thriving city of roughly 1.2 million people
-
----
-
-## Story 2: Hiroshima and Nagasaki
-
-.cite[Davis & Weinstein (2002):]
-
-```{r}
-knitr::include_graphics('img/davis-fig-2.png')
-```
-
-???
-
-As if nothing happened! By 1975, both cities are *exactly* where you would have predicted their population to be if you just naively projected forward their growth rates, without knowing anything about the war. 
-
-A remarkable example of path dependence. Even in a situation where so many people died, others evacuated, 70% of the buildings destroyed, stigma surrounding radiation, the cities still survived.
-
----
-
-## Story 3: Pirates of the Mediterranean
-
-```{r, out.width = '400'}
-knitr::include_graphics('img/pirate-attacks.png')
-```
-
----
-
-## Story 3: Pirates of the Mediterranean
-
-```{r, out.width='800'}
-knitr::include_graphics('img/italian-cities.png')
-```
-
-???
-
-Even 500 years afterwards, you still get this inefficient location of Italian urban activity. It would be more efficient for these places to be on the seaside, where you can have a port and trade. But path dependence locks you into this weird historical trajectory.
-
----
-
-## Story 4: QWERTY
-
---
-
-Why is history "sticky"?
-
-```{r}
-knitr::include_graphics('img/QWERTY_keyboard.jpg')
-```
-
-
----
-
-
-class: center, middle, inverse
-
-## Discussion
-
----
-
-## Discussion
-
-The COVID-19 pandemic led many to predict that cities would become obsolete. 
-
-- New communication technologies (Zoom, the Metaverse) reduce the value of face-to-face communication, so firms no longer need to agglomerate in a single place.
-
-- Fears of contagion reduce the value that people place on dense city living.
-
-In light of what we've learned today, do you agree with these predictions? What do you expect the "city of the future" to look like?
 
