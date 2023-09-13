@@ -789,6 +789,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
 
   .html-widget {
@@ -1861,15 +1862,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
-          var fn = $(this).children()[0]
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
           $(this).html(fn.shadowRoot.querySelector("sup"))
           $(this).id = fn.id
           fn.remove()
         }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -2378,7 +2385,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2442,29 +2449,23 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h3>Contents</h3>
 <ul>
 <li><a href="#slides" id="toc-slides">Slides</a></li>
-<li><a href="#the-density-divide" id="toc-the-density-divide">The
-Density Divide</a>
+<li><a href="#the-density-divide" id="toc-the-density-divide">The Density Divide</a>
 <ul>
 <li><a href="#books" id="toc-books">Books</a></li>
-<li><a href="#research-papers" id="toc-research-papers">Research
-Papers</a></li>
+<li><a href="#research-papers" id="toc-research-papers">Research Papers</a></li>
 <li><a href="#videos" id="toc-videos">Videos</a></li>
 <li><a href="#podcasts" id="toc-podcasts">Podcasts</a></li>
 <li><a href="#other-media" id="toc-other-media">Other Media</a></li>
 </ul></li>
-<li><a href="#segregation-causes-and-consequences"
-id="toc-segregation-causes-and-consequences">Segregation: Causes and
-Consequences</a>
+<li><a href="#segregation-causes-and-consequences" id="toc-segregation-causes-and-consequences">Segregation: Causes and Consequences</a>
 <ul>
 <li><a href="#books-1" id="toc-books-1">Books</a></li>
-<li><a href="#research-papers-1" id="toc-research-papers-1">Research
-Papers</a></li>
+<li><a href="#research-papers-1" id="toc-research-papers-1">Research Papers</a></li>
 <li><a href="#videos-1" id="toc-videos-1">Videos</a></li>
 <li><a href="#podcasts-1" id="toc-podcasts-1">Podcasts</a></li>
 <li><a href="#other-media-1" id="toc-other-media-1">Other Media</a></li>
 </ul></li>
-<li><a href="#the-high-modernists" id="toc-the-high-modernists">The High
-Modernists</a>
+<li><a href="#the-high-modernists" id="toc-the-high-modernists">The High Modernists</a>
 <ul>
 <li><a href="#books-2" id="toc-books-2">Books</a></li>
 <li><a href="#videos-2" id="toc-videos-2">Videos</a></li>
@@ -2486,37 +2487,17 @@ Modernists</a>
 <h2 id="the-density-divide">The Density Divide</h2>
 <h3 id="books">Books</h3>
 <ul>
-<li>Rodden, Jonathan. 2019. <a
-href="https://www.amazon.com/Why-Cities-Lose-Urban-Rural-Political-ebook/dp/B07J53T55S">Why
-Cities Lose: The Deep Roots of the Urban-Rural Political Divide.</a> New
-York: Basic Books.</li>
+<li>Rodden, Jonathan. 2019. <a href="https://www.amazon.com/Why-Cities-Lose-Urban-Rural-Political-ebook/dp/B07J53T55S">Why Cities Lose: The Deep Roots of the Urban-Rural Political Divide.</a> New York: Basic Books.</li>
 </ul>
 <h3 id="research-papers">Research Papers</h3>
 <ul>
-<li><p>Wilkinson (2019). <a
-href="readings/Wilkinson%20-%202019%20-%20The%20Density%20Divide.pdf">The
-Density Divide</a></p></li>
-<li><p>Gimpel et al. (2020). <a
-href="readings/Gimpel%20et%20al.%20-%202020%20-%20The%20Urbanâ€“Rural%20Gulf%20in%20American%20Political%20Behavior.pdf">The
-Urban–Rural Gulf in American Political Behavior</a></p></li>
-<li><p>Brown and Enos (2021). <a
-href="readings/Brown%20and%20Enos%20-%202021%20-%20The%20measurement%20of%20partisan%20sorting%20for%20180%20million%20voters.pdf">The
-measurement of partisan sorting for 180 million voters</a></p></li>
-<li><p>Chen &amp; Rodden (2013). <a
-href="readings/Chen,%20Rodden%20-%202013%20-%20Unintentional%20Gerrymandering%20Political%20Geography%20and%20Electoral%20Bias%20in%20Legislatures.pdf">Unintentional
-Gerrymandering: Political Geography and Electoral Bias in
-Legislatures</a></p></li>
-<li><p>Carey &amp; Hix (2011). <a
-href="readings/Carey,%20Hix%20-%202011%20-%20The%20Electoral%20Sweet%20Spot%20Low-Magnitude%20Proportional%20Electoral%20Systems.pdf">The
-Electoral Sweet Spot: Low-Magnitude Proportional Electoral
-Systems</a></p></li>
-<li><p>Abrams &amp; Fiorina (2012). <a
-href="readings/Abrams,%20Fiorina%20-%202012%20-%20“The%20Big%20Sort”%20That%20Wasn&#39;t%20A%20Skeptical%20Reexamination.pdf">“The
-Big Sort” That Wasn’t: A Skeptical Reexamination</a></p></li>
-<li><p>Mummolo &amp; Nall (2017). <a
-href="readings/Mummolo%20and%20Nall%20-%202017%20-%20Why%20Partisans%20Do%20Not%20Sort%20The%20Constraints%20on%20Poli.pdf">Why
-Partisans Do Not Sort: The Constraints on Political
-Segregation</a></p></li>
+<li><p>Wilkinson (2019). <a href="readings/Wilkinson%20-%202019%20-%20The%20Density%20Divide.pdf">The Density Divide</a></p></li>
+<li><p>Gimpel et al. (2020). <a href="readings/Gimpel%20et%20al.%20-%202020%20-%20The%20Urbanâ€“Rural%20Gulf%20in%20American%20Political%20Behavior.pdf">The Urban–Rural Gulf in American Political Behavior</a></p></li>
+<li><p>Brown and Enos (2021). <a href="readings/Brown%20and%20Enos%20-%202021%20-%20The%20measurement%20of%20partisan%20sorting%20for%20180%20million%20voters.pdf">The measurement of partisan sorting for 180 million voters</a></p></li>
+<li><p>Chen &amp; Rodden (2013). <a href="readings/Chen,%20Rodden%20-%202013%20-%20Unintentional%20Gerrymandering%20Political%20Geography%20and%20Electoral%20Bias%20in%20Legislatures.pdf">Unintentional Gerrymandering: Political Geography and Electoral Bias in Legislatures</a></p></li>
+<li><p>Carey &amp; Hix (2011). <a href="readings/Carey,%20Hix%20-%202011%20-%20The%20Electoral%20Sweet%20Spot%20Low-Magnitude%20Proportional%20Electoral%20Systems.pdf">The Electoral Sweet Spot: Low-Magnitude Proportional Electoral Systems</a></p></li>
+<li><p>Abrams &amp; Fiorina (2012). <a href="readings/Abrams,%20Fiorina%20-%202012%20-%20“The%20Big%20Sort”%20That%20Wasn&#39;t%20A%20Skeptical%20Reexamination.pdf">“The Big Sort” That Wasn’t: A Skeptical Reexamination</a></p></li>
+<li><p>Mummolo &amp; Nall (2017). <a href="readings/Mummolo%20and%20Nall%20-%202017%20-%20Why%20Partisans%20Do%20Not%20Sort%20The%20Constraints%20on%20Poli.pdf">Why Partisans Do Not Sort: The Constraints on Political Segregation</a></p></li>
 </ul>
 <h3 id="videos">Videos</h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -2525,59 +2506,28 @@ Segregation</a></p></li>
 </div>
 <h3 id="podcasts">Podcasts</h3>
 <ul>
-<li><a
-href="https://www.niskanencenter.org/explaining-the-urban-rural-political-divide/">Explaining
-the Urban-Rural Political Divide</a></li>
+<li><a href="https://www.niskanencenter.org/explaining-the-urban-rural-political-divide/">Explaining the Urban-Rural Political Divide</a></li>
 </ul>
 <h3 id="other-media">Other Media</h3>
 <ul>
-<li><p>Badger, Emily, Kevin Quealy, and Josh Katz. 2021. <a
-href="https://www.nytimes.com/interactive/2021/03/17/upshot/partisan-segregation-maps.html">“A
-Close-Up Picture of Partisan Segregation, Among 180 Million Voters.”</a>
-<em>The New York Times</em>.</p></li>
-<li><p>Badger, Emily, Josh Katz, Kevin Quealy, and Rumsey Taylor. 2021.
-<a
-href="https://www.nytimes.com/interactive/2021/upshot/trump-biden-geography-quiz.html">“Do
-You Think You Can Tell How a Neighborhood Voted Just by Looking
-Around?”</a> <em>The New York Times</em>.</p></li>
+<li><p>Badger, Emily, Kevin Quealy, and Josh Katz. 2021. <a href="https://www.nytimes.com/interactive/2021/03/17/upshot/partisan-segregation-maps.html">“A Close-Up Picture of Partisan Segregation, Among 180 Million Voters.”</a> <em>The New York Times</em>.</p></li>
+<li><p>Badger, Emily, Josh Katz, Kevin Quealy, and Rumsey Taylor. 2021. <a href="https://www.nytimes.com/interactive/2021/upshot/trump-biden-geography-quiz.html">“Do You Think You Can Tell How a Neighborhood Voted Just by Looking Around?”</a> <em>The New York Times</em>.</p></li>
 </ul>
-<h2 id="segregation-causes-and-consequences">Segregation: Causes and
-Consequences</h2>
+<h2 id="segregation-causes-and-consequences">Segregation: Causes and Consequences</h2>
 <h3 id="books-1">Books</h3>
 <ul>
-<li><p>Rothstein, Richard. 2017. <a
-href="https://wwnorton.com/books/the-color-of-law/">The Color of Law: A
-Forgotten History of How Our Government Segregated America.</a></p></li>
-<li><p>Trounstine, Jessica. 2018. <a
-href="https://www.cambridge.org/core/product/identifier/9781108555722/type/book">Segregation
-by Design: Local Politics and Inequality in American Cities.</a> 1st
-ed. Cambridge University Press.</p></li>
+<li><p>Rothstein, Richard. 2017. <a href="https://wwnorton.com/books/the-color-of-law/">The Color of Law: A Forgotten History of How Our Government Segregated America.</a></p></li>
+<li><p>Trounstine, Jessica. 2018. <a href="https://www.cambridge.org/core/product/identifier/9781108555722/type/book">Segregation by Design: Local Politics and Inequality in American Cities.</a> 1st ed. Cambridge University Press.</p></li>
 </ul>
 <h3 id="research-papers-1">Research Papers</h3>
 <ul>
-<li><p>Trounstine (2015). <a
-href="readings/Trounstine%20-%202015%20-%20Segregation%20and%20Inequality%20in%20Public%20Goods.pdf">Segregation
-and Inequality in Public Goods</a></p></li>
-<li><p>Faber (2020). <a
-href="readings/Faber%20-%202020%20-%20We%20Built%20This%20Consequences%20of%20New%20Deal%20Era%20Interv.pdf">We
-Built This: Consequences of New Deal Era Intervention in America’s
-Racial Geography</a></p></li>
-<li><p>Brown et al. (2021). <a
-href="readings/Brown%20et%20al.%20-%202021%20-%20Childhood%20cross-ethnic%20exposure%20predicts%20political.pdf">Childhood
-cross-ethnic exposure predicts political behavior</a></p></li>
-<li><p>Enos (2016). <a
-href="readings/Enos%20-%202016%20-%20What%20the%20Demolition%20of%20Public%20Housing%20Teaches%20Us%20about%20the%20Impact%20of%20Racial%20Threat%20on%20Political%20Behavior.pdf">What
-the Demolition of Public Housing Teaches Us about the Impact of Racial
-Threat on Political Behavior</a></p></li>
-<li><p>Carrell et al. (2015). <a
-href="readings/Carrell%20et%20al.%20-%202015%20-%20The%20Impact%20of%20Intergroup%20Contact%20on%20Racial%20Attitudes.pdf">The
-Impact of Intergroup Contact on Racial Attitudes</a></p></li>
-<li><p>Chetty et al. (2014). <a
-href="readings/Chetty%20et%20al.%20-%202014%20-%20Where%20is%20the%20Land%20of%20Opportunity.pdf">Where
-is the Land of Opportunity?</a></p></li>
-<li><p>Chetty et al. (2016). <a
-href="readings/Chetty%20et%20al.%20-%202016%20-%20The%20Effects%20of%20Exposure%20to%20Better%20Neighborhoods.pdf">The
-Effects of Exposure to Better Neighborhoods</a></p></li>
+<li><p>Trounstine (2015). <a href="readings/Trounstine%20-%202015%20-%20Segregation%20and%20Inequality%20in%20Public%20Goods.pdf">Segregation and Inequality in Public Goods</a></p></li>
+<li><p>Faber (2020). <a href="readings/Faber%20-%202020%20-%20We%20Built%20This%20Consequences%20of%20New%20Deal%20Era%20Interv.pdf">We Built This: Consequences of New Deal Era Intervention in America’s Racial Geography</a></p></li>
+<li><p>Brown et al. (2021). <a href="readings/Brown%20et%20al.%20-%202021%20-%20Childhood%20cross-ethnic%20exposure%20predicts%20political.pdf">Childhood cross-ethnic exposure predicts political behavior</a></p></li>
+<li><p>Enos (2016). <a href="readings/Enos%20-%202016%20-%20What%20the%20Demolition%20of%20Public%20Housing%20Teaches%20Us%20about%20the%20Impact%20of%20Racial%20Threat%20on%20Political%20Behavior.pdf">What the Demolition of Public Housing Teaches Us about the Impact of Racial Threat on Political Behavior</a></p></li>
+<li><p>Carrell et al. (2015). <a href="readings/Carrell%20et%20al.%20-%202015%20-%20The%20Impact%20of%20Intergroup%20Contact%20on%20Racial%20Attitudes.pdf">The Impact of Intergroup Contact on Racial Attitudes</a></p></li>
+<li><p>Chetty et al. (2014). <a href="readings/Chetty%20et%20al.%20-%202014%20-%20Where%20is%20the%20Land%20of%20Opportunity.pdf">Where is the Land of Opportunity?</a></p></li>
+<li><p>Chetty et al. (2016). <a href="readings/Chetty%20et%20al.%20-%202016%20-%20The%20Effects%20of%20Exposure%20to%20Better%20Neighborhoods.pdf">The Effects of Exposure to Better Neighborhoods</a></p></li>
 </ul>
 <h3 id="videos-1">Videos</h3>
 <strong>Segregated By Design (Short Film):</strong>
@@ -2592,44 +2542,24 @@ Effects of Exposure to Better Neighborhoods</a></p></li>
 </div>
 <h3 id="podcasts-1">Podcasts</h3>
 <ul>
-<li>99% Invisible. <a
-href="https://99percentinvisible.org/episode/the-epic-of-collier-heights/">“The
-Epic of Collier Heights.”</a> 2022.</li>
+<li>99% Invisible. <a href="https://99percentinvisible.org/episode/the-epic-of-collier-heights/">“The Epic of Collier Heights.”</a> 2022.</li>
 </ul>
 <h3 id="other-media-1">Other Media</h3>
 <ul>
-<li><p>Case, Nicky. 2014. <a href="https://ncase.me/polygons/">The
-Parable of the Polygons</a></p></li>
-<li><p>Best, Ryan, and Elena Mejia. 2022. <a
-href="https://projects.fivethirtyeight.com/redlining/">“The Lasting
-Legacy Of Redlining.”</a> <em>FiveThirtyEight</em>. (February 9,
-2022).</p></li>
-<li><p><a href="https://www.opportunityatlas.org/">The Opportunity
-Atlas</a></p></li>
+<li><p>Case, Nicky. 2014. <a href="https://ncase.me/polygons/">The Parable of the Polygons</a></p></li>
+<li><p>Best, Ryan, and Elena Mejia. 2022. <a href="https://projects.fivethirtyeight.com/redlining/">“The Lasting Legacy Of Redlining.”</a> <em>FiveThirtyEight</em>. (February 9, 2022).</p></li>
+<li><p><a href="https://www.opportunityatlas.org/">The Opportunity Atlas</a></p></li>
 </ul>
 <h2 id="the-high-modernists">The High Modernists</h2>
 <h3 id="books-2">Books</h3>
 <ul>
-<li><p>Scott, James C. 1998. <a
-href="https://libcom.org/files/Seeing%20Like%20a%20State%20-%20James%20C.%20Scott.pdf">Seeing
-like a State: How Certain Schemes to Improve the Human Condition Have
-Failed.</a>, particularly Chapters 2 and 4.</p>
+<li><p>Scott, James C. 1998. <a href="https://libcom.org/files/Seeing%20Like%20a%20State%20-%20James%20C.%20Scott.pdf">Seeing like a State: How Certain Schemes to Improve the Human Condition Have Failed.</a>, particularly Chapters 2 and 4.</p>
 <ul>
-<li>See also <a
-href="https://slatestarcodex.com/2017/03/16/book-review-seeing-like-a-state/">Scott
-Alexander’s Book Review</a></li>
+<li>See also <a href="https://slatestarcodex.com/2017/03/16/book-review-seeing-like-a-state/">Scott Alexander’s Book Review</a></li>
 </ul></li>
-<li><p>Jacobs, Jane. 1961. <a
-href="http://www.petkovstudio.com/bg/wp-content/uploads/2017/03/The-Death-and-Life-of-Great-American-Cities_Jane-Jacobs-Complete-book.pdf">The
-Death and Life of Great American Cities.</a></p></li>
-<li><p>Caro, Robert A. 1975. <a
-href="https://www.amazon.com/Power-Broker-Robert-Moses-Fall/dp/0394720245">The
-Power Broker: Robert Moses and the Fall of New York.</a>
-Introduction.</p></li>
-<li><p>Gray, M. Nolan. 2022. <a
-href="https://www.amazon.com/Arbitrary-Lines-Zoning-Broke-American/dp/1642832545">Arbitrary
-Lines: How Zoning Broke the American City and How To Fix It</a>. Island
-Press.</p></li>
+<li><p>Jacobs, Jane. 1961. <a href="http://www.petkovstudio.com/bg/wp-content/uploads/2017/03/The-Death-and-Life-of-Great-American-Cities_Jane-Jacobs-Complete-book.pdf">The Death and Life of Great American Cities.</a></p></li>
+<li><p>Caro, Robert A. 1975. <a href="https://www.amazon.com/Power-Broker-Robert-Moses-Fall/dp/0394720245">The Power Broker: Robert Moses and the Fall of New York.</a> Introduction.</p></li>
+<li><p>Gray, M. Nolan. 2022. <a href="https://www.amazon.com/Arbitrary-Lines-Zoning-Broke-American/dp/1642832545">Arbitrary Lines: How Zoning Broke the American City and How To Fix It</a>. Island Press.</p></li>
 </ul>
 <h3 id="videos-2">Videos</h3>
 <div class="layout-chunk" data-layout="l-body">
@@ -2638,19 +2568,13 @@ Press.</p></li>
 </div>
 <h3 id="podcasts-2">Podcasts</h3>
 <ul>
-<li><a
-href="https://99percentinvisible.org/episode/bijlmer-city-future-part-1/">Bijlmer
-- City of the Future (99 Percent Invisible)</a></li>
+<li><a href="https://99percentinvisible.org/episode/bijlmer-city-future-part-1/">Bijlmer - City of the Future (99 Percent Invisible)</a></li>
 </ul>
 <h3 id="other-media-2">Other Media</h3>
 <ul>
-<li>Dunlap, David W. <a
-href="https://www.nytimes.com/2016/07/26/nyregion/new-yorks-first-zoning-resolution-which-brought-order-to-a-chaotic-building-boom-turns-100.html">“Zoning
-Arrived 100 Years Ago. It Changed New York City Forever.”</a> <em>The
-New York Times</em>, July 25, 2016, sec. New York.</li>
+<li>Dunlap, David W. <a href="https://www.nytimes.com/2016/07/26/nyregion/new-yorks-first-zoning-resolution-which-brought-order-to-a-chaotic-building-boom-turns-100.html">“Zoning Arrived 100 Years Ago. It Changed New York City Forever.”</a> <em>The New York Times</em>, July 25, 2016, sec. New York.</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
