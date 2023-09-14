@@ -851,13 +851,13 @@ knitr::include_graphics('img/circle.png')
 
 --
 
-If large cities can defend themselves more effectively than smaller towns, perhaps warfare pushed Europe towards urbanization.
+If large cities can defend themselves more effectively than smaller towns, perhaps all that warfare pushed Europe towards urbanization?
 
 ---
 
 ## Warfare
 
-As best we can tell, yes! If you geolocate all the battles that took place between 800 and 1800 and overlay them on a map of major cities, there's a very strong correlation.
+As best we can tell, yes! If you geocode all the battles that took place between 800 and 1800 and overlay them on a map of major cities, there's a very strong correlation.
 
 ```{r, out.width = '110%'}
 knitr::include_graphics('img/dincecco-onorato.png')
@@ -881,7 +881,8 @@ Maybe cities are just more attractive targets for warfare?
 
 <br>
 
-It's tough to untangle the causality here, but if you look at growth rates over time, it seems that the battles predict greater rates of urbanization in subsequent centuries.
+It's tough to untangle causality, but if you look at growth rates over time, it seems that the battles predict greater rates of urbanization in subsequent centuries.
+
 ]
 
 .pull-right[
@@ -893,3 +894,253 @@ knitr::include_graphics('img/europe-lights.jpeg')
 ???
 
 Today's core-periphery pattern looks a lot like that map of military engagements, a lasting historical legacy of all those wars at the border with France.
+
+---
+
+## The Printing Press
+
+--
+
+.pull-left[
+- Gutenberg establishes the first movable type printing press in Mainz, Germany around 1450.
+]
+
+.pull-right[
+![](img/Printer_in_1568-ce.png)
+]
+
+???
+
+Image credit: https://en.wikipedia.org/wiki/Printing_press
+
+Pronounced like "mines"
+
+---
+
+## The Printing Press
+
+.pull-left[
+- Gutenberg establishes the first movable type printing press in Mainz, Germany around 1450.
+
+- A single press can produce 3,600 pages per day, about 90x more productive than medieval book-printing.
+]
+
+.pull-right[
+![](img/scriptorium.jpg)
+]
+
+???
+
+https://www.historyonthenet.com/making-a-book-in-the-middle-ages-took-years-and-was-literally-physical-torture
+
+
+---
+
+## The Printing Press
+
+.pull-left[
+- Gutenberg establishes the first movable type printing press in Mainz, Germany around 1450.
+
+- A single press can produce 3,600 pages per day, about 90x more productive than medieval book-printing.
+
+- Over the next 50 years, the printing press spreads across Europe in a particular pattern.
+]
+
+.pull-right[
+![](img/dittmar-fig3.png)
+]
+
+
+???
+
+Venetians get it by 1460: https://www.bbc.com/travel/article/20190708-the-city-that-launched-the-publishing-industry
+
+https://gallery.lib.umn.edu/exhibits/show/celebratingvenice/printing#:~:text=At%20its%20height%2C%20there%20were,the%20Rialto%20and%20San%20Marco.
+
+
+---
+
+## The Printing Press
+
+.pull-left[
+- Gutenberg establishes the first movable type printing press in Mainz, Germany around 1450.
+
+- A single press can produce 3,600 pages per day, about 90x more productive than medieval book-printing.
+
+- Over the next 50 years, the printing press spreads across Europe in a particular pattern.
+
+- Cities closer to Mainz are more likely to get a printing press than those farther away. These cities grew 60% faster over the subsequent century.
+]
+
+.pull-right[
+<br>
+
+<br>
+
+![](img/dittmar-fig4.png)
+]
+
+???
+
+This is an example of an **instrumental variable** analysis. Did the printing press cause urban growth, or were printing presses more likely to end up in fast growing cities? The fact that it spread in a certain geographic pattern allows us to untangle the causality a bit.
+
+---
+
+## The Printing Press
+
+Why did the printing press spur urban growth?
+
+--
+
+- Because printing is an industry with strong **agglomeration economies**.
+
+--
+
+<br>
+
+**Backward linkages** include:
+
+--
+
+- Writers and scholars
+
+--
+
+- Paper mills
+
+--
+
+- Metalworking
+
+--
+
+<br> 
+
+Transporting books from city to city is difficult, so there are strong **forward linkages** as well:
+
+--
+
+- Merchants are drawn to cities where they can acquire the latest news and accounting manuals.
+
+--
+
+- Universities are more likely to be founded where books are accessible.
+
+---
+
+## The Printing Press
+
+The effect of the printing press was largest for port and river cities, where merchants could have access to both printed materials and cheap transportation of goods.
+
+```{r, out.width='90%'}
+knitr::include_graphics('img/european-rivers.png')
+```
+
+--
+
+Europe's inland river system is extensive (rivaled only by the United States).
+
+---
+
+## Potatoes
+
+--
+
+.pull-left[
+- Potatoes are indigenous to South America. Prior to Columbus' expeditions, no one in the "Old World" had heard of them.
+]
+
+.pull-right[
+![](img/Patate_clusius_1601.jpg)
+]
+
+
+---
+
+## Potatoes
+
+.pull-left[
+- Potatoes are indigenous to South America. Prior to Columbus' expeditions, no one in the "Old World" had heard of them.
+
+- This is a shame, because potatoes are amazing! They're calorie-dense, and provide all the nutrients you need except for Vitamins A and D.
+
+- Potatoes can supply a family of five with all the nutrients they need on half an acre (plus one cow for dairy).
+]
+
+.pull-right[
+![](img/nunn-table1.png)
+]
+
+---
+
+
+## Potatoes
+
+.pull-left[
+- Potatoes are indigenous to South America. Prior to Columbus' expeditions, no one in the "Old World" had heard of them.
+
+- This is a shame, because potatoes are amazing! They're calorie-dense, and provide all the nutrients you need except for Vitamins A and D.
+
+- Potatoes can supply a family of five with all the nutrients they need on half an acre (plus one cow for dairy).
+
+- By the 1700s, potato cultivation is widespread throughout Europe.
+]
+
+.pull-right[
+<br>
+
+<br>
+
+![](img/frederick-potato-king.jpg)
+]
+
+---
+
+## Potatoes
+
+But potatoes are not suitable for cultivation everywhere. According to the FAO, the best places for potato growing are...
+
+--
+
+```{r, out.width='80%'}
+knitr::include_graphics('img/nunn-fig2.png')
+```
+
+--
+
+After the potato's introduction, the gray areas on the map above saw a significant (roughly 30%) increase in urbanization .cite[(Nunn & Qian 2011)].
+
+---
+
+## Putting It All Together
+
+--
+
+Starting around the 16th century: 
+
+--
+
+- Warfare in Europe provided a **push** to get people to move out of the countryside.
+
+--
+
+- New technologies like printing provided a **pull** for merchants and industries to agglomerate in larger cities.
+
+--
+
+- New World crops made European agriculture significantly more productive.
+
+--
+
+<br>
+
+These forces combined to make Western Europe the most urbanized place on Earth until the 19th century.
+
+---
+
+class: center, middle, inverse
+
+# China (20th and 21st Centuries)
+
+---
+
