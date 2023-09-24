@@ -2722,7 +2722,7 @@ Schedule
 </div>
 <p>This is a general fact about the standard error of the mean. If the population standard deviation equals <span class="math inline">\(\sigma\)</span>, then</p>
 <p><span class="math display">\[
-\text{Standard Error} = \frac{\sigma}{\sqrt{n}}
+\text{Standard Error of the Mean} = \frac{\sigma}{\sqrt{n}}
 \]</span></p>
 <p>For those interested in the derivation, it’s in the footnotes.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
 <p>If the population distribution has higher variance, so too will your sampling distribution, because you can draw a wider range of samples. And if you draw a larger sample, the variance of the sampling distribution decreases. More precisely, the standard error decreases with the square root of <span class="math inline">\(n\)</span>. If you quadruple your sample size, you cut standard error in half.</p>
@@ -2757,17 +2757,7 @@ McElreath, Richard. 2020. <em>Statistical Rethinking: A Bayesian Course with Exa
 <li id="fn5"><p>Recall that the variance of a distribution is the <a href="https://tinystats.github.io/teacups-giraffes-and-statistics/04_variance.html">average squared distance from the mean</a>, and the standard deviation is the square root of variance.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn6"><p><a href="https://1.bp.blogspot.com/-GbgoSNOuSm0/WilbpekABZI/AAAAAAAAFxQ/kHfvPEHMGgQ7egYL6v4NZaaygWaIaAuxgCLcBGAs/s1600/technically_correct.png">Technically</a> it’s a binomial distribution, but we can reserve that distinction for a footnote because binomial distributions are approximately normal when the sample size is large enough.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn7"><p>How large is “sufficiently large”? I don’t want to give a definitive number, because people will yell at me on Twitter. But, as you see in the figure above, 100 is clearly big enough. 50 might even be okay. Less than 25 is pushing your luck.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>The sample mean is the sum of your all your sample values <span class="math inline">\((X)\)</span> divided by the sample size <span class="math inline">\((n)\)</span>.</p>
-<p><span class="math display">\[\bar{X} = \frac{\sum{X_i}}{n}\]</span></p>
-<p>The variance of that statistic is:</p>
-<p><span class="math display">\[
-\text{Var}(\bar{X}) = \text{Var}\left(\frac{\sum{X_i}}{n}\right)
-\]</span></p>
-<p>One property of variance is that <span class="math inline">\(\text{Var}(ax) = a^2\text{Var}(X)\)</span> for any constant <span class="math inline">\(a\)</span>. If <span class="math inline">\(\text{Var}(X_i) = \sigma^2\)</span>, then:</p>
-<p><span class="math display">\[
-\text{Var}\left(\frac{\sum{X_i}}{n}\right) = \frac{1}{n^2} (n\sigma) = \frac{\sigma^2}{n}
-\]</span></p>
-<p>The square root of that variance, <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span>, is the standard error of th mean.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>The sample mean is the sum of your all your sample values <span class="math inline">\((X)\)</span> divided by the sample size <span class="math inline">\((n)\)</span>. <span class="math inline">\(\bar{X} = \frac{\sum{X_i}}{n}\)</span>. The variance of that statistic is <span class="math inline">\(\text{Var}(\bar{X}) = \text{Var}\left(\frac{\sum{X_i}}{n}\right)\)</span>. One useful property of variance is that <span class="math inline">\(\text{Var}(ax) = a^2\text{Var}(X)\)</span> for any constant <span class="math inline">\(a\)</span>. If <span class="math inline">\(\text{Var}(X_i) = \sigma^2\)</span>, then <span class="math inline">\(\text{Var}\left(\frac{\sum{X_i}}{n}\right) = \frac{1}{n^2} (n\sigma) = \frac{\sigma^2}{n}\)</span>. The square root of that variance, <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span>, is the standard error of the mean.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
