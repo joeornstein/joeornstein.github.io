@@ -371,9 +371,27 @@ knitr::include_graphics('img/illinois-congressional-district-map.png')
 
 As a result, Democrats tend to win less than a proportional share of seats in the US House of Representatives.
 
-```{r, out.width='80%'}
-# produced this chart in R/us_house.R
-knitr::include_graphics('img/vote-share-seat-share.png')
+```{r, out.width='85%'}
+library(tidyverse)
+library(readxl)
+library(ggrepel)
+
+data <- read_xlsx('data/us_house.xlsx')
+
+data <- data %>% 
+  mutate(dem_vote_share = dem_vote / (dem_vote + rep_vote) * 100,
+         dem_seat_share = dem_seats / (dem_seats + rep_seats) * 100)
+
+fig <- ggplot(data) +
+  geom_text(aes(x=dem_vote_share, y=dem_seat_share,label=year),
+            size = 2.5) +
+  geom_abline(intercept = 0, slope = 1, linetype = 'dashed') +
+  theme_bw() +
+  labs(x = 'Democratic Vote Share',
+       y = 'Democratic Seat Share') +
+  scale_x_continuous(limits = c(45, 57))
+
+fig
 ```
 
 ---
