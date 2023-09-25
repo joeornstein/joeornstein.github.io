@@ -1,15 +1,15 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.29)  7 AUG 2023 13:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.4) (preloaded format=pdflatex 2023.4.21)  18 SEP 2023 13:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **./POLS-4641-syllabus.tex
 (POLS-4641-syllabus.tex
-LaTeX2e <2023-06-01> patch level 1
-L3 programming layer <2023-06-16>
+LaTeX2e <2022-11-01> patch level 1
+L3 programming layer <2023-03-30>
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
-Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/base\size11.clo
-File: size11.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
+File: size11.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count185
 \c@section=\count186
@@ -27,7 +27,7 @@ File: size11.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 Package: geometry 2020/01/02 v5.9 Page Geometry
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
-\KV@toks@=\toks17
+\KV@toks@=\toks16
 )
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
@@ -46,7 +46,7 @@ Package: iftex 2022/02/03 v1.0f TeX engine tests
 \Gm@layoutheight=\dimen146
 \Gm@layouthoffset=\dimen147
 \Gm@layoutvoffset=\dimen148
-\Gm@dimlist=\toks18
+\Gm@dimlist=\toks17
 
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg
 ))
@@ -288,7 +288,7 @@ x))
 Package color Info: Redefining color red on input line 14.
 
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
-Package: hyperref 2023-05-16 v7.00y Hypertext links for LaTeX
+Package: hyperref 2023-02-07 v7.00v Hypertext links for LaTeX
 
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcm
 ds.sty
@@ -313,7 +313,7 @@ Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
-Package: nameref 2023-05-16 v2.51 Cross-referencing by name of section
+Package: nameref 2022-05-17 v2.50 Cross-referencing by name of section
 
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
@@ -324,41 +324,44 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count196
 )
-(C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
-Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count197
-)
 \@linkdim=\dimen157
-\Hy@linkcounter=\count198
-\Hy@pagecounter=\count199
- (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
-File: pd1enc.def 2023-05-16 v7.00y Hyperref: PDFDocEncoding definition (HO)
+\Hy@linkcounter=\count197
+\Hy@pagecounter=\count198
+
+(C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
+File: pd1enc.def 2023-02-07 v7.00v Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count266
- (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
-File: puenc.def 2023-05-16 v7.00y Hyperref: PDF Unicode definition (HO)
+(C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/generic/etexcmds\etexcmds.s
+ty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count199
+
+(C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
+File: puenc.def 2023-02-07 v7.00v Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 4050.
-Package hyperref Info: Option `pdfusetitle' set `true' on input line 4050.
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 4050
+Package hyperref Info: Option `colorlinks' set `true' on input line 4060.
+Package hyperref Info: Option `pdfusetitle' set `true' on input line 4060.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 4060
 .
-Package hyperref Info: Option `plainpages' set `false' on input line 4050.
-Package hyperref Info: Hyper figures OFF on input line 4167.
-Package hyperref Info: Link nesting OFF on input line 4172.
-Package hyperref Info: Hyper index ON on input line 4175.
-Package hyperref Info: Plain pages OFF on input line 4182.
-Package hyperref Info: Backreferencing ON on input line 4185.
+Package hyperref Info: Option `plainpages' set `false' on input line 4060.
+Package hyperref Info: Hyper figures OFF on input line 4177.
+Package hyperref Info: Link nesting OFF on input line 4182.
+Package hyperref Info: Hyper index ON on input line 4185.
+Package hyperref Info: Plain pages OFF on input line 4192.
+Package hyperref Info: Backreferencing ON on input line 4195.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4434.
+Package hyperref Info: Bookmarks ON on input line 4425.
+
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\backref.sty
-Package: backref 2023/04/20 v1.42 Bibliographical back referencing
+Package: backref 2021/02/04 v1.41 Bibliographical back referencing
 
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunf
 ilecheck.sty
@@ -382,43 +385,43 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 85.
 ))
-\c@Hy@tempcnt=\count267
+\c@Hy@tempcnt=\count266
 
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip16
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4772.
+LaTeX Info: Redefining \url on input line 4763.
 \XeTeXLinkMargin=\dimen158
 
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 )
-\Fld@menulength=\count268
+\Fld@menulength=\count267
 \Field@Width=\dimen159
 \Fld@charsize=\dimen160
-Package hyperref Info: Hyper figures OFF on input line 6051.
-Package hyperref Info: Link nesting OFF on input line 6056.
-Package hyperref Info: Hyper index ON on input line 6059.
-Package hyperref Info: backreferencing ON on input line 6064.
-Package hyperref Info: Link coloring ON on input line 6069.
-Package hyperref Info: Link coloring with OCG OFF on input line 6076.
-Package hyperref Info: PDF/A mode OFF on input line 6081.
+Package hyperref Info: Hyper figures OFF on input line 6042.
+Package hyperref Info: Link nesting OFF on input line 6047.
+Package hyperref Info: Hyper index ON on input line 6050.
+Package hyperref Info: backreferencing ON on input line 6055.
+Package hyperref Info: Link coloring ON on input line 6060.
+Package hyperref Info: Link coloring with OCG OFF on input line 6067.
+Package hyperref Info: PDF/A mode OFF on input line 6072.
 
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/base\atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count269
-\c@Item=\count270
-\c@Hfootnote=\count271
+\Hy@abspage=\count268
+\c@Item=\count269
+\c@Hfootnote=\count270
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
-File: hpdftex.def 2023-05-16 v7.00y Hyperref driver for pdfTeX
-\Fld@listcount=\count272
-\c@bookmark@seq@number=\count273
+File: hpdftex.def 2023-02-07 v7.00v Hyperref driver for pdfTeX
+\Fld@listcount=\count271
+\c@bookmark@seq@number=\count272
 \Hy@SectionHShift=\skip59
 )
 
@@ -429,22 +432,22 @@ ine 24.
 
 
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
-\lst@mode=\count274
+\lst@mode=\count273
 \lst@gtempboxa=\box51
-\lst@token=\toks19
-\lst@length=\count275
+\lst@token=\toks18
+\lst@length=\count274
 \lst@currlwidth=\dimen161
-\lst@column=\count276
-\lst@pos=\count277
+\lst@column=\count275
+\lst@pos=\count276
 \lst@lostspace=\dimen162
 \lst@width=\dimen163
-\lst@newlines=\count278
-\lst@lineno=\count279
+\lst@newlines=\count277
+\lst@lineno=\count278
 \lst@maxwidth=\dimen164
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
-\c@lstnumber=\count280
-\lst@skipnumbers=\count281
+\c@lstnumber=\count279
+\lst@skipnumbers=\count280
 \lst@framebox=\box52
 )
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
@@ -467,8 +470,8 @@ Package: caption3 2023/03/12 v2.4 caption3 kernel (AR)
 \caption@hangindent=\dimen172
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count282
-\c@continuedfloat=\count283
+\c@caption@flags=\count281
+\c@continuedfloat=\count282
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 )
@@ -476,17 +479,17 @@ Package caption Info: listings package is loaded.
 Package: setspace 2022/12/04 v6.7b set line spacing
 ) (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/tools\verbatim.sty
 Package: verbatim 2022-07-02 v1.5u LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks20
-\verbatim@line=\toks21
+\every@verbatim=\toks19
+\verbatim@line=\toks20
 \verbatim@in@stream=\read2
 )
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/fancyvrb\fancyvrb.sty
 Package: fancyvrb 2023/01/19 4.5a verbatim text (tvz,hv)
-\FV@CodeLineNo=\count284
+\FV@CodeLineNo=\count283
 \FV@InFile=\read3
 \FV@TabBox=\box53
-\c@FancyVerbLine=\count285
-\FV@StepNumber=\count286
+\c@FancyVerbLine=\count284
+\FV@StepNumber=\count285
 \FV@OutFile=\write3
 ) (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/acronym\acronym.sty
 Package: acronym 2020/04/17 v1.47 Support for acronyms (Tobias Oetiker)
@@ -495,31 +498,31 @@ Package: suffix 2006/07/15 1.5a Variant command support
 )
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/xstring\xstring.sty
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/generic/xstring\xstring.tex
-\integerpart=\count287
-\decimalpart=\count288
+\integerpart=\count286
+\decimalpart=\count287
 )
 Package: xstring 2023/01/14 v1.85 String manipulations (CT)
 )
-\AC@clearlist=\toks22
+\AC@clearlist=\toks21
 ) (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/amscls\amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
-\thm@style=\toks23
-\thm@bodyfont=\toks24
-\thm@headfont=\toks25
-\thm@notefont=\toks26
-\thm@headpunct=\toks27
+\thm@style=\toks22
+\thm@bodyfont=\toks23
+\thm@headfont=\toks24
+\thm@notefont=\toks25
+\thm@headpunct=\toks26
 \thm@preskip=\skip60
 \thm@postskip=\skip61
 \thm@headsep=\skip62
-\dth@everypar=\toks28
+\dth@everypar=\toks27
 )
 Package color Info: Redefining color OliveGreen on input line 42.
 Package color Info: Redefining color CadetBlue on input line 43.
 
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-p
 dftex.def
-File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count289
+File: l3backend-pdftex.def 2023-03-30 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count288
 \l__pdf_internal_box=\box54
 ) (POLS-4641-syllabus.aux)
 \openout1 = `POLS-4641-syllabus.aux'.
@@ -584,17 +587,17 @@ LaTeX Font Info:    ... okay on input line 70.
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.
 mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count290
+\scratchcounter=\count289
 \scratchdimen=\dimen173
 \scratchbox=\box55
-\nofMPsegments=\count291
-\nofMParguments=\count292
-\everyMPshowfont=\toks29
-\MPscratchCnt=\count293
+\nofMPsegments=\count290
+\nofMParguments=\count291
+\everyMPshowfont=\toks28
+\MPscratchCnt=\count292
 \MPscratchDim=\dimen174
-\MPnumerator=\count294
-\makeMPintoPDFobject=\count295
-\everyMPtoPDFconversion=\toks30
+\MPnumerator=\count293
+\makeMPintoPDFobject=\count294
+\everyMPtoPDFconversion=\toks29
 )
 (C:\Users\jo22058\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf
 -base.sty
@@ -611,7 +614,7 @@ Package hyperref Info: Link coloring ON on input line 70.
 \@outlinefile=\write4
 \openout4 = `POLS-4641-syllabus.out'.
 
-\c@lstlisting=\count296
+\c@lstlisting=\count295
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -671,21 +674,17 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [3] 
 enddocument/afterlastpage: lastpage setting LastPage.
 (POLS-4641-syllabus.aux)
- ***********
-LaTeX2e <2023-06-01> patch level 1
-L3 programming layer <2023-06-16>
- ***********
 Package rerunfilecheck Info: File `POLS-4641-syllabus.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 13907 strings out of 476036
- 222050 string characters out of 5778880
- 1865763 words of memory out of 5000000
- 34470 multiletter control sequences out of 15000+600000
- 518325 words of font info for 50 fonts, out of 8000000 for 9000
+ 13735 strings out of 476331
+ 224551 string characters out of 5786821
+ 1863660 words of memory out of 5000000
+ 33994 multiletter control sequences out of 15000+600000
+ 517225 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 90i,11n,93p,935b,564s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,11n,90p,935b,564s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\jo22058\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tc
 rm1095.pk><C:/Users/jo22058/AppData/Local/Programs/MiKTeX/fonts/type1/public/am
 sfonts/cm/cmbx10.pfb><C:/Users/jo22058/AppData/Local/Programs/MiKTeX/fonts/type
@@ -694,7 +693,7 @@ sfonts/cm/cmbx10.pfb><C:/Users/jo22058/AppData/Local/Programs/MiKTeX/fonts/type
 grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/jo22058/AppData
 /Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/jo220
 58/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on POLS-4641-syllabus.pdf (3 pages, 756351 bytes).
+Output written on POLS-4641-syllabus.pdf (3 pages, 756335 bytes).
 PDF statistics:
  79 PDF objects out of 1000 (max. 8388607)
  9 named destinations out of 1000 (max. 500000)
