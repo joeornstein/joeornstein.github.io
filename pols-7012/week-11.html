@@ -130,8 +130,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   <!--/radix_placeholder_meta_tags-->
   
-  <meta name="citation_reference" content="citation_title=Statistical rethinking: A bayesian course with examples in r and stan;citation_publication_date=2020;citation_publisher=Taylor; Francis, CRC Press;citation_author=Richard McElreath"/>
-  <meta name="citation_reference" content="citation_title=Sampling-Based versus Design-Based Uncertainty in Regression Analysis;citation_publication_date=2020;citation_volume=88;citation_doi=10.3982/ECTA12675;citation_author=Alberto Abadie;citation_author=Susan Athey;citation_author=Guido W. Imbens;citation_author=Jeffrey M. Wooldridge"/>
+  <meta name="citation_reference" content="citation_title=Statistical rethinking: A bayesian course with examples in r and stan;citation_publisher=Taylor; Francis, CRC Press;citation_author=Richard McElreath"/>
+  <meta name="citation_reference" content="citation_title=Sampling-Based versus Design-Based Uncertainty in Regression Analysis;citation_volume=88;citation_doi=10.3982/ECTA12675;citation_author=Alberto Abadie;citation_author=Susan Athey;citation_author=Guido W. Imbens;citation_author=Jeffrey M. Wooldridge"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
@@ -813,6 +813,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
+    font-size: 100%;
   }
 
   .html-widget {
@@ -1885,15 +1886,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
-          var fn = $(this).children()[0]
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
           $(this).html(fn.shadowRoot.querySelector("sup"))
           $(this).id = fn.id
           fn.remove()
         }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          return "<p>" + $('#ref-' + ref).html() + "</p>";
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -2402,7 +2409,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2496,21 +2503,13 @@ Schedule
 <li><a href="#overview" id="toc-overview">Overview</a></li>
 <li><a href="#class-notes" id="toc-class-notes">Class Notes</a>
 <ul>
-<li><a href="#drawing-a-sample" id="toc-drawing-a-sample">Drawing a
-Sample</a></li>
-<li><a href="#the-sampling-distribution"
-id="toc-the-sampling-distribution">The Sampling Distribution</a></li>
-<li><a href="#expected-value" id="toc-expected-value">Expected
-Value</a></li>
-<li><a href="#standard-error" id="toc-standard-error">Standard
-Error</a></li>
-<li><a href="#the-central-limit-theorem"
-id="toc-the-central-limit-theorem">The Central Limit Theorem</a></li>
-<li><a href="#margin-of-error-and-confidence-intervals"
-id="toc-margin-of-error-and-confidence-intervals">Margin of Error and
-Confidence Intervals</a></li>
-<li><a href="#the-law-of-large-numbers"
-id="toc-the-law-of-large-numbers">The Law of Large Numbers</a></li>
+<li><a href="#drawing-a-sample" id="toc-drawing-a-sample">Drawing a Sample</a></li>
+<li><a href="#the-sampling-distribution" id="toc-the-sampling-distribution">The Sampling Distribution</a></li>
+<li><a href="#expected-value" id="toc-expected-value">Expected Value</a></li>
+<li><a href="#standard-error" id="toc-standard-error">Standard Error</a></li>
+<li><a href="#the-central-limit-theorem" id="toc-the-central-limit-theorem">The Central Limit Theorem</a></li>
+<li><a href="#margin-of-error-and-confidence-intervals" id="toc-margin-of-error-and-confidence-intervals">Margin of Error and Confidence Intervals</a></li>
+<li><a href="#the-law-of-large-numbers" id="toc-the-law-of-large-numbers">The Law of Large Numbers</a></li>
 </ul></li>
 <li><a href="#problem-set" id="toc-problem-set">Problem Set</a></li>
 </ul>
@@ -2518,297 +2517,179 @@ id="toc-the-law-of-large-numbers">The Law of Large Numbers</a></li>
 </div>
 <h2 id="readings">Readings</h2>
 <ul>
-<li><p><a
-href="https://tinystats.github.io/teacups-giraffes-and-statistics/06_standardError.html">Teacup
-Giraffes: Module 6</a></p></li>
-<li><p><a
-href="https://ebookcentral.proquest.com/lib/ugalib/reader.action?docID=3304559">The
-Joy of X</a>, Chapters 22 and 23</p></li>
-<li><p><a href="https://seeing-theory.brown.edu/">Seeing Theory</a>,
-some nice interactive explanations of concepts from probability
-theory</p></li>
+<li><p><a href="https://tinystats.github.io/teacups-giraffes-and-statistics/06_standardError.html">Teacup Giraffes: Module 6</a></p></li>
+<li><p><a href="https://ebookcentral.proquest.com/lib/ugalib/reader.action?docID=3304559">The Joy of X</a>, Chapters 22 and 23</p></li>
+<li><p><a href="https://seeing-theory.brown.edu/">Seeing Theory</a>, some nice interactive explanations of concepts from probability theory</p></li>
 </ul>
-<p>For an (optional) deeper dive into the mathematics of probability
-theory:</p>
+<p>For an (optional) deeper dive into the mathematics of probability theory:</p>
 <ul>
-<li><a
-href="https://ebookcentral.proquest.com/lib/ugalib/reader.action?docID=1205618">Moore
-&amp; Siegel</a>, Chapters 9-11</li>
+<li><a href="https://ebookcentral.proquest.com/lib/ugalib/reader.action?docID=1205618">Moore &amp; Siegel</a>, Chapters 9-11</li>
 </ul>
 <h2 id="overview">Overview</h2>
-<p>Okay. So we have an estimate we computed from our data. Maybe we’ve
-even done enough theoretical legwork to believe that our estimate
-reflects a causal relationship. We’re feeling pretty good about
-ourselves.</p>
-<p>But we’re not done yet, because that estimate we calculated is based
-on limited information about the world. Maybe our data only represents a
-sample from a much larger population. There’s no guarantee that the
-estimate we get from that sample is that same one we would get if we
-could observe everyone in the population. And even if we’ve collected
-data from the entire population, don’t forget about the <a
-href="week-08.html">Fundamental Problem of Causal Inference</a> – we can
-never know with certainty what would have happened under some
-counterfactual treatment regime.<a href="#fn1" class="footnote-ref"
-id="fnref1" role="doc-noteref"><sup>1</sup></a> So we need a way to
-express our uncertainty about the estimates we produced. How likely is
-it that our result was just caused by a weird sample?</p>
-<p>This week, we discuss the fundamental concept underlying all of
-statistical inference<a href="#fn2" class="footnote-ref" id="fnref2"
-role="doc-noteref"><sup>2</sup></a> – the <strong>sampling
-distribution</strong>.</p>
+<p>Okay. So we have an estimate we computed from our data. Maybe we’ve even done enough theoretical legwork to believe that our estimate reflects a causal relationship. We’re feeling pretty good about ourselves.</p>
+<p>But we’re not done yet, because that estimate we calculated is based on limited information about the world. Maybe our data only represents a sample from a much larger population. There’s no guarantee that the estimate we get from that sample is that same one we would get if we could observe everyone in the population. And even if we’ve collected data from the entire population, don’t forget about the <a href="week-08.html">Fundamental Problem of Causal Inference</a> – we can never know with certainty what would have happened under some counterfactual treatment regime.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> So we need a way to express our uncertainty about the estimates we produced. How likely is it that our result was just caused by a weird sample?</p>
+<p>This week, we discuss the fundamental concept underlying all of statistical inference<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> – the <strong>sampling distribution</strong>.</p>
 <h2 id="class-notes">Class Notes</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># load the CES dataset</span>
-<span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='st'>'data/ces-2020/cleaned-CES.RData'</span><span class='op'>)</span>
-
-<span class='co'># recode TV news viewership as a 0-1 variable</span>
-<span class='va'>ces</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span><span class='va'>ces</span>, tv_news_24h <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>tv_news_24h</span> <span class='op'>==</span> <span class='st'>'Yes'</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># load the CES dataset</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='st'>'data/ces-2020/cleaned-CES.RData'</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># recode TV news viewership as a 0-1 variable</span></span>
+<span><span class='va'>ces</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span><span class='va'>ces</span>, tv_news_24h <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>tv_news_24h</span> <span class='op'>==</span> <span class='st'>'Yes'</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>What percent of this population (CES respondents) watched TV news in
-the past 24 hours?</p>
+<p>What percent of this population (CES respondents) watched TV news in the past 24 hours?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>ces</span><span class='op'>$</span><span class='va'>tv_news_24h</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>ces</span><span class='op'>$</span><span class='va'>tv_news_24h</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0.6058689</code></pre>
 </div>
 <h3 id="drawing-a-sample">Drawing a Sample</h3>
-<p>But suppose we just had a <em>sample</em> from this population, and
-we were trying to estimate that population mean? How weird can that
-sample get? And how far can a sample statistic get from the true value?
-To see, let’s play around with drawing samples of CES respondents.</p>
+<p>But suppose we just had a <em>sample</em> from this population, and we were trying to estimate that population mean? How weird can that sample get? And how far can a sample statistic get from the true value? To see, let’s play around with drawing samples of CES respondents.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># pull a sample</span>
-<span class='va'>sample_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span><span class='va'>ces</span>, n <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
-
-<span class='co'># what percent of the sample watched TV news recently?</span>
-<span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>sample_data</span><span class='op'>$</span><span class='va'>tv_news_24h</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># pull a sample</span></span>
+<span><span class='va'>sample_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span><span class='va'>ces</span>, n <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># what percent of the sample watched TV news recently?</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>sample_data</span><span class='op'>$</span><span class='va'>tv_news_24h</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0.54</code></pre>
 </div>
-<p>Your result may differ! (It’s a random sample, so there’s
-some…randomness involved.) But the estimate I got was 54%. Not terrible,
-but not terribly accurate either.</p>
-<p>Here’s a custom function that draws a sample and returns the percent
-of respondents in that sample that watch TV news. You should run that
-function a few times to see how much variability we get from sample to
-sample.</p>
+<p>Your result may differ! (It’s a random sample, so there’s some…randomness involved.) But the estimate I got was 54%. Not terrible, but not terribly accurate either.</p>
+<p>Here’s a custom function that draws a sample and returns the percent of respondents in that sample that watch TV news. You should run that function a few times to see how much variability we get from sample to sample.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>get_sample_mean</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>sample_size</span> <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span><span class='op'>{</span>
-  <span class='va'>ces</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
-    <span class='co'># draw a sample</span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>sample_size</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-    <span class='co'># pull the TV news variable</span>
-    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>tv_news_24h</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
-    <span class='co'># return the mean</span>
-    <span class='va'>mean</span>
-<span class='op'>}</span>
-
-<span class='fu'>get_sample_mean</span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>get_sample_mean</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>sample_size</span> <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>  <span class='va'>ces</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>    <span class='co'># draw a sample</span></span>
+<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/slice.html'>slice_sample</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>sample_size</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>    <span class='co'># pull the TV news variable</span></span>
+<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>tv_news_24h</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>    <span class='co'># return the mean</span></span>
+<span>    <span class='va'>mean</span></span>
+<span><span class='op'>}</span></span>
+<span></span>
+<span><span class='fu'>get_sample_mean</span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0.58</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>get_sample_mean</span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>get_sample_mean</span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0.61</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>get_sample_mean</span><span class='op'>(</span>sample_size <span class='op'>=</span> <span class='fl'>200</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>get_sample_mean</span><span class='op'>(</span>sample_size <span class='op'>=</span> <span class='fl'>200</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0.615</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>get_sample_mean</span><span class='op'>(</span>sample_size <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>get_sample_mean</span><span class='op'>(</span>sample_size <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0.6</code></pre>
 </div>
 <h3 id="the-sampling-distribution">The Sampling Distribution</h3>
-<p>Now here’s the question that motivates basically all of statistics.
-How <em>weird</em> can our sample estimates get? On average, do they
-tend to be close to the truth, or can they be pretty far off the mark?
-To address this question, let’s introduce the <strong>sampling
-distribution</strong> – the distribution of outcomes we would expect to
-observe if we repeatedly drew samples and computed the estimate.<a
-href="#fn3" class="footnote-ref" id="fnref3"
-role="doc-noteref"><sup>3</sup></a></p>
+<p>Now here’s the question that motivates basically all of statistics. How <em>weird</em> can our sample estimates get? On average, do they tend to be close to the truth, or can they be pretty far off the mark? To address this question, let’s introduce the <strong>sampling distribution</strong> – the distribution of outcomes we would expect to observe if we repeatedly drew samples and computed the estimate.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># we'll use the replicate() function to repeat that sampling process a large number of times</span>
-<span class='va'>sampling_distribution</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span><span class='op'>(</span> <span class='fl'>25000</span>, <span class='fu'>get_sample_mean</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># we'll use the replicate() function to repeat that sampling process a large number of times</span></span>
+<span><span class='va'>sampling_distribution</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span><span class='op'>(</span> <span class='fl'>25000</span>, <span class='fu'>get_sample_mean</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<p>The object <code>sampling_distribution</code> is a vector with 25,000
-sample means. Each one was computed from an independent random sample
-from the CES dataset. The first sample estimate I got was 54%, but what
-does this set of 25,000 estimates look like?</p>
+<p>The object <code>sampling_distribution</code> is a vector with 25,000 sample means. Each one was computed from an independent random sample from the CES dataset. The first sample estimate I got was 54%, but what does this set of 25,000 estimates look like?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0.62 0.60 0.66 0.57 0.54 0.53</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>sampling_distribution</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>'black'</span>, binwidth <span class='op'>=</span> <span class='fl'>0.01</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>'Estimate'</span>, y <span class='op'>=</span> <span class='st'>'Number of Samples'</span>,
-       title <span class='op'>=</span> <span class='st'>'The Sampling Distribution of the Mean'</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>sampling_distribution</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>'black'</span>, binwidth <span class='op'>=</span> <span class='fl'>0.01</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>'Estimate'</span>, y <span class='op'>=</span> <span class='st'>'Number of Samples'</span>,</span>
+<span>       title <span class='op'>=</span> <span class='st'>'The Sampling Distribution of the Mean'</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="week-11_files/figure-html5/unnamed-chunk-4-1.png" width="624" /></p>
 </div>
-<p>If I draw a sample of 100 people from a population where 60% have
-some characteristic, then this is the range of outcomes I should expect
-to observe. Most of the time, we’ll get a sample estimate between 55%
-and 65%. An estimate smaller than 50% or larger than 70% is unlikely,
-but possible.<a href="#fn4" class="footnote-ref" id="fnref4"
-role="doc-noteref"><sup>4</sup></a></p>
+<p>If I draw a sample of 100 people from a population where 60% have some characteristic, then this is the range of outcomes I should expect to observe. Most of the time, we’ll get a sample estimate between 55% and 65%. An estimate smaller than 50% or larger than 70% is unlikely, but possible.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <h3 id="expected-value">Expected Value</h3>
 <p>What is the mean value of the sampling distribution?</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0.6060284</code></pre>
 </div>
-<p>This is the <strong>expected value</strong> of our sample statistic –
-the average value that you would expect to get if you repeatedly sampled
-from the population. In this case, notice how close the expected value
-is to the truth! We say that an estimator is <strong>unbiased</strong>
-if its expected value equals the true population parameter.</p>
-<p>So we just demonstrated that the mean of a random sample is an
-unbiased estimator of the population mean. No big deal. Just the
-foundation of all statistics and polling. That if I draw 100 people at
-random and ask them a question, their responses will, on average, give
-us a good approximation of what all 300 million Americans would say.</p>
-<p>But <a
-href="https://www.reddit.com/r/Jokes/comments/1fbepm/a_physicist_a_biologist_and_a_statistician_go/">averages
-can be deceiving</a>! We don’t just want to know whether we’ll be right
-<em>on average</em>. We want to know how far from the truth we might end
-up with our particular sample.</p>
+<p>This is the <strong>expected value</strong> of our sample statistic – the average value that you would expect to get if you repeatedly sampled from the population. In this case, notice how close the expected value is to the truth! We say that an estimator is <strong>unbiased</strong> if its expected value equals the true population parameter.</p>
+<p>So we just demonstrated that the mean of a random sample is an unbiased estimator of the population mean. No big deal. Just the foundation of all statistics and polling. That if I draw 100 people at random and ask them a question, their responses will, on average, give us a good approximation of what all 300 million Americans would say.</p>
+<p>But <a href="https://www.reddit.com/r/Jokes/comments/1fbepm/a_physicist_a_biologist_and_a_statistician_go/">averages can be deceiving</a>! We don’t just want to know whether we’ll be right <em>on average</em>. We want to know how far from the truth we might end up with our particular sample.</p>
 <h3 id="standard-error">Standard Error</h3>
-<p>What is the standard deviation of our sampling distribution?<a
-href="#fn5" class="footnote-ref" id="fnref5"
-role="doc-noteref"><sup>5</sup></a></p>
+<p>What is the standard deviation of our sampling distribution?<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0.04884307</code></pre>
 </div>
-<p>The standard deviation of a sampling distribution is is called the
-<strong>standard error</strong>, and it’s a very important for
-understanding hypothesis tests. The larger the standard error, the wider
-the range of sample statistics that could have been computed from our
-population, and the less certain we should be about our particular
-value.</p>
+<p>The standard deviation of a sampling distribution is is called the <strong>standard error</strong>, and it’s a very important for understanding hypothesis tests. The larger the standard error, the wider the range of sample statistics that could have been computed from our population, and the less certain we should be about our particular value.</p>
 <h3 id="the-central-limit-theorem">The Central Limit Theorem</h3>
-<p>Next, notice the <em>shape</em> of the sampling distribution in the
-figure above. It’s this nice bell curve you may have seen before, called
-a “normal” distribution (aka a Gaussian distribution).<a href="#fn6"
-class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Why
-is the sampling distribution normally shaped? Well that’s one of the
-most fascinating and magical theorems in all of statistics: the
-<strong>Central Limit Theorem</strong>. The sampling distribution of the
-mean is approximately normally distributed – as long as you have a
-sufficiently large<a href="#fn7" class="footnote-ref" id="fnref7"
-role="doc-noteref"><sup>7</sup></a> sample size.</p>
-<p>Intuition: some samples will, by chance, contain an
-unrepresentatively large number of TV watchers. Some will contain an
-unrepresentatively small number of TV watchers. But most of the time,
-the TV watchers and the non-TV watchers will cancel each other out, such
-that the mass of the distribution is centered around the truth.</p>
-<p>There are a bunch of nice <a
-href="https://seeing-theory.brown.edu/probability-distributions/index.html#section3">simulations</a>
-that showing the Central Limit Theorem in action. In class, you’ll get
-to play around with one.</p>
-<p>Normal distributions are nice. They allow us to say precisely how far
-a sample estimate is likely to deviate from the truth. For example, we
-know that about 68% of a normal distribution falls within 1 standard
-deviation of the mean.</p>
+<p>Next, notice the <em>shape</em> of the sampling distribution in the figure above. It’s this nice bell curve you may have seen before, called a “normal” distribution (aka a Gaussian distribution).<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> Why is the sampling distribution normally shaped? Well that’s one of the most fascinating and magical theorems in all of statistics: the <strong>Central Limit Theorem</strong>. The sampling distribution of the mean is approximately normally distributed – as long as you have a sufficiently large<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> sample size.</p>
+<p>Intuition: some samples will, by chance, contain an unrepresentatively large number of TV watchers. Some will contain an unrepresentatively small number of TV watchers. But most of the time, the TV watchers and the non-TV watchers will cancel each other out, such that the mass of the distribution is centered around the truth.</p>
+<p>There are a bunch of nice <a href="https://seeing-theory.brown.edu/probability-distributions/index.html#section3">simulations</a> that showing the Central Limit Theorem in action. In class, you’ll get to play around with one.</p>
+<p>Normal distributions are nice. They allow us to say precisely how far a sample estimate is likely to deviate from the truth. For example, we know that about 68% of a normal distribution falls within 1 standard deviation of the mean.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>expected_value</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span><span class='op'>)</span>
-<span class='va'>standard_error</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span><span class='op'>)</span> 
-<span class='va'>num_draws</span> <span class='op'>&lt;-</span> <span class='fl'>25000</span>
-
-<span class='va'>within_1sd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span> <span class='op'>&gt;</span> <span class='va'>expected_value</span> <span class='op'>-</span> <span class='va'>standard_error</span> <span class='op'>&amp;</span>
-      <span class='va'>sampling_distribution</span> <span class='op'>&lt;</span> <span class='va'>expected_value</span> <span class='op'>+</span> <span class='va'>standard_error</span><span class='op'>)</span>
-
-<span class='va'>within_1sd</span> <span class='op'>/</span> <span class='va'>num_draws</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>expected_value</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span><span class='op'>)</span></span>
+<span><span class='va'>standard_error</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span><span class='op'>)</span> </span>
+<span><span class='va'>num_draws</span> <span class='op'>&lt;-</span> <span class='fl'>25000</span></span>
+<span></span>
+<span><span class='va'>within_1sd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span> <span class='op'>&gt;</span> <span class='va'>expected_value</span> <span class='op'>-</span> <span class='va'>standard_error</span> <span class='op'>&amp;</span></span>
+<span>      <span class='va'>sampling_distribution</span> <span class='op'>&lt;</span> <span class='va'>expected_value</span> <span class='op'>+</span> <span class='va'>standard_error</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>within_1sd</span> <span class='op'>/</span> <span class='va'>num_draws</span></span></code></pre>
 </div>
 <pre><code>[1] 0.69112</code></pre>
 </div>
-<p>And about 95% of observations fall within two standard
-deviations.</p>
+<p>And about 95% of observations fall within two standard deviations.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>within_2sd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span> <span class='op'>&gt;</span> <span class='va'>expected_value</span> <span class='op'>-</span> <span class='fl'>2</span><span class='op'>*</span><span class='va'>standard_error</span> <span class='op'>&amp;</span>
-                        <span class='va'>sampling_distribution</span> <span class='op'>&lt;</span> <span class='va'>expected_value</span> <span class='op'>+</span> <span class='fl'>2</span><span class='op'>*</span><span class='va'>standard_error</span><span class='op'>)</span>
-
-<span class='va'>within_2sd</span> <span class='op'>/</span> <span class='va'>num_draws</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>within_2sd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span> <span class='op'>&gt;</span> <span class='va'>expected_value</span> <span class='op'>-</span> <span class='fl'>2</span><span class='op'>*</span><span class='va'>standard_error</span> <span class='op'>&amp;</span></span>
+<span>                        <span class='va'>sampling_distribution</span> <span class='op'>&lt;</span> <span class='va'>expected_value</span> <span class='op'>+</span> <span class='fl'>2</span><span class='op'>*</span><span class='va'>standard_error</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>within_2sd</span> <span class='op'>/</span> <span class='va'>num_draws</span></span></code></pre>
 </div>
 <pre><code>[1] 0.95992</code></pre>
 </div>
-<p>And about 99.7% fall within 3 standard deviations. It’s super rare to
-get an observation that far away.</p>
+<p>And about 99.7% fall within 3 standard deviations. It’s super rare to get an observation that far away.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>within_3sd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span> <span class='op'>&gt;</span> <span class='va'>expected_value</span> <span class='op'>-</span> <span class='fl'>3</span><span class='op'>*</span><span class='va'>standard_error</span> <span class='op'>&amp;</span>
-                        <span class='va'>sampling_distribution</span> <span class='op'>&lt;</span> <span class='va'>expected_value</span> <span class='op'>+</span> <span class='fl'>3</span><span class='op'>*</span><span class='va'>standard_error</span><span class='op'>)</span>
-
-<span class='va'>within_3sd</span> <span class='op'>/</span> <span class='va'>num_draws</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>within_3sd</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span> <span class='op'>&gt;</span> <span class='va'>expected_value</span> <span class='op'>-</span> <span class='fl'>3</span><span class='op'>*</span><span class='va'>standard_error</span> <span class='op'>&amp;</span></span>
+<span>                        <span class='va'>sampling_distribution</span> <span class='op'>&lt;</span> <span class='va'>expected_value</span> <span class='op'>+</span> <span class='fl'>3</span><span class='op'>*</span><span class='va'>standard_error</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>within_3sd</span> <span class='op'>/</span> <span class='va'>num_draws</span></span></code></pre>
 </div>
 <pre><code>[1] 0.9984</code></pre>
 </div>
-<h3 id="margin-of-error-and-confidence-intervals">Margin of Error and
-Confidence Intervals</h3>
-<p>So if I draw a sample of 100 individuals, then 95% of the time, my
-sample proportion will be within…</p>
+<h3 id="margin-of-error-and-confidence-intervals">Margin of Error and Confidence Intervals</h3>
+<p>So if I draw a sample of 100 individuals, then 95% of the time, my sample proportion will be within…</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fl'>2</span><span class='op'>*</span><span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fl'>2</span><span class='op'>*</span><span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0.09768615</code></pre>
 </div>
-<p>…of the truth. This is what pollsters call the <strong>margin of
-error</strong>.</p>
-<p>Another way of describing this sampling variability is with a
-<strong>confidence interval</strong>. You construct a confidence
-interval by taking your sample estimate plus or minus 2 standard errors.
-Because the sample mean is within 2 standard deviations of the truth 95%
-of the time, the 95% confidence interval will contain the true value
-approximately 95% of the time.</p>
+<p>…of the truth. This is what pollsters call the <strong>margin of error</strong>.</p>
+<p>Another way of describing this sampling variability is with a <strong>confidence interval</strong>. You construct a confidence interval by taking your sample estimate plus or minus 2 standard errors. Because the sample mean is within 2 standard deviations of the truth 95% of the time, the 95% confidence interval will contain the true value approximately 95% of the time.</p>
 <h3 id="the-law-of-large-numbers">The Law of Large Numbers</h3>
-<p>What happens to the standard error when you increase your sample
-size? Intuitively, you’re getting more data, so you should be more and
-more confident in your estimate.</p>
-<p>Let’s draw a sampling distribution with 400 instead of 100
-people.</p>
+<p>What happens to the standard error when you increase your sample size? Intuitively, you’re getting more data, so you should be more and more confident in your estimate.</p>
+<p>Let’s draw a sampling distribution with 400 instead of 100 people.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>sampling_distribution</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span><span class='op'>(</span><span class='fl'>25000</span>,
-                                   <span class='fu'>get_sample_mean</span><span class='op'>(</span>sample_size <span class='op'>=</span> <span class='fl'>400</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>sampling_distribution</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>replicate</a></span><span class='op'>(</span><span class='fl'>25000</span>,</span>
+<span>                                   <span class='fu'>get_sample_mean</span><span class='op'>(</span>sample_size <span class='op'>=</span> <span class='fl'>400</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
@@ -2816,151 +2697,67 @@ people.</p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>sampling_distribution</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>'black'</span>, binwidth <span class='op'>=</span> <span class='fl'>0.01</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>'Estimate'</span>, y <span class='op'>=</span> <span class='st'>'Number of Samples'</span>,
-       title <span class='op'>=</span> <span class='st'>'The Sampling Distribution of the Mean'</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span>mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>sampling_distribution</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>'black'</span>, binwidth <span class='op'>=</span> <span class='fl'>0.01</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>'Estimate'</span>, y <span class='op'>=</span> <span class='st'>'Number of Samples'</span>,</span>
+<span>       title <span class='op'>=</span> <span class='st'>'The Sampling Distribution of the Mean'</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="week-11_files/figure-html5/unnamed-chunk-13-1.png" width="624" /></p>
 </div>
-<p>Check out that sampling variability! Previously, we got values as
-high as 0.8 and as low as 0.4. Now the highest and lowest values are
-more like 0.7 and 0.5.</p>
-<p>Note that our estimate is still unbiased (centered around the
-truth):</p>
+<p>Check out that sampling variability! Previously, we got values as high as 0.8 and as low as 0.4. Now the highest and lowest values are more like 0.7 and 0.5.</p>
+<p>Note that our estimate is still unbiased (centered around the truth):</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0.6059747</code></pre>
 </div>
 <p>But the standard error is half as large.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>sampling_distribution</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 0.02415349</code></pre>
 </div>
-<p>This is a general fact about the standard error of the mean. If the
-population standard deviation equals <span
-class="math inline">\(\sigma\)</span>, then</p>
+<p>This is a general fact about the standard error of the mean. If the population standard deviation equals <span class="math inline">\(\sigma\)</span>, then</p>
 <p><span class="math display">\[
-\text{Standard Error} = \frac{\sigma}{\sqrt{n}}
+\text{Standard Error of the Mean} = \frac{\sigma}{\sqrt{n}}
 \]</span></p>
-<p>For those interested in the derivation, it’s in the footnotes.<a
-href="#fn8" class="footnote-ref" id="fnref8"
-role="doc-noteref"><sup>8</sup></a></p>
-<p>If the population distribution has higher variance, so too will your
-sampling distribution, because you can draw a wider range of samples.
-And if you draw a larger sample, the variance of the sampling
-distribution decreases. More precisely, the standard error decreases
-with the square root of <span class="math inline">\(n\)</span>. If you
-quadruple your sample size, you cut standard error in half.</p>
-<p>In the limit, as your sample size gets bigger and bigger, the
-standard error approaches (but never quite reaches) zero. This is the
-<strong>Law of Large Numbers</strong>. Bigger datasets mean more
-confidence in your estimate. Formally, we say that the sample mean
-<em>converges in probability</em> to its expected value.</p>
+<p>For those interested in the derivation, it’s in the footnotes.<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></p>
+<p>If the population distribution has higher variance, so too will your sampling distribution, because you can draw a wider range of samples. And if you draw a larger sample, the variance of the sampling distribution decreases. More precisely, the standard error decreases with the square root of <span class="math inline">\(n\)</span>. If you quadruple your sample size, you cut standard error in half.</p>
+<p>In the limit, as your sample size gets bigger and bigger, the standard error approaches (but never quite reaches) zero. This is the <strong>Law of Large Numbers</strong>. Bigger datasets mean more confidence in your estimate. Formally, we say that the sample mean <em>converges in probability</em> to its expected value.</p>
 <h2 id="problem-set">Problem Set</h2>
-<p>Imagine we were interested in studying whether American men were more
-or less likely than American women to support import tariffs on Chinese
-goods.</p>
+<p>Imagine we were interested in studying whether American men were more or less likely than American women to support import tariffs on Chinese goods.</p>
 <ol type="1">
 <li>Load <code>data/ces-2020/cleaned-CES.RData</code>.</li>
 <li>What percent of CES respondents support tariffs on China?</li>
-<li>What percent of women support tariffs on China? What percent of men
-support tariffs on China? What is the difference between these two
-values (aka the <strong>difference in means</strong>)?</li>
-<li>Write a function that draws a sample of 100 respondents and returns
-a sample estimate of the difference between men and women’s support for
-tariffs.</li>
-<li>Using that function, generate a sampling distribution for this
-difference in means.</li>
-<li>Plot your sampling distribution. Confirm that it is centered around
-the truth.</li>
-<li>How far away from the truth can these sample estimates get? What is
-the maximum value? What is the minimum value? What is the standard
-deviation of the sampling distribution?</li>
+<li>What percent of women support tariffs on China? What percent of men support tariffs on China? What is the difference between these two values (aka the <strong>difference in means</strong>)?</li>
+<li>Write a function that draws a sample of 100 respondents and returns a sample estimate of the difference between men and women’s support for tariffs.</li>
+<li>Using that function, generate a sampling distribution for this difference in means.</li>
+<li>Plot your sampling distribution. Confirm that it is centered around the truth.</li>
+<li>How far away from the truth can these sample estimates get? What is the maximum value? What is the minimum value? What is the standard deviation of the sampling distribution?</li>
 </ol>
-<div class="sourceCode" id="cb16"><pre
-class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
-<div id="refs" class="references csl-bib-body hanging-indent"
-role="doc-bibliography">
+<div class="sourceCode" id="cb16"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-abadie2020" class="csl-entry" role="doc-biblioentry">
-Abadie, Alberto, Susan Athey, Guido W. Imbens, and Jeffrey M.
-Wooldridge. 2020. <span>“Sampling<span>-</span>Based Versus
-Design<span>-</span>Based Uncertainty in Regression Analysis.”</span>
-<em>Econometrica</em> 88 (1): 265–96. <a
-href="https://doi.org/10.3982/ECTA12675">https://doi.org/10.3982/ECTA12675</a>.
+Abadie, Alberto, Susan Athey, Guido W. Imbens, and Jeffrey M. Wooldridge. 2020. <span>“Sampling<span>-</span>Based Versus Design<span>-</span>Based Uncertainty in Regression Analysis.”</span> <em>Econometrica</em> 88 (1): 265–96. <a href="https://doi.org/10.3982/ECTA12675">https://doi.org/10.3982/ECTA12675</a>.
 </div>
 <div id="ref-mcelreath2020" class="csl-entry" role="doc-biblioentry">
-McElreath, Richard. 2020. <em>Statistical Rethinking: A Bayesian Course
-with Examples in r and Stan</em>. 2nd ed. CRC Texts in Statistical
-Science. Boca Raton: Taylor; Francis, CRC Press.
+McElreath, Richard. 2020. <em>Statistical Rethinking: A Bayesian Course with Examples in r and Stan</em>. 2nd ed. CRC Texts in Statistical Science. Boca Raton: Taylor; Francis, CRC Press.
 </div>
 </div>
-<section id="footnotes" class="footnotes footnotes-end-of-document"
-role="doc-endnotes">
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>For a thorough review of the distinction between
-sampling-based and design-based uncertainty, see <span class="citation"
-data-cites="abadie2020">Abadie et al. (<a href="#ref-abadie2020"
-role="doc-biblioref">2020</a>)</span>.<a href="#fnref1"
-class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Well, frequentist statistical inference. Bayesians think
-about uncertainty in a different way <span class="citation"
-data-cites="mcelreath2020">(<a href="#ref-mcelreath2020"
-role="doc-biblioref">McElreath 2020</a>)</span>.<a href="#fnref2"
-class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>The sampling distribution is a pure thought experiment,
-because in real life we can’t actually do this (unless we had a
-<em>lot</em> of money to repeat the same survey thousands of times).<a
-href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>And the chance of drawing a sample with 0% is about 1 in
-ten quintillion-trillion-billion. It will approximately never happen.<a
-href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>Recall that the variance of a distribution is the <a
-href="https://tinystats.github.io/teacups-giraffes-and-statistics/04_variance.html">average
-squared distance from the mean</a>, and the standard deviation is the
-square root of variance.<a href="#fnref5" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p><a
-href="https://1.bp.blogspot.com/-GbgoSNOuSm0/WilbpekABZI/AAAAAAAAFxQ/kHfvPEHMGgQ7egYL6v4NZaaygWaIaAuxgCLcBGAs/s1600/technically_correct.png">Technically</a>
-it’s a binomial distribution, but we can reserve that distinction for a
-footnote because binomial distributions are approximately normal when
-the sample size is large enough.<a href="#fnref6" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p>How large is “sufficiently large”? I don’t want to give
-a definitive number, because people will yell at me on Twitter. But, as
-you see in the figure above, 100 is clearly big enough. 50 might even be
-okay. Less than 25 is pushing your luck.<a href="#fnref7"
-class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p>The sample mean is the sum of your all your sample
-values <span class="math inline">\((X)\)</span> divided by the sample
-size <span class="math inline">\((n)\)</span>.</p>
-<p><span class="math display">\[\bar{X} =
-\frac{\sum{X_i}}{n}\]</span></p>
-<p>The variance of that statistic is:</p>
-<p><span class="math display">\[
-\text{Var}(\bar{X}) = \text{Var}\left(\frac{\sum{X_i}}{n}\right)
-\]</span></p>
-<p>One property of variance is that <span
-class="math inline">\(\text{Var}(ax) = a^2\text{Var}(X)\)</span> for any
-constant <span class="math inline">\(a\)</span>. If <span
-class="math inline">\(\text{Var}(X_i) = \sigma^2\)</span>, then:</p>
-<p><span class="math display">\[
-\text{Var}\left(\frac{\sum{X_i}}{n}\right) = \frac{1}{n^2} (n\sigma) =
-\frac{\sigma^2}{n}
-\]</span></p>
-<p>The square root of that variance, <span
-class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span>, is the standard
-error of th mean.<a href="#fnref8" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>For a thorough review of the distinction between sampling-based and design-based uncertainty, see <span class="citation" data-cites="abadie2020">Abadie et al. (<a href="#ref-abadie2020" role="doc-biblioref">2020</a>)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Well, frequentist statistical inference. Bayesians think about uncertainty in a different way <span class="citation" data-cites="mcelreath2020">(<a href="#ref-mcelreath2020" role="doc-biblioref">McElreath 2020</a>)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>The sampling distribution is a pure thought experiment, because in real life we can’t actually do this (unless we had a <em>lot</em> of money to repeat the same survey thousands of times).<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>And the chance of drawing a sample with 0% is about 1 in ten quintillion-trillion-billion. It will approximately never happen.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Recall that the variance of a distribution is the <a href="https://tinystats.github.io/teacups-giraffes-and-statistics/04_variance.html">average squared distance from the mean</a>, and the standard deviation is the square root of variance.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><a href="https://1.bp.blogspot.com/-GbgoSNOuSm0/WilbpekABZI/AAAAAAAAFxQ/kHfvPEHMGgQ7egYL6v4NZaaygWaIaAuxgCLcBGAs/s1600/technically_correct.png">Technically</a> it’s a binomial distribution, but we can reserve that distinction for a footnote because binomial distributions are approximately normal when the sample size is large enough.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>How large is “sufficiently large”? I don’t want to give a definitive number, because people will yell at me on Twitter. But, as you see in the figure above, 100 is clearly big enough. 50 might even be okay. Less than 25 is pushing your luck.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>The sample mean is the sum of your all your sample values <span class="math inline">\((X)\)</span> divided by the sample size <span class="math inline">\((n)\)</span>. <span class="math inline">\(\bar{X} = \frac{\sum{X_i}}{n}\)</span>. The variance of that statistic is <span class="math inline">\(\text{Var}(\bar{X}) = \text{Var}\left(\frac{\sum{X_i}}{n}\right)\)</span>. One useful property of variance is that <span class="math inline">\(\text{Var}(ax) = a^2\text{Var}(X)\)</span> for any constant <span class="math inline">\(a\)</span>. If <span class="math inline">\(\text{Var}(X_i) = \sigma^2\)</span>, then <span class="math inline">\(\text{Var}\left(\frac{\sum{X_i}}{n}\right) = \frac{1}{n^2} (n\sigma) = \frac{\sigma^2}{n}\)</span>. The square root of that variance, <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span>, is the standard error of the mean.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 <!--radix_placeholder_article_footer-->
