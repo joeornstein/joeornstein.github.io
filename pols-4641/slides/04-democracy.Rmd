@@ -471,21 +471,7 @@ knitr::include_graphics('img/imperfect-union-cover.jpg')
 
 ---
 
-## Horizontal vs. Vertical Fragmentation
-
-An important distinction here:
-
---
-
-- **Horizontal fragmentation** is when a metropolitan area is divided geographically into several municipal governments, and citizens can vote with their feet to choose which government they want to live under. 
-
---
-
-- **Vertical fragmentation** is when a single area is administered and taxed by multiple governments simultaneously. 
-
----
-
-## Vertical Fragmentation
+## "Overfishing The Common Tax Pool"
 
 
 ```{r}
@@ -497,13 +483,27 @@ There are three governments with the authority to tax my home in Clarke County.
 
 ---
 
-## Vertical Fragmentation
+## "Overfishing The Common Tax Pool"
 
 ```{r}
 knitr::include_graphics('img/evanston-sample-tax-bill.png')
 ```
 
 By contrast, there are **fourteen** governments taxing this home in Evanston, Illinois!
+
+---
+
+## Horizontal vs. Vertical Fragmentation
+
+An important distinction here:
+
+--
+
+- **Horizontal fragmentation** is when a metropolitan area is divided geographically into several municipal governments, and citizens can vote with their feet to choose which government they want to live under. 
+
+--
+
+- **Vertical fragmentation** is when a single area is administered and taxed by multiple governments simultaneously. 
 
 ---
 

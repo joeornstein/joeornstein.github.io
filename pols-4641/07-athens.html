@@ -459,8 +459,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
 
   <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
   <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
   <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -789,7 +789,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   d-article table.gt_table td,
   d-article table.gt_table th {
     border-bottom: none;
-    font-size: 100%;
   }
 
   .html-widget {
@@ -1862,21 +1861,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        const citeChild = $(this).children()[0]
-        // Do not process if @xyz has been used without escaping and without bibliography activated
-        // https://github.com/rstudio/distill/issues/466
-        if (citeChild === undefined) return true
-
-        if (citeChild.nodeName == "D-FOOTNOTE") {
-          var fn = citeChild
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
           $(this).html(fn.shadowRoot.querySelector("sup"))
           $(this).id = fn.id
           fn.remove()
         }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
-          // Could use CSS.escape too here, we insure backward compatibility in navigator
-          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
         }).join("\n");
         window.tippy(this, {
           allowHTML: true,
@@ -2385,7 +2378,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2439,7 +2432,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>Athens</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Let’s put it all together, and consider how we can use what we’ve learned to help improve our community.</p></p>
+<p><p>Let’s put it all together, and consider how we can use what we’ve
+learned to help improve our community.</p></p>
 </div>
 
 
@@ -2448,37 +2442,106 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#case-study-1-mall-redevelopment" id="toc-case-study-1-mall-redevelopment">Case Study 1: Mall Redevelopment</a></li>
-<li><a href="#case-study-2-athens-missing-middle" id="toc-case-study-2-athens-missing-middle">Case Study 2: Athens’ Missing Middle</a></li>
-<li><a href="#case-study-3-urban-renewal" id="toc-case-study-3-urban-renewal">Case Study 3: Urban Renewal</a></li>
-<li><a href="#case-study-4-public-outreach" id="toc-case-study-4-public-outreach">Case Study 4: Public Outreach</a></li>
-<li><a href="#case-study-5-districting" id="toc-case-study-5-districting">Case Study 5: Districting</a></li>
-<li><a href="#case-study-6-vertical-fragmentation" id="toc-case-study-6-vertical-fragmentation">Case Study 6: Vertical Fragmentation</a></li>
-<li><a href="#case-study-7-active-transportation" id="toc-case-study-7-active-transportation">Case Study 7: Active Transportation</a></li>
-<li><a href="#case-study-8-parking-reform" id="toc-case-study-8-parking-reform">Case Study 8: Parking Reform</a></li>
+<li><a href="#case-study-1-mall-redevelopment"
+id="toc-case-study-1-mall-redevelopment">Case Study 1: Mall
+Redevelopment</a></li>
+<li><a href="#case-study-2-athens-missing-middle"
+id="toc-case-study-2-athens-missing-middle">Case Study 2: Athens’
+Missing Middle</a></li>
+<li><a href="#case-study-3-urban-renewal"
+id="toc-case-study-3-urban-renewal">Case Study 3: Urban Renewal</a></li>
+<li><a href="#case-study-4-public-outreach"
+id="toc-case-study-4-public-outreach">Case Study 4: Public
+Outreach</a></li>
+<li><a href="#case-study-5-districting"
+id="toc-case-study-5-districting">Case Study 5: Districting</a></li>
+<li><a href="#case-study-6-vertical-fragmentation"
+id="toc-case-study-6-vertical-fragmentation">Case Study 6: Vertical
+Fragmentation</a></li>
+<li><a href="#case-study-7-active-transportation"
+id="toc-case-study-7-active-transportation">Case Study 7: Active
+Transportation</a></li>
+<li><a href="#case-study-8-parking-reform"
+id="toc-case-study-8-parking-reform">Case Study 8: Parking
+Reform</a></li>
 </ul>
 </nav>
 </div>
-<p>For your final presentation, assemble a group of no more than five classmates to research one of the following case studies from Athens GA. During our final week, your group will present a summary of the case and your proposed solution. Make sure that your presentation is informed by and reflects a thorough understanding of the relevant scientific literature we introduced during the semester.</p>
-<h2 id="case-study-1-mall-redevelopment">Case Study 1: Mall Redevelopment</h2>
-<p>Like many indoor shopping malls throughout the country, the Georgia Square Mall in west Athens has gone through a long period of decline. In March 2023, the Athens-Clarke County Commission approved a plan to <a href="https://flagpole.com/featured/2023/03/07/commission-approves-redevelopment-plan-for-georgia-square-mall/">redevelop the mall area</a>. Describe and evaluate this plan. What is the extent of public subsidy and how is it being paid for? (What the heck is a TAD?) What is the likely effect of the redevelopment on housing and transportation in the county?</p>
-<h2 id="case-study-2-athens-missing-middle">Case Study 2: Athens’ Missing Middle</h2>
-<p>In 2022, Athens-Clarke County commissioned <a href="https://flagpole.com/news/city-dope/2022/09/28/commissioners-praise-missing-middle-affordable-housing-plan/">a report</a> on opportunities to increase the amount of “Missing Middle” housing built in the county. Consider this report in light of the research on housing policy we’ve discussed. What would be the advantages and disadvantages of the proposed plan? What are the likely political barriers to implementing it? What changes would you make?</p>
+<p>For your final presentation, assemble a group of no more than five
+classmates to research one of the following case studies from Athens GA.
+During our final week, your group will present a summary of the case and
+your proposed solution. Make sure that your presentation is informed by
+and reflects a thorough understanding of the relevant scientific
+literature we introduced during the semester.</p>
+<h2 id="case-study-1-mall-redevelopment">Case Study 1: Mall
+Redevelopment</h2>
+<p>Like many indoor shopping malls throughout the country, the Georgia
+Square Mall in west Athens has gone through a long period of decline. In
+March 2023, the Athens-Clarke County Commission approved a plan to <a
+href="https://flagpole.com/featured/2023/03/07/commission-approves-redevelopment-plan-for-georgia-square-mall/">redevelop
+the mall area</a>. Describe and evaluate this plan. What is the extent
+of public subsidy and how is it being paid for? (What the heck is a
+TAD?) What is the likely effect of the redevelopment on housing and
+transportation in the county?</p>
+<h2 id="case-study-2-athens-missing-middle">Case Study 2: Athens’
+Missing Middle</h2>
+<p>In 2022, Athens-Clarke County commissioned <a
+href="https://flagpole.com/news/city-dope/2022/09/28/commissioners-praise-missing-middle-affordable-housing-plan/">a
+report</a> on opportunities to increase the amount of “Missing Middle”
+housing built in the county. Consider this report in light of the
+research on housing policy we’ve discussed. What would be the advantages
+and disadvantages of the proposed plan? What are the likely political
+barriers to implementing it? What changes would you make?</p>
 <h2 id="case-study-3-urban-renewal">Case Study 3: Urban Renewal</h2>
-<p>Cities large and small were radically transformed by Urban Renewal in the mid-20th century, and Athens is no exception. What parts of Athens were targeted by Urban Renewal and why? What is life like in these places half a century later? What is being done and what more should be done? For some jumping off points, see <a href="https://www.redandblack.com/athensnews/the-story-behind-linnentown-why-athens-residents-are-speaking-out-decades-after-their-community-s/article_a899c21c-3aa3-11eb-9b2f-13b4471b0a88.html">The Story Behind Linnentown</a> and the <a href="https://ndathens.com/">North Downtown Athens</a> page.</p>
+<p>Cities large and small were radically transformed by Urban Renewal in
+the mid-20th century, and Athens is no exception. What parts of Athens
+were targeted by Urban Renewal and why? What is life like in these
+places half a century later? What is being done and what more should be
+done? For some jumping off points, see <a
+href="https://www.redandblack.com/athensnews/the-story-behind-linnentown-why-athens-residents-are-speaking-out-decades-after-their-community-s/article_a899c21c-3aa3-11eb-9b2f-13b4471b0a88.html">The
+Story Behind Linnentown</a> and the <a
+href="https://ndathens.com/">North Downtown Athens</a> page.</p>
 <h2 id="case-study-4-public-outreach">Case Study 4: Public Outreach</h2>
-<p>The Athens-Clarke County government will frequently solicit public feedback on its initiatives (you have probably seen posters with QR codes linking to surveys like the one below).</p>
-<p><img src="img/college-square-plaza.jpg" />
-What I want to know is…who responds to these things? Are these QR codes an effective method for spurring local political participation? And does the county government actually use the feedback to guide its planning? Or is it just window dressing? (For this case study, you may actually have to talk with somebody who knows the answers.)</p>
+<p>The Athens-Clarke County government will frequently solicit public
+feedback on its initiatives (you have probably seen posters with QR
+codes linking to surveys like the one below).</p>
+<p><img src="img/college-square-plaza.jpg" /> What I want to know is…who
+responds to these things? Are these QR codes an effective method for
+spurring local political participation? And does the county government
+actually use the feedback to guide its planning? Or is it just window
+dressing? (For this case study, you may actually have to talk with
+somebody who knows the answers.)</p>
 <h2 id="case-study-5-districting">Case Study 5: Districting</h2>
-<p>Following the 2020 Census, the Georgia General Assembly passed <a href="https://athenspoliticsnerd.com/republicans-propose-new-commission-districts/">HB 890</a>, which redrew the Athens-Clarke County commission districts (and drew several members of the commission out of their seats). What are the consequences (good or bad) of this new set of district maps? Should Athens-Clarke County elect its commissioners at-large, like neighboring Oconee County?</p>
-<h2 id="case-study-6-vertical-fragmentation">Case Study 6: Vertical Fragmentation</h2>
-<p>Athens consolidated with Clarke County in the 1990s, reducing vertical fragmentation. What were the effects of this consolidation? Should other counties in Georgia follow its example? Why or why not? Would you favor a proposal to consolidate the Clarke County School District with Athens-Clarke County?</p>
-<h2 id="case-study-7-active-transportation">Case Study 7: Active Transportation</h2>
-<p>In 2018, Athens-Clarke County approved the <a href="https://www.accgov.com/7604/Athens-In-Motion-Bicycle-Pedestrian-Mast">Athens In Motion</a> plan for the city’s bike/pedestrian network, and has been incrementally building out the proposed network in the years since. What are the likely benefits and costs of pursuing this project? What political challenges do its proponents face? What changes would you suggest?</p>
+<p>Following the 2020 Census, the Georgia General Assembly passed <a
+href="https://athenspoliticsnerd.com/republicans-propose-new-commission-districts/">HB
+890</a>, which redrew the Athens-Clarke County commission districts (and
+drew several members of the commission out of their seats). What are the
+consequences (good or bad) of this new set of district maps? Should
+Athens-Clarke County elect its commissioners at-large, like neighboring
+Oconee County?</p>
+<h2 id="case-study-6-vertical-fragmentation">Case Study 6: Vertical
+Fragmentation</h2>
+<p>Athens consolidated with Clarke County in the 1990s, reducing
+vertical fragmentation. What were the effects of this consolidation?
+Should other counties in Georgia follow its example? Why or why not?
+Would you favor a proposal to consolidate the Clarke County School
+District with Athens-Clarke County?</p>
+<h2 id="case-study-7-active-transportation">Case Study 7: Active
+Transportation</h2>
+<p>In 2018, Athens-Clarke County approved the <a
+href="https://www.accgov.com/7604/Athens-In-Motion-Bicycle-Pedestrian-Mast">Athens
+In Motion</a> plan for the city’s bike/pedestrian network, and has been
+incrementally building out the proposed network in the years since. What
+are the likely benefits and costs of pursuing this project? What
+political challenges do its proponents face? What changes would you
+suggest?</p>
 <h2 id="case-study-8-parking-reform">Case Study 8: Parking Reform</h2>
-<p>There has been a movement in cities around the country to eliminate off-street parking mandates in zoning codes. Would a reform like this be beneficial in Athens? What might some drawbacks be in this particular case?</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>There has been a movement in cities around the country to eliminate
+off-street parking mandates in zoning codes. Would a reform like this be
+beneficial in Athens? What might some drawbacks be in this particular
+case?</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
