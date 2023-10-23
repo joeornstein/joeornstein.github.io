@@ -162,7 +162,7 @@ ggplot(data = d |> filter(city != 'Atlanta'),
 
 --
 
-- This movement was ironically called "Urban Renewal", and it worked largely through **transportation** policy. 
+- This movement was called "Urban Renewal", and it operated in large part through **transportation** and **housing** policy. 
 
 
 ---
@@ -171,31 +171,91 @@ ggplot(data = d |> filter(city != 'Atlanta'),
 
 [![](img/slider-instructions.jpg)](https://iqc.ou.edu/urbanchange)
 
-Let's take 5-10 minutes to explore these before-and-after aerial photographs of US cities, and document the changes we observe.
+Let's take 5-10 minutes to explore these before-and-after aerial photographs of US cities, and document the changes we observe. Which city appears the most dramatically different, and why?
+
+---
+
+## Urban Renewal
+
+--
+
+The most striking feature of postwar US cities is how much land became dedicated to the moving and storage of automobiles.
+
+--
+
+<br>
+
+In the remainder of this lecture, we'll focus on the two biggest changes to the post-WWII urban landscape:
+
+--
+
+- Highways
+
+--
+
+- Parking
 
 ---
 
 class: center, middle, inverse
 
-## Highways
+# Highways
 
 ---
 
 ## Highways
 
-The Interstate Highway System did two important things to US cities:
+The US Interstate Highway System is a *remarkable* feat of civil engineering. Constructed over the course of several decades following WWII, it made cross-country travel significantly easier and faster.
 
 --
 
-  1. Destroyed many prewar neighborhoods (typically in majority Black areas). Ripped up the existing urban fabric, creating "border vacuums" .cite[(Jacobs, 1961)].
+But these highways also significantly contributed to urban decline during this era, in two important ways:
 
 --
 
-  2. Enabled a wave of suburbanization, emptying out the urban core of nearly every major metropolitan area in the country .cite[(Baum-Snow, 2007)].
+.pull-left[
+
+- Destroyed hundreds of urban neighborhoods, displacing [more than a million](https://www.history.com/news/interstate-highway-system-infrastructure-construction-segregation) people from their homes (US DOT estimates).
+
+
+]
+
+.pull-right[
+
+![](img/highway-displacement-sf.png)
+
+]
 
 ???
 
-Even though many of these central cities declined, most of their MSAs grew! (Detroit, St. Louis, etc. all their MSAs are more populous than in 1950).
+Image credit: https://www.history.com/news/interstate-highway-system-infrastructure-construction-segregation
+
+---
+
+## Highways
+
+The US Interstate Highway System is a *remarkable* feat of civil engineering. Constructed over the course of several decades following WWII, it made cross-country travel significantly easier and faster.
+
+But these highways also significantly contributed to urban decline during this era, in two important ways:
+
+.pull-left[
+
+- Destroyed hundreds of urban neighborhoods, displacing [more than a million](https://www.history.com/news/interstate-highway-system-infrastructure-construction-segregation) people from their homes (US DOT estimates).
+
+- Enabled a wave of suburbanization, emptying out the urban core of nearly every major metropolitan area in the country .cite[(Baum-Snow, 2007)].
+
+
+]
+
+.pull-right[
+
+![](img/highway-commuting.png)
+
+]
+
+???
+
+Image Credit: https://www.thestreet.com/personal-finance/25-best-commuter-cars-for-long-commutes-15021847
 
 ---
 
@@ -211,7 +271,7 @@ This is a surprisingly difficult chicken-and-egg question to answer.
 knitr::include_graphics('img/atlanta-sprawl.png')
 ```
 
-Which came first: Atlanta's sprawl or its highways?
+Did people move to the suburbs *because* of the highways, or did we build more highways in cities that were already suburbanizing?
 
 ---
 
@@ -219,15 +279,13 @@ Which came first: Atlanta's sprawl or its highways?
 
 A clever solution to the problem: look at the Eisenhower Administration's original plans for the Interstate Highway System:
 
---
-
 ```{r}
 knitr::include_graphics('img/eisenhower-interstate-map.jpg')
 ```
 
 --
 
-The cities that are central nodes in the network got more highways. Each additional highway reduced city populations by about 18% .cite[(Baum-Snow, 2007)].
+The cities that are central nodes in the network got more highway construction. Each additional highway reduced a city's population by about 18% .cite[(Baum-Snow, 2007)].
 
 ---
 
@@ -261,7 +319,7 @@ knitr::include_graphics('img/nall-fig2.png')
 
 class: center, inverse, middle
 
-# Cars Are A Geometry Problem
+# Parking
 
 ???
 
@@ -271,11 +329,13 @@ Beyond the Interstate Highway System in particular, let's talk about some fundam
 
 ## Cars Are A Geometry Problem
 
+--
+
 The fundamental problem with relying on automobiles for urban transportation is one of *geometry*.
 
 --
 
-1. Land is **scarce** in cities (basically by definition).
+1. Land in cities is **scarce** (basically by definition).
 
 ```{r, out.width=300}
 knitr::include_graphics('img/land-value-cropped.png')
@@ -332,7 +392,7 @@ The fundamental problem with relying on automobiles for urban transportation is 
 
 2. Cars take up a **lot** of space.
 
-3. All this means that cities with auto-dependent transportation systems are inherently self-limiting.
+3. All this means that cities with auto-dependent transportation systems waste a lot of valuable land.
 
 ```{r, out.width=400}
 knitr::include_graphics('img/atlanta-parking.png')
@@ -394,13 +454,13 @@ These regulations are often copy-pasted from other cities with little thought .c
 
 --
 
-- (But of course we know that there's no such thing as "free", right?)
+- But of course we know that there's no such thing as "free", right? If something is free, it just means we're paying for it some other way.
 
 ---
 
 ## It's A Political Choice
 
-- [Many US local governments](https://www.strongtowns.org/journal/2023/1/12/5-cities-that-repealed-parking-minimums-in-2022) have begun to repeal parking mandates, as part of a deliberate push to make their cities more walkable / amenable to alternate modes of transportation.
+- [Many US local governments](https://www.strongtowns.org/journal/2023/1/12/5-cities-that-repealed-parking-minimums-in-2022) have begun to repeal parking mandates over the past decade, as part of a deliberate push to make their cities more walkable / amenable to alternate modes of transportation.
 
 --
 
@@ -503,22 +563,6 @@ knitr::include_graphics('img/atlanta-barcelona.png')
 --
 
 More on that in the next module!
-
----
-
-## Journal Club: Readings
-
-1. Baum-Snow (2007). [Did Highways Cause Suburbanization?](https://joeornstein.github.io/pols-4641/readings/Baum-Snow%20-%202007%20-%20Did%20Highways%20Cause%20Suburbanization.pdf)
-
-2. Nall (2015). [The Political Consequences of Spatial Policies: How Interstate Highways Facilitated Geographic Polarization](https://joeornstein.github.io/pols-4641/readings/Nall%20-%202015%20-%20The%20Political%20Consequences%20of%20Spatial%20Policies%20How%20Interstate%20Highways%20Facilitated%20Geographic%20Polarization.pdf)
-
-3. Glaeser & Gyourko (2005). [Urban Decline and Durable Housing](https://joeornstein.github.io/pols-4641/readings/Glaeser,%20Gyourko%20-%202005%20-%20Urban%20Decline%20and%20Durable%20Housing.pdf)
-
-4. Manville & Kuhlmann (2018). [The Social and Fiscal Consequences of Urban Decline: Evidence from Large American Cities, 1980–2010.](https://joeornstein.github.io/pols-4641/readings/Manville%20and%20Kuhlmann%20-%202018%20-%20The%20Social%20and%20Fiscal%20Consequences%20of%20Urban%20Declin.pdf)
-
-5. Speck, Jeff. [Walkable City Rules: 101 Steps to Making Better Places](https://ebookcentral.proquest.com/lib/ugalib/reader.action?docID=5969335) (Part I)
-
-6. Shoup (2004). [The ideal source of local public revenue](https://joeornstein.github.io/pols-4641/readings/Shoup%20-%202004%20-%20The%20ideal%20source%20of%20local%20public%20revenue.pdf)
 
 ---
 
