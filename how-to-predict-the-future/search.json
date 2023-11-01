@@ -140,10 +140,17 @@
     "text": "Week 8 (10/25)"
   },
   {
+    "objectID": "index.html#week-9-111",
+    "href": "index.html#week-9-111",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 9 (11/1)",
+    "text": "Week 9 (11/1)"
+  },
+  {
     "objectID": "index.html#leaderboard",
     "href": "index.html#leaderboard",
     "title": "Fall 2023 Predictions",
     "section": "Leaderboard",
-    "text": "Leaderboard\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nAnsley Austin\n5/7\n0.1593\n\n\n2\nJacob Fortner\n5/7\n0.1782\n\n\n3\nRyan Wolkofsky\n5/7\n0.1891\n\n\n4\nSamiha Sarwar\n4/7\n0.2050\n\n\n5\nHarshini Mohan\n3/7\n0.2414\n\n\n6\nJoe Ornstein\n3/7\n0.2517\n\n\n7\nRease Bauer\n5/7\n0.2593\n\n\n8\nMaggie Fertig\n2/7\n0.3171\n\n\n9\nSimryn Patel\n4/7\n0.3182\n\n\n10\nHarini Mohan\n3/7\n0.3229\n\n\n11\nHita Boddu\n2/7\n0.3254\n\n\n12\nTori Harrill\n3/7\n0.3436\n\n\n13\nJack Whipple\n3/7\n0.3732\n\n\n14\nKang Lee\n2/7\n0.3871\n\n\n15\nBain Fulcher\n3/7\n0.3911\n\n\n16\nPeyton Murry\n0/7\n0.7429\n\n\n17\nDuy Do\n0/7\n0.8004"
+    "text": "Leaderboard\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nRyan Wolkofsky\n6/8\n0.1663\n\n\n2\nJacob Fortner\n6/8\n0.1813\n\n\n3\nSamiha Sarwar\n5/8\n0.1844\n\n\n4\nAnsley Austin\n5/8\n0.2194\n\n\n5\nJoe Ornstein\n4/8\n0.2252\n\n\n6\nHarshini Mohan\n4/8\n0.2266\n\n\n7\nRease Bauer\n6/8\n0.2422\n\n\n8\nHarini Mohan\n4/8\n0.2978\n\n\n9\nSimryn Patel\n4/8\n0.3163\n\n\n10\nMaggie Fertig\n2/8\n0.3225\n\n\n11\nJack Whipple\n4/8\n0.3278\n\n\n12\nTori Harrill\n3/8\n0.3384\n\n\n13\nBain Fulcher\n4/8\n0.3472\n\n\n14\nHita Boddu\n2/8\n0.3647\n\n\n15\nKang Lee\n2/8\n0.4188\n\n\n16\nPeyton Murry\n1/8\n0.6613\n\n\n17\nDuy Do\n0/8\n0.7803"
   }
 ]
