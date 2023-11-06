@@ -352,7 +352,7 @@ There's a *lot* of land in the United States, and as a result in most places it'
 
 The fundamental problem with relying on automobiles for urban transportation is one of *geometry*.
 
-1. Land is **scarce** in cities (basically by definition).
+1. Land in cities is **scarce** (basically by definition).
 
 2. Cars take up a **lot** of space.
 
@@ -372,7 +372,7 @@ See also [xkcd](https://xkcd.com/2684/)
 
 The fundamental problem with relying on automobiles for urban transportation is one of *geometry*.
 
-1. Land is **scarce** in cities (basically by definition).
+1. Land in cities is **scarce** (basically by definition).
 
 2. Cars take up a **lot** of space.
 
@@ -388,7 +388,7 @@ knitr::include_graphics('img/bike-wireframes.jpg')
 
 The fundamental problem with relying on automobiles for urban transportation is one of *geometry*.
 
-1. Land is **scarce** in cities (basically by definition).
+1. Land in cities is **scarce** (basically by definition).
 
 2. Cars take up a **lot** of space.
 
