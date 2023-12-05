@@ -166,5 +166,12 @@
     "title": "Fall 2023 Predictions",
     "section": "Leaderboard",
     "text": "Leaderboard\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nJoe Ornstein\n27/34\n0.1102\n\n\n2\nHarini Mohan\n25/34\n0.1850\n\n\n3\nAnsley Austin\n23/34\n0.1896\n\n\n4\nClass Average\n22/34\n0.2041\n\n\n5\nHarshini Mohan\n22/34\n0.2111\n\n\n6\nMaggie Fertig\n22/34\n0.2152\n\n\n7\nRyan Wolkofsky\n22/34\n0.2208\n\n\n8\nSamiha Sarwar\n19/34\n0.2210\n\n\n9\nBain Fulcher\n22/34\n0.2263\n\n\n10\nSimryn Patel\n20/34\n0.2674\n\n\n11\nTori Harrill\n18/34\n0.2755\n\n\n12\nRease Bauer\n17/34\n0.2759\n\n\n13\nJacob Fortner\n18/34\n0.2787\n\n\n14\nHita Boddu\n15/34\n0.3126\n\n\n15\nPeyton Murry\n16/34\n0.3638\n\n\n16\nJack Whipple\n17/34\n0.3857\n\n\n17\nKang Lee\n15/34\n0.4013\n\n\n18\nDuy Do\n13/34\n0.4599"
+  },
+  {
+    "objectID": "index.html#calibration-plots",
+    "href": "index.html#calibration-plots",
+    "title": "Fall 2023 Predictions",
+    "section": "Calibration Plots",
+    "text": "Calibration Plots"
   }
 ]
