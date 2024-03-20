@@ -4,14 +4,14 @@
     "href": "software.html",
     "title": "Joseph T. Ornstein",
     "section": "",
-    "text": "text2data : Functions for formatting and completing prompts to Large Language Models. Useful for text classification and topic modeling.\ngprd (work in progress): Regression discontinuity estimates using Gaussian Process\nSRP : Stacked regression and poststratification (vignette)\nrdviz : Regression discontinuity visualizations"
+    "text": "fuzzylink : Probabilistic record linkage using pretrained text embeddings\npromptr : Functions for formatting and completing prompts to Large Language Models. Useful for text classification and topic modeling.\ngprd (work in progress): Regression discontinuity estimates using Gaussian Process\nSRP : Stacked regression and poststratification (vignette)\nrdviz : Regression discontinuity visualizations"
   },
   {
     "objectID": "software.html#r-packages",
     "href": "software.html#r-packages",
     "title": "Joseph T. Ornstein",
     "section": "",
-    "text": "text2data : Functions for formatting and completing prompts to Large Language Models. Useful for text classification and topic modeling.\ngprd (work in progress): Regression discontinuity estimates using Gaussian Process\nSRP : Stacked regression and poststratification (vignette)\nrdviz : Regression discontinuity visualizations"
+    "text": "fuzzylink : Probabilistic record linkage using pretrained text embeddings\npromptr : Functions for formatting and completing prompts to Large Language Models. Useful for text classification and topic modeling.\ngprd (work in progress): Regression discontinuity estimates using Gaussian Process\nSRP : Stacked regression and poststratification (vignette)\nrdviz : Regression discontinuity visualizations"
   },
   {
     "objectID": "software.html#misc",
@@ -46,7 +46,7 @@
     "href": "publications.html#working-papers",
     "title": "Joseph T. Ornstein",
     "section": "Working Papers",
-    "text": "Working Papers\n\nOrnstein, Joseph T., Elise N Blasingame, and Jake S. Truscott. “How to Train Your Stochastic Parrot: Large Language Models for Political Texts,” 2024. [PDF] [R Package]\nOrnstein, Joseph T. “Election Timing Revisited: Evidence from California’s Voter Participation Rights Act”, 2024. [PDF]\nOrnstein, Joseph T. & JBrandon Duck-Mayr. “Gaussian Process Regression Discontinuity”. [PDF]"
+    "text": "Working Papers\n\nOrnstein, Joseph T. “Probabilistic Record Linkage Using Pretrained Text Embeddings,” 2024. [PDF] [R Package]\nOrnstein, Joseph T., Elise N Blasingame, and Jake S. Truscott. “How to Train Your Stochastic Parrot: Large Language Models for Political Texts,” 2024. [PDF] [R Package]\nOrnstein, Joseph T. “Election Timing Revisited: Evidence from California’s Voter Participation Rights Act”, 2024. [PDF]\nOrnstein, Joseph T. & JBrandon Duck-Mayr. “Gaussian Process Regression Discontinuity”. [PDF]"
   },
   {
     "objectID": "software/SRP/index.html",
