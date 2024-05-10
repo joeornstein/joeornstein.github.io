@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://joeornstein.github.io/fuzzylink/404.html</loc>
+    <loc>https://joeornstein.github.io/software/fuzzylink/404.html</loc>
   </url>
   <url>
-    <loc>https://joeornstein.github.io/fuzzylink/authors.html</loc>
+    <loc>https://joeornstein.github.io/software/fuzzylink/authors.html</loc>
   </url>
   <url>
-    <loc>https://joeornstein.github.io/fuzzylink/index.html</loc>
+    <loc>https://joeornstein.github.io/software/fuzzylink/index.html</loc>
   </url>
   <url>
-    <loc>https://joeornstein.github.io/fuzzylink/LICENSE-text.html</loc>
+    <loc>https://joeornstein.github.io/software/fuzzylink/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>https://joeornstein.github.io/fuzzylink/LICENSE.html</loc>
+    <loc>https://joeornstein.github.io/software/fuzzylink/LICENSE.html</loc>
   </url>
   <url>
-    <loc>https://joeornstein.github.io/fuzzylink/reference/check_match.html</loc>
+    <loc>https://joeornstein.github.io/software/fuzzylink/reference/check_match.html</loc>
   </url>
   <url>
-    <loc>https://joeornstein.github.io/fuzzylink/reference/dot.html</loc>
+    <loc>https://joeornstein.github.io/software/fuzzylink/reference/dot.html</loc>
   </url>
   <url>
-    <loc>https://joeornstein.github.io/fuzzylink/reference/fuzzylink.html</loc>
+    <loc>https://joeornstein.github.io/software/fuzzylink/reference/fuzzylink.html</loc>
   </url>
   <url>
-    <loc>https://joeornstein.github.io/fuzzylink/reference/get_embeddings.html</loc>
+    <loc>https://joeornstein.github.io/software/fuzzylink/reference/get_embeddings.html</loc>
   </url>
   <url>
-    <loc>https://joeornstein.github.io/fuzzylink/reference/get_similarity_matrix.html</loc>
+    <loc>https://joeornstein.github.io/software/fuzzylink/reference/get_similarity_matrix.html</loc>
   </url>
   <url>
-    <loc>https://joeornstein.github.io/fuzzylink/reference/get_training_set.html</loc>
+    <loc>https://joeornstein.github.io/software/fuzzylink/reference/get_training_set.html</loc>
   </url>
   <url>
-    <loc>https://joeornstein.github.io/fuzzylink/reference/hand_label.html</loc>
+    <loc>https://joeornstein.github.io/software/fuzzylink/reference/hand_label.html</loc>
   </url>
   <url>
-    <loc>https://joeornstein.github.io/fuzzylink/reference/index.html</loc>
+    <loc>https://joeornstein.github.io/software/fuzzylink/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://joeornstein.github.io/fuzzylink/reference/openai_api_key.html</loc>
+    <loc>https://joeornstein.github.io/software/fuzzylink/reference/openai_api_key.html</loc>
   </url>
 </urlset>
