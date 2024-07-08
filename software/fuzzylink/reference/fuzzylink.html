@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">fuzzylink</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,13 +49,17 @@
 <span>  blocking.variables <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  record_type <span class="op">=</span> <span class="st">"entity"</span>,</span>
+<span>  instructions <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  model <span class="op">=</span> <span class="st">"gpt-3.5-turbo-instruct"</span>,</span>
 <span>  openai_api_key <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"OPENAI_API_KEY"</span><span class="op">)</span>,</span>
 <span>  embedding_dimensions <span class="op">=</span> <span class="fl">256</span>,</span>
+<span>  embedding_model <span class="op">=</span> <span class="st">"text-embedding-3-large"</span>,</span>
+<span>  fmla <span class="op">=</span> <span class="va">match</span> <span class="op">~</span> <span class="va">sim</span> <span class="op">+</span> <span class="va">jw</span>,</span>
 <span>  max_validations <span class="op">=</span> <span class="fl">1e+05</span>,</span>
 <span>  p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.95</span><span class="op">)</span>,</span>
 <span>  k <span class="op">=</span> <span class="fl">20</span>,</span>
-<span>  parallel <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  parallel <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  return_all_pairs <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -81,8 +85,12 @@
 <dd><p>A character describing what type of entity the <code>by</code> variable represents. Should be a singular noun (e.g. "person", "organization", "interest group", "city").</p></dd>
 
 
+<dt>instructions</dt>
+<dd><p>A string containing additional instructions to include in the LLM prompt during validation.</p></dd>
+
+
 <dt>model</dt>
-<dd><p>Which OpenAI model to prompt; defaults to 'gpt-3.5-turbo-instruct'</p></dd>
+<dd><p>Which LLM to prompt when validating matches; defaults to 'gpt-3.5-turbo-instruct'</p></dd>
 
 
 <dt>openai_api_key</dt>
@@ -91,6 +99,14 @@
 
 <dt>embedding_dimensions</dt>
 <dd><p>The dimension of the embedding vectors to retrieve. Defaults to 256</p></dd>
+
+
+<dt>embedding_model</dt>
+<dd><p>Which pretrained embedding model to use; defaults to 'text-embedding-3-large' (OpenAI), but will also accept 'mistral-embed' (Mistral).</p></dd>
+
+
+<dt>fmla</dt>
+<dd><p>By default, logistic regression model predicts whether two records match as a linear combination of embedding similarity and Jaro-Winkler similarity (<code>match ~ sim + jw</code>). Change this input for alternate specifications.</p></dd>
 
 
 <dt>max_validations</dt>
@@ -108,6 +124,10 @@
 <dt>parallel</dt>
 <dd><p>TRUE to submit API requests in parallel. Setting to FALSE can reduce rate limit errors at the expense of longer runtime.</p></dd>
 
+
+<dt>return_all_pairs</dt>
+<dd><p>If TRUE, returns <em>every</em> within-block record pair from dfA and dfB, not just validated pairs. Defaults to FALSE.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -123,22 +143,25 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">dfA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">state.x77</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">dfA</span><span class="op">$</span><span class="va">name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">dfA</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">dfB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>name <span class="op">=</span> <span class="va">state.abb</span>, <span class="va">state.division</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">fuzzylink</span><span class="op">(</span><span class="va">dfA</span>, <span class="va">dfB</span>, by <span class="op">=</span> <span class="st">'name'</span>, record_type <span class="op">=</span> <span class="st">'US state government'</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Retrieving 100 embeddings (12:12:50 PM)</span>
+<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">fuzzylink</span><span class="op">(</span><span class="va">dfA</span>, <span class="va">dfB</span>,</span></span>
+<span class="r-in"><span>                by <span class="op">=</span> <span class="st">'name'</span>,</span></span>
+<span class="r-in"><span>                record_type <span class="op">=</span> <span class="st">'US state government'</span>,</span></span>
+<span class="r-in"><span>                instructions <span class="op">=</span> <span class="st">'The first dataset contains full US state names. The second dataset contains US postal codes.'</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Retrieving 100 embeddings (11:40:02 AM)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Computing similarity matrix (12:12:51 PM)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Computing similarity matrix (11:40:03 AM)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Labeling training set (12:12:51 PM)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Labeling training set (11:40:03 AM)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Fitting model (12:12:53 PM)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>glm.fit: fitted probabilities numerically 0 or 1 occurred</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Linking datasets (12:12:53 PM)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Validating 18 matches (12:12:53 PM)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fitting model (11:40:05 AM)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>glm.fit: fitted probabilities numerically 0 or 1 occurred</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Done! (12:12:53 PM)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Linking datasets (11:40:05 AM)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Validating 17 matches (11:40:05 AM)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>glm.fit: fitted probabilities numerically 0 or 1 occurred</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Done! (11:40:05 AM)</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

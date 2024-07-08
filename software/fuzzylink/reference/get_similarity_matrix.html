@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">fuzzylink</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,15 +71,15 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">embeddings</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_embeddings.html">get_embeddings</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'UPS'</span>, <span class="st">'USPS'</span>, <span class="st">'Postal Service'</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">get_similarity_matrix</span><span class="op">(</span><span class="va">embeddings</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                      UPS      USPS Postal Service</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> UPS            1.0000000 0.7533060      0.6255575</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> USPS           0.7533060 0.9999999      0.8409087</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Postal Service 0.6255575 0.8409087      1.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> UPS            1.0000002 0.7530467      0.6254707</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> USPS           0.7530467 1.0000000      0.8408279</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Postal Service 0.6254707 0.8408279      1.0000000</span>
 <span class="r-in"><span><span class="fu">get_similarity_matrix</span><span class="op">(</span><span class="va">embeddings</span>, <span class="st">'Postal Service'</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                      UPS      USPS Postal Service</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Postal Service 0.6255575 0.8409087              1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Postal Service 0.6254707 0.8408279              1</span>
 <span class="r-in"><span><span class="fu">get_similarity_matrix</span><span class="op">(</span><span class="va">embeddings</span>, <span class="st">'Postal Service'</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'UPS'</span>, <span class="st">'USPS'</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                      UPS      USPS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Postal Service 0.6255575 0.8409087</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Postal Service 0.6254707 0.8408279</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

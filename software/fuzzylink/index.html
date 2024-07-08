@@ -26,7 +26,7 @@
     
     <a class="navbar-brand me-2" href="index.html">fuzzylink</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,18 +80,18 @@
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>df</span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#&gt;                A                         B       sim        jw</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co">#&gt; 1      Joe Biden    Joseph Robinette Biden 0.7666187 0.7208273</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt; 2   Donald Trump        Donald John Trump  0.8389039 0.9333333</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt; 3   Barack Obama      Barack Hussein Obama 0.8456774 0.9200000</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt; 4 George W. Bush        George Walker Bush 0.8446634 0.9301587</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; 5   Bill Clinton William Jefferson Clinton 0.8731945 0.5788889</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co">#&gt; 1      Joe Biden    Joseph Robinette Biden 0.7660045 0.7208273</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt; 2   Donald Trump        Donald John Trump  0.8388933 0.9333333</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt; 3   Barack Obama      Barack Hussein Obama 0.8457593 0.9200000</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt; 4 George W. Bush        George Walker Bush 0.8446479 0.9301587</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; 5   Bill Clinton William Jefferson Clinton 0.8732562 0.5788889</span></span>
 <span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt;   match_probability validated age      hobby</span></span>
 <span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt; 1                 1       Yes  81   Football</span></span>
 <span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt; 2                 1       Yes  77       Golf</span></span>
 <span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt; 3                 1       Yes  62 Basketball</span></span>
 <span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt; 4                 1       Yes  77    Reading</span></span>
 <span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt; 5                 1       Yes  77  Saxophone</span></span></code></pre></div>
-<p>The procedure works by using <em>pretrained text embeddings</em> from OpenAI to construct a measure of similarity for each pair of names. These similarity measures are then used as predictors in a statistical model to estimate the probability that two name pairs represent the same entity. In the guide below, I will walk step-by-step through what’s happening under the hood when we call the <code><a href="reference/fuzzylink.html">fuzzylink()</a></code> function. See <a href="https://joeornstein.github.io/publications/fuzzylink.pdf" class="external-link">Ornstein (2024)</a> for technical details.</p>
+<p>The procedure works by using <em>pretrained text embeddings</em> to construct a measure of similarity for each pair of names. These similarity measures are then used as predictors in a statistical model to estimate the probability that two name pairs represent the same entity. In the guide below, I will walk step-by-step through what’s happening under the hood when we call the <code><a href="reference/fuzzylink.html">fuzzylink()</a></code> function. See <a href="https://joeornstein.github.io/publications/fuzzylink.pdf" class="external-link">Ornstein (2024)</a> for technical details.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -99,18 +99,32 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"joeornstein/fuzzylink"</span><span class="op">)</span></span></code></pre></div>
-<p>You will also need an account with OpenAI. You can sign up <a href="https://beta.openai.com/signup" class="external-link">here</a>, after which you will need to create an API key <a href="https://platform.openai.com/account/api-keys" class="external-link">here</a>. For best performance, I <strong>strongly recommend</strong> purchasing at least $5 in API credits, which will significantly increase your API rate limits.</p>
+<p>You will also need API access to a large language model (LLM). The <code>fuzzylink</code> package currently supports both OpenAI and Mistral LLMs, but will default to using OpenAI unless specified by the user.</p>
+<div class="section level3">
+<h3 id="openai">OpenAI<a class="anchor" aria-label="anchor" href="#openai"></a>
+</h3>
+<p>You can sign up for an account <a href="https://beta.openai.com/signup" class="external-link">here</a>, after which you will need to create an API key <a href="https://platform.openai.com/account/api-keys" class="external-link">here</a>. For best performance, I <strong>strongly recommend</strong> purchasing at least $5 in API credits, which will significantly increase your API rate limits.</p>
 <p>Once your account is created, copy-paste your API key into the following line of R code.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">library</span>(fuzzylink)</span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">openai_api_key</span>(<span class="st">'YOUR API KEY GOES HERE'</span>, <span class="at">install =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="mistral">Mistral<a class="anchor" aria-label="anchor" href="#mistral"></a>
+</h3>
+<p>If you prefer to use language models from Mistral, you can sign up for an account <a href="https://mistral.ai/" class="external-link">here</a>. As of writing, Mistral requires you to purchase prepaid credits before you can access their language models through the API.</p>
+<p>Once you have a paid account, you can create an API key <a href="https://console.mistral.ai/api-keys/" class="external-link">here</a>, and copy-paste the API key into the following line of R code:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">library</span>(fuzzylink)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">mistral_api_key</span>(<span class="st">'YOUR API KEY GOES HERE'</span>, <span class="at">install =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Now you’re all set up!</p>
+</div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <p>Here is some code to reproduce the example above and make sure that everything is working on your computer.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">fuzzylink</span><span class="op">)</span></span>
 <span></span>
@@ -141,11 +155,13 @@
 <ul>
 <li><p>The <code>by</code> argument specifies the name of the fuzzy matching variable that you want to use to link records. The dataframes <code>dfA</code> and <code>dfB</code> must both have a column with this name.</p></li>
 <li><p>The <code>record_type</code> argument should be a singular noun describing the type of entity the <code>by</code> variable represents (e.g. “person”, “organization”, “interest group”, “city”). It is used as part of a language model prompt when training the statistical model (see Step 3 below).</p></li>
-<li><p>The <code>model</code> argument specifies which OpenAI language model to prompt. It defaults to ‘gpt-3.5-turbo-instruct’, but for more difficult problems you can try ‘gpt-4’ or ‘gpt-4-turbo-preview’. Note that this will typically increase accuracy at the expense of cost and runtime (see “A Note on Cost” below).</p></li>
+<li><p>The <code>instructions</code> argument should be a string containing additional instructions to include in the language model prompt. Format these like you would format instructions to a human research assistant, including any relevant information that you think would help the model make accurate classifications.</p></li>
+<li><p>The <code>model</code> argument specifies which language model to prompt. It defaults to OpenAI’s ‘gpt-3.5-turbo-instruct’, but for more difficult problems you can try ‘gpt-4o’. Note that this will typically increase accuracy at the expense of cost and runtime. If you prefer an open-source language model, try ‘open-mixtral-8x22b’.</p></li>
+<li><p>The <code>embedding_model</code> argument specifies which pretrained text embeddings to use when modeling match probability. It defaults to OpenAI’s ‘text-embedding-3-large’, but will also accept ‘text-embedding-3-small’ or Mistral’s ‘mistral-embed’.</p></li>
 <li><p>Several parameters—including <code>p</code>, <code>k</code>, <code>embedding_dimensions</code>, <code>max_validations</code>, and <code>parallel</code>—are for advanced users who wish to customize the behavior of the algorithm. See the package documentation for more details.</p></li>
 <li><p>If there are any variables that must match <em>exactly</em> in order to link two records, you will want to include them in the <code>blocking.variables</code> argument. As a practical matter, I <strong>strongly recommend</strong> including blocking variables wherever possible, as they reduce the time and cost necessary to compute pairwise distance metrics. Suppose, for example, that our two illustrative datasets have a column called <code>state</code>, and we want to instruct <code><a href="reference/fuzzylink.html">fuzzylink()</a></code> to only link people who live within the same state.</p></li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dfA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">name</span>, <span class="op">~</span><span class="va">state</span>, <span class="op">~</span><span class="va">age</span>,</span>
 <span>               <span class="st">'Joe Biden'</span>, <span class="st">'Delaware'</span>, <span class="fl">81</span>,</span>
 <span>               <span class="st">'Donald Trump'</span>, <span class="st">'New York'</span>, <span class="fl">77</span>,</span>
@@ -162,24 +178,24 @@
 <span>               <span class="st">'George Herbert Walker Bush'</span>, <span class="st">'Texas'</span>, <span class="st">'Skydiving'</span>,</span>
 <span>               <span class="st">'Biff Tannen'</span>, <span class="st">'California'</span>, <span class="st">'Bullying'</span>,</span>
 <span>               <span class="st">'Joe Riley'</span>, <span class="st">'South Carolina'</span>, <span class="st">'Jogging'</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fuzzylink.html">fuzzylink</a></span><span class="op">(</span><span class="va">dfA</span>, <span class="va">dfB</span>, </span>
 <span>                by <span class="op">=</span> <span class="st">'name'</span>,</span>
 <span>                blocking.variables <span class="op">=</span> <span class="st">'state'</span>,</span>
 <span>                record_type <span class="op">=</span> <span class="st">'person'</span><span class="op">)</span></span>
 <span><span class="va">df</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co">#&gt;                A                         B       sim block        jw</span></span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="co">#&gt; 1      Joe Biden    Joseph Robinette Biden 0.7667135     1 0.7208273</span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co">#&gt; 2   Barack Obama      Barack Hussein Obama 0.8456774     3 0.9200000</span></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co">#&gt; 3 George W. Bush        George Walker Bush 0.8446634     4 0.9301587</span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co">#&gt; 4   Bill Clinton William Jefferson Clinton 0.8731945     5 0.5788889</span></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co">#&gt; 5   Donald Trump                      &lt;NA&gt;        NA    NA        NA</span></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co">#&gt;   match_probability    state validated age      hobby</span></span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co">#&gt; 1                 1 Delaware       Yes  81   Football</span></span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co">#&gt; 2                 1 Illinois       Yes  62 Basketball</span></span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co">#&gt; 3                 1    Texas       Yes  77    Reading</span></span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co">#&gt; 4                 1 Arkansas       Yes  77  Saxophone</span></span>
-<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co">#&gt; 5                NA New York      &lt;NA&gt;  77       &lt;NA&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co">#&gt;                A                         B       sim block        jw</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="co">#&gt; 1      Joe Biden    Joseph Robinette Biden 0.7665511     1 0.7208273</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="co">#&gt; 2   Barack Obama      Barack Hussein Obama 0.8458046     3 0.9200000</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co">#&gt; 3 George W. Bush        George Walker Bush 0.8447483     4 0.9301587</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="co">#&gt; 4   Bill Clinton William Jefferson Clinton 0.8731902     5 0.5788889</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co">#&gt; 5   Donald Trump                      &lt;NA&gt;        NA    NA        NA</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co">#&gt;   match_probability    state validated age      hobby</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co">#&gt; 1                 1 Delaware       Yes  81   Football</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co">#&gt; 2                 1 Illinois       Yes  62 Basketball</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">#&gt; 3                 1    Texas       Yes  77    Reading</span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">#&gt; 4                 1 Arkansas       Yes  77  Saxophone</span></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="co">#&gt; 5                NA New York      &lt;NA&gt;  77       &lt;NA&gt;</span></span></code></pre></div>
 <p>Note that because Donald Trump is listed under two different states—New York in <code>dfA</code> and Florida in <code>dfB</code>–the <code><a href="reference/fuzzylink.html">fuzzylink()</a></code> function no longer returns a match for this record; all blocking variables must match exactly before the function will link two records together. You can specify as many blocking variables as needed by inputting their column names as a vector.</p>
 <p>The function returns a few additional columns along with the merged dataframe. The column <code>match_probability</code> reports the model’s estimated probability that the pair of records refer to the same entity. This column should be used to aid in validation and can be used for computing weighted averages if a record in <code>dfA</code> is matched to multiple records in <code>dFB</code>. The columns <code>sim</code> and <code>jw</code> are string distance measures that the model uses to predict whether two records are a match. And if you included <code>blocking.variables</code> in the function call, there will be a column called <code>block</code> with an ID variable denoting which block the records belong to.</p>
 </div>
@@ -192,7 +208,7 @@
 <h3 id="step-1-embedding">Step 1: Embedding<a class="anchor" aria-label="anchor" href="#step-1-embedding"></a>
 </h3>
 <p>First, the function encodes each unique string in <code>dfA</code> and <code>dfB</code> as a 256-dimensional vector called an <em>embedding</em>. You can learn more about embeddings <a href="https://platform.openai.com/docs/guides/embeddings/embedding-models" class="external-link">here</a>, but the basic idea is to represent text using a vector of real-valued numbers, such that two vectors close to one another in space have similar meanings.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">strings_A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">dfA</span><span class="op">$</span><span class="va">name</span><span class="op">)</span></span>
@@ -203,71 +219,71 @@
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">embeddings</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1]  13 256</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">embeddings</span><span class="op">[</span><span class="st">'Bill Clinton'</span>,<span class="op">]</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1]  0.08017267  0.07627309 -0.01617664 -0.07971001 -0.09848085 -0.04970309</span></span></code></pre></div>
+<span><span class="co">#&gt; [1]  0.08031169  0.07614738 -0.01617801 -0.07958458 -0.09815873 -0.04967427</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="step-2-similarity-scores">Step 2: Similarity Scores<a class="anchor" aria-label="anchor" href="#step-2-similarity-scores"></a>
 </h3>
 <p>Next, we compute the <em>cosine similarity</em> between each name pair. This is our measure of how closely related two pieces of text are, where 0 is completely unrelated and 1 is identical. If you include <code>blocking.variables</code> in the call to <code><a href="reference/fuzzylink.html">fuzzylink()</a></code>, the function will only consider <em>within-block</em> name pairs (i.e. it will only compute similarity scores for records with an exact match on each blocking variable). I <strong>strongly recommend</strong> blocking wherever possible, as it significantly reduces cost and speeds up computation.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_similarity_matrix.html">get_similarity_matrix</a></span><span class="op">(</span><span class="va">embeddings</span>, <span class="va">strings_A</span>, <span class="va">strings_B</span><span class="op">)</span></span>
 <span><span class="va">sim</span></span>
 <span><span class="co">#&gt;                Joseph Robinette Biden Donald John Trump  Barack Hussein Obama</span></span>
-<span><span class="co">#&gt; Joe Biden                   0.7666187          0.5532721            0.5309486</span></span>
-<span><span class="co">#&gt; Donald Trump                0.4317744          0.8389039            0.4480156</span></span>
-<span><span class="co">#&gt; Barack Obama                0.5172067          0.4756720            0.8456774</span></span>
-<span><span class="co">#&gt; George W. Bush              0.4942308          0.4878543            0.5681931</span></span>
-<span><span class="co">#&gt; Bill Clinton                0.4885142          0.5038318            0.5173374</span></span>
+<span><span class="co">#&gt; Joe Biden                   0.7665511          0.5532816            0.5309110</span></span>
+<span><span class="co">#&gt; Donald Trump                0.4316448          0.8388565            0.4477471</span></span>
+<span><span class="co">#&gt; Barack Obama                0.5171871          0.4756583            0.8458046</span></span>
+<span><span class="co">#&gt; George W. Bush              0.4942466          0.4877767            0.5681277</span></span>
+<span><span class="co">#&gt; Bill Clinton                0.4886684          0.5037386            0.5174360</span></span>
 <span><span class="co">#&gt;                George Walker Bush William Jefferson Clinton</span></span>
-<span><span class="co">#&gt; Joe Biden               0.5093797                 0.5426070</span></span>
-<span><span class="co">#&gt; Donald Trump            0.4807618                 0.4465016</span></span>
-<span><span class="co">#&gt; Barack Obama            0.4853952                 0.5131033</span></span>
-<span><span class="co">#&gt; George W. Bush          0.8446634                 0.6115912</span></span>
-<span><span class="co">#&gt; Bill Clinton            0.6233374                 0.8731945</span></span>
+<span><span class="co">#&gt; Joe Biden               0.5094280                 0.5426318</span></span>
+<span><span class="co">#&gt; Donald Trump            0.4805295                 0.4462709</span></span>
+<span><span class="co">#&gt; Barack Obama            0.4854634                 0.5131122</span></span>
+<span><span class="co">#&gt; George W. Bush          0.8447483                 0.6113368</span></span>
+<span><span class="co">#&gt; Bill Clinton            0.6232500                 0.8731912</span></span>
 <span><span class="co">#&gt;                George Herbert Walker Bush Biff Tannen Joe Riley</span></span>
-<span><span class="co">#&gt; Joe Biden                       0.4701206   0.3014880 0.3908584</span></span>
-<span><span class="co">#&gt; Donald Trump                    0.3945427   0.3438834 0.2332212</span></span>
-<span><span class="co">#&gt; Barack Obama                    0.4242546   0.2546198 0.3482104</span></span>
-<span><span class="co">#&gt; George W. Bush                  0.7335619   0.2458795 0.3608438</span></span>
-<span><span class="co">#&gt; Bill Clinton                    0.5951578   0.2212838 0.3196263</span></span></code></pre></div>
+<span><span class="co">#&gt; Joe Biden                       0.4701124   0.3016349 0.3906386</span></span>
+<span><span class="co">#&gt; Donald Trump                    0.3942993   0.3438548 0.2328768</span></span>
+<span><span class="co">#&gt; Barack Obama                    0.4243879   0.2546999 0.3480991</span></span>
+<span><span class="co">#&gt; George W. Bush                  0.7335260   0.2459214 0.3606344</span></span>
+<span><span class="co">#&gt; Bill Clinton                    0.5950811   0.2214671 0.3194544</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="step-3-create-a-training-set">Step 3: Create a Training Set<a class="anchor" aria-label="anchor" href="#step-3-create-a-training-set"></a>
 </h3>
-<p>We would like to use those cosine similarity scores to predict whether two names refer to the same entity. In order to do that, we need to first create a labeled dataset to fit a statistical model. The <code><a href="reference/get_training_set.html">get_training_set()</a></code> function selects a sample of name pairs and labels them using the following prompt to GPT-4 (brackets denote input variables).</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>Decide <span class="cf">if</span> the following two names refer to the same {record_type}. Misspellings, alternative names, and acronyms may be acceptable matches. Think carefully. Respond <span class="st">"Yes"</span> or <span class="st">"No"</span>.<span class="st">'</span></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="st">Name A: {A}</span></span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="st">Name B: {B}</span></span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="st">Response:</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<p>We would like to use those cosine similarity scores to predict whether two names refer to the same entity. In order to do that, we need to first create a labeled dataset to fit a statistical model. The <code><a href="reference/get_training_set.html">get_training_set()</a></code> function selects a sample of name pairs and labels them using the following prompt to GPT-3.5 (brackets denote input variables).</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>Decide <span class="cf">if</span> the following two names refer to the same {record_type}. {instructions} Think carefully. Respond <span class="st">"Yes"</span> or <span class="st">"No"</span>.<span class="st">'</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="st">Name A: {A}</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="st">Name B: {B}</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="st">Response:</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">train</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_training_set.html">get_training_set</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span>, record_type <span class="op">=</span> <span class="st">'person'</span><span class="op">)</span></span>
 <span><span class="va">train</span></span>
 <span><span class="co">#&gt; # A tibble: 40 × 5</span></span>
 <span><span class="co">#&gt;    A              B                              sim    jw match</span></span>
 <span><span class="co">#&gt;    &lt;fct&gt;          &lt;fct&gt;                        &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;</span></span>
-<span><span class="co">#&gt;  1 Joe Biden      "Barack Hussein Obama"       0.531 0.535 No   </span></span>
-<span><span class="co">#&gt;  2 Barack Obama   "Biff Tannen"                0.255 0.457 No   </span></span>
-<span><span class="co">#&gt;  3 Donald Trump   "Biff Tannen"                0.344 0.399 No   </span></span>
-<span><span class="co">#&gt;  4 Bill Clinton   "Joseph Robinette Biden"     0.489 0.480 No   </span></span>
-<span><span class="co">#&gt;  5 Donald Trump   "William Jefferson Clinton"  0.447 0.372 No   </span></span>
-<span><span class="co">#&gt;  6 Donald Trump   "Donald John Trump "         0.839 0.933 Yes  </span></span>
-<span><span class="co">#&gt;  7 George W. Bush "Donald John Trump "         0.488 0.445 No   </span></span>
-<span><span class="co">#&gt;  8 Joe Biden      "Joe Riley"                  0.391 0.867 No   </span></span>
-<span><span class="co">#&gt;  9 George W. Bush "Joe Riley"                  0.361 0.410 No   </span></span>
-<span><span class="co">#&gt; 10 Bill Clinton   "George Herbert Walker Bush" 0.595 0.371 No   </span></span>
+<span><span class="co">#&gt;  1 Donald Trump   "Biff Tannen"                0.344 0.399 No   </span></span>
+<span><span class="co">#&gt;  2 Donald Trump   "William Jefferson Clinton"  0.446 0.372 No   </span></span>
+<span><span class="co">#&gt;  3 Bill Clinton   "George Herbert Walker Bush" 0.595 0.371 No   </span></span>
+<span><span class="co">#&gt;  4 Donald Trump   "George Walker Bush"         0.481 0.5   No   </span></span>
+<span><span class="co">#&gt;  5 George W. Bush "Joe Riley"                  0.361 0.410 No   </span></span>
+<span><span class="co">#&gt;  6 George W. Bush "George Herbert Walker Bush" 0.734 0.870 No   </span></span>
+<span><span class="co">#&gt;  7 Bill Clinton   "William Jefferson Clinton"  0.873 0.579 Yes  </span></span>
+<span><span class="co">#&gt;  8 Joe Biden      "William Jefferson Clinton"  0.543 0.524 No   </span></span>
+<span><span class="co">#&gt;  9 Bill Clinton   "Donald John Trump "         0.504 0.465 No   </span></span>
+<span><span class="co">#&gt; 10 Donald Trump   "George Herbert Walker Bush" 0.394 0.344 No   </span></span>
 <span><span class="co">#&gt; # ℹ 30 more rows</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="step-4-fit-model">Step 4: Fit Model<a class="anchor" aria-label="anchor" href="#step-4-fit-model"></a>
 </h3>
 <p>Next, we fit a logistic regression model on the <code>train</code> dataset, so that we can map similarity scores onto a probability that two records match. We use both the cosine similarity (<code>sim</code>) and a measure of lexical similarity (<code>jw</code>) as predictors in this model.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">match</span> <span class="op">==</span> <span class="st">'Yes'</span><span class="op">)</span> <span class="op">~</span> <span class="va">sim</span> <span class="op">+</span> <span class="va">jw</span>, </span>
 <span>             data <span class="op">=</span> <span class="va">train</span>,</span>
 <span>             family <span class="op">=</span> <span class="st">'binomial'</span><span class="op">)</span></span></code></pre></div>
 <p>Append these predictions to each name pair in <code>dfA</code> and <code>dfB</code>.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># create a dataframe with each name pair</span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">sim</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">reshape2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/reshape2/man/melt.html" class="external-link">melt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -279,19 +295,19 @@
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                A                      B       sim        jw match_probability</span></span>
-<span><span class="co">#&gt; 1      Joe Biden Joseph Robinette Biden 0.7666187 0.7208273      1.000000e+00</span></span>
-<span><span class="co">#&gt; 2   Donald Trump Joseph Robinette Biden 0.4317744 0.4217172      2.220446e-16</span></span>
-<span><span class="co">#&gt; 3   Barack Obama Joseph Robinette Biden 0.5172067 0.4191919      2.220446e-16</span></span>
-<span><span class="co">#&gt; 4 George W. Bush Joseph Robinette Biden 0.4942308 0.5200216      2.220446e-16</span></span>
-<span><span class="co">#&gt; 5   Bill Clinton Joseph Robinette Biden 0.4885142 0.4797980      2.220446e-16</span></span>
-<span><span class="co">#&gt; 6      Joe Biden     Donald John Trump  0.5532721 0.4444444      2.220446e-16</span></span></code></pre></div>
+<span><span class="co">#&gt; 1      Joe Biden Joseph Robinette Biden 0.7665511 0.7208273      1.000000e+00</span></span>
+<span><span class="co">#&gt; 2   Donald Trump Joseph Robinette Biden 0.4316448 0.4217172      2.220446e-16</span></span>
+<span><span class="co">#&gt; 3   Barack Obama Joseph Robinette Biden 0.5171871 0.4191919      2.220446e-16</span></span>
+<span><span class="co">#&gt; 4 George W. Bush Joseph Robinette Biden 0.4942466 0.5200216      2.220446e-16</span></span>
+<span><span class="co">#&gt; 5   Bill Clinton Joseph Robinette Biden 0.4886684 0.4797980      2.220446e-16</span></span>
+<span><span class="co">#&gt; 6      Joe Biden     Donald John Trump  0.5532816 0.4444444      2.220446e-16</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="step-5-validate-uncertain-matches">Step 5: Validate Uncertain Matches<a class="anchor" aria-label="anchor" href="#step-5-validate-uncertain-matches"></a>
 </h3>
 <p>We now have a dataset with estimated match probabilities for each pair of records in <code>dfA</code> and <code>dfB</code>. We could stop there and just report the match probabilities. But for larger datasets we can get better results if we conduct a final validation step. For each name pair within a range of estimated match probabilities (by default 0.1 to 0.95), we will use the GPT-4 prompt above to check whether the name pair is a match. These labeled pairs are then added to the training dataset, the logistic regression model is refined, and we repeat this process until there are no matches left to validate. At that point, every record in <code>dfA</code> is either linked to a record in <code>dfB</code> or there are no candidate matches in <code>dfB</code> with an estimated probability higher than the threshold.</p>
 <p>Note that, by default, the <code><a href="reference/fuzzylink.html">fuzzylink()</a></code> function will validate at most 100,000 name pairs during this step. This setting reduces both cost and runtime (see “A Note On Cost” below), but users who wish to validate more name pairs within larger datasets can increase the cap using the <code>max_validations</code> argument.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># find all unlabeled name pairs within a range of match probabilities</span></span>
 <span><span class="va">matches_to_validate</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">train</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'sim'</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
@@ -331,7 +347,7 @@
 <h3 id="step-6-link-datasets">Step 6: Link Datasets<a class="anchor" aria-label="anchor" href="#step-6-link-datasets"></a>
 </h3>
 <p>Finally, we take all name pairs whose match probability is higher than a user-specified threshold and merge them into a single dataset.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">matches</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span></span>
 <span>    <span class="co"># join with match labels from the training set</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">train</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">A</span>, <span class="va">B</span>, <span class="va">match</span><span class="op">)</span>,</span>
@@ -345,11 +361,11 @@
 <span></span>
 <span><span class="va">matches</span></span>
 <span><span class="co">#&gt;                A                         B       sim        jw</span></span>
-<span><span class="co">#&gt; 1      Joe Biden    Joseph Robinette Biden 0.7666187 0.7208273</span></span>
-<span><span class="co">#&gt; 2   Donald Trump        Donald John Trump  0.8389039 0.9333333</span></span>
-<span><span class="co">#&gt; 3   Barack Obama      Barack Hussein Obama 0.8456774 0.9200000</span></span>
-<span><span class="co">#&gt; 4 George W. Bush        George Walker Bush 0.8446634 0.9301587</span></span>
-<span><span class="co">#&gt; 5   Bill Clinton William Jefferson Clinton 0.8731945 0.5788889</span></span>
+<span><span class="co">#&gt; 1      Joe Biden    Joseph Robinette Biden 0.7665511 0.7208273</span></span>
+<span><span class="co">#&gt; 2   Donald Trump        Donald John Trump  0.8388565 0.9333333</span></span>
+<span><span class="co">#&gt; 3   Barack Obama      Barack Hussein Obama 0.8458046 0.9200000</span></span>
+<span><span class="co">#&gt; 4 George W. Bush        George Walker Bush 0.8447483 0.9301587</span></span>
+<span><span class="co">#&gt; 5   Bill Clinton William Jefferson Clinton 0.8731912 0.5788889</span></span>
 <span><span class="co">#&gt;   match_probability match  state.x age  state.y      hobby</span></span>
 <span><span class="co">#&gt; 1                 1   Yes Delaware  81 Delaware   Football</span></span>
 <span><span class="co">#&gt; 2                 1   Yes New York  77  Florida       Golf</span></span>

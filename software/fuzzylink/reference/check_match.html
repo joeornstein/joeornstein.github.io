@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">fuzzylink</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,6 +47,7 @@
 <span>  <span class="va">string2</span>,</span>
 <span>  model <span class="op">=</span> <span class="st">"gpt-3.5-turbo-instruct"</span>,</span>
 <span>  record_type <span class="op">=</span> <span class="st">"entity"</span>,</span>
+<span>  instructions <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  openai_api_key <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"OPENAI_API_KEY"</span><span class="op">)</span>,</span>
 <span>  parallel <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -63,11 +64,15 @@
 
 
 <dt>model</dt>
-<dd><p>Which OpenAI model to prompt; defaults to 'gpt-3.5-turbo-instruct'</p></dd>
+<dd><p>Which LLM to prompt; defaults to 'gpt-3.5-turbo-instruct'</p></dd>
 
 
 <dt>record_type</dt>
 <dd><p>A character describing what type of entity <code>string1</code> and <code>string2</code> represent. Should be a singular noun (e.g. "person", "organization", "interest group", "city").</p></dd>
+
+
+<dt>instructions</dt>
+<dd><p>A string containing additional instructions to include in the LLM prompt.</p></dd>
 
 
 <dt>openai_api_key</dt>
