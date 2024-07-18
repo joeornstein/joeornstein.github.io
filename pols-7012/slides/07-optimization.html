@@ -1,975 +1,1330 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
-  <head>
-    <title>Week 7: The Linear Model</title>
-    <meta charset="utf-8" />
-    <script src="07-optimization_files/header-attrs-2.14/header-attrs.js"></script>
-    <link href="07-optimization_files/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="07-optimization_files/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
-    <script src="07-optimization_files/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-    <script src="07-optimization_files/plotly-binding-4.10.0/plotly.js"></script>
-    <script src="07-optimization_files/typedarray-0.1/typedarray.min.js"></script>
-    <script src="07-optimization_files/jquery-3.5.1/jquery.min.js"></script>
-    <link href="07-optimization_files/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-    <script src="07-optimization_files/crosstalk-1.2.0/js/crosstalk.min.js"></script>
-    <link href="07-optimization_files/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
-    <script src="07-optimization_files/plotly-main-2.5.1/plotly-latest.min.js"></script>
-  </head>
-  <body>
-    <textarea id="source">
-class: center, middle, inverse, title-slide
-
-# Week 7: The Linear Model
-
----
-
-
-
-
-
-# The Linear Model
-
-&lt;img src="07-optimization_files/figure-html/party-data-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-# The Linear Model
-
-&lt;img src="07-optimization_files/figure-html/unnamed-chunk-1-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-# The Linear Model
-
-`$$Y = X\beta + \varepsilon$$`
-&lt;img src="07-optimization_files/figure-html/unnamed-chunk-2-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-# The Linear Model
-
-Partitioning the outcome into two parts -- the part we can explain, and the part we're ignoring:
-
-`$$\underbrace{Y}_\text{outcome} = \underbrace{X\beta}_\text{explained} + \underbrace{\varepsilon}_\text{unexplained}$$`
----
-
-# The Linear Model
-
-Partitioning the outcome into two parts -- the part we can explain, and the part we're ignoring:
-
-`$$\underbrace{Y}_\text{outcome} = \overbrace{X}^\text{explanatory variable}\beta + \varepsilon$$`
----
-
-# The Linear Model
-
-Partitioning the outcome into two parts -- the part we can explain, and the part we're ignoring:
-
-`$$\underbrace{Y}_\text{outcome} = \overbrace{X}^\text{explanatory variable}\underbrace{\beta}_\text{parameter} + \varepsilon$$`
----
-
-# The Linear Model
-
-Partitioning the outcome into two parts -- the part we can explain, and the part we're ignoring:
-
-`$$\underbrace{Y}_\text{outcome} = \overbrace{X}^\text{explanatory variable}\underbrace{\beta}_\text{parameter} + \overbrace{\varepsilon}^\text{residual}$$`
---
-
-**Our challenge for today**: how do we estimate the `\(\beta\)` parameter? What is the "best" slope for the line of best fit?
-
----
-
-class: center, middle
-
-Let's play around a little bit with `R/week-07/line-of-best-fit.Rmd`.
-
----
-
-class: center, middle
-
-# Calculus
-
----
-
-# An Optimization Problem
-
---
-
-We have a **function** that we want to minimize.
-
-`$$SSE = \sum (Y - X\beta)^2$$`
-Here's what that function looks like:
-
-&lt;img src="07-optimization_files/figure-html/sse-plot-1.png" width="500px" height="300px" style="display: block; margin: auto;" /&gt;
-
---
-
-**Key Insight**: Function is minimized when the slope "switches" from decreasing to increasing. Exactly at the point where the slope equals zero.
-
----
-
-class: center, middle
-
-# Slopes
-
----
-
-# Slopes
-
-What is the **slope** of `\(f(x) = 3x + 2\)`?
-
-&lt;img src="07-optimization_files/figure-html/slope-1.png" width="70%" style="display: block; margin: auto;" /&gt;
-
---
-
-The slope of a linear function (a straight line) is measured by how much `\(y\)` increases when you increase `\(x\)` by `\(1\)`. In this case, `\(3\)`.
-
----
-
-# Linear Functions
-
-Find the slope of each function:
-
-- `\(y = 2x + 4\)`
-
-- `\(f(x) = \frac{1}{2}x - 2\)`
-
-- life expectancy (years) = 18.09359 + 5.737335 `\(\times\)` log(GDP per capita)
-
-
---
-
-### Remember:
-
-Slope of a line `\(= \frac{rise}{run}\)` 
-
---
-`\(= \frac{\Delta Y}{\Delta X}\)`
-
---
-`\(= \frac{f(x+h) - f(x)}{h}\)`
-
-
-???
-
-Finding the slope of a line is *easy*.
-
-Just wanted you to get comfortable with that last expression, because we'll be see it again in a moment. 
-
-https://smartech.gatech.edu/bitstream/handle/1853/56031/effect_of_gdp_per_capita_on_national_life_expectancy.pdf
-
----
-
-# Nonlinear Functions
-
-.center[
-&lt;img src="07-optimization_files/figure-html/Nonlinear Function-1.png" width="600" style="display: block; margin: auto;" /&gt;
-]
-
-Nonlinear functions are confusing and scary...
-
-???
-
-Nonlinear functions are confusing and scary. Sometimes the slope is positive. Sometimes it's negative. Sometimes it's zero. And unlike with linear functions, just looking at the formula gives you no indication what the slope is at any point.
-
-
----
-
-# Isaac Newton
-
-![](img/newton.png)
-
-???
-
-Developed/Discovered:
-- The theory of universal gravitation
-- Three Laws of Motion
-- The Nature of Light
-- And, as a side project so he'd have mathematical notation for those other projects, he created calculus
-
-NB: Newton did some of his best work while stuck at home during an epidemic. So, you know, get to it.
-
----
-
-# Gottfried Wilhelm Leibniz
-
-
-&lt;img src="img/leibniz.jpg" width="600" style="display: block; margin: auto;" /&gt;
-
-???
-
-Also invented calculus, but with better notation. A philosophical optimist who believed we lived in the "best of all possible worlds", a sentiment parodied by Voltaire, and perhaps belied by the fact that Newton took all the credit for inventing calculus.
-
----
-
-# Newton and Leibniz's Insight
-
-Any curve becomes a straight line if you "zoom in" far enough.
-
---
-
-&lt;br&gt;
-
-&lt;img src="img/enhance.gif" width="600" style="display: block; margin: auto;" /&gt;
-
-???
-
-&lt;https://knowyourmeme.com/memes/zoom-and-enhance&gt;
-
----
-
-# Zoom and Enhance...
-
-&lt;img src="07-optimization_files/figure-html/Show the function again-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-# Zoom and Enhance...
-
-&lt;img src="07-optimization_files/figure-html/Zoom and Enhance-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-# Zoom and Enhance...
-
-&lt;img src="07-optimization_files/figure-html/Zoom and Enhance 2-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
-
----
-
-# Zoom and Enhance...Again...
-
-&lt;img src="07-optimization_files/figure-html/Zoom and Enhance 3-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
-
----
-
-# Zoom and Enhance...Again...
-
-&lt;img src="07-optimization_files/figure-html/Zoom and Enhance 4-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-# Zoom and Enhance...Again...And Again...
-
-&lt;img src="07-optimization_files/figure-html/Zoom and Enhance 5-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-# Zoom and Enhance...Again...And Again...
-
-&lt;img src="07-optimization_files/figure-html/Zoom and Enhance 6-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
---
-
-It's basically a straight line! And finding the slope of a straight line is easy...
-
-???
-
-The point is that, in the limit, as you shrink the interval smaller and smaller (infinitesimally small), the function is better and better approximated by a straight line. And we already know the slope of a straight line, so the problem is solved! (That line is called the tangent line FYI.)
-
----
-
-# Putting All That Into Math...
-
-
-&lt;br&gt;
-
-&lt;br&gt;
-
-`$$f'(x) = \lim_{h \to 0}\frac{f(x+h)-f(x)}{h}$$`
-
----
-
-# Putting All That Into Math...
-
-&lt;br&gt;
-
-&lt;br&gt;
-
-`$$f'(x) = \underbrace{\lim_{h \to 0}}_\text{shrink h really small}\frac{\overbrace{f(x+h)-f(x)}^\text{the change in y}}{\underbrace{h}_\text{the change in x}}$$`
-
---
-
-&lt;br&gt;
-
-
-This is called the **derivative** of a function.
-
-
----
-
-# Example
-
-Let `\(f(x) = 2x + 3\)`. What is `\(f'(x)\)`?
-
---
-
-`$$f'(x) =  \lim_{h \to 0}\frac{f(x+h)-f(x)}{h}$$` 
---
-
-`$$= \lim_{h \to 0}\frac{2(x+h)+3-(2x+3)}{h}$$` 
-
---
-
-`$$= \lim_{h \to 0}\frac{2x+2h+3-(2x+3)}{h}$$`
-
---
-
-`$$= \lim_{h \to 0}\frac{2h}{h}$$`
-
---
-
-`$$= 2$$`
-
-???
-
-Hey look what we discovered! The slope of a linear function equals the coefficient on `\(x\)`!
-
----
-
-# Now A Nonlinear One
-
-Let `\(f(x) = 3x^2 + 2x + 3\)`. What is `\(f'(x)\)`?
-
---
-
-`$$= \lim_{h \to 0}\frac{3(x+h)^2 + 2(x+h) + 3 - (3x^2 + 2x + 3)}{h}$$`
---
-
-`$$= \lim_{h \to 0}\frac{3x^2 + 3h^2 + 6xh + 2x+ 2h + 3 - (3x^2 + 2x + 3)}{h}$$`
-
-`$$= \lim_{h \to 0}\frac{3h^2 + 6xh + 2h}{h}$$`
---
-
-`$$= \lim_{h \to 0}3h + 6x + 2$$`
-
---
-
-`$$= 6x + 2$$`
-
----
-
-# Solution
-
-&lt;img src="07-optimization_files/figure-html/Derivative Exercise Solution-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
-???
-
-This function, `\(f'(x)\)`, outputs the slope of `\(f(x)\)` at every point. You can "read off" the slope of `\(f(x)\)` from the vertical of `\(f'(x)\)`.
-
----
-
-class: center, middle
-
-**Good news!** You don't have to go through that process every time. Mathematicians have done it for you, and have discovered a whole bunch of useful shortcuts.
-
----
-
-## Shortcut 1: The Power Rule
-
-If `\(f(x) = ax^k\)`, then `\(f'(x) = kax^{k-1}\)`
-
---
-
-&lt;br&gt;
-
-### Example:
-
-If `\(f(x) = 5x^4\)`, then `\(f'(x) = 20x^3\)`. 
-
---
-
-### Practice Problem:
-
-Let `\(f(x) = 2x^3\)`. What is `\(f'(x)\)`?
-
---
-
-&lt;br&gt;
-
-`$$f'(x) = 6x^2$$`
-
----
-
-## Shortcut 2: The Sum Rule
-
-The derivative of a sum is equal to the sum of derivatives.
-
-If `\(f(x) = g(x) + h(x)\)`, then `\(f'(x) = g'(x) + h'(x)\)`
-
---
-
-&lt;br&gt;
-
-### Example:
-
-If `\(f(x) = x^3 + x^2\)`, then `\(f'(x) = 3x^2 + 2x\)`
-
---
-
-### Practice Problem:
-
-If `\(f(x) = 2x^3 + x^2\)`, what is `\(f'(x)\)`?
-
---
-
-`$$f'(x) = 6x^2 + 2x$$`
-
----
-
-## Shortcut 3: The Constant Rule
-
-The derivative of a constant is zero
-
-If `\(f(x) = c\)`, then `\(f'(x) = 0\)`
-
---
-
-&lt;br&gt;
-
-### Example:
-
-If `\(f(x) = 5\)`, then `\(f'(x) = 0\)`.
-
---
-
-### Practice Problem:
-
-If `\(f(x) = 4x^2 + 3x + 5\)`, what is `\(f'(x)\)`?
-
---
-
-&lt;br&gt;
-
-`$$f'(x) = 8x + 3$$`
-
----
-
-## Shortcut 4: The Product Rule
-
-The derivative of a product is a bit trickier...
-
-If `\(f(x) = g(x) \cdot h(x)\)`, then `\(f'(x) = g'(x) \cdot h(x) + g(x) \cdot h'(x)\)`
-
---
-
-### Example:
-
-If `\(f(x) = (2x)(x + 2)\)`, then `\(f'(x) = 2x + 2(x+2) = 4x + 4\)`
-
---
-
-### Practice Problem:
-
-`\(f(x) = (3x^2 + 6x)(x+2)\)`, what is `\(f'(x)\)`?
-
---
-
-`$$f'(x) = (3x^2 + 6x)(1) + (6x + 6)(x+2)$$`
-
-`$$f'(x) = 3x^2 + 6x + 6x^2 + 6x + 12x + 12$$`
-
-`$$f'(x) = 9x^2 + 24x + 12$$`
-
----
-
-## Shortcut 5: The Chain Rule
-
-If your `\(f(x)\)` is a function wrapped around another function...
-
-If `\(f(x) = g(h(x))\)`, then `\(f'(x) = g'(x) \cdot h'(x)\)`
-
---
-
-"The derivative of the outside times the derivative of the inside."
-
---
-
-### Example:
-
-If `\(f(x) = (2x^2 - x + 1)^3\)`, then `\(f'(x) = 3(2x^2 - x + 1)^2 (4x - 1)\)`
-
---
-
-### Practice Problem:
-
-`\(f(x) = \sqrt{x + 3} = (x+3)^{\frac{1}{2}}\)`, what is `\(f'(x)\)`?
-
---
-
-`\(f'(x) = \frac{1}{2}(x+3)^{-\frac{1}{2}}(1) = \frac{1}{2\sqrt{x+3}}\)`
-
----
-
-## Other Derivative Rules
-
-There's a handy chart in Moore &amp; Siegel:
-
-![](img/moore-siegel-truncated.png)
----
-
-&lt;br&gt;
-
-&lt;br&gt;
-
-&lt;br&gt;
-
-.center[![](img/math.gif)]
-
---
-
-&lt;br&gt;
-
-If you haven't seen these before, it's a lot to absorb. But practice helps.
-
-???
-
-Don't freak out.
-
----
-
-# More Practice
-
-### Problem 1: Sum of Powers (Polynomial)
-
-Let `\(f(x) = 2x^3 + 4x + 79\)`. What is `\(f'(x)\)`?
-
-### Problem 2: Multiply By A Constant
-
-Let `\(f(x) = 3(x^2 + x + 42)\)`. What is `\(f'(x)\)`?
-
-### Problem 3: Product Rule
-
-Let `\(f(x) = (x^2 + 1)(x+3)\)`. What is `\(f'(x)\)`?
-
-
-
----
-
-class: center, middle
-
-# I taught you that...
-
-
-
----
-
-class: center, middle
-
-# ...so you could do *this*.
-
-
----
-
-# Optimization
-
-Let `\(f(x) = 2x^2 + 8x - 32\)`. At what value of `\(x\)` is the function minimized?
-
-&lt;img src="07-optimization_files/figure-html/Optimization Function-1.png" width="500" style="display: block; margin: auto;" /&gt;
-
---
-
-**Key Insight**: Function is minimized when the slope "switches" from decreasing to increasing. Exactly at the point where the slope equals zero.
-
----
-
-# Optimization in Three Steps
-
---
-
-#### 1. Take the derivative of the function.
-
---
-
-#### 2. Set it equal to zero.
-
---
-
-#### 3. Solve for `\(x\)`.
-
----
-
-# Optimization in Three Steps
-
-#### 1. Take the derivative of the function.
-
---
-
-`$$f(x) = 2x^2 + 8x - 32$$`
-
---
-
-`$$f'(x) = 4x + 8$$`
-
---
-
-#### 2. Set it equal to zero
-
-`$$4x + 8 = 0$$`
-
---
-
-#### 3. Solve for `\(x\)`.
-
---
-
-`$$x = -2$$`
-
-
-???
-
-That second step is called the "First Order Condition", or FOC.
-
----
-
-# Optimization in Three Steps
-
-&lt;img src="07-optimization_files/figure-html/Optimization Plot with Solution-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
-
-???
-
-Bonus question: how do you know if it's a maximum or a minimum? Take the second derivative! If it's positive, then the slope is increasing (so it's a minimum). If it's positive, then the slope is decreasing (so it's a maximum).
-
----
-
-# Now You Try It
-
-Suppose that happiness as a function of jellybeans consumed is `\(h(j) = -\frac{1}{3}j^3 + 81j + 2\)`. How many jellybeans should you eat? (Assume you can only eat a positive number of jellybeans).
-
---
-
-&lt;img src="07-optimization_files/figure-html/Jellybean Plot-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-class: center, middle
-
-### Wait, how do you know if it's a maximum or a minimum?
-
----
-
-## Jellybeans Again
-
-`\(h(j) = \frac{1}{3}j^3 + 81j + 2\)` and `\(h'(j) = 81 - j^2\)`
-
-&lt;img src="07-optimization_files/figure-html/Jellybean Plot Again-1.png" width="60%" style="display: block; margin: auto;" /&gt;
-
---
-
-It's a maximum when the slope is **decreasing**, and a minimum when then slope is **increasing**. How do you figure out if the slope is increasing or decreasing?
-
---
-
-That's right. You find the **slope of the slope** (aka the **second derivative**).
-
----
-
-## The Second Derivative Test
-
-`\(h(j) = \frac{1}{3}j^3 + 81j + 2\)` and `\(h'(j) = 81 - j^2\)`
-
-What is `\(h''(j)\)`? Is it positive or negative when you eat `\(9\)` jellybeans?
-
---
-
-`$$h''(j) = -2j$$`
-
-&lt;img src="07-optimization_files/figure-html/second derivative-1.png" width="60%" style="display: block; margin: auto;" /&gt;
-
-
----
-
-class: center, middle
-
-# Partial Derivatives
-
-
----
-
-# Partial Derivatives
-
-What if you have a multivariable function?
-
-`$$f(x,y) = 2x^2y + xy - 4x + y -6$$`
-
---
-
-Same procedure! To get the derivative of a function *with respect to* `\(x\)` or `\(y\)`, treat the other variable as a constant.
-
---
-
-`$$\frac{\partial f}{\partial x} = 4yx + y - 4$$`
-
---
-
-`$$\frac{\partial f}{\partial y} = 2x^2 + x + 1$$`
-
----
-
-# Now You Try...
-
-Suppose happiness as a function of jellybeans and Dr. Peppers consumed is
-
-`$$h(j,d) = 8j -\frac{1}{2}j^2 + 2d - 3d^2 + jd + 100$$`
-How many jellybeans should you eat? How many Dr. Peppers should you drink?
-
---
-
-Intuitively, the `\(jd\)` term is an **interaction effect**. The effect of jellybeans on happiness increases if you also drink more Dr. Peppers. 
-
----
-
-# Now You Try...
-
-`$$h(j,d) = 8j -\frac{1}{2}j^2 + 2d - 3d^2 + jd + 100$$`
-
---
-
-`$$\frac{\partial h}{\partial j} = 8 - j + d = 0$$`
---
-
-`$$\frac{\partial h}{\partial d} = 2 - 6d + j = 0$$`
---
-
-`$$j = 8 + d$$`
-
-`$$j = 6d - 2$$`
---
-
-&lt;br&gt;
-
-`$$d^* = 2$$`
-`$$j^* = 10$$`
-
----
-
-## Visualizing That Function
-
-`$$h(j,d) = 8j -\frac{1}{2}j^2 + 2d - 3d^2 + jd + 100$$`
-
-<div id="htmlwidget-cb579d23e38fb9167ca5" style="width:600px;height:360px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cb579d23e38fb9167ca5">{"x":{"visdat":{"1d6c7b044141":["function () ","plotlyVisDat"]},"cur_data":"1d6c7b044141","attrs":{"1d6c7b044141":{"z":[[100,97.3333333333333,84,60],[107.86703601108,106.603878116343,94.67405355494,72.0775623268698],[114.626038781163,114.766389658356,104.240073868883,83.0470914127424],[120.277008310249,121.820867959372,112.698060941828,92.9085872576177],[124.819944598338,127.767313019391,120.048014773777,101.662049861496],[128.254847645429,132.605724838412,126.289935364728,109.307479224377],[130.581717451524,136.336103416436,131.423822714681,115.84487534626],[131.800554016621,138.958448753463,135.449676823638,121.274238227147],[131.91135734072,140.472760849492,138.367497691597,125.595567867036],[130.914127423823,140.879039704524,140.17728531856,128.808864265928],[128.808864265928,140.17728531856,140.879039704524,130.914127423823],[125.595567867036,138.367497691597,140.472760849492,131.91135734072],[121.274238227147,135.449676823638,138.958448753463,131.80055401662],[115.84487534626,131.423822714681,136.336103416436,130.581717451524],[109.307479224377,126.289935364728,132.605724838412,128.254847645429],[101.662049861496,120.048014773777,127.767313019391,124.819944598338],[92.9085872576177,112.698060941828,121.820867959372,120.277008310249],[83.0470914127424,104.240073868883,114.766389658356,114.626038781163],[72.0775623268698,94.67405355494,106.603878116343,107.86703601108],[60,84,97.3333333333333,100]],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"surface"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"Dr. Peppers"},"yaxis":{"title":"Jellybeans"},"zaxis":{"title":"Happiness"}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"colorbar":{"title":"","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666666","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666666","rgba(199,225,42,1)"],["0.958333333333334","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":true,"z":[[100,97.3333333333333,84,60],[107.86703601108,106.603878116343,94.67405355494,72.0775623268698],[114.626038781163,114.766389658356,104.240073868883,83.0470914127424],[120.277008310249,121.820867959372,112.698060941828,92.9085872576177],[124.819944598338,127.767313019391,120.048014773777,101.662049861496],[128.254847645429,132.605724838412,126.289935364728,109.307479224377],[130.581717451524,136.336103416436,131.423822714681,115.84487534626],[131.800554016621,138.958448753463,135.449676823638,121.274238227147],[131.91135734072,140.472760849492,138.367497691597,125.595567867036],[130.914127423823,140.879039704524,140.17728531856,128.808864265928],[128.808864265928,140.17728531856,140.879039704524,130.914127423823],[125.595567867036,138.367497691597,140.472760849492,131.91135734072],[121.274238227147,135.449676823638,138.958448753463,131.80055401662],[115.84487534626,131.423822714681,136.336103416436,130.581717451524],[109.307479224377,126.289935364728,132.605724838412,128.254847645429],[101.662049861496,120.048014773777,127.767313019391,124.819944598338],[92.9085872576177,112.698060941828,121.820867959372,120.277008310249],[83.0470914127424,104.240073868883,114.766389658356,114.626038781163],[72.0775623268698,94.67405355494,106.603878116343,107.86703601108],[60,84,97.3333333333333,100]],"type":"surface","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-
-
----
-
-class: center, middle
-
-## Back to our motivating example...
-
----
-
-## Back to our motivating example...
-
-Error function we wanted to minimize:
-
-`\(f(b) = \sum (y - xb)^2\)`
-
---
-
-To compute the derivative, apply the sum rule and the chain rule...
-
-`\(\frac{\partial f}{\partial b} = \sum 2(y - xb)(-x) = \sum(2x^2b - 2xy)\)`
-
---
-
-Set that derivative equal to zero and solve:
-
-`\(0 = \sum (2x^2b - 2xy)\)`
-
---
-
-`\(\sum (2xy) = \sum (2x^2b)\)`
-
---
-
-`\(2 \sum (xy) = 2b\sum (x^2)\)`
-
---
-
-`\(b = \frac{\sum xy}{\sum x^2}\)`
-
-???
-
-Note: suppressing index notation for the brains of the students
-
-
----
-
-## Back to our motivating example...
-
-The Linear Model:
-
-`$$y = x\beta + \varepsilon$$`
-The thing we want to minimize:
-
-`$$SSE = \sum (y - x\beta)^2$$`
-The solution to the minimization problem:
-
-`$$b = \frac{\sum xy}{\sum x^2}$$`
-
---
-
-Some terminology:
-
-- `\(\beta\)` in that first equation is called the **estimand**. It's the thing we're trying to estimate.
-- `\(b\)` in that final equation is called the **estimator**, or the **estimating equation**. It's the procedure we use to produce an estimate.
-
----
-
-# The Linear Model is Everywhere
-
---
-
-- **OLS / Regression Analysis (POLS 7014)** = The Linear Model
-
-- **MLE / Logit / Probit / Count Models (POLS 8501)** = The Linear Model + another function
-
-- **t-tests** = The Linear Model + a binary predictor
-
-- **Instrumental Variables** = Two Linear Models
-
-- **Regression Discontinuity** = Two Linear Models
-
-- **Matching** = The Linear Model + Weights
-
-- **Fixed Effects / Random Effects / ANOVA** = The Linear Model + Categorical Predictor Variables
-
-- **Difference-in-differences** = The Linear Model + Time
-
---
-
-Statistical modeling can seem pretty daunting when you think about it as a bunch of tests with no obvious connections. But fundamentally, the linear model is what unifies all these approaches...
-
-&lt;!-- --- --&gt;
-
-&lt;!-- # Why Build Models? --&gt;
-
-&lt;!-- -- --&gt;
-
-&lt;!-- 1. To *describe* complex data --&gt;
-
-&lt;!-- -- --&gt;
-
-&lt;!-- 2. To make *predictions* --&gt;
-
-&lt;!-- -- --&gt;
-
-&lt;!-- 3. To help infer *causality* --&gt;
-
-&lt;!-- ??? --&gt;
-
-&lt;!-- Up to now, we've been using visualization as our primary mode of inquiry. This is a great, and underrated, tool! But there are limits to what it can do for us. Models allow us to more precisely describe the relationships we can only see in a chart. They allow us to make predictions about unseen data. And, coupled with theory, they can help us uncover causal relationships. --&gt;
-
----
-
-
-class: center, middle
-
-Back to the `R` script!
-    </textarea>
-<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
-<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script>var slideshow = remark.create({
-"highlightStyle": "github",
-"countIncrementalSlides": false
-});
-if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
-  window.dispatchEvent(new Event('resize'));
-});
-(function(d) {
-  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
-  if (!r) return;
-  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
-  d.head.appendChild(s);
-})(document);
-
-(function(d) {
-  var el = d.getElementsByClassName("remark-slides-area");
-  if (!el) return;
-  var slide, slides = slideshow.getSlides(), els = el[0].children;
-  for (var i = 1; i < slides.length; i++) {
-    slide = slides[i];
-    if (slide.properties.continued === "true" || slide.properties.count === "false") {
-      els[i - 1].className += ' has-continuation';
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Introduction to Political Methodology - Calculus (Just The Essentials)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../img/favicon_io/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../site_libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+<script src="../site_libs/plotly-binding-4.10.2/plotly.js"></script>
+<script src="../site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="../site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Introduction to Political Methodology</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus/POLS-7012-syllabus.pdf" rel="" target="">
+ <span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-schedule" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Schedule</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-schedule">    
+        <li class="dropdown-header">PART 1: FUNDAMENTALS</li>
+        <li>
+    <a class="dropdown-item" href="../01-introduction.html" rel="" target="">
+ <span class="dropdown-text">Week 1: Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../02-writing-code.html" rel="" target="">
+ <span class="dropdown-text">Week 2: Writing Code</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../03-experiments.html" rel="" target="">
+ <span class="dropdown-text">Week 3: Experiments</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../04-samples.html" rel="" target="">
+ <span class="dropdown-text">Week 4: Samples</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../05-linear-model.html" rel="" target="">
+ <span class="dropdown-text">Week 5: The Linear Model</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../06-causality.html" rel="" target="">
+ <span class="dropdown-text">Week 6: Causality</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../07-probability.html" rel="" target="">
+ <span class="dropdown-text">Week 7: Probability</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../08-uncertainty.html" rel="" target="">
+ <span class="dropdown-text">Week 8: Uncertainty</span></a>
+  </li>  
+        <li class="dropdown-header">PART 2: APPLICATIONS</li>
+        <li>
+    <a class="dropdown-item" href="../09-visualization.html" rel="" target="">
+ <span class="dropdown-text">Week 9: Data Visualization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../10-wrangling.html" rel="" target="">
+ <span class="dropdown-text">Week 10: Data Wrangling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../11-tidying.html" rel="" target="">
+ <span class="dropdown-text">Week 11: Data Tidying</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../12-importing-exporting.html" rel="" target="">
+ <span class="dropdown-text">Week 12: Data Importing/Exporting</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../13-joining.html" rel="" target="">
+ <span class="dropdown-text">Week 13: Data Joining</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../14-bonus.html" rel="" target="">
+ <span class="dropdown-text">Weeks 14-15: Bonus Topics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://uga.view.usg.edu/d2l/home/3240411" rel="" target=""><i class="bi bi-mortarboard-fill" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://app.perusall.com/courses/introduction-to-political-methodology/" rel="" target=""><i class="bi bi-book-fill" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/joeornstein/intro-political-methodology" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-linear-model" id="toc-the-linear-model" class="nav-link active" data-scroll-target="#the-linear-model">The Linear Model</a></li>
+  <li><a href="#the-linear-model-1" id="toc-the-linear-model-1" class="nav-link" data-scroll-target="#the-linear-model-1">The Linear Model</a></li>
+  <li><a href="#the-linear-model-2" id="toc-the-linear-model-2" class="nav-link" data-scroll-target="#the-linear-model-2">The Linear Model</a></li>
+  <li><a href="#the-linear-model-3" id="toc-the-linear-model-3" class="nav-link" data-scroll-target="#the-linear-model-3">The Linear Model</a></li>
+  <li><a href="#the-linear-model-4" id="toc-the-linear-model-4" class="nav-link" data-scroll-target="#the-linear-model-4">The Linear Model</a></li>
+  <li><a href="#the-linear-model-5" id="toc-the-linear-model-5" class="nav-link" data-scroll-target="#the-linear-model-5">The Linear Model</a></li>
+  <li><a href="#the-linear-model-6" id="toc-the-linear-model-6" class="nav-link" data-scroll-target="#the-linear-model-6">The Linear Model</a>
+  <ul class="collapse">
+  <li><a href="#underbracey_textoutcome-overbracextextexplanatory-variableunderbracebeta_textparameter-overbracevarepsilontextresidual" id="toc-underbracey_textoutcome-overbracextextexplanatory-variableunderbracebeta_textparameter-overbracevarepsilontextresidual" class="nav-link" data-scroll-target="#underbracey_textoutcome-overbracextextexplanatory-variableunderbracebeta_textparameter-overbracevarepsilontextresidual"><span class="math display">\[\underbrace{Y}_\text{outcome} = \overbrace{X}^\text{explanatory variable}\underbrace{\beta}_\text{parameter} + \overbrace{\varepsilon}^\text{residual}\]</span></a></li>
+  </ul></li>
+  <li><a href="#calculus" id="toc-calculus" class="nav-link" data-scroll-target="#calculus">Calculus</a></li>
+  <li><a href="#an-optimization-problem" id="toc-an-optimization-problem" class="nav-link" data-scroll-target="#an-optimization-problem">An Optimization Problem</a></li>
+  <li><a href="#slopes" id="toc-slopes" class="nav-link" data-scroll-target="#slopes">Slopes</a></li>
+  <li><a href="#slopes-1" id="toc-slopes-1" class="nav-link" data-scroll-target="#slopes-1">Slopes</a></li>
+  <li><a href="#linear-functions" id="toc-linear-functions" class="nav-link" data-scroll-target="#linear-functions">Linear Functions</a>
+  <ul class="collapse">
+  <li><a href="#remember" id="toc-remember" class="nav-link" data-scroll-target="#remember">Remember:</a></li>
+  </ul></li>
+  <li><a href="#nonlinear-functions" id="toc-nonlinear-functions" class="nav-link" data-scroll-target="#nonlinear-functions">Nonlinear Functions</a></li>
+  <li><a href="#isaac-newton" id="toc-isaac-newton" class="nav-link" data-scroll-target="#isaac-newton">Isaac Newton</a></li>
+  <li><a href="#gottfried-wilhelm-leibniz" id="toc-gottfried-wilhelm-leibniz" class="nav-link" data-scroll-target="#gottfried-wilhelm-leibniz">Gottfried Wilhelm Leibniz</a></li>
+  <li><a href="#newton-and-leibnizs-insight" id="toc-newton-and-leibnizs-insight" class="nav-link" data-scroll-target="#newton-and-leibnizs-insight">Newton and Leibniz’s Insight</a></li>
+  <li><a href="#zoom-and-enhance" id="toc-zoom-and-enhance" class="nav-link" data-scroll-target="#zoom-and-enhance">Zoom and Enhance…</a></li>
+  <li><a href="#zoom-and-enhance-1" id="toc-zoom-and-enhance-1" class="nav-link" data-scroll-target="#zoom-and-enhance-1">Zoom and Enhance…</a></li>
+  <li><a href="#zoom-and-enhance-2" id="toc-zoom-and-enhance-2" class="nav-link" data-scroll-target="#zoom-and-enhance-2">Zoom and Enhance…</a></li>
+  <li><a href="#zoom-and-enhanceagain" id="toc-zoom-and-enhanceagain" class="nav-link" data-scroll-target="#zoom-and-enhanceagain">Zoom and Enhance…Again…</a></li>
+  <li><a href="#zoom-and-enhanceagain-1" id="toc-zoom-and-enhanceagain-1" class="nav-link" data-scroll-target="#zoom-and-enhanceagain-1">Zoom and Enhance…Again…</a></li>
+  <li><a href="#zoom-and-enhanceagainand-again" id="toc-zoom-and-enhanceagainand-again" class="nav-link" data-scroll-target="#zoom-and-enhanceagainand-again">Zoom and Enhance…Again…And Again…</a></li>
+  <li><a href="#zoom-and-enhanceagainand-again-1" id="toc-zoom-and-enhanceagainand-again-1" class="nav-link" data-scroll-target="#zoom-and-enhanceagainand-again-1">Zoom and Enhance…Again…And Again…</a></li>
+  <li><a href="#putting-all-that-into-math" id="toc-putting-all-that-into-math" class="nav-link" data-scroll-target="#putting-all-that-into-math">Putting All That Into Math…</a></li>
+  <li><a href="#putting-all-that-into-math-1" id="toc-putting-all-that-into-math-1" class="nav-link" data-scroll-target="#putting-all-that-into-math-1">Putting All That Into Math…</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a>
+  <ul class="collapse">
+  <li><a href="#fx-lim_h-to-0fracfxh-fxh" id="toc-fx-lim_h-to-0fracfxh-fxh" class="nav-link" data-scroll-target="#fx-lim_h-to-0fracfxh-fxh"><span class="math display">\[f'(x) =  \lim_{h \to 0}\frac{f(x+h)-f(x)}{h}\]</span></a></li>
+  </ul></li>
+  <li><a href="#now-a-nonlinear-one" id="toc-now-a-nonlinear-one" class="nav-link" data-scroll-target="#now-a-nonlinear-one">Now A Nonlinear One</a>
+  <ul class="collapse">
+  <li><a href="#lim_h-to-0frac3xh2-2xh-3---3x2-2x-3h" id="toc-lim_h-to-0frac3xh2-2xh-3---3x2-2x-3h" class="nav-link" data-scroll-target="#lim_h-to-0frac3xh2-2xh-3---3x2-2x-3h"><span class="math display">\[= \lim_{h \to 0}\frac{3(x+h)^2 + 2(x+h) + 3 - (3x^2 + 2x + 3)}{h}\]</span></a></li>
+  <li><a href="#lim_h-to-0frac3h2-6xh-2hh" id="toc-lim_h-to-0frac3h2-6xh-2hh" class="nav-link" data-scroll-target="#lim_h-to-0frac3h2-6xh-2hh"><span class="math display">\[= \lim_{h \to 0}\frac{3h^2 + 6xh + 2h}{h}\]</span></a></li>
+  </ul></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a>
+  <ul class="collapse">
+  <li><a href="#shortcut-1-the-power-rule" id="toc-shortcut-1-the-power-rule" class="nav-link" data-scroll-target="#shortcut-1-the-power-rule">Shortcut 1: The Power Rule</a>
+  <ul class="collapse">
+  <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1">Example:</a></li>
+  <li><a href="#practice-problem" id="toc-practice-problem" class="nav-link" data-scroll-target="#practice-problem">Practice Problem:</a></li>
+  </ul></li>
+  <li><a href="#shortcut-2-the-sum-rule" id="toc-shortcut-2-the-sum-rule" class="nav-link" data-scroll-target="#shortcut-2-the-sum-rule">Shortcut 2: The Sum Rule</a>
+  <ul class="collapse">
+  <li><a href="#example-2" id="toc-example-2" class="nav-link" data-scroll-target="#example-2">Example:</a></li>
+  <li><a href="#practice-problem-1" id="toc-practice-problem-1" class="nav-link" data-scroll-target="#practice-problem-1">Practice Problem:</a></li>
+  </ul></li>
+  <li><a href="#shortcut-3-the-constant-rule" id="toc-shortcut-3-the-constant-rule" class="nav-link" data-scroll-target="#shortcut-3-the-constant-rule">Shortcut 3: The Constant Rule</a>
+  <ul class="collapse">
+  <li><a href="#example-3" id="toc-example-3" class="nav-link" data-scroll-target="#example-3">Example:</a></li>
+  <li><a href="#practice-problem-2" id="toc-practice-problem-2" class="nav-link" data-scroll-target="#practice-problem-2">Practice Problem:</a></li>
+  </ul></li>
+  <li><a href="#shortcut-4-the-product-rule" id="toc-shortcut-4-the-product-rule" class="nav-link" data-scroll-target="#shortcut-4-the-product-rule">Shortcut 4: The Product Rule</a>
+  <ul class="collapse">
+  <li><a href="#example-4" id="toc-example-4" class="nav-link" data-scroll-target="#example-4">Example:</a></li>
+  <li><a href="#practice-problem-3" id="toc-practice-problem-3" class="nav-link" data-scroll-target="#practice-problem-3">Practice Problem:</a></li>
+  </ul></li>
+  <li><a href="#shortcut-5-the-chain-rule" id="toc-shortcut-5-the-chain-rule" class="nav-link" data-scroll-target="#shortcut-5-the-chain-rule">Shortcut 5: The Chain Rule</a>
+  <ul class="collapse">
+  <li><a href="#example-5" id="toc-example-5" class="nav-link" data-scroll-target="#example-5">Example:</a></li>
+  <li><a href="#practice-problem-4" id="toc-practice-problem-4" class="nav-link" data-scroll-target="#practice-problem-4">Practice Problem:</a></li>
+  </ul></li>
+  <li><a href="#other-derivative-rules" id="toc-other-derivative-rules" class="nav-link" data-scroll-target="#other-derivative-rules">Other Derivative Rules</a></li>
+  </ul></li>
+  <li><a href="#more-practice" id="toc-more-practice" class="nav-link" data-scroll-target="#more-practice">More Practice</a>
+  <ul class="collapse">
+  <li><a href="#problem-1-sum-of-powers-polynomial" id="toc-problem-1-sum-of-powers-polynomial" class="nav-link" data-scroll-target="#problem-1-sum-of-powers-polynomial">Problem 1: Sum of Powers (Polynomial)</a></li>
+  <li><a href="#problem-2-multiply-by-a-constant" id="toc-problem-2-multiply-by-a-constant" class="nav-link" data-scroll-target="#problem-2-multiply-by-a-constant">Problem 2: Multiply By A Constant</a></li>
+  <li><a href="#problem-3-product-rule" id="toc-problem-3-product-rule" class="nav-link" data-scroll-target="#problem-3-product-rule">Problem 3: Product Rule</a></li>
+  </ul></li>
+  <li><a href="#i-taught-you-that" id="toc-i-taught-you-that" class="nav-link" data-scroll-target="#i-taught-you-that">I taught you that…</a></li>
+  <li><a href="#so-you-could-do-this." id="toc-so-you-could-do-this." class="nav-link" data-scroll-target="#so-you-could-do-this.">…so you could do <em>this</em>.</a></li>
+  <li><a href="#optimization" id="toc-optimization" class="nav-link" data-scroll-target="#optimization">Optimization</a></li>
+  <li><a href="#optimization-in-three-steps" id="toc-optimization-in-three-steps" class="nav-link" data-scroll-target="#optimization-in-three-steps">Optimization in Three Steps</a></li>
+  <li><a href="#optimization-in-three-steps-1" id="toc-optimization-in-three-steps-1" class="nav-link" data-scroll-target="#optimization-in-three-steps-1">Optimization in Three Steps</a></li>
+  <li><a href="#optimization-in-three-steps-2" id="toc-optimization-in-three-steps-2" class="nav-link" data-scroll-target="#optimization-in-three-steps-2">Optimization in Three Steps</a></li>
+  <li><a href="#now-you-try-it" id="toc-now-you-try-it" class="nav-link" data-scroll-target="#now-you-try-it">Now You Try It</a>
+  <ul class="collapse">
+  <li><a href="#wait-how-do-you-know-if-its-a-maximum-or-a-minimum" id="toc-wait-how-do-you-know-if-its-a-maximum-or-a-minimum" class="nav-link" data-scroll-target="#wait-how-do-you-know-if-its-a-maximum-or-a-minimum">Wait, how do you know if it’s a maximum or a minimum?</a></li>
+  <li><a href="#jellybeans-again" id="toc-jellybeans-again" class="nav-link" data-scroll-target="#jellybeans-again">Jellybeans Again</a></li>
+  <li><a href="#the-second-derivative-test" id="toc-the-second-derivative-test" class="nav-link" data-scroll-target="#the-second-derivative-test">The Second Derivative Test</a></li>
+  </ul></li>
+  <li><a href="#partial-derivatives" id="toc-partial-derivatives" class="nav-link" data-scroll-target="#partial-derivatives">Partial Derivatives</a></li>
+  <li><a href="#partial-derivatives-1" id="toc-partial-derivatives-1" class="nav-link" data-scroll-target="#partial-derivatives-1">Partial Derivatives</a></li>
+  <li><a href="#now-you-try" id="toc-now-you-try" class="nav-link" data-scroll-target="#now-you-try">Now You Try…</a></li>
+  <li><a href="#now-you-try-1" id="toc-now-you-try-1" class="nav-link" data-scroll-target="#now-you-try-1">Now You Try…</a>
+  <ul class="collapse">
+  <li><a href="#fracpartial-hpartial-j-8---j-d-0" id="toc-fracpartial-hpartial-j-8---j-d-0" class="nav-link" data-scroll-target="#fracpartial-hpartial-j-8---j-d-0"><span class="math display">\[\frac{\partial h}{\partial j} = 8 - j + d = 0\]</span></a></li>
+  <li><a href="#fracpartial-hpartial-d-2---6d-j-0" id="toc-fracpartial-hpartial-d-2---6d-j-0" class="nav-link" data-scroll-target="#fracpartial-hpartial-d-2---6d-j-0"><span class="math display">\[\frac{\partial h}{\partial d} = 2 - 6d + j = 0\]</span></a></li>
+  <li><a href="#j-6d---2" id="toc-j-6d---2" class="nav-link" data-scroll-target="#j-6d---2"><span class="math display">\[j = 6d - 2\]</span></a></li>
+  <li><a href="#visualizing-that-function" id="toc-visualizing-that-function" class="nav-link" data-scroll-target="#visualizing-that-function">Visualizing That Function</a></li>
+  <li><a href="#back-to-our-motivating-example" id="toc-back-to-our-motivating-example" class="nav-link" data-scroll-target="#back-to-our-motivating-example">Back to our motivating example…</a></li>
+  <li><a href="#back-to-our-motivating-example-1" id="toc-back-to-our-motivating-example-1" class="nav-link" data-scroll-target="#back-to-our-motivating-example-1">Back to our motivating example…</a></li>
+  <li><a href="#back-to-our-motivating-example-2" id="toc-back-to-our-motivating-example-2" class="nav-link" data-scroll-target="#back-to-our-motivating-example-2">Back to our motivating example…</a></li>
+  </ul></li>
+  <li><a href="#the-linear-model-is-everywhere" id="toc-the-linear-model-is-everywhere" class="nav-link" data-scroll-target="#the-linear-model-is-everywhere">The Linear Model is Everywhere</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Calculus (Just The Essentials)</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="the-linear-model" class="level1">
+<h1>The Linear Model</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-optimization_files/figure-html/load-and-plot-1.png" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="the-linear-model-1" class="level1">
+<h1>The Linear Model</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-optimization_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="the-linear-model-2" class="level1">
+<h1>The Linear Model</h1>
+<p><span class="math display">\[Y = X\beta + \varepsilon\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-optimization_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="the-linear-model-3" class="level1">
+<h1>The Linear Model</h1>
+<p>Partitioning the outcome into two parts – the part we can explain, and the part we’re ignoring:</p>
+<p><span class="math display">\[\underbrace{Y}_\text{outcome} = \underbrace{X\beta}_\text{explained} + \underbrace{\varepsilon}_\text{unexplained}\]</span></p>
+<hr>
+</section>
+<section id="the-linear-model-4" class="level1">
+<h1>The Linear Model</h1>
+<p>Partitioning the outcome into two parts – the part we can explain, and the part we’re ignoring:</p>
+<p><span class="math display">\[\underbrace{Y}_\text{outcome} = \overbrace{X}^\text{explanatory variable}\beta + \varepsilon\]</span></p>
+<hr>
+</section>
+<section id="the-linear-model-5" class="level1">
+<h1>The Linear Model</h1>
+<p>Partitioning the outcome into two parts – the part we can explain, and the part we’re ignoring:</p>
+<p><span class="math display">\[\underbrace{Y}_\text{outcome} = \overbrace{X}^\text{explanatory variable}\underbrace{\beta}_\text{parameter} + \varepsilon\]</span></p>
+<hr>
+</section>
+<section id="the-linear-model-6" class="level1">
+<h1>The Linear Model</h1>
+<p>Partitioning the outcome into two parts – the part we can explain, and the part we’re ignoring:</p>
+<section id="underbracey_textoutcome-overbracextextexplanatory-variableunderbracebeta_textparameter-overbracevarepsilontextresidual" class="level2">
+<h2 class="anchored" data-anchor-id="underbracey_textoutcome-overbracextextexplanatory-variableunderbracebeta_textparameter-overbracevarepsilontextresidual"><span class="math display">\[\underbrace{Y}_\text{outcome} = \overbrace{X}^\text{explanatory variable}\underbrace{\beta}_\text{parameter} + \overbrace{\varepsilon}^\text{residual}\]</span></h2>
+<p><strong>Our challenge for today</strong>: how do we estimate the <span class="math inline">\(\beta\)</span> parameter? What is the “best” slope for the line of best fit?</p>
+<hr>
+<p>class: center, middle</p>
+<p>Let’s play around a little bit with <code>R/week-07/line-of-best-fit.Rmd</code>.</p>
+<hr>
+<p>class: center, middle</p>
+</section>
+</section>
+<section id="calculus" class="level1">
+<h1>Calculus</h1>
+<hr>
+</section>
+<section id="an-optimization-problem" class="level1">
+<h1>An Optimization Problem</h1>
+<p>–</p>
+<p>We have a <strong>function</strong> that we want to minimize.</p>
+<p><span class="math display">\[SSE = \sum (Y - X\beta)^2\]</span> Here’s what that function looks like:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-optimization_files/figure-html/sse-plot-1.png" width="500" height="300" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>–</p>
+<p><strong>Key Insight</strong>: Function is minimized when the slope “switches” from decreasing to increasing. Exactly at the point where the slope equals zero.</p>
+<hr>
+<p>class: center, middle</p>
+</section>
+<section id="slopes" class="level1">
+<h1>Slopes</h1>
+<hr>
+</section>
+<section id="slopes-1" class="level1">
+<h1>Slopes</h1>
+<p>What is the <strong>slope</strong> of <span class="math inline">\(f(x) = 3x + 2\)</span>?</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-optimization_files/figure-html/slope-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>–</p>
+<p>The slope of a linear function (a straight line) is measured by how much <span class="math inline">\(y\)</span> increases when you increase <span class="math inline">\(x\)</span> by <span class="math inline">\(1\)</span>. In this case, <span class="math inline">\(3\)</span>.</p>
+<hr>
+</section>
+<section id="linear-functions" class="level1">
+<h1>Linear Functions</h1>
+<p>Find the slope of each function:</p>
+<ul>
+<li><p><span class="math inline">\(y = 2x + 4\)</span></p></li>
+<li><p><span class="math inline">\(f(x) = \frac{1}{2}x - 2\)</span></p></li>
+<li><p>life expectancy (years) = 18.09359 + 5.737335 <span class="math inline">\(\times\)</span> log(GDP per capita)</p></li>
+</ul>
+<p>–</p>
+<section id="remember" class="level3">
+<h3 class="anchored" data-anchor-id="remember">Remember:</h3>
+<p>Slope of a line <span class="math inline">\(= \frac{rise}{run}\)</span></p>
+<table class="table">
+<colgroup>
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(= \frac{\Delta Y}{\Delta X}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(= \frac{f(x+h) - f(x)}{h}\)</span></td>
+</tr>
+<tr class="even">
+<td>???</td>
+</tr>
+<tr class="odd">
+<td>Finding the slope of a line is <em>easy</em>.</td>
+</tr>
+<tr class="even">
+<td>Just wanted you to get comfortable with that last expression, because we’ll be see it again in a moment.</td>
+</tr>
+<tr class="odd">
+<td>https://smartech.gatech.edu/bitstream/handle/1853/56031/effect_of_gdp_per_capita_on_national_life_expectancy.pdf</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="nonlinear-functions" class="level1">
+<h1>Nonlinear Functions</h1>
+<p>.center[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-optimization_files/figure-html/Nonlinear Function-1.png" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<p>Nonlinear functions are confusing and scary…</p>
+<p>???</p>
+<p>Nonlinear functions are confusing and scary. Sometimes the slope is positive. Sometimes it’s negative. Sometimes it’s zero. And unlike with linear functions, just looking at the formula gives you no indication what the slope is at any point.</p>
+<hr>
+</section>
+<section id="isaac-newton" class="level1">
+<h1>Isaac Newton</h1>
+<p><img src="img/newton.png" class="img-fluid"></p>
+<p>???</p>
+<p>Developed/Discovered: - The theory of universal gravitation - Three Laws of Motion - The Nature of Light - And, as a side project so he’d have mathematical notation for those other projects, he created calculus</p>
+<p>NB: Newton did some of his best work while stuck at home during an epidemic. So, you know, get to it.</p>
+<hr>
+</section>
+<section id="gottfried-wilhelm-leibniz" class="level1">
+<h1>Gottfried Wilhelm Leibniz</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/leibniz.jpg" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p>Also invented calculus, but with better notation. A philosophical optimist who believed we lived in the “best of all possible worlds”, a sentiment parodied by Voltaire, and perhaps belied by the fact that Newton took all the credit for inventing calculus.</p>
+<hr>
+</section>
+<section id="newton-and-leibnizs-insight" class="level1">
+<h1>Newton and Leibniz’s Insight</h1>
+<p>Any curve becomes a straight line if you “zoom in” far enough.</p>
+<p>–</p>
+<p><br></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/enhance.gif" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p><a href="https://knowyourmeme.com/memes/zoom-and-enhance" class="uri">https://knowyourmeme.com/memes/zoom-and-enhance</a></p>
+<hr>
+</section>
+<section id="zoom-and-enhance" class="level1">
+<h1>Zoom and Enhance…</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-optimization_files/figure-html/Show the function again-1.png" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="zoom-and-enhance-1" class="level1">
+<h1>Zoom and Enhance…</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-optimization_files/figure-html/Zoom and Enhance-1.png" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="zoom-and-enhance-2" class="level1">
+<h1>Zoom and Enhance…</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-optimization_files/figure-html/Zoom and Enhance 2-1.png" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="zoom-and-enhanceagain" class="level1">
+<h1>Zoom and Enhance…Again…</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-optimization_files/figure-html/Zoom and Enhance 3-1.png" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="zoom-and-enhanceagain-1" class="level1">
+<h1>Zoom and Enhance…Again…</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-optimization_files/figure-html/Zoom and Enhance 4-1.png" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="zoom-and-enhanceagainand-again" class="level1">
+<h1>Zoom and Enhance…Again…And Again…</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-optimization_files/figure-html/Zoom and Enhance 5-1.png" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="zoom-and-enhanceagainand-again-1" class="level1">
+<h1>Zoom and Enhance…Again…And Again…</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-optimization_files/figure-html/Zoom and Enhance 6-1.png" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>–</p>
+<p>It’s basically a straight line! And finding the slope of a straight line is easy…</p>
+<p>???</p>
+<p>The point is that, in the limit, as you shrink the interval smaller and smaller (infinitesimally small), the function is better and better approximated by a straight line. And we already know the slope of a straight line, so the problem is solved! (That line is called the tangent line FYI.)</p>
+<hr>
+</section>
+<section id="putting-all-that-into-math" class="level1">
+<h1>Putting All That Into Math…</h1>
+<p><br></p>
+<p><br></p>
+<p><span class="math display">\[f'(x) = \lim_{h \to 0}\frac{f(x+h)-f(x)}{h}\]</span></p>
+<hr>
+</section>
+<section id="putting-all-that-into-math-1" class="level1">
+<h1>Putting All That Into Math…</h1>
+<p><br></p>
+<p><br></p>
+<p><span class="math display">\[f'(x) = \underbrace{\lim_{h \to 0}}_\text{shrink h really small}\frac{\overbrace{f(x+h)-f(x)}^\text{the change in y}}{\underbrace{h}_\text{the change in x}}\]</span></p>
+<p>–</p>
+<p><br></p>
+<p>This is called the <strong>derivative</strong> of a function.</p>
+<hr>
+</section>
+<section id="example" class="level1">
+<h1>Example</h1>
+<p>Let <span class="math inline">\(f(x) = 2x + 3\)</span>. What is <span class="math inline">\(f'(x)\)</span>?</p>
+<p>–</p>
+<section id="fx-lim_h-to-0fracfxh-fxh" class="level2">
+<h2 class="anchored" data-anchor-id="fx-lim_h-to-0fracfxh-fxh"><span class="math display">\[f'(x) =  \lim_{h \to 0}\frac{f(x+h)-f(x)}{h}\]</span></h2>
+<p><span class="math display">\[= \lim_{h \to 0}\frac{2(x+h)+3-(2x+3)}{h}\]</span></p>
+<p>–</p>
+<p><span class="math display">\[= \lim_{h \to 0}\frac{2x+2h+3-(2x+3)}{h}\]</span></p>
+<p>–</p>
+<p><span class="math display">\[= \lim_{h \to 0}\frac{2h}{h}\]</span></p>
+<p>–</p>
+<p><span class="math display">\[= 2\]</span></p>
+<p>???</p>
+<p>Hey look what we discovered! The slope of a linear function equals the coefficient on <span class="math inline">\(x\)</span>!</p>
+<hr>
+</section>
+</section>
+<section id="now-a-nonlinear-one" class="level1">
+<h1>Now A Nonlinear One</h1>
+<p>Let <span class="math inline">\(f(x) = 3x^2 + 2x + 3\)</span>. What is <span class="math inline">\(f'(x)\)</span>?</p>
+<p>–</p>
+<section id="lim_h-to-0frac3xh2-2xh-3---3x2-2x-3h" class="level2">
+<h2 class="anchored" data-anchor-id="lim_h-to-0frac3xh2-2xh-3---3x2-2x-3h"><span class="math display">\[= \lim_{h \to 0}\frac{3(x+h)^2 + 2(x+h) + 3 - (3x^2 + 2x + 3)}{h}\]</span></h2>
+<p><span class="math display">\[= \lim_{h \to 0}\frac{3x^2 + 3h^2 + 6xh + 2x+ 2h + 3 - (3x^2 + 2x + 3)}{h}\]</span></p>
+</section>
+<section id="lim_h-to-0frac3h2-6xh-2hh" class="level2">
+<h2 class="anchored" data-anchor-id="lim_h-to-0frac3h2-6xh-2hh"><span class="math display">\[= \lim_{h \to 0}\frac{3h^2 + 6xh + 2h}{h}\]</span></h2>
+<p><span class="math display">\[= \lim_{h \to 0}3h + 6x + 2\]</span></p>
+<p>–</p>
+<p><span class="math display">\[= 6x + 2\]</span></p>
+<hr>
+</section>
+</section>
+<section id="solution" class="level1">
+<h1>Solution</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-optimization_files/figure-html/Derivative Exercise Solution-1.png" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p>This function, <span class="math inline">\(f'(x)\)</span>, outputs the slope of <span class="math inline">\(f(x)\)</span> at every point. You can “read off” the slope of <span class="math inline">\(f(x)\)</span> from the vertical of <span class="math inline">\(f'(x)\)</span>.</p>
+<hr>
+<p>class: center, middle</p>
+<p><strong>Good news!</strong> You don’t have to go through that process every time. Mathematicians have done it for you, and have discovered a whole bunch of useful shortcuts.</p>
+<hr>
+<section id="shortcut-1-the-power-rule" class="level2">
+<h2 class="anchored" data-anchor-id="shortcut-1-the-power-rule">Shortcut 1: The Power Rule</h2>
+<p>If <span class="math inline">\(f(x) = ax^k\)</span>, then <span class="math inline">\(f'(x) = kax^{k-1}\)</span></p>
+<p>–</p>
+<p><br></p>
+<section id="example-1" class="level3">
+<h3 class="anchored" data-anchor-id="example-1">Example:</h3>
+<p>If <span class="math inline">\(f(x) = 5x^4\)</span>, then <span class="math inline">\(f'(x) = 20x^3\)</span>.</p>
+<p>–</p>
+</section>
+<section id="practice-problem" class="level3">
+<h3 class="anchored" data-anchor-id="practice-problem">Practice Problem:</h3>
+<p>Let <span class="math inline">\(f(x) = 2x^3\)</span>. What is <span class="math inline">\(f'(x)\)</span>?</p>
+<p>–</p>
+<p><br></p>
+<p><span class="math display">\[f'(x) = 6x^2\]</span></p>
+<hr>
+</section>
+</section>
+<section id="shortcut-2-the-sum-rule" class="level2">
+<h2 class="anchored" data-anchor-id="shortcut-2-the-sum-rule">Shortcut 2: The Sum Rule</h2>
+<p>The derivative of a sum is equal to the sum of derivatives.</p>
+<p>If <span class="math inline">\(f(x) = g(x) + h(x)\)</span>, then <span class="math inline">\(f'(x) = g'(x) + h'(x)\)</span></p>
+<p>–</p>
+<p><br></p>
+<section id="example-2" class="level3">
+<h3 class="anchored" data-anchor-id="example-2">Example:</h3>
+<p>If <span class="math inline">\(f(x) = x^3 + x^2\)</span>, then <span class="math inline">\(f'(x) = 3x^2 + 2x\)</span></p>
+<p>–</p>
+</section>
+<section id="practice-problem-1" class="level3">
+<h3 class="anchored" data-anchor-id="practice-problem-1">Practice Problem:</h3>
+<p>If <span class="math inline">\(f(x) = 2x^3 + x^2\)</span>, what is <span class="math inline">\(f'(x)\)</span>?</p>
+<p>–</p>
+<p><span class="math display">\[f'(x) = 6x^2 + 2x\]</span></p>
+<hr>
+</section>
+</section>
+<section id="shortcut-3-the-constant-rule" class="level2">
+<h2 class="anchored" data-anchor-id="shortcut-3-the-constant-rule">Shortcut 3: The Constant Rule</h2>
+<p>The derivative of a constant is zero</p>
+<p>If <span class="math inline">\(f(x) = c\)</span>, then <span class="math inline">\(f'(x) = 0\)</span></p>
+<p>–</p>
+<p><br></p>
+<section id="example-3" class="level3">
+<h3 class="anchored" data-anchor-id="example-3">Example:</h3>
+<p>If <span class="math inline">\(f(x) = 5\)</span>, then <span class="math inline">\(f'(x) = 0\)</span>.</p>
+<p>–</p>
+</section>
+<section id="practice-problem-2" class="level3">
+<h3 class="anchored" data-anchor-id="practice-problem-2">Practice Problem:</h3>
+<p>If <span class="math inline">\(f(x) = 4x^2 + 3x + 5\)</span>, what is <span class="math inline">\(f'(x)\)</span>?</p>
+<p>–</p>
+<p><br></p>
+<p><span class="math display">\[f'(x) = 8x + 3\]</span></p>
+<hr>
+</section>
+</section>
+<section id="shortcut-4-the-product-rule" class="level2">
+<h2 class="anchored" data-anchor-id="shortcut-4-the-product-rule">Shortcut 4: The Product Rule</h2>
+<p>The derivative of a product is a bit trickier…</p>
+<p>If <span class="math inline">\(f(x) = g(x) \cdot h(x)\)</span>, then <span class="math inline">\(f'(x) = g'(x) \cdot h(x) + g(x) \cdot h'(x)\)</span></p>
+<p>–</p>
+<section id="example-4" class="level3">
+<h3 class="anchored" data-anchor-id="example-4">Example:</h3>
+<p>If <span class="math inline">\(f(x) = (2x)(x + 2)\)</span>, then <span class="math inline">\(f'(x) = 2x + 2(x+2) = 4x + 4\)</span></p>
+<p>–</p>
+</section>
+<section id="practice-problem-3" class="level3">
+<h3 class="anchored" data-anchor-id="practice-problem-3">Practice Problem:</h3>
+<p><span class="math inline">\(f(x) = (3x^2 + 6x)(x+2)\)</span>, what is <span class="math inline">\(f'(x)\)</span>?</p>
+<p>–</p>
+<p><span class="math display">\[f'(x) = (3x^2 + 6x)(1) + (6x + 6)(x+2)\]</span></p>
+<p><span class="math display">\[f'(x) = 3x^2 + 6x + 6x^2 + 6x + 12x + 12\]</span></p>
+<p><span class="math display">\[f'(x) = 9x^2 + 24x + 12\]</span></p>
+<hr>
+</section>
+</section>
+<section id="shortcut-5-the-chain-rule" class="level2">
+<h2 class="anchored" data-anchor-id="shortcut-5-the-chain-rule">Shortcut 5: The Chain Rule</h2>
+<p>If your <span class="math inline">\(f(x)\)</span> is a function wrapped around another function…</p>
+<p>If <span class="math inline">\(f(x) = g(h(x))\)</span>, then <span class="math inline">\(f'(x) = g'(x) \cdot h'(x)\)</span></p>
+<p>–</p>
+<p>“The derivative of the outside times the derivative of the inside.”</p>
+<p>–</p>
+<section id="example-5" class="level3">
+<h3 class="anchored" data-anchor-id="example-5">Example:</h3>
+<p>If <span class="math inline">\(f(x) = (2x^2 - x + 1)^3\)</span>, then <span class="math inline">\(f'(x) = 3(2x^2 - x + 1)^2 (4x - 1)\)</span></p>
+<p>–</p>
+</section>
+<section id="practice-problem-4" class="level3">
+<h3 class="anchored" data-anchor-id="practice-problem-4">Practice Problem:</h3>
+<p><span class="math inline">\(f(x) = \sqrt{x + 3} = (x+3)^{\frac{1}{2}}\)</span>, what is <span class="math inline">\(f'(x)\)</span>?</p>
+<p>–</p>
+<p><span class="math inline">\(f'(x) = \frac{1}{2}(x+3)^{-\frac{1}{2}}(1) = \frac{1}{2\sqrt{x+3}}\)</span></p>
+<hr>
+</section>
+</section>
+<section id="other-derivative-rules" class="level2">
+<h2 class="anchored" data-anchor-id="other-derivative-rules">Other Derivative Rules</h2>
+<p>There’s a handy chart in Moore &amp; Siegel:</p>
+<p><img src="img/moore-siegel-truncated.png" class="img-fluid"></p>
+<hr>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p>.center[<img src="img/math.gif" class="img-fluid">]</p>
+<p>–</p>
+<p><br></p>
+<p>If you haven’t seen these before, it’s a lot to absorb. But practice helps.</p>
+<p>???</p>
+<p>Don’t freak out.</p>
+<hr>
+</section>
+</section>
+<section id="more-practice" class="level1">
+<h1>More Practice</h1>
+<section id="problem-1-sum-of-powers-polynomial" class="level3">
+<h3 class="anchored" data-anchor-id="problem-1-sum-of-powers-polynomial">Problem 1: Sum of Powers (Polynomial)</h3>
+<p>Let <span class="math inline">\(f(x) = 2x^3 + 4x + 79\)</span>. What is <span class="math inline">\(f'(x)\)</span>?</p>
+</section>
+<section id="problem-2-multiply-by-a-constant" class="level3">
+<h3 class="anchored" data-anchor-id="problem-2-multiply-by-a-constant">Problem 2: Multiply By A Constant</h3>
+<p>Let <span class="math inline">\(f(x) = 3(x^2 + x + 42)\)</span>. What is <span class="math inline">\(f'(x)\)</span>?</p>
+</section>
+<section id="problem-3-product-rule" class="level3">
+<h3 class="anchored" data-anchor-id="problem-3-product-rule">Problem 3: Product Rule</h3>
+<p>Let <span class="math inline">\(f(x) = (x^2 + 1)(x+3)\)</span>. What is <span class="math inline">\(f'(x)\)</span>?</p>
+<hr>
+<p>class: center, middle</p>
+</section>
+</section>
+<section id="i-taught-you-that" class="level1">
+<h1>I taught you that…</h1>
+<hr>
+<p>class: center, middle</p>
+</section>
+<section id="so-you-could-do-this." class="level1">
+<h1>…so you could do <em>this</em>.</h1>
+<hr>
+</section>
+<section id="optimization" class="level1">
+<h1>Optimization</h1>
+<p>Let <span class="math inline">\(f(x) = 2x^2 + 8x - 32\)</span>. At what value of <span class="math inline">\(x\)</span> is the function minimized?</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-optimization_files/figure-html/Optimization Function-1.png" class="img-fluid figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>–</p>
+<p><strong>Key Insight</strong>: Function is minimized when the slope “switches” from decreasing to increasing. Exactly at the point where the slope equals zero.</p>
+<hr>
+</section>
+<section id="optimization-in-three-steps" class="level1">
+<h1>Optimization in Three Steps</h1>
+<p>–</p>
+<section id="take-the-derivative-of-the-function." class="level4">
+<h4 class="anchored" data-anchor-id="take-the-derivative-of-the-function.">1. Take the derivative of the function.</h4>
+<p>–</p>
+</section>
+<section id="set-it-equal-to-zero." class="level4">
+<h4 class="anchored" data-anchor-id="set-it-equal-to-zero.">2. Set it equal to zero.</h4>
+<p>–</p>
+</section>
+<section id="solve-for-x." class="level4">
+<h4 class="anchored" data-anchor-id="solve-for-x.">3. Solve for <span class="math inline">\(x\)</span>.</h4>
+<hr>
+</section>
+</section>
+<section id="optimization-in-three-steps-1" class="level1">
+<h1>Optimization in Three Steps</h1>
+<section id="take-the-derivative-of-the-function.-1" class="level4">
+<h4 class="anchored" data-anchor-id="take-the-derivative-of-the-function.-1">1. Take the derivative of the function.</h4>
+<p>–</p>
+<p><span class="math display">\[f(x) = 2x^2 + 8x - 32\]</span></p>
+<p>–</p>
+<p><span class="math display">\[f'(x) = 4x + 8\]</span></p>
+<p>–</p>
+</section>
+<section id="set-it-equal-to-zero" class="level4">
+<h4 class="anchored" data-anchor-id="set-it-equal-to-zero">2. Set it equal to zero</h4>
+<p><span class="math display">\[4x + 8 = 0\]</span></p>
+<p>–</p>
+</section>
+<section id="solve-for-x.-1" class="level4">
+<h4 class="anchored" data-anchor-id="solve-for-x.-1">3. Solve for <span class="math inline">\(x\)</span>.</h4>
+<p>–</p>
+<p><span class="math display">\[x = -2\]</span></p>
+<p>???</p>
+<p>That second step is called the “First Order Condition”, or FOC.</p>
+<hr>
+</section>
+</section>
+<section id="optimization-in-three-steps-2" class="level1">
+<h1>Optimization in Three Steps</h1>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-optimization_files/figure-html/Optimization Plot with Solution-1.png" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p>Bonus question: how do you know if it’s a maximum or a minimum? Take the second derivative! If it’s positive, then the slope is increasing (so it’s a minimum). If it’s positive, then the slope is decreasing (so it’s a maximum).</p>
+<hr>
+</section>
+<section id="now-you-try-it" class="level1">
+<h1>Now You Try It</h1>
+<p>Suppose that happiness as a function of jellybeans consumed is <span class="math inline">\(h(j) = -\frac{1}{3}j^3 + 81j + 2\)</span>. How many jellybeans should you eat? (Assume you can only eat a positive number of jellybeans).</p>
+<p>–</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-optimization_files/figure-html/Jellybean Plot-1.png" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<p>class: center, middle</p>
+<section id="wait-how-do-you-know-if-its-a-maximum-or-a-minimum" class="level3">
+<h3 class="anchored" data-anchor-id="wait-how-do-you-know-if-its-a-maximum-or-a-minimum">Wait, how do you know if it’s a maximum or a minimum?</h3>
+<hr>
+</section>
+<section id="jellybeans-again" class="level2">
+<h2 class="anchored" data-anchor-id="jellybeans-again">Jellybeans Again</h2>
+<p><span class="math inline">\(h(j) = \frac{1}{3}j^3 + 81j + 2\)</span> and <span class="math inline">\(h'(j) = 81 - j^2\)</span></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-optimization_files/figure-html/Jellybean Plot Again-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>–</p>
+<p>It’s a maximum when the slope is <strong>decreasing</strong>, and a minimum when then slope is <strong>increasing</strong>. How do you figure out if the slope is increasing or decreasing?</p>
+<p>–</p>
+<p>That’s right. You find the <strong>slope of the slope</strong> (aka the <strong>second derivative</strong>).</p>
+<hr>
+</section>
+<section id="the-second-derivative-test" class="level2">
+<h2 class="anchored" data-anchor-id="the-second-derivative-test">The Second Derivative Test</h2>
+<p><span class="math inline">\(h(j) = \frac{1}{3}j^3 + 81j + 2\)</span> and <span class="math inline">\(h'(j) = 81 - j^2\)</span></p>
+<p>What is <span class="math inline">\(h''(j)\)</span>? Is it positive or negative when you eat <span class="math inline">\(9\)</span> jellybeans?</p>
+<p>–</p>
+<p><span class="math display">\[h''(j) = -2j\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="07-optimization_files/figure-html/second derivative-1.png" class="img-fluid figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<p>class: center, middle</p>
+</section>
+</section>
+<section id="partial-derivatives" class="level1">
+<h1>Partial Derivatives</h1>
+<hr>
+</section>
+<section id="partial-derivatives-1" class="level1">
+<h1>Partial Derivatives</h1>
+<p>What if you have a multivariable function?</p>
+<p><span class="math display">\[f(x,y) = 2x^2y + xy - 4x + y -6\]</span></p>
+<p>–</p>
+<p>Same procedure! To get the derivative of a function <em>with respect to</em> <span class="math inline">\(x\)</span> or <span class="math inline">\(y\)</span>, treat the other variable as a constant.</p>
+<p>–</p>
+<p><span class="math display">\[\frac{\partial f}{\partial x} = 4yx + y - 4\]</span></p>
+<p>–</p>
+<p><span class="math display">\[\frac{\partial f}{\partial y} = 2x^2 + x + 1\]</span></p>
+<hr>
+</section>
+<section id="now-you-try" class="level1">
+<h1>Now You Try…</h1>
+<p>Suppose happiness as a function of jellybeans and Dr.&nbsp;Peppers consumed is</p>
+<p><span class="math display">\[h(j,d) = 8j -\frac{1}{2}j^2 + 2d - 3d^2 + jd + 100\]</span> How many jellybeans should you eat? How many Dr.&nbsp;Peppers should you drink?</p>
+<p>–</p>
+<p>Intuitively, the <span class="math inline">\(jd\)</span> term is an <strong>interaction effect</strong>. The effect of jellybeans on happiness increases if you also drink more Dr.&nbsp;Peppers.</p>
+<hr>
+</section>
+<section id="now-you-try-1" class="level1">
+<h1>Now You Try…</h1>
+<p><span class="math display">\[h(j,d) = 8j -\frac{1}{2}j^2 + 2d - 3d^2 + jd + 100\]</span></p>
+<p>–</p>
+<section id="fracpartial-hpartial-j-8---j-d-0" class="level2">
+<h2 class="anchored" data-anchor-id="fracpartial-hpartial-j-8---j-d-0"><span class="math display">\[\frac{\partial h}{\partial j} = 8 - j + d = 0\]</span></h2>
+</section>
+<section id="fracpartial-hpartial-d-2---6d-j-0" class="level2">
+<h2 class="anchored" data-anchor-id="fracpartial-hpartial-d-2---6d-j-0"><span class="math display">\[\frac{\partial h}{\partial d} = 2 - 6d + j = 0\]</span></h2>
+<p><span class="math display">\[j = 8 + d\]</span></p>
+</section>
+<section id="j-6d---2" class="level2">
+<h2 class="anchored" data-anchor-id="j-6d---2"><span class="math display">\[j = 6d - 2\]</span></h2>
+<p><br></p>
+<p><span class="math display">\[d^* = 2\]</span> <span class="math display">\[j^* = 10\]</span></p>
+<hr>
+</section>
+<section id="visualizing-that-function" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-that-function">Visualizing That Function</h2>
+<p><span class="math display">\[h(j,d) = 8j -\frac{1}{2}j^2 + 2d - 3d^2 + jd + 100\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-62dc3fd5377a2dbc17ed" style="width:100%;height:520px;"></div>
+<script type="application/json" data-for="htmlwidget-62dc3fd5377a2dbc17ed">{"x":{"visdat":{"639ccf04135":["function () ","plotlyVisDat"]},"cur_data":"639ccf04135","attrs":{"639ccf04135":{"z":[[100,97.333333333333329,84,60],[107.86703601108033,106.60387811634349,94.674053554939988,72.07756232686981],[114.62603878116343,114.76638965835642,104.24007386888273,83.04709141274239],[120.2770083102493,121.82086795937212,112.69806094182826,92.908587257617725],[124.81994459833794,127.76731301939058,120.04801477377654,101.66204986149584],[128.25484764542935,132.60572483841182,126.2899353647276,109.30747922437673],[130.58171745152356,136.33610341643583,131.42382271468145,115.84487534626038],[131.80055401662051,138.95844875346262,135.44967682363804,121.27423822714681],[131.91135734072023,140.47276084949215,138.36749769159741,125.59556786703601],[130.91412742382272,140.87903970452447,140.17728531855954,128.80886426592798],[128.80886426592798,140.17728531855954,140.87903970452447,130.91412742382272],[125.59556786703601,138.36749769159741,140.47276084949215,131.9113573407202],[121.27423822714681,135.44967682363804,138.95844875346259,131.80055401662048],[115.84487534626039,131.42382271468145,136.33610341643583,130.58171745152356],[109.30747922437673,126.28993536472761,132.60572483841182,128.25484764542938],[101.66204986149584,120.04801477377654,127.76731301939057,124.81994459833794],[92.908587257617739,112.69806094182826,121.82086795937212,120.27700831024931],[83.04709141274239,104.24007386888275,114.76638965835642,114.62603878116344],[72.07756232686981,94.674053554939988,106.60387811634348,107.86703601108033],[60,84,97.333333333333329,100]],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"surface"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"Dr. Peppers"},"yaxis":{"title":"Jellybeans"},"zaxis":{"title":"Happiness"}},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5}},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"colorbar":{"title":"","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666666","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666666","rgba(199,225,42,1)"],["0.958333333333334","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":true,"z":[[100,97.333333333333329,84,60],[107.86703601108033,106.60387811634349,94.674053554939988,72.07756232686981],[114.62603878116343,114.76638965835642,104.24007386888273,83.04709141274239],[120.2770083102493,121.82086795937212,112.69806094182826,92.908587257617725],[124.81994459833794,127.76731301939058,120.04801477377654,101.66204986149584],[128.25484764542935,132.60572483841182,126.2899353647276,109.30747922437673],[130.58171745152356,136.33610341643583,131.42382271468145,115.84487534626038],[131.80055401662051,138.95844875346262,135.44967682363804,121.27423822714681],[131.91135734072023,140.47276084949215,138.36749769159741,125.59556786703601],[130.91412742382272,140.87903970452447,140.17728531855954,128.80886426592798],[128.80886426592798,140.17728531855954,140.87903970452447,130.91412742382272],[125.59556786703601,138.36749769159741,140.47276084949215,131.9113573407202],[121.27423822714681,135.44967682363804,138.95844875346259,131.80055401662048],[115.84487534626039,131.42382271468145,136.33610341643583,130.58171745152356],[109.30747922437673,126.28993536472761,132.60572483841182,128.25484764542938],[101.66204986149584,120.04801477377654,127.76731301939057,124.81994459833794],[92.908587257617739,112.69806094182826,121.82086795937212,120.27700831024931],[83.04709141274239,104.24007386888275,114.76638965835642,114.62603878116344],[72.07756232686981,94.674053554939988,106.60387811634348,107.86703601108033],[60,84,97.333333333333329,100]],"type":"surface","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<hr>
+<p>class: center, middle</p>
+</section>
+<section id="back-to-our-motivating-example" class="level2">
+<h2 class="anchored" data-anchor-id="back-to-our-motivating-example">Back to our motivating example…</h2>
+<hr>
+</section>
+<section id="back-to-our-motivating-example-1" class="level2">
+<h2 class="anchored" data-anchor-id="back-to-our-motivating-example-1">Back to our motivating example…</h2>
+<p>Error function we wanted to minimize:</p>
+<p><span class="math inline">\(f(b) = \sum (y - xb)^2\)</span></p>
+<p>–</p>
+<p>To compute the derivative, apply the sum rule and the chain rule…</p>
+<p><span class="math inline">\(\frac{\partial f}{\partial b} = \sum 2(y - xb)(-x) = \sum(2x^2b - 2xy)\)</span></p>
+<p>–</p>
+<p>Set that derivative equal to zero and solve:</p>
+<p><span class="math inline">\(0 = \sum (2x^2b - 2xy)\)</span></p>
+<p>–</p>
+<p><span class="math inline">\(\sum (2xy) = \sum (2x^2b)\)</span></p>
+<p>–</p>
+<p><span class="math inline">\(2 \sum (xy) = 2b\sum (x^2)\)</span></p>
+<p>–</p>
+<p><span class="math inline">\(b = \frac{\sum xy}{\sum x^2}\)</span></p>
+<p>???</p>
+<p>Note: suppressing index notation for the brains of the students</p>
+<hr>
+</section>
+<section id="back-to-our-motivating-example-2" class="level2">
+<h2 class="anchored" data-anchor-id="back-to-our-motivating-example-2">Back to our motivating example…</h2>
+<p>The Linear Model:</p>
+<p><span class="math display">\[y = x\beta + \varepsilon\]</span> The thing we want to minimize:</p>
+<p><span class="math display">\[SSE = \sum (y - x\beta)^2\]</span> The solution to the minimization problem:</p>
+<p><span class="math display">\[b = \frac{\sum xy}{\sum x^2}\]</span></p>
+<p>–</p>
+<p>Some terminology:</p>
+<ul>
+<li><span class="math inline">\(\beta\)</span> in that first equation is called the <strong>estimand</strong>. It’s the thing we’re trying to estimate.</li>
+<li><span class="math inline">\(b\)</span> in that final equation is called the <strong>estimator</strong>, or the <strong>estimating equation</strong>. It’s the procedure we use to produce an estimate.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="the-linear-model-is-everywhere" class="level1">
+<h1>The Linear Model is Everywhere</h1>
+<p>–</p>
+<ul>
+<li><p><strong>OLS / Regression Analysis (POLS 7014)</strong> = The Linear Model</p></li>
+<li><p><strong>MLE / Logit / Probit / Count Models (POLS 8501)</strong> = The Linear Model + another function</p></li>
+<li><p><strong>t-tests</strong> = The Linear Model + a binary predictor</p></li>
+<li><p><strong>Instrumental Variables</strong> = Two Linear Models</p></li>
+<li><p><strong>Regression Discontinuity</strong> = Two Linear Models</p></li>
+<li><p><strong>Matching</strong> = The Linear Model + Weights</p></li>
+<li><p><strong>Fixed Effects / Random Effects / ANOVA</strong> = The Linear Model + Categorical Predictor Variables</p></li>
+<li><p><strong>Difference-in-differences</strong> = The Linear Model + Time</p></li>
+</ul>
+<p>–</p>
+<p>Statistical modeling can seem pretty daunting when you think about it as a bunch of tests with no obvious connections. But fundamentally, the linear model is what unifies all these approaches…</p>
+<!-- --- -->
+<!-- # Why Build Models? -->
+<!-- -- -->
+<!-- 1. To *describe* complex data -->
+<!-- -- -->
+<!-- 2. To make *predictions* -->
+<!-- -- -->
+<!-- 3. To help infer *causality* -->
+<!-- ??? -->
+<!-- Up to now, we've been using visualization as our primary mode of inquiry. This is a great, and underrated, tool! But there are limits to what it can do for us. Models allow us to more precisely describe the relationships we can only see in a chart. They allow us to make predictions about unseen data. And, coupled with theory, they can help us uncover causal relationships. -->
+<hr>
+<p>class: center, middle</p>
+<p>Back to the <code>R</code> script!</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
   }
-  var s = d.createElement("style");
-  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
-  d.head.appendChild(s);
-})(document);
-// delete the temporary CSS (for displaying all slides initially) when the user
-// starts to view slides
-(function() {
-  var deleted = false;
-  slideshow.on('beforeShowSlide', function(slide) {
-    if (deleted) return;
-    var sheets = document.styleSheets, node;
-    for (var i = 0; i < sheets.length; i++) {
-      node = sheets[i].ownerNode;
-      if (node.dataset["target"] !== "print-only") continue;
-      node.parentNode.removeChild(node);
-    }
-    deleted = true;
-  });
-})();
-(function() {
-  "use strict"
-  // Replace <script> tags in slides area to make them executable
-  var scripts = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container script'
-  );
-  if (!scripts.length) return;
-  for (var i = 0; i < scripts.length; i++) {
-    var s = document.createElement('script');
-    var code = document.createTextNode(scripts[i].textContent);
-    s.appendChild(code);
-    var scriptAttrs = scripts[i].attributes;
-    for (var j = 0; j < scriptAttrs.length; j++) {
-      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
-    }
-    scripts[i].parentElement.replaceChild(s, scripts[i]);
-  }
-})();
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
     }
   }
-})();</script>
-
-<script>
-slideshow._releaseMath = function(el) {
-  var i, text, code, codes = el.getElementsByTagName('code');
-  for (i = 0; i < codes.length;) {
-    code = codes[i];
-    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
-      text = code.textContent;
-      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
-          /^\$\$(.|\s)+\$\$$/.test(text) ||
-          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
-        code.outerHTML = code.innerHTML;  // remove <code></code>
-        continue;
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
       }
     }
-    i++;
+    return false;
   }
-};
-slideshow._releaseMath(document);
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
 </script>
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-(function () {
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
-  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
-    script.src  = script.src.replace(/^https?:/, '');
-  document.getElementsByTagName('head')[0].appendChild(script);
-})();
-</script>
-  </body>
-</html>
+</div> <!-- /content -->
+
+
+
+</body></html>
