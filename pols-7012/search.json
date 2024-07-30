@@ -324,15 +324,393 @@
   {
     "objectID": "slides/calculus.html#the-linear-model",
     "href": "slides/calculus.html#the-linear-model",
-    "title": "Calculus (Just The Essentials)",
+    "title": "Calculus Essentials",
     "section": "The Linear Model",
-    "text": "The Linear Model\n\nd &lt;- read.csv('grades.csv')\n\nplot(d$midterm, d$final,\n     xlab = 'Midterm Grade',\n     ylab = 'Final Grade')"
+    "text": "The Linear Model\nFor this demonstration, download the grades.csv dataset.\n\nd &lt;- read.csv('grades.csv')\n\nhead(d)\n\n  midterm final overall gradeA\n1   79.25 47.00    69.2      0\n2   96.25 87.75    94.3      1\n3   58.25 37.75    62.0      0\n4   54.50 62.00    72.4      0\n5   83.00 39.75    72.4      0\n6   41.75 49.50    59.5      0"
   },
   {
     "objectID": "slides/calculus.html#the-linear-model-1",
     "href": "slides/calculus.html#the-linear-model-1",
-    "title": "Calculus (Just The Essentials)",
+    "title": "Calculus Essentials",
     "section": "The Linear Model",
-    "text": "The Linear Model\n\nm &lt;- lm(final ~ midterm, data = d)\n\n\nabline(a = m$coefficients['(Intercept)'],\n       b = m$coefficients['midterm'])"
+    "text": "The Linear Model\n\nplot(d$midterm, d$final, \n     xlab = 'Midterm Grade', \n     ylab = 'Final Grade')"
+  },
+  {
+    "objectID": "slides/calculus.html#the-linear-model-2",
+    "href": "slides/calculus.html#the-linear-model-2",
+    "title": "Calculus Essentials",
+    "section": "The Linear Model",
+    "text": "The Linear Model\n\nm &lt;- lm(final ~ midterm, data = d) # predict final grade from midterm grade\n\nabline(a = m$coefficients['(Intercept)'], b = m$coefficients['midterm'])"
+  },
+  {
+    "objectID": "slides/calculus.html#the-linear-model-3",
+    "href": "slides/calculus.html#the-linear-model-3",
+    "title": "Calculus Essentials",
+    "section": "The Linear Model",
+    "text": "The Linear Model\n\\[\ny_i = \\alpha + \\beta x_i + \\varepsilon_i\n\\]"
+  },
+  {
+    "objectID": "slides/calculus.html#the-linear-model-4",
+    "href": "slides/calculus.html#the-linear-model-4",
+    "title": "Calculus Essentials",
+    "section": "The Linear Model",
+    "text": "The Linear Model\nPartitioning the outcome into two parts—the part we can explain, and the part we’re ignoring:\n\\[\n\\underbrace{y_i}_\\text{outcome} = \\underbrace{\\alpha + \\beta x_i}_\\text{explained} + \\underbrace{\\varepsilon_i}_\\text{unexplained}\n\\]"
+  },
+  {
+    "objectID": "slides/calculus.html#the-linear-model-5",
+    "href": "slides/calculus.html#the-linear-model-5",
+    "title": "Calculus Essentials",
+    "section": "The Linear Model",
+    "text": "The Linear Model\nPartitioning the outcome into two parts—the part we can explain, and the part we’re ignoring:\n\\[\n\\underbrace{y_i}_\\text{outcome} = \\overbrace{\\alpha}^\\text{intercept parameter} + \\beta x_i + \\varepsilon_i\n\\]"
+  },
+  {
+    "objectID": "slides/calculus.html#the-linear-model-6",
+    "href": "slides/calculus.html#the-linear-model-6",
+    "title": "Calculus Essentials",
+    "section": "The Linear Model",
+    "text": "The Linear Model\nPartitioning the outcome into two parts—the part we can explain, and the part we’re ignoring:\n\\[\n\\underbrace{y_i}_\\text{outcome} = \\overbrace{\\alpha}^\\text{intercept parameter} + \\underbrace{\\beta}_\\text{slope parameter} x_i + \\varepsilon_i\n\\]"
+  },
+  {
+    "objectID": "slides/calculus.html#the-linear-model-7",
+    "href": "slides/calculus.html#the-linear-model-7",
+    "title": "Calculus Essentials",
+    "section": "The Linear Model",
+    "text": "The Linear Model\nPartitioning the outcome into two parts—the part we can explain, and the part we’re ignoring:\n\\[\n\\underbrace{y_i}_\\text{outcome} = \\overbrace{\\alpha}^\\text{intercept parameter} + \\underbrace{\\beta}_\\text{slope parameter} \\overbrace{x_i}^\\text{explanatory variable} + \\varepsilon_i\n\\]"
+  },
+  {
+    "objectID": "slides/calculus.html#the-linear-model-8",
+    "href": "slides/calculus.html#the-linear-model-8",
+    "title": "Calculus Essentials",
+    "section": "The Linear Model",
+    "text": "The Linear Model\nPartitioning the outcome into two parts—the part we can explain, and the part we’re ignoring:\n\\[\n\\underbrace{y_i}_\\text{outcome} = \\overbrace{\\alpha}^\\text{intercept parameter} + \\underbrace{\\beta}_\\text{slope parameter} \\overbrace{x_i}^\\text{explanatory variable} + \\underbrace{\\varepsilon_i}_\\text{prediction error}\n\\]\n\nBut where do the \\(\\alpha\\) and \\(\\beta\\) values come from? How do we estimate the “line of best fit”?"
+  },
+  {
+    "objectID": "slides/calculus.html#an-optimization-problem",
+    "href": "slides/calculus.html#an-optimization-problem",
+    "title": "Calculus Essentials",
+    "section": "An Optimization Problem",
+    "text": "An Optimization Problem\nWe want to find values for \\(\\alpha\\) and \\(\\beta\\) that minimize the sum of squared error.\n\n\nsse &lt;- function(a,b){\n  y &lt;- d$final # outcome\n  x &lt;- d$midterm # explanatory variable\n  \n  predicted_y &lt;- a + b*x\n  \n  error &lt;- y - predicted_y\n  \n  return( sum(error^2) )\n}"
+  },
+  {
+    "objectID": "slides/calculus.html#an-optimization-problem-1",
+    "href": "slides/calculus.html#an-optimization-problem-1",
+    "title": "Calculus Essentials",
+    "section": "An Optimization Problem",
+    "text": "An Optimization Problem\n\nplot(d$midterm, d$final,\n     xlab = 'Midterm Grade', ylab = 'Final Grade')\n\nabline(a = 10, b = 0.5) # too shallow\n\n\n\nsse(a = 10, b = 0.5)\n\n[1] 54632.59"
+  },
+  {
+    "objectID": "slides/calculus.html#an-optimization-problem-2",
+    "href": "slides/calculus.html#an-optimization-problem-2",
+    "title": "Calculus Essentials",
+    "section": "An Optimization Problem",
+    "text": "An Optimization Problem\n\nplot(d$midterm, d$final,      \n     xlab = 'Midterm Grade', ylab = 'Final Grade')  \n\nabline(a = 0, b = 1.2) # too steep!\n\n\n\nsse(a = 0, b = 1.2)\n\n[1] 61043.95"
+  },
+  {
+    "objectID": "slides/calculus.html#an-optimization-problem-3",
+    "href": "slides/calculus.html#an-optimization-problem-3",
+    "title": "Calculus Essentials",
+    "section": "An Optimization Problem",
+    "text": "An Optimization Problem\nWe could keep hunting blindly for values \\(\\alpha\\) and \\(\\beta\\) that minimize the sum of squared errors, or we could take a more systematic approach…\n\n\\[\n\\text{SSE} = \\sum_{i=1}^n(y_i - \\alpha - \\beta x_i)^2\n\\]"
+  },
+  {
+    "objectID": "slides/calculus.html#an-optimization-problem-4",
+    "href": "slides/calculus.html#an-optimization-problem-4",
+    "title": "Calculus Essentials",
+    "section": "An Optimization Problem",
+    "text": "An Optimization Problem\n\\(\\text{SSE} = \\sum_{i=1}^n(y_i - \\alpha - \\beta x_i)^2\\)\n\n\n\n\n\n\n\nImagine dropping a ball on this surface. The ball will roll until it reaches a perfectly flat point: the function’s minimum."
+  },
+  {
+    "objectID": "slides/calculus.html#review-slopes",
+    "href": "slides/calculus.html#review-slopes",
+    "title": "Calculus Essentials",
+    "section": "Review: Slopes",
+    "text": "Review: Slopes\nWhat is the slope of this function? \\(f(x) = 3x + 2\\)\n\n\nThe slope of a linear function (a straight line) is measured by how much \\(y\\) increases when you increase \\(x\\) by \\(1\\). In this case, \\(3\\)."
+  },
+  {
+    "objectID": "slides/calculus.html#review-slopes-1",
+    "href": "slides/calculus.html#review-slopes-1",
+    "title": "Calculus Essentials",
+    "section": "Review: Slopes",
+    "text": "Review: Slopes\nFind the slope of each function:\n\n\\(y = 2x + 4\\)\n\\(f(x) = \\frac{1}{2}x - 2\\)\nlife expectancy (years) = 18.09359 + 5.737335 \\(\\times\\) log(GDP per capita)\n\n\nSlope of a line \\(= \\frac{rise}{run} = \\frac{\\Delta Y}{\\Delta X} = \\frac{f(x+h) - f(x)}{h}\\)\n\nFinding the slope of a line is easy.\nJust wanted you to get comfortable with that last expression, because we’ll be see it again in a moment.\nhttps://smartech.gatech.edu/bitstream/handle/1853/56031/effect_of_gdp_per_capita_on_national_life_expectancy.pdf"
+  },
+  {
+    "objectID": "slides/calculus.html#nonlinear-functions",
+    "href": "slides/calculus.html#nonlinear-functions",
+    "title": "Calculus Essentials",
+    "section": "Nonlinear Functions",
+    "text": "Nonlinear Functions\n\n\nNonlinear functions are confusing and scary…\n\nNonlinear functions are confusing and scary. Sometimes the slope is positive. Sometimes it’s negative. Sometimes it’s zero. And unlike with linear functions, just looking at the formula gives you no indication what the slope is at any point."
+  },
+  {
+    "objectID": "slides/calculus.html#newton-leibniz",
+    "href": "slides/calculus.html#newton-leibniz",
+    "title": "Calculus Essentials",
+    "section": "Newton & Leibniz",
+    "text": "Newton & Leibniz\n\n\n\n\n\n\n\n\nDeveloped/Discovered: - The theory of universal gravitation - Three Laws of Motion - The Nature of Light - And, as a side project so he’d have mathematical notation for those other projects, he created calculus\nNB: Newton did some of his best work while stuck at home during an epidemic. So, you know, get to it.\nAlso invented calculus, but with better notation. A philosophical optimist who believed we lived in the “best of all possible worlds”, a sentiment parodied by Voltaire, and perhaps belied by the fact that Newton took all the credit for inventing calculus."
+  },
+  {
+    "objectID": "slides/calculus.html#the-key-insight",
+    "href": "slides/calculus.html#the-key-insight",
+    "title": "Calculus Essentials",
+    "section": "The Key Insight",
+    "text": "The Key Insight\nAny curve becomes a straight line if you “zoom in” far enough."
+  },
+  {
+    "objectID": "slides/calculus.html#the-key-insight-1",
+    "href": "slides/calculus.html#the-key-insight-1",
+    "title": "Calculus Essentials",
+    "section": "The Key Insight",
+    "text": "The Key Insight\nAny curve becomes a straight line if you “zoom in” far enough."
+  },
+  {
+    "objectID": "slides/calculus.html#the-key-insight-2",
+    "href": "slides/calculus.html#the-key-insight-2",
+    "title": "Calculus Essentials",
+    "section": "The Key Insight",
+    "text": "The Key Insight\nAny curve becomes a straight line if you “zoom in” far enough."
+  },
+  {
+    "objectID": "slides/calculus.html#the-key-insight-3",
+    "href": "slides/calculus.html#the-key-insight-3",
+    "title": "Calculus Essentials",
+    "section": "The Key Insight",
+    "text": "The Key Insight\nAny curve becomes a straight line if you “zoom in” far enough."
+  },
+  {
+    "objectID": "slides/calculus.html#the-key-insight-4",
+    "href": "slides/calculus.html#the-key-insight-4",
+    "title": "Calculus Essentials",
+    "section": "The Key Insight",
+    "text": "The Key Insight\nAny curve becomes a straight line if you “zoom in” far enough."
+  },
+  {
+    "objectID": "slides/calculus.html#the-key-insight-5",
+    "href": "slides/calculus.html#the-key-insight-5",
+    "title": "Calculus Essentials",
+    "section": "The Key Insight",
+    "text": "The Key Insight\nAny curve becomes a straight line if you “zoom in” far enough."
+  },
+  {
+    "objectID": "slides/calculus.html#the-key-insight-6",
+    "href": "slides/calculus.html#the-key-insight-6",
+    "title": "Calculus Essentials",
+    "section": "The Key Insight",
+    "text": "The Key Insight\nAny curve becomes a straight line if you “zoom in” far enough.\n\n\nThe point is that, in the limit, as you shrink the interval smaller and smaller (infinitesimally small), the function is better and better approximated by a straight line. And we already know the slope of a straight line, so the problem is solved! (That line is called the tangent line FYI.)"
+  },
+  {
+    "objectID": "slides/calculus.html#the-key-insight-7",
+    "href": "slides/calculus.html#the-key-insight-7",
+    "title": "Calculus Essentials",
+    "section": "The Key Insight",
+    "text": "The Key Insight\n\n\nhttps://knowyourmeme.com/memes/zoom-and-enhance"
+  },
+  {
+    "objectID": "slides/calculus.html#putting-all-that-into-math",
+    "href": "slides/calculus.html#putting-all-that-into-math",
+    "title": "Calculus Essentials",
+    "section": "Putting all that into math…",
+    "text": "Putting all that into math…\n\\[\nf'(x) = \\lim_{h \\to 0}\\frac{f(x+h)-f(x)}{h}\n\\]"
+  },
+  {
+    "objectID": "slides/calculus.html#putting-all-that-into-math-1",
+    "href": "slides/calculus.html#putting-all-that-into-math-1",
+    "title": "Calculus Essentials",
+    "section": "Putting all that into math…",
+    "text": "Putting all that into math…\n\\[\nf'(x) = \\underbrace{\\lim_{h \\to 0}}_\\text{shrink h really small}\\frac{\\overbrace{f(x+h)-f(x)}^\\text{the change in y}}{\\underbrace{h}_\\text{the change in x}}\n\\]\n\nThis is called the derivative of a function. Using the derivative, you can find the slope at any point."
+  },
+  {
+    "objectID": "slides/calculus.html#derivative-example",
+    "href": "slides/calculus.html#derivative-example",
+    "title": "Calculus Essentials",
+    "section": "Derivative Example",
+    "text": "Derivative Example\nLet \\(f(x) = 2x + 3\\). What is \\(f'(x)\\)?\n\n\\[\nf'(x) =  \\lim_{h \\to 0}\\frac{f(x+h)-f(x)}{h}\n\\]\n\n\n\\[\n= \\lim_{h \\to 0}\\frac{2(x+h)+3-(2x+3)}{h}\n\\]\n\n\n\\[\n= \\lim_{h \\to 0}\\frac{2x+2h+3-(2x+3)}{h}\n\\]"
+  },
+  {
+    "objectID": "slides/calculus.html#derivative-example-1",
+    "href": "slides/calculus.html#derivative-example-1",
+    "title": "Calculus Essentials",
+    "section": "Derivative Example",
+    "text": "Derivative Example\nLet \\(f(x) = 2x + 3\\). What is \\(f'(x)\\)?\n\\[ = \\lim_{h \\to 0}\\frac{2x+2h+3-(2x+3)}{h} \\]\n\n\\[ = \\lim_{h \\to 0}\\frac{2h}{h} \\]\n\n\n\\[ = 2 \\]\n\nHey look what we just discovered! The slope of a linear function equals the coefficient on \\(x\\)!"
+  },
+  {
+    "objectID": "slides/calculus.html#now-a-nonlinear-example",
+    "href": "slides/calculus.html#now-a-nonlinear-example",
+    "title": "Calculus Essentials",
+    "section": "Now A Nonlinear Example",
+    "text": "Now A Nonlinear Example\nLet \\(f(x) = 3x^2 + 2x + 3\\). What is \\(f'(x)\\)?\n\n\\[\n= \\lim_{h \\to 0}\\frac{3(x+h)^2 + 2(x+h) + 3 - (3x^2 + 2x + 3)}{h}\n\\]\n\n\n\\[\n= \\lim_{h \\to 0}\\frac{3x^2 + 3h^2 + 6xh + 2x+ 2h + 3 - (3x^2 + 2x + 3)}{h}\n\\]\n\\[\n= \\lim_{h \\to 0}\\frac{3h^2 + 6xh + 2h}{h}\n\\]"
+  },
+  {
+    "objectID": "slides/calculus.html#now-a-nonlinear-example-1",
+    "href": "slides/calculus.html#now-a-nonlinear-example-1",
+    "title": "Calculus Essentials",
+    "section": "Now A Nonlinear Example",
+    "text": "Now A Nonlinear Example\nLet \\(f(x) = 3x^2 + 2x + 3\\). What is \\(f'(x)\\)?\n\\[\n= \\lim_{h \\to 0}\\frac{3h^2 + 6xh + 2h}{h}\n\\]\n\n\\[\n= \\lim_{h \\to 0}3h + 6x + 2\n\\]\n\n\n\\[\n= 6x + 2\n\\]"
+  },
+  {
+    "objectID": "slides/calculus.html#solution",
+    "href": "slides/calculus.html#solution",
+    "title": "Calculus Essentials",
+    "section": "Solution",
+    "text": "Solution\n\nThe function \\(f'(x)\\), outputs the slope of \\(f(x)\\) at every point."
+  },
+  {
+    "objectID": "slides/calculus.html#derivative-shortcuts",
+    "href": "slides/calculus.html#derivative-shortcuts",
+    "title": "Calculus Essentials",
+    "section": "Derivative Shortcuts",
+    "text": "Derivative Shortcuts\nGood news! You don’t have to go through that process every time. Mathematicians have done it for you, and have discovered a whole bunch of useful shortcuts."
+  },
+  {
+    "objectID": "slides/calculus.html#shortcut-1-the-power-rule",
+    "href": "slides/calculus.html#shortcut-1-the-power-rule",
+    "title": "Calculus Essentials",
+    "section": "Shortcut 1: The Power Rule",
+    "text": "Shortcut 1: The Power Rule\nIf \\(f(x) = ax^k\\), then \\(f'(x) = kax^{k-1}\\)\n\nExample: If \\(f(x) = 5x^4\\), then \\(f'(x) = 20x^3\\).\n\n\nPractice Problem: Let \\(f(x) = 2x^3\\). What is \\(f'(x)\\)?\n\n\n\\[f'(x) = 6x^2\\]"
+  },
+  {
+    "objectID": "slides/calculus.html#shortcut-2-the-sum-rule",
+    "href": "slides/calculus.html#shortcut-2-the-sum-rule",
+    "title": "Calculus Essentials",
+    "section": "Shortcut 2: The Sum Rule",
+    "text": "Shortcut 2: The Sum Rule\nThe derivative of a sum is equal to the sum of derivatives.\nIf \\(f(x) = g(x) + h(x)\\), then \\(f'(x) = g'(x) + h'(x)\\)\n\nExample: If \\(f(x) = x^3 + x^2\\), then \\(f'(x) = 3x^2 + 2x\\)\n\n\nPractice Problem: If \\(f(x) = 2x^3 + x^2\\), what is \\(f'(x)\\)?\n\n\n\\[f'(x) = 6x^2 + 2x\\]"
+  },
+  {
+    "objectID": "slides/calculus.html#shortcut-3-the-constant-rule",
+    "href": "slides/calculus.html#shortcut-3-the-constant-rule",
+    "title": "Calculus Essentials",
+    "section": "Shortcut 3: The Constant Rule",
+    "text": "Shortcut 3: The Constant Rule\nThe derivative of a constant is zero.\nIf \\(f(x) = c\\), then \\(f'(x) = 0\\)\n\nExample: If \\(f(x) = 5\\), then \\(f'(x) = 0\\).\n\n\nPractice Problem: If \\(f(x) = 4x^2 + 3x + 5\\), what is \\(f'(x)\\)?\n\n\n\\[\nf'(x) = 8x + 3\n\\]"
+  },
+  {
+    "objectID": "slides/calculus.html#shortcut-4-the-product-rule",
+    "href": "slides/calculus.html#shortcut-4-the-product-rule",
+    "title": "Calculus Essentials",
+    "section": "Shortcut 4: The Product Rule",
+    "text": "Shortcut 4: The Product Rule\nThe derivative of a product is a bit trickier…\nIf \\(f(x) = g(x) \\cdot h(x)\\), then \\(f'(x) = g'(x) \\cdot h(x) + g(x) \\cdot h'(x)\\)\n\nExample: If \\(f(x) = (2x)(x + 2)\\), then \\(f'(x) = 2x + 2(x+2) = 4x + 4\\)\n\n\nPractice Problem: \\(f(x) = (3x^2 + 6x)(x+2)\\), what is \\(f'(x)\\)?\n\n\n\\[f'(x) = (3x^2 + 6x)(1) + (6x + 6)(x+2)\\]\n\\[f'(x) = 3x^2 + 6x + 6x^2 + 6x + 12x + 12\\]\n\\[f'(x) = 9x^2 + 24x + 12\\]"
+  },
+  {
+    "objectID": "slides/calculus.html#shortcut-5-the-chain-rule",
+    "href": "slides/calculus.html#shortcut-5-the-chain-rule",
+    "title": "Calculus Essentials",
+    "section": "Shortcut 5: The Chain Rule",
+    "text": "Shortcut 5: The Chain Rule\nIf \\(f(x) = g(h(x))\\), then \\(f'(x) = g'(x) \\cdot h'(x)\\)\n\n“The derivative of the outside times the derivative of the inside.”\n\n\nExample: If \\(f(x) = (2x^2 - x + 1)^3\\), then \\(f'(x) = 3(2x^2 - x + 1)^2 (4x - 1)\\)\n\n\nPractice Problem: \\(f(x) = \\sqrt{x + 3} = (x+3)^{\\frac{1}{2}}\\), what is \\(f'(x)\\)?\n\n\n\\(f'(x) = \\frac{1}{2}(x+3)^{-\\frac{1}{2}}(1) = \\frac{1}{2\\sqrt{x+3}}\\)"
+  },
+  {
+    "objectID": "slides/calculus.html#more-practice",
+    "href": "slides/calculus.html#more-practice",
+    "title": "Calculus Essentials",
+    "section": "More Practice",
+    "text": "More Practice\n\nLet \\(f(x) = 2x^3 + 4x + 79\\). What is \\(f'(x)\\)?\nLet \\(f(x) = 3(x^2 + x + 42)\\). What is \\(f'(x)\\)?\nLet \\(f(x) = (x^2 + 1)(x+3)\\). What is \\(f'(x)\\)?"
+  },
+  {
+    "objectID": "slides/calculus.html#now-we-can-do-optimization",
+    "href": "slides/calculus.html#now-we-can-do-optimization",
+    "title": "Calculus Essentials",
+    "section": "Now We Can Do Optimization!",
+    "text": "Now We Can Do Optimization!\nLet \\(f(x) = 2x^2 + 8x - 32\\). At what value of \\(x\\) is the function minimized?\n\nKey Insight: Function is minimized when the slope “switches” from decreasing to increasing. Exactly at the point where the slope equals zero."
+  },
+  {
+    "objectID": "slides/calculus.html#optimization-in-three-steps",
+    "href": "slides/calculus.html#optimization-in-three-steps",
+    "title": "Calculus Essentials",
+    "section": "Optimization in Three Steps",
+    "text": "Optimization in Three Steps\n\n1. Take the derivative of the function.\n\n\n2. Set it equal to zero.\n\n\n3. Solve for \\(x\\)."
+  },
+  {
+    "objectID": "slides/calculus.html#optimization-in-three-steps-1",
+    "href": "slides/calculus.html#optimization-in-three-steps-1",
+    "title": "Calculus Essentials",
+    "section": "Optimization in Three Steps",
+    "text": "Optimization in Three Steps\n1. Take the derivative of the function.\n\\[\nf(x) = 2x^2 + 8x - 32\n\\]\n\n\\[\nf'(x) = 4x + 8\n\\]\n\n\n2. Set it equal to zero\n\n\n\\[\n4x + 8 = 0\n\\]\n\n\n3. Solve for \\(x\\).\n\n\n\\[\nx = -2\n\\]\n\nThat second step is called the “First Order Condition”, or FOC."
+  },
+  {
+    "objectID": "slides/calculus.html#optimization-in-three-steps-2",
+    "href": "slides/calculus.html#optimization-in-three-steps-2",
+    "title": "Calculus Essentials",
+    "section": "Optimization in Three Steps",
+    "text": "Optimization in Three Steps"
+  },
+  {
+    "objectID": "slides/calculus.html#now-you-try-it",
+    "href": "slides/calculus.html#now-you-try-it",
+    "title": "Calculus Essentials",
+    "section": "Now You Try It!",
+    "text": "Now You Try It!\nSuppose that happiness as a function of jellybeans consumed is \\(h(j) = -\\frac{1}{3}j^3 + 81j + 2\\). How many jellybeans should you eat? (Assume you can only eat a positive number of jellybeans)."
+  },
+  {
+    "objectID": "slides/calculus.html#now-you-try-it-1",
+    "href": "slides/calculus.html#now-you-try-it-1",
+    "title": "Calculus Essentials",
+    "section": "Now You Try It!",
+    "text": "Now You Try It!\nSuppose that happiness as a function of jellybeans consumed is \\(h(j) = -\\frac{1}{3}j^3 + 81j + 2\\). How many jellybeans should you eat? (Assume you can only eat a positive number of jellybeans)."
+  },
+  {
+    "objectID": "slides/calculus.html#wait.",
+    "href": "slides/calculus.html#wait.",
+    "title": "Calculus Essentials",
+    "section": "Wait.",
+    "text": "Wait.\nHow do you know if it’s a maximum or a minimum?\n\n\\(h(j) = \\frac{1}{3}j^3 + 81j + 2\\) and \\(h'(j) = 81 - j^2\\)"
+  },
+  {
+    "objectID": "slides/calculus.html#wait.-1",
+    "href": "slides/calculus.html#wait.-1",
+    "title": "Calculus Essentials",
+    "section": "Wait.",
+    "text": "Wait.\nIt’s a maximum when the slope is decreasing, and a minimum when then slope is increasing. How do you figure out if the slope is increasing or decreasing?\n\nThat’s right. You find the slope of the slope (the derivative of the derivative, aka the second derivative)."
+  },
+  {
+    "objectID": "slides/calculus.html#the-second-derivative-test",
+    "href": "slides/calculus.html#the-second-derivative-test",
+    "title": "Calculus Essentials",
+    "section": "The Second Derivative Test",
+    "text": "The Second Derivative Test\n\\(h(j) = \\frac{1}{3}j^3 + 81j + 2\\) and \\(h'(j) = 81 - j^2\\)\nWhat is \\(h''(j)\\)? Is it positive or negative when you eat \\(9\\) jellybeans?"
+  },
+  {
+    "objectID": "slides/calculus.html#the-second-derivative-test-1",
+    "href": "slides/calculus.html#the-second-derivative-test-1",
+    "title": "Calculus Essentials",
+    "section": "The Second Derivative Test",
+    "text": "The Second Derivative Test\n\\(h(j) = \\frac{1}{3}j^3 + 81j + 2\\) and \\(h'(j) = 81 - j^2\\)\nWhat is \\(h''(j)\\)? Is it positive or negative when you eat \\(9\\) jellybeans? \\[\nh''(j) = -2j\n\\]"
+  },
+  {
+    "objectID": "slides/calculus.html#partial-derivatives",
+    "href": "slides/calculus.html#partial-derivatives",
+    "title": "Calculus Essentials",
+    "section": "Partial Derivatives",
+    "text": "Partial Derivatives\n\nWhat if you have a multivariable function?\n\\[\nf(x,y) = 2x^2y + xy - 4x + y -6\n\\]\n\n\nSame procedure! To get the derivative of a function with respect to \\(x\\) or \\(y\\), treat the other variable as a constant.\n\n\n\\[\n\\frac{\\partial f}{\\partial x} = 4yx + y - 4\n\\]\n\n\n\\[\n\\frac{\\partial f}{\\partial y} = 2x^2 + x + 1\n\\]"
+  },
+  {
+    "objectID": "slides/calculus.html#now-you-try",
+    "href": "slides/calculus.html#now-you-try",
+    "title": "Calculus Essentials",
+    "section": "Now You Try!",
+    "text": "Now You Try!\nSuppose happiness as a function of jellybeans and Dr. Peppers consumed is\n\\[h(j,d) = 8j -\\frac{1}{2}j^2 + 2d - 3d^2 + jd + 100\\]\nHow many jellybeans should you eat? How many Dr. Peppers should you drink?\n\n\nIntuitively, the \\(jd\\) term is an interaction effect. The effect of jellybeans on happiness increases if you also drink more Dr. Peppers."
+  },
+  {
+    "objectID": "slides/calculus.html#now-you-try-1",
+    "href": "slides/calculus.html#now-you-try-1",
+    "title": "Calculus Essentials",
+    "section": "Now You Try!",
+    "text": "Now You Try!\n\\[\nh(j,d) = 8j -\\frac{1}{2}j^2 + 2d - 3d^2 + jd + 100\n\\]\n\n\\[\n\\frac{\\partial h}{\\partial j} = 8 - j + d = 0\n\\]\n\\[\n\\frac{\\partial h}{\\partial d} = 2 - 6d + j = 0\n\\]\n\n\n\n\n\\[\nj = 8 + d\n\\]\n\\[\nj = 6d - 2\n\\]\n\n\\[\nd^* = 2\n\\]\n\\[\nj^* = 10\n\\]"
+  },
+  {
+    "objectID": "slides/calculus.html#section",
+    "href": "slides/calculus.html#section",
+    "title": "Calculus Essentials",
+    "section": "",
+    "text": "\\[h(j,d) = 8j -\\frac{1}{2}j^2 + 2d - 3d^2 + jd + 100\\]"
+  },
+  {
+    "objectID": "slides/calculus.html#next-week",
+    "href": "slides/calculus.html#next-week",
+    "title": "Calculus Essentials",
+    "section": "Next Week…",
+    "text": "Next Week…\nWe finally have the tools we need to find the values of \\(\\alpha\\) and \\(\\beta\\) that minimize this function:\n\\(\\text{SSE} = \\sum_{i=1}^n(y_i - \\alpha - \\beta x_i)^2\\)"
+  },
+  {
+    "objectID": "slides/calculus.html#the-second-derivative-test-2",
+    "href": "slides/calculus.html#the-second-derivative-test-2",
+    "title": "Calculus Essentials",
+    "section": "The Second Derivative Test",
+    "text": "The Second Derivative Test"
   }
 ]
