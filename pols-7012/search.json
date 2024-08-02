@@ -1,327 +1,5 @@
 [
   {
-    "objectID": "slides/07-optimization.html#underbracey_textoutcome-overbracextextexplanatory-variableunderbracebeta_textparameter-overbracevarepsilontextresidual",
-    "href": "slides/07-optimization.html#underbracey_textoutcome-overbracextextexplanatory-variableunderbracebeta_textparameter-overbracevarepsilontextresidual",
-    "title": "Calculus (Just The Essentials)",
-    "section": "\\[\\underbrace{Y}_\\text{outcome} = \\overbrace{X}^\\text{explanatory variable}\\underbrace{\\beta}_\\text{parameter} + \\overbrace{\\varepsilon}^\\text{residual}\\]",
-    "text": "\\[\\underbrace{Y}_\\text{outcome} = \\overbrace{X}^\\text{explanatory variable}\\underbrace{\\beta}_\\text{parameter} + \\overbrace{\\varepsilon}^\\text{residual}\\]\nOur challenge for today: how do we estimate the \\(\\beta\\) parameter? What is the “best” slope for the line of best fit?\n\nclass: center, middle\nLet’s play around a little bit with R/week-07/line-of-best-fit.Rmd.\n\nclass: center, middle"
-  },
-  {
-    "objectID": "slides/07-optimization.html#fx-lim_h-to-0fracfxh-fxh",
-    "href": "slides/07-optimization.html#fx-lim_h-to-0fracfxh-fxh",
-    "title": "Calculus (Just The Essentials)",
-    "section": "\\[f'(x) =  \\lim_{h \\to 0}\\frac{f(x+h)-f(x)}{h}\\]",
-    "text": "\\[f'(x) =  \\lim_{h \\to 0}\\frac{f(x+h)-f(x)}{h}\\]\n\\[= \\lim_{h \\to 0}\\frac{2(x+h)+3-(2x+3)}{h}\\]\n–\n\\[= \\lim_{h \\to 0}\\frac{2x+2h+3-(2x+3)}{h}\\]\n–\n\\[= \\lim_{h \\to 0}\\frac{2h}{h}\\]\n–\n\\[= 2\\]\n???\nHey look what we discovered! The slope of a linear function equals the coefficient on \\(x\\)!"
-  },
-  {
-    "objectID": "slides/07-optimization.html#lim_h-to-0frac3xh2-2xh-3---3x2-2x-3h",
-    "href": "slides/07-optimization.html#lim_h-to-0frac3xh2-2xh-3---3x2-2x-3h",
-    "title": "Calculus (Just The Essentials)",
-    "section": "\\[= \\lim_{h \\to 0}\\frac{3(x+h)^2 + 2(x+h) + 3 - (3x^2 + 2x + 3)}{h}\\]",
-    "text": "\\[= \\lim_{h \\to 0}\\frac{3(x+h)^2 + 2(x+h) + 3 - (3x^2 + 2x + 3)}{h}\\]\n\\[= \\lim_{h \\to 0}\\frac{3x^2 + 3h^2 + 6xh + 2x+ 2h + 3 - (3x^2 + 2x + 3)}{h}\\]"
-  },
-  {
-    "objectID": "slides/07-optimization.html#lim_h-to-0frac3h2-6xh-2hh",
-    "href": "slides/07-optimization.html#lim_h-to-0frac3h2-6xh-2hh",
-    "title": "Calculus (Just The Essentials)",
-    "section": "\\[= \\lim_{h \\to 0}\\frac{3h^2 + 6xh + 2h}{h}\\]",
-    "text": "\\[= \\lim_{h \\to 0}\\frac{3h^2 + 6xh + 2h}{h}\\]\n\\[= \\lim_{h \\to 0}3h + 6x + 2\\]\n–\n\\[= 6x + 2\\]"
-  },
-  {
-    "objectID": "slides/07-optimization.html#shortcut-1-the-power-rule",
-    "href": "slides/07-optimization.html#shortcut-1-the-power-rule",
-    "title": "Calculus (Just The Essentials)",
-    "section": "Shortcut 1: The Power Rule",
-    "text": "Shortcut 1: The Power Rule\nIf \\(f(x) = ax^k\\), then \\(f'(x) = kax^{k-1}\\)\n–\n\n\nExample:\nIf \\(f(x) = 5x^4\\), then \\(f'(x) = 20x^3\\).\n–\n\n\nPractice Problem:\nLet \\(f(x) = 2x^3\\). What is \\(f'(x)\\)?\n–\n\n\\[f'(x) = 6x^2\\]"
-  },
-  {
-    "objectID": "slides/07-optimization.html#shortcut-2-the-sum-rule",
-    "href": "slides/07-optimization.html#shortcut-2-the-sum-rule",
-    "title": "Calculus (Just The Essentials)",
-    "section": "Shortcut 2: The Sum Rule",
-    "text": "Shortcut 2: The Sum Rule\nThe derivative of a sum is equal to the sum of derivatives.\nIf \\(f(x) = g(x) + h(x)\\), then \\(f'(x) = g'(x) + h'(x)\\)\n–\n\n\nExample:\nIf \\(f(x) = x^3 + x^2\\), then \\(f'(x) = 3x^2 + 2x\\)\n–\n\n\nPractice Problem:\nIf \\(f(x) = 2x^3 + x^2\\), what is \\(f'(x)\\)?\n–\n\\[f'(x) = 6x^2 + 2x\\]"
-  },
-  {
-    "objectID": "slides/07-optimization.html#shortcut-3-the-constant-rule",
-    "href": "slides/07-optimization.html#shortcut-3-the-constant-rule",
-    "title": "Calculus (Just The Essentials)",
-    "section": "Shortcut 3: The Constant Rule",
-    "text": "Shortcut 3: The Constant Rule\nThe derivative of a constant is zero\nIf \\(f(x) = c\\), then \\(f'(x) = 0\\)\n–\n\n\nExample:\nIf \\(f(x) = 5\\), then \\(f'(x) = 0\\).\n–\n\n\nPractice Problem:\nIf \\(f(x) = 4x^2 + 3x + 5\\), what is \\(f'(x)\\)?\n–\n\n\\[f'(x) = 8x + 3\\]"
-  },
-  {
-    "objectID": "slides/07-optimization.html#shortcut-4-the-product-rule",
-    "href": "slides/07-optimization.html#shortcut-4-the-product-rule",
-    "title": "Calculus (Just The Essentials)",
-    "section": "Shortcut 4: The Product Rule",
-    "text": "Shortcut 4: The Product Rule\nThe derivative of a product is a bit trickier…\nIf \\(f(x) = g(x) \\cdot h(x)\\), then \\(f'(x) = g'(x) \\cdot h(x) + g(x) \\cdot h'(x)\\)\n–\n\nExample:\nIf \\(f(x) = (2x)(x + 2)\\), then \\(f'(x) = 2x + 2(x+2) = 4x + 4\\)\n–\n\n\nPractice Problem:\n\\(f(x) = (3x^2 + 6x)(x+2)\\), what is \\(f'(x)\\)?\n–\n\\[f'(x) = (3x^2 + 6x)(1) + (6x + 6)(x+2)\\]\n\\[f'(x) = 3x^2 + 6x + 6x^2 + 6x + 12x + 12\\]\n\\[f'(x) = 9x^2 + 24x + 12\\]"
-  },
-  {
-    "objectID": "slides/07-optimization.html#shortcut-5-the-chain-rule",
-    "href": "slides/07-optimization.html#shortcut-5-the-chain-rule",
-    "title": "Calculus (Just The Essentials)",
-    "section": "Shortcut 5: The Chain Rule",
-    "text": "Shortcut 5: The Chain Rule\nIf your \\(f(x)\\) is a function wrapped around another function…\nIf \\(f(x) = g(h(x))\\), then \\(f'(x) = g'(x) \\cdot h'(x)\\)\n–\n“The derivative of the outside times the derivative of the inside.”\n–\n\nExample:\nIf \\(f(x) = (2x^2 - x + 1)^3\\), then \\(f'(x) = 3(2x^2 - x + 1)^2 (4x - 1)\\)\n–\n\n\nPractice Problem:\n\\(f(x) = \\sqrt{x + 3} = (x+3)^{\\frac{1}{2}}\\), what is \\(f'(x)\\)?\n–\n\\(f'(x) = \\frac{1}{2}(x+3)^{-\\frac{1}{2}}(1) = \\frac{1}{2\\sqrt{x+3}}\\)"
-  },
-  {
-    "objectID": "slides/07-optimization.html#other-derivative-rules",
-    "href": "slides/07-optimization.html#other-derivative-rules",
-    "title": "Calculus (Just The Essentials)",
-    "section": "Other Derivative Rules",
-    "text": "Other Derivative Rules\nThere’s a handy chart in Moore & Siegel:\n\n\n\n\n\n.center[]\n–\n\nIf you haven’t seen these before, it’s a lot to absorb. But practice helps.\n???\nDon’t freak out."
-  },
-  {
-    "objectID": "slides/07-optimization.html#jellybeans-again",
-    "href": "slides/07-optimization.html#jellybeans-again",
-    "title": "Calculus (Just The Essentials)",
-    "section": "Jellybeans Again",
-    "text": "Jellybeans Again\n\\(h(j) = \\frac{1}{3}j^3 + 81j + 2\\) and \\(h'(j) = 81 - j^2\\)\n\n\n\n\n\n\n\n\n\n–\nIt’s a maximum when the slope is decreasing, and a minimum when then slope is increasing. How do you figure out if the slope is increasing or decreasing?\n–\nThat’s right. You find the slope of the slope (aka the second derivative)."
-  },
-  {
-    "objectID": "slides/07-optimization.html#the-second-derivative-test",
-    "href": "slides/07-optimization.html#the-second-derivative-test",
-    "title": "Calculus (Just The Essentials)",
-    "section": "The Second Derivative Test",
-    "text": "The Second Derivative Test\n\\(h(j) = \\frac{1}{3}j^3 + 81j + 2\\) and \\(h'(j) = 81 - j^2\\)\nWhat is \\(h''(j)\\)? Is it positive or negative when you eat \\(9\\) jellybeans?\n–\n\\[h''(j) = -2j\\]\n\n\n\n\n\n\n\n\n\n\nclass: center, middle"
-  },
-  {
-    "objectID": "slides/07-optimization.html#fracpartial-hpartial-j-8---j-d-0",
-    "href": "slides/07-optimization.html#fracpartial-hpartial-j-8---j-d-0",
-    "title": "Calculus (Just The Essentials)",
-    "section": "\\[\\frac{\\partial h}{\\partial j} = 8 - j + d = 0\\]",
-    "text": "\\[\\frac{\\partial h}{\\partial j} = 8 - j + d = 0\\]"
-  },
-  {
-    "objectID": "slides/07-optimization.html#fracpartial-hpartial-d-2---6d-j-0",
-    "href": "slides/07-optimization.html#fracpartial-hpartial-d-2---6d-j-0",
-    "title": "Calculus (Just The Essentials)",
-    "section": "\\[\\frac{\\partial h}{\\partial d} = 2 - 6d + j = 0\\]",
-    "text": "\\[\\frac{\\partial h}{\\partial d} = 2 - 6d + j = 0\\]\n\\[j = 8 + d\\]"
-  },
-  {
-    "objectID": "slides/07-optimization.html#j-6d---2",
-    "href": "slides/07-optimization.html#j-6d---2",
-    "title": "Calculus (Just The Essentials)",
-    "section": "\\[j = 6d - 2\\]",
-    "text": "\\[j = 6d - 2\\]\n\n\\[d^* = 2\\] \\[j^* = 10\\]"
-  },
-  {
-    "objectID": "slides/07-optimization.html#visualizing-that-function",
-    "href": "slides/07-optimization.html#visualizing-that-function",
-    "title": "Calculus (Just The Essentials)",
-    "section": "Visualizing That Function",
-    "text": "Visualizing That Function\n\\[h(j,d) = 8j -\\frac{1}{2}j^2 + 2d - 3d^2 + jd + 100\\]\n\n\n\n\n\n\n\nclass: center, middle"
-  },
-  {
-    "objectID": "slides/07-optimization.html#back-to-our-motivating-example",
-    "href": "slides/07-optimization.html#back-to-our-motivating-example",
-    "title": "Calculus (Just The Essentials)",
-    "section": "Back to our motivating example…",
-    "text": "Back to our motivating example…"
-  },
-  {
-    "objectID": "slides/07-optimization.html#back-to-our-motivating-example-1",
-    "href": "slides/07-optimization.html#back-to-our-motivating-example-1",
-    "title": "Calculus (Just The Essentials)",
-    "section": "Back to our motivating example…",
-    "text": "Back to our motivating example…\nError function we wanted to minimize:\n\\(f(b) = \\sum (y - xb)^2\\)\n–\nTo compute the derivative, apply the sum rule and the chain rule…\n\\(\\frac{\\partial f}{\\partial b} = \\sum 2(y - xb)(-x) = \\sum(2x^2b - 2xy)\\)\n–\nSet that derivative equal to zero and solve:\n\\(0 = \\sum (2x^2b - 2xy)\\)\n–\n\\(\\sum (2xy) = \\sum (2x^2b)\\)\n–\n\\(2 \\sum (xy) = 2b\\sum (x^2)\\)\n–\n\\(b = \\frac{\\sum xy}{\\sum x^2}\\)\n???\nNote: suppressing index notation for the brains of the students"
-  },
-  {
-    "objectID": "slides/07-optimization.html#back-to-our-motivating-example-2",
-    "href": "slides/07-optimization.html#back-to-our-motivating-example-2",
-    "title": "Calculus (Just The Essentials)",
-    "section": "Back to our motivating example…",
-    "text": "Back to our motivating example…\nThe Linear Model:\n\\[y = x\\beta + \\varepsilon\\] The thing we want to minimize:\n\\[SSE = \\sum (y - x\\beta)^2\\] The solution to the minimization problem:\n\\[b = \\frac{\\sum xy}{\\sum x^2}\\]\n–\nSome terminology:\n\n\\(\\beta\\) in that first equation is called the estimand. It’s the thing we’re trying to estimate.\n\\(b\\) in that final equation is called the estimator, or the estimating equation. It’s the procedure we use to produce an estimate."
-  },
-  {
-    "objectID": "14-bonus.html",
-    "href": "14-bonus.html",
-    "title": "Weeks 14-15: Bonus Topics",
-    "section": "",
-    "text": "Topics by popular demand! Some potential options:\n\nCausal Inference (Matching, RDD, Diff-in-Diff)\nBig Data\nMachine Learning\nNetworks\nGeospatial Data\nText As Data\nQuarto, Shiny"
-  },
-  {
-    "objectID": "12-importing-exporting.html",
-    "href": "12-importing-exporting.html",
-    "title": "Week 12: Data Importing/Exporting",
-    "section": "",
-    "text": "Reading\n\n\nProblem Set\n\n\nClass Notes\n\n\nAdditional Resources"
-  },
-  {
-    "objectID": "10-wrangling.html",
-    "href": "10-wrangling.html",
-    "title": "Week 10: Data Wrangling",
-    "section": "",
-    "text": "Reading\n\nR4DS Chapters 3-4\nR4DS Chapter 12\n\n\n\nProblem Set\nJust like last week, we’re going to be summarizing different variables from the CES dataset. But this time, you’ll need to use the codebook to identify which variables contain the information you want, tidy them up, and then summarize. Write an R script that performs these tasks, compile a PDF report, and submit the report.\nHere are the questions I’d like you to answer:\n\nAre labor union members more likely to be Democrats or Republicans?\nWhat is the median age of people with landline phones, compared to those who only have cell phones?\nAre people who read the newspaper more likely to correctly answer the questions about who controls the US House of Representatives and US Senate?\nWhich religious groups are the most and least likely to support making abortion illegal in all circumstances?\n\n\n\nClass Notes\nUp to now, we’ve been working with pretty tidy datasets. Every column is a variable, every row is an observation, and every value is where it should be. But things are not always this way. More often than you’re going to like, data comes to you an unruly mess, and you’ll need to tidy it up before you can even start to explore it.\nThis week, we’ll learn some of the most important functions in the tidyverse for data wrangling.\n\n\n\n\n\nIn your last problem set, you worked with a tidied up version of the Cooperative Election Study (CES) from 2020. Let’s look at the steps I took to import and clean up that dataset.\n\nImporting The Data\nThe CES is a survey of a representative sample of 50,000+ American adults, conducted every election year by a large consortium of universities. The data going back to 2006 is available here. Go to that site and download the 2020 dataset, a 180 megabyte monster called CES20_Common_OUTPUT_vv.csv.\nThe .csv extension at the end of the file means that it is a “comma separated value” file. This is a file where all of the values are separated by commas. Looks something like this:\nname, age, party\n'Joe', 35, 'Bull Moose'\n'Fiona', 6, 'Birthday'\n'Avery', 3, 'Know Nothing'\nIt’s a nice standardized way to represent datasets, and fortunately for us, the read_csv() function allows us to read such files into R. Let’s create an object called ces_raw from that raw dataset.\n\nlibrary(tidyverse)\n\nces_raw &lt;- read_csv('data/raw/CES20_Common_OUTPUT_vv.csv')\n\nThis dataset has a lot of information.\n\ndim(ces_raw)\n\n[1] 61000   717\n\n\n61,000 rows and 717 columns, to be precise. The first few rows and columns look like this:\n\nhead(ces_raw)\n\n# A tibble: 6 × 717\n   ...1     caseid commonweight commonpostweight vvweight vvweight_post tookpost\n  &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt;    &lt;dbl&gt;         &lt;dbl&gt;    &lt;dbl&gt;\n1     1 1232318697        0.783            0.666    0.851         0.607        2\n2     2 1231394915        1.34             1.44    NA            NA            2\n3     3 1232451503        0.406            0.342   NA            NA            2\n4     4 1232494791        0.958            0.822    1.04          1.00         2\n5     5 1232494829        0.195            0.162   NA            NA            2\n6     6 1232473675        1.06             0.880    1.15          0.988        2\n# ℹ 710 more variables: CCEStake &lt;dbl&gt;, birthyr &lt;dbl&gt;, gender &lt;dbl&gt;,\n#   educ &lt;dbl&gt;, race &lt;dbl&gt;, race_other &lt;chr&gt;, hispanic &lt;dbl&gt;,\n#   CC20_hisp_1 &lt;dbl&gt;, CC20_hisp_2 &lt;dbl&gt;, CC20_hisp_3 &lt;dbl&gt;, CC20_hisp_4 &lt;dbl&gt;,\n#   CC20_hisp_5 &lt;dbl&gt;, CC20_hisp_6 &lt;dbl&gt;, CC20_hisp_7 &lt;dbl&gt;, CC20_hisp_8 &lt;dbl&gt;,\n#   CC20_hisp_9 &lt;dbl&gt;, CC20_hisp_10 &lt;dbl&gt;, CC20_hisp_11 &lt;dbl&gt;,\n#   CC20_hisp_12 &lt;dbl&gt;, CC20_hisp_t &lt;chr&gt;, CC20_asian_1 &lt;dbl&gt;,\n#   CC20_asian_2 &lt;dbl&gt;, CC20_asian_3 &lt;dbl&gt;, CC20_asian_4 &lt;dbl&gt;, …\n\n\n\n\nRecoding Variables\nNow that we have the dataset loaded into memory, let’s find the variables we’re interested in keeping and clean them up a bit. For example, gender is coded as a 1 or 2.\n\nces_raw |&gt; \n  count(gender)\n\n# A tibble: 2 × 2\n  gender     n\n   &lt;dbl&gt; &lt;int&gt;\n1      1 25791\n2      2 35209\n\n\nLet’s make this more readable. The codebook (available at the same site where you downloaded the data) says that 1 is male and 2 is female. We can create a new version of the gender column using the mutate() and if_else() functions.\n\nces_clean &lt;- ces_raw |&gt; \n  mutate(gender = if_else(gender == 1, 'Male', 'Female'))\n\nces_clean |&gt; \n  count(gender)\n\n# A tibble: 2 × 2\n  gender     n\n  &lt;chr&gt;  &lt;int&gt;\n1 Female 35209\n2 Male   25791\n\n\nWhat about the education variable (educ)?\n\nces_clean |&gt; \n  count(educ)\n\n# A tibble: 6 × 2\n   educ     n\n  &lt;dbl&gt; &lt;int&gt;\n1     1  1983\n2     2 16618\n3     3 13330\n4     4  6539\n5     5 14152\n6     6  8378\n\n\nThat’s a lot of categories to clean up. We can combine the mutate() function with case_when() to recode a bunch of different values at the same time.\n\nces_clean &lt;- ces_clean |&gt; \n  mutate(educ = case_when(educ == 1 ~ 'No HS',\n                          educ == 2 ~ 'High school graduate',\n                          educ == 3 ~ 'Some college',\n                          educ == 4 ~ '2-year',\n                          educ == 5 ~ '4-year',\n                          educ == 6 ~ 'Post-grad'))\nces_clean |&gt; \n  count(educ)\n\n# A tibble: 6 × 2\n  educ                     n\n  &lt;chr&gt;                &lt;int&gt;\n1 2-year                6539\n2 4-year               14152\n3 High school graduate 16618\n4 No HS                 1983\n5 Post-grad             8378\n6 Some college         13330\n\n\nNow the variable has the correct labels, but notice that the order in that table is kind of weird. We tend to think of education as an ordinal variable, because there’s a natural order from least to most educated. But R doesn’t know that yet. It just thinks of educ as a character variable, and lists them in alphabetical order. We can tell R about the variable order by recoding educ as a factor.\n\nces_clean &lt;- ces_clean |&gt; \n  mutate(educ = factor(educ,\n                       levels = c('No HS', \n                                  'High school graduate',\n                                  'Some college',\n                                  '2-year',\n                                  '4-year',\n                                  'Post-grad')))\nces_clean |&gt; \n  count(educ)\n\n# A tibble: 6 × 2\n  educ                     n\n  &lt;fct&gt;                &lt;int&gt;\n1 No HS                 1983\n2 High school graduate 16618\n3 Some college         13330\n4 2-year                6539\n5 4-year               14152\n6 Post-grad             8378\n\n\nMuch better!\nThere’s a variable in CES called birthyr. What if we wanted to know the respondents age in 2020 instead? The mutate() function can help us here too.\n\nces_clean |&gt; \n  count(birthyr)\n\n# A tibble: 78 × 2\n   birthyr     n\n     &lt;dbl&gt; &lt;int&gt;\n 1    1925     2\n 2    1926     6\n 3    1927    10\n 4    1928    12\n 5    1929    23\n 6    1930    23\n 7    1931    42\n 8    1932    55\n 9    1933    76\n10    1934   109\n# ℹ 68 more rows\n\nces_clean &lt;- ces_clean |&gt; \n  mutate(age = 2020 - birthyr)\n\nces_clean |&gt; \n  count(birthyr, age)\n\n# A tibble: 78 × 3\n   birthyr   age     n\n     &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;\n 1    1925    95     2\n 2    1926    94     6\n 3    1927    93    10\n 4    1928    92    12\n 5    1929    91    23\n 6    1930    90    23\n 7    1931    89    42\n 8    1932    88    55\n 9    1933    87    76\n10    1934    86   109\n# ℹ 68 more rows\n\n\n\n\nJoining Datasets\nHere’s another messy feature of this dataset. Every respondent has a variable called inputstate, representing the state where they live.\n\nces_clean |&gt; \n  count(inputstate)\n\n# A tibble: 51 × 2\n   inputstate     n\n        &lt;dbl&gt; &lt;int&gt;\n 1          1   947\n 2          2   115\n 3          4  1463\n 4          5   536\n 5          6  5035\n 6          8  1061\n 7          9   642\n 8         10   240\n 9         11   197\n10         12  4615\n# ℹ 41 more rows\n\n\nBut it’s a number! Not, like, the actual name of the state, which would be more useful to me. I don’t know all 51 state FIPS codes by heart, but fortunately I have a dataset that includes every state’s name and FIPS code.\n\nstate_fips &lt;- tidycensus::fips_codes |&gt; \n  mutate(inputstate = as.numeric(state_code)) |&gt; \n  select(inputstate, state_name) |&gt; \n  unique()\n\nhead(state_fips)\n\n    inputstate state_name\n1            1    Alabama\n68           2     Alaska\n97           4    Arizona\n112          5   Arkansas\n187          6 California\n245          8   Colorado\n\n\nAnd I can join that information with the CES data like this.\n\nces_clean &lt;- ces_clean |&gt; \n  left_join(state_fips, by = 'inputstate')\n\nces_clean |&gt; \n  count(inputstate, state_name)\n\n# A tibble: 51 × 3\n   inputstate state_name               n\n        &lt;dbl&gt; &lt;chr&gt;                &lt;int&gt;\n 1          1 Alabama                947\n 2          2 Alaska                 115\n 3          4 Arizona               1463\n 4          5 Arkansas               536\n 5          6 California            5035\n 6          8 Colorado              1061\n 7          9 Connecticut            642\n 8         10 Delaware               240\n 9         11 District of Columbia   197\n10         12 Florida               4615\n# ℹ 41 more rows\n\n\nMore on joining datasets in two weeks.\n\n\nSelecting Variables\nFinally, we can use the select() function to keep only the columns we want, and drop the columns we don’t want.\n\nces_clean &lt;- ces_clean |&gt; \n  select(caseid, gender, educ, age, state_name)\n\nhead(ces_clean)\n\n# A tibble: 6 × 5\n      caseid gender educ           age state_name   \n       &lt;dbl&gt; &lt;chr&gt;  &lt;fct&gt;        &lt;dbl&gt; &lt;chr&gt;        \n1 1232318697 Male   2-year          54 Connecticut  \n2 1231394915 Female Post-grad       65 Florida      \n3 1232451503 Female 4-year          74 Iowa         \n4 1232494791 Female 4-year          58 Massachusetts\n5 1232494829 Male   4-year          53 Illinois     \n6 1232473675 Male   Some college    59 Ohio         \n\n\nAnd you can save your cleaned up version of the data to an .RData file with the save() function.\n\nsave(ces_clean, file = 'data/ces-clean.RData')\n\n\n\n\nAdditional Resources\n\nWrangling Penguins, by Allison Horst"
-  },
-  {
-    "objectID": "08-uncertainty.html",
-    "href": "08-uncertainty.html",
-    "title": "Week 8: Uncertainty",
-    "section": "",
-    "text": "Reading\n\n\nProblem Set\n\n\nClass Notes\n\n\nAdditional Resources"
-  },
-  {
-    "objectID": "06-causality.html",
-    "href": "06-causality.html",
-    "title": "Week 6: Causality",
-    "section": "",
-    "text": "Reading\n\n\nProblem Set\n\n\nClass Notes\n\n\nAdditional Resources\n\nHuntington-Klein (2021), a friendly yet thorough introduction to causal inference with observational data (free version online here).\n\n\n\n\n\n\nReferences\n\nHuntington-Klein, Nick. 2021. The Effect: An Introduction to Research Design and Causality. S.l.: CHAPMAN & HALL CRC. https://theeffectbook.net/index.html."
-  },
-  {
-    "objectID": "04-samples.html",
-    "href": "04-samples.html",
-    "title": "Week 4: Samples",
-    "section": "",
-    "text": "This week we discuss the challenges involved in making inferences about a population based on an observed sample. By the end of this week, you will be able to:\n\nDescribe the conditions under which a sample is representative of a population of interest, and the primary challenges involved in obtaining a representative sample.\nCompute and interpret a variety of summary statistics from data, including frequency tables, median, variance, standard deviation, covariance, and correlation coefficient.\nProduce basic data visualizations like histograms and scatter plots.\n\n\nReading\n\nDAFSS Chapter 3\n\n\n\nProblem Set\n&lt;TBD&gt;\n\n\nClass Notes\n\n\nAdditional Resources\n\nTeacup Giraffes: Modules 2-5"
-  },
-  {
-    "objectID": "02-writing-code.html",
-    "href": "02-writing-code.html",
-    "title": "Week 2: Writing Code",
-    "section": "",
-    "text": "This week we introduce the statistical software that we will use to work with data this semester (R and RStudio). By the end of this module, you will learn:"
-  },
-  {
-    "objectID": "02-writing-code.html#footnotes",
-    "href": "02-writing-code.html#footnotes",
-    "title": "Week 2: Writing Code",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nNot the R script! If you install a package in the script then it will reinstall the package every time you run the script, which is time-consuming.↩︎"
-  },
-  {
-    "objectID": "01-introduction.html",
-    "href": "01-introduction.html",
-    "title": "Week 1: Introduction",
-    "section": "",
-    "text": "This week, we introduce the course and discuss three Fundamental Problems of Scientific Inquiry, which will guide our thinking about data analysis this semester."
-  },
-  {
-    "objectID": "01-introduction.html#the-fundamental-problem-of-measurement",
-    "href": "01-introduction.html#the-fundamental-problem-of-measurement",
-    "title": "Week 1: Introduction",
-    "section": "The Fundamental Problem of Measurement",
-    "text": "The Fundamental Problem of Measurement\nOur theories about the world often involve concepts and ideas that we cannot observe directly with our senses. Political scientists are interested in particularly nebulous concepts—like democracy, polarization, freedom, ideology, representation, warfare, alliances—ideas that are all quite sensible when described in words, but lack an obvious method for categorization and measurement in the real world. In statistical terminology, something like a person’s ideology (Converse 1964) is a latent characteristic, something that we cannot observe directly. Instead, we observe behaviors that we think are influenced by a person’s ideology—whose campaign they donate to, how they respond to survey questions, how they vote on bills, etc.—and infer their ideology on the basis of those observed characteristics (Barber 2021). But it’s important to remember these observable measures are always imperfect glimpses at the theoretical concepts we’re trying to understand."
-  },
-  {
-    "objectID": "01-introduction.html#the-fundamental-problem-of-causal-inference",
-    "href": "01-introduction.html#the-fundamental-problem-of-causal-inference",
-    "title": "Week 1: Introduction",
-    "section": "The Fundamental Problem of Causal Inference",
-    "text": "The Fundamental Problem of Causal Inference\nScientists are rarely satisfied with measurement alone. We don’t just want to describe the world (“Candidate X won the election”); we want our theories to explain why the world works the way it does (“Candidate X won because she spent more on TV advertising”). Fundamentally, every such causal claim is implicitly a counterfactual claim (“If Candidate X had spent less money on TV advertising, she would have been more likely to lose.”). But the Fundamental Problem of Causal Inference is that we can’t observe counterfactuals. We only know what happened in this universe, and can never know with any certainty what would have happened if circumstances were different. This makes testing causal claims rather difficult, because the best we can do is look at average differences across cases."
-  },
-  {
-    "objectID": "01-introduction.html#the-fundamental-problem-of-samples",
-    "href": "01-introduction.html#the-fundamental-problem-of-samples",
-    "title": "Week 1: Introduction",
-    "section": "The Fundamental Problem of Samples",
-    "text": "The Fundamental Problem of Samples\nScientists strive to develop general theories about the world; a theory is more useful if it can be fruitfully applied to a large number of cases and situations. But we rarely if ever observe our entire population of interest, so we can never say with certainty that the patterns we observe in our dataset will hold true for the population at large. This is particularly problematic if our observed sample is selected in a non-random fashion, making it unrepresentative of the larger population.\n\n\n\n\n\nOne can think of these three fundamental problems as three different kinds of missing data problems—whether it’s a latent characteristic, a counterfactual, or observations not included in your dataset—there is some information that we do not observe directly, and so we have to predict what it might be on the basis of the information we do observe. Fortunately, we have a number of methods for credibly making these sorts of inferences. We’ll learn several of them in the first half of this semester!"
-  },
-  {
-    "objectID": "03-experiments.html",
-    "href": "03-experiments.html",
-    "title": "Week 3: Experiments",
-    "section": "",
-    "text": "This week we introduce the Fundamental Problem of Causal Inference, and discuss why randomized experiments are generally considered the “gold standard” for approaching that problem. By the end of this week you will be able to:\n\nDescribe the potential outcomes framework\nCompute a difference-in-means using R\nWrite scripts that perform other essential data analysis tasks, like subsetting and creating new variables.\n\n\nReading\n\nDAFSS Chapter 2\n\n\n\nProblem Set\nPlease submit the responses to the following exercises as a knitted R script or Quarto document.\n\nLoad the voting.csv dataset from our previous problem set. What percent of registered voters who received the social pressure message turned out to vote in the 2006 election? What percent of those who did not receive the social pressure message turned out? (10 points)\nEstimate the average treatment effect of the social pressure message on the probability of voting. Briefly explain why we can or cannot interpret this estimate as a causal effect. (10 points)\nWhat was the average birth year of respondents who received the social pressure message? Those who did not receive the social pressure message? Explain this result. (10 points)\nCreate a new variable called youth, equal to 1 if the respondent was less than 25 years old in 2006 and 0 otherwise (10 points)\nBonus. Was the average effect of the social pressure message larger or smaller for young respondents than for the rest of the sample? Interpret this result. (10 points)\n\n\n\nAdditional Resources\n\nPearl and Mackenzie (2019)\n\n\n\n\n\n\nReferences\n\nPearl, Judea, and Dana Mackenzie. 2019. The book of why: the new science of cause and effect. Penguin science. London: Penguin Books."
-  },
-  {
-    "objectID": "05-linear-model.html",
-    "href": "05-linear-model.html",
-    "title": "Week 5: The Linear Model",
-    "section": "",
-    "text": "This week we introduce the linear model, the workhorse of empirical social science. By the end of this week, you will be able to:"
-  },
-  {
-    "objectID": "05-linear-model.html#footnotes",
-    "href": "05-linear-model.html#footnotes",
-    "title": "Week 5: The Linear Model",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nResults reported before the manual recount the 2000 election.↩︎"
-  },
-  {
-    "objectID": "07-probability.html",
-    "href": "07-probability.html",
-    "title": "Week 7: Probability",
-    "section": "",
-    "text": "Reading\n\n\nProblem Set\n\n\nClass Notes\n\n\nAdditional Resources\n\nTeacup Giraffes: Module 6 (Standard Error)"
-  },
-  {
-    "objectID": "09-visualization.html",
-    "href": "09-visualization.html",
-    "title": "Week 9: Data Visualization",
-    "section": "",
-    "text": "Today we begin Part 2 of the semester. Our goal over the next few weeks is to train you to complete the entire data analysis pipeline: importing raw datasets, tidying them up, joining together information from multiple datasets, making sure everything is formatted correctly, performing statistical analyses, and, finally, communicating your results.\nWe’ll start by discussing data visualization, which is an essential tool at every step along that pipeline. Our brains are hardwired to detect patterns in images, and a well-crafted data visualization can take advantage of that fact to communicate lots of information about your data all at once. This makes visualization a particularly effective tool for communicating results to your audience.\nBut don’t think that visualization is just something you do at the end of the project when you’re writing up the paper. Charts are a useful diagnostic tool as well, revealing patterns in data that summary statistics alone might miss, as the Datasaurus Dozen artfully reveals…\n\nThis week, we dive deeper into building visualizations with the ggplot2 package (a part of the tidyverse). It will take some time to learn all of the function syntax, so be patient with yourself. Once you get the hang of it, you’ll have an endlessly flexible tool for exploring and communicating patterns in your data.\n\nReading\n\nR4DS Chapters 1-2\n\n\n\nProblem Set\nIn a knitted R script or Quarto document, complete the following exercises.\n\nRecreate the following chart using the voting.csv dataset. (25 points)\n\n\n\n\n\n\n\nRecreate the following chart using the ANES.csv dataset. Don’t forget the caption. (25 points)\nRecreating the dashed vertical lines is worth a bonus 10 points.\n\n\n\n\n\n\n\n\nAdditional Resources\n\nKieran Healy’s data visualization textbook is a great step-by-step guide to the practical challenges of visualizing social science data using ggplot (Healy 2018); online version available here.\n\n\n\n\n\n\nReferences\n\nHealy, Kieran. 2018. Data Visualization: A Practical Introduction. Princeton, NJ: Princeton University Press."
-  },
-  {
-    "objectID": "11-tidying.html",
-    "href": "11-tidying.html",
-    "title": "Week 11: Data Tidying",
-    "section": "",
-    "text": "Reading\n\n\nProblem Set\n\n\nClass Notes\n\n\nAdditional Resources"
-  },
-  {
-    "objectID": "13-joining.html",
-    "href": "13-joining.html",
-    "title": "Week 13: Data Joining",
-    "section": "",
-    "text": "Reading\n\n\nProblem Set\n\n\nClass Notes\n\n\nAdditional Resources"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "POLS 7012: Introduction to Political Methodology",
-    "section": "",
-    "text": "Welcome to our course website! Here you can find links to everything you’ll need this semester:"
-  },
-  {
-    "objectID": "index.html#course-objectives",
-    "href": "index.html#course-objectives",
-    "title": "POLS 7012: Introduction to Political Methodology",
-    "section": "Course Objectives",
-    "text": "Course Objectives\nBy the end of this course, you will be able to:\n\nConfidently work with data using the R programming language\nCreate beautiful and informative data visualizations\nOrganize your work so that it is transparent and reproducible\nBuild basic statistical models and estimate their parameters from data\nCommunicate uncertainty around your estimates\nIdentify research designs that credibly address three fundamental challenges of social science: measurement, causal inference, and sampling."
-  },
-  {
-    "objectID": "index.html#assignments-grading",
-    "href": "index.html#assignments-grading",
-    "title": "POLS 7012: Introduction to Political Methodology",
-    "section": "Assignments & Grading",
-    "text": "Assignments & Grading\nEach week I will assign 1-2 chapters of reading and a problem set, both due at noon the day of class. Feel free to work collaboratively with your classmates on the problem sets, but please submit your answers individually. Resist the temptation to copy-paste your classmates’ code. You are much more likely to learn if you type your responses yourself. 70% of your grade will come from these problem sets, and 15% each from a take-home midterm and final exam."
-  },
-  {
-    "objectID": "index.html#office-hours-and-email-policy",
-    "href": "index.html#office-hours-and-email-policy",
-    "title": "POLS 7012: Introduction to Political Methodology",
-    "section": "Office Hours and Email Policy",
-    "text": "Office Hours and Email Policy\nI will be available for students to drop in and chat every Monday, Wednesday, and Friday afternoon from 1:30-3pm. My office is Baldwin 304C. If you send me an email, please allow me 24 hours to respond. Like many professors, my inbox is pretty overloaded. Also, I have small children, so it’s my policy to not check email after 5pm or on weekends. You should feel free to seek assistance from the senior graduate students staffing the SPIA Methods Helpdesk. You can email them questions at spia-methods-help@uga.edu."
-  },
-  {
-    "objectID": "index.html#books",
-    "href": "index.html#books",
-    "title": "POLS 7012: Introduction to Political Methodology",
-    "section": "Books",
-    "text": "Books\nOur readings will come from the two books listed below. The first book (DAFSS) must be purchased—either in hard-copy or through the course Perusall site—but the second (R4DS) is freely available online.\n\nDAFSS: Llaudet, Elena & Imai, Kosuke (2022). Data Analysis for Social Science: A Friendly and Practical Introduction. Princeton University Press.\nR4DS: Wickham, H., Cetinkaya-Rundel, M., & Grolemund, G., (2023). R For Data Science: Import, Tidy, Transform, Visualize, and Model Data, 2nd Edition. O’Reilly Media, Inc."
-  },
-  {
-    "objectID": "index.html#schedule",
-    "href": "index.html#schedule",
-    "title": "POLS 7012: Introduction to Political Methodology",
-    "section": "Schedule",
-    "text": "Schedule\nSee the Schedule drop-down menu in the upper right for a complete list of each week’s objectives, assignments, and class notes."
-  },
-  {
-    "objectID": "index.html#footnotes",
-    "href": "index.html#footnotes",
-    "title": "POLS 7012: Introduction to Political Methodology",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nVisit eLC for the Perusall access code.↩︎"
-  },
-  {
-    "objectID": "slides/calculus.html#ase",
-    "href": "slides/calculus.html#ase",
-    "title": "Calculus (Just The Essentials)",
-    "section": "ase",
-    "text": "ase"
-  },
-  {
     "objectID": "slides/calculus.html#the-linear-model",
     "href": "slides/calculus.html#the-linear-model",
     "title": "Calculus Essentials",
@@ -672,6 +350,13 @@
     "text": "The Second Derivative Test\n\\(h(j) = \\frac{1}{3}j^3 + 81j + 2\\) and \\(h'(j) = 81 - j^2\\)\nWhat is \\(h''(j)\\)? Is it positive or negative when you eat \\(9\\) jellybeans? \\[\nh''(j) = -2j\n\\]"
   },
   {
+    "objectID": "slides/calculus.html#the-second-derivative-test-2",
+    "href": "slides/calculus.html#the-second-derivative-test-2",
+    "title": "Calculus Essentials",
+    "section": "The Second Derivative Test",
+    "text": "The Second Derivative Test"
+  },
+  {
     "objectID": "slides/calculus.html#partial-derivatives",
     "href": "slides/calculus.html#partial-derivatives",
     "title": "Calculus Essentials",
@@ -707,10 +392,185 @@
     "text": "Next Week…\nWe finally have the tools we need to find the values of \\(\\alpha\\) and \\(\\beta\\) that minimize this function:\n\\(\\text{SSE} = \\sum_{i=1}^n(y_i - \\alpha - \\beta x_i)^2\\)"
   },
   {
-    "objectID": "slides/calculus.html#the-second-derivative-test-2",
-    "href": "slides/calculus.html#the-second-derivative-test-2",
-    "title": "Calculus Essentials",
-    "section": "The Second Derivative Test",
-    "text": "The Second Derivative Test"
+    "objectID": "14-bonus.html",
+    "href": "14-bonus.html",
+    "title": "Weeks 14-15: Bonus Topics",
+    "section": "",
+    "text": "Topics by popular demand! Some potential options:\n\nCausal Inference (Matching, RDD, Diff-in-Diff)\nBig Data\nMachine Learning\nNetworks\nGeospatial Data\nText As Data\nQuarto, Shiny"
+  },
+  {
+    "objectID": "12-importing-exporting.html",
+    "href": "12-importing-exporting.html",
+    "title": "Week 12: Data Importing/Exporting",
+    "section": "",
+    "text": "Reading\n\n\nProblem Set\n\n\nClass Notes\n\n\nAdditional Resources"
+  },
+  {
+    "objectID": "10-wrangling.html",
+    "href": "10-wrangling.html",
+    "title": "Week 10: Data Wrangling",
+    "section": "",
+    "text": "Move some of the class notes to the front here.\n\nReading\n\nR4DS Chapters 3-4\nR4DS Chapter 12\n\n\n\nProblem Set\nThis week, we’re going to be summarizing different variables from the CES 2020 dataset. You’ll need to use the codebook to identify which variables contain the information you want, tidy them up, and then summarize. Write an R script that performs these tasks, compile a PDF report, and submit the report.\nHere are the questions I’d like you to answer:\n\nAre labor union members more likely to be Democrats or Republicans?\nWhat is the median age of people with landline phones, compared to those who only have cell phones?\nAre people who read the newspaper more likely to correctly answer the questions about who controls the US House of Representatives and US Senate?\nWhich religious groups are the most and least likely to support making abortion illegal in all circumstances?\nBonus. The CES oversamples some respondents relative to their frequency among registered voters in order to get a better statistical picture of some smaller subgroups. The dataset contains a weight variable for each respondent, reflecting how much that type of respondent is overrepresented in the sample compared to the population. Compare the mean age of the sample with the weighted mean age of the sample. What do you notice? Do the same thing for the unweighted and weighted shares of each racial group. Redo the analyses in questions 1-4 using weighted means. What conclusions, if any, change?\n\n\n\nClass Notes\nUp to now, we’ve been working with pretty tidy datasets. Every column is a variable, every row is an observation, and every value is where it should be. But things are not always this way. More often than you’re going to like, data comes to you an unruly mess, and you’ll need to tidy it up before you can even start to explore it.\nThis week, we’ll learn some of the most important functions in the tidyverse for data wrangling.\n\nIn your last problem set, you worked with a tidied up version of the Cooperative Election Study (CES) from 2020. Let’s look at the steps I took to import and clean up that dataset.\n\nImporting The Data\nThe CES is a survey of a representative sample of 50,000+ American adults, conducted every election year by a large consortium of universities. The data going back to 2006 is available here. Go to that site and download the 2020 dataset, a 180 megabyte monster called CES20_Common_OUTPUT_vv.csv.\nThe .csv extension at the end of the file means that it is a “comma separated value” file. This is a file where all of the values are separated by commas. Looks something like this:\nname, age, party\n'Joe', 35, 'Bull Moose'\n'Fiona', 6, 'Birthday'\n'Avery', 3, 'Know Nothing'\nIt’s a nice standardized way to represent datasets, and fortunately for us, the read_csv() function allows us to read such files into R. Let’s create an object called ces_raw from that raw dataset.\n\nlibrary(tidyverse)\n\nces_raw &lt;- read_csv('data/raw/CES20_Common_OUTPUT_vv.csv')\n\nThis dataset has a lot of information.\n\ndim(ces_raw)\n\n[1] 61000   717\n\n\n61,000 rows and 717 columns, to be precise. The first few rows and columns look like this:\n\nhead(ces_raw)\n\n# A tibble: 6 × 717\n   ...1     caseid commonweight commonpostweight vvweight vvweight_post tookpost\n  &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt;    &lt;dbl&gt;         &lt;dbl&gt;    &lt;dbl&gt;\n1     1 1232318697        0.783            0.666    0.851         0.607        2\n2     2 1231394915        1.34             1.44    NA            NA            2\n3     3 1232451503        0.406            0.342   NA            NA            2\n4     4 1232494791        0.958            0.822    1.04          1.00         2\n5     5 1232494829        0.195            0.162   NA            NA            2\n6     6 1232473675        1.06             0.880    1.15          0.988        2\n# ℹ 710 more variables: CCEStake &lt;dbl&gt;, birthyr &lt;dbl&gt;, gender &lt;dbl&gt;,\n#   educ &lt;dbl&gt;, race &lt;dbl&gt;, race_other &lt;chr&gt;, hispanic &lt;dbl&gt;,\n#   CC20_hisp_1 &lt;dbl&gt;, CC20_hisp_2 &lt;dbl&gt;, CC20_hisp_3 &lt;dbl&gt;, CC20_hisp_4 &lt;dbl&gt;,\n#   CC20_hisp_5 &lt;dbl&gt;, CC20_hisp_6 &lt;dbl&gt;, CC20_hisp_7 &lt;dbl&gt;, CC20_hisp_8 &lt;dbl&gt;,\n#   CC20_hisp_9 &lt;dbl&gt;, CC20_hisp_10 &lt;dbl&gt;, CC20_hisp_11 &lt;dbl&gt;,\n#   CC20_hisp_12 &lt;dbl&gt;, CC20_hisp_t &lt;chr&gt;, CC20_asian_1 &lt;dbl&gt;,\n#   CC20_asian_2 &lt;dbl&gt;, CC20_asian_3 &lt;dbl&gt;, CC20_asian_4 &lt;dbl&gt;, …\n\n\n\n\nRecoding Variables\nNow that we have the dataset loaded into memory, let’s find the variables we’re interested in keeping and clean them up a bit. For example, gender is coded as a 1 or 2.\n\nces_raw |&gt; \n  count(gender)\n\n# A tibble: 2 × 2\n  gender     n\n   &lt;dbl&gt; &lt;int&gt;\n1      1 25791\n2      2 35209\n\n\nLet’s make this more readable. The codebook (available at the same site where you downloaded the data) says that 1 is male and 2 is female. We can create a new version of the gender column using the mutate() and if_else() functions.\n\nces_clean &lt;- ces_raw |&gt; \n  mutate(gender = if_else(gender == 1, 'Male', 'Female'))\n\nces_clean |&gt; \n  count(gender)\n\n# A tibble: 2 × 2\n  gender     n\n  &lt;chr&gt;  &lt;int&gt;\n1 Female 35209\n2 Male   25791\n\n\nWhat about the education variable (educ)?\n\nces_clean |&gt; \n  count(educ)\n\n# A tibble: 6 × 2\n   educ     n\n  &lt;dbl&gt; &lt;int&gt;\n1     1  1983\n2     2 16618\n3     3 13330\n4     4  6539\n5     5 14152\n6     6  8378\n\n\nThat’s a lot of categories to clean up. We can combine the mutate() function with case_when() to recode a bunch of different values at the same time.\n\nces_clean &lt;- ces_clean |&gt; \n  mutate(educ = case_when(educ == 1 ~ 'No HS',\n                          educ == 2 ~ 'High school graduate',\n                          educ == 3 ~ 'Some college',\n                          educ == 4 ~ '2-year',\n                          educ == 5 ~ '4-year',\n                          educ == 6 ~ 'Post-grad'))\nces_clean |&gt; \n  count(educ)\n\n# A tibble: 6 × 2\n  educ                     n\n  &lt;chr&gt;                &lt;int&gt;\n1 2-year                6539\n2 4-year               14152\n3 High school graduate 16618\n4 No HS                 1983\n5 Post-grad             8378\n6 Some college         13330\n\n\nNow the variable has the correct labels, but notice that the order in that table is kind of weird. We tend to think of education as an ordinal variable, because there’s a natural order from least to most educated. But R doesn’t know that yet. It just thinks of educ as a character variable, and lists them in alphabetical order. We can tell R about the variable order by recoding educ as a factor.\n\nces_clean &lt;- ces_clean |&gt; \n  mutate(educ = factor(educ,\n                       levels = c('No HS', \n                                  'High school graduate',\n                                  'Some college',\n                                  '2-year',\n                                  '4-year',\n                                  'Post-grad')))\nces_clean |&gt; \n  count(educ)\n\n# A tibble: 6 × 2\n  educ                     n\n  &lt;fct&gt;                &lt;int&gt;\n1 No HS                 1983\n2 High school graduate 16618\n3 Some college         13330\n4 2-year                6539\n5 4-year               14152\n6 Post-grad             8378\n\n\nMuch better!\nThere’s a variable in CES called birthyr. What if we wanted to know the respondents age in 2020 instead? The mutate() function can help us here too.\n\nces_clean |&gt; \n  count(birthyr)\n\n# A tibble: 78 × 2\n   birthyr     n\n     &lt;dbl&gt; &lt;int&gt;\n 1    1925     2\n 2    1926     6\n 3    1927    10\n 4    1928    12\n 5    1929    23\n 6    1930    23\n 7    1931    42\n 8    1932    55\n 9    1933    76\n10    1934   109\n# ℹ 68 more rows\n\nces_clean &lt;- ces_clean |&gt; \n  mutate(age = 2020 - birthyr)\n\nces_clean |&gt; \n  count(birthyr, age)\n\n# A tibble: 78 × 3\n   birthyr   age     n\n     &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;\n 1    1925    95     2\n 2    1926    94     6\n 3    1927    93    10\n 4    1928    92    12\n 5    1929    91    23\n 6    1930    90    23\n 7    1931    89    42\n 8    1932    88    55\n 9    1933    87    76\n10    1934    86   109\n# ℹ 68 more rows\n\n\n\n\nJoining Datasets\nHere’s another messy feature of this dataset. Every respondent has a variable called inputstate, representing the state where they live.\n\nces_clean |&gt; \n  count(inputstate)\n\n# A tibble: 51 × 2\n   inputstate     n\n        &lt;dbl&gt; &lt;int&gt;\n 1          1   947\n 2          2   115\n 3          4  1463\n 4          5   536\n 5          6  5035\n 6          8  1061\n 7          9   642\n 8         10   240\n 9         11   197\n10         12  4615\n# ℹ 41 more rows\n\n\nBut it’s a number! Not, like, the actual name of the state, which would be more useful to me. I don’t know all 51 state FIPS codes by heart, but fortunately I have a dataset that includes every state’s name and FIPS code.\n\nstate_fips &lt;- tidycensus::fips_codes |&gt; \n  mutate(inputstate = as.numeric(state_code)) |&gt; \n  select(inputstate, state_name) |&gt; \n  unique()\n\nhead(state_fips)\n\n    inputstate state_name\n1            1    Alabama\n68           2     Alaska\n97           4    Arizona\n112          5   Arkansas\n187          6 California\n245          8   Colorado\n\n\nAnd I can join that information with the CES data like this.\n\nces_clean &lt;- ces_clean |&gt; \n  left_join(state_fips, by = 'inputstate')\n\nces_clean |&gt; \n  count(inputstate, state_name)\n\n# A tibble: 51 × 3\n   inputstate state_name               n\n        &lt;dbl&gt; &lt;chr&gt;                &lt;int&gt;\n 1          1 Alabama                947\n 2          2 Alaska                 115\n 3          4 Arizona               1463\n 4          5 Arkansas               536\n 5          6 California            5035\n 6          8 Colorado              1061\n 7          9 Connecticut            642\n 8         10 Delaware               240\n 9         11 District of Columbia   197\n10         12 Florida               4615\n# ℹ 41 more rows\n\n\nMore on joining datasets in two weeks.\n\n\nSelecting Variables\nFinally, we can use the select() function to keep only the columns we want, and drop the columns we don’t want.\n\nces_clean &lt;- ces_clean |&gt; \n  select(caseid, gender, educ, age, state_name)\n\nhead(ces_clean)\n\n# A tibble: 6 × 5\n      caseid gender educ           age state_name   \n       &lt;dbl&gt; &lt;chr&gt;  &lt;fct&gt;        &lt;dbl&gt; &lt;chr&gt;        \n1 1232318697 Male   2-year          54 Connecticut  \n2 1231394915 Female Post-grad       65 Florida      \n3 1232451503 Female 4-year          74 Iowa         \n4 1232494791 Female 4-year          58 Massachusetts\n5 1232494829 Male   4-year          53 Illinois     \n6 1232473675 Male   Some college    59 Ohio         \n\n\nAnd you can save your cleaned up version of the data to an .RData file with the save() function.\n\nsave(ces_clean, file = 'data/ces-clean.RData')\n\n\n\n\nAdditional Resources\n\nWrangling Penguins, by Allison Horst"
+  },
+  {
+    "objectID": "08-uncertainty.html",
+    "href": "08-uncertainty.html",
+    "title": "Week 8: Uncertainty",
+    "section": "",
+    "text": "Reading\n\n\nProblem Set\n\n\nClass Notes\n\n\nAdditional Resources"
+  },
+  {
+    "objectID": "06-causality.html",
+    "href": "06-causality.html",
+    "title": "Week 6: Causality",
+    "section": "",
+    "text": "Reading\n\n\nProblem Set\n\n\nClass Notes\n\n\nAdditional Resources\n\nHuntington-Klein (2021), a friendly yet thorough introduction to causal inference with observational data (free version online here).\n\n\n\n\n\n\nReferences\n\nHuntington-Klein, Nick. 2021. The Effect: An Introduction to Research Design and Causality. S.l.: CHAPMAN & HALL CRC. https://theeffectbook.net/index.html."
+  },
+  {
+    "objectID": "04-samples.html",
+    "href": "04-samples.html",
+    "title": "Week 4: Samples",
+    "section": "",
+    "text": "This week we discuss the challenges involved in making inferences about a population based on an observed sample. By the end of this week, you will be able to:\n\nDescribe the conditions under which a sample is representative of a population of interest, and the primary challenges involved in obtaining a representative sample.\nCompute and interpret a variety of summary statistics from data, including frequency tables, median, variance, standard deviation, covariance, and correlation coefficient.\nProduce basic data visualizations like histograms and scatter plots.\n\n\nReading\n\nDAFSS Chapter 3\n\n\n\nProblem Set\n&lt;TBD&gt;\n\n\nClass Notes\n\n\nAdditional Resources\n\nTeacup Giraffes: Modules 2-5"
+  },
+  {
+    "objectID": "02-writing-code.html",
+    "href": "02-writing-code.html",
+    "title": "Week 2: Writing Code",
+    "section": "",
+    "text": "This week we introduce the statistical software that we will use to work with data this semester (R and RStudio). By the end of this week, you will learn:"
+  },
+  {
+    "objectID": "02-writing-code.html#footnotes",
+    "href": "02-writing-code.html#footnotes",
+    "title": "Week 2: Writing Code",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nNot the R script! If you install a package in the script then it will reinstall the package every time you run the script, which is unnecessary and time-consuming.↩︎"
+  },
+  {
+    "objectID": "01-introduction.html",
+    "href": "01-introduction.html",
+    "title": "Week 1: Introduction",
+    "section": "",
+    "text": "This week, we introduce the course and discuss three Fundamental Problems of Scientific Inquiry, which will guide our thinking about data analysis this semester."
+  },
+  {
+    "objectID": "01-introduction.html#the-fundamental-problem-of-measurement",
+    "href": "01-introduction.html#the-fundamental-problem-of-measurement",
+    "title": "Week 1: Introduction",
+    "section": "The Fundamental Problem of Measurement",
+    "text": "The Fundamental Problem of Measurement\nOur theories about the world often involve concepts and ideas that we cannot observe directly with our senses. Political scientists are interested in particularly nebulous concepts—like democracy, polarization, freedom, ideology, representation, warfare, alliances—ideas that are all quite sensible when described in words, but lack an obvious method for categorization and measurement in the real world. In statistical terminology, something like a person’s ideology (Converse 1964) is a latent characteristic, something that we cannot observe directly. Instead, we observe behaviors that we think are influenced by a person’s ideology—which campaign they donate to, how they respond to survey questions, how they vote on bills, etc.—and infer their ideology on the basis of those observed characteristics (Barber 2021). But it’s important to remember these observable measures are always imperfect glimpses at the theoretical concepts we’re trying to understand."
+  },
+  {
+    "objectID": "01-introduction.html#the-fundamental-problem-of-causal-inference",
+    "href": "01-introduction.html#the-fundamental-problem-of-causal-inference",
+    "title": "Week 1: Introduction",
+    "section": "The Fundamental Problem of Causal Inference",
+    "text": "The Fundamental Problem of Causal Inference\nScientists are rarely satisfied with measurement alone. We don’t just want to describe the world (“Candidate X won the election”); we want our theories to explain why the world works the way it does (“Candidate X won because she spent more on TV advertising”). Fundamentally, every such causal claim is implicitly a counterfactual claim (“If Candidate X had spent less money on TV advertising, she would have been more likely to lose.”). But the Fundamental Problem of Causal Inference is that we can’t observe counterfactuals. We only know what happened in this universe, and can never know with any certainty what would have happened if circumstances were different. This makes testing causal claims rather difficult, because the best we can do is look at average differences across different data points."
+  },
+  {
+    "objectID": "01-introduction.html#the-fundamental-problem-of-samples",
+    "href": "01-introduction.html#the-fundamental-problem-of-samples",
+    "title": "Week 1: Introduction",
+    "section": "The Fundamental Problem of Samples",
+    "text": "The Fundamental Problem of Samples\nScientists strive to develop general theories about the world; a theory is more useful if it can be fruitfully applied to a large number of cases and situations. But we rarely if ever observe our entire population of interest, so we can never say with certainty that the patterns we observe in our dataset will hold true for the population at large. This is particularly problematic if our observed sample is selected in a non-random fashion, making it unrepresentative of the larger population.\n\nOne can think of these three fundamental problems as three different kinds of missing data problems—whether it’s a latent characteristic, a counterfactual, or observations not included in your dataset—there is some information that we do not observe directly, and so we have to predict what it might be on the basis of the information we do observe. Fortunately, we have a number of methods for credibly making these sorts of inferences. We’ll learn several of them in the first half of this semester!"
+  },
+  {
+    "objectID": "03-experiments.html",
+    "href": "03-experiments.html",
+    "title": "Week 3: Experiments",
+    "section": "",
+    "text": "This week we introduce the Fundamental Problem of Causal Inference, and discuss why randomized experiments are generally considered the gold standard approach to that problem. By the end of this week you will be able to:\n\nDescribe the potential outcomes framework\nCompute a difference-in-means using R\nWrite scripts that perform other essential data analysis tasks, like subsetting and creating new variables.\n\n\nReading\n\nDAFSS Chapter 2\n\n\n\nProblem Set\nPlease submit the responses to the following exercises as a PDF knitted from an R script or Quarto document.\n\nLoad the voting.csv dataset from our previous problem set. What percent of registered voters who received the social pressure message turned out to vote in the 2006 election? What percent of those who did not receive the social pressure message turned out?\nEstimate the average treatment effect of the social pressure message on the probability of voting. Briefly explain why we can or cannot interpret this estimate as a causal effect.\nWhat was the average birth year of respondents who received the social pressure message? What about those who did not receive the social pressure message? Explain this result.\nCreate a new variable called young, equal to 1 if the respondent was less than 25 years old in 2006 and 0 otherwise.\nWas the average effect of the social pressure message larger or smaller for young respondents than for the rest of the sample? Interpret this result.\nBonus. Estimate the average effect of the social pressure message for each birth decade cohort (e.g. everyone born in the 1960s, 1970s, 1980s, etc.). Do any of your estimates stand out as odd? What is the most sensible way to interpret this result?\n\n\n\nAdditional Resources\n\nPearl and Mackenzie (2019)\n\n\n\n\n\n\nReferences\n\nPearl, Judea, and Dana Mackenzie. 2019. The book of why: the new science of cause and effect. Penguin science. London: Penguin Books."
+  },
+  {
+    "objectID": "05-linear-model.html",
+    "href": "05-linear-model.html",
+    "title": "Week 5: The Linear Model",
+    "section": "",
+    "text": "This week we introduce the linear model, the workhorse of empirical social science. By the end of this week, you will be able to:"
+  },
+  {
+    "objectID": "05-linear-model.html#footnotes",
+    "href": "05-linear-model.html#footnotes",
+    "title": "Week 5: The Linear Model",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nResults reported before the manual recount the 2000 election.↩︎"
+  },
+  {
+    "objectID": "07-probability.html",
+    "href": "07-probability.html",
+    "title": "Week 7: Probability",
+    "section": "",
+    "text": "Reading\n\n\nProblem Set\n\n\nClass Notes\n\n\nAdditional Resources\n\nTeacup Giraffes: Module 6 (Standard Error)"
+  },
+  {
+    "objectID": "09-visualization.html",
+    "href": "09-visualization.html",
+    "title": "Week 9: Data Visualization",
+    "section": "",
+    "text": "Today we begin Part 2 of the semester. Our goal over the next few weeks is to train you to complete the entire data analysis pipeline: importing raw datasets, tidying them up, joining together information from multiple datasets, making sure everything is formatted correctly, performing statistical analyses, and communicating your results.\nWe’ll start by discussing data visualization, which is an essential tool at every step along that pipeline. Our brains are hardwired to detect patterns in images, and a well-crafted data visualization can take advantage of that fact to communicate lots of information about your data all at once. This makes visualization a particularly effective tool for communicating results to your audience.\nBut don’t think that visualization is just something you do at the end of the project when you’re writing up the paper. Charts are a useful diagnostic tool as well, revealing patterns in data that summary statistics alone might miss, as the Datasaurus Dozen artfully reveals…\n\nThis week, we dive deeper into building visualizations with the ggplot2 package (a part of the tidyverse). It will take some time to learn all of the function syntax, so be patient with yourself. Once you get the hang of it, you’ll have an endlessly flexible tool for exploring and communicating patterns in your data.\n\nReading\n\nR4DS Chapters 1-2\n\n\n\nProblem Set\nIn a knitted R script or Quarto document, complete the following exercises.\n\nRecreate the following chart using the voting.csv dataset.\n\n\n\n\n\n\n\n\n\n\n\nRecreate the following chart using the ANES.csv dataset. Don’t forget the caption. Bonus. Recreate the dashed vertical lines.\n\n\n\n\n\n\n\n\n\n\n\n\nAdditional Resources\n\nKieran Healy’s data visualization textbook is a great step-by-step guide to the practical challenges of visualizing social science data using ggplot (Healy 2018); online version available here.\n\n\n\n\n\n\nReferences\n\nHealy, Kieran. 2018. Data Visualization: A Practical Introduction. Princeton, NJ: Princeton University Press."
+  },
+  {
+    "objectID": "11-tidying.html",
+    "href": "11-tidying.html",
+    "title": "Week 11: Data Tidying",
+    "section": "",
+    "text": "Reading\n\n\nProblem Set\n\n\nClass Notes\n\n\nAdditional Resources"
+  },
+  {
+    "objectID": "13-joining.html",
+    "href": "13-joining.html",
+    "title": "Week 13: Data Joining",
+    "section": "",
+    "text": "It is rare that all the variables you need for your research will be found in a single dataset. More often, you will need to merge information from multiple datasets before you can begin your analyses. By the end of this week, you will be able to:\n\nJoin datasets based on one or more identifying variables (key variables)\nConduct fuzzy record linkage when key variables do not match exactly\n\n\nReading\n\n\nProblem Set\n\n\nClass Notes\n\n\nAdditional Resources"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "POLS 7012: Introduction to Political Methodology",
+    "section": "",
+    "text": "Welcome to our course website! Here you can find links to everything you’ll need this semester:"
+  },
+  {
+    "objectID": "index.html#course-objectives",
+    "href": "index.html#course-objectives",
+    "title": "POLS 7012: Introduction to Political Methodology",
+    "section": "Course Objectives",
+    "text": "Course Objectives\nBy the end of this course, you will be able to:\n\nConfidently work with data using the R programming language\nCreate beautiful and informative data visualizations\nOrganize your work so that it is transparent and reproducible\nBuild basic statistical models and estimate their parameters from data\nCommunicate uncertainty around your estimates\nIdentify research designs that credibly address three fundamental challenges of social science: measurement, causal inference, and sampling."
+  },
+  {
+    "objectID": "index.html#assignments-grading",
+    "href": "index.html#assignments-grading",
+    "title": "POLS 7012: Introduction to Political Methodology",
+    "section": "Assignments & Grading",
+    "text": "Assignments & Grading\nEach week I will assign 1-2 chapters of reading and a problem set, both due at noon the day of class. Feel free to consult your classmates with questions about the problem sets, but I expect you to submit your answers individually. Resist the temptation to copy-paste your classmates’ code. You are much more likely to learn if you type your responses yourself. Each problem set contains a Bonus problem that will require you to conduct some independent research beyond that week’s reading. Problem sets will be graded pass/fail, where a passing grade indicates that you have correctly solved over 70% of the problems.\nThe semester will culminate with each student completing an independent research project. During the final two weeks, students will present an original analysis of a dataset of their choice. To meet expectations, the project should address in a satisfying way issues relating to measurement, causal inference, and sampling, and students should submit code and a codebook that allows others to replicate their analysis from the raw dataset. Within 48 hours of your presentation, I will provide you a list of revisions that I think would improve the research. Completing these revisions before the end of finals period is a requirement for earning an A- or A in the course. Students wishing to earn an A will—in addition to the presentation, code, and codebook—submit a final paper that includes an abstract, brief literature review, and discussion of their findings.\nThe final letter grade you earn for the semester will be determined based on the number of problem sets you complete that meet expectations, the number of bonus problems you successfully complete, and your performance on the final project. Consult the table below for the minimum requirements for each letter grade. To earn a given letter grade, you must complete the requirements for that grade and all the grades below it, and students must at least meet the requirements for a C to pass the course.\n\n\n\n\n\n\n\n\n\nLetter Grade\nProblem Sets\nBonus Problems\nFinal Project\n\n\n\n\nA\n10\n8\nSubmit a final paper\n\n\nA-\n9\n5\nComplete requested revisions\n\n\nB+\n8\n2\nCode successfully replicates\n\n\nB\n7\n0\nProvide code and codebook\n\n\nC\n6\n0\nPresent final project"
+  },
+  {
+    "objectID": "index.html#office-hours-and-email-policy",
+    "href": "index.html#office-hours-and-email-policy",
+    "title": "POLS 7012: Introduction to Political Methodology",
+    "section": "Office Hours and Email Policy",
+    "text": "Office Hours and Email Policy\nI will be available for students to drop in and chat every Monday, Wednesday, and Friday afternoon from 1:30-3pm. My office is Baldwin 304C. If you send me an email, please allow me 24 hours to respond. Like many professors, my inbox is pretty overloaded. Also, I have small children, so it’s my policy to not check email after 5pm or on weekends. You should feel free to seek assistance from the senior graduate students staffing the SPIA Methods Helpdesk. You can email them questions at spia-methods-help@uga.edu."
+  },
+  {
+    "objectID": "index.html#books",
+    "href": "index.html#books",
+    "title": "POLS 7012: Introduction to Political Methodology",
+    "section": "Books",
+    "text": "Books\nOur readings will come from the two books listed below. The first book (DAFSS) must be purchased—either in hard-copy or through the course Perusall site—but the second (R4DS) is freely available online.\n\nDAFSS: Llaudet, Elena & Imai, Kosuke (2022). Data Analysis for Social Science: A Friendly and Practical Introduction. Princeton University Press.\nR4DS: Wickham, H., Cetinkaya-Rundel, M., & Grolemund, G., (2023). R For Data Science: Import, Tidy, Transform, Visualize, and Model Data, 2nd Edition. O’Reilly Media, Inc."
+  },
+  {
+    "objectID": "index.html#schedule",
+    "href": "index.html#schedule",
+    "title": "POLS 7012: Introduction to Political Methodology",
+    "section": "Schedule",
+    "text": "Schedule\nSee the Schedule drop-down menu in the upper right for a complete list of each week’s objectives, assignments, and class notes."
+  },
+  {
+    "objectID": "index.html#footnotes",
+    "href": "index.html#footnotes",
+    "title": "POLS 7012: Introduction to Political Methodology",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nVisit eLC for the Perusall access code.↩︎"
   }
 ]
