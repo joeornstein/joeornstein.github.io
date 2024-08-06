@@ -403,7 +403,7 @@
     "href": "12-importing-exporting.html",
     "title": "Week 12: Data Importing/Exporting",
     "section": "",
-    "text": "Reading\n\n\nProblem Set\n\n\nClass Notes\n\n\nAdditional Resources"
+    "text": "Reading\n\nR4DS Chapters 7-8\n\n\n\nProblem Set\n\ntidycensus package (bonus?)\n\n\n\nClass Notes\n\n\nAdditional Resources"
   },
   {
     "objectID": "10-wrangling.html",
@@ -417,21 +417,35 @@
     "href": "08-uncertainty.html",
     "title": "Week 8: Uncertainty",
     "section": "",
-    "text": "Reading\n\n\nProblem Set\n\n\nClass Notes\n\n\nAdditional Resources"
+    "text": "Last week, we introduced probability theory from the perspective of sampling. We have some population of interest, and we imagine all the possible samples that we could draw from the population. With this sampling distribution in hand, we have a better sense of how far from the truth a sample estimate might be.\nThis week, we turn that question on its head. We are no longer an omniscient being who can sample ad infinitum from the population. Instead, we are a humble researcher with a single sample. What conclusions can we draw? How confident are we that our sample is not way out in the tails of the sampling distribution? That is a task for statistical inference.\nBy the end of this week, you will be able to:\n\nConduct null hypothesis tests\nCommunicate uncertainty around your estimates from samples using confidence intervals, p-values, and standard errors\n\n\nReading\n\nDAFSS Chapter 7\n\n\n\nProblem Set\n&lt;TBD&gt;\n\n\nClass Notes\n&lt;TBD&gt;\n\n\nAdditional Resources\n\nThere Is Only One Test (blog post by Allen Downey)"
   },
   {
     "objectID": "06-causality.html",
     "href": "06-causality.html",
     "title": "Week 6: Causality",
     "section": "",
-    "text": "Reading\n\n\nProblem Set\n\n\nClass Notes\n\n\nAdditional Resources\n\nHuntington-Klein (2021), a friendly yet thorough introduction to causal inference with observational data (free version online here).\n\n\n\n\n\n\nReferences\n\nHuntington-Klein, Nick. 2021. The Effect: An Introduction to Research Design and Causality. S.l.: CHAPMAN & HALL CRC. https://theeffectbook.net/index.html."
+    "text": "This week, we discuss strategies for estimating causal effects when treatments are not randomly assigned. Our key concern here is confounders: variables that affect our outcomes and also influence whether our observations are treated or untreated. Unless we find some way to hold these confounders constant, any observed relationship between treatment and outcome might just be due to these other factors (e.g. eating ice cream doesn’t cause heatstroke; temperature is the confounding variable that causes both of those things to increase).\nBy the end of this week, you’ll be able to:"
+  },
+  {
+    "objectID": "06-causality.html#derivation-of-ols-estimators",
+    "href": "06-causality.html#derivation-of-ols-estimators",
+    "title": "Week 6: Causality",
+    "section": "Derivation of OLS estimators",
+    "text": "Derivation of OLS estimators\nI want to show you this proof because I think it ties together a lot of different concepts that we’ve been learning, and helps you see what’s going on under-the-hood when you type lm() into R.\nWe have a dataset with one explanatory variable \\(x\\) and an outcome variable \\(y\\). Each observation is represented by a pair of values \\(x_i\\) and \\(y_i\\).\n\n\n\n\n\n\n\n\n\nWe want to find the values of \\(\\alpha\\) and \\(\\beta\\) that minimize the sum of squared errors, as given by the following function:\n\\[\nf(\\alpha, \\beta) = \\sum_{i=1}^n (y_i - \\alpha - \\beta x_i)^2\n\\]\n\nSolving for \\(\\alpha\\)\nLet’s start by minimizing the function with respect to the x-intercept, \\(\\alpha\\). By the sum and chain rules, we get the following partial derivative\n\\[\n\\frac{\\partial f}{\\partial \\alpha} = \\sum_{i=1}^n -2(y_i-\\alpha-\\beta x_i)\n\\]\nNow we set that equal to zero and solve for \\(\\alpha\\).\n\\[\n\\sum_{i=1}^n -2(y_i-\\alpha-\\beta x_i) = 0\n\\]\nDivide each side by -2.\n\\[\n\\sum_{i=1}^n (y_i-\\alpha-\\beta x_i) = 0\n\\] Split up the sum into its component parts (this is the commutative property; doesn’t matter what order you add things).\n\\[\n\\sum_{i=1}^n y_i - \\sum_{i=1}^n \\alpha -  \\sum_{i=1}^n \\beta x_i = 0\n\\]\nWhen you add \\(\\alpha\\) to itself \\(n\\) times you get \\(\\alpha n\\), and we can factor a constant out of the last term on the left.1\n\\[\n\\sum_{i=1}^n y_i - \\alpha n -  \\beta \\sum_{i=1}^n  x_i = 0\n\\]\nNow here’s the key move of the proof: let’s divide each side by \\(n\\), recalling that sample means are defined as \\(\\frac{\\sum y_i}{n} = \\bar{y}\\) and \\(\\frac{\\sum x_i}{n} = \\bar{x}\\).\n\\[\n\\bar{y} - \\alpha -  \\beta \\bar{x} = 0\n\\] Add \\(\\alpha\\) to each side.\n\\[\n\\alpha = \\bar{y} - \\beta \\bar{x}\n\\]\nIn other words, the value of \\(\\alpha\\) that will minimize the sum of squared errors is to take the average value of \\(y\\) and subtract the average value of \\(x\\) times the slope. This makes sense geometrically. Here’s that earlier graph with the line of best fit and dotted lines denoting \\(\\bar{x}\\) and \\(\\bar{y}\\):\n\n\n\n\n\n\n\n\n\nThe line of best fit will cross through the point where \\(\\bar{x}\\) and \\(\\bar{y}\\) meet, so naturally the point where it crosses the y-axis will be \\(\\bar{y}\\) minus how much the line increases or decreases between 0 and \\(\\bar{x}\\). Now we just have to figure out the slope, \\(\\beta\\).\n\n\nSolving for \\(\\beta\\)\nLet’s start by taking the SSE function and substituting in the value of \\(\\alpha\\) we just derived.\n\\[\nf(\\alpha, \\beta) = \\sum_{i=1}^n (y_i - \\alpha - \\beta x_i)^2 = \\sum_{i=1}^n (y_i - (\\bar{y} - \\beta\\bar{x}) - \\beta x_i)^2\n\\]\nRearrange some terms inside those parentheses.\n\\[\nf(\\beta) = \\sum_{i=1}^n ( (y_i - \\bar{y}) - \\beta (x_i - \\bar{x}))^2\n\\]\nLet’s use the same combination of sum rule and chain rule to find the derivative of this SSE function with respect to \\(\\beta\\).\n\\[\n\\frac{df}{d\\beta} = \\sum_{i=1}^n -2(x_i - \\bar{x})((y_i-\\bar{y}) - \\beta(x_i-\\bar{x}))\n\\]\nAgain, set that equal to zero and divide by -2.\n\\[\n\\sum_{i=1}^n (x_i - \\bar{x})((y_i-\\bar{y}) - \\beta(x_i-\\bar{x})) = 0\n\\]\nSplit up the sum into its component parts and factor out \\(\\beta\\).\n\\[\n\\sum_{i=1}^n (x_i - \\bar{x})(y_i-\\bar{y}) - \\beta \\sum_{i=1}^n (x_i-\\bar{x})^2 = 0\n\\] Solve for \\(\\beta\\).\n\\[\n\\beta = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i-\\bar{y})}{\\sum_{i=1}^n (x_i-\\bar{x})^2}\n\\] Recall the definitions of variance (average squared distance from the mean) and covariance (average product of distance from the mean for two variables).\n\\[\nVar(X) = \\frac{\\sum_{i=1}^n (x_i-\\bar{x})^2}{n}\n\\] and\n\\[\nCov(X,Y) = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i-\\bar{y})}{n}\n\\] Substituting those two definitions yields the final result:\n\\[\n\\beta = \\frac{Cov(X,Y)}{Var(X)}\n\\]"
+  },
+  {
+    "objectID": "06-causality.html#footnotes",
+    "href": "06-causality.html#footnotes",
+    "title": "Week 6: Causality",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\n\\(\\beta x_1 + \\beta x_2 + \\beta x_3 + ... = \\beta(x_1 + x_2 +x_3...)\\)↩︎"
   },
   {
     "objectID": "04-samples.html",
     "href": "04-samples.html",
     "title": "Week 4: Samples",
     "section": "",
-    "text": "This week we discuss the challenges involved in making inferences about a population based on an observed sample. By the end of this week, you will be able to:\n\nDescribe the conditions under which a sample is representative of a population of interest, and the primary challenges involved in obtaining a representative sample.\nCompute and interpret a variety of summary statistics from data, including frequency tables, median, variance, standard deviation, covariance, and correlation coefficient.\nProduce basic data visualizations like histograms and scatter plots.\n\n\nReading\n\nDAFSS Chapter 3\n\n\n\nProblem Set\n&lt;TBD&gt;\n\n\nClass Notes\n\n\nAdditional Resources\n\nTeacup Giraffes: Modules 2-5"
+    "text": "This week we discuss the challenges involved in making inferences about a population based on an observed sample. By the end of this week, you will be able to:\n\nDescribe the conditions under which a sample is representative of a population of interest, and the challenges involved in obtaining a representative sample.\nCompute and interpret a variety of summary statistics from data, including frequency tables, median, variance, standard deviation, covariance, and correlation coefficient.\nProduce basic data visualizations like histograms and scatter plots.\n\n\nReading\n\nDAFSS Chapter 3\n\n\n\nProblem Set\n&lt;TBD&gt;\n\n\nAdditional Resources\n\nTeacup Giraffes: Modules 2-5\n@bradleyUnrepresentativeBigSurveys2021 is a beautiful exploration of the “Paradox of Big Data”, demonstrating why large samples are not necessarily better samples."
   },
   {
     "objectID": "02-writing-code.html",
@@ -501,7 +515,56 @@
     "href": "07-probability.html",
     "title": "Week 7: Probability",
     "section": "",
-    "text": "Reading\n\n\nProblem Set\n\n\nClass Notes\n\n\nAdditional Resources\n\nTeacup Giraffes: Module 6 (Standard Error)"
+    "text": "This week, we review the basics of probability theory, which will provide us with the tools we need to express how certain or uncertain we are about the quantities of interest that we estimate from data. By the end of this week, you will be able to:"
+  },
+  {
+    "objectID": "07-probability.html#sampling",
+    "href": "07-probability.html#sampling",
+    "title": "Week 7: Probability",
+    "section": "Sampling",
+    "text": "Sampling\nThe book and the problem set have motivated probability theory with things like coins and cards. This is all very nice for building intuition, but in class, I want us to focus on how all this connects to the concept of the sampling distribution.\nIf we were to randomly select a person from the United States population, what is the probability we would select a female? According to the 2020 Census, here are the total number of males and females in the population.\n\nfemales &lt;- 168.8 * 1e6 # 168.8 million\nmales &lt;- 162.7 * 1e6 # 162.7 million\n\nprobability &lt;- females / (males + females)\nprobability\n\n[1] 0.5092006\n\n\nLet’s sample one.\n\nsample(c('F', 'M'), \n       size = 1, \n       prob = c(probability, 1-probability))\n\n[1] \"F\"\n\n\nThis is a Bernoulli random variable. Two possible outcomes—one with probability \\(p\\) and the other with probability \\(1-p\\). What if we randomly sampled 435 people? How many would be female?\n\nmy_sample &lt;- sample(c('F', 'M'), \n                    size = 435,\n                    replace = TRUE,\n                    prob = c(probability, 1-probability))\n\nsum(my_sample == 'F')\n\n[1] 236\n\n\nIf you take the sum of a bunch of independent Bernoulli random variables, it follows what’s called a binomial distribution. Let’s do that repeatedly, building up a sampling distribution.\n\nsampling_distribution &lt;- c()\n\nfor(i in 1:10000){\n  my_sample &lt;- sample(c('F', 'M'), \n                    size = 435,\n                    replace = TRUE,\n                    prob = c(probability, 1-probability))\n  sampling_distribution[i] &lt;- sum(my_sample == 'F')\n}"
+  },
+  {
+    "objectID": "07-probability.html#drawing-curves-over-histograms",
+    "href": "07-probability.html#drawing-curves-over-histograms",
+    "title": "Week 7: Probability",
+    "section": "Drawing Curves over Histograms",
+    "text": "Drawing Curves over Histograms\nI don’t think it’s explained in the book how the authors plot those nice curves of the distribution functions, so I wanted to include an example here.\n\n# generate a bunch of random normal draws\nZ &lt;- rnorm(1e4, mean = 2, sd = 2)\nhist(Z, freq = FALSE)\n# add curve\nx &lt;- seq(min(Z), max(Z), 0.1)\nlines( x = x,\n       y = dnorm(x, mean = 2, sd = 2),\n       lty = 'dashed' )\n\n\n\n\n\n\n\n\nNow let’s create that same plot for the sampling distribution we just simulated, which should follow the binomial distribution.\n\nhist(sampling_distribution, freq = FALSE)\nx &lt;- seq(min(sampling_distribution), max(sampling_distribution), by = 1)\nlines(x = x,\n      y = dbinom(x,\n                 size = 435,\n                 prob = probability),\n      lty = 'dashed')\n\n\n\n\n\n\n\n\nUsing this sampling distribution, we can explore a few key ideas."
+  },
+  {
+    "objectID": "07-probability.html#expected-value",
+    "href": "07-probability.html#expected-value",
+    "title": "Week 7: Probability",
+    "section": "Expected Value",
+    "text": "Expected Value\nOn average, how many females should we expect to be in our sample? Well, the expected value of a binomial distribution is \\(np\\), where \\(n\\) is the sample size and \\(p\\) is the probability that each person sampled will be a female.\n\nexpected_value &lt;- 435 * probability\n\nexpected_value\n\n[1] 221.5023\n\n\nWe say that our sample statistic is an unbiased estimator if its average value is roughly equal to that expected value.\n\nmean(sampling_distribution)\n\n[1] 221.5604\n\n\nI want to take a moment to marvel at this fact before we move on. There are over 330 million people in the United States. If I want to know how many of them are females, I could do one of two things. Either I could try to contact every single person in the country—as the Census Bureau does every 10 years—and count up the number of males and females. Or I could take a random sample of a few hundred people, and the percent female in that sample will, on average, give us a good approximation of what the other 330 million look like.\nBut averages can be deceiving! We don’t just want to know whether we’ll be right on average. We want to know how far from the truth we might end up with our particular sample."
+  },
+  {
+    "objectID": "07-probability.html#standard-error",
+    "href": "07-probability.html#standard-error",
+    "title": "Week 7: Probability",
+    "section": "Standard Error",
+    "text": "Standard Error\nWhat is the standard deviation of the sampling distribution?\n\nsd(sampling_distribution)\n\n[1] 10.4684\n\n\nThe standard deviation of a sampling distribution is is called the standard error, and it’s a very important number for understanding hypothesis tests. The larger the standard error, the wider the range of sample statistics that could have been computed from our population, and the less certain we should be about our particular value."
+  },
+  {
+    "objectID": "07-probability.html#the-central-limit-theorem",
+    "href": "07-probability.html#the-central-limit-theorem",
+    "title": "Week 7: Probability",
+    "section": "The Central Limit Theorem",
+    "text": "The Central Limit Theorem\nNext, notice the shape of the sampling distribution in the figure above. It’s this nice bell curve that’s well-approximated by the “normal” distribution . Why is the sampling distribution normally shaped, even though the thing we’re sampling from is not normal distributed? Well that’s one of the most fascinating and magical theorems in all of statistics: the Central Limit Theorem. The sampling distribution of the mean is approximately normally distributed—as long as you have a sufficiently large sample size.\nIntuition: some samples will, by chance, contain an unrepresentatively large number of females. Some will contain an unrepresentatively small number females. But most of the time, the females and non-females will cancel each other out, such that the mass of the distribution is centered around the truth.\nThere are a bunch of nice simulations that showing the Central Limit Theorem in action. In class, you’ll get to play around with one.\nNormal distributions are nice. They allow us to say precisely how far a sample estimate is likely to deviate from the truth. For example, we know that about 68% of a normal distribution falls within 1 standard deviation of the mean.\n\nexpected_value &lt;- mean(sampling_distribution)\nstandard_error &lt;- sd(sampling_distribution)\nnum_draws &lt;- length(sampling_distribution)\n\nwithin_1sd &lt;- sum(sampling_distribution &gt; expected_value - standard_error &\n      sampling_distribution &lt; expected_value + standard_error)\n\nwithin_1sd / num_draws\n\n[1] 0.6835\n\n\nAnd about 95% of observations will fall within two standard deviations.\n\nwithin_2sd &lt;- sum(sampling_distribution &gt; expected_value - 2*standard_error &\n                        sampling_distribution &lt; expected_value + 2*standard_error)\n\nwithin_2sd / num_draws\n\n[1] 0.9559\n\n\nAnd about 99.7% will fall within 3 standard deviations. It’s super rare to get an observation that far away from the expected value.\n\nwithin_3sd &lt;- sum(sampling_distribution &gt; expected_value - 3*standard_error &\n                        sampling_distribution &lt; expected_value + 3*standard_error)\n\nwithin_3sd / num_draws\n\n[1] 0.997\n\n\nAs of July 2024, there are 125 females in the 435-member US House of Representatives. What’s the probability that we’d have that few females in a group of 435 people randomly selected from the US population?\n\nsum(sampling_distribution &lt;=125)\n\n[1] 0\n\n\nApproximately zero. Out of 10,000 random samples, we didn’t get a single one with that few females. To be precise, the probability of a sample statistic that low is 0.0000000000000000005%.\n\npbinom(125, size = 435, prob = probability)\n\n[1] 4.841104e-21"
+  },
+  {
+    "objectID": "07-probability.html#margin-of-error",
+    "href": "07-probability.html#margin-of-error",
+    "title": "Week 7: Probability",
+    "section": "Margin of Error",
+    "text": "Margin of Error\nSo if I draw a sample of 435 individuals, then 95% of the time, my sample statistic will be within…\n\n2*sd(sampling_distribution)\n\n[1] 20.93679\n\n\n…of the population average. This is what pollsters call the margin of error.\nAnother way of describing this sampling variability is with a confidence interval. You construct a confidence interval by taking your sample estimate plus or minus 2 standard errors. Because the sample mean is within 2 standard deviations of the truth 95% of the time, the 95% confidence interval will contain the true value approximately 95% of the time."
+  },
+  {
+    "objectID": "07-probability.html#sampling-distribution-of-the-difference-in-means",
+    "href": "07-probability.html#sampling-distribution-of-the-difference-in-means",
+    "title": "Week 7: Probability",
+    "section": "Sampling Distribution of the Difference-In-Means",
+    "text": "Sampling Distribution of the Difference-In-Means\nIn class, we’ll explore how the estimated effect of a treatment can vary even if we have data on the entire population. For this exercise, load the potential-outcomes.csv dataset."
   },
   {
     "objectID": "09-visualization.html",
@@ -515,14 +578,14 @@
     "href": "11-tidying.html",
     "title": "Week 11: Data Tidying",
     "section": "",
-    "text": "Reading\n\n\nProblem Set\n\n\nClass Notes\n\n\nAdditional Resources"
+    "text": "This week we discuss the core principles of tidy data, and why you want to ensure that your data is tidy prior to conducting your statistical analyses. By the end of this week, you will be able to:\n\nPivot datasets to change the unit of analysis\nAssess whether a dataset meets the three criteria necessary to be considered “tidy”\nComplete the steps necessary to convert a raw, “messy” dataset into a form amenable to statistical analysis\n\n\nReading\n\nR4DS Chapters 5-6\n\n\n\nProblem Set\nThis dataset that I downloaded from the World Bank has extensive data on each country’s GDP per capita going back to the 1960s. But it’s hopelessly untidy. In this problem set, we’ll tidy it so that the unit of analysis is the country-year, then perform a few analyses.\n\nLoad the data into R. Note that the data itself doesn’t start until row 5, so you’ll need to account for that (hint: check out the skip argument in read.csv()).\nPivot the dataset so that each row is a country-year (e.g. Peru 1970), and there is a single column with the GDP per capita variable.\nMake sure that the resulting year variable is formatted correctly as a numeric. (Hint: the str_remove_all() function may be helpful, depending on how you imported the dataset.)\nMake sure that the unit of analysis is the country, and all rows represent countries.\nReproduce the following chart.\n\n\n\n\n\n\n\n\n\n\n\nBonus. Some economic growth theories suggest that poor countries should grow faster on average than rich countries (convergence). Other theories suggest that rich countries will grow faster than poor countries (divergence). Which theory appears to be a better description of the period between 1990 and 2015? Compute the average annual growth rate for each country during that period, and estimate the relationship between GDP per capita in 1990 and growth over the following 25 years. Interpret the associated hypothesis test and plot your results."
   },
   {
     "objectID": "13-joining.html",
     "href": "13-joining.html",
     "title": "Week 13: Data Joining",
     "section": "",
-    "text": "It is rare that all the variables you need for your research will be found in a single dataset. More often, you will need to merge information from multiple datasets before you can begin your analyses. By the end of this week, you will be able to:\n\nJoin datasets based on one or more identifying variables (key variables)\nConduct fuzzy record linkage when key variables do not match exactly\n\n\nReading\n\n\nProblem Set\n\n\nClass Notes\n\n\nAdditional Resources"
+    "text": "It is rare that all the variables you need for your research will be found in a single dataset. More often, you will need to merge information from multiple datasets before you can begin your analyses. By the end of this week, you will be able to:\n\nJoin datasets based on one or more key identifying variables\nConduct appropriate diagnostic tests to ensure that the datasets merged correctly\nImplement fuzzy record linkage when key variables do not match exactly\n\n\nReading\n\nR4DS Chapter 19\n\n\n\nProblem Set\nGelman et al. (2007) find an interesting paradox in which rich people are more likely to vote for Republican presidential candidates, but rich US states are more likely to vote for Democrats. In this problem set, we will see if this paradox still holds true in the year 2020.\n\nLoad the raw CES 2020 dataset and tidy the family income, 2020 presidential vote choice, and state of residence variables as necessary.\nWere rich people more likely to vote Republican in 2020? Compute the percent of respondents at each family income level that reported voting for Joe Biden, and plot the relationship.\nUse the tidycensus package to get a dataset with 5-year estimates of median income from the 2020 American Community Survey.\nJoin the individual-level survey data with the median income variable by state.\nWere rich states more likely to vote Democratic in 2020? Create a state-level dataset with each state’s median income and the percent of CES respondents in that state that reported voting for Joe Biden. Plot the relationship and fit a linear model, reporting the estimated slope.\nBonus. Another finding from the Gelman et al. (2007) paper is that the relationship between individual-level income and vote choice is strongest in poor states and weakest in rich states. Let’s see if that result still holds up in 2020. Create a variable that splits the dataset into three groups: poor states (poorest third of the US states), middle-income states (middle third), and rich states (richest third of the US states). Then repeat the individual-level analysis in problem 2, faceting by this new income-group variable.\n\n\n\nAdditional Resources\n\nFor a primer on fuzzy record linkage (merging datasets when the key variables do not contain exact matches), might I self-promote a bit and suggest this paper and R package?\n\n\n\n\n\n\nReferences\n\nGelman, Andrew, Boris Shor, Joseph Bafumi, and David Park. 2007. “Rich State, Poor State, Red State, Blue State: What’s the Matter with Connecticut?” Quarterly Journal of Political Science 2 (June 2006): 345–67. https://doi.org/10.1561/100.00006026."
   },
   {
     "objectID": "index.html",

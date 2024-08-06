@@ -196,8 +196,6 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#reading" id="toc-reading" class="nav-link active" data-scroll-target="#reading">Reading</a></li>
   <li><a href="#problem-set" id="toc-problem-set" class="nav-link" data-scroll-target="#problem-set">Problem Set</a></li>
-  <li><a href="#class-notes" id="toc-class-notes" class="nav-link" data-scroll-target="#class-notes">Class Notes</a></li>
-  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
   </ul>
 </nav>
     </div>
@@ -229,17 +227,40 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>This week we discuss the core principles of <strong>tidy data</strong>, and why you want to ensure that your data is tidy prior to conducting your statistical analyses. By the end of this week, you will be able to:</p>
+<ul>
+<li><p>Pivot datasets to change the unit of analysis</p></li>
+<li><p>Assess whether a dataset meets the three criteria necessary to be considered “tidy”</p></li>
+<li><p>Complete the steps necessary to convert a raw, “messy” dataset into a form amenable to statistical analysis</p></li>
+</ul>
 <section id="reading" class="level1">
 <h1>Reading</h1>
+<ul>
+<li><strong>R4DS</strong> Chapters 5-6</li>
+</ul>
 </section>
 <section id="problem-set" class="level1">
 <h1>Problem Set</h1>
-</section>
-<section id="class-notes" class="level1">
-<h1>Class Notes</h1>
-</section>
-<section id="additional-resources" class="level1">
-<h1>Additional Resources</h1>
+<p><a href="API_NY.GDP.PCAP.PP.CD_DS2_en_csv_v2_2357064.csv">This dataset</a> that I downloaded from the World Bank has extensive data on each country’s GDP per capita going back to the 1960s. But it’s hopelessly untidy. In this problem set, we’ll tidy it so that the unit of analysis is the country-year, then perform a few analyses.</p>
+<ol type="1">
+<li>Load the data into <code>R</code>. Note that the data itself doesn’t start until row 5, so you’ll need to account for that (hint: check out the <code>skip</code> argument in <code>read.csv()</code>).</li>
+<li>Pivot the dataset so that each row is a country-year (e.g.&nbsp;Peru 1970), and there is a single column with the GDP per capita variable.</li>
+<li>Make sure that the resulting year variable is formatted correctly as a numeric. (Hint: the <code>str_remove_all()</code> function may be helpful, depending on how you imported the dataset.)</li>
+<li>Make sure that the unit of analysis is the country, and all rows represent countries.</li>
+<li>Reproduce the following chart.</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11-tidying_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="5" type="1">
+<li><strong>Bonus</strong>. Some economic growth theories suggest that poor countries should grow faster on average than rich countries (convergence). Other theories suggest that rich countries will grow faster than poor countries (divergence). Which theory appears to be a better description of the period between 1990 and 2015? Compute the average annual growth rate for each country during that period, and estimate the relationship between GDP per capita in 1990 and growth over the following 25 years. Interpret the associated hypothesis test and plot your results.</li>
+</ol>
 
 
 </section>
