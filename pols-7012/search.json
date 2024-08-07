@@ -642,5 +642,166 @@
     "title": "Week 10: Data Wrangling",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nI will generally use read_csv() instead of read.csv() in my own work, since it is faster and will give you useful error messages if the input is formatted in a way it doesn’t expect.↩︎"
+  },
+  {
+    "objectID": "slides/integrals.html#area-under-a-curve",
+    "href": "slides/integrals.html#area-under-a-curve",
+    "title": "Calculus Essentials",
+    "section": "Area Under A Curve",
+    "text": "Area Under A Curve\nTo compute a p-value, we need to know the area under the shaded part of the probability distribution function. We know that the area under the entire curve equals 1, but what fraction of that area is shaded below?"
+  },
+  {
+    "objectID": "slides/integrals.html#area-under-a-curve-1",
+    "href": "slides/integrals.html#area-under-a-curve-1",
+    "title": "Calculus Essentials",
+    "section": "Area Under A Curve",
+    "text": "Area Under A Curve\nThe area of a rectangle is easy. \\(A = bh\\)"
+  },
+  {
+    "objectID": "slides/integrals.html#area-under-a-curve-2",
+    "href": "slides/integrals.html#area-under-a-curve-2",
+    "title": "Calculus Essentials",
+    "section": "Area Under A Curve",
+    "text": "Area Under A Curve\nCurves are harder. We didn’t learn this in geometry!"
+  },
+  {
+    "objectID": "slides/integrals.html#area-under-a-curve-3",
+    "href": "slides/integrals.html#area-under-a-curve-3",
+    "title": "Calculus Essentials",
+    "section": "Area Under A Curve",
+    "text": "Area Under A Curve\n\nWith derivatives, we approximated a hard problem (the slope of a curve) using an easy problem (the slope of a line) by zooming in close enough.\nWith integrals, we’ll use a similar trick.\nWe approximate a hard problem (the area under a curve) using an easy problem (the area of a bunch of rectangles) by making the rectangles really thin."
+  },
+  {
+    "objectID": "slides/integrals.html#area-under-a-curve-4",
+    "href": "slides/integrals.html#area-under-a-curve-4",
+    "title": "Calculus Essentials",
+    "section": "Area Under A Curve",
+    "text": "Area Under A Curve\n\nWith derivatives, we approximated a hard problem (the slope of a curve) using an easy problem (the slope of a line) by zooming in close enough.\nWith integrals, we’ll use a similar trick.\nWe approximate a hard problem (the area under a curve) using an easy problem (the area of a bunch of rectangles) by making the rectangles really thin."
+  },
+  {
+    "objectID": "slides/integrals.html#reimann-sums",
+    "href": "slides/integrals.html#reimann-sums",
+    "title": "Calculus Essentials",
+    "section": "Reimann Sums",
+    "text": "Reimann Sums\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
+  },
+  {
+    "objectID": "slides/integrals.html#reimann-sums-1",
+    "href": "slides/integrals.html#reimann-sums-1",
+    "title": "Calculus Essentials",
+    "section": "Reimann Sums",
+    "text": "Reimann Sums\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
+  },
+  {
+    "objectID": "slides/integrals.html#reimann-sums-2",
+    "href": "slides/integrals.html#reimann-sums-2",
+    "title": "Calculus Essentials",
+    "section": "Reimann Sums",
+    "text": "Reimann Sums\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
+  },
+  {
+    "objectID": "slides/integrals.html#reimann-sums-3",
+    "href": "slides/integrals.html#reimann-sums-3",
+    "title": "Calculus Essentials",
+    "section": "Reimann Sums",
+    "text": "Reimann Sums\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
+  },
+  {
+    "objectID": "slides/integrals.html#reimann-sum",
+    "href": "slides/integrals.html#reimann-sum",
+    "title": "Calculus Essentials",
+    "section": "Reimann Sum",
+    "text": "Reimann Sum\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
+  },
+  {
+    "objectID": "slides/integrals.html#reimann-sum-1",
+    "href": "slides/integrals.html#reimann-sum-1",
+    "title": "Calculus Essentials",
+    "section": "Reimann Sum",
+    "text": "Reimann Sum\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
+  },
+  {
+    "objectID": "slides/integrals.html#reimann-sum-2",
+    "href": "slides/integrals.html#reimann-sum-2",
+    "title": "Calculus Essentials",
+    "section": "Reimann Sum",
+    "text": "Reimann Sum\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
+  },
+  {
+    "objectID": "slides/integrals.html#reimann-sum-3",
+    "href": "slides/integrals.html#reimann-sum-3",
+    "title": "Calculus Essentials",
+    "section": "Reimann Sum",
+    "text": "Reimann Sum\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
+  },
+  {
+    "objectID": "slides/integrals.html#reimann-sum-4",
+    "href": "slides/integrals.html#reimann-sum-4",
+    "title": "Calculus Essentials",
+    "section": "Reimann Sum",
+    "text": "Reimann Sum\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
+  },
+  {
+    "objectID": "slides/integrals.html#integral-notation",
+    "href": "slides/integrals.html#integral-notation",
+    "title": "Calculus Essentials",
+    "section": "Integral Notation",
+    "text": "Integral Notation\n\\[\\lim_{h \\to 0} \\sum f(x) \\cdot h = \\int f(x)dx \\]\n\n\\(dx\\) is an “infinitesimal” (infinitely small value).\nSo \\(\\int f(x)dx\\) is the area of an infinite number of infinitely skinny rectangles.\n\n\nIf we want the area under a curve between \\(a\\) and \\(b\\), we denote it like so:\n\\[\\int_a^b f(x)dx\\]"
+  },
+  {
+    "objectID": "slides/integrals.html#the-area-function-fx",
+    "href": "slides/integrals.html#the-area-function-fx",
+    "title": "Calculus Essentials",
+    "section": "The Area Function \\(F(x)\\)",
+    "text": "The Area Function \\(F(x)\\)\n\nThere has to be an easier way to compute the area under a curve than taking the sum of an nearly infinite number of skinny rectangles…\n\n\nWhat we want is a function \\(F(x)\\); let’s call it the area function.\n\n\\(F(a)\\) gives the area under \\(f(x)\\) between \\(-\\infty\\) and \\(a\\).\n\\(F(b) - F(a)\\) gives the area under \\(f(x)\\) between \\(a\\) and \\(b\\)."
+  },
+  {
+    "objectID": "slides/integrals.html#the-area-function-fx-1",
+    "href": "slides/integrals.html#the-area-function-fx-1",
+    "title": "Calculus Essentials",
+    "section": "The Area Function \\(F(x)\\)",
+    "text": "The Area Function \\(F(x)\\)\nAs \\(h\\) approaches zero, our skinny rectangles should become a better and better approximation of this area function…\n\\[f(x) \\cdot h = \\lim_{h \\to 0} F(x+h) - F(x)\\]\n\nDivide on both sides by \\(h\\).\n\\[f(x) = \\lim_{h \\to 0} \\frac{F(x+h) - F(x)}{h}\\]\n\n\nHey doesn’t that look familiar?\n\n\n\\(f(x) = F'(x)\\). In other words, \\(F(x)\\) is the antiderivative."
+  },
+  {
+    "objectID": "slides/integrals.html#the-fundamental-theorem-of-calculus",
+    "href": "slides/integrals.html#the-fundamental-theorem-of-calculus",
+    "title": "Calculus Essentials",
+    "section": "The Fundamental Theorem of Calculus",
+    "text": "The Fundamental Theorem of Calculus\n\\[\\int_a^b f(x)dx =  F(b) - F(a)\\]\nFinding the area under the curve and taking the antiderivative are equivalent operations!"
+  },
+  {
+    "objectID": "slides/integrals.html#lets-try-it",
+    "href": "slides/integrals.html#lets-try-it",
+    "title": "Calculus Essentials",
+    "section": "Let’s Try It!",
+    "text": "Let’s Try It!\nIf \\(f(x) = x\\), find the area under the curve between \\(x=0\\) and \\(x=4\\)."
+  },
+  {
+    "objectID": "slides/integrals.html#lets-try-it-1",
+    "href": "slides/integrals.html#lets-try-it-1",
+    "title": "Calculus Essentials",
+    "section": "Let’s Try It!",
+    "text": "Let’s Try It!\nIf \\(f(x) = x\\), find the area under the curve between \\(x=0\\) and \\(x=4\\).\n\nUse the Fundamental Theorem of Calculus\n\\[\n\\int_0^4 f(x)dx = F(4) - F(0)\n\\]\n\\(F(x) = \\frac{1}{2}x^2 + C\\)\n\n\n\\(F(4) - F(0) = \\frac{1}{2}\\cdot4^2 = 8\\)"
+  },
+  {
+    "objectID": "slides/integrals.html#int_04-fxdx-f4---f0",
+    "href": "slides/integrals.html#int_04-fxdx-f4---f0",
+    "title": "Calculus Essentials",
+    "section": "\\[\\int_0^4 f(x)dx = F(4) - F(0)\\]",
+    "text": "\\[\\int_0^4 f(x)dx = F(4) - F(0)\\]\n\\(F(x) = \\frac{1}{2}x^2 + C\\)\n\n\\(F(4) - F(0) = \\frac{1}{2}\\cdot4^2 = 8\\)"
+  },
+  {
+    "objectID": "slides/integrals.html#now-a-nonlinear-example",
+    "href": "slides/integrals.html#now-a-nonlinear-example",
+    "title": "Calculus Essentials",
+    "section": "Now A Nonlinear Example…",
+    "text": "Now A Nonlinear Example…\nIf \\(f(x) = x^3 - 2x^2 + 2\\), find the area under the curve between \\(x=0\\) and \\(x=3\\).\n\n\\[\\int_0^3 f(x)dx = F(3) - F(0)\\]\n\n\n\\(F(x) = \\frac{1}{4}x^4 - \\frac{2}{3}x^3 + 2x + C\\)\n\n\n\\(F(3) - F(0) = \\frac{1}{4}3^4 - \\frac{2}{3}3^3 + 2(3) - [\\frac{1}{4}0^4 - \\frac{2}{3}0^3 + 2(0)]\\)\n\n\n\\(= 8.25\\)"
+  },
+  {
+    "objectID": "slides/integrals.html#now-a-nonlinear-example-1",
+    "href": "slides/integrals.html#now-a-nonlinear-example-1",
+    "title": "Calculus Essentials",
+    "section": "Now A Nonlinear Example…",
+    "text": "Now A Nonlinear Example…\nThat’s the same answer that we got from the skinny rectangles!"
   }
 ]
