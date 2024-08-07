@@ -192,8 +192,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Week 13: Data Joining</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./14-bonus.html">
- <span class="dropdown-text">Weeks 14-15: Bonus Topics</span></a>
+    <a class="dropdown-item" href="./14-wrap-up.html">
+ <span class="dropdown-text">Weeks 14-15: Wrapping Up</span></a>
   </li>  
     </ul>
   </li>
@@ -269,7 +269,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><em>Move some of the class notes to the front here.</em></p>
+<p>Up to now, we’ve been working with pretty tidy datasets. Every column is a variable, every row is an observation, and every value is where it should be. But things are not always this way. More often than you’re going to like, data comes to you an unruly mess, and you’ll need to tidy it up before you can even start to explore it.</p>
+<p>This week, we’ll learn some of the most important functions in the <code>tidyverse</code> for data wrangling. By the end of the week, you will be able to:</p>
+<ul>
+<li><p>Filter the rows of a dataset using conditional logic with the <code>filter()</code> function</p></li>
+<li><p>Select and rename columns using the <code>select()</code> function</p></li>
+<li><p>Create new variables and modify existing ones using the <code>mutate()</code> function</p></li>
+<li><p>Properly format categorical variables, with the help of functions like <code>case_when()</code> and <code>factor()</code></p></li>
+<li><p>Perform a basic data merge with <code>left_join()</code></p></li>
+</ul>
 <section id="reading" class="level1">
 <h1>Reading</h1>
 <ul>
@@ -279,22 +287,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="problem-set" class="level1">
 <h1>Problem Set</h1>
-<p>This week, we’re going to be summarizing different variables from the CES 2020 dataset. You’ll need to use the codebook to identify which variables contain the information you want, tidy them up, and then summarize. Write an <code>R</code> script that performs these tasks, compile a PDF report, and submit the report.</p>
+<p>This week, we’re going to be summarizing different variables from the CES 2020 dataset. You’ll need to download the dataset (see instructions in the class notes below) and use the codebook to identify which variables contain the information you want, tidy them up, and then summarize. Write an <code>R</code> script that performs these tasks, compile a PDF report, and submit the report.</p>
 <p>Here are the questions I’d like you to answer:</p>
 <ol type="1">
 <li><p>Are labor union members more likely to be Democrats or Republicans?</p></li>
-<li><p>What is the median age of people with landline phones, compared to those who only have cell phones?</p></li>
-<li><p>Are people who read the newspaper more likely to correctly answer the questions about who controls the US House of Representatives and US Senate?</p></li>
-<li><p>Which religious groups are the most and least likely to support making abortion illegal in all circumstances?</p></li>
+<li><p>Compare the average age of people with landline phones, compared to those who only have cell phones? Estimate the difference-in-means and report the p-value from a null hypothesis test.</p></li>
+<li><p>Are people who read the newspaper more likely to correctly answer the questions about who controls the US House of Representatives and US Senate? (Remember, this survey was conducted at the end of 2020.)</p></li>
+<li><p>Create a bar chart reporting the percent of respondents in each religious group that support making abortion illegal in all circumstances.</p></li>
 <li><p><strong>Bonus</strong>. The CES oversamples some respondents relative to their frequency among registered voters in order to get a better statistical picture of some smaller subgroups. The dataset contains a <em>weight</em> variable for each respondent, reflecting how much that type of respondent is overrepresented in the sample compared to the population. Compare the mean age of the sample with the <em>weighted mean</em> age of the sample. What do you notice? Do the same thing for the unweighted and weighted shares of each racial group. Redo the analyses in questions 1-4 using weighted means. What conclusions, if any, change?</p></li>
 </ol>
 </section>
 <section id="class-notes" class="level1">
 <h1>Class Notes</h1>
-<p>Up to now, we’ve been working with pretty tidy datasets. Every column is a variable, every row is an observation, and every value is where it should be. But things are not always this way. More often than you’re going to like, data comes to you an unruly mess, and you’ll need to tidy it up before you can even start to explore it.</p>
-<p>This week, we’ll learn some of the most important functions in the <code>tidyverse</code> for data wrangling.</p>
+<p>Previously, we have worked with a tidied up version of the Cooperative Election Study (CES) from 2020. To illustrate the process of <strong>data wrangling</strong>, let’s look at the steps I took to import and clean up that dataset.</p>
 <p><a href="https://allisonhorst.shinyapps.io/dplyr-learnr/#section-welcome"><img src="img/data_wrangler.png" class="img-fluid"></a></p>
-<p>In your last problem set, you worked with a tidied up version of the Cooperative Election Study (CES) from 2020. Let’s look at the steps I took to import and clean up that dataset.</p>
 <section id="importing-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="importing-the-data">Importing The Data</h3>
 <p>The CES is a survey of a representative sample of 50,000+ American adults, conducted every election year by a large consortium of universities. The data going back to 2006 is available <a href="https://cces.gov.harvard.edu/">here</a>. Go to that site and download the 2020 dataset, a 180 megabyte monster called <code>CES20_Common_OUTPUT_vv.csv</code>.</p>
@@ -303,7 +309,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 'Joe', 35, 'Bull Moose'
 'Fiona', 6, 'Birthday'
 'Avery', 3, 'Know Nothing'</code></pre>
-<p>It’s a nice standardized way to represent datasets, and fortunately for us, the <code>read_csv()</code> function allows us to read such files into <code>R</code>. Let’s create an object called <code>ces_raw</code> from that raw dataset.</p>
+<p>It’s a nice standardized way to represent datasets, and fortunately for us, the <code>read_csv()</code> function allows us to read such files into <code>R</code>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Let’s create an object called <code>ces_raw</code> from that raw dataset.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -540,7 +546,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 # ℹ 41 more rows</code></pre>
 </div>
 </div>
-<p>More on joining datasets in two weeks.</p>
+<p>We will explore joining datasets more deeply in two weeks.</p>
 </section>
 <section id="selecting-variables" class="level3">
 <h3 class="anchored" data-anchor-id="selecting-variables">Selecting Variables</h3>
@@ -577,7 +583,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>I will generally use <code>read_csv()</code> instead of <code>read.csv()</code> in my own work, since it is faster and will give you useful error messages if the input is formatted in a way it doesn’t expect.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
