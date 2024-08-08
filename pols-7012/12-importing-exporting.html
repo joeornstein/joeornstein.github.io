@@ -188,8 +188,12 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#reading" id="toc-reading" class="nav-link active" data-scroll-target="#reading">Reading</a></li>
-  <li><a href="#problem-set" id="toc-problem-set" class="nav-link" data-scroll-target="#problem-set">Problem Set</a></li>
-  <li><a href="#class-notes" id="toc-class-notes" class="nav-link" data-scroll-target="#class-notes">Class Notes</a></li>
+  <li><a href="#problem-set" id="toc-problem-set" class="nav-link" data-scroll-target="#problem-set">Problem Set</a>
+  <ul class="collapse">
+  <li><a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a></li>
+  <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a></li>
+  <li><a href="#part-3" id="toc-part-3" class="nav-link" data-scroll-target="#part-3">Part 3</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -219,6 +223,12 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<p>This week, we go back to the very start of the data analysis pipeline: importing data into R. Many datasets are formatted and stored in strange ways, and it is good to have practice working with importing data from many kinds of sources. By the end of this week, you will be able to:</p>
+<ul>
+<li><p>Use the <code>read_csv()</code> function from the tidyverse to wrangle unruly .csv files</p></li>
+<li><p>Perform manual data entry with <code>tibble()</code> and <code>tribble()</code></p></li>
+<li><p>Read data from the web and APIs</p></li>
+</ul>
 <section id="reading" class="level1">
 <h1>Reading</h1>
 <ul>
@@ -228,17 +238,33 @@ ul.task-list li input[type="checkbox"] {
 <section id="problem-set" class="level1">
 <h1>Problem Set</h1>
 <p>In this problem set, we’ll practice reading and cleaning up data from a variety of sources. Submit your responses as a knitted R script or Quarto document.</p>
+<section id="part-1" class="level2">
+<h2 class="anchored" data-anchor-id="part-1">Part 1</h2>
+<p>The website 538 maintains a dataset of all polls conducted during the 2024 US presidential election at the following <a href="https://projects.fivethirtyeight.com/polls-page/data/president_polls.csv">link</a>. The following set of problems involve reading and analyzing this dataset.</p>
 <ol type="1">
-<li><a href="https://projects.fivethirtyeight.com/polls-page/data/president_polls.csv" class="uri">https://projects.fivethirtyeight.com/polls-page/data/president_polls.csv</a> (this could be a multistep thing, because week 12 is the week after election day don’tchaknow)</li>
-<li>fwf</li>
-<li>Follow the instructions on <a href="https://walker-data.com/tidycensus/articles/basic-usage.html">this page</a> to obtain an API key from the US Census. Once you have an API key</li>
+<li>Read the .csv file directly into R from the URL.</li>
+<li>Make sure that the start date and end date fields are properly formatted as a date.</li>
+<li>What is the unit of analysis in this dataset? Perform the necessary transformation so that the unit of analysis is the poll (unique identifier is the variable <code>poll_id</code>) and for each poll compute the percent of respondents that planned to vote for the Democratic candidate.</li>
+<li>Keep only the polls of likely voters in two states of your choice.</li>
+<li>Create a scatter plot of Democratic vote share over time, faceted by state. Include dashed vertical lines indicating the dates of major campaign events.</li>
+<li><strong>Bonus</strong>. Compute 95% confidence intervals for each poll assuming random sampling from the population of likely voters. What fraction of these 95% confidence intervals contain the true Democratic vote share in the two states you selected? Does this fraction increase for polls conducted closer to the election? What about polls conducted by pollsters with high “grades” from 538? What about polls conducted over telephone vs.&nbsp;online polls?</li>
 </ol>
 </section>
-<section id="class-notes" class="level1">
-<h1>Class Notes</h1>
-<p>In class, we’ll work with a few other methods for importing data, including the <a href="https://walker-data.com/tidycensus/articles/basic-usage.html">US Census API</a> and output files from other statistical programs like Stata and SPSS.</p>
+<section id="part-2" class="level2">
+<h2 class="anchored" data-anchor-id="part-2">Part 2</h2>
+<p>In this part of the problem set, we’ll be working with the <code>tidycensus</code> package, which can import data directly from the US Census API (<a href="https://joeornstein.github.io/text-as-data/apis.html">Application Programming Interface</a>).</p>
+<ol start="7" type="1">
+<li>Follow the instructions on <a href="https://walker-data.com/tidycensus/articles/basic-usage.html">this page</a> to obtain an API key from the US Census. Once you have an API key, reproduce the median income chart at the bottom of that page, but for counties in South Carolina instead of Vermont.</li>
+</ol>
+</section>
+<section id="part-3" class="level2">
+<h2 class="anchored" data-anchor-id="part-3">Part 3</h2>
+<ol start="8" type="1">
+<li><strong>Bonus</strong>. Download the Public Use Files at the bottom of <a href="https://www.census.gov/data/tables/2017/econ/gov-finances/summary-tables.html">this page</a>. Inside that folder is a giant fixed-width file called <code>2017FinEstDAT_06122023modp_pu.txt</code> with information on the finances of US state and local governments. Use the <code>read_fwf()</code> function to import that dataset into R; the first page of the Technical Documentation pdf in the folder will tell you exactly which positions are associated with which variable. Once you have imported the dataset, keep only the data for the Athens-Clarke County Unified Government and compute the share of tax revenue that comes from Property Taxes and Sales Taxes.</li>
+</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

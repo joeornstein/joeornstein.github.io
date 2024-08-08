@@ -81,6 +81,8 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -252,7 +254,45 @@ div.csl-indent {
 </section>
 <section id="problem-set" class="level1">
 <h1>Problem Set</h1>
-<p>&lt;TBD&gt;</p>
+<p>This problem set is based on <span class="citation" data-cites="kingEnhancingValidityCrossCultural2004">King et al. (<a href="#ref-kingEnhancingValidityCrossCultural2004" role="doc-biblioref">2004</a>)</span>, a study of cross-cultural comparability in survey research.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Essentially, the authors want to know whether people from very different contexts are likely to interpret survey questions in the same way. If you ask someone in China how much of a voice they have in government on a scale from 1-5, will they interpret those numbers in the same way as a survey respondent in Mexico? If not, then it’s going to be difficult to make cross-country comparisons on the basis of such survey data.</p>
+<p>The authors come up with a clever way to help deal with this problem. First, they ask respondents the following question to try to gauge <strong>political efficacy</strong>.</p>
+<blockquote class="blockquote">
+<p>How much say do you have in getting the government to address issues that interest you?</p>
+<p>(1) No say at all</p>
+<p>(2) Little say</p>
+<p>(3) Some say</p>
+<p>(4) A lot of say</p>
+<p>(5) Unlimited say</p>
+</blockquote>
+<p>Then they provide a series of <em>vignettes</em> about fictional people and ask the respondents to rate the political efficacy of the people in the vignettes. The idea is that by providing an “anchor” on which to gauge what different people mean by different responses, we can begin to make valid interpersonal comparisons.</p>
+<p>The vignettes read:</p>
+<blockquote class="blockquote">
+<p>“[Alison] lacks clean drinking water. She and her neighbors are supporting an opposition candidate in the forthcoming elections that has promised to address the issue. It appears that so many people in her area feel the same way that the opposition candidate will defeat the incumbent representative.”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“[Jane] lacks clean drinking water because the government is pursuing an industrial development plan. In the campaign for an upcoming election, an opposition party has promised to address the issue, but she feels it would be futile to vote for the opposition since the government is certain to win.”</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“[Moses] lacks clean drinking water. He would like to change this, but he can’t vote, and feels that no one in the government cares about this issue. So he suffers in silence, hoping something will be done in the future.”</p>
+</blockquote>
+<p>After reading each vignette, respondents are asked “How much say does [name] have in getting the government to address issues that interest [him/her]?”, with the same set of responses as the original question above.</p>
+<p>Load the <a href="data/vignettes.csv">vignettes.csv</a> dataset and you will find a dataset with 6 variables.</p>
+<ul>
+<li><p><code>self</code>: the self-assessment response</p></li>
+<li><p><code>alison</code>, <code>jane</code>, <code>moses</code>: responses to each vignette</p></li>
+<li><p><code>china</code>: 1 for Chinese respondents, 0 for Mexican respondents</p></li>
+<li><p><code>age</code>: age in years</p></li>
+</ul>
+<p>Please complete the following questions and upload your responses as a knitted R script or Quarto document.</p>
+<ol type="1">
+<li>Create a proportion table for responses to the self-assessment scale, broken down by country. What percent of Mexican respondents rated themselves as 1 (“no say at all”)? What percent of Chinese respondents? What is the mean response in each country? Based on these measures, does political efficacy appear to be higher in China or Mexico? Is this result surprising to you?</li>
+<li>Create histograms of age, one for each country. What is the median age of respondents from each country? How might this affect cross-country comparisons of political efficacy?</li>
+<li>Compute the proportion of respondents—again separately for China and Mexico—who rate themselves lower than Moses on the political efficacy scale. How does this result differ from your analysis in problem 1? Give a brief interpretation of the result.</li>
+<li>To help deal with the interpersonal incomparability problem, we’re going to create a new variable that measures each respondent’s political self-efficacy <em>relative</em> to their ratings on the three vignettes. First, create a new dataset with just the respondents who ranked Alison <span class="math inline">\(\geq\)</span> Jane and Jane <span class="math inline">\(\geq\)</span> Moses on the political efficacy scale. What percent of respondents thought this was the correct ordering of the vignettes?</li>
+<li>In this new dataset, create a variable that represents how respondents rank themselves relative to the three vignettes. The variable should equal 1 if the respondent rated themselves lower than Moses, 2 if rated at least as high as Moses, 3 if rated at least as high as Jane, and 4 if the respondent rated themselves at least as high as Alison. Repeat the analysis from problem 1 with this new dataset. Give a brief interpretation of the result compared to the results obtained in problem 1.</li>
+<li>Briefly describe how nonresponse bias might affect our conclusions from a survey about political efficacy?</li>
+</ol>
+<p>No <strong>Bonus</strong> problem this week! (I make it up to you by including two Bonus problems in Week 12.)</p>
 </section>
 <section id="additional-resources" class="level1">
 <h1>Additional Resources</h1>
@@ -265,11 +305,23 @@ div.csl-indent {
 
 </section>
 
+
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-bradleyUnrepresentativeBigSurveys2021" class="csl-entry" role="listitem">
 Bradley, Valerie C., Shiro Kuriwaki, Michael Isakov, Dino Sejdinovic, Xiao-Li Meng, and Seth Flaxman. 2021. <span>“Unrepresentative Big Surveys Significantly Overestimated US Vaccine Uptake.”</span> <em>Nature</em>, December, 1–6. <a href="https://doi.org/10.1038/s41586-021-04198-4">https://doi.org/10.1038/s41586-021-04198-4</a>.
 </div>
-</div></section></div></main> <!-- /main -->
+<div id="ref-imaiQuantitativeSocialScience2017" class="csl-entry" role="listitem">
+Imai, Kosuke. 2017. <em>Quantitative Social Science: An Introduction</em>. Princeton: Princeton University Press.
+</div>
+<div id="ref-kingEnhancingValidityCrossCultural2004" class="csl-entry" role="listitem">
+King, Gary, Christopher J. L. Murray, Joshua A. Salomon, and Ajay Tandon. 2004. <span>“Enhancing the Validity and Cross-Cultural Comparability of Measurement in Survey Research.”</span> <em>American Political Science Review</em> 98 (1): 191–207. <a href="https://doi.org/10.1017/S000305540400108X">https://doi.org/10.1017/S000305540400108X</a>.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>See also chapter 3 of <span class="citation" data-cites="imaiQuantitativeSocialScience2017">Imai (<a href="#ref-imaiQuantitativeSocialScience2017" role="doc-biblioref">2017</a>)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
