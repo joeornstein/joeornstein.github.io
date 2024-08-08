@@ -1,96 +1,5 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Two Principles\n\nBe humble. Think in terms of probabilities rather than certainties.\nConsider multiple perspectives."
-  },
-  {
-    "objectID": "fall-2022.html#week-1-830",
-    "href": "fall-2022.html#week-1-830",
-    "title": "Fall 2022 Predictions",
-    "section": "Week 1 (8/30)",
-    "text": "Week 1 (8/30)"
-  },
-  {
-    "objectID": "fall-2022.html#week-2-97",
-    "href": "fall-2022.html#week-2-97",
-    "title": "Fall 2022 Predictions",
-    "section": "Week 2 (9/7)",
-    "text": "Week 2 (9/7)"
-  },
-  {
-    "objectID": "fall-2022.html#week-3-921",
-    "href": "fall-2022.html#week-3-921",
-    "title": "Fall 2022 Predictions",
-    "section": "Week 3 (9/21)",
-    "text": "Week 3 (9/21)"
-  },
-  {
-    "objectID": "fall-2022.html#week-4-928",
-    "href": "fall-2022.html#week-4-928",
-    "title": "Fall 2022 Predictions",
-    "section": "Week 4 (9/28)",
-    "text": "Week 4 (9/28)"
-  },
-  {
-    "objectID": "fall-2022.html#week-5-105",
-    "href": "fall-2022.html#week-5-105",
-    "title": "Fall 2022 Predictions",
-    "section": "Week 5 (10/5)",
-    "text": "Week 5 (10/5)"
-  },
-  {
-    "objectID": "fall-2022.html#week-6-1012",
-    "href": "fall-2022.html#week-6-1012",
-    "title": "Fall 2022 Predictions",
-    "section": "Week 6 (10/12)",
-    "text": "Week 6 (10/12)"
-  },
-  {
-    "objectID": "fall-2022.html#week-7-1019",
-    "href": "fall-2022.html#week-7-1019",
-    "title": "Fall 2022 Predictions",
-    "section": "Week 7 (10/19)",
-    "text": "Week 7 (10/19)"
-  },
-  {
-    "objectID": "fall-2022.html#week-8-1026",
-    "href": "fall-2022.html#week-8-1026",
-    "title": "Fall 2022 Predictions",
-    "section": "Week 8 (10/26)",
-    "text": "Week 8 (10/26)"
-  },
-  {
-    "objectID": "fall-2022.html#week-9-118",
-    "href": "fall-2022.html#week-9-118",
-    "title": "Fall 2022 Predictions",
-    "section": "Week 9 (11/8)",
-    "text": "Week 9 (11/8)"
-  },
-  {
-    "objectID": "fall-2022.html#leaderboard",
-    "href": "fall-2022.html#leaderboard",
-    "title": "Fall 2022 Predictions",
-    "section": "Leaderboard",
-    "text": "Leaderboard\nNote: Updated December 22, 2022.1\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nClass Average\n30/39\n0.1824\n\n\n2\nJeremy Lee\n27/39\n0.1887\n\n\n3\nDavid Barrero\n26/39\n0.1959\n\n\n4\nJoe Ornstein\n25/39\n0.2124\n\n\n5\nNicholas Chao\n24/39\n0.2166\n\n\n6\nAdam Szczupak\n28/39\n0.2170\n\n\n7\nArianna Ycaza\n24/39\n0.2319\n\n\n8\nPatrick Egan\n26/39\n0.2332\n\n\n9\nHannah Jones\n22/39\n0.2418\n\n\n10\nAudrey Vaughan\n25/39\n0.2452\n\n\n11\nAndrew Decker\n22/39\n0.2477\n\n\n12\nJoe Kennedy\n22/39\n0.2477\n\n\n13\nNoah Herndon\n23/39\n0.2490\n\n\n14\nMeredith Stevens\n19/39\n0.2903\n\n\n15\nOlivia West\n16/39\n0.3081\n\n\n16\nEdward Cox\n20/39\n0.3169\n\n\n17\nMac Kinnebrew\n17/39\n0.3172\n\n\n18\nCharlie Estabrook\n14/39\n0.3776\n\n\n19\nIan Driggers\n14/39\n0.4218"
-  },
-  {
-    "objectID": "fall-2022.html#calibration-plots",
-    "href": "fall-2022.html#calibration-plots",
-    "title": "Fall 2022 Predictions",
-    "section": "Calibration Plots",
-    "text": "Calibration Plots"
-  },
-  {
-    "objectID": "index.html#week-1-96",
-    "href": "index.html#week-1-96",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 1 (9/6)",
-    "text": "Week 1 (9/6)"
-  },
-  {
     "objectID": "index.html#week-2-913",
     "href": "index.html#week-2-913",
     "title": "Fall 2023 Predictions",
@@ -173,5 +82,89 @@
     "title": "Fall 2023 Predictions",
     "section": "Calibration Plots",
     "text": "Calibration Plots"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Two Principles\n\nBe humble. Think in terms of probabilities rather than certainties.\nConsider multiple perspectives."
+  },
+  {
+    "objectID": "fall-2022.html#week-2-97",
+    "href": "fall-2022.html#week-2-97",
+    "title": "Fall 2022 Predictions",
+    "section": "Week 2 (9/7)",
+    "text": "Week 2 (9/7)"
+  },
+  {
+    "objectID": "fall-2022.html#week-3-921",
+    "href": "fall-2022.html#week-3-921",
+    "title": "Fall 2022 Predictions",
+    "section": "Week 3 (9/21)",
+    "text": "Week 3 (9/21)"
+  },
+  {
+    "objectID": "fall-2022.html#week-4-928",
+    "href": "fall-2022.html#week-4-928",
+    "title": "Fall 2022 Predictions",
+    "section": "Week 4 (9/28)",
+    "text": "Week 4 (9/28)"
+  },
+  {
+    "objectID": "fall-2022.html#week-5-105",
+    "href": "fall-2022.html#week-5-105",
+    "title": "Fall 2022 Predictions",
+    "section": "Week 5 (10/5)",
+    "text": "Week 5 (10/5)"
+  },
+  {
+    "objectID": "fall-2022.html#week-6-1012",
+    "href": "fall-2022.html#week-6-1012",
+    "title": "Fall 2022 Predictions",
+    "section": "Week 6 (10/12)",
+    "text": "Week 6 (10/12)"
+  },
+  {
+    "objectID": "fall-2022.html#week-7-1019",
+    "href": "fall-2022.html#week-7-1019",
+    "title": "Fall 2022 Predictions",
+    "section": "Week 7 (10/19)",
+    "text": "Week 7 (10/19)"
+  },
+  {
+    "objectID": "fall-2022.html#week-8-1026",
+    "href": "fall-2022.html#week-8-1026",
+    "title": "Fall 2022 Predictions",
+    "section": "Week 8 (10/26)",
+    "text": "Week 8 (10/26)"
+  },
+  {
+    "objectID": "fall-2022.html#week-9-118",
+    "href": "fall-2022.html#week-9-118",
+    "title": "Fall 2022 Predictions",
+    "section": "Week 9 (11/8)",
+    "text": "Week 9 (11/8)"
+  },
+  {
+    "objectID": "fall-2022.html#leaderboard",
+    "href": "fall-2022.html#leaderboard",
+    "title": "Fall 2022 Predictions",
+    "section": "Leaderboard",
+    "text": "Leaderboard\nNote: Updated December 22, 2022.1\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nClass Average\n30/39\n0.1824\n\n\n2\nJeremy Lee\n27/39\n0.1887\n\n\n3\nDavid Barrero\n26/39\n0.1959\n\n\n4\nJoe Ornstein\n25/39\n0.2124\n\n\n5\nNicholas Chao\n24/39\n0.2166\n\n\n6\nAdam Szczupak\n28/39\n0.2170\n\n\n7\nArianna Ycaza\n24/39\n0.2319\n\n\n8\nPatrick Egan\n26/39\n0.2332\n\n\n9\nHannah Jones\n22/39\n0.2418\n\n\n10\nAudrey Vaughan\n25/39\n0.2452\n\n\n11\nAndrew Decker\n22/39\n0.2477\n\n\n12\nJoe Kennedy\n22/39\n0.2477\n\n\n13\nNoah Herndon\n23/39\n0.2490\n\n\n14\nMeredith Stevens\n19/39\n0.2903\n\n\n15\nOlivia West\n16/39\n0.3081\n\n\n16\nEdward Cox\n20/39\n0.3169\n\n\n17\nMac Kinnebrew\n17/39\n0.3172\n\n\n18\nCharlie Estabrook\n14/39\n0.3776\n\n\n19\nIan Driggers\n14/39\n0.4218"
+  },
+  {
+    "objectID": "fall-2022.html#calibration-plots",
+    "href": "fall-2022.html#calibration-plots",
+    "title": "Fall 2022 Predictions",
+    "section": "Calibration Plots",
+    "text": "Calibration Plots"
+  },
+  {
+    "objectID": "fall-2022.html#footnotes",
+    "href": "fall-2022.html#footnotes",
+    "title": "Fall 2022 Predictions",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nI had incorrectly resolved the Netanyahu question as “yes” following the November 1 Israeli elections, but he did not secure a coalition agreement to become Prime Minister by the November 30 deadline.↩︎"
   }
 ]

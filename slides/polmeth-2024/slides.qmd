@@ -1,0 +1,457 @@
+---
+title: "`fuzzylink`"
+subtitle: "Probabilistic Record Linkage Using Pretrained Text Embeddings"
+author: 
+  name: "Joseph T. Ornstein"
+  affiliation: "University of Georgia"
+format: 
+  revealjs:
+    incremental: true
+editor: visual
+echo: true
+cache: true
+bibliography: references.bib
+---
+
+## Fuzzy Record Linkage
+
+```{r}
+#| echo: false
+library(tidyverse)
+presidents <- tribble(~name, ~age,
+               'Joe Biden', 81,
+               'Donald Trump', 77,
+               'Barack Obama', 62,
+               'George W. Bush', 77,
+               'Bill Clinton', 77) |> 
+  as.data.frame()
+
+voter_file <- tribble(~name, ~hobby,
+               'Joseph Robinette Biden', 'Trains',
+               'Donald John Trump ', 'Golf',
+               'Barack Hussein Obama', 'Basketball',
+               'George Walker Bush', 'Reading',
+               'William Jefferson Clinton', 'Saxophone',
+               'Biff Tannen', 'Bullying',
+               'Joe Riley', 'Jogging') |> 
+  as.data.frame()
+```
+
+::: columns
+::: column
+```{r}
+presidents
+```
+:::
+
+::: column
+```{r}
+voter_file
+```
+:::
+:::
+
+. . .
+
+```{r}
+#| eval: false
+library(fuzzylink)
+fuzzylink(presidents, voter_file, by = 'name', record_type = 'person')
+```
+
+```{r}
+#| echo: false
+library(fuzzylink)
+fuzzylink(presidents, voter_file, by = 'name', record_type = 'person', verbose = FALSE) |> 
+  select(-sim, -jw, -validated)
+```
+
+## Overview of the Talk
+
+1.  Review existing methods for fuzzy record linkage
+2.  The proposed approach
+3.  Three applications
+4.  Avenues for future work
+
+## Background {.smaller}
+
+-   To perform fuzzy record linkage, one needs a measure of *string* *similarity*.
+
+-   Existing approaches rely on *lexical* measures of string similarity [e.g. @jaro1989].
+
+    -   Computed based on shared lexical features (e.g., fraction of characters in common, number of transpositions necessary to convert one string to another)
+
+    -   `R` packages like `fastLink`, `fuzzyjoin`, and `stringmatch` all use one or more of these measures
+
+-   Great for linking records with typos/misspellings.
+
+-   May provide a misleading measure of match quality when two lexically dissimilar strings have the same meaning.
+
+## Background
+
+**Nicknames:**
+
+```{r}
+#| echo: false
+# A <- c('Joseph Robinette Biden', 'Joe Riley', 'William Jefferson Clinton', 'Biff Tannen')
+# B <- c('Joe Biden', 'Bill Clinton')
+# mat <- round(stringdist::stringsimmatrix(A, B, method = 'jw', p = 0.1), 2)
+# rownames(mat) <- A
+# colnames(mat) <- B
+# mat
+
+A <- c('Joseph Robinette Biden', 'Joe Riley')
+B <- c('Joe Biden')
+mat <- round(stringdist::stringsimmatrix(A, B, method = 'jw', p = 0.1), 2)
+rownames(mat) <- A
+colnames(mat) <- B
+mat
+
+A <- c('William Jefferson Clinton', 'Biff Tannen')
+B <- c('Bill Clinton')
+mat <- round(stringdist::stringsimmatrix(A, B, method = 'jw', p = 0.1), 2)
+rownames(mat) <- A
+colnames(mat) <- B
+mat
+```
+
+. . .
+
+**Acronyms:**
+
+```{r}
+#| echo: false
+
+# A <- c('United States Post Office', 'UPS', 'American Association of Retired Persons', 'AAA', 'Pacific Gas and Electric', 'PPG Industries')
+# B <- c('USPS', 'AARP', 'PG&E')
+# mat <- round(stringdist::stringsimmatrix(A, B, method = 'jw', p = 0.1), 2)
+# rownames(mat) <- A
+# colnames(mat) <- B
+# mat
+
+A <- c('United States Post Office', 'UPS')
+B <- c('USPS')
+mat <- round(stringdist::stringsimmatrix(A, B, method = 'jw', p = 0.1), 2)
+rownames(mat) <- A
+colnames(mat) <- B
+mat
+
+A <- c('American Association of Retired Persons', 'AAA')
+B <- c('AARP')
+mat <- round(stringdist::stringsimmatrix(A, B, method = 'jw', p = 0.1), 2)
+rownames(mat) <- A
+colnames(mat) <- B
+mat
+
+A <- c('Pacific Gas and Electric', 'PPG Industries')
+B <- c('PG&E')
+mat <- round(stringdist::stringsimmatrix(A, B, method = 'jw', p = 0.1), 2)
+rownames(mat) <- A
+colnames(mat) <- B
+mat
+```
+
+## Beyond Lexical Similarity
+
+-   We'd prefer a measure that captures not just *lexical* similarity, but *semantic* similarity as well.
+
+-   Over the past five years, we've seen the proliferation of language models that seem to understand the meaning of language (e.g. ChatGPT).
+
+    -   Leveraging these models for fuzzy record linkage is a natural next step.
+
+## So...could we just ask ChatGPT?
+
+. . .
+
+![](images/prompt.png)
+
+## So...could we just ask ChatGPT?
+
+-   The advantage of this approach is accuracy! GPT-4o correctly labels 99.1% of name pairs from @kaufman2022.
+
+-   The problem with this approach is that it scales terribly.
+
+    -   If you have $N_A$ records in the first dataset, and $N_B$ records in the second dataset, you need $N_A \times N_B$ pairwise comparisons.
+
+    -   This is *expensive*, in both time and money.
+
+-   A scalable record linkage procedure might *incorporate* LLM prompts, but needs to dramatically reduce the number of prompts we submit.
+
+## Proposed Solution
+
+Use **pretrained text embeddings** to predict which record pairs are likely matches, then validate only those likely matches using an LLM prompt.
+
+## Background: Text Embeddings
+
+-   LLMs represent text as **embeddings**---high-dimensional vectors of real numbers.
+
+-   These vectors are trained so that texts with similar meaning are close to one another in vector space.
+
+-   For example, OpenAI's latest embedding model represents the string "Joe Biden" as the following 3,072-dimensional vector:
+
+. . .
+
+```{r}
+embedding <- fuzzylink::get_embeddings('Joe Biden',
+                                       dimensions = 3072)
+embedding['Joe Biden',] |> round(5)
+```
+
+## Background: Text Embeddings
+
+We can measure the similarity between two embeddings using **cosine similarity**.
+
+[![](https://miro.medium.com/v2/resize:fit:915/1*dyH20eCqb6qTL-gt4nCVzQ.png)](https://miro.medium.com/v2/resize:fit:915/1*dyH20eCqb6qTL-gt4nCVzQ.png)
+
+## Background: Text Embeddings
+
+```{r}
+embeddings <- fuzzylink::get_embeddings(c('Joe Biden', 'Joseph Robinette Biden', 'Joe Riley', 'Bill Clinton', 'Biff Tannen', 'William Jefferson Clinton', 'United States Post Office', 'UPS', 'American Association of Retired Persons', 'AAA', 'Pacific Gas and Electric', 'PPG Industries', 'USPS', 'AARP', 'PG&E'))
+```
+
+. . .
+
+```{r}
+fuzzylink::get_similarity_matrix(embeddings,
+                                 c('William Jefferson Clinton', 'Biff Tannen'), 
+                                 'Bill Clinton')
+```
+
+. . .
+
+```{r}
+fuzzylink::get_similarity_matrix(embeddings, 
+                                 c('UPS', 'USPS'),
+                                 'United States Post Office')
+```
+
+. . .
+
+```{r}
+fuzzylink::get_similarity_matrix(embeddings, 
+                                 c('AAA', 'AARP'),
+                                 'American Association of Retired Persons')
+```
+
+## The `fuzzylink` Algorithm
+
+-   **Step 1:** Retrieve embeddings for the identifying fields of each record
+
+-   **Step 2:** Compute cosine similarity matrix
+
+-   **Step 3:** Use LLM prompt to label a sample of name pairs
+
+-   **Step 4:** Fit a logistic regression model to predict whether two records match
+
+-   **Step 5:** Estimate match probabilities for each name pair
+
+-   **Step 6:** Validate uncertain matches using LLM prompt
+
+-   Repeat **Steps 4-6** until no uncertain matches remain
+
+## Step 1: Embeddings
+
+```{r}
+all_names <- c(presidents$name, voter_file$name)
+embeddings <- get_embeddings(all_names)
+
+embeddings['Donald Trump',]
+```
+
+## Step 2: Cosine Similarities
+
+```{r}
+sim <- get_similarity_matrix(embeddings, presidents$name, voter_file$name)
+
+sim
+```
+
+## Step 3: Label A Training Set
+
+**GPT-4o Prompt:**
+
+*Decide if the following two names refer to the same person. Think carefully. Respond Yes or No.*
+
+. . .
+
+```{r}
+fuzzylink::check_match('Joe Biden', 'Joseph Robinette Biden', 
+                       record_type = 'person')
+```
+
+. . .
+
+```{r}
+#| echo: FALSE
+sim <- list(sim)
+```
+
+```{r}
+train <- fuzzylink::get_training_set(sim, record_type = 'person')
+train
+```
+
+## Step 4: Fit a Logistic Regression
+
+```{r}
+model <- glm(as.numeric(match == 'Yes') ~ sim + jw, 
+             data = train, 
+             family = 'binomial')
+```
+
+## Step 5: Estimate Match Probabilities
+
+```{r}
+#| echo: false
+
+df <- sim[[1]] |> 
+  reshape2::melt() |> 
+  set_names(c('A', 'B', 'sim')) |> 
+  # compute lexical similarity measures for each name pair
+  mutate(jw = stringdist::stringsim(A, B, method = 'jw', p = 0.1)) |> 
+  mutate(jw = round(jw, 4),
+         sim = round(sim, 4))
+
+df$match_probability <- round(predict(model, df, type = 'response'), 2)
+
+df
+```
+
+## Step 6: Validate Uncertain Matches
+
+-   In this toy example, $N_A \times N_B$ is small enough to feasibly validate every record pair.
+
+-   But for larger datasets, there is a cost-accuracy tradeoff in how many record pairs we label.
+
+-   The final step of the algorithm is an **active learning loop**:
+
+    -   Label uncertain record pairs with an LLM prompt (estimated probabilities within some user-defined range)
+
+    -   Refit the model with the new labeled pairs
+
+    -   Repeat until there are no uncertain record pairs remaining
+
+# Applications
+
+## Applications
+
+1.  Linking candidate names from California elections (n = 9,025) with voter file (n = 22 million)
+2.  Linking organization names (n = 1,388) with campaign donation records (n = 2.9 million)
+3.  Multilingual record linkage. Names of parliamentary political parties in 32 countries since 1900 with their English language translations.
+
+-   **Three performance metrics:** precision, recall, and calibration of estimated probabilities
+
+## Application 1: Voter File
+
+| Name on Ballot | Name in Voter File (L2)  |
+|----------------|--------------------------|
+| Trish Munro    | Patricia Keer Munro      |
+| Betsy Stix     | Elizabeth Emily Stix     |
+| Libby Schaaf   | Elizabeth Beckman Schaaf |
+| Mel Chiong     | Carmelita Asiddao Chiong |
+| Matt Hummel    | Francis Matthew Hummel   |
+| Dick Albright  | Richard William Albright |
+| Peggy Moore    | Margaret Lee Moore       |
+
+## Application 1: Voter File
+
+Hand-coded matches for 840 records from three counties for performance validation.
+
+| Method      | Precision | Recall |
+|-------------|-----------|--------|
+| `fastLink`  | 98.6%     | 58.2%  |
+| `fuzzylink` | 94.7%     | 97.2%  |
+
+## Application 1: Voter File
+
+Estimated match probabilities well-calibrated; serve as a useful guide for manual validation.
+
+![](images/fuzzylink-calibration-l2-match%20~%20sim%20+%20jw.png)
+
+## Application 2: Organization Names
+
+-   Linked the names of 1,377 organizations that cosigned amicus curiae briefs [@abi-hassanIdeologiesOrganizedInterests2023] with DIME dataset to estimate ideology.
+
+-   Significantly improved recall and 99.3% precision. Located DIME scores for 444 organizations, compared with 376 organizations in [@abi-hassanIdeologiesOrganizedInterests2023].
+
+## Application 2: Organization Names
+
+-   `fuzzylink` correctly identified several alternate and former names for organizations:
+
+    -   "Utah Association for Justice" = "Utah Trial Lawyers Association"
+
+    -   "Ojibwe" = "Chippewa"
+
+    -   "RELX" = "Reed Elsevier"
+
+## Application 3: Multilingual Records
+
+Artificially split the Parlgov dataset into two datasets with 4,972 records each.
+
+| county_name | election_date | party_name                             | seats |
+|-------------|---------------|----------------------------------------|-------|
+| Austria     | 1919-02-16    | Sozialdemokratische Partei Österreichs | 72    |
+| Austria     | 1919-02-16    | Österreichische Volkspartei            | 69    |
+| Austria     | 1919-02-16    | Deutschnationale                       | 8     |
+
+## Application 3: Multilingual Records
+
+Artificially split the Parlgov dataset into two datasets with 4,972 records each.
+
+| county_name | election_date | party_name                         | left_right |
+|-------------|-------------|---------------------------------|-------------|
+| Austria     | 1919-02-16    | Social Democratic Party of Austria | 3.72       |
+| Austria     | 1919-02-16    | Austrian People's Party            | 6.47       |
+| Austria     | 1919-02-16    | German-Nationals                   | 7.4        |
+
+## Application 3: Multilingual Records
+
+-   Matched by party name, blocking on country-year.
+
+-   Correctly linked 4,805 name pairs out of 4,972.
+
+    -   **Recall:** 97%
+
+    -   **Precision:** 96%
+
+## Application 3: Multilingual Records
+
+![](images/ideology-time-series.png)
+
+## Conclusions
+
+-   For problems where records may be represented by lexically dissimilar strings, proposed approach significantly outperforms existing methods
+
+-   Fast and cheap. Applications required a few dollars in API fees and a few minutes / hours runtime (depending on blocking variables).
+
+## Conclusions
+
+-   Should we be relying on closed-sourced language models and embeddings [@spirlingWhyOpensourceGenerative2023]?
+
+    -   Replicated applications with Mistral open-source models; performance is not as good.
+
+    -   Available as option in `fuzzylink` package
+
+-   Focused in this paper on applications with a single fuzzy matching string. Future work:
+
+    -   Multiple fuzzy string identifiers
+
+    -   Geographic identifiers
+
+# Thank You!
+
+::: columns
+::: column
+Paper:
+
+![](images/qr-paper.png)
+:::
+
+::: column
+`fuzzylink` R package:
+
+![](images/qr-fuzzylink.png)
+:::
+:::
+
+## References

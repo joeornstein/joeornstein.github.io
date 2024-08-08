@@ -85,6 +85,20 @@ window.document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+<<<<<<< HEAD
+=======
+  function dashboardOffset() {
+    const dashboardNavEl = window.document.getElementById(
+      "quarto-dashboard-header"
+    );
+    if (dashboardNavEl !== null) {
+      return dashboardNavEl.clientHeight;
+    } else {
+      return 0;
+    }
+  }
+
+>>>>>>> aaceeaeb79d54f545e9e49f017536f0e9465a40a
   function updateDocumentOffsetWithoutAnimation() {
     updateDocumentOffset(false);
   }
@@ -92,7 +106,11 @@ window.document.addEventListener("DOMContentLoaded", function () {
   function updateDocumentOffset(animated) {
     // set body offset
     const topOffset = headerOffset();
+<<<<<<< HEAD
     const bodyOffset = topOffset + footerOffset();
+=======
+    const bodyOffset = topOffset + footerOffset() + dashboardOffset();
+>>>>>>> aaceeaeb79d54f545e9e49f017536f0e9465a40a
     const bodyEl = window.document.body;
     bodyEl.setAttribute("data-bs-offset", topOffset);
     bodyEl.style.paddingTop = topOffset + "px";
@@ -205,9 +223,15 @@ window.document.addEventListener("DOMContentLoaded", function () {
   // Observe size changed for the header
   const headerEl = window.document.querySelector("header.fixed-top");
   if (headerEl && window.ResizeObserver) {
+<<<<<<< HEAD
     const observer = new window.ResizeObserver(
       updateDocumentOffsetWithoutAnimation
     );
+=======
+    const observer = new window.ResizeObserver(() => {
+      setTimeout(updateDocumentOffsetWithoutAnimation, 0);
+    });
+>>>>>>> aaceeaeb79d54f545e9e49f017536f0e9465a40a
     observer.observe(headerEl, {
       attributes: true,
       childList: true,
@@ -226,6 +250,10 @@ window.document.addEventListener("DOMContentLoaded", function () {
     const links = window.document.querySelectorAll("a");
     for (let i = 0; i < links.length; i++) {
       if (links[i].href) {
+<<<<<<< HEAD
+=======
+        links[i].dataset.originalHref = links[i].href;
+>>>>>>> aaceeaeb79d54f545e9e49f017536f0e9465a40a
         links[i].href = links[i].href.replace(/\/index\.html/, "/");
       }
     }
@@ -233,7 +261,11 @@ window.document.addEventListener("DOMContentLoaded", function () {
     // Fixup any sharing links that require urls
     // Append url to any sharing urls
     const sharingLinks = window.document.querySelectorAll(
+<<<<<<< HEAD
       "a.sidebar-tools-main-item"
+=======
+      "a.sidebar-tools-main-item, a.quarto-navigation-tool, a.quarto-navbar-tools, a.quarto-navbar-tools-item"
+>>>>>>> aaceeaeb79d54f545e9e49f017536f0e9465a40a
     );
     for (let i = 0; i < sharingLinks.length; i++) {
       const sharingLink = sharingLinks[i];
