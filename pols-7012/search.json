@@ -1,5 +1,397 @@
 [
   {
+    "objectID": "slides/integrals.html#area-under-a-curve",
+    "href": "slides/integrals.html#area-under-a-curve",
+    "title": "Calculus Essentials",
+    "section": "Area Under A Curve",
+    "text": "Area Under A Curve\nTo compute a p-value, we need to know the area under the shaded part of the probability distribution function. We know that the area under the entire curve equals 1, but what fraction of that area is shaded below?"
+  },
+  {
+    "objectID": "slides/integrals.html#area-under-a-curve-1",
+    "href": "slides/integrals.html#area-under-a-curve-1",
+    "title": "Calculus Essentials",
+    "section": "Area Under A Curve",
+    "text": "Area Under A Curve\nThe area of a rectangle is easy. \\(A = bh\\)"
+  },
+  {
+    "objectID": "slides/integrals.html#area-under-a-curve-2",
+    "href": "slides/integrals.html#area-under-a-curve-2",
+    "title": "Calculus Essentials",
+    "section": "Area Under A Curve",
+    "text": "Area Under A Curve\nCurves are harder. We didn’t learn this in geometry!"
+  },
+  {
+    "objectID": "slides/integrals.html#area-under-a-curve-3",
+    "href": "slides/integrals.html#area-under-a-curve-3",
+    "title": "Calculus Essentials",
+    "section": "Area Under A Curve",
+    "text": "Area Under A Curve\n\nWith derivatives, we approximated a hard problem (the slope of a curve) using an easy problem (the slope of a line) by zooming in close enough.\nWith integrals, we’ll use a similar trick.\nWe approximate a hard problem (the area under a curve) using an easy problem (the area of a bunch of rectangles) by making the rectangles really thin."
+  },
+  {
+    "objectID": "slides/integrals.html#reimann-sum",
+    "href": "slides/integrals.html#reimann-sum",
+    "title": "Calculus Essentials",
+    "section": "Reimann Sum",
+    "text": "Reimann Sum\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
+  },
+  {
+    "objectID": "slides/integrals.html#reimann-sum-1",
+    "href": "slides/integrals.html#reimann-sum-1",
+    "title": "Calculus Essentials",
+    "section": "Reimann Sum",
+    "text": "Reimann Sum\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
+  },
+  {
+    "objectID": "slides/integrals.html#reimann-sum-2",
+    "href": "slides/integrals.html#reimann-sum-2",
+    "title": "Calculus Essentials",
+    "section": "Reimann Sum",
+    "text": "Reimann Sum\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
+  },
+  {
+    "objectID": "slides/integrals.html#reimann-sum-3",
+    "href": "slides/integrals.html#reimann-sum-3",
+    "title": "Calculus Essentials",
+    "section": "Reimann Sum",
+    "text": "Reimann Sum\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
+  },
+  {
+    "objectID": "slides/integrals.html#reimann-sum-4",
+    "href": "slides/integrals.html#reimann-sum-4",
+    "title": "Calculus Essentials",
+    "section": "Reimann Sum",
+    "text": "Reimann Sum\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
+  },
+  {
+    "objectID": "slides/integrals.html#integral-notation",
+    "href": "slides/integrals.html#integral-notation",
+    "title": "Calculus Essentials",
+    "section": "Integral Notation",
+    "text": "Integral Notation\n\\[\\lim_{h \\to 0} \\sum f(x) \\cdot h = \\int f(x)dx \\]\n\n\\(dx\\) is an “infinitesimal” (infinitely small value).\nSo \\(\\int f(x)dx\\) is the area of an infinite number of infinitely skinny rectangles.\n\n\nIf we want the area under a curve between \\(a\\) and \\(b\\), we denote it like so:\n\\[\\int_a^b f(x)dx\\]"
+  },
+  {
+    "objectID": "slides/integrals.html#the-area-function-fx",
+    "href": "slides/integrals.html#the-area-function-fx",
+    "title": "Calculus Essentials",
+    "section": "The Area Function \\(F(x)\\)",
+    "text": "The Area Function \\(F(x)\\)\n\nThere has to be an easier way to compute the area under a curve than taking the sum of an nearly infinite number of skinny rectangles…\n\n\nWhat we want is a function \\(F(x)\\); let’s call it the area function.\n\n\\(F(a)\\) gives the area under \\(f(x)\\) between \\(-\\infty\\) and \\(a\\).\n\\(F(b) - F(a)\\) gives the area under \\(f(x)\\) between \\(a\\) and \\(b\\)."
+  },
+  {
+    "objectID": "slides/integrals.html#the-area-function-fx-1",
+    "href": "slides/integrals.html#the-area-function-fx-1",
+    "title": "Calculus Essentials",
+    "section": "The Area Function \\(F(x)\\)",
+    "text": "The Area Function \\(F(x)\\)\nAs \\(h\\) approaches zero, our skinny rectangles should become a better and better approximation of this area function…\n\\[f(x) \\cdot h = \\lim_{h \\to 0} F(x+h) - F(x)\\]\n\nDivide on both sides by \\(h\\).\n\\[f(x) = \\lim_{h \\to 0} \\frac{F(x+h) - F(x)}{h}\\]\n\n\nHey doesn’t that look familiar?\n\n\n\\(f(x) = F'(x)\\). In other words, \\(F(x)\\) is the antiderivative."
+  },
+  {
+    "objectID": "slides/integrals.html#the-fundamental-theorem-of-calculus",
+    "href": "slides/integrals.html#the-fundamental-theorem-of-calculus",
+    "title": "Calculus Essentials",
+    "section": "The Fundamental Theorem of Calculus",
+    "text": "The Fundamental Theorem of Calculus\n\\[\\int_a^b f(x)dx =  F(b) - F(a)\\]\nFinding the area under the curve and taking the antiderivative are equivalent operations!"
+  },
+  {
+    "objectID": "slides/integrals.html#lets-try-it",
+    "href": "slides/integrals.html#lets-try-it",
+    "title": "Calculus Essentials",
+    "section": "Let’s Try It!",
+    "text": "Let’s Try It!\nIf \\(f(x) = x\\), find the area under the curve between \\(x=0\\) and \\(x=4\\)."
+  },
+  {
+    "objectID": "slides/integrals.html#lets-try-it-1",
+    "href": "slides/integrals.html#lets-try-it-1",
+    "title": "Calculus Essentials",
+    "section": "Let’s Try It!",
+    "text": "Let’s Try It!\nIf \\(f(x) = x\\), find the area under the curve between \\(x=0\\) and \\(x=4\\).\n\nUse the Fundamental Theorem of Calculus\n\\[\n\\int_0^4 f(x)dx = F(4) - F(0)\n\\]\n\\(F(x) = \\frac{1}{2}x^2 + C\\)\n\n\n\\(F(4) - F(0) = \\frac{1}{2}\\cdot4^2 = 8\\)"
+  },
+  {
+    "objectID": "slides/integrals.html#now-a-nonlinear-example",
+    "href": "slides/integrals.html#now-a-nonlinear-example",
+    "title": "Calculus Essentials",
+    "section": "Now A Nonlinear Example…",
+    "text": "Now A Nonlinear Example…\nIf \\(f(x) = x^3 - 2x^2 + 2\\), find the area under the curve between \\(x=0\\) and \\(x=3\\).\n\n\\[\\int_0^3 f(x)dx = F(3) - F(0)\\]\n\n\n\\(F(x) = \\frac{1}{4}x^4 - \\frac{2}{3}x^3 + 2x + C\\)\n\n\n\\(F(3) - F(0) = \\frac{1}{4}3^4 - \\frac{2}{3}3^3 + 2(3) - [\\frac{1}{4}0^4 - \\frac{2}{3}0^3 + 2(0)]\\)\n\n\n\\(= 8.25\\)"
+  },
+  {
+    "objectID": "slides/integrals.html#now-a-nonlinear-example-1",
+    "href": "slides/integrals.html#now-a-nonlinear-example-1",
+    "title": "Calculus Essentials",
+    "section": "Now A Nonlinear Example…",
+    "text": "Now A Nonlinear Example…\nThat’s the same answer that we got from the skinny rectangles!"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "POLS 7012: Introduction to Political Methodology",
+    "section": "",
+    "text": "Welcome to our course website! Here you can find links to everything you’ll need this semester:"
+  },
+  {
+    "objectID": "index.html#course-objectives",
+    "href": "index.html#course-objectives",
+    "title": "POLS 7012: Introduction to Political Methodology",
+    "section": "Course Objectives",
+    "text": "Course Objectives\nBy the end of this course, you will be able to:\n\nConfidently work with data using the R programming language\nCreate beautiful and informative data visualizations\nOrganize your work so that it is transparent and reproducible\nBuild basic statistical models and estimate their parameters from data\nCommunicate uncertainty around your estimates\nIdentify research designs that credibly address three fundamental challenges of social science: measurement, causal inference, and sampling."
+  },
+  {
+    "objectID": "index.html#assignments-grading",
+    "href": "index.html#assignments-grading",
+    "title": "POLS 7012: Introduction to Political Methodology",
+    "section": "Assignments & Grading",
+    "text": "Assignments & Grading\nEach week I will assign 1-2 chapters of reading and a problem set, both due at noon the day of class. Feel free to consult your classmates with questions about the problem sets, but I expect you to submit your answers individually. Resist the temptation to copy-paste your classmates’ code. You are much more likely to learn if you type your responses yourself. Each problem set contains a Bonus problem that will require you to conduct some independent research beyond that week’s reading. Problem sets will be graded pass/fail, where a passing grade indicates that you have correctly solved over 70% of the problems.\nThe semester will culminate with each student completing an independent research project. During the final two weeks, students will present an original analysis of a dataset of their choice. To meet expectations, the project should address in a satisfying way issues relating to measurement, causal inference, and sampling, and students should submit code and a codebook that allows others to replicate their analysis from the raw dataset. Within 48 hours of your presentation, I will provide you a list of revisions that I think would improve the research. Completing these revisions before the end of finals period is a requirement for earning an A- or A in the course. Students wishing to earn an A will—in addition to the presentation, code, and codebook—submit a final paper that includes an abstract, brief literature review, and discussion of their findings.\nThe final letter grade you earn for the semester will be determined based on the number of problem sets you complete that meet expectations, the number of bonus problems you successfully complete, and your performance on the final project. Consult the table below for the minimum requirements for each letter grade. To earn a given letter grade, you must complete the requirements for that grade and all the grades below it, and students must at least meet the requirements for a C to pass the course.\n\n\n\n\n\n\n\n\n\nLetter Grade\nProblem Sets\nBonus Problems\nFinal Project\n\n\n\n\nA\n10\n8\nSubmit a final paper\n\n\nA-\n9\n5\nComplete requested revisions\n\n\nB+\n8\n2\nCode successfully replicates\n\n\nB\n7\n0\nProvide code and codebook\n\n\nC\n6\n0\nPresent final project"
+  },
+  {
+    "objectID": "index.html#office-hours-and-email-policy",
+    "href": "index.html#office-hours-and-email-policy",
+    "title": "POLS 7012: Introduction to Political Methodology",
+    "section": "Office Hours and Email Policy",
+    "text": "Office Hours and Email Policy\nI will be available for students to drop in and chat every Monday, Wednesday, and Friday afternoon from 1:30-3pm. My office is Baldwin 304C. If you send me an email, please allow me 24 hours to respond. Like many professors, my inbox is pretty overloaded. Also, I have small children, so it’s my policy to not check email after 5pm or on weekends. You should feel free to seek assistance from the senior graduate students staffing the SPIA Methods Helpdesk. You can email them questions at spia-methods-help@uga.edu."
+  },
+  {
+    "objectID": "index.html#books",
+    "href": "index.html#books",
+    "title": "POLS 7012: Introduction to Political Methodology",
+    "section": "Books",
+    "text": "Books\nOur readings will come from the two books listed below. The first book (DAFSS) must be purchased—either in hard-copy or through the course Perusall site—but the second (R4DS) is freely available online.\n\nDAFSS: Llaudet, Elena & Imai, Kosuke (2022). Data Analysis for Social Science: A Friendly and Practical Introduction. Princeton University Press.\nR4DS: Wickham, H., Cetinkaya-Rundel, M., & Grolemund, G., (2023). R For Data Science: Import, Tidy, Transform, Visualize, and Model Data, 2nd Edition. O’Reilly Media, Inc."
+  },
+  {
+    "objectID": "index.html#schedule",
+    "href": "index.html#schedule",
+    "title": "POLS 7012: Introduction to Political Methodology",
+    "section": "Schedule",
+    "text": "Schedule\nSee the Schedule drop-down menu in the upper right for a complete list of each week’s objectives, assignments, and class notes."
+  },
+  {
+    "objectID": "index.html#footnotes",
+    "href": "index.html#footnotes",
+    "title": "POLS 7012: Introduction to Political Methodology",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nVisit eLC for the Perusall access code.↩︎"
+  },
+  {
+    "objectID": "13-joining.html",
+    "href": "13-joining.html",
+    "title": "Week 13: Data Joining",
+    "section": "",
+    "text": "It is rare that all the variables you need for your research will be found in a single dataset. More often, you will need to merge information from multiple datasets before you can begin your analyses. By the end of this week, you will be able to:\n\nJoin datasets based on one or more key identifying variables\nConduct appropriate diagnostic tests to ensure that the datasets merged correctly\nImplement fuzzy record linkage when key variables do not match exactly\n\n\nReading\n\nR4DS Chapter 19\n\n\n\nProblem Set\nGelman et al. (2007) find an interesting paradox in which rich people are more likely to vote for Republican presidential candidates, but rich US states are more likely to vote for Democrats. In this problem set, we will see if this paradox still holds true in the year 2020.\n\nLoad the raw CES 2020 dataset and tidy the family income, 2020 presidential vote choice, and state of residence variables as necessary.\nWere rich people more likely to vote Republican in 2020? Compute the percent of respondents at each family income level that reported voting for Joe Biden, and plot the relationship.\nUse the tidycensus package to get a dataset with 5-year estimates of median income from the 2020 American Community Survey.\nJoin the individual-level survey data with the median income variable by state.\nWere rich states more likely to vote Democratic in 2020? Create a state-level dataset with each state’s median income and the percent of CES respondents in that state that reported voting for Joe Biden. Plot the relationship and fit a linear model, reporting the estimated slope.\nBonus. Another finding from the Gelman et al. (2007) paper is that the relationship between individual-level income and vote choice is strongest in poor states and weakest in rich states. Let’s see if that result still holds up in 2020. Create a variable that splits the dataset into three groups: poor states (poorest third of the US states), middle-income states (middle third), and rich states (richest third of the US states). Then repeat the individual-level analysis in problem 2, faceting by this new income-group variable.\n\n\n\nAdditional Resources\n\nFor a primer on fuzzy record linkage (merging datasets when the key variables do not contain exact matches), might I self-promote a bit and suggest this paper and R package?\n\n\n\n\n\n\nReferences\n\nGelman, Andrew, Boris Shor, Joseph Bafumi, and David Park. 2007. “Rich State, Poor State, Red State, Blue State: What’s the Matter with Connecticut?” Quarterly Journal of Political Science 2 (June 2006): 345–67. https://doi.org/10.1561/100.00006026."
+  },
+  {
+    "objectID": "11-tidying.html",
+    "href": "11-tidying.html",
+    "title": "Week 11: Data Tidying",
+    "section": "",
+    "text": "This week we discuss the core principles of tidy data, and why you want to ensure that your data is tidy prior to conducting your statistical analyses. By the end of this week, you will be able to:\n\nPivot datasets to change the unit of analysis\nAssess whether a dataset meets the three criteria necessary to be considered “tidy”\nComplete the steps necessary to convert a raw, “messy” dataset into a form amenable to statistical analysis\n\n\nReading\n\nR4DS Chapters 5-6\n\n\n\nProblem Set\nThis dataset that I downloaded from the World Bank has extensive data on each country’s GDP per capita going back to the 1960s. But it’s hopelessly untidy. In this problem set, we’ll tidy it so that the unit of analysis is the country-year, then perform a few analyses.\n\nLoad the data into R. Note that the data itself doesn’t start until row 5, so you’ll need to account for that (hint: check out the skip argument in read.csv()).\nPivot the dataset so that each row is a country-year (e.g. Peru 1970), and there is a single column with the GDP per capita variable.\nMake sure that the resulting year variable is formatted correctly as a numeric. (Hint: the str_remove_all() function may be helpful, depending on how you imported the dataset.)\nMake sure that the unit of analysis is the country, and all rows represent countries.\nReproduce the following chart.\n\n\n\n\n\n\n\nBonus. Some economic growth theories suggest that poor countries should grow faster on average than rich countries (convergence). Other theories suggest that rich countries will grow faster than poor countries (divergence). Which theory appears to be a better description of the period between 1990 and 2015? Compute the average annual growth rate for each country during that period, and estimate the relationship between GDP per capita in 1990 and growth over the following 25 years. Interpret the associated hypothesis test and plot your results."
+  },
+  {
+    "objectID": "09-visualization.html",
+    "href": "09-visualization.html",
+    "title": "Week 9: Data Visualization",
+    "section": "",
+    "text": "Today we begin Part 2 of the semester. Our goal over the next few weeks is to train you to complete the entire data analysis pipeline: importing raw datasets, tidying them up, joining together information from multiple datasets, making sure everything is formatted correctly, performing statistical analyses, and communicating your results.\nWe’ll start by discussing data visualization, which is an essential tool at every step along that pipeline. Our brains are hardwired to detect patterns in images, and a well-crafted data visualization can take advantage of that fact to communicate lots of information about your data all at once. This makes visualization a particularly effective tool for communicating results to your audience.\nBut don’t think that visualization is just something you do at the end of the project when you’re writing up the paper. Charts are a useful diagnostic tool as well, revealing patterns in data that summary statistics alone might miss, as the Datasaurus Dozen artfully reveals…\n\nThis week, we dive deeper into building visualizations with the ggplot2 package (a part of the tidyverse). It will take some time to learn all of the function syntax, so be patient with yourself. Once you get the hang of it, you’ll have an endlessly flexible tool for exploring and communicating patterns in your data.\n\nReading\n\nR4DS Chapters 1-2\n\n\n\nProblem Set\nIn a knitted R script or Quarto document, complete the following exercises.\n\nRecreate the following chart using the voting.csv dataset.\n\n\n\n\n\n\n\nRecreate the following chart using the ANES.csv dataset. Don’t forget the caption. Bonus. Recreate the dashed vertical lines.\n\n\n\n\n\n\n\n\nAdditional Resources\n\nKieran Healy’s data visualization textbook is a great step-by-step guide to the practical challenges of visualizing social science data using ggplot (Healy 2018); online version available here.\n\n\n\n\n\n\nReferences\n\nHealy, Kieran. 2018. Data Visualization: A Practical Introduction. Princeton, NJ: Princeton University Press."
+  },
+  {
+    "objectID": "07-probability.html",
+    "href": "07-probability.html",
+    "title": "Week 7: Probability",
+    "section": "",
+    "text": "This week, we review the basics of probability theory, which will provide us with the tools we need to express how certain or uncertain we are about the quantities of interest that we estimate from data. By the end of this week, you will be able to:"
+  },
+  {
+    "objectID": "07-probability.html#sampling",
+    "href": "07-probability.html#sampling",
+    "title": "Week 7: Probability",
+    "section": "Sampling",
+    "text": "Sampling\nThe book and the problem set have motivated probability theory with things like coins and cards. This is all very nice for building intuition, but in class, I want us to focus on how all this connects to the concept of the sampling distribution.\nIf we were to randomly select a person from the United States population, what is the probability we would select a female? According to the 2020 Census, here are the total number of males and females in the population.\n\nfemales &lt;- 168.8 * 1e6 # 168.8 million\nmales &lt;- 162.7 * 1e6 # 162.7 million\n\nprobability &lt;- females / (males + females)\nprobability\n\n[1] 0.5092006\n\n\nLet’s sample one.\n\nsample(c('F', 'M'), \n       size = 1, \n       prob = c(probability, 1-probability))\n\n[1] \"F\"\n\n\nThis is a Bernoulli random variable. Two possible outcomes—one with probability \\(p\\) and the other with probability \\(1-p\\). What if we randomly sampled 435 people? How many would be female?\n\nmy_sample &lt;- sample(c('F', 'M'), \n                    size = 435,\n                    replace = TRUE,\n                    prob = c(probability, 1-probability))\n\nsum(my_sample == 'F')\n\n[1] 236\n\n\nIf you take the sum of a bunch of independent Bernoulli random variables, it follows what’s called a binomial distribution. Let’s do that repeatedly, building up a sampling distribution.\n\nsampling_distribution &lt;- c()\n\nfor(i in 1:10000){\n  my_sample &lt;- sample(c('F', 'M'), \n                    size = 435,\n                    replace = TRUE,\n                    prob = c(probability, 1-probability))\n  sampling_distribution[i] &lt;- sum(my_sample == 'F')\n}"
+  },
+  {
+    "objectID": "07-probability.html#drawing-curves-over-histograms",
+    "href": "07-probability.html#drawing-curves-over-histograms",
+    "title": "Week 7: Probability",
+    "section": "Drawing Curves over Histograms",
+    "text": "Drawing Curves over Histograms\nI don’t think it’s explained in the book how the authors plot those nice curves of the distribution functions, so I wanted to include an example here.\n\n# generate a bunch of random normal draws\nZ &lt;- rnorm(1e4, mean = 2, sd = 2)\nhist(Z, freq = FALSE)\n# add curve\nx &lt;- seq(min(Z), max(Z), 0.1)\nlines( x = x,\n       y = dnorm(x, mean = 2, sd = 2),\n       lty = 'dashed' )\n\n\n\n\nNow let’s create that same plot for the sampling distribution we just simulated, which should follow the binomial distribution.\n\nhist(sampling_distribution, freq = FALSE)\nx &lt;- seq(min(sampling_distribution), max(sampling_distribution), by = 1)\nlines(x = x,\n      y = dbinom(x,\n                 size = 435,\n                 prob = probability),\n      lty = 'dashed')\n\n\n\n\nUsing this sampling distribution, we can explore a few key ideas."
+  },
+  {
+    "objectID": "07-probability.html#expected-value",
+    "href": "07-probability.html#expected-value",
+    "title": "Week 7: Probability",
+    "section": "Expected Value",
+    "text": "Expected Value\nOn average, how many females should we expect to be in our sample? Well, the expected value of a binomial distribution is \\(np\\), where \\(n\\) is the sample size and \\(p\\) is the probability that each person sampled will be a female.\n\nexpected_value &lt;- 435 * probability\n\nexpected_value\n\n[1] 221.5023\n\n\nWe say that our sample statistic is an unbiased estimator if its average value is roughly equal to that expected value.\n\nmean(sampling_distribution)\n\n[1] 221.5604\n\n\nI want to take a moment to marvel at this fact before we move on. There are over 330 million people in the United States. If I want to know how many of them are females, I could do one of two things. Either I could try to contact every single person in the country—as the Census Bureau does every 10 years—and count up the number of males and females. Or I could take a random sample of a few hundred people, and the percent female in that sample will, on average, give us a good approximation of what the other 330 million look like.\nBut averages can be deceiving! We don’t just want to know whether we’ll be right on average. We want to know how far from the truth we might end up with our particular sample."
+  },
+  {
+    "objectID": "07-probability.html#standard-error",
+    "href": "07-probability.html#standard-error",
+    "title": "Week 7: Probability",
+    "section": "Standard Error",
+    "text": "Standard Error\nWhat is the standard deviation of the sampling distribution?\n\nsd(sampling_distribution)\n\n[1] 10.4684\n\n\nThe standard deviation of a sampling distribution is is called the standard error, and it’s a very important number for understanding hypothesis tests. The larger the standard error, the wider the range of sample statistics that could have been computed from our population, and the less certain we should be about our particular value."
+  },
+  {
+    "objectID": "07-probability.html#the-central-limit-theorem",
+    "href": "07-probability.html#the-central-limit-theorem",
+    "title": "Week 7: Probability",
+    "section": "The Central Limit Theorem",
+    "text": "The Central Limit Theorem\nNext, notice the shape of the sampling distribution in the figure above. It’s this nice bell curve that’s well-approximated by the “normal” distribution . Why is the sampling distribution normally shaped, even though the thing we’re sampling from is not normal distributed? Well that’s one of the most fascinating and magical theorems in all of statistics: the Central Limit Theorem. The sampling distribution of the mean is approximately normally distributed—as long as you have a sufficiently large sample size.\nIntuition: some samples will, by chance, contain an unrepresentatively large number of females. Some will contain an unrepresentatively small number females. But most of the time, the females and non-females will cancel each other out, such that the mass of the distribution is centered around the truth.\nThere are a bunch of nice simulations that showing the Central Limit Theorem in action. In class, you’ll get to play around with one.\nNormal distributions are nice. They allow us to say precisely how far a sample estimate is likely to deviate from the truth. For example, we know that about 68% of a normal distribution falls within 1 standard deviation of the mean.\n\nexpected_value &lt;- mean(sampling_distribution)\nstandard_error &lt;- sd(sampling_distribution)\nnum_draws &lt;- length(sampling_distribution)\n\nwithin_1sd &lt;- sum(sampling_distribution &gt; expected_value - standard_error &\n      sampling_distribution &lt; expected_value + standard_error)\n\nwithin_1sd / num_draws\n\n[1] 0.6835\n\n\nAnd about 95% of observations will fall within two standard deviations.\n\nwithin_2sd &lt;- sum(sampling_distribution &gt; expected_value - 2*standard_error &\n                        sampling_distribution &lt; expected_value + 2*standard_error)\n\nwithin_2sd / num_draws\n\n[1] 0.9559\n\n\nAnd about 99.7% will fall within 3 standard deviations. It’s super rare to get an observation that far away from the expected value.\n\nwithin_3sd &lt;- sum(sampling_distribution &gt; expected_value - 3*standard_error &\n                        sampling_distribution &lt; expected_value + 3*standard_error)\n\nwithin_3sd / num_draws\n\n[1] 0.997\n\n\nAs of July 2024, there are 125 females in the 435-member US House of Representatives. What’s the probability that we’d have that few females in a group of 435 people randomly selected from the US population?\n\nsum(sampling_distribution &lt;=125)\n\n[1] 0\n\n\nApproximately zero. Out of 10,000 random samples, we didn’t get a single one with that few females. To be precise, the probability of a sample statistic that low is 0.0000000000000000005%.\n\npbinom(125, size = 435, prob = probability)\n\n[1] 4.841104e-21"
+  },
+  {
+    "objectID": "07-probability.html#sampling-distribution-of-the-difference-in-means",
+    "href": "07-probability.html#sampling-distribution-of-the-difference-in-means",
+    "title": "Week 7: Probability",
+    "section": "Sampling Distribution of the Difference-In-Means",
+    "text": "Sampling Distribution of the Difference-In-Means\nIn class, we’ll explore how the estimated effect of a treatment can vary even if we have data on the entire population. For this exercise, load the potential-outcomes.csv dataset."
+  },
+  {
+    "objectID": "05-linear-model.html",
+    "href": "05-linear-model.html",
+    "title": "Week 5: The Linear Model",
+    "section": "",
+    "text": "This week we introduce the linear model, the workhorse of empirical social science. By the end of this week, you will be able to:"
+  },
+  {
+    "objectID": "05-linear-model.html#footnotes",
+    "href": "05-linear-model.html#footnotes",
+    "title": "Week 5: The Linear Model",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nResults reported before the manual recount the 2000 election.↩︎"
+  },
+  {
+    "objectID": "03-experiments.html",
+    "href": "03-experiments.html",
+    "title": "Week 3: Experiments",
+    "section": "",
+    "text": "This week we introduce the Fundamental Problem of Causal Inference, and discuss why randomized experiments are generally considered the gold standard approach to that problem. By the end of this week you will be able to:\n\nDescribe the potential outcomes framework\nCompute a difference-in-means using R\nWrite scripts that perform other essential data analysis tasks, like subsetting and creating new variables.\n\n\nReading\n\nDAFSS Chapter 2\n\n\n\nProblem Set\nPlease submit the responses to the following exercises as a PDF knitted from an R script or Quarto document.\n\nLoad the voting.csv dataset from our previous problem set. What percent of registered voters who received the social pressure message turned out to vote in the 2006 election? What percent of those who did not receive the social pressure message turned out?\nEstimate the average treatment effect of the social pressure message on the probability of voting. Briefly explain why we can or cannot interpret this estimate as a causal effect.\nWhat was the average birth year of respondents who received the social pressure message? What about those who did not receive the social pressure message? Explain this result.\nCreate a new variable called young, equal to 1 if the respondent was less than 25 years old in 2006 and 0 otherwise.\nWas the average effect of the social pressure message larger or smaller for young respondents than for the rest of the sample? Interpret this result.\nBonus. Estimate the average effect of the social pressure message for each birth decade cohort (e.g. everyone born in the 1960s, 1970s, 1980s, etc.). Do any of your estimates stand out as odd? What is the most sensible way to interpret this result?\n\n\n\nAdditional Resources\n\nPearl and Mackenzie (2019)\n\n\n\n\n\n\nReferences\n\nPearl, Judea, and Dana Mackenzie. 2019. The book of why: the new science of cause and effect. Penguin science. London: Penguin Books."
+  },
+  {
+    "objectID": "01-introduction.html",
+    "href": "01-introduction.html",
+    "title": "Week 1: Introduction",
+    "section": "",
+    "text": "This week, we introduce the course and discuss three Fundamental Problems of Scientific Inquiry, which will guide our thinking about data analysis this semester."
+  },
+  {
+    "objectID": "01-introduction.html#the-fundamental-problem-of-measurement",
+    "href": "01-introduction.html#the-fundamental-problem-of-measurement",
+    "title": "Week 1: Introduction",
+    "section": "The Fundamental Problem of Measurement",
+    "text": "The Fundamental Problem of Measurement\nOur theories about the world often involve concepts and ideas that we cannot observe directly with our senses. Political scientists are interested in particularly nebulous concepts—like democracy, polarization, freedom, ideology, representation, warfare, alliances—ideas that are all quite sensible when described in words, but lack an obvious method for categorization and measurement in the real world. In statistical terminology, something like a person’s ideology (Converse 1964) is a latent characteristic, something that we cannot observe directly. Instead, we observe behaviors that we think are influenced by a person’s ideology—which campaign they donate to, how they respond to survey questions, how they vote on bills, etc.—and infer their ideology on the basis of those observed characteristics (Barber 2021). But it’s important to remember these observable measures are always imperfect glimpses at the theoretical concepts we’re trying to understand."
+  },
+  {
+    "objectID": "01-introduction.html#the-fundamental-problem-of-causal-inference",
+    "href": "01-introduction.html#the-fundamental-problem-of-causal-inference",
+    "title": "Week 1: Introduction",
+    "section": "The Fundamental Problem of Causal Inference",
+    "text": "The Fundamental Problem of Causal Inference\nScientists are rarely satisfied with measurement alone. We don’t just want to describe the world (“Candidate X won the election”); we want our theories to explain why the world works the way it does (“Candidate X won because she spent more on TV advertising”). Fundamentally, every such causal claim is implicitly a counterfactual claim (“If Candidate X had spent less money on TV advertising, she would have been more likely to lose.”). But the Fundamental Problem of Causal Inference is that we can’t observe counterfactuals. We only know what happened in this universe, and can never know with any certainty what would have happened if circumstances were different. This makes testing causal claims rather difficult, because the best we can do is look at average differences across different data points."
+  },
+  {
+    "objectID": "01-introduction.html#the-fundamental-problem-of-samples",
+    "href": "01-introduction.html#the-fundamental-problem-of-samples",
+    "title": "Week 1: Introduction",
+    "section": "The Fundamental Problem of Samples",
+    "text": "The Fundamental Problem of Samples\nScientists strive to develop general theories about the world; a theory is more useful if it can be fruitfully applied to a large number of cases and situations. But we rarely if ever observe our entire population of interest, so we can never say with certainty that the patterns we observe in our dataset will hold true for the population at large. This is particularly problematic if our observed sample is selected in a non-random fashion, making it unrepresentative of the larger population.\n\n\n\n\n\nOne can think of these three fundamental problems as three different kinds of missing data problems—whether it’s a latent characteristic, a counterfactual, or observations not included in your dataset—there is some information that we do not observe directly, and so we have to predict what it might be on the basis of the information we do observe. Fortunately, we have a number of methods for credibly making these sorts of inferences. We’ll learn several of them in the first half of this semester!"
+  },
+  {
+    "objectID": "02-writing-code.html",
+    "href": "02-writing-code.html",
+    "title": "Week 2: Writing Code",
+    "section": "",
+    "text": "This week we introduce the statistical software that we will use to work with data this semester (R and RStudio). By the end of this week, you will learn:"
+  },
+  {
+    "objectID": "02-writing-code.html#footnotes",
+    "href": "02-writing-code.html#footnotes",
+    "title": "Week 2: Writing Code",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nNot the R script! If you install a package in the script then it will reinstall the package every time you run the script, which is unnecessary and time-consuming.↩︎"
+  },
+  {
+    "objectID": "04-samples.html",
+    "href": "04-samples.html",
+    "title": "Week 4: Samples",
+    "section": "",
+    "text": "This week we discuss the challenges involved in making inferences about a population based on an observed sample. By the end of this week, you will be able to:\n\nDescribe the conditions under which a sample is representative of a population of interest, and the challenges involved in obtaining a representative sample.\nCompute and interpret a variety of summary statistics from data, including frequency tables, median, variance, standard deviation, covariance, and correlation coefficient.\nProduce basic data visualizations like histograms and scatter plots.\n\n\nReading\n\nDAFSS Chapter 3\n\n\n\nProblem Set\n&lt;TBD&gt;\n\n\nAdditional Resources\n\nTeacup Giraffes: Modules 2-5\nBradley et al. (2021) is a beautiful exploration of the “Paradox of Big Data”, demonstrating why large samples are not necessarily better samples.\n\n\n\n\n\n\nReferences\n\nBradley, Valerie C., Shiro Kuriwaki, Michael Isakov, Dino Sejdinovic, Xiao-Li Meng, and Seth Flaxman. 2021. “Unrepresentative Big Surveys Significantly Overestimated US Vaccine Uptake.” Nature, December, 1–6. https://doi.org/10.1038/s41586-021-04198-4."
+  },
+  {
+    "objectID": "06-causality.html",
+    "href": "06-causality.html",
+    "title": "Week 6: Causality",
+    "section": "",
+    "text": "This week, we discuss strategies for estimating causal effects when treatments are not randomly assigned. Our key concern here is confounders: variables that affect our outcomes and also influence whether our observations are treated or untreated. Unless we find some way to hold these confounders constant, any observed relationship between treatment and outcome might just be due to these other factors (e.g. eating ice cream doesn’t cause heatstroke; temperature is the confounding variable that causes both of those things to increase).\nBy the end of this week, you’ll be able to:"
+  },
+  {
+    "objectID": "06-causality.html#derivation-of-ols-estimators",
+    "href": "06-causality.html#derivation-of-ols-estimators",
+    "title": "Week 6: Causality",
+    "section": "Derivation of OLS estimators",
+    "text": "Derivation of OLS estimators\nI want to show you this proof because I think it ties together a lot of different concepts that we’ve been learning, and helps you see what’s going on under-the-hood when you type lm() into R.\nWe have a dataset with one explanatory variable \\(x\\) and an outcome variable \\(y\\). Each observation is represented by a pair of values \\(x_i\\) and \\(y_i\\).\n\n\n\n\n\nWe want to find the values of \\(\\alpha\\) and \\(\\beta\\) that minimize the sum of squared errors, as given by the following function:\n\\[\nf(\\alpha, \\beta) = \\sum_{i=1}^n (y_i - \\alpha - \\beta x_i)^2\n\\]\n\nSolving for \\(\\alpha\\)\nLet’s start by minimizing the function with respect to the x-intercept, \\(\\alpha\\). By the sum and chain rules, we get the following partial derivative\n\\[\n\\frac{\\partial f}{\\partial \\alpha} = \\sum_{i=1}^n -2(y_i-\\alpha-\\beta x_i)\n\\]\nNow we set that equal to zero and solve for \\(\\alpha\\).\n\\[\n\\sum_{i=1}^n -2(y_i-\\alpha-\\beta x_i) = 0\n\\]\nDivide each side by -2.\n\\[\n\\sum_{i=1}^n (y_i-\\alpha-\\beta x_i) = 0\n\\] Split up the sum into its component parts (this is the commutative property; doesn’t matter what order you add things).\n\\[\n\\sum_{i=1}^n y_i - \\sum_{i=1}^n \\alpha -  \\sum_{i=1}^n \\beta x_i = 0\n\\]\nWhen you add \\(\\alpha\\) to itself \\(n\\) times you get \\(\\alpha n\\), and we can factor a constant out of the last term on the left.1\n\\[\n\\sum_{i=1}^n y_i - \\alpha n -  \\beta \\sum_{i=1}^n  x_i = 0\n\\]\nNow here’s the key move of the proof: let’s divide each side by \\(n\\), recalling that sample means are defined as \\(\\frac{\\sum y_i}{n} = \\bar{y}\\) and \\(\\frac{\\sum x_i}{n} = \\bar{x}\\).\n\\[\n\\bar{y} - \\alpha -  \\beta \\bar{x} = 0\n\\] Add \\(\\alpha\\) to each side.\n\\[\n\\alpha = \\bar{y} - \\beta \\bar{x}\n\\]\nIn other words, the value of \\(\\alpha\\) that will minimize the sum of squared errors is to take the average value of \\(y\\) and subtract the average value of \\(x\\) times the slope. This makes sense geometrically. Here’s that earlier graph with the line of best fit and dotted lines denoting \\(\\bar{x}\\) and \\(\\bar{y}\\):\n\n\n\n\n\nThe line of best fit will cross through the point where \\(\\bar{x}\\) and \\(\\bar{y}\\) meet, so naturally the point where it crosses the y-axis will be \\(\\bar{y}\\) minus how much the line increases or decreases between 0 and \\(\\bar{x}\\). Now we just have to figure out the slope, \\(\\beta\\).\n\n\nSolving for \\(\\beta\\)\nLet’s start by taking the SSE function and substituting in the value of \\(\\alpha\\) we just derived.\n\\[\nf(\\alpha, \\beta) = \\sum_{i=1}^n (y_i - \\alpha - \\beta x_i)^2 = \\sum_{i=1}^n (y_i - (\\bar{y} - \\beta\\bar{x}) - \\beta x_i)^2\n\\]\nRearrange some terms inside those parentheses.\n\\[\nf(\\beta) = \\sum_{i=1}^n ( (y_i - \\bar{y}) - \\beta (x_i - \\bar{x}))^2\n\\]\nLet’s use the same combination of sum rule and chain rule to find the derivative of this SSE function with respect to \\(\\beta\\).\n\\[\n\\frac{df}{d\\beta} = \\sum_{i=1}^n -2(x_i - \\bar{x})((y_i-\\bar{y}) - \\beta(x_i-\\bar{x}))\n\\]\nAgain, set that equal to zero and divide by -2.\n\\[\n\\sum_{i=1}^n (x_i - \\bar{x})((y_i-\\bar{y}) - \\beta(x_i-\\bar{x})) = 0\n\\]\nSplit up the sum into its component parts and factor out \\(\\beta\\).\n\\[\n\\sum_{i=1}^n (x_i - \\bar{x})(y_i-\\bar{y}) - \\beta \\sum_{i=1}^n (x_i-\\bar{x})^2 = 0\n\\] Solve for \\(\\beta\\).\n\\[\n\\beta = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i-\\bar{y})}{\\sum_{i=1}^n (x_i-\\bar{x})^2}\n\\] Recall the definitions of variance (average squared distance from the mean) and covariance (average product of distance from the mean for two variables).\n\\[\nVar(X) = \\frac{\\sum_{i=1}^n (x_i-\\bar{x})^2}{n}\n\\] and\n\\[\nCov(X,Y) = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i-\\bar{y})}{n}\n\\] Substituting those two definitions yields the final result:\n\\[\n\\beta = \\frac{Cov(X,Y)}{Var(X)}\n\\]"
+  },
+  {
+    "objectID": "06-causality.html#footnotes",
+    "href": "06-causality.html#footnotes",
+    "title": "Week 6: Causality",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\n\\(\\beta x_1 + \\beta x_2 + \\beta x_3 + ... = \\beta(x_1 + x_2 +x_3...)\\)↩︎"
+  },
+  {
+    "objectID": "08-uncertainty.html",
+    "href": "08-uncertainty.html",
+    "title": "Week 8: Uncertainty",
+    "section": "",
+    "text": "Last week, we introduced probability theory from the perspective of sampling. We have some population of interest, and we imagine all the possible samples that we could draw from the population. With this sampling distribution in hand, we have a better sense of how far from the truth a sample estimate might be.\nThis week, we turn that question on its head. We are no longer an omniscient being who can sample ad infinitum from the population. Instead, we are a humble researcher with a single sample. What conclusions can we draw? How confident are we that our sample is not way out in the tails of the sampling distribution? That is a task for statistical inference.\nBy the end of this week, you will be able to:"
+  },
+  {
+    "objectID": "08-uncertainty.html#step-1-compute-the-test-statistic",
+    "href": "08-uncertainty.html#step-1-compute-the-test-statistic",
+    "title": "Week 8: Uncertainty",
+    "section": "Step 1: Compute the test statistic",
+    "text": "Step 1: Compute the test statistic\nA statistic can be anything you compute from data! So far we’ve computed statistics like:\n\nThe sample mean1\nThe difference in means\nVariance\nLinear model coefficients\n\nA word on notation: statisticians denote population-level parameters with Greek letters.2 So the population mean is typically \\(\\mu\\), the population standard deviation is \\(\\sigma\\), the true average treatment effect is \\(\\tau\\), and the true linear model slope coefficient is \\(\\beta\\). Of course, you can write whatever Greek letters you like. These are just conventions.\nSample statistics get plain old English letters, like \\(b\\) for an estimated slope or \\(s\\) for a the standard deviation of a sample. Alternatively, they might get little hats on top of Greek letters, like \\(\\hat{\\beta}\\), to show that they are estimates of the population-level parameter we care about.\nAs a running example, suppose we have a random sample of 100 people from a population of interest. We want to test whether the average age of the population is equal to 60.\n\nset.seed(42)\npop &lt;- round(runif(1e5, min = 18, max = 100))\n\nmean(pop)\n\n[1] 59.05816\n\nvar(pop)\n\n[1] 563.7778\n\n\nNow let’s randomly sample 100 people from the population.\n\nsamp &lt;- sample(pop, size = 100)\n\nmean(samp)\n\n[1] 62.55\n\n\nDo we have enough evidence from this sample to reject the hypothesis?"
+  },
+  {
+    "objectID": "08-uncertainty.html#step-2-derive-the-sampling-distribution-under-the-null-hypothesis",
+    "href": "08-uncertainty.html#step-2-derive-the-sampling-distribution-under-the-null-hypothesis",
+    "title": "Week 8: Uncertainty",
+    "section": "Step 2: Derive the sampling distribution under the null hypothesis",
+    "text": "Step 2: Derive the sampling distribution under the null hypothesis\nAs we established last week, the sampling distribution of the sample mean should be approximately normally distributed with mean equal to \\(\\mu\\) and variance equal to \\(\\frac{\\sigma}{n}\\). But last week, we knew the values of \\(\\mu\\) and \\(\\sigma\\). This week, we only have this one sample of 100 people. So our trick will be to estimate the standard error of the sampling distribution based on the sample variance.\n\nse &lt;- sqrt(var(samp)/length(samp))\n\nIf the null hypothesis were true, then the sampling distribution of the sample mean would be a normal distribution with standard deviation equal to \\(\\sqrt{\\frac{\\sigma}{n}}\\) centered on the null hypothesis.\n\nx &lt;- seq(50, 70, 0.1)\ny &lt;- dnorm(x, mean = 60, sd = se)\n\nplot(x,y,type = 'l', lty='dashed')"
+  },
+  {
+    "objectID": "08-uncertainty.html#step-3-compare-the-test-statistic-with-the-sampling-distribution",
+    "href": "08-uncertainty.html#step-3-compare-the-test-statistic-with-the-sampling-distribution",
+    "title": "Week 8: Uncertainty",
+    "section": "Step 3: Compare the test statistic with the sampling distribution",
+    "text": "Step 3: Compare the test statistic with the sampling distribution\nThe test statistic falls here:\n\nplot(x,y,type = 'l', lty='dashed')\nabline(v = mean(samp), col = 'red')\n\n\n\n\nWhat’s the probability of observing a test statistic that far away from 60 if the null hypothesis were true (the p-value)?\nWell, to answer that question we need to take a brief digression into integral calculus.\nHey welcome back from the digression into integral calculus. It may interest you to know that what we just called the “area function” \\(F(x)\\) is, when applied to a probability distribution function, called the cumulative distribution function. It tells you the probability that the random variable is less than or equal to \\(x\\). And conveniently for us, R has a bunch of cumulative distribution functions built in. For a normal distribution, you want thepnorm() function.\n\n# the probability that a value drawn from a standard normal distribution will be 2 or less\npnorm(2)\n\n[1] 0.9772499\n\n# the probability that a value drawn from N(2,1) will be 2 or less\npnorm(2, mean = 2, sd = 1)\n\n[1] 0.5\n\n\nTo bring it back to our motivating example, we’d like to know the probability that a value randomly drawn from \\(N(60, \\sqrt{\\frac{s}{n}})\\) will be as far away from 60 as our observed data. That will be the sum of two areas:\n\npnorm(mean(samp), mean = 60, sd = se, lower.tail = FALSE) +\n  pnorm(60 - (mean(samp) - 60), mean = 60, sd = se, lower.tail = TRUE)\n\n[1] 0.2918633\n\n\nThere is roughly a 2/3 chance that we would observe a test statistic at least that far away from 60, even if the null hypothesis were true! We do not have enough evidence to reject the null hypothesis.\nWhat is the set of null hypotheses that we would fail to reject? The set of values, in other words, that are consistent with the observed evidence (a confidence interval)?\n\nmean(samp) - 1.96 * se\n\n[1] 57.80826\n\nmean(samp) + 1.96 * se\n\n[1] 67.29174\n\n\nA confidence interval, constructed this way, would contain the true value 95% of the time if we repeatedly drew random samples from the population."
+  },
+  {
+    "objectID": "08-uncertainty.html#footnotes",
+    "href": "08-uncertainty.html#footnotes",
+    "title": "Week 8: Uncertainty",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nThe reason why statisticians like means as a measure of central tendency is because of Central Limit Theorem! The sampling distribution of the mean is normally distributed; no such guarantee for other statistics like medians or modes.↩︎\nBecause mathematicians associate timeless truth and beauty with the ancient Greeks?↩︎"
+  },
+  {
+    "objectID": "10-wrangling.html",
+    "href": "10-wrangling.html",
+    "title": "Week 10: Data Wrangling",
+    "section": "",
+    "text": "Up to now, we’ve been working with pretty tidy datasets. Every column is a variable, every row is an observation, and every value is where it should be. But things are not always this way. More often than you’re going to like, data comes to you an unruly mess, and you’ll need to tidy it up before you can even start to explore it.\nThis week, we’ll learn some of the most important functions in the tidyverse for data wrangling. By the end of the week, you will be able to:"
+  },
+  {
+    "objectID": "10-wrangling.html#footnotes",
+    "href": "10-wrangling.html#footnotes",
+    "title": "Week 10: Data Wrangling",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nI will generally use read_csv() instead of read.csv() in my own work, since it is faster and will give you useful error messages if the input is formatted in a way it doesn’t expect.↩︎"
+  },
+  {
+    "objectID": "12-importing-exporting.html",
+    "href": "12-importing-exporting.html",
+    "title": "Week 12: Data Importing/Exporting",
+    "section": "",
+    "text": "Reading\n\nR4DS Chapters 7-8\n\n\n\nProblem Set\nIn this problem set, we’ll practice reading and cleaning up data from a variety of sources. Submit your responses as a knitted R script or Quarto document.\n\nhttps://projects.fivethirtyeight.com/polls-page/data/president_polls.csv (this could be a multistep thing, because week 12 is the week after election day don’tchaknow)\nfwf\nFollow the instructions on this page to obtain an API key from the US Census. Once you have an API key\n\n\n\nClass Notes\nIn class, we’ll work with a few other methods for importing data, including the US Census API and output files from other statistical programs like Stata and SPSS."
+  },
+  {
+    "objectID": "14-wrap-up.html",
+    "href": "14-wrap-up.html",
+    "title": "Weeks 14-15: Wrapping Up",
+    "section": "",
+    "text": "In the final two weeks of the semester we will present our final projects to the class. There will be no reading assignments or problem sets due.\nThank you for sharing your valuable time with me this semester. We’ve covered a lot, but I hope that you will come away from the class feeling more confident in your ability to conduct research and contribute to the conversation in political science. I look forward to seeing what you will do!"
+  },
+  {
     "objectID": "slides/calculus.html#the-linear-model",
     "href": "slides/calculus.html#the-linear-model",
     "title": "Calculus Essentials",
@@ -390,418 +782,5 @@
     "title": "Calculus Essentials",
     "section": "Next Week…",
     "text": "Next Week…\nWe finally have the tools we need to find the values of \\(\\alpha\\) and \\(\\beta\\) that minimize this function:\n\\(\\text{SSE} = \\sum_{i=1}^n(y_i - \\alpha - \\beta x_i)^2\\)"
-  },
-  {
-    "objectID": "14-bonus.html",
-    "href": "14-bonus.html",
-    "title": "Weeks 14-15: Bonus Topics",
-    "section": "",
-    "text": "Topics by popular demand! Some potential options:\n\nCausal Inference (Matching, RDD, Diff-in-Diff)\nBig Data\nMachine Learning\nNetworks\nGeospatial Data\nText As Data\nQuarto, Shiny"
-  },
-  {
-    "objectID": "12-importing-exporting.html",
-    "href": "12-importing-exporting.html",
-    "title": "Week 12: Data Importing/Exporting",
-    "section": "",
-    "text": "Reading\n\nR4DS Chapters 7-8\n\n\n\nProblem Set\n\ntidycensus package (bonus?)\n\n\n\nClass Notes\n\n\nAdditional Resources"
-  },
-  {
-    "objectID": "10-wrangling.html",
-    "href": "10-wrangling.html",
-    "title": "Week 10: Data Wrangling",
-    "section": "",
-    "text": "Up to now, we’ve been working with pretty tidy datasets. Every column is a variable, every row is an observation, and every value is where it should be. But things are not always this way. More often than you’re going to like, data comes to you an unruly mess, and you’ll need to tidy it up before you can even start to explore it.\nThis week, we’ll learn some of the most important functions in the tidyverse for data wrangling. By the end of the week, you will be able to:"
-  },
-  {
-    "objectID": "08-uncertainty.html",
-    "href": "08-uncertainty.html",
-    "title": "Week 8: Uncertainty",
-    "section": "",
-    "text": "Last week, we introduced probability theory from the perspective of sampling. We have some population of interest, and we imagine all the possible samples that we could draw from the population. With this sampling distribution in hand, we have a better sense of how far from the truth a sample estimate might be.\nThis week, we turn that question on its head. We are no longer an omniscient being who can sample ad infinitum from the population. Instead, we are a humble researcher with a single sample. What conclusions can we draw? How confident are we that our sample is not way out in the tails of the sampling distribution? That is a task for statistical inference.\nBy the end of this week, you will be able to:\n\nConduct null hypothesis tests\nCommunicate uncertainty around your estimates from samples using confidence intervals, p-values, and standard errors\n\n\nReading\n\nDAFSS Chapter 7\n\n\n\nProblem Set\n&lt;TBD&gt;\n\n\nClass Notes\n&lt;TBD&gt;\n\n\nAdditional Resources\n\nThere Is Only One Test (blog post by Allen Downey)"
-  },
-  {
-    "objectID": "06-causality.html",
-    "href": "06-causality.html",
-    "title": "Week 6: Causality",
-    "section": "",
-    "text": "This week, we discuss strategies for estimating causal effects when treatments are not randomly assigned. Our key concern here is confounders: variables that affect our outcomes and also influence whether our observations are treated or untreated. Unless we find some way to hold these confounders constant, any observed relationship between treatment and outcome might just be due to these other factors (e.g. eating ice cream doesn’t cause heatstroke; temperature is the confounding variable that causes both of those things to increase).\nBy the end of this week, you’ll be able to:"
-  },
-  {
-    "objectID": "06-causality.html#derivation-of-ols-estimators",
-    "href": "06-causality.html#derivation-of-ols-estimators",
-    "title": "Week 6: Causality",
-    "section": "Derivation of OLS estimators",
-    "text": "Derivation of OLS estimators\nI want to show you this proof because I think it ties together a lot of different concepts that we’ve been learning, and helps you see what’s going on under-the-hood when you type lm() into R.\nWe have a dataset with one explanatory variable \\(x\\) and an outcome variable \\(y\\). Each observation is represented by a pair of values \\(x_i\\) and \\(y_i\\).\n\n\n\n\n\n\n\n\n\nWe want to find the values of \\(\\alpha\\) and \\(\\beta\\) that minimize the sum of squared errors, as given by the following function:\n\\[\nf(\\alpha, \\beta) = \\sum_{i=1}^n (y_i - \\alpha - \\beta x_i)^2\n\\]\n\nSolving for \\(\\alpha\\)\nLet’s start by minimizing the function with respect to the x-intercept, \\(\\alpha\\). By the sum and chain rules, we get the following partial derivative\n\\[\n\\frac{\\partial f}{\\partial \\alpha} = \\sum_{i=1}^n -2(y_i-\\alpha-\\beta x_i)\n\\]\nNow we set that equal to zero and solve for \\(\\alpha\\).\n\\[\n\\sum_{i=1}^n -2(y_i-\\alpha-\\beta x_i) = 0\n\\]\nDivide each side by -2.\n\\[\n\\sum_{i=1}^n (y_i-\\alpha-\\beta x_i) = 0\n\\] Split up the sum into its component parts (this is the commutative property; doesn’t matter what order you add things).\n\\[\n\\sum_{i=1}^n y_i - \\sum_{i=1}^n \\alpha -  \\sum_{i=1}^n \\beta x_i = 0\n\\]\nWhen you add \\(\\alpha\\) to itself \\(n\\) times you get \\(\\alpha n\\), and we can factor a constant out of the last term on the left.1\n\\[\n\\sum_{i=1}^n y_i - \\alpha n -  \\beta \\sum_{i=1}^n  x_i = 0\n\\]\nNow here’s the key move of the proof: let’s divide each side by \\(n\\), recalling that sample means are defined as \\(\\frac{\\sum y_i}{n} = \\bar{y}\\) and \\(\\frac{\\sum x_i}{n} = \\bar{x}\\).\n\\[\n\\bar{y} - \\alpha -  \\beta \\bar{x} = 0\n\\] Add \\(\\alpha\\) to each side.\n\\[\n\\alpha = \\bar{y} - \\beta \\bar{x}\n\\]\nIn other words, the value of \\(\\alpha\\) that will minimize the sum of squared errors is to take the average value of \\(y\\) and subtract the average value of \\(x\\) times the slope. This makes sense geometrically. Here’s that earlier graph with the line of best fit and dotted lines denoting \\(\\bar{x}\\) and \\(\\bar{y}\\):\n\n\n\n\n\n\n\n\n\nThe line of best fit will cross through the point where \\(\\bar{x}\\) and \\(\\bar{y}\\) meet, so naturally the point where it crosses the y-axis will be \\(\\bar{y}\\) minus how much the line increases or decreases between 0 and \\(\\bar{x}\\). Now we just have to figure out the slope, \\(\\beta\\).\n\n\nSolving for \\(\\beta\\)\nLet’s start by taking the SSE function and substituting in the value of \\(\\alpha\\) we just derived.\n\\[\nf(\\alpha, \\beta) = \\sum_{i=1}^n (y_i - \\alpha - \\beta x_i)^2 = \\sum_{i=1}^n (y_i - (\\bar{y} - \\beta\\bar{x}) - \\beta x_i)^2\n\\]\nRearrange some terms inside those parentheses.\n\\[\nf(\\beta) = \\sum_{i=1}^n ( (y_i - \\bar{y}) - \\beta (x_i - \\bar{x}))^2\n\\]\nLet’s use the same combination of sum rule and chain rule to find the derivative of this SSE function with respect to \\(\\beta\\).\n\\[\n\\frac{df}{d\\beta} = \\sum_{i=1}^n -2(x_i - \\bar{x})((y_i-\\bar{y}) - \\beta(x_i-\\bar{x}))\n\\]\nAgain, set that equal to zero and divide by -2.\n\\[\n\\sum_{i=1}^n (x_i - \\bar{x})((y_i-\\bar{y}) - \\beta(x_i-\\bar{x})) = 0\n\\]\nSplit up the sum into its component parts and factor out \\(\\beta\\).\n\\[\n\\sum_{i=1}^n (x_i - \\bar{x})(y_i-\\bar{y}) - \\beta \\sum_{i=1}^n (x_i-\\bar{x})^2 = 0\n\\] Solve for \\(\\beta\\).\n\\[\n\\beta = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i-\\bar{y})}{\\sum_{i=1}^n (x_i-\\bar{x})^2}\n\\] Recall the definitions of variance (average squared distance from the mean) and covariance (average product of distance from the mean for two variables).\n\\[\nVar(X) = \\frac{\\sum_{i=1}^n (x_i-\\bar{x})^2}{n}\n\\] and\n\\[\nCov(X,Y) = \\frac{\\sum_{i=1}^n (x_i - \\bar{x})(y_i-\\bar{y})}{n}\n\\] Substituting those two definitions yields the final result:\n\\[\n\\beta = \\frac{Cov(X,Y)}{Var(X)}\n\\]"
-  },
-  {
-    "objectID": "06-causality.html#footnotes",
-    "href": "06-causality.html#footnotes",
-    "title": "Week 6: Causality",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\n\\(\\beta x_1 + \\beta x_2 + \\beta x_3 + ... = \\beta(x_1 + x_2 +x_3...)\\)↩︎"
-  },
-  {
-    "objectID": "04-samples.html",
-    "href": "04-samples.html",
-    "title": "Week 4: Samples",
-    "section": "",
-    "text": "This week we discuss the challenges involved in making inferences about a population based on an observed sample. By the end of this week, you will be able to:\n\nDescribe the conditions under which a sample is representative of a population of interest, and the challenges involved in obtaining a representative sample.\nCompute and interpret a variety of summary statistics from data, including frequency tables, median, variance, standard deviation, covariance, and correlation coefficient.\nProduce basic data visualizations like histograms and scatter plots.\n\n\nReading\n\nDAFSS Chapter 3\n\n\n\nProblem Set\n&lt;TBD&gt;\n\n\nAdditional Resources\n\nTeacup Giraffes: Modules 2-5\nBradley et al. (2021) is a beautiful exploration of the “Paradox of Big Data”, demonstrating why large samples are not necessarily better samples.\n\n\n\n\n\n\nReferences\n\nBradley, Valerie C., Shiro Kuriwaki, Michael Isakov, Dino Sejdinovic, Xiao-Li Meng, and Seth Flaxman. 2021. “Unrepresentative Big Surveys Significantly Overestimated US Vaccine Uptake.” Nature, December, 1–6. https://doi.org/10.1038/s41586-021-04198-4."
-  },
-  {
-    "objectID": "02-writing-code.html",
-    "href": "02-writing-code.html",
-    "title": "Week 2: Writing Code",
-    "section": "",
-    "text": "This week we introduce the statistical software that we will use to work with data this semester (R and RStudio). By the end of this week, you will learn:"
-  },
-  {
-    "objectID": "02-writing-code.html#footnotes",
-    "href": "02-writing-code.html#footnotes",
-    "title": "Week 2: Writing Code",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nNot the R script! If you install a package in the script then it will reinstall the package every time you run the script, which is unnecessary and time-consuming.↩︎"
-  },
-  {
-    "objectID": "01-introduction.html",
-    "href": "01-introduction.html",
-    "title": "Week 1: Introduction",
-    "section": "",
-    "text": "This week, we introduce the course and discuss three Fundamental Problems of Scientific Inquiry, which will guide our thinking about data analysis this semester."
-  },
-  {
-    "objectID": "01-introduction.html#the-fundamental-problem-of-measurement",
-    "href": "01-introduction.html#the-fundamental-problem-of-measurement",
-    "title": "Week 1: Introduction",
-    "section": "The Fundamental Problem of Measurement",
-    "text": "The Fundamental Problem of Measurement\nOur theories about the world often involve concepts and ideas that we cannot observe directly with our senses. Political scientists are interested in particularly nebulous concepts—like democracy, polarization, freedom, ideology, representation, warfare, alliances—ideas that are all quite sensible when described in words, but lack an obvious method for categorization and measurement in the real world. In statistical terminology, something like a person’s ideology (Converse 1964) is a latent characteristic, something that we cannot observe directly. Instead, we observe behaviors that we think are influenced by a person’s ideology—which campaign they donate to, how they respond to survey questions, how they vote on bills, etc.—and infer their ideology on the basis of those observed characteristics (Barber 2021). But it’s important to remember these observable measures are always imperfect glimpses at the theoretical concepts we’re trying to understand."
-  },
-  {
-    "objectID": "01-introduction.html#the-fundamental-problem-of-causal-inference",
-    "href": "01-introduction.html#the-fundamental-problem-of-causal-inference",
-    "title": "Week 1: Introduction",
-    "section": "The Fundamental Problem of Causal Inference",
-    "text": "The Fundamental Problem of Causal Inference\nScientists are rarely satisfied with measurement alone. We don’t just want to describe the world (“Candidate X won the election”); we want our theories to explain why the world works the way it does (“Candidate X won because she spent more on TV advertising”). Fundamentally, every such causal claim is implicitly a counterfactual claim (“If Candidate X had spent less money on TV advertising, she would have been more likely to lose.”). But the Fundamental Problem of Causal Inference is that we can’t observe counterfactuals. We only know what happened in this universe, and can never know with any certainty what would have happened if circumstances were different. This makes testing causal claims rather difficult, because the best we can do is look at average differences across different data points."
-  },
-  {
-    "objectID": "01-introduction.html#the-fundamental-problem-of-samples",
-    "href": "01-introduction.html#the-fundamental-problem-of-samples",
-    "title": "Week 1: Introduction",
-    "section": "The Fundamental Problem of Samples",
-    "text": "The Fundamental Problem of Samples\nScientists strive to develop general theories about the world; a theory is more useful if it can be fruitfully applied to a large number of cases and situations. But we rarely if ever observe our entire population of interest, so we can never say with certainty that the patterns we observe in our dataset will hold true for the population at large. This is particularly problematic if our observed sample is selected in a non-random fashion, making it unrepresentative of the larger population.\n\nOne can think of these three fundamental problems as three different kinds of missing data problems—whether it’s a latent characteristic, a counterfactual, or observations not included in your dataset—there is some information that we do not observe directly, and so we have to predict what it might be on the basis of the information we do observe. Fortunately, we have a number of methods for credibly making these sorts of inferences. We’ll learn several of them in the first half of this semester!"
-  },
-  {
-    "objectID": "03-experiments.html",
-    "href": "03-experiments.html",
-    "title": "Week 3: Experiments",
-    "section": "",
-    "text": "This week we introduce the Fundamental Problem of Causal Inference, and discuss why randomized experiments are generally considered the gold standard approach to that problem. By the end of this week you will be able to:\n\nDescribe the potential outcomes framework\nCompute a difference-in-means using R\nWrite scripts that perform other essential data analysis tasks, like subsetting and creating new variables.\n\n\nReading\n\nDAFSS Chapter 2\n\n\n\nProblem Set\nPlease submit the responses to the following exercises as a PDF knitted from an R script or Quarto document.\n\nLoad the voting.csv dataset from our previous problem set. What percent of registered voters who received the social pressure message turned out to vote in the 2006 election? What percent of those who did not receive the social pressure message turned out?\nEstimate the average treatment effect of the social pressure message on the probability of voting. Briefly explain why we can or cannot interpret this estimate as a causal effect.\nWhat was the average birth year of respondents who received the social pressure message? What about those who did not receive the social pressure message? Explain this result.\nCreate a new variable called young, equal to 1 if the respondent was less than 25 years old in 2006 and 0 otherwise.\nWas the average effect of the social pressure message larger or smaller for young respondents than for the rest of the sample? Interpret this result.\nBonus. Estimate the average effect of the social pressure message for each birth decade cohort (e.g. everyone born in the 1960s, 1970s, 1980s, etc.). Do any of your estimates stand out as odd? What is the most sensible way to interpret this result?\n\n\n\nAdditional Resources\n\nPearl and Mackenzie (2019)\n\n\n\n\n\n\nReferences\n\nPearl, Judea, and Dana Mackenzie. 2019. The book of why: the new science of cause and effect. Penguin science. London: Penguin Books."
-  },
-  {
-    "objectID": "05-linear-model.html",
-    "href": "05-linear-model.html",
-    "title": "Week 5: The Linear Model",
-    "section": "",
-    "text": "This week we introduce the linear model, the workhorse of empirical social science. By the end of this week, you will be able to:"
-  },
-  {
-    "objectID": "05-linear-model.html#footnotes",
-    "href": "05-linear-model.html#footnotes",
-    "title": "Week 5: The Linear Model",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nResults reported before the manual recount the 2000 election.↩︎"
-  },
-  {
-    "objectID": "07-probability.html",
-    "href": "07-probability.html",
-    "title": "Week 7: Probability",
-    "section": "",
-    "text": "This week, we review the basics of probability theory, which will provide us with the tools we need to express how certain or uncertain we are about the quantities of interest that we estimate from data. By the end of this week, you will be able to:"
-  },
-  {
-    "objectID": "07-probability.html#sampling",
-    "href": "07-probability.html#sampling",
-    "title": "Week 7: Probability",
-    "section": "Sampling",
-    "text": "Sampling\nThe book and the problem set have motivated probability theory with things like coins and cards. This is all very nice for building intuition, but in class, I want us to focus on how all this connects to the concept of the sampling distribution.\nIf we were to randomly select a person from the United States population, what is the probability we would select a female? According to the 2020 Census, here are the total number of males and females in the population.\n\nfemales &lt;- 168.8 * 1e6 # 168.8 million\nmales &lt;- 162.7 * 1e6 # 162.7 million\n\nprobability &lt;- females / (males + females)\nprobability\n\n[1] 0.5092006\n\n\nLet’s sample one.\n\nsample(c('F', 'M'), \n       size = 1, \n       prob = c(probability, 1-probability))\n\n[1] \"F\"\n\n\nThis is a Bernoulli random variable. Two possible outcomes—one with probability \\(p\\) and the other with probability \\(1-p\\). What if we randomly sampled 435 people? How many would be female?\n\nmy_sample &lt;- sample(c('F', 'M'), \n                    size = 435,\n                    replace = TRUE,\n                    prob = c(probability, 1-probability))\n\nsum(my_sample == 'F')\n\n[1] 236\n\n\nIf you take the sum of a bunch of independent Bernoulli random variables, it follows what’s called a binomial distribution. Let’s do that repeatedly, building up a sampling distribution.\n\nsampling_distribution &lt;- c()\n\nfor(i in 1:10000){\n  my_sample &lt;- sample(c('F', 'M'), \n                    size = 435,\n                    replace = TRUE,\n                    prob = c(probability, 1-probability))\n  sampling_distribution[i] &lt;- sum(my_sample == 'F')\n}"
-  },
-  {
-    "objectID": "07-probability.html#drawing-curves-over-histograms",
-    "href": "07-probability.html#drawing-curves-over-histograms",
-    "title": "Week 7: Probability",
-    "section": "Drawing Curves over Histograms",
-    "text": "Drawing Curves over Histograms\nI don’t think it’s explained in the book how the authors plot those nice curves of the distribution functions, so I wanted to include an example here.\n\n# generate a bunch of random normal draws\nZ &lt;- rnorm(1e4, mean = 2, sd = 2)\nhist(Z, freq = FALSE)\n# add curve\nx &lt;- seq(min(Z), max(Z), 0.1)\nlines( x = x,\n       y = dnorm(x, mean = 2, sd = 2),\n       lty = 'dashed' )\n\n\n\n\n\n\n\n\nNow let’s create that same plot for the sampling distribution we just simulated, which should follow the binomial distribution.\n\nhist(sampling_distribution, freq = FALSE)\nx &lt;- seq(min(sampling_distribution), max(sampling_distribution), by = 1)\nlines(x = x,\n      y = dbinom(x,\n                 size = 435,\n                 prob = probability),\n      lty = 'dashed')\n\n\n\n\n\n\n\n\nUsing this sampling distribution, we can explore a few key ideas."
-  },
-  {
-    "objectID": "07-probability.html#expected-value",
-    "href": "07-probability.html#expected-value",
-    "title": "Week 7: Probability",
-    "section": "Expected Value",
-    "text": "Expected Value\nOn average, how many females should we expect to be in our sample? Well, the expected value of a binomial distribution is \\(np\\), where \\(n\\) is the sample size and \\(p\\) is the probability that each person sampled will be a female.\n\nexpected_value &lt;- 435 * probability\n\nexpected_value\n\n[1] 221.5023\n\n\nWe say that our sample statistic is an unbiased estimator if its average value is roughly equal to that expected value.\n\nmean(sampling_distribution)\n\n[1] 221.5604\n\n\nI want to take a moment to marvel at this fact before we move on. There are over 330 million people in the United States. If I want to know how many of them are females, I could do one of two things. Either I could try to contact every single person in the country—as the Census Bureau does every 10 years—and count up the number of males and females. Or I could take a random sample of a few hundred people, and the percent female in that sample will, on average, give us a good approximation of what the other 330 million look like.\nBut averages can be deceiving! We don’t just want to know whether we’ll be right on average. We want to know how far from the truth we might end up with our particular sample."
-  },
-  {
-    "objectID": "07-probability.html#standard-error",
-    "href": "07-probability.html#standard-error",
-    "title": "Week 7: Probability",
-    "section": "Standard Error",
-    "text": "Standard Error\nWhat is the standard deviation of the sampling distribution?\n\nsd(sampling_distribution)\n\n[1] 10.4684\n\n\nThe standard deviation of a sampling distribution is is called the standard error, and it’s a very important number for understanding hypothesis tests. The larger the standard error, the wider the range of sample statistics that could have been computed from our population, and the less certain we should be about our particular value."
-  },
-  {
-    "objectID": "07-probability.html#the-central-limit-theorem",
-    "href": "07-probability.html#the-central-limit-theorem",
-    "title": "Week 7: Probability",
-    "section": "The Central Limit Theorem",
-    "text": "The Central Limit Theorem\nNext, notice the shape of the sampling distribution in the figure above. It’s this nice bell curve that’s well-approximated by the “normal” distribution . Why is the sampling distribution normally shaped, even though the thing we’re sampling from is not normal distributed? Well that’s one of the most fascinating and magical theorems in all of statistics: the Central Limit Theorem. The sampling distribution of the mean is approximately normally distributed—as long as you have a sufficiently large sample size.\nIntuition: some samples will, by chance, contain an unrepresentatively large number of females. Some will contain an unrepresentatively small number females. But most of the time, the females and non-females will cancel each other out, such that the mass of the distribution is centered around the truth.\nThere are a bunch of nice simulations that showing the Central Limit Theorem in action. In class, you’ll get to play around with one.\nNormal distributions are nice. They allow us to say precisely how far a sample estimate is likely to deviate from the truth. For example, we know that about 68% of a normal distribution falls within 1 standard deviation of the mean.\n\nexpected_value &lt;- mean(sampling_distribution)\nstandard_error &lt;- sd(sampling_distribution)\nnum_draws &lt;- length(sampling_distribution)\n\nwithin_1sd &lt;- sum(sampling_distribution &gt; expected_value - standard_error &\n      sampling_distribution &lt; expected_value + standard_error)\n\nwithin_1sd / num_draws\n\n[1] 0.6835\n\n\nAnd about 95% of observations will fall within two standard deviations.\n\nwithin_2sd &lt;- sum(sampling_distribution &gt; expected_value - 2*standard_error &\n                        sampling_distribution &lt; expected_value + 2*standard_error)\n\nwithin_2sd / num_draws\n\n[1] 0.9559\n\n\nAnd about 99.7% will fall within 3 standard deviations. It’s super rare to get an observation that far away from the expected value.\n\nwithin_3sd &lt;- sum(sampling_distribution &gt; expected_value - 3*standard_error &\n                        sampling_distribution &lt; expected_value + 3*standard_error)\n\nwithin_3sd / num_draws\n\n[1] 0.997\n\n\nAs of July 2024, there are 125 females in the 435-member US House of Representatives. What’s the probability that we’d have that few females in a group of 435 people randomly selected from the US population?\n\nsum(sampling_distribution &lt;=125)\n\n[1] 0\n\n\nApproximately zero. Out of 10,000 random samples, we didn’t get a single one with that few females. To be precise, the probability of a sample statistic that low is 0.0000000000000000005%.\n\npbinom(125, size = 435, prob = probability)\n\n[1] 4.841104e-21"
-  },
-  {
-    "objectID": "07-probability.html#margin-of-error",
-    "href": "07-probability.html#margin-of-error",
-    "title": "Week 7: Probability",
-    "section": "Margin of Error",
-    "text": "Margin of Error\nSo if I draw a sample of 435 individuals, then 95% of the time, my sample statistic will be within…\n\n2*sd(sampling_distribution)\n\n[1] 20.93679\n\n\n…of the population average. This is what pollsters call the margin of error.\nAnother way of describing this sampling variability is with a confidence interval. You construct a confidence interval by taking your sample estimate plus or minus 2 standard errors. Because the sample mean is within 2 standard deviations of the truth 95% of the time, the 95% confidence interval will contain the true value approximately 95% of the time."
-  },
-  {
-    "objectID": "07-probability.html#sampling-distribution-of-the-difference-in-means",
-    "href": "07-probability.html#sampling-distribution-of-the-difference-in-means",
-    "title": "Week 7: Probability",
-    "section": "Sampling Distribution of the Difference-In-Means",
-    "text": "Sampling Distribution of the Difference-In-Means\nIn class, we’ll explore how the estimated effect of a treatment can vary even if we have data on the entire population. For this exercise, load the potential-outcomes.csv dataset."
-  },
-  {
-    "objectID": "09-visualization.html",
-    "href": "09-visualization.html",
-    "title": "Week 9: Data Visualization",
-    "section": "",
-    "text": "Today we begin Part 2 of the semester. Our goal over the next few weeks is to train you to complete the entire data analysis pipeline: importing raw datasets, tidying them up, joining together information from multiple datasets, making sure everything is formatted correctly, performing statistical analyses, and communicating your results.\nWe’ll start by discussing data visualization, which is an essential tool at every step along that pipeline. Our brains are hardwired to detect patterns in images, and a well-crafted data visualization can take advantage of that fact to communicate lots of information about your data all at once. This makes visualization a particularly effective tool for communicating results to your audience.\nBut don’t think that visualization is just something you do at the end of the project when you’re writing up the paper. Charts are a useful diagnostic tool as well, revealing patterns in data that summary statistics alone might miss, as the Datasaurus Dozen artfully reveals…\n\nThis week, we dive deeper into building visualizations with the ggplot2 package (a part of the tidyverse). It will take some time to learn all of the function syntax, so be patient with yourself. Once you get the hang of it, you’ll have an endlessly flexible tool for exploring and communicating patterns in your data.\n\nReading\n\nR4DS Chapters 1-2\n\n\n\nProblem Set\nIn a knitted R script or Quarto document, complete the following exercises.\n\nRecreate the following chart using the voting.csv dataset.\n\n\n\n\n\n\n\n\n\n\n\nRecreate the following chart using the ANES.csv dataset. Don’t forget the caption. Bonus. Recreate the dashed vertical lines.\n\n\n\n\n\n\n\n\n\n\n\n\nAdditional Resources\n\nKieran Healy’s data visualization textbook is a great step-by-step guide to the practical challenges of visualizing social science data using ggplot (Healy 2018); online version available here.\n\n\n\n\n\n\nReferences\n\nHealy, Kieran. 2018. Data Visualization: A Practical Introduction. Princeton, NJ: Princeton University Press."
-  },
-  {
-    "objectID": "11-tidying.html",
-    "href": "11-tidying.html",
-    "title": "Week 11: Data Tidying",
-    "section": "",
-    "text": "This week we discuss the core principles of tidy data, and why you want to ensure that your data is tidy prior to conducting your statistical analyses. By the end of this week, you will be able to:\n\nPivot datasets to change the unit of analysis\nAssess whether a dataset meets the three criteria necessary to be considered “tidy”\nComplete the steps necessary to convert a raw, “messy” dataset into a form amenable to statistical analysis\n\n\nReading\n\nR4DS Chapters 5-6\n\n\n\nProblem Set\nThis dataset that I downloaded from the World Bank has extensive data on each country’s GDP per capita going back to the 1960s. But it’s hopelessly untidy. In this problem set, we’ll tidy it so that the unit of analysis is the country-year, then perform a few analyses.\n\nLoad the data into R. Note that the data itself doesn’t start until row 5, so you’ll need to account for that (hint: check out the skip argument in read.csv()).\nPivot the dataset so that each row is a country-year (e.g. Peru 1970), and there is a single column with the GDP per capita variable.\nMake sure that the resulting year variable is formatted correctly as a numeric. (Hint: the str_remove_all() function may be helpful, depending on how you imported the dataset.)\nMake sure that the unit of analysis is the country, and all rows represent countries.\nReproduce the following chart.\n\n\n\n\n\n\n\n\n\n\n\nBonus. Some economic growth theories suggest that poor countries should grow faster on average than rich countries (convergence). Other theories suggest that rich countries will grow faster than poor countries (divergence). Which theory appears to be a better description of the period between 1990 and 2015? Compute the average annual growth rate for each country during that period, and estimate the relationship between GDP per capita in 1990 and growth over the following 25 years. Interpret the associated hypothesis test and plot your results."
-  },
-  {
-    "objectID": "13-joining.html",
-    "href": "13-joining.html",
-    "title": "Week 13: Data Joining",
-    "section": "",
-    "text": "It is rare that all the variables you need for your research will be found in a single dataset. More often, you will need to merge information from multiple datasets before you can begin your analyses. By the end of this week, you will be able to:\n\nJoin datasets based on one or more key identifying variables\nConduct appropriate diagnostic tests to ensure that the datasets merged correctly\nImplement fuzzy record linkage when key variables do not match exactly\n\n\nReading\n\nR4DS Chapter 19\n\n\n\nProblem Set\nGelman et al. (2007) find an interesting paradox in which rich people are more likely to vote for Republican presidential candidates, but rich US states are more likely to vote for Democrats. In this problem set, we will see if this paradox still holds true in the year 2020.\n\nLoad the raw CES 2020 dataset and tidy the family income, 2020 presidential vote choice, and state of residence variables as necessary.\nWere rich people more likely to vote Republican in 2020? Compute the percent of respondents at each family income level that reported voting for Joe Biden, and plot the relationship.\nUse the tidycensus package to get a dataset with 5-year estimates of median income from the 2020 American Community Survey.\nJoin the individual-level survey data with the median income variable by state.\nWere rich states more likely to vote Democratic in 2020? Create a state-level dataset with each state’s median income and the percent of CES respondents in that state that reported voting for Joe Biden. Plot the relationship and fit a linear model, reporting the estimated slope.\nBonus. Another finding from the Gelman et al. (2007) paper is that the relationship between individual-level income and vote choice is strongest in poor states and weakest in rich states. Let’s see if that result still holds up in 2020. Create a variable that splits the dataset into three groups: poor states (poorest third of the US states), middle-income states (middle third), and rich states (richest third of the US states). Then repeat the individual-level analysis in problem 2, faceting by this new income-group variable.\n\n\n\nAdditional Resources\n\nFor a primer on fuzzy record linkage (merging datasets when the key variables do not contain exact matches), might I self-promote a bit and suggest this paper and R package?\n\n\n\n\n\n\nReferences\n\nGelman, Andrew, Boris Shor, Joseph Bafumi, and David Park. 2007. “Rich State, Poor State, Red State, Blue State: What’s the Matter with Connecticut?” Quarterly Journal of Political Science 2 (June 2006): 345–67. https://doi.org/10.1561/100.00006026."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "POLS 7012: Introduction to Political Methodology",
-    "section": "",
-    "text": "Welcome to our course website! Here you can find links to everything you’ll need this semester:"
-  },
-  {
-    "objectID": "index.html#course-objectives",
-    "href": "index.html#course-objectives",
-    "title": "POLS 7012: Introduction to Political Methodology",
-    "section": "Course Objectives",
-    "text": "Course Objectives\nBy the end of this course, you will be able to:\n\nConfidently work with data using the R programming language\nCreate beautiful and informative data visualizations\nOrganize your work so that it is transparent and reproducible\nBuild basic statistical models and estimate their parameters from data\nCommunicate uncertainty around your estimates\nIdentify research designs that credibly address three fundamental challenges of social science: measurement, causal inference, and sampling."
-  },
-  {
-    "objectID": "index.html#assignments-grading",
-    "href": "index.html#assignments-grading",
-    "title": "POLS 7012: Introduction to Political Methodology",
-    "section": "Assignments & Grading",
-    "text": "Assignments & Grading\nEach week I will assign 1-2 chapters of reading and a problem set, both due at noon the day of class. Feel free to consult your classmates with questions about the problem sets, but I expect you to submit your answers individually. Resist the temptation to copy-paste your classmates’ code. You are much more likely to learn if you type your responses yourself. Each problem set contains a Bonus problem that will require you to conduct some independent research beyond that week’s reading. Problem sets will be graded pass/fail, where a passing grade indicates that you have correctly solved over 70% of the problems.\nThe semester will culminate with each student completing an independent research project. During the final two weeks, students will present an original analysis of a dataset of their choice. To meet expectations, the project should address in a satisfying way issues relating to measurement, causal inference, and sampling, and students should submit code and a codebook that allows others to replicate their analysis from the raw dataset. Within 48 hours of your presentation, I will provide you a list of revisions that I think would improve the research. Completing these revisions before the end of finals period is a requirement for earning an A- or A in the course. Students wishing to earn an A will—in addition to the presentation, code, and codebook—submit a final paper that includes an abstract, brief literature review, and discussion of their findings.\nThe final letter grade you earn for the semester will be determined based on the number of problem sets you complete that meet expectations, the number of bonus problems you successfully complete, and your performance on the final project. Consult the table below for the minimum requirements for each letter grade. To earn a given letter grade, you must complete the requirements for that grade and all the grades below it, and students must at least meet the requirements for a C to pass the course.\n\n\n\n\n\n\n\n\n\nLetter Grade\nProblem Sets\nBonus Problems\nFinal Project\n\n\n\n\nA\n10\n8\nSubmit a final paper\n\n\nA-\n9\n5\nComplete requested revisions\n\n\nB+\n8\n2\nCode successfully replicates\n\n\nB\n7\n0\nProvide code and codebook\n\n\nC\n6\n0\nPresent final project"
-  },
-  {
-    "objectID": "index.html#office-hours-and-email-policy",
-    "href": "index.html#office-hours-and-email-policy",
-    "title": "POLS 7012: Introduction to Political Methodology",
-    "section": "Office Hours and Email Policy",
-    "text": "Office Hours and Email Policy\nI will be available for students to drop in and chat every Monday, Wednesday, and Friday afternoon from 1:30-3pm. My office is Baldwin 304C. If you send me an email, please allow me 24 hours to respond. Like many professors, my inbox is pretty overloaded. Also, I have small children, so it’s my policy to not check email after 5pm or on weekends. You should feel free to seek assistance from the senior graduate students staffing the SPIA Methods Helpdesk. You can email them questions at spia-methods-help@uga.edu."
-  },
-  {
-    "objectID": "index.html#books",
-    "href": "index.html#books",
-    "title": "POLS 7012: Introduction to Political Methodology",
-    "section": "Books",
-    "text": "Books\nOur readings will come from the two books listed below. The first book (DAFSS) must be purchased—either in hard-copy or through the course Perusall site—but the second (R4DS) is freely available online.\n\nDAFSS: Llaudet, Elena & Imai, Kosuke (2022). Data Analysis for Social Science: A Friendly and Practical Introduction. Princeton University Press.\nR4DS: Wickham, H., Cetinkaya-Rundel, M., & Grolemund, G., (2023). R For Data Science: Import, Tidy, Transform, Visualize, and Model Data, 2nd Edition. O’Reilly Media, Inc."
-  },
-  {
-    "objectID": "index.html#schedule",
-    "href": "index.html#schedule",
-    "title": "POLS 7012: Introduction to Political Methodology",
-    "section": "Schedule",
-    "text": "Schedule\nSee the Schedule drop-down menu in the upper right for a complete list of each week’s objectives, assignments, and class notes."
-  },
-  {
-    "objectID": "index.html#footnotes",
-    "href": "index.html#footnotes",
-    "title": "POLS 7012: Introduction to Political Methodology",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nVisit eLC for the Perusall access code.↩︎"
-  },
-  {
-    "objectID": "10-wrangling.html#footnotes",
-    "href": "10-wrangling.html#footnotes",
-    "title": "Week 10: Data Wrangling",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nI will generally use read_csv() instead of read.csv() in my own work, since it is faster and will give you useful error messages if the input is formatted in a way it doesn’t expect.↩︎"
-  },
-  {
-    "objectID": "slides/integrals.html#area-under-a-curve",
-    "href": "slides/integrals.html#area-under-a-curve",
-    "title": "Calculus Essentials",
-    "section": "Area Under A Curve",
-    "text": "Area Under A Curve\nTo compute a p-value, we need to know the area under the shaded part of the probability distribution function. We know that the area under the entire curve equals 1, but what fraction of that area is shaded below?"
-  },
-  {
-    "objectID": "slides/integrals.html#area-under-a-curve-1",
-    "href": "slides/integrals.html#area-under-a-curve-1",
-    "title": "Calculus Essentials",
-    "section": "Area Under A Curve",
-    "text": "Area Under A Curve\nThe area of a rectangle is easy. \\(A = bh\\)"
-  },
-  {
-    "objectID": "slides/integrals.html#area-under-a-curve-2",
-    "href": "slides/integrals.html#area-under-a-curve-2",
-    "title": "Calculus Essentials",
-    "section": "Area Under A Curve",
-    "text": "Area Under A Curve\nCurves are harder. We didn’t learn this in geometry!"
-  },
-  {
-    "objectID": "slides/integrals.html#area-under-a-curve-3",
-    "href": "slides/integrals.html#area-under-a-curve-3",
-    "title": "Calculus Essentials",
-    "section": "Area Under A Curve",
-    "text": "Area Under A Curve\n\nWith derivatives, we approximated a hard problem (the slope of a curve) using an easy problem (the slope of a line) by zooming in close enough.\nWith integrals, we’ll use a similar trick.\nWe approximate a hard problem (the area under a curve) using an easy problem (the area of a bunch of rectangles) by making the rectangles really thin."
-  },
-  {
-    "objectID": "slides/integrals.html#area-under-a-curve-4",
-    "href": "slides/integrals.html#area-under-a-curve-4",
-    "title": "Calculus Essentials",
-    "section": "Area Under A Curve",
-    "text": "Area Under A Curve\n\nWith derivatives, we approximated a hard problem (the slope of a curve) using an easy problem (the slope of a line) by zooming in close enough.\nWith integrals, we’ll use a similar trick.\nWe approximate a hard problem (the area under a curve) using an easy problem (the area of a bunch of rectangles) by making the rectangles really thin."
-  },
-  {
-    "objectID": "slides/integrals.html#reimann-sums",
-    "href": "slides/integrals.html#reimann-sums",
-    "title": "Calculus Essentials",
-    "section": "Reimann Sums",
-    "text": "Reimann Sums\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
-  },
-  {
-    "objectID": "slides/integrals.html#reimann-sums-1",
-    "href": "slides/integrals.html#reimann-sums-1",
-    "title": "Calculus Essentials",
-    "section": "Reimann Sums",
-    "text": "Reimann Sums\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
-  },
-  {
-    "objectID": "slides/integrals.html#reimann-sums-2",
-    "href": "slides/integrals.html#reimann-sums-2",
-    "title": "Calculus Essentials",
-    "section": "Reimann Sums",
-    "text": "Reimann Sums\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
-  },
-  {
-    "objectID": "slides/integrals.html#reimann-sums-3",
-    "href": "slides/integrals.html#reimann-sums-3",
-    "title": "Calculus Essentials",
-    "section": "Reimann Sums",
-    "text": "Reimann Sums\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
-  },
-  {
-    "objectID": "slides/integrals.html#reimann-sum",
-    "href": "slides/integrals.html#reimann-sum",
-    "title": "Calculus Essentials",
-    "section": "Reimann Sum",
-    "text": "Reimann Sum\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
-  },
-  {
-    "objectID": "slides/integrals.html#reimann-sum-1",
-    "href": "slides/integrals.html#reimann-sum-1",
-    "title": "Calculus Essentials",
-    "section": "Reimann Sum",
-    "text": "Reimann Sum\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
-  },
-  {
-    "objectID": "slides/integrals.html#reimann-sum-2",
-    "href": "slides/integrals.html#reimann-sum-2",
-    "title": "Calculus Essentials",
-    "section": "Reimann Sum",
-    "text": "Reimann Sum\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
-  },
-  {
-    "objectID": "slides/integrals.html#reimann-sum-3",
-    "href": "slides/integrals.html#reimann-sum-3",
-    "title": "Calculus Essentials",
-    "section": "Reimann Sum",
-    "text": "Reimann Sum\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
-  },
-  {
-    "objectID": "slides/integrals.html#reimann-sum-4",
-    "href": "slides/integrals.html#reimann-sum-4",
-    "title": "Calculus Essentials",
-    "section": "Reimann Sum",
-    "text": "Reimann Sum\n\\(f(x) = x^3 - 2x^2 + 2\\). Find area under curve from \\(x=0\\) to \\(x=3\\)."
-  },
-  {
-    "objectID": "slides/integrals.html#integral-notation",
-    "href": "slides/integrals.html#integral-notation",
-    "title": "Calculus Essentials",
-    "section": "Integral Notation",
-    "text": "Integral Notation\n\\[\\lim_{h \\to 0} \\sum f(x) \\cdot h = \\int f(x)dx \\]\n\n\\(dx\\) is an “infinitesimal” (infinitely small value).\nSo \\(\\int f(x)dx\\) is the area of an infinite number of infinitely skinny rectangles.\n\n\nIf we want the area under a curve between \\(a\\) and \\(b\\), we denote it like so:\n\\[\\int_a^b f(x)dx\\]"
-  },
-  {
-    "objectID": "slides/integrals.html#the-area-function-fx",
-    "href": "slides/integrals.html#the-area-function-fx",
-    "title": "Calculus Essentials",
-    "section": "The Area Function \\(F(x)\\)",
-    "text": "The Area Function \\(F(x)\\)\n\nThere has to be an easier way to compute the area under a curve than taking the sum of an nearly infinite number of skinny rectangles…\n\n\nWhat we want is a function \\(F(x)\\); let’s call it the area function.\n\n\\(F(a)\\) gives the area under \\(f(x)\\) between \\(-\\infty\\) and \\(a\\).\n\\(F(b) - F(a)\\) gives the area under \\(f(x)\\) between \\(a\\) and \\(b\\)."
-  },
-  {
-    "objectID": "slides/integrals.html#the-area-function-fx-1",
-    "href": "slides/integrals.html#the-area-function-fx-1",
-    "title": "Calculus Essentials",
-    "section": "The Area Function \\(F(x)\\)",
-    "text": "The Area Function \\(F(x)\\)\nAs \\(h\\) approaches zero, our skinny rectangles should become a better and better approximation of this area function…\n\\[f(x) \\cdot h = \\lim_{h \\to 0} F(x+h) - F(x)\\]\n\nDivide on both sides by \\(h\\).\n\\[f(x) = \\lim_{h \\to 0} \\frac{F(x+h) - F(x)}{h}\\]\n\n\nHey doesn’t that look familiar?\n\n\n\\(f(x) = F'(x)\\). In other words, \\(F(x)\\) is the antiderivative."
-  },
-  {
-    "objectID": "slides/integrals.html#the-fundamental-theorem-of-calculus",
-    "href": "slides/integrals.html#the-fundamental-theorem-of-calculus",
-    "title": "Calculus Essentials",
-    "section": "The Fundamental Theorem of Calculus",
-    "text": "The Fundamental Theorem of Calculus\n\\[\\int_a^b f(x)dx =  F(b) - F(a)\\]\nFinding the area under the curve and taking the antiderivative are equivalent operations!"
-  },
-  {
-    "objectID": "slides/integrals.html#lets-try-it",
-    "href": "slides/integrals.html#lets-try-it",
-    "title": "Calculus Essentials",
-    "section": "Let’s Try It!",
-    "text": "Let’s Try It!\nIf \\(f(x) = x\\), find the area under the curve between \\(x=0\\) and \\(x=4\\)."
-  },
-  {
-    "objectID": "slides/integrals.html#lets-try-it-1",
-    "href": "slides/integrals.html#lets-try-it-1",
-    "title": "Calculus Essentials",
-    "section": "Let’s Try It!",
-    "text": "Let’s Try It!\nIf \\(f(x) = x\\), find the area under the curve between \\(x=0\\) and \\(x=4\\).\n\nUse the Fundamental Theorem of Calculus\n\\[\n\\int_0^4 f(x)dx = F(4) - F(0)\n\\]\n\\(F(x) = \\frac{1}{2}x^2 + C\\)\n\n\n\\(F(4) - F(0) = \\frac{1}{2}\\cdot4^2 = 8\\)"
-  },
-  {
-    "objectID": "slides/integrals.html#int_04-fxdx-f4---f0",
-    "href": "slides/integrals.html#int_04-fxdx-f4---f0",
-    "title": "Calculus Essentials",
-    "section": "\\[\\int_0^4 f(x)dx = F(4) - F(0)\\]",
-    "text": "\\[\\int_0^4 f(x)dx = F(4) - F(0)\\]\n\\(F(x) = \\frac{1}{2}x^2 + C\\)\n\n\\(F(4) - F(0) = \\frac{1}{2}\\cdot4^2 = 8\\)"
-  },
-  {
-    "objectID": "slides/integrals.html#now-a-nonlinear-example",
-    "href": "slides/integrals.html#now-a-nonlinear-example",
-    "title": "Calculus Essentials",
-    "section": "Now A Nonlinear Example…",
-    "text": "Now A Nonlinear Example…\nIf \\(f(x) = x^3 - 2x^2 + 2\\), find the area under the curve between \\(x=0\\) and \\(x=3\\).\n\n\\[\\int_0^3 f(x)dx = F(3) - F(0)\\]\n\n\n\\(F(x) = \\frac{1}{4}x^4 - \\frac{2}{3}x^3 + 2x + C\\)\n\n\n\\(F(3) - F(0) = \\frac{1}{4}3^4 - \\frac{2}{3}3^3 + 2(3) - [\\frac{1}{4}0^4 - \\frac{2}{3}0^3 + 2(0)]\\)\n\n\n\\(= 8.25\\)"
-  },
-  {
-    "objectID": "slides/integrals.html#now-a-nonlinear-example-1",
-    "href": "slides/integrals.html#now-a-nonlinear-example-1",
-    "title": "Calculus Essentials",
-    "section": "Now A Nonlinear Example…",
-    "text": "Now A Nonlinear Example…\nThat’s the same answer that we got from the skinny rectangles!"
   }
 ]

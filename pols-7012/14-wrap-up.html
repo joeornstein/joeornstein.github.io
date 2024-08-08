@@ -8,7 +8,7 @@
 
 <meta name="author" content="Joe Ornstein">
 
-<title>Introduction to Political Methodology - Week 3: Experiments</title>
+<title>Introduction to Political Methodology - Weeks 14-15: Wrapping Up</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,26 +21,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -202,22 +183,14 @@ div.csl-indent {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#reading" id="toc-reading" class="nav-link active" data-scroll-target="#reading">Reading</a></li>
-  <li><a href="#problem-set" id="toc-problem-set" class="nav-link" data-scroll-target="#problem-set">Problem Set</a></li>
-  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 3: Experiments</h1>
+<h1 class="title">Weeks 14-15: Wrapping Up</h1>
 </div>
 
 
@@ -238,45 +211,17 @@ div.csl-indent {
 
 </header>
 
-<p>This week we introduce the <strong>Fundamental Problem of Causal Inference</strong>, and discuss why randomized experiments are generally considered the gold standard approach to that problem. By the end of this week you will be able to:</p>
-<ul>
-<li><p>Describe the potential outcomes framework</p></li>
-<li><p>Compute a difference-in-means using <code>R</code></p></li>
-<li><p>Write scripts that perform other essential data analysis tasks, like subsetting and creating new variables.</p></li>
-</ul>
-<section id="reading" class="level1">
-<h1>Reading</h1>
-<ul>
-<li><strong>DAFSS</strong> Chapter 2</li>
-</ul>
-</section>
-<section id="problem-set" class="level1">
-<h1>Problem Set</h1>
-<p>Please submit the responses to the following exercises as a PDF knitted from an <code>R</code> script or Quarto document.</p>
-<ol type="1">
-<li>Load the <a href="data/voting.csv">voting.csv</a> dataset from our previous problem set. What percent of registered voters who received the social pressure message turned out to vote in the 2006 election? What percent of those who did <em>not</em> receive the social pressure message turned out?</li>
-<li>Estimate the average treatment effect of the social pressure message on the probability of voting. Briefly explain why we can or cannot interpret this estimate as a causal effect.</li>
-<li>What was the average birth year of respondents who received the social pressure message? What about those who did not receive the social pressure message? Explain this result.</li>
-<li>Create a new variable called <code>young</code>, equal to 1 if the respondent was less than 25 years old in 2006 and 0 otherwise.</li>
-<li>Was the average effect of the social pressure message larger or smaller for young respondents than for the rest of the sample? Interpret this result.</li>
-<li><strong>Bonus</strong>. Estimate the average effect of the social pressure message for each birth decade cohort (e.g.&nbsp;everyone born in the 1960s, 1970s, 1980s, etc.). Do any of your estimates stand out as odd? What is the most sensible way to interpret this result?</li>
-</ol>
-</section>
-<section id="additional-resources" class="level1">
-<h1>Additional Resources</h1>
-<ul>
-<li><span class="citation" data-cites="pearlBookWhyNew2019">Pearl and Mackenzie (<a href="#ref-pearlBookWhyNew2019" role="doc-biblioref">2019</a>)</span></li>
-</ul>
-
-
-
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-pearlBookWhyNew2019" class="csl-entry" role="listitem">
-Pearl, Judea, and Dana Mackenzie. 2019. <em>The book of why: the new science of cause and effect</em>. Penguin science. London: Penguin Books.
+<p>In the final two weeks of the semester we will present our final projects to the class. There will be no reading assignments or problem sets due.</p>
+<p>Thank you for sharing your valuable time with me this semester. We’ve covered a lot, but I hope that you will come away from the class feeling more confident in your ability to conduct research and contribute to the conversation in political science. I look forward to seeing what you will do!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://allisonhorst.com/everything-else"><img src="img/know-stuff.png" class="img-fluid figure-img"></a></p>
+</figure>
 </div>
-</div></section></div></main> <!-- /main -->
+
+
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
