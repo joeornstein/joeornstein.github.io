@@ -1,96 +1,5 @@
 [
   {
-    "objectID": "index.html#week-2-913",
-    "href": "index.html#week-2-913",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 2 (9/13)",
-    "text": "Week 2 (9/13)"
-  },
-  {
-    "objectID": "index.html#week-3-920",
-    "href": "index.html#week-3-920",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 3 (9/20)",
-    "text": "Week 3 (9/20)"
-  },
-  {
-    "objectID": "index.html#week-4-927",
-    "href": "index.html#week-4-927",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 4 (9/27)",
-    "text": "Week 4 (9/27)"
-  },
-  {
-    "objectID": "index.html#week-5-104",
-    "href": "index.html#week-5-104",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 5 (10/4)",
-    "text": "Week 5 (10/4)"
-  },
-  {
-    "objectID": "index.html#week-6-1011",
-    "href": "index.html#week-6-1011",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 6 (10/11)",
-    "text": "Week 6 (10/11)"
-  },
-  {
-    "objectID": "index.html#week-7-1018",
-    "href": "index.html#week-7-1018",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 7 (10/18)",
-    "text": "Week 7 (10/18)"
-  },
-  {
-    "objectID": "index.html#week-8-1025",
-    "href": "index.html#week-8-1025",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 8 (10/25)",
-    "text": "Week 8 (10/25)"
-  },
-  {
-    "objectID": "index.html#week-9-111",
-    "href": "index.html#week-9-111",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 9 (11/1)",
-    "text": "Week 9 (11/1)"
-  },
-  {
-    "objectID": "index.html#week-10-118",
-    "href": "index.html#week-10-118",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 10 (11/8)",
-    "text": "Week 10 (11/8)"
-  },
-  {
-    "objectID": "index.html#week-11-1115",
-    "href": "index.html#week-11-1115",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 11 (11/15)",
-    "text": "Week 11 (11/15)"
-  },
-  {
-    "objectID": "index.html#leaderboard",
-    "href": "index.html#leaderboard",
-    "title": "Fall 2023 Predictions",
-    "section": "Leaderboard",
-    "text": "Leaderboard\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nJoe Ornstein\n27/34\n0.1102\n\n\n2\nHarini Mohan\n25/34\n0.1850\n\n\n3\nAnsley Austin\n23/34\n0.1896\n\n\n4\nClass Average\n22/34\n0.2041\n\n\n5\nHarshini Mohan\n22/34\n0.2111\n\n\n6\nMaggie Fertig\n22/34\n0.2152\n\n\n7\nRyan Wolkofsky\n22/34\n0.2208\n\n\n8\nSamiha Sarwar\n19/34\n0.2210\n\n\n9\nBain Fulcher\n22/34\n0.2263\n\n\n10\nSimryn Patel\n20/34\n0.2674\n\n\n11\nTori Harrill\n18/34\n0.2755\n\n\n12\nRease Bauer\n17/34\n0.2759\n\n\n13\nJacob Fortner\n18/34\n0.2787\n\n\n14\nHita Boddu\n15/34\n0.3126\n\n\n15\nPeyton Murry\n16/34\n0.3638\n\n\n16\nJack Whipple\n17/34\n0.3857\n\n\n17\nKang Lee\n15/34\n0.4013\n\n\n18\nDuy Do\n13/34\n0.4599"
-  },
-  {
-    "objectID": "index.html#calibration-plots",
-    "href": "index.html#calibration-plots",
-    "title": "Fall 2023 Predictions",
-    "section": "Calibration Plots",
-    "text": "Calibration Plots"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Two Principles\n\nBe humble. Think in terms of probabilities rather than certainties.\nConsider multiple perspectives."
-  },
-  {
     "objectID": "fall-2022.html#week-2-97",
     "href": "fall-2022.html#week-2-97",
     "title": "Fall 2022 Predictions",
@@ -166,5 +75,96 @@
     "title": "Fall 2022 Predictions",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nI had incorrectly resolved the Netanyahu question as “yes” following the November 1 Israeli elections, but he did not secure a coalition agreement to become Prime Minister by the November 30 deadline.↩︎"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Two Principles\n\nBe humble. Think in terms of probabilities rather than certainties.\nConsider multiple perspectives."
+  },
+  {
+    "objectID": "fall-2023.html#week-2-913",
+    "href": "fall-2023.html#week-2-913",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 2 (9/13)",
+    "text": "Week 2 (9/13)"
+  },
+  {
+    "objectID": "fall-2023.html#week-3-920",
+    "href": "fall-2023.html#week-3-920",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 3 (9/20)",
+    "text": "Week 3 (9/20)"
+  },
+  {
+    "objectID": "fall-2023.html#week-4-927",
+    "href": "fall-2023.html#week-4-927",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 4 (9/27)",
+    "text": "Week 4 (9/27)"
+  },
+  {
+    "objectID": "fall-2023.html#week-5-104",
+    "href": "fall-2023.html#week-5-104",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 5 (10/4)",
+    "text": "Week 5 (10/4)"
+  },
+  {
+    "objectID": "fall-2023.html#week-6-1011",
+    "href": "fall-2023.html#week-6-1011",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 6 (10/11)",
+    "text": "Week 6 (10/11)"
+  },
+  {
+    "objectID": "fall-2023.html#week-7-1018",
+    "href": "fall-2023.html#week-7-1018",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 7 (10/18)",
+    "text": "Week 7 (10/18)"
+  },
+  {
+    "objectID": "fall-2023.html#week-8-1025",
+    "href": "fall-2023.html#week-8-1025",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 8 (10/25)",
+    "text": "Week 8 (10/25)"
+  },
+  {
+    "objectID": "fall-2023.html#week-9-111",
+    "href": "fall-2023.html#week-9-111",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 9 (11/1)",
+    "text": "Week 9 (11/1)"
+  },
+  {
+    "objectID": "fall-2023.html#week-10-118",
+    "href": "fall-2023.html#week-10-118",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 10 (11/8)",
+    "text": "Week 10 (11/8)"
+  },
+  {
+    "objectID": "fall-2023.html#week-11-1115",
+    "href": "fall-2023.html#week-11-1115",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 11 (11/15)",
+    "text": "Week 11 (11/15)"
+  },
+  {
+    "objectID": "fall-2023.html#leaderboard",
+    "href": "fall-2023.html#leaderboard",
+    "title": "Fall 2023 Predictions",
+    "section": "Leaderboard",
+    "text": "Leaderboard\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nJoe Ornstein\n27/34\n0.1102\n\n\n2\nHarini Mohan\n25/34\n0.1850\n\n\n3\nAnsley Austin\n23/34\n0.1896\n\n\n4\nClass Average\n22/34\n0.2041\n\n\n5\nHarshini Mohan\n22/34\n0.2111\n\n\n6\nMaggie Fertig\n22/34\n0.2152\n\n\n7\nRyan Wolkofsky\n22/34\n0.2208\n\n\n8\nSamiha Sarwar\n19/34\n0.2210\n\n\n9\nBain Fulcher\n22/34\n0.2263\n\n\n10\nSimryn Patel\n20/34\n0.2674\n\n\n11\nTori Harrill\n18/34\n0.2755\n\n\n12\nRease Bauer\n17/34\n0.2759\n\n\n13\nJacob Fortner\n18/34\n0.2787\n\n\n14\nHita Boddu\n15/34\n0.3126\n\n\n15\nPeyton Murry\n16/34\n0.3638\n\n\n16\nJack Whipple\n17/34\n0.3857\n\n\n17\nKang Lee\n15/34\n0.4013\n\n\n18\nDuy Do\n13/34\n0.4599"
+  },
+  {
+    "objectID": "fall-2023.html#calibration-plots",
+    "href": "fall-2023.html#calibration-plots",
+    "title": "Fall 2023 Predictions",
+    "section": "Calibration Plots",
+    "text": "Calibration Plots"
   }
 ]
