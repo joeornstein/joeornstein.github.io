@@ -241,7 +241,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="problem-set" class="level1">
 <h1>Problem Set</h1>
-<p><a href="API_NY.GDP.PCAP.PP.CD_DS2_en_csv_v2_2357064.csv">This dataset</a> that I downloaded from the World Bank has extensive data on each country’s GDP per capita going back to the 1960s. But it’s hopelessly untidy. In this problem set, we’ll tidy it so that the unit of analysis is the country-year, then perform a few analyses.</p>
+<p><a href="data/API_NY.GDP.PCAP.PP.CD_DS2_en_csv_v2_2357064.csv">This dataset</a> that I downloaded from the World Bank has extensive data on each country’s GDP per capita going back to the 1960s. But it’s hopelessly untidy. In this problem set, we’ll tidy it so that the unit of analysis is the country-year, then perform a few analyses.</p>
 <ol type="1">
 <li>Load the data into <code>R</code>. Note that the data itself doesn’t start until row 5, so you’ll need to account for that (hint: check out the <code>skip</code> argument in <code>read.csv()</code>).</li>
 <li>Pivot the dataset so that each row is a country-year (e.g.&nbsp;Peru 1970), and there is a single column with the GDP per capita variable.</li>
