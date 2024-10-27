@@ -1,0 +1,763 @@
+---
+title: "`fuzzylink`"
+subtitle: "Probabilistic Record Linkage Using Pretrained Text Embeddings"
+author: 
+  name: "Joseph T. Ornstein"
+  affiliation: "University of Georgia"
+format: 
+  revealjs:
+    incremental: true
+editor: visual
+echo: true
+warning: false
+message: false
+cache: true
+bibliography: references.bib
+---
+
+# Origin Story
+
+## Origin Story
+
+-   Collecting data on candidates for mayor and city council in California since 2010.
+
+-   To my great misfortune, California is enormous.
+
+    -   483 cities
+
+    -   19,298 candidates
+
+## Origin Story
+
+![](images/san-diego-ballot-image.png)
+
+::: notes
+To make matters worse, typically the only information we have readily available about these candidates is the information that appears on the (nonpartisan) ballot: a name, and perhaps a short "ballot designation".
+:::
+
+## Origin Story
+
+One potential solution is to link candidate names to their records in the voter file.
+
+. . .
+
+| Name on Ballot | Name in Voter File (L2)  |
+|----------------|--------------------------|
+| Trish Munro    | Patricia Keer Munro      |
+| Betsy Stix     | Elizabeth Emily Stix     |
+| Mel Chiong     | Carmelita Asiddao Chiong |
+| Matt Hummel    | Francis Matthew Hummel   |
+| Peggy Moore    | Margaret Lee Moore       |
+
+. . .
+
+This is a **fuzzy record linkage** problem.
+
+## Today's Talk
+
+1.  Limits of existing approaches to fuzzy record linkage
+2.  The proposed method (`fuzzylink`)
+3.  Three applications:
+    -   Linking candidate names to the voter file
+
+    -   Linking organizations to campaign contributions
+
+    -   Linking political party names across languages
+4.  `R` package and future work
+
+# Background {.smaller}
+
+## Background {.smaller}
+
+-   To perform fuzzy record linkage, one needs a measure of *string* *similarity*.
+
+-   Existing approaches rely on *lexical* measures of string similarity [e.g. @jaro1989].
+
+    -   Computed based on shared lexical features (e.g., fraction of characters in common, number of necessary transpositions)
+
+    -   `R` packages like `fastLink`, `fuzzyjoin`, and `stringmatch` all use one or more of these measures
+
+-   Great for linking records with typos/misspellings.
+
+-   May provide a misleading measure of match quality when two lexically dissimilar strings have the same meaning.
+
+## Lexical Similarity Can Be Misleading
+
+. . .
+
+::: columns
+::: column
+![](images/jake-bowers.png){fig-align="center"}
+:::
+:::
+
+## Lexical Similarity Can Be Misleading
+
+::: columns
+::: column
+![](images/jake-bowers.png){fig-align="center"}
+:::
+
+::: column
+![](images/jacob-w-bowers.png){fig-align="center"}
+:::
+:::
+
+. . .
+
+**Jaro-Winkler Similarity:** 0.76
+
+## Lexical Similarity Can Be Misleading
+
+::: columns
+::: column
+![](images/jake-bowers.png){fig-align="center"}
+:::
+
+::: column
+![](images/jack-bauer.png){fig-align="center" width="250"}
+:::
+:::
+
+. . .
+
+**Jaro-Winkler Similarity**: 0.78
+
+## Lexical Similarity Can Be Misleading
+
+. . .
+
+::: columns
+::: {.column width="45%"}
+**Peggy Moore:**
+
+![](images/Peggy_Moore.png)
+:::
+
+::: {.column width="55%"}
+:::
+:::
+
+## Lexical Similarity Can Be Misleading
+
+::: columns
+::: {.column width="45%"}
+**Peggy Moore:**
+
+![](images/Peggy_Moore.png)
+:::
+
+::: {.column width="55%"}
+```{r}
+#| echo: false
+library(tidyverse)
+
+load('../../data/l2-merge/gpt-4o/match ~ sim + jw/l2_fuzzylink_all_pairs.RData')
+
+df |> 
+  filter(A == 'Peggy Moore') |> 
+  arrange(-jw) |> 
+  mutate(jw = round(jw, 3)) |> 
+  select(name=B,jw)
+```
+:::
+:::
+
+## Lexical Similarity Can Be Misleading
+
+. . .
+
+![](images/aarp-1.png)
+
+## Lexical Similarity Can Be Misleading
+
+![](images/aarp-2.png)
+
+## Lexical Similarity Can Be Misleading
+
+![](images/aarp-3.png)
+
+## Lexical Similarity Can Be Misleading
+
+. . .
+
+![](images/usps-1.png)
+
+## Lexical Similarity Can Be Misleading
+
+![](images/usps-2.png)
+
+## Lexical Similarity Can Be Misleading
+
+![](images/usps-3.png)
+
+## Beyond Lexical Similarity {.smaller}
+
+-   We'd prefer a measure that captures not just *lexical* similarity, but *semantic* similarity as well.
+
+-   Over the past five years, we've seen the proliferation of language models that seem to understand the meaning of language (e.g. ChatGPT).
+
+    -   Leveraging these kinds of models for fuzzy record linkage is a natural next step.
+
+## So...could we just ask ChatGPT?
+
+. . .
+
+![](images/bowers-prompt.png)
+
+## So...could we just ask ChatGPT? {.smaller}
+
+-   The advantage of this approach is accuracy! GPT-4o correctly labels 99.1% of name pairs from @kaufman2022.
+
+-   The problem with this approach is that it scales terribly.
+
+    -   If you have $N_A$ records in the first dataset, and $N_B$ records in the second dataset, you need $N_A \times N_B$ pairwise comparisons.
+
+    -   This is *expensive*, in both time and money.
+
+-   A scalable record linkage procedure might *incorporate* LLM prompts, but needs to dramatically reduce the number of prompts we submit.
+
+## The `fuzzylink` Approach
+
+. . .
+
+<br>
+
+<br>
+
+Use **pretrained text embeddings** to predict which record pairs are likely matches, then validate only those likely matches using language model prompts.
+
+## Background: Text Embeddings {.smaller}
+
+-   LLMs represent text as **embeddings**---high-dimensional vectors of real numbers.
+
+-   These vectors are trained so that texts with similar meaning are close to one another in vector space.
+
+-   For example, OpenAI's latest embedding model represents the string "Joe Biden" as the following 3,072-dimensional vector:
+
+. . .
+
+```{r}
+#| eval: false
+fuzzylink::get_embeddings('Joe Biden', dimensions = 3072)
+```
+
+```{r}
+#| echo: false
+embedding <- fuzzylink::get_embeddings('Joe Biden', dimensions = 3072)
+
+embedding['Joe Biden',] |> round(5)
+```
+
+## Background: Text Embeddings
+
+We can measure the similarity between two embeddings using **cosine similarity**.
+
+. . .
+
+![](https://thirdspacelearning.com/wp-content/uploads/2021/09/Cos-Graph-image-1-1.svg){fig-align="center" width="500"}
+
+. . .
+
+[![](https://miro.medium.com/v2/resize:fit:915/1*dyH20eCqb6qTL-gt4nCVzQ.png){fig-align="center" width="725"}](https://miro.medium.com/v2/resize:fit:915/1*dyH20eCqb6qTL-gt4nCVzQ.png)
+
+## Background: Text Embeddings
+
+. . .
+
+```{r}
+#| eval: false
+c('Jake Bowers', 'Jacob W Bowers', 'Jack Bauer') |>
+  fuzzylink::get_embeddings() |> 
+  fuzzylink::get_similarity_matrix()
+```
+
+```{r}
+#| echo: false
+c('Jake Bowers', 'Jacob W Bowers', 'Jack Bauer') |>
+  fuzzylink::get_embeddings() |> 
+  fuzzylink::get_similarity_matrix() |> 
+  round(5)
+```
+
+. . .
+
+<br>
+
+```{r}
+#| eval: false
+c('Peggy Moore', 'Peter Moore', 'Margaret Lee Moore') |>
+  fuzzylink::get_embeddings() |> 
+  fuzzylink::get_similarity_matrix()
+```
+
+```{r}
+#| echo: false
+c('Peggy Moore', 'Peter Moore', 'Margaret Lee Moore') |>
+  fuzzylink::get_embeddings() |> 
+  fuzzylink::get_similarity_matrix() |> 
+  round(5)
+```
+
+## Background: Text Embeddings
+
+. . .
+
+```{r}
+#| eval: false
+c('United States Postal Service', 'USPS', 'UPS') |>
+  fuzzylink::get_embeddings() |> 
+  fuzzylink::get_similarity_matrix()
+```
+
+```{r}
+#| echo: false
+c('United States Postal Service', 'USPS', 'UPS') |>
+  fuzzylink::get_embeddings() |> 
+  fuzzylink::get_similarity_matrix() |> 
+  round(5)
+```
+
+. . .
+
+<br>
+
+```{r}
+#| eval: false
+c('Amer. Assoc. of Retired Persons', 'AARP', 'AAA') |>
+  fuzzylink::get_embeddings() |> 
+  fuzzylink::get_similarity_matrix()
+```
+
+```{r}
+#| echo: false
+c('Amer. Assoc. of Retired Persons', 'AARP', 'AAA') |>
+  fuzzylink::get_embeddings() |> 
+  fuzzylink::get_similarity_matrix() |> 
+  round(5)
+```
+
+## ...Now What?
+
+. . .
+
+```{r}
+#| echo: false
+library(tidyverse)
+
+precision_validated <- readxl::read_xlsx('../../data/l2-merge/gpt-4o/match ~ sim + jw/l2_precision_validated.xlsx')
+
+df <- df |>
+  left_join(precision_validated) |>
+  mutate(label = if_else(match_probability > 0.95, 1,
+                         if_else(is.na(validated), 0,
+                                 if_else(is.na(hand_label), as.numeric(validated == 'Yes'),
+                                         if_else(validated == hand_label, as.numeric(validated == 'Yes'),
+                                                 as.numeric(hand_label == 'Yes'))))))
+
+df$match <- factor(if_else(df$label == 1, 'Matches', 'Non-Matches'),
+                       levels = c('Non-Matches', 'Matches'))
+
+ggplot(data = df,
+       mapping = aes(x=sim)) +
+  geom_histogram(color = 'black',
+                 fill = 'gray') +
+  theme_bw() +
+  labs(x = 'Embedding Similarity', y = 'Count')
+```
+
+## Option 1: Deterministic Rule
+
+```{r}
+#| echo: false
+
+ggplot(data = df,
+       mapping = aes(x=sim)) +
+  geom_histogram(color = 'black', fill = 'gray') +
+  theme_bw() +
+  theme(legend.position = 'bottom') +
+  labs(fill = '') +
+  theme_bw() +
+  labs(x = 'Embedding Similarity', y = 'Count') +
+  geom_vline(xintercept = c(0.75),
+             linetype = 'dashed', linewidth = 0.75) +
+  geom_text(x = 0.875, y = 4500, label = 'Matches') +
+  geom_text(x = 0.32, y = 4500, label = 'Non-Matches')
+```
+
+## Option 1: Deterministic Rule
+
+```{r}
+#| echo: false
+
+ggplot(data = df,
+       mapping = aes(x=sim)) +
+  geom_histogram(color = 'black', fill = 'gray') +
+  theme_bw() +
+  theme(legend.position = 'none') +
+  labs(fill = '') +
+  labs(x = 'Embedding Similarity', y = 'Count') +
+  geom_vline(xintercept = c(0.59, 0.75),
+             linetype = 'dashed', linewidth = 0.75) +
+  geom_text(x = 0.875, y = 4500, label = 'Matches') +
+  geom_text(x = 0.32, y = 4500, label = 'Non-Matches') +
+  geom_text(x = 0.67, y = 6500, label = 'Clerical Review')
+```
+
+## Option 1: Deterministic Rule
+
+```{r}
+#| echo: false
+
+ggplot(data = df,
+       mapping = aes(x=sim, fill = match)) +
+  geom_histogram(color = 'black') +
+  theme_bw() +
+  theme(legend.position = 'none') +
+  labs(fill = '') +
+  labs(x = 'Embedding Similarity', y = 'Count') +
+  scale_fill_manual(values = c('gray', 'red')) +
+  geom_vline(xintercept = c(0.59, 0.75),
+             linetype = 'dashed', linewidth = 0.75) +
+  geom_text(x = 0.875, y = 4500, label = 'Matches') +
+  geom_text(x = 0.32, y = 4500, label = 'Non-Matches') +
+  geom_text(x = 0.67, y = 6500, label = 'Clerical Review')
+
+```
+
+## Option 1: Deterministic Rule {.smaller}
+
+. . .
+
+Deterministic record linkage is an unsatisfying approach for social science, for a few reasons:
+
+1.  Relies on an arbitrary choice of thresholds.
+    -   Particularly unsatisfying when there may be multiple appropriate matches, but the researcher does not know *ex ante* how many matches per record to expect.
+2.  Provides a binary classification with no measure of uncertainty.
+    -   Post-merge statistical analyses should account for uncertainty introduced by the record linkage process [@enamoradoUsingProbabilisticModel2019] .
+
+## Option 2: Probabilistic Linkage
+
+```{r}
+#| echo: false
+
+ggplot(data = df,
+       mapping = aes(x=sim, fill = match)) +
+  geom_histogram(mapping = aes(y=after_stat(count / max(count))),
+                 color = 'black') +
+  theme_bw() +
+  theme(legend.position = 'none') +
+  labs(fill = '') +
+  labs(x = 'Embedding Similarity', y = 'P(match)') +
+  scale_fill_manual(values = c('gray', 'red'))
+```
+
+## Option 2: Probabilistic Linkage
+
+```{r}
+#| echo: false
+
+mod <- glm(label ~ sim, data = df,
+           family = 'binomial')
+
+df$prob <- predict(mod, df, type = 'response')
+
+ggplot(data = df,
+       mapping = aes(x=sim, fill = match)) +
+  geom_histogram(mapping = aes(y=after_stat(count / max(count))),
+                 color = 'black') +
+  theme_bw() +
+  theme(legend.position = 'none') +
+  labs(fill = '') +
+  labs(x = 'Embedding Similarity', y = 'P(match)') +
+  scale_fill_manual(values = c('gray', 'red')) +
+  geom_line(mapping = aes(x=sim, y=prob), 
+            linetype = 'solid', linewidth = 0.75)
+```
+
+## Option 2: Probabilistic Linkage
+
+```{r}
+#| echo: false
+
+ggplot(data = df,
+       mapping = aes(x=sim, fill = match)) +
+  geom_histogram(mapping = aes(y=after_stat(count / max(count))),
+                 color = 'black') +
+  theme_bw() +
+  theme(legend.position = 'none') +
+  labs(fill = '') +
+  labs(x = 'Embedding Similarity', y = 'P(match)') +
+  scale_fill_manual(values = c('gray', 'red')) +
+  geom_line(mapping = aes(x=sim, y=prob), 
+            linetype = 'solid', linewidth = 0.75) +
+  geom_vline(xintercept = 0.7377324,
+             linetype = 'dashed',
+             linewidth = 0.75)
+```
+
+## Final Wrinkle: Selecting Training Data
+
+-   We want to avoid having to label $N_A \times N_B$ record pairs to train the model.
+
+-   `fuzzylink` selects pairs to label through **active learning** [@enamoradoActiveLearningProbabilistic2018; @bosleyImprovingProbabilisticModels2022].
+
+## 
+
+<br>
+
+![](images/active-learning.png){fig-align="center"}
+
+## The `fuzzylink` Algorithm
+
+-   **Step 1:** Retrieve embeddings for the identifying fields of each record
+
+-   **Step 2:** Compute cosine similarity matrix
+
+-   **Step 3:** Use LLM prompt to label a sample of name pairs
+
+-   **Step 4:** Fit a logistic regression model to predict whether two records match
+
+-   **Step 5:** Estimate match probabilities for each name pair
+
+-   **Step 6:** Validate uncertain record pairs using LLM prompt
+
+-   Repeat **Steps 4-6** until no uncertain record pairs remain
+
+# Applications
+
+## Applications
+
+1.  Linking candidate names from California elections (n = 19,298) with voter file (n = 22 million)
+2.  Linking organization names (n = 1,388) with campaign donation records (n = 2.9 million)
+3.  Multilingual record linkage. Names of parliamentary political parties in 32 countries since 1900 with their English language translations.
+
+## Three Performance Metrics
+
+-   **Precision:** What percent of identified matches are true matches? $$\frac{TP}{TP + FP}$$
+
+-   **Recall:** What percent of true matches were identified? $$\frac{TP}{TP + FN}$$
+
+-   **Calibration**: Do the estimated match probabilities correctly predict the rate of true matches?
+
+## Application 1: Voter File
+
+. . .
+
+| Name on Ballot | Name in Voter File (L2)  |
+|----------------|--------------------------|
+| Trish Munro    | Patricia Keer Munro      |
+| Betsy Stix     | Elizabeth Emily Stix     |
+| Libby Schaaf   | Elizabeth Beckman Schaaf |
+| Mel Chiong     | Carmelita Asiddao Chiong |
+| Matt Hummel    | Francis Matthew Hummel   |
+| Dick Albright  | Richard William Albright |
+| Peggy Moore    | Margaret Lee Moore       |
+
+## Application 1: Voter File
+
+. . .
+
+Hand-coded matches for 840 records from three counties for performance validation.
+
+. . .
+
+| Method     | Precision | Recall |
+|------------|-----------|--------|
+| `fastLink` | 98.6%     | 58.2%  |
+
+## Application 1: Voter File
+
+Hand-coded matches for 840 records from three counties for performance validation.
+
+| Method      | Precision | Recall |
+|-------------|-----------|--------|
+| `fastLink`  | 98.6%     | 58.2%  |
+| `fuzzylink` | 94.7%     | 97.2%  |
+
+## Application 1: Voter File
+
+Estimated match probabilities well-calibrated; serve as a useful guide for manual validation.
+
+![](images/fuzzylink-calibration-l2-match%20~%20sim%20+%20jw.png){fig-align="center"}
+
+## Application 2: Organization Names {.smaller}
+
+-   Linked the names of 1,377 organizations that cosigned amicus curiae briefs [@abi-hassanIdeologiesOrganizedInterests2023] with DIME dataset [@bonicaMappingIdeologicalMarketplace2014] to estimate ideology.
+
+    -   There are 2.9 million organizations in the DIME dataset, so I cannot definitively estimate recall rates.
+
+    -   `fuzzylink` located DIME scores for 444 organizations, compared with 376 organizations in [@abi-hassanIdeologiesOrganizedInterests2023].
+
+    -   **Precision:** 99.3%
+
+## Application 2: Organization Names
+
+-   `fuzzylink` correctly identified several alternate and former names for organizations:
+
+    -   Utah Association for Justice = Utah Trial Lawyers Association
+
+    -   Ojibwe = Chippewa
+
+    -   Reed Elsevier $\rightarrow$ RELX
+
+    -   California Dump Truck Owners Association $\rightarrow$ California Construction Trucking Association
+
+## Application 3: Multilingual Datasets {.smaller}
+
+-   Approaches that rely on lexical similarity alone cannot link records across different languages.
+
+    -   **Adalet ve Kalkınma Partisi** and **Justice and Development Party** share few lexical features
+
+    -   **Jiyū Minshutō** and **LDP** share zero lexical features.
+
+-   But texts from multiple languages can be represented as embeddings in the same vector space.
+
+    -   This makes large language models particularly adept at translation tasks [@vaswaniAttentionAllYou2017].
+
+## Application 3: Multilingual Datasets {.smaller}
+
+. . .
+
+Split the Parlgov dataset into two datasets with 4,972 records each.
+
+. . .
+
+![](images/native-names.png){fig-align="center" width="800"}
+
+. . .
+
+![](images/english-names.png){fig-align="center" width="800"}
+
+## Application 3: Multilingual Datasets
+
+-   Merged by party name, blocking on country-year.
+
+-   Correctly linked 4,805 name pairs out of 4,972.
+
+    -   **Recall:** 97%
+
+    -   **Precision:** 96%
+
+## Application 3: Multilingual Datasets
+
+```{r}
+#| echo: false
+
+elections <- read_csv('../../data/parlgov_elections.csv') |>
+  # remove the English-speaking countries
+  filter(!(country_name %in% c('Australia', 'New Zealand', 'Canada', 'United Kingdom', 'Ireland'))) |>
+  # keep just the seats assigned to parties
+  filter(!(party_name_english %in% c('one seat', 'one-seat', 'no seat', 'others', 'ethnic', 'no party affiliation'))) |>
+  # just keep parliamentary elections (not European Parliament)
+  filter(election_type == 'parliament') |>
+  # keep only the parties that won seats
+  filter(!is.na(seats), seats > 0) |>
+  select(country_name, election_date, party_name_english, party_name, seats, left_right)
+
+model <- 'gpt-4o'# 'open-mixtral-8x22b'
+embedding_model <- 'text-embedding-3-large'# 'mistral-embed'
+fmla <- match ~ sim + jw
+
+d <- list()
+i <- 1
+for(f in list.files(paste0('../../data/parlgov-merge/', model, '/', deparse(fmla), '/'),
+                    pattern = '\\.RData$',
+                    full.names = TRUE)){
+  load(f)
+  d[[i]] <- df
+  i <- i + 1
+}
+df <- bind_rows(d)
+
+
+actual <- elections |>
+  # compute seat-share weighted LR of parliament
+  group_by(country_name, election_date) |>
+  summarize(lr_actual = weighted.mean(left_right, seats, na.rm = TRUE))
+
+estimate <- df |>
+  # for each party, estimate their lr score based on match probability
+  group_by(A, country_name, election_date) |>
+  summarize(seats = unique(seats),
+            lr_hat = weighted.mean(left_right, match_probability, na.rm = TRUE)) |>
+  # estimate seat-share weighted LR of parliament
+  group_by(country_name, election_date) |>
+  filter(!is.na(seats)) |>
+  summarize(lr_estimated = weighted.mean(lr_hat, seats, na.rm = TRUE)) |>
+  ungroup()
+
+parliaments <- left_join(actual, estimate)
+
+parliaments |>
+  filter(country_name %in% c('Japan', 'Turkey', 'Iceland', 'Italy')) |> 
+  ggplot() +
+  # geom_line(mapping = aes(x=election_date, y=lr_estimated)) +
+  geom_line(mapping = aes(x=election_date, y=lr_actual),
+            linetype = 'dashed') +
+  facet_wrap(~country_name, scales = 'free', ncol = 2) +
+  theme_bw() +
+  labs(x = 'Election Date', y = 'Seat Share-Weighted Mean Ideology of Parliament')
+```
+
+## Application 3: Multilingual Datasets
+
+```{r}
+#| echo: false
+
+parliaments |>
+  filter(country_name %in% c('Japan', 'Turkey', 'Iceland', 'Italy')) |> 
+  ggplot() +
+  # geom_line(mapping = aes(x=election_date, y=lr_estimated)) +
+  geom_line(mapping = aes(x=election_date, y=lr_actual),
+            linetype = 'dashed') +
+  facet_wrap(~country_name, scales = 'free', ncol = 2) +
+  theme_bw() +
+  labs(x = 'Election Date', y = 'Seat Share-Weighted Mean Ideology of Parliament') +
+  geom_point(mapping = aes(x=election_date, y=lr_estimated), color = 'black')
+```
+
+# Conclusion
+
+## Conclusion {.smaller}
+
+. . .
+
+When should researchers use `fuzzylink` over existing approaches?
+
+. . .
+
+<br>
+
+|                                        | `fastLink`   | `fuzzylink`                            |
+|------------------------|------------------------|------------------------|
+| **Source of Fuzziness**                | Errors/typos | Lexically dissimilar alternative names |
+| **Number of Fuzzy Matching Variables** | $\geq 3$     | $1$-$2$                                |
+| **Size of Datasets**                   | **BIG DATA** | Big Data                               |
+
+## Conclusion
+
+-   Should we be relying on closed-sourced language models and embeddings [@spirlingWhyOpensourceGenerative2023]?
+
+    -   Replicated applications with Mistral open-source models; performance is not as good.
+
+    -   Available as option in `fuzzylink` package
+
+-   **Next Year:** Incorporating embedding similarity into `fastLink`
+
+## Call for Beta Testers
+
+. . .
+
+<br>
+
+Package Documentation:
+
+```{r}
+#| echo: false
+knitr::include_url('https://joeornstein.github.io/software/fuzzylink/')
+```
+
+# Thank You!
+
+## References
