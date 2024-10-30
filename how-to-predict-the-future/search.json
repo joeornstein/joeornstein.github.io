@@ -53,7 +53,7 @@
     "href": "index.html#leaderboard",
     "title": "Fall 2024 Predictions",
     "section": "Leaderboard",
-    "text": "Leaderboard\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nJoe Ornstein\n7/9\n0.0997\n\n\n2\nDavid Daniels\n7/9\n0.1087\n\n\n3\nCorinne O’Dell\n6/7\n0.1102\n\n\n4\nVictor Avila\n5/6\n0.1102\n\n\n5\nAbigail Harris\n5/6\n0.1221\n\n\n6\nAbby Crowe\n6/8\n0.1256\n\n\n7\nFranco Bravo\n6/7\n0.1262\n\n\n8\nRyan Foley\n4/6\n0.1363\n\n\n9\nLadi Fashogbon\n3/4\n0.1400\n\n\n10\nLiv Payne\n6/8\n0.1478\n\n\n11\nColin Barry\n7/9\n0.1497\n\n\n12\nKira Liscombe\n5/7\n0.1539\n\n\n13\nJeffrey Markowitz\n6/7\n0.1546\n\n\n14\nCrowd\n6/9\n0.1575\n\n\n15\nMatthew Harvey\n6/8\n0.1670\n\n\n16\nReece Slater\n6/8\n0.1688\n\n\n17\nAlexis Frazer\n6/9\n0.1701\n\n\n18\nLeo Zegarra\n6/9\n0.1798\n\n\n19\nFindleigh Ague\n5/7\n0.1806\n\n\n20\nErin Ho\n5/7\n0.1843\n\n\n21\nShayna Van Glish\n4/6\n0.1866\n\n\n22\nWilliam Willis\n5/8\n0.1984\n\n\n23\nHaley Ford\n5/8\n0.1995\n\n\n24\nJohn Mathis\n4/6\n0.2012\n\n\n25\nRommy Etzion\n3/4\n0.2042\n\n\n26\nCarson Ankeny\n4/7\n0.2175\n\n\n27\nVikram Bharadwaj\n5/9\n0.2208\n\n\n28\nGracie Culpepper\n5/9\n0.2212\n\n\n29\nSara Whitmire\n1/3\n0.2417\n\n\n30\nAlex Vrolijk\n6/9\n0.2427\n\n\n31\nHayden Morehouse\n4/8\n0.2822\n\n\n32\nJessica Armour\n4/8\n0.2834\n\n\n33\nEdward Tsui\n3/7\n0.2836\n\n\n34\nKristalee Gonzalez-Perez\n4/7\n0.2864\n\n\n35\nSimon Gersten\n4/7\n0.2883\n\n\n36\nBrooke Mcdermott\n4/8\n0.3033\n\n\n37\nMinha Ahmad\n3/8\n0.3285"
+    "text": "Leaderboard\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nJoe Ornstein\n8/10\n0.0920\n\n\n2\nDavid Daniels\n8/10\n0.1094\n\n\n3\nVictor Avila\n5/6\n0.1102\n\n\n4\nAbigail Harris\n6/7\n0.1175\n\n\n5\nFranco Bravo\n6/7\n0.1262\n\n\n6\nAbby Crowe\n7/9\n0.1294\n\n\n7\nCorinne O’Dell\n6/8\n0.1315\n\n\n8\nRyan Foley\n5/7\n0.1343\n\n\n9\nLadi Fashogbon\n3/4\n0.1400\n\n\n10\nLiv Payne\n6/8\n0.1478\n\n\n11\nColin Barry\n8/10\n0.1508\n\n\n12\nKira Liscombe\n5/7\n0.1539\n\n\n13\nJeffrey Markowitz\n7/8\n0.1553\n\n\n14\nCrowd\n7/10\n0.1570\n\n\n15\nMatthew Harvey\n7/9\n0.1584\n\n\n16\nReece Slater\n7/9\n0.1614\n\n\n17\nAlexis Frazer\n7/10\n0.1633\n\n\n18\nWilliam Willis\n6/9\n0.1788\n\n\n19\nLeo Zegarra\n6/9\n0.1798\n\n\n20\nHaley Ford\n6/9\n0.1827\n\n\n21\nShayna Van Glish\n5/7\n0.1828\n\n\n22\nRommy Etzion\n4/5\n0.1954\n\n\n23\nJohn Mathis\n4/6\n0.2012\n\n\n24\nErin Ho\n5/8\n0.2033\n\n\n25\nVikram Bharadwaj\n6/10\n0.2077\n\n\n26\nCarson Ankeny\n4/7\n0.2175\n\n\n27\nFindleigh Ague\n5/8\n0.2192\n\n\n28\nGracie Culpepper\n5/9\n0.2212\n\n\n29\nSara Whitmire\n1/3\n0.2417\n\n\n30\nJessica Armour\n5/9\n0.2619\n\n\n31\nSimon Gersten\n5/8\n0.2676\n\n\n32\nEdward Tsui\n4/8\n0.2718\n\n\n33\nAlex Vrolijk\n6/10\n0.2747\n\n\n34\nHayden Morehouse\n4/8\n0.2822\n\n\n35\nBrooke Mcdermott\n4/8\n0.3033\n\n\n36\nKristalee Gonzalez-Perez\n4/8\n0.3035\n\n\n37\nMinha Ahmad\n4/9\n0.3116"
   },
   {
     "objectID": "fall-2022.html#week-2-97",
@@ -229,5 +229,12 @@
     "title": "Fall 2024 Predictions",
     "section": "Week 9 (10/21)",
     "text": "Week 9 (10/21)"
+  },
+  {
+    "objectID": "index.html#week-10-1028",
+    "href": "index.html#week-10-1028",
+    "title": "Fall 2024 Predictions",
+    "section": "Week 10 (10/28)",
+    "text": "Week 10 (10/28)"
   }
 ]
