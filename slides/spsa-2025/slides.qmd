@@ -1,0 +1,308 @@
+---
+title: "`fuzzylink`"
+subtitle: "Probabilistic Record Linkage Using Pretrained Text Embeddings"
+author: 
+  name: "Joe Ornstein"
+  affiliation: "University of Georgia"
+format: 
+  revealjs:
+    incremental: true
+editor: visual
+echo: true
+warning: false
+message: false
+cache: true
+bibliography: references.bib
+---
+
+## Fuzzy Record Linkage
+
+-   Frequent problem in empirical social science
+
+. . .
+
+| Name on Ballot | Name in Voter File (L2)  |
+|----------------|--------------------------|
+| Trish Munro    | Patricia Keer Munro      |
+| Betsy Stix     | Elizabeth Emily Stix     |
+| Mel Chiong     | Carmelita Asiddao Chiong |
+| Matt Hummel    | Francis Matthew Hummel   |
+| Peggy Moore    | Margaret Lee Moore       |
+
+## Background {.smaller}
+
+-   Conventionally, we solve this problem using some measure of string distance [e.g. @jaro1989].
+
+    -   Computed based on shared lexical features (e.g., fraction of characters in common, number of necessary transpositions)
+
+    -   `R` packages like `fastLink`, `fuzzyjoin`, and `stringmatch` all use one or more of these measures
+
+-   Great for linking records with typos/misspellings.
+
+-   May provide a misleading measure of match quality when two lexically dissimilar strings have the same meaning.
+
+## Lexical Similarity Can Be Misleading
+
+. . .
+
+::::: columns
+::: {.column width="45%"}
+**Peggy Moore:**
+
+![](images/Peggy_Moore.png)
+:::
+
+::: {.column width="55%"}
+:::
+:::::
+
+## Lexical Similarity Can Be Misleading
+
+::::: columns
+::: {.column width="45%"}
+**Peggy Moore:**
+
+![](images/Peggy_Moore.png)
+:::
+
+::: {.column width="55%"}
+```{r}
+#| echo: false
+library(tidyverse)
+
+load('../../data/l2-merge/gpt-4o/match ~ sim + jw/l2_fuzzylink_all_pairs.RData')
+
+df |> 
+  filter(A == 'Peggy Moore') |> 
+  arrange(-jw) |> 
+  mutate(jw = round(jw, 3)) |> 
+  select(name=B,jw)
+```
+:::
+:::::
+
+## Beyond Lexical Similarity
+
+-   We'd prefer a measure that captures not just *lexical* similarity, but *semantic* similarity as well.
+
+-   Language models seem to understand the meaning of language (e.g. ChatGPT).
+
+    -   Leveraging these kinds of models for fuzzy record linkage is a natural next step.
+
+## So...could we just ask ChatGPT?
+
+. . .
+
+![](images/peter-peggy.png){width="1000"}
+
+## So...could we just ask ChatGPT? {.smaller}
+
+-   The advantage of this approach is accuracy! GPT-4o correctly labels 99.1% of name pairs from @kaufman2022.
+
+-   The problem with this approach is that it scales terribly.
+
+    -   If you have $N_A$ records in the first dataset, and $N_B$ records in the second dataset, you need $N_A \times N_B$ pairwise comparisons.
+
+    -   This is *expensive*, in both time and money.
+
+-   A scalable record linkage procedure might *incorporate* LLM prompts, but needs to dramatically reduce the number of prompts we submit.
+
+## The `fuzzylink` Approach
+
+. . .
+
+<br>
+
+<br>
+
+Use **pretrained text embeddings** to predict which record pairs are likely matches, then label only those likely matches using language model prompts.
+
+## Background: Text Embeddings {.smaller}
+
+-   LLMs represent text as **embeddings**---high-dimensional vectors of real numbers.
+
+-   These vectors are trained so that texts with similar meaning are close to one another in vector space.
+
+-   We can use the cosine similarity between embeddings as a measure of semantic similarity.
+
+-   For example, OpenAI's latest embedding model represents the string "Joe Biden" as the following 3,072-dimensional vector:
+
+. . .
+
+```{r}
+#| eval: false
+fuzzylink::get_embeddings('Joe Biden', dimensions = 3072)
+```
+
+```{r}
+#| echo: false
+embedding <- fuzzylink::get_embeddings('Joe Biden', dimensions = 3072)
+
+embedding['Joe Biden',] |> round(5)
+```
+
+## Background: Text Embeddings
+
+```{r}
+#| eval: false
+c('Peggy Moore', 'Peter Moore', 'Margaret Lee Moore') |>
+  fuzzylink::get_embeddings() |> 
+  fuzzylink::get_similarity_matrix()
+```
+
+```{r}
+#| echo: false
+c('Peggy Moore', 'Peter Moore', 'Margaret Lee Moore') |>
+  fuzzylink::get_embeddings() |> 
+  fuzzylink::get_similarity_matrix() |> 
+  round(5)
+```
+
+## The `fuzzylink` Algorithm
+
+-   **Step 1:** Retrieve embeddings for the identifying fields of each record
+
+-   **Step 2:** Compute cosine similarity matrix
+
+-   **Step 3:** Use LLM prompt to label a sample of name pairs
+
+-   **Step 4:** Fit a logistic regression model to predict whether two records match
+
+-   **Step 5:** Estimate match probabilities for each name pair
+
+-   **Step 6:** Label uncertain record pairs using LLM prompt
+
+-   Repeat **Steps 4-6** until the model converges
+
+# Applications
+
+## Applications
+
+1.  Linking candidate names from California elections (n = 19,298) with voter file (n = 22 million)
+2.  Linking organization names (n = 1,388) with campaign donation records (n = 2.9 million)
+3.  Multilingual record linkage. Names of parliamentary political parties in 32 countries since 1900 with their English language translations.
+
+## Application 1: Voter File
+
+. . .
+
+| Name on Ballot | Name in Voter File (L2)  |
+|----------------|--------------------------|
+| Trish Munro    | Patricia Keer Munro      |
+| Betsy Stix     | Elizabeth Emily Stix     |
+| Libby Schaaf   | Elizabeth Beckman Schaaf |
+| Mel Chiong     | Carmelita Asiddao Chiong |
+| Matt Hummel    | Francis Matthew Hummel   |
+| Dick Albright  | Richard William Albright |
+| Peggy Moore    | Margaret Lee Moore       |
+
+## Application 1: Voter File
+
+. . .
+
+Hand-coded matches for 840 records from three counties for performance validation.
+
+. . .
+
+| Method     | Precision | Recall |
+|------------|-----------|--------|
+| `fastLink` | 98.6%     | 58.2%  |
+
+## Application 1: Voter File
+
+Hand-coded matches for 840 records from three counties for performance validation.
+
+| Method      | Precision | Recall |
+|-------------|-----------|--------|
+| `fastLink`  | 98.6%     | 58.2%  |
+| `fuzzylink` | 94.7%     | 97.2%  |
+
+## Application 1: Voter File
+
+Estimated match probabilities well-calibrated; serve as a useful guide for manual validation.
+
+![](images/fuzzylink-calibration-l2-match%20~%20sim%20+%20jw.png){fig-align="center"}
+
+## Application 2: Organization Names {.smaller}
+
+-   Linked the names of 1,377 organizations that cosigned amicus curiae briefs [@abi-hassanIdeologiesOrganizedInterests2023] with DIME dataset [@bonicaMappingIdeologicalMarketplace2014] to estimate ideology.
+
+    -   There are 2.9 million organizations in the DIME dataset, so I cannot definitively estimate recall rates.
+
+    -   `fuzzylink` located DIME scores for 444 organizations, compared with 376 organizations in [@abi-hassanIdeologiesOrganizedInterests2023].
+
+    -   **Precision:** 99.3%
+
+## Application 2: Organization Names
+
+-   `fuzzylink` correctly identified several alternate and former names for organizations:
+
+    -   Utah Association for Justice = Utah Trial Lawyers Association
+
+    -   Ojibwe = Chippewa
+
+    -   Reed Elsevier $\rightarrow$ RELX
+
+    -   California Dump Truck Owners Association $\rightarrow$ California Construction Trucking Association
+
+## Application 3: Multilingual Datasets {.smaller}
+
+-   Approaches that rely on lexical similarity alone cannot link records across different languages.
+
+    -   **Adalet ve Kalkınma Partisi** and **Justice and Development Party** share few lexical features
+
+    -   **Jiyū Minshutō** and **LDP** share zero lexical features.
+
+-   But texts from multiple languages can be represented as embeddings in the same vector space.
+
+    -   This makes large language models particularly adept at translation tasks [@vaswaniAttentionAllYou2017].
+
+## Application 3: Multilingual Datasets {.smaller}
+
+. . .
+
+Split the Parlgov dataset into two datasets with 4,972 records each.
+
+. . .
+
+![](images/native-names.png){fig-align="center" width="800"}
+
+. . .
+
+![](images/english-names.png){fig-align="center" width="800"}
+
+## Application 3: Multilingual Datasets
+
+-   Merged by party name, blocking on country-year.
+
+-   Correctly linked 4,805 name pairs out of 4,972.
+
+    -   **Recall:** 97%
+
+    -   **Precision:** 96%
+
+# Conclusion
+
+## Conclusion
+
+-   `fuzzylink` dramatically improves record linkage when lexical similarity is a poor guide to match quality
+
+-   The `R` package is available on GitHub (**call for beta testers!**)
+
+## Conclusion
+
+::::: columns
+::: column
+Paper:
+
+![](images/qr-paper.png)
+:::
+
+::: column
+`fuzzylink` R package:
+
+![](images/qr-fuzzylink.png)
+:::
+:::::
+
+## References

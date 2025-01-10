@@ -1,0 +1,176 @@
+Edits I need:
+
+- Non-matches threshold
+- Revise lead-in to active learning loop.
+- Revise fuzzylink algorithm slide text
+- Just 2-4 of the parliament charts
+- Revised slides describing the algorithm, without all the president code
+
+Notes:
+
+- Thank you. Thank you to everyone for coming out today. I'm delighted to share
+-
+
+- "To make matters worse, for the modal city council candidate the *only* thing that I know about them is their name as it appears on the ballot, and a ballot designation." In this race for the mayor of San Diego, for example,
+- "I would be able to collect information like age, address, political party. A wealth of information if I can only figure out, based on their name, which record in the voter file belongs to them... The problem, as you've probably anticipated, is that the names that appear on the ballot are almost never exactly the same as the names that appear in the voter file."
+- "To give one example out of 19,000, Trish Munro, who ran for Livermore city council in 2018. Only after my extremely hardworking research assistant spent some time combing the web were we able to determine that her full legal name as it appears in the voter file is Patricia Keer Munro." "In fact, of all the 19,298 candidates for local office during this period, roughly 95% are like Trish; their name as it appears on the ballot has no exact match with names that appear in the voter file. And often, as you can see in the examples here, the name that appears on the ballot is *quite* different than the name in L2 (Carmelita, Peggy). This is what we would call a *fuzzy record linkage* problem, when you'd like to merge two datasets, but there is no variable or set of variables that unambiguously determines whether two records belong to the same entity. If you do empirical social science, my guess is that at some point you've run into a problem like this, and if so, it's probably taken an unreasonable amount of your time."
+
+---
+
+- "So in today's talk, I get to tell you all about the rabbit hole that this problem sent me down, and the solution I ended up developing at the end of it. We'll start by discussing existing methods of fuzzy record linkage, which has quite a long and interesting history, going back at least 60 years, and there are a number of established approaches, and a lot of that work has been done by political scientists and government statisticians working with large scale administrative data. But these approaches have a number of well-known limitations, and there are some record linkage problems that they're poorly suited for, like the one I just showed you, so I want to talk about the conditions under which we'd those methods to fall short."
+- After we talk about those limitations, I'm going to introduce my revolutionary new product, which I call fuzzylink, and we'll walk step-by-step through the algorithm so you can see how it works. Just to preview that part of the talk, the way my approach is going to improve on existing approaches is by encoding records the same way that language models like ChatGPT encode text, and using that encoding (which we call text embeddings) to determine which records are more or less similar to one another.
+- I'll show you three different applications to give you a sense of how well the method performs on a wide variety of tasks that are pretty commonplace in political science research. First, we'll tackle the motivating example---linking candidate names to the voter file. Then we'll apply the method to link names of organizations to campaign donation records in the DIME database. Finally, I'll show you that my proposed approach can even handle record linkage across multiple languages, which is practically impossble with existing approaches.
+- I'll close by showing you the R package that implements the method, and discuss what I have planned for future work.
+
+---
+
+## Lexical Similarity Can Be Misleading
+
+What's true for people is true for organizations as well, which can often be represented by very lexically dissimilar alternative names, particularly when considering acronyms. In one of the applications I show you, we're going to try to match the names of organizations to campaign donation records.
+
+---
+
+## Beyond Lexical Similarity
+
+Clearly, lexical similarity is going to be a poor guide to match quality in a number of important applications.
+We'd prefer a measure that captures not just lexical similarity, but semantic similarity as well.
+And one place that we might turn to is large language models.
+
+---
+
+## So...could we just ask ChatGPT?
+
+Set up a strawman so I can quickly knock it down.
+KK has a test dataset of 4,000 pairs of organizations hand-coded for whether they're a match or not. When I submit those 4,000 to GPT-4o, it correctly codes over 99% of the name pairs, as accurate as the human coders! (If you look at places where the human coders and the LLM disagree, about half the time it's the human coders who are wrong.)
+
+---
+
+## ...Now What?
+
+Okay, we have a better measure of match quality, but now the practical challenge is taking that measure of match quality and using it to inform a decision rule about how we're going to merge the two datasets.
+
+On this slide we have the distribution of pairwise cosine similarity scores for a sample of names from the application linking California city council candidates with the voter file. How do we take these scores and convert them into a decision rule that says "these are matches" and "these are not matches"?
+
+Broadly speaking, there are two approaches in the literature that we could take.
+
+## Option 1: Deterministic Record Linkage
+
+The first is a deterministic decision rule. Set some predefined cutoff, and declare that everything above the line is a match, and everything below the line is a non-match. Or, more often, it's a tripartite decision rule, where you have two cutoffs c_1 and c_2. Everything above c_1 we declare a match, everything below c_2 we declare a non-match, and everything in the middle, the "clerical review region", we send to our hard-working research assistants to manually validate.
+
+## Option 1: Deterministic Record Linkage
+
+---
+
+
+## Option 2: Probabilistic Record Linkage
+
+- Now, I'm still going to impose a threshold for whether a record pair is included in the final dataset, because the vast bulk of record pairs are terrible matches. But now that threshold can be determined in a principled way. The researcher can specify the false negative rate that they're willing to accept, and based on the predicted match probabilities we can say "within this region here we think there's an acceptably small number of true matches that we're willing to remove them from the final dataset." In all the applications that I show you today, I'm omitting record pairs with an estimated match probability of 5% or less.
+
+
+---
+
+- "We care about these three metrics for different reasons. We care about precision, because if the share of false positives in our merged dataset is too high, that introduces measurement error, which will bias our subsequent statistical analyses. We care about recall, because if we fail to identify enough of the true matches, then we reduce the size of our merged dataset, and therefore the statistical power of our subsequent analyses. And we want our probabilities to be well-calibrated if they're going to serve as regression weights in downstream analyses or used as a guide for manual clerical review."
+
+---
+
+...cannot definitively estimate recall. Even my hardest-working RA can't comb through 3 million organization names to definitively identify every true match.
+
+---
+
+I want to give you a few examples of places where that improved performance was manifesting itself. Just like in the candidate name application, we're seeing significant improvement in cases where the same organization is being represented by two lexically dissimilar strings, for example alternative names and even *former* names of organizations.
+
+
+---
+
+# Conclusion
+
+I'd like to conclude with what I think are some best practices for researchers given what I've learned over the course of this project. Namely, when do I think you should use the `fuzzylink` approach over existing approaches?
+
+
+DROSS:
+
+| Name                |                                                         | Jaro-Winkler | Levenshtein | Jaccard   |
+|---------------|---------------|---------------|---------------|---------------|
+| Christopher S. Bond | ![](images/Kit_Bond_official_portrait.jpg){width="200"} | 0.333        | 0.397       | 0.294     |
+| Katie Britt         | ![](images/Katie_Britt.jpg){width="200"}                | **0.364**    | **0.627**   | **0.455** |
+
+::: notes
+Take, for example, Kit Bond, the former Senator from Missouri. His full legal name as it would appear in administrative records is Christopher S. Bond. According to conventional measures of string similarity, these two names are quite dissimilar; on a scale from 0 to 1, Kit scores a 0.333 with his own full name. In fact, Kit Bond is lexically more similar to Katie Britt, Senator from Alabama.
+:::
+
+```{r}
+#| echo: false
+library(tidyverse)
+A <- 'Jim'
+B <- c('James', 'Tim')
+
+df <- expand_grid(A,B)
+df$`Jaro-Winkler Similarity` <- round(stringdist::stringsim(df$A, df$B, method = 'jw'), 3)
+
+tinytable::tt(df)
+```
+
+. . .
+
+```{r}
+#| echo: false
+A <- 'Joe Biden'
+B <- c('Joe Ornstein', 'Joseph Robinette Biden')
+```
+
+. . .
+
+
+::: columns
+::: column
+![Kit Bond (R-MO)](images/Kit_Bond_official_portrait.jpg)
+:::
+
+::: column
+![Christopher S. Bond](images/Kit_Bond_official_portrait.jpg)
+
+```{r}
+s1 <- stringdist::stringsim('Kit Bond', 'Christopher S. Bond', method = 'jw')
+```
+
+![Katie Britt](images/Katie_Britt.jpg)
+:::
+:::
+
+## Existing Approaches
+
+::: columns
+::: column
+![**Mike Kelly (R-PA)**](images/Mike_Kelly_Photo.jpg)
+:::
+
+::: column
+Mark Kelley
+:::
+:::
+
+```{r}
+#| echo: false
+
+tb <- tribble(~`String 1`, ~`String 2`,
+              'Mike Kelly', 'George Joseph "Mike" Kelly, Jr.',
+              'Mike Kelly', 'Mark Kelly',
+              'Kit Bond', 'Christopher S. Bond',
+              'Kit Bond', 'Katie Britt')
+
+A <- c('Joseph Robinette Biden', 'Joe Riley')
+B <- c('Joe Biden')
+mat <- round(stringdist::stringsimmatrix(A, B, method = 'jw', p = 0.1), 2)
+rownames(mat) <- A
+colnames(mat) <- B
+mat
+
+A <- c('William Jefferson Clinton', 'Biff Tannen')
+B <- c('Bill Clinton')
+mat <- round(stringdist::stringsimmatrix(A, B, method = 'jw', p = 0.1), 2)
+rownames(mat) <- A
+colnames(mat) <- B
+mat
+```
+
+. . .
