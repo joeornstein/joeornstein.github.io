@@ -1,0 +1,22 @@
+The origin of this project is a paper I was working on that involved collecting information on candidates for local public office in California. I wanted to know whether a change in election law that occurred in 2018 had increased descriptive representation, whether it had changed who was running for offices like city council or school board member.
+
+The problem I faced was that the only information I had about these candidates was what appeared on the ballot: their name, the office they ran for, and sometimes a ballot designation. And I wanted to know more about them: age, gender, race, political party, etc. One way to get that information is to locate their record in a separate dataset, like the voter file. (L2: xx million records in California). 
+
+## Has This Ever Happened To You?
+
+Almost invariably, if you're doing empirical social science, you have almost certainly run into this kind of problem before. You have information spread across multiple datasets, and you'd like to be able to merge that information into a single dataset. This is easy is a variable---or set of variables---that uniquely and unambiguously determines whether two records belong together. But when no such variable exists, we call this a *fuzzy record linkage problem*.
+
+## Today's Infomercial
+
+Methods talks tend to have this sort of infomercial quality to them, where I have to start by convincing you that this problem is making your lives harder, and that existing solutions just aren't cutting it. (infomercial fail)
+
+Then I'll introduce my new product and show you how it works. (shiny)
+
+I'll walk you through three different applications of the method to demonstrate how it performs. We'll start with the voter file record linkage problem, then I'll show you an application linking organization names to campaign donor records, and lastly, an application linking the names of political parties across different languages, something that's truly infeasible with existing methods. (it slices! it dices! it makes julienne fries!)
+
+I'll wrap up by showing you the R package that implements the method, discuss the limitations of the approach, and some avenues for future work. (but wait there's more)
+
+
+## Existing Solutions
+
+Most solutions 
