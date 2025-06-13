@@ -32,7 +32,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -110,24 +110,24 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Text As Data: Word Embeddings</title>
+  <title>Text As Data: Text Embeddings</title>
 
-  <meta property="description" itemprop="description" content="How to quantify what a word *means*."/>
+  <meta property="description" itemprop="description" content="How to quantify what text *means*."/>
 
   <link rel="icon" type="image/vnd.microsoft.icon" href="img/favicon_io/favicon.ico"/>
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Text As Data: Word Embeddings"/>
+  <meta property="og:title" content="Text As Data: Text Embeddings"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="How to quantify what a word *means*."/>
+  <meta property="og:description" content="How to quantify what text *means*."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Text As Data"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Text As Data: Word Embeddings"/>
-  <meta property="twitter:description" content="How to quantify what a word *means*."/>
+  <meta property="twitter:title" content="Text As Data: Text Embeddings"/>
+  <meta property="twitter:description" content="How to quantify what text *means*."/>
 
   <!--/radix_placeholder_meta_tags-->
   
@@ -136,7 +136,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Word Embeddings"]},{"type":"character","attributes":{},"value":["How to quantify what a word *means*.\n"]},{"type":"character","attributes":{},"value":["references.bib"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Text Embeddings"]},{"type":"character","attributes":{},"value":["How to quantify what text *means*.\n"]},{"type":"character","attributes":{},"value":["references.bib"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -484,8 +484,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
 
   <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-  <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
   <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
   <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -2435,7 +2435,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2455,7 +2455,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Word Embeddings","description":"How to quantify what a word *means*.","authors":[]}
+{"title":"Text Embeddings","description":"How to quantify what text *means*.","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2522,11 +2522,11 @@ Model the Text
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Word Embeddings</h1>
+<h1>Text Embeddings</h1>
 
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>How to quantify what a word <em>means</em>.</p></p>
+<p><p>How to quantify what text <em>means</em>.</p></p>
 </div>
 
 
@@ -2535,6 +2535,7 @@ Model the Text
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
+<li><a href="#retrieving-embeddings" id="toc-retrieving-embeddings">Retrieving Embeddings</a></li>
 <li><a href="#practice-problems" id="toc-practice-problems">Practice Problems</a></li>
 <li><a href="#further-reading" id="toc-further-reading">Further Reading</a></li>
 </ul>
@@ -2543,129 +2544,117 @@ Model the Text
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="img/morpheus.jpg" /><!-- --></p>
 </div>
-<p>Often, we’d like to not only count the frequency of words, but also get a sense of what the words <em>mean</em>. In a <a href="bag-of-words.html">bag of words representation</a>, we treat words words like “president” and “executive” as separate indices in a word count vector, implicitly assuming that they have completely unique meanings. But the statistical models we use to understand text data will perform better if words with similar meaning have similar representations. That is the purpose of the word embeddings approach, which represents each word as a vector, encoding the fact that “president” and “executive” have some overlapping meaning by placing their vectors close together.</p>
-<p>In this exercise, we’ll work with a set of pre-trained word embeddings called <a href="https://nlp.stanford.edu/projects/glove/">GloVe</a>. These off-the-shelf word embeddings tend to do a pretty good job at capturing meaning, even for political science specific applications <span class="citation" data-cites="rodriguezWordEmbeddingsWhat2021">(<a href="#ref-rodriguezWordEmbeddingsWhat2021" role="doc-biblioref">Rodriguez and Spirling 2021</a>)</span>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Often, we’d like to not only count the frequency of words, but also get a sense of what the words <em>mean</em>. In a <a href="bag-of-words.html">bag of words representation</a>, we treat words words like “president” and “executive” as separate indices in a word count vector, implicitly assuming that they have completely unique meanings. But the statistical models we use to understand text data will perform better if words with similar meaning have similar representations. That is the purpose of the <strong>embeddings</strong> approach, which represents each word (or document) as a vector, encoding the fact that “president” and “executive” have some overlapping meaning by placing their vectors close together.</p>
+<p>In this exercise, we’ll work with a set of pretrained text embeddings from <a href="https://platform.openai.com/docs/guides/embeddings">OpenAI</a>. These off-the-shelf embeddings tend to do a pretty good job at capturing meaning, even for political science specific applications <span class="citation" data-cites="rodriguezWordEmbeddingsWhat2021">(<a href="#ref-rodriguezWordEmbeddingsWhat2021" role="doc-biblioref">Rodriguez and Spirling 2021</a>)</span>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
 <span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://juliasilge.github.io/tidytext/'>tidytext</a></span><span class='op'>)</span></span>
-<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://text2vec.org'>text2vec</a></span><span class='op'>)</span></span></code></pre>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/joeornstein/fuzzylink'>fuzzylink</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>For expository purposes, let’s download the 100-dimensional word embeddings <a href="https://nlp.stanford.edu/data/glove.6B.zip">here</a>. That link downloads a zipped folder called ‘glove.6B/’. Unzip it and make sure it is in your ‘data/’ folder.</p>
+<p>The <a href="https://joeornstein.github.io/software/fuzzylink/">fuzzylink</a> R package contains a convenience function called <code>get_embeddings()</code> which we will use for this exercise. You will need an account with OpenAI and an API key. Once you have your API key, you should save it to your R environment with the following line of code (pasting in your key):</p>
+<pre><code>fuzzylink::openai_api_key(&#39;&lt;YOUR API KEY GOES HERE&gt;&#39;, install = TRUE)</code></pre>
+<p>For more information on setup, see the package documentation.</p>
+<h2 id="retrieving-embeddings">Retrieving Embeddings</h2>
+<p>To retrieve text embeddings, create a list of words you want to embed, and input the list into the <code>get_embeddings()</code> funtion. The result is a matrix where each row is a 256-dimensional vector representing its meaning</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>glove</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_table.html'>read_table</a></span><span class='op'>(</span><span class='st'>"data/glove.6B/glove.6B.100d.txt"</span>, </span>
-<span>                    col_names <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></span></code></pre>
-</div>
-</div>
-<p>Converting this dataframe to a matrix object makes mathematical operations <em>much</em> faster.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>vocab</span> <span class='op'>&lt;-</span> <span class='va'>glove</span><span class='op'>$</span><span class='va'>X1</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>words</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'president'</span>, <span class='st'>'executive'</span>, <span class='st'>'legislative'</span>,</span>
+<span>           <span class='st'>'judicial'</span>, <span class='st'>'banana'</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>glove</span> <span class='op'>&lt;-</span> <span class='va'>glove</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>X2</span><span class='op'>:</span><span class='va'>X101</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span><span class='va'>embeddings</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/fuzzylink/man/get_embeddings.html'>get_embeddings</a></span><span class='op'>(</span><span class='va'>words</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span><span class='op'>(</span><span class='va'>glove</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>vocab</span></span></code></pre>
+<span><span class='va'>embeddings</span><span class='op'>[</span><span class='st'>'president'</span>,<span class='op'>]</span></span></code></pre>
 </div>
+<pre><code>  [1] -0.0099220990  0.0766712200 -0.0199635620  0.0252652970
+  [5]  0.0609152280  0.0248276300 -0.0137964430  0.1803186200
+  [9]  0.0088428540  0.0738860740  0.0068534603  0.0810081000
+ [13] -0.1431567500 -0.0838728250 -0.1040054860  0.0196253660
+ [17] -0.0331631900  0.0466313800 -0.0827587700 -0.0937402200
+ [21] -0.0416976850 -0.0347944900 -0.0314125230 -0.0205902220
+ [25]  0.0786208300  0.0137168680  0.0044910560 -0.0268966000
+ [29] -0.0183223130  0.0173176700 -0.0522016850  0.1741117100
+ [33] -0.0166313300 -0.0074801194  0.0234947370  0.0376393240
+ [37]  0.0292042960 -0.0199337230  0.0753980100 -0.0785014600
+ [41] -0.0606765000 -0.0111406040 -0.0729709500  0.0175464500
+ [45]  0.0152089130  0.0991513650 -0.0432494130 -0.0176658130
+ [49]  0.0628648300  0.0574934700 -0.0049162884  0.0615518300
+ [53]  0.0687136500  0.0512069870 -0.0481433200  0.0196949950
+ [57]  0.0754378000 -0.0744033160 -0.0464722300 -0.1178516700
+ [61] -0.0036754042 -0.0280305540 -0.0993901000  0.0649338000
+ [65]  0.0283289630 -0.0582892260  0.0547481070  0.0954908900
+ [69] -0.0713794400  0.1036871800  0.0419364120 -0.0612733180
+ [73] -0.0300398410  0.0394695660  0.0252851900  0.0343767180
+ [77] -0.0451194420 -0.0220225840 -0.0052271313  0.0238926150
+ [81]  0.0718966800  0.0091512100  0.1890719500  0.0022442844
+ [85] -0.0673608600 -0.0406632000 -0.0243103880 -0.2250401800
+ [89] -0.0202520250 -0.0209881010  0.0949338500 -0.0085444450
+ [93] -0.1005041500  0.0334218100  0.1233423950 -0.0276326740
+ [97]  0.0009455836 -0.0925465800 -0.0023002361 -0.1351991700
+[101] -0.1847748600  0.0175762900 -0.0495756830  0.0844298600
+[105]  0.0367440950 -0.0153581170 -0.0169496310 -0.0167208520
+[109] -0.0108421940 -0.0057443734 -0.0378382600 -0.0249469930
+[113]  0.0616711970  0.0419762020 -0.0389921100 -0.0018986274
+[117] -0.0524802000  0.0634218600 -0.0489390800 -0.0292639770
+[121] -0.0885677900 -0.0781035900 -0.0700266500 -0.0677587400
+[125]  0.0272347960 -0.0200829260  0.0352719460  0.0755571650
+[129] -0.0342772500 -0.0891248300 -0.1087004540  0.0732892500
+[133] -0.0523210470  0.0311539000 -0.0269363880  0.0644563400
+[137] -0.0368833540  0.0295225980 -0.0098773380  0.0288263110
+[141] -0.0845890100  0.0555040760 -0.0737667100 -0.0824404660
+[145]  0.1198410600  0.0111008160  0.0958091840 -0.0849868900
+[149]  0.1369498400 -0.0233156900 -0.0167606400 -0.0441645350
+[153]  0.0096883460  0.0936606450 -0.0250464640 -0.0005632470
+[157] -0.0266976600  0.0017257988 -0.0398276560 -0.0407029900
+[161] -0.0054956990  0.0649338000  0.0006247939  0.0366645200
+[165]  0.0014920451 -0.0197646250  0.0461937150 -0.0389722180
+[169] -0.0204509650  0.0354311000 -0.0101210390 -0.0370027160
+[173] -0.0724934900 -0.0792574360 -0.0487799270  0.0452785940
+[177]  0.1032097340 -0.0380372030  0.0333223380  0.0388926400
+[181]  0.0386738070  0.0104841030  0.0401857460 -0.0229973890
+[185] -0.0582494400  0.0511274100  0.0436870800 -0.0426525960
+[189] -0.0559019560 -0.1176129360  0.0191578590 -0.0106830430
+[193] -0.0413395950 -0.0680372600  0.0723741350 -0.0612733180
+[197]  0.0842707100 -0.0682759800 -0.0617507730 -0.0781831600
+[201]  0.0608754400  0.0144131560  0.0340783100  0.0523210470
+[205] -0.1024139750 -0.0218634340  0.0672812800  0.0266180840
+[209] -0.1051195500  0.0763529200  0.1281169400 -0.0834749500
+[213]  0.1232628150  0.0028125050 -0.0533157440 -0.0012222336
+[217] -0.0557030140  0.0116180570  0.0169197920 -0.0606367100
+[221]  0.0989126400 -0.0796553100 -0.0540717130  0.0386141280
+[225]  0.0492573830 -0.0727322250 -0.0706632500  0.0788197700
+[229] -0.0206300100  0.0524404120 -0.0196054730  0.0709019800
+[233]  0.0312334760  0.0537534100 -0.0996288200  0.0432892000
+[237]  0.0310942200  0.0936606450  0.0048068720  0.0605173500
+[241]  0.0012707250  0.0154376930 -0.0077835020  0.0484616230
+[245]  0.0603979830  0.0221817360 -0.1143503340 -0.0328249930
+[249] -0.0284483270 -0.0685147100 -0.0258024330  0.0026359463
+[253] -0.0003332234 -0.0169794730  0.0649338000 -0.0030984802</code></pre>
 </div>
-<p>It’s difficult to visualize and interpret a 100-dimensional vector space, but we can explore which words have similar meaning by looking at their cosine similarity.</p>
+<p>It’s difficult to visualize and interpret a 256-dimensional vector space, but we can explore which words have similar meaning by looking at their cosine similarity. The <code>get_similarity_matrix()</code> function returns cosine similarity for each pair of vectors in an embedding matrix (or a subset of those vectors if you prefer)</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># define cosine similarity</span></span>
-<span><span class='va'>cosine_similarity</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x1</span>, <span class='va'>x2</span><span class='op'>)</span><span class='op'>{</span></span>
-<span>  <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>x1</span><span class='op'>*</span><span class='va'>x2</span><span class='op'>)</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>x1</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>x2</span><span class='op'>^</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span></span>
-<span><span class='op'>}</span></span>
-<span></span>
-<span><span class='fu'>cosine_similarity</span><span class='op'>(</span><span class='va'>glove</span><span class='op'>[</span><span class='st'>'president'</span>,<span class='op'>]</span>, </span>
-<span>                  <span class='va'>glove</span><span class='op'>[</span><span class='st'>'executive'</span>,<span class='op'>]</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/fuzzylink/man/get_similarity_matrix.html'>get_similarity_matrix</a></span><span class='op'>(</span><span class='va'>embeddings</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>[1] 0.6637274</code></pre>
+<pre><code>            president executive legislative  judicial    banana
+president   0.9999999 0.6483657   0.4321773 0.4690661 0.3034118
+executive   0.6483657 1.0000001   0.5697680 0.5728509 0.2424244
+legislative 0.4321773 0.5697680   1.0000000 0.6276265 0.1904764
+judicial    0.4690661 0.5728509   0.6276265 1.0000000 0.1964824
+banana      0.3034118 0.2424244   0.1904764 0.1964824 1.0000000</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>cosine_similarity</span><span class='op'>(</span><span class='va'>glove</span><span class='op'>[</span><span class='st'>'president'</span>,<span class='op'>]</span>, </span>
-<span>                  <span class='va'>glove</span><span class='op'>[</span><span class='st'>'legislative'</span>,<span class='op'>]</span><span class='op'>)</span></span></code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/fuzzylink/man/get_similarity_matrix.html'>get_similarity_matrix</a></span><span class='op'>(</span><span class='va'>embeddings</span>,</span>
+<span>                      <span class='st'>'president'</span>,</span>
+<span>                      <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'executive'</span>, <span class='st'>'banana'</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<pre><code>[1] 0.4405054</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>cosine_similarity</span><span class='op'>(</span><span class='va'>glove</span><span class='op'>[</span><span class='st'>'president'</span>,<span class='op'>]</span>, </span>
-<span>                  <span class='va'>glove</span><span class='op'>[</span><span class='st'>'judicial'</span>,<span class='op'>]</span><span class='op'>)</span></span></code></pre>
+<pre><code>          executive    banana
+president 0.6483657 0.3034118</code></pre>
 </div>
-<pre><code>[1] 0.363681</code></pre>
-</div>
-<p>By looking at a word’s “nearest neighbors” in GLoVe-space, we can get a sense of its meaning. The following function, adapted from <a href="https://smltar.com/embeddings.html">Emil Hvitfeldt and Julia Silge</a>, performs that computation.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>nearest_glove_neighbors</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>n</span> <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span><span class='op'>{</span></span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/text2vec/man/similarities.html'>sim2</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>glove</span>,</span>
-<span>     y <span class='op'>=</span> <span class='va'>glove</span><span class='op'>[</span><span class='va'>word</span>, , drop <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>]</span>,</span>
-<span>     method <span class='op'>=</span> <span class='st'>'cosine'</span>,</span>
-<span>     norm <span class='op'>=</span> <span class='st'>'l2'</span><span class='op'>)</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>]</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span>decreasing <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span></span>
-<span><span class='op'>}</span></span></code></pre>
-</div>
-</div>
-<p>What words are most closely associated with the word “democracy”?</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>nearest_glove_neighbors</span><span class='op'>(</span><span class='st'>'democracy'</span><span class='op'>)</span></span></code></pre>
-</div>
-<pre><code>      democracy         freedom           unity    independence 
-      1.0000000       0.7387126       0.7104656       0.7001239 
-      political        movement      opposition           peace 
-      0.6768800       0.6690903       0.6657763       0.6654979 
-       freedoms        peaceful       pluralism      revolution 
-      0.6632308       0.6627046       0.6584346       0.6490769 
-democratization  reconciliation          regime          reform 
-      0.6479734       0.6455120       0.6426720       0.6425315 
-     solidarity       stability       socialist         reforms 
-      0.6411311       0.6383692       0.6335430       0.6330405 
-   dictatorship      democratic      multiparty       socialism 
-      0.6287793       0.6263217       0.6260686       0.6223621 
-     leadership      prosperity        politics          rights 
-      0.6219702       0.6176357       0.6171205       0.6147376 
-       struggle   establishment       communist             pro 
-      0.6096227       0.6075584       0.6072464       0.6015733 
-          human        equality   globalization      repression 
-      0.6000897       0.5962141       0.5942674       0.5911100 
-           rule           party       elections       communism 
-      0.5904003       0.5897764       0.5890823       0.5866827 
-        country           junta        progress      government 
-      0.5859989       0.5846966       0.5846514       0.5792781 
-     governance         support         leaders        economic 
-      0.5790971       0.5778673       0.5744629       0.5720127 
- constitutional        dialogue      secularism          social 
-      0.5718961       0.5716203       0.5705830       0.5704782 
-     dissidents         society    constitution            hope 
-      0.5679337       0.5672875       0.5638954       0.5630879 
-        respect       activists         restore          nation 
-      0.5617298       0.5615236       0.5610132       0.5600489 
-       activism          ideals       coalition   revolutionary 
-      0.5597208       0.5589497       0.5566700       0.5547408 
-         leader           civic         myanmar         secular 
-      0.5542812       0.5517091       0.5508700       0.5501198 
-      undermine        autonomy        protests          ruling 
-      0.5498861       0.5495106       0.5479063       0.5467623 
-        dignity      principles       integrity         process 
-      0.5460128       0.5457307       0.5447343       0.5434307 
-        promote      legitimacy      transition        activist 
-      0.5433193       0.5414689       0.5408329       0.5402462 
-            suu        citizens     integration         dissent 
-      0.5398066       0.5395628       0.5394340       0.5394053 
-        efforts            free       apartheid      supporters 
-      0.5377405       0.5369167       0.5349902       0.5346813 
-           pro-        monarchy          ensure      capitalism 
-      0.5346307       0.5335712       0.5335646       0.5330306 
-    sovereignty           power      capitalist       crackdown 
-      0.5324788       0.5313657       0.5309806       0.5306148 
-        decades          agenda        uprising             kyi 
-      0.5303713       0.5301271       0.5286190       0.5285096 </code></pre>
-</div>
+<p>This is how large language models like ChatGPT encode meaning, and it seems to do a pretty good job! Pairs of words with similar meaning have higher cosine similarity scores. In the next module we’ll explore how to use these embedding representations to fit models for discovery, prediction, measurement, and inference.</p>
 <h2 id="practice-problems">Practice Problems</h2>
 <ol type="1">
-<li>Explore some of the stereotypes reflected in the GloVe embeddings. How close is the word “professor” to female names compared to male names? Hispanic names?</li>
+<li>Explore some of the stereotypes reflected in the OpenAI embeddings. How close is the word “professor” to female names compared to male names? Hispanic names?</li>
 <li>What about words that are ambiguous without context, like “bill” or “share”? What are their nearest neighbors?</li>
 </ol>
 <h2 id="further-reading">Further Reading</h2>

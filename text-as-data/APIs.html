@@ -32,7 +32,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -459,8 +459,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
 
   <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-  <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
   <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
   <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -2410,7 +2410,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color: var(--hover-color, white);
   }</style>
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
+  <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2592,7 +2592,7 @@ Model the Text
 <span>  <span class='co'># convert from unicode to English characters</span></span>
 <span>  <span class='fu'><a href='https://rdrr.io/r/base/rawConversion.html'>rawToChar</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
 <span>  <span class='co'># convert the JSON format to an R object</span></span>
-<span>  <span class='fu'><a href='https://rdrr.io/pkg/jsonlite/man/fromJSON.html'>fromJSON</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
+<span>  <span class='fu'><a href='https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html'>fromJSON</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Now we have an <code>R</code> object (a list) called <code>content</code>. Sadly, this is not yet the content we want. The wrinkle here is that there are 8 versions of the text of this bill, beginning with the first version that was introduced in the House and ending with the final version that was signed into law. The <code>content$textVersions</code> object tells us where to find the full text of each version.</p>
@@ -2616,7 +2616,7 @@ Model the Text
 4            Formatted Text, PDF, Formatted XML, https://www.congress.gov/115/bills/hr1/BILLS-115hr1pcs.htm, https://www.congress.gov/115/bills/hr1/BILLS-115hr1pcs.pdf, https://www.congress.gov/115/bills/hr1/BILLS-115hr1pcs.xml
 5               Formatted Text, PDF, Formatted XML, https://www.congress.gov/115/bills/hr1/BILLS-115hr1eh.htm, https://www.congress.gov/115/bills/hr1/BILLS-115hr1eh.pdf, https://www.congress.gov/115/bills/hr1/BILLS-115hr1eh.xml
 6               Formatted Text, PDF, Formatted XML, https://www.congress.gov/115/bills/hr1/BILLS-115hr1rh.htm, https://www.congress.gov/115/bills/hr1/BILLS-115hr1rh.pdf, https://www.congress.gov/115/bills/hr1/BILLS-115hr1rh.xml
-7               Formatted Text, PDF, Formatted XML, https://www.congress.gov/115/bills/hr1/BILLS-115hr1ih.htm, https://www.congress.gov/115/bills/hr1/BILLS-115hr1ih.pdf, https://www.congress.gov/115/bills/hr1/BILLS-115hr1ih.xml
+7                                                                                         Formatted Text, PDF, https://www.congress.gov/115/bills/hr1/BILLS-115hr1ih.htm, https://www.congress.gov/115/bills/hr1/BILLS-115hr1ih.pdf
 8 Formatted Text, PDF, Formatted XML, https://www.congress.gov/115/plaws/publ97/PLAW-115publ97.htm, https://www.congress.gov/115/plaws/publ97/PLAW-115publ97.pdf, https://www.congress.gov/115/plaws/publ97/PLAW-115publ97_uslm.xml
                         type
 1              Enrolled Bill
@@ -2729,7 +2729,7 @@ SECTION 11000. SHORT TITLE, ETC.
 <span>  <span class='co'># Step 3: Convert the JSON object to an R list</span></span>
 <span>  <span class='va'>content</span> <span class='op'>&lt;-</span> <span class='va'>d</span><span class='op'>$</span><span class='va'>content</span> <span class='op'>|&gt;</span></span>
 <span>    <span class='fu'><a href='https://rdrr.io/r/base/rawConversion.html'>rawToChar</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
-<span>    <span class='fu'><a href='https://rdrr.io/pkg/jsonlite/man/fromJSON.html'>fromJSON</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span>    <span class='fu'><a href='https://jeroen.r-universe.dev/jsonlite/reference/fromJSON.html'>fromJSON</a></span><span class='op'>(</span><span class='op'>)</span></span>
 <span>  </span>
 <span>  <span class='co'># Step 4: Get the most recent bill text</span></span>
 <span>  <span class='va'>mostRecent</span> <span class='op'>&lt;-</span> <span class='va'>content</span><span class='op'>$</span><span class='va'>textVersions</span> <span class='op'>|&gt;</span></span>
@@ -2817,24 +2817,24 @@ SECTION 11000. SHORT TITLE, ETC.
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>d</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span></span></code></pre>
 </div>
 <pre><code>$text
-[1] &quot;okay guys&quot;
+[1] &quot;okay guys uh these eggs have given us a&quot;
 
 $start
-[1] 3.52
+[1] 3.719
 
 $duration
-[1] 2.56</code></pre>
+[1] 4.601</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>d</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span></span></code></pre>
 </div>
 <pre><code>$text
-[1] &quot;uh these eggs have given us a lot of&quot;
+[1] &quot;lot of trouble in the past uh does&quot;
 
 $start
-[1] 4.56
+[1] 5.839
 
 $duration
-[1] 3.52</code></pre>
+[1] 4.88</code></pre>
 </div>
 <h3 id="step-4-optional-paste-together-the-transcript-parts">Step 4 (optional): Paste together the transcript parts</h3>
 <p>If we would rather have the entire transcript in a single character object, we can loop through the list and paste all the text snippets together, like so:</p>
@@ -2850,7 +2850,7 @@ $duration
 <span></span>
 <span><span class='va'>transcript</span></span></code></pre>
 </div>
-<pre><code>[1] &quot; okay guys uh these eggs have given us a lot of trouble in the past uh does anybody need anything off this guy or can we bypass him i think leroy needs something from this guy oh he needs his devout shoulders doesn&#39;t isn&#39;t he paladin yeah but that&#39;ll help him heal better i&#39;ll have more manner christ okay uh well what we&#39;ll do i&#39;ll run in first uh gather up all the eggs we can kind of just you know blast and all down with aoe um i will use intimidating shout to kind of scatter them so we don&#39;t have to fight a whole bunch of them at once uh when my shout&#39;s done uh i&#39;ll need anthony to come in and drop his shout too uh so we can keep him scattered not to fight too many um when his is done bass of course need to run in and do the same thing uh we&#39;re getting divine intervention on our mages uh so they can uh ae uh so we can of course get them down fast because we&#39;re bringing all these guys i mean we&#39;ll be in trouble if we don&#39;t take them down quick i think it&#39;s a pretty good plan we should be able to pull it off this time uh what do you think abdul can you give me a number crunch real quick uh yeah give me a sec i&#39;m coming up with 32.33 uh repeating of course percentage of survival well it&#39;s a lot better than we usually do uh all right comes up ready guys oh my god oh my god god damn it leroy oh we do have a soul stone up don&#39;t we oh god for great job leroy you were just stupid as hell at least i have chicken&quot;</code></pre>
+<pre><code>[1] &quot; okay guys uh these eggs have given us a lot of trouble in the past uh does anybody need anything off this guy or can we bypass him uh I think Leroy needs something from this guy oh he he needs those devout shoulders doesn&#39;t isn&#39;t he a paladin yeah but that&#39;ll help him heal better I&#39;ll have more Mana Christ okay uh Well what we&#39;ll do I&#39;ll run in first uh gather up all the eggs so we can kind of just you know blast and all down with AOE um I will use intimidating shout to kind of scatter them so we don&#39;t have to fight a whole bunch of them at once uh when my shouts done uh I&#39;ll need Anthony to come in and drop his shout too uh so we can keep him scattered not to fight too many um when his is done bass of course we need to run in do the same thing uh we&#39;re going to need divine intervention on our Mages uh so they can uh AE uh so we can course get them down fast because we&#39;re bringing all these guys I mean we&#39;ll be in trouble if we don&#39;t take them down quick I think it&#39;s a pretty good plan we should be able to pull it off this time uh what do you think of du can you give me a number crunch real quick uh yeah give me a sec I&#39;m coming up with 32 point 33 uh repeating of course percentage of survival oh that&#39;s a lot better than we usually do uh up let&#39;s do this lero dragons oh my God he just ran in save him oh jeez stick to the plane oh Jes let&#39;s go let&#39;s go stick to the plan stick to the plane oh gee oh give me div intervention hurry up saying I can&#39;t I can&#39;t move am I lagging up I can&#39;t move what the what the hell I can&#39;t oh my God egg spotting I don&#39;t think you can cast with that oh my God got we got I got it I got it down oh my God God damn it Leroy God damn it this this is ridiculous so M I&#39;m down for down God damn on this God ohy res us do this I&#39;m trying it&#39;s not my fault who&#39;s Soul Stone we do have a soul Stone up don&#39;t we oh god oh for great job Christ sake Leroy you are just stupid as hell at least I have chicken&quot;</code></pre>
 </div>
 <p>The <code>transcript</code> object is now a single character object with the entire video transcript.</p>
 <h3 id="putting-steps-1-through-4-into-a-function-1">Putting Steps 1 through 4 into a function</h3>
