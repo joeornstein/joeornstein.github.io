@@ -134,6 +134,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta name="citation_reference" content="citation_title=Why open-source generative AI models are an ethical way forward for science;citation_volume=616;citation_doi=10.1038/d41586-023-01295-4;citation_author=Arthur Spirling"/>
   <meta name="citation_reference" content="citation_title=Attention Is All You Need;citation_author=Ashish Vaswani;citation_author=Noam Shazeer;citation_author=Niki Parmar;citation_author=Jakob Uszkoreit;citation_author=Llion Jones;citation_author=Aidan N. Gomez;citation_author=Lukasz Kaiser;citation_author=Illia Polosukhin"/>
   <meta name="citation_reference" content="citation_title=Language models are few-shot learners;citation_author=Tom B. Brown;citation_author=Benjamin Mann;citation_author=Nick Ryder;citation_author=Melanie Subbiah;citation_author=Jared Kaplan;citation_author=Prafulla Dhariwal;citation_author=Arvind Neelakantan;citation_author=Pranav Shyam;citation_author=Girish Sastry;citation_author=Amanda Askell;citation_author=Sandhini Agarwal;citation_author=Ariel Herbert-Voss;citation_author=Gretchen Krueger;citation_author=Tom Henighan;citation_author=Rewon Child;citation_author=Aditya Ramesh;citation_author=Daniel M. Ziegler;citation_author=Jeffrey Wu;citation_author=Clemens Winter;citation_author=Christopher Hesse;citation_author=Mark Chen;citation_author=Eric Sigler;citation_author=Mateusz Litwin;citation_author=Scott Gray;citation_author=Benjamin Chess;citation_author=Jack Clark;citation_author=Christopher Berner;citation_author=Sam McCandlish;citation_author=Alec Radford;citation_author=Ilya Sutskever;citation_author=Dario Amodei"/>
+  <meta name="citation_reference" content="citation_title=How to train your stochastic parrot: large language models for political texts;citation_doi=10.1017/psrm.2024.64;citation_author=Joseph T. Ornstein;citation_author=Elise N. Blasingame;citation_author=Jake S. Truscott"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
@@ -2544,7 +2545,6 @@ Model the Text
 <li><a href="#cleaning-up-ocr" id="toc-cleaning-up-ocr">Cleaning Up OCR</a></li>
 <li><a href="#text-to-data" id="toc-text-to-data">Text To Data</a></li>
 <li><a href="#practice-problems" id="toc-practice-problems">Practice Problems</a></li>
-<li><a href="#further-reading" id="toc-further-reading">Further Reading</a></li>
 </ul>
 </nav>
 </div>
@@ -2554,7 +2554,7 @@ Model the Text
 <li><p><a href="https://www.understandingai.org/p/large-language-models-explained-with">Large language models, explained with a minimum of math and jargon</a></p></li>
 </ul>
 <p>In a nutshell, LLMs represent words using <a href="word-embeddings.html">embeddings</a>, and are trained to predict the most likely next word in a sequence using a model architecture called the <strong>transformer</strong> <span class="citation" data-cites="vaswaniAttentionAllYou2017">(<a href="#ref-vaswaniAttentionAllYou2017" role="doc-biblioref">Vaswani et al. 2017</a>)</span>. A powerful feature of this type of model is that the embeddings representing the input sequence are iteratively updated based on which words appear nearby (a process called <strong>self-attention</strong>). This allows an LLM to flexibly represent words based on their context, which is useful in cases where the same word can mean different things in different contexts. For example, an LLM will represent the word “bill” differently depending on whether it appears in the phrase “sign the bill”, “foot the bill”, or “Hillary and Bill”.</p>
-<p>What’s remarkable is that if we have a model that is sufficiently good at predicting the next word in a sequence, we can <em>adapt</em> it to perform all sorts of text-as-data tasks, by creating a prompt that converts our desired task into a next-word prediction problem <span class="citation" data-cites="ornsteinHowTrainYour2025">(<a href="#ref-ornsteinHowTrainYour2025" role="doc-biblioref"><strong>ornsteinHowTrainYour2025?</strong></a>)</span>. To show you how, we will use my <code>promptr</code> R package to create LLM prompts and submit them to OpenAI’s language models.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Let’s start by getting the R package set up.</p>
+<p>What’s remarkable is that if we have a model that is sufficiently good at predicting the next word in a sequence, we can <em>adapt</em> it to perform all sorts of text-as-data tasks, by creating a prompt that converts our desired task into a next-word prediction problem <span class="citation" data-cites="ornsteinHowTrainYour2025">(<a href="#ref-ornsteinHowTrainYour2025" role="doc-biblioref">Ornstein, Blasingame, and Truscott 2025</a>)</span>. To show you how, we will use my <code>promptr</code> R package to create LLM prompts and submit them to OpenAI’s language models.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Let’s start by getting the R package set up.</p>
 <h2 id="setting-up-the-promptr-package">Setting Up The <code>promptr</code> Package</h2>
 <p>The package is currently available on CRAN. You can install with the following line of code:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2665,7 +2665,7 @@ Classification:</code></pre>
 5 Happiness 0.0002116472</code></pre>
 </div>
 <h2 id="formatting-prompts">Formatting Prompts</h2>
-<p>Manually typing prompts with multiple few-shot examples can be tedious and error-prone, particularly when performing the sort of context-specific prompting we recommend in our paper <span class="citation" data-cites="ornsteinHowTrainYour2025">(<a href="#ref-ornsteinHowTrainYour2025" role="doc-biblioref"><strong>ornsteinHowTrainYour2025?</strong></a>)</span>. The <code>format_prompt()</code> function is a useful tool to aid in that process.</p>
+<p>Manually typing prompts with multiple few-shot examples can be tedious and error-prone, particularly when performing the sort of context-specific prompting we recommend in our paper <span class="citation" data-cites="ornsteinHowTrainYour2025">(<a href="#ref-ornsteinHowTrainYour2025" role="doc-biblioref">Ornstein, Blasingame, and Truscott 2025</a>)</span>. The <code>format_prompt()</code> function is a useful tool to aid in that process.</p>
 <p>The function is designed with classification problems in mind. If you input the text you would like to classify along with a set of instructions, the default prompt template looks like this:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -3150,14 +3150,13 @@ Character | What They Did
 <li><p>Take a sample of the Senate press releases from the <a href="clustering.html">clustering tutorial</a>. Format a few-shot ChatGPT prompt that returns a list of topics. Are the topic labels sensible? Are they similar to what we came up with using unsupervised methods?</p></li>
 <li><p>Ask ChatGPT to summarize the remarks on pages 4-5 of the <a href="img/SOJ.pdf">PDF</a> that you imported in the <a href="OCR.html">OCR practice problems</a>.</p></li>
 </ol>
-<h2 id="further-reading">Further Reading</h2>
-<ul>
-<li>Ornstein, Blasingame, and Truscott (2025). “How to Train Your Stochastic Parrot: Large Language Models for Political Texts”. <em>Political Science Research &amp; Methods</em>. <a href="https://www.cambridge.org/core/journals/political-science-research-and-methods/article/how-to-train-your-stochastic-parrot-large-language-models-for-political-texts/8EAA8096779B5C9DDBDF1BFC71C63AEC">Link</a></li>
-</ul>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-brownLanguageModelsAre2020" class="csl-entry" role="listitem">
 Brown, Tom B., Benjamin Mann, Nick Ryder, Melanie Subbiah, Jared Kaplan, Prafulla Dhariwal, Arvind Neelakantan, et al. 2020. <span>“Language Models Are Few-Shot Learners.”</span> <em>arXiv:2005.14165 [Cs]</em>, July. <a href="http://arxiv.org/abs/2005.14165">http://arxiv.org/abs/2005.14165</a>.
+</div>
+<div id="ref-ornsteinHowTrainYour2025" class="csl-entry" role="listitem">
+Ornstein, Joseph T., Elise N. Blasingame, and Jake S. Truscott. 2025. <span>“How to Train Your Stochastic Parrot: Large Language Models for Political Texts.”</span> <em>Political Science Research and Methods</em>, January, 1–18. <a href="https://doi.org/10.1017/psrm.2024.64">https://doi.org/10.1017/psrm.2024.64</a>.
 </div>
 <div id="ref-spirlingWhyOpensourceGenerative2023" class="csl-entry" role="listitem">
 Spirling, Arthur. 2023. <span>“Why Open-Source Generative AI Models Are an Ethical Way Forward for Science.”</span> <em>Nature</em> 616 (7957): 413–13. <a href="https://doi.org/10.1038/d41586-023-01295-4">https://doi.org/10.1038/d41586-023-01295-4</a>.
