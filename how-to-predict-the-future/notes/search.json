@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "How To Predict The Future",
+    "section": "",
+    "text": "Welcome\nThis is a Quarto book. Here is a reference Black (1948)\nTo learn more about Quarto books visit https://quarto.org/docs/books.\n\n1 + 1\n\n[1] 2\n\n\n\n\n\n\nBlack, Duncan. 1948. “On the Rationale of Group Decision-Making.” Journal of Political Economy 56 (1): 23–34. https://doi.org/10.1086/256633.",
+    "crumbs": [
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "fundamentals.html",
+    "href": "fundamentals.html",
+    "title": "Fundamentals of Probability",
+    "section": "",
+    "text": "Trees\nJoint Probability",
+    "crumbs": [
+      "Moderation",
+      "Fundamentals of Probability"
+    ]
+  },
+  {
+    "objectID": "median-voter-theorem.html",
+    "href": "median-voter-theorem.html",
+    "title": "2  Median Voter Theorem",
+    "section": "",
+    "text": "Extend Condorcet Jury Theorem to continuous choices. Black (1948)\n\n\n\n\nBlack, Duncan. 1948. “On the Rationale of Group Decision-Making.” Journal of Political Economy 56 (1): 23–34. https://doi.org/10.1086/256633.",
+    "crumbs": [
+      "Wisdom (of Crowds)",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Median Voter Theorem</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Black, Duncan. 1948. “On the Rationale of Group\nDecision-Making.” Journal of Political Economy 56 (1):\n23–34. https://doi.org/10.1086/256633.",
+    "crumbs": [
+      "References"
+    ]
+  }
+]
