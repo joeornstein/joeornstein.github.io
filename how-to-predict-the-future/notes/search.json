@@ -12,23 +12,45 @@
   {
     "objectID": "fundamentals.html",
     "href": "fundamentals.html",
-    "title": "Fundamentals of Probability",
+    "title": "1  Fundamentals of Probability",
     "section": "",
     "text": "Trees\nJoint Probability",
     "crumbs": [
-      "Moderation",
-      "Fundamentals of Probability"
+      "Uncertainty",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Fundamentals of Probability</span>"
+    ]
+  },
+  {
+    "objectID": "condorcet.html#footnotes",
+    "href": "condorcet.html#footnotes",
+    "title": "2  Condorcet Jury Theorem",
+    "section": "",
+    "text": "Readers with a statistics background may note that the 2 rounds up from a more precise 1.96; that makes the following computations somewhat conservative because the confidence intervals will contain slightly more than 95% of observations.↩︎",
+    "crumbs": [
+      "Wisdom of Crowds",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Condorcet Jury Theorem</span>"
     ]
   },
   {
     "objectID": "median-voter-theorem.html",
     "href": "median-voter-theorem.html",
-    "title": "2  Median Voter Theorem",
+    "title": "3  Median Voter Theorem",
     "section": "",
     "text": "Extend Condorcet Jury Theorem to continuous choices. Black (1948)\n\n\n\n\nBlack, Duncan. 1948. “On the Rationale of Group Decision-Making.” Journal of Political Economy 56 (1): 23–34. https://doi.org/10.1086/256633.",
     "crumbs": [
-      "Wisdom (of Crowds)",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Median Voter Theorem</span>"
+      "Wisdom of Crowds",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Median Voter Theorem</span>"
+    ]
+  },
+  {
+    "objectID": "exponential-growth-decay.html",
+    "href": "exponential-growth-decay.html",
+    "title": "4  Exponential Growth & Decay",
+    "section": "",
+    "text": "Story about the chessboard. For me, one of the most important features of the story is that, after a certain amount of time, the king just executes the guy. Suggests that it’s unwise to forecast based on naively extrapolating exponential growth!\n\n4.0.1 Application\n\nlibrary(readxl)\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.4     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nd &lt;- read_xlsx('data/CPIAUCSL.xlsx')\n\n# compute annual from monthly\nd &lt;- d |&gt; \n  arrange(observation_date) |&gt; \n  mutate(index = 100 * cumprod(1 + pct_change_month/100)) |&gt; \n  mutate(annual_computed = (index / lag(index, 12) - 1) * 100)\n\nd |&gt; \n  filter(observation_date &gt; '2010-01-01') |&gt; \n  ggplot(mapping = aes(x = observation_date,\n                       y = pct_change_year)) +\n  geom_point(alpha = 0.2) +\n  geom_line() +\n  theme_bw() +\n  labs(x = NULL, y = 'CPI % Change from Previous Year')\n\n\n\n\n\n\n\nd |&gt; \n  filter(observation_date &gt; '2010-01-01') |&gt; \n  ggplot(mapping = aes(x = observation_date)) +\n  geom_line(aes(y = pct_change_year)) +\n  geom_line(aes(y = annual_computed), color = 'red') +\n  theme_bw() +\n  labs(x = NULL, y = 'CPI % Change from Previous Year')\n\n\n\n\n\n\n\n# just some rounding errors but otherwise looks perfect\n\nd |&gt; filter(observation_date &gt; '2000-01-01') |&gt; ggplot(mapping = aes(x=pct_change_month)) + geom_histogram(color = 'black') + labs(x = '% Change From Previous Month')\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\n\n\n\n\nd |&gt; filter(observation_date &gt; '1970-01-01') |&gt; ggplot(mapping = aes(x=observation_date, y = pct_change_month)) + geom_point() + labs(x = 'Date', y = '% Change From Previous Month') + theme_bw() + geom_smooth()\n\n`geom_smooth()` using method = 'loess' and formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nWhen trying to guess the inflation rate from January 2024 to January 2025, it would be silly to ignore the fact that we already know what happened in 11 of those months.\n\nd |&gt; \n  filter(observation_date &gt; '2024-01-31',\n         observation_date &lt; '2024-12-31') |&gt; \n  ggplot(mapping = aes(x=observation_date,\n                       y=pct_change_month)) +\n  geom_point() +\n  labs(x = NULL,\n       y = '% Change From Previous Month') +\n  theme_bw()\n\n\n\n\n\n\n\nprojected_inflation &lt;- function(r){\n  prev11 &lt;- d |&gt; \n    filter(observation_date &gt; '2024-01-31',\n           observation_date &lt; '2024-12-31') |&gt; \n    pull(pct_change_month) / 100 + 1\n  (prod(prev11) * (1 + r/100) - 1) * 100\n}\n\n# pipe observed distribution of month-on-month rates into that function\ndist &lt;- d |&gt; filter(observation_date &gt;= '2000-01-01',\n            observation_date &lt; '2024-12-31') |&gt; \n  pull(pct_change_month)\nhist(dist)\n\n\n\n\n\n\n\nsim &lt;- sapply(dist, projected_inflation)\n\nhist(sim)\n\n\n\n\n\n\n\nsum(sim &gt; 3.05) / length(sim) * 100 # 5%!!\n\n[1] 5.016722\n\n# what's the monthly rate that yields &gt; 3%?\nr &lt;- seq(-0.1,1, by = 0.1)\nprojected &lt;- sapply(r, projected_inflation)\n\nggplot(mapping = aes(x=r, y=projected)) +\n  geom_line() +\n  theme_bw() +\n  labs(x = 'December Inflation',\n       y = 'Annual Inflation') +\n  geom_hline(yintercept = 3, linetype = 'dashed')\n\n\n\n\n\n\n\n\nThen you can do the 10-year breakeven bit.",
+    "crumbs": [
+      "Nonlinearity & Chaos",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Exponential Growth & Decay</span>"
     ]
   },
   {

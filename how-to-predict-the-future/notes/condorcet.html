@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Condorcet Jury Theorem – How To Predict The Future</title>
+<title>2&nbsp; Condorcet Jury Theorem – How To Predict The Future</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,6 +70,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -109,7 +138,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./condorcet.html">Wisdom (of Crowds)</a></li><li class="breadcrumb-item"><a href="./condorcet.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Condorcet Jury Theorem</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./condorcet.html">Wisdom of Crowds</a></li><li class="breadcrumb-item"><a href="./condorcet.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Condorcet Jury Theorem</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -130,7 +159,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Moderation</span></a>
+ <span class="menu-text">Uncertainty</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -139,19 +168,38 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./fundamentals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fundamentals of Probability</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Fundamentals of Probability</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Justice</span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Wisdom of Crowds</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./condorcet.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Condorcet Jury Theorem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./median-voter-theorem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Median Voter Theorem</span></span></a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Wisdom (of Crowds)</span></a>
+ <span class="menu-text">Nonlinearity &amp; Chaos</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -159,14 +207,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./condorcet.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Condorcet Jury Theorem</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./median-voter-theorem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Median Voter Theorem</span></span></a>
+  <a href="./exponential-growth-decay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exponential Growth &amp; Decay</span></span></a>
   </div>
 </li>
       </ul>
@@ -188,9 +230,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./condorcet.html">Wisdom (of Crowds)</a></li><li class="breadcrumb-item"><a href="./condorcet.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Condorcet Jury Theorem</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./condorcet.html">Wisdom of Crowds</a></li><li class="breadcrumb-item"><a href="./condorcet.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Condorcet Jury Theorem</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Condorcet Jury Theorem</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Condorcet Jury Theorem</span></h1>
 </div>
 
 
@@ -251,8 +293,46 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<p>Let’s define a <strong>wise crowd</strong> as a group where you’re 95% certain that the majority will make the correct decision.How many people do you need in your crowd before you can be certain that the crowd decisions will be wise? That’s equivalent to asking what is the minimum number of people <span class="math inline">\(n\)</span> such that the 95% confidence interval of the binomial distribution lies entirely above <span class="math inline">\(\frac{1}{2}\)</span>.</p>
+<p>The 95% confidence interval is approximately <span class="math inline">\(p\)</span> plus or minus <span class="math inline">\(2\sqrt{\frac{p(1-p)}{n}}\)</span>, so we want the value of <span class="math inline">\(n\)</span> such that the lower bound of the confidence interval is greater than <span class="math inline">\(\frac{1}{2}\)</span>:<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p><span class="math display">\[
+p - 2\sqrt{\frac{p(1-p)}{n}} &gt; \frac{1}{2}
+\]</span></p>
+<p>Rearrange some terms:</p>
+<p><span class="math display">\[
+p - \frac{1}{2} &gt; 2\sqrt{\frac{p(1-p)}{n}}
+\]</span></p>
+<p>Divide by 2 and square each side:</p>
+<p><span class="math display">\[
+\left(\frac{p-\frac{1}{2}}{2}\right)^2 &gt; \frac{p(1-p)}{n}
+\]</span></p>
+<p>Multiply each side by <span class="math inline">\(4n\)</span> and divide by <span class="math inline">\((p-\frac{1}{2})^2\)</span>:</p>
+<p><span class="math display">\[
+n &gt; \frac{4p(1-p)}{(p-\frac{1}{2})^2}
+\]</span></p>
+<p>This is a pretty clunky equation, but it helps confirm a few of our earlier intuitions. Notice the denominator on the right hand side. Whenever <span class="math inline">\(p&lt;\frac{1}{2}\)</span>, that denominator is <em>negative</em>, meaning that when you think your individuals are less likely than chance to select the best answer, you’re not going to get better answers by adding more people!</p>
+<p>Because of the square term that denominator can get <em>really small</em> when <span class="math inline">\(p\)</span> is close to 50%, suggesting that we’ll need a <em>much</em> larger crowd if the individuals are only barely better than chance at getting the right answer. Let’s plot that equation to get a sense of what it looks like:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="condorcet_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Notice that the y-axis is on a <strong>logarithmic scale</strong> (each increment corresponds to a tenfold increase). When <span class="math inline">\(p = 0.51\)</span>, you need a group of 10,000 people before you can be confident that the majority will get the right answer. But you only a group of 1,000 people if <span class="math inline">\(p=0.53\)</span>! If <span class="math inline">\(p=0.6\)</span>, a group of 100 will do fine. 10 people is enough if you think <span class="math inline">\(p&gt;0.77\)</span>. And, of course, if <span class="math inline">\(p&gt;0.95\)</span>, then you don’t have to bother with a crowd at all; one person will suffice.</p>
+<p>All this suggests that there’s a “sweet spot”; where the problem isn’t so hard that it just makes sense to find the expert where you’re certain they’ve got the right answer, or so easy that you can just pluck a person at random and they’ll probably give you the right answer. Makes the most sense to harness the wisdom of the crowd for a problem that’s hard but not too hard; and the math here suggests that you don’t need that big a crowd for this class of problem.</p>
+<p>TODO: Cross-reference your math here against <code>rbinom()</code>. The symmetry of the confidence interval may be problematic here; see Wald corrections.</p>
+<p>Footnote: By the way, phrased differently this looks like a problem we’ll return to when we discuss political polling (link): how many people do you need in your poll before you’re 95% certain that you’ve correctly identified which candidate is in the lead?</p>
 
 
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Readers with a statistics background may note that the 2 rounds up from a more precise 1.96; that makes the following computations somewhat conservative because the confidence intervals will contain slightly more than 95% of observations.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -678,12 +758,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./fundamentals.html" class="pagination-link" aria-label="Fundamentals of Probability">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Fundamentals of Probability</span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Fundamentals of Probability</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./median-voter-theorem.html" class="pagination-link" aria-label="Median Voter Theorem">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Median Voter Theorem</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Median Voter Theorem</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
