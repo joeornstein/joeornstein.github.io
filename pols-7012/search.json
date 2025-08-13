@@ -179,7 +179,7 @@
     "href": "11-tidying.html",
     "title": "Week 11: Data Tidying",
     "section": "",
-    "text": "This week we discuss the core principles of tidy data, and why you want to ensure that your data is tidy prior to conducting your statistical analyses. By the end of this week, you will be able to:\n\nPivot datasets to change the unit of analysis\nAssess whether a dataset meets the three criteria necessary to be considered “tidy”\nComplete the steps necessary to convert a raw, “messy” dataset into a form amenable to statistical analysis\n\n\nReading\n\nR4DS Chapters 5-6\n\n\n\nProblem Set\nThis dataset that I downloaded from the World Bank has extensive data on each country’s GDP per capita going back to the 1960s. But it’s hopelessly untidy. In this problem set, we’ll tidy it so that the unit of analysis is the country-year, then perform a few analyses.\n\nLoad the data into R. Note that the data itself doesn’t start until row 5, so you’ll need to account for that (hint: check out the skip argument in read.csv()).\nPivot the dataset so that each row is a country-year (e.g. Peru 1970), and there is a single column with the GDP per capita variable.\nMake sure that the resulting year variable is formatted correctly as a numeric. (Hint: the str_remove_all() function may be helpful, depending on how you imported the dataset.)\nReproduce the following chart.\n\n\n\n\n\n\n\nBonus. Some economic growth theories suggest that poor countries should grow faster on average than rich countries (convergence). Other theories suggest that rich countries will grow faster than poor countries (divergence). Which theory appears to be a better description of the period between 1990 and 2015? Compute the annualized growth rate for each country during that period, and estimate the relationship between GDP per capita in 1990 and growth over the following 25 years. Interpret the associated hypothesis test and plot your results."
+    "text": "This week we discuss the core principles of tidy data, and why you want to ensure that your data is tidy prior to conducting your statistical analyses. By the end of this week, you will be able to:\n\nPivot datasets to change the unit of analysis\nAssess whether a dataset meets the three criteria necessary to be considered “tidy”\nComplete the steps necessary to convert a raw, “messy” dataset into a form amenable to statistical analysis\n\n\nReading\n\nR4DS Chapters 5-6\n\n\n\nProblem Set\nThis dataset that I downloaded from the World Bank has extensive data on each country’s GDP per capita going back to the 1960s. But it’s hopelessly untidy. In this problem set, we’ll tidy it so that the unit of analysis is the country-year, then perform a few analyses.\n\nLoad the data into R. Note that the data itself doesn’t start until row 5, so you’ll need to account for that (hint: check out the skip argument in read.csv()).\nPivot the dataset so that each row is a country-year (e.g. Peru 1970), and there is a single column with the GDP per capita variable.\nMake sure that the resulting year variable is formatted correctly as a numeric. (Hint: the str_remove_all() function may be helpful, depending on how you imported the dataset.)\nReproduce the following chart.\n\n\n\n\n\n\n\n\n\n\n\nBonus. Some economic growth theories suggest that poor countries should grow faster on average than rich countries (convergence). Other theories suggest that rich countries will grow faster than poor countries (divergence). Which theory appears to be a better description of the period between 1990 and 2015? Compute the annualized growth rate for each country during that period, and estimate the relationship between GDP per capita in 1990 and growth over the following 25 years. Interpret the associated hypothesis test and plot your results."
   },
   {
     "objectID": "09-visualization.html",
@@ -284,7 +284,7 @@
     "href": "01-introduction.html#the-fundamental-problem-of-samples",
     "title": "Week 1: Introduction",
     "section": "The Fundamental Problem of Samples",
-    "text": "The Fundamental Problem of Samples\nScientists strive to develop general theories about the world; a theory is more useful if it can be fruitfully applied to a large number of cases and situations. But we rarely if ever observe our entire population of interest, so we can never say with certainty that the patterns we observe in our dataset will hold true for the population at large. This is particularly problematic if our observed sample is selected in a non-random fashion, making it unrepresentative of the larger population.\n\n\n\n\n\nOne can think of these three fundamental problems as three different kinds of missing data problems—whether it’s a latent characteristic, a counterfactual, or observations not included in your dataset—there is some information that we do not observe directly, and so we have to predict what it might be on the basis of the information we do observe. Fortunately, we have a number of methods for credibly making these sorts of inferences. We’ll learn several of them in the first half of this semester!"
+    "text": "The Fundamental Problem of Samples\nScientists strive to develop general theories about the world; a theory is more useful if it can be fruitfully applied to a large number of cases and situations. But we rarely if ever observe our entire population of interest, so we can never say with certainty that the patterns we observe in our dataset will hold true for the population at large. This is particularly problematic if our observed sample is selected in a non-random fashion, making it unrepresentative of the larger population.\n\nOne can think of these three fundamental problems as three different kinds of missing data problems—whether it’s a latent characteristic, a counterfactual, or observations not included in your dataset—there is some information that we do not observe directly, and so we have to predict what it might be on the basis of the information we do observe. Fortunately, we have a number of methods for credibly making these sorts of inferences. We’ll learn several of them in the first half of this semester!"
   },
   {
     "objectID": "02-writing-code.html",
@@ -810,5 +810,103 @@
     "title": "Calculus Essentials",
     "section": "Next Week…",
     "text": "Next Week…\nWe finally have the tools we need to find the values of \\(\\alpha\\) and \\(\\beta\\) that minimize this function:\n\\(\\text{SSE} = \\sum_{i=1}^n(y_i - \\alpha - \\beta x_i)^2\\)"
+  },
+  {
+    "objectID": "slides/warmup.html#three-fundamental-problems",
+    "href": "slides/warmup.html#three-fundamental-problems",
+    "title": "Introduction to Political Methodology",
+    "section": "Three Fundamental Problems",
+    "text": "Three Fundamental Problems\n\nMeasurement\nCausal Inference\nSampling\n\n\nIn each case, there is some quantity of interest that we do not or cannot observe.\n\nThe goal of statistics is to make inferences about the unobserved quantity based on the things we do observe."
+  },
+  {
+    "objectID": "slides/warmup.html#measurement",
+    "href": "slides/warmup.html#measurement",
+    "title": "Introduction to Political Methodology",
+    "section": "Measurement",
+    "text": "Measurement\n\nSome underlying concept of interest that we are interested in studying:\n\nDemocracy\nIdeology\nPolarization\nPoverty\nHappiness\n\n\n\nThe goal of measurement is to take features we observe and make inferences about the underlying concept of interest."
+  },
+  {
+    "objectID": "slides/warmup.html#measurement-1",
+    "href": "slides/warmup.html#measurement-1",
+    "title": "Introduction to Political Methodology",
+    "section": "Measurement",
+    "text": "Measurement\nFor each of the following social media posts, try to answer the following questions:\n\nWhat is the underlying concept that the author is interested in measuring?\nHow is it being measured?\nIs it a good measure?\nHow could the measure be improved?"
+  },
+  {
+    "objectID": "slides/warmup.html#measurement-2",
+    "href": "slides/warmup.html#measurement-2",
+    "title": "Introduction to Political Methodology",
+    "section": "Measurement",
+    "text": "Measurement"
+  },
+  {
+    "objectID": "slides/warmup.html#measurement-3",
+    "href": "slides/warmup.html#measurement-3",
+    "title": "Introduction to Political Methodology",
+    "section": "Measurement",
+    "text": "Measurement"
+  },
+  {
+    "objectID": "slides/warmup.html#causal-inference",
+    "href": "slides/warmup.html#causal-inference",
+    "title": "Introduction to Political Methodology",
+    "section": "Causal Inference",
+    "text": "Causal Inference\n\nPolitical scientists are rarely satisfied with just describing the world. We also want to explain why things are the way they are.\nThis takes the form of causal claims. “X causes Y”.\n\n“Democracy causes economic growth”\n“Cable news causes political polarization”\n\n\n\nThe fundamental problem of causal inference is that we can’t observe counterfactuals."
+  },
+  {
+    "objectID": "slides/warmup.html#causal-inference-1",
+    "href": "slides/warmup.html#causal-inference-1",
+    "title": "Introduction to Political Methodology",
+    "section": "Causal Inference",
+    "text": "Causal Inference\nFor each of the following social media posts, try to answer the following questions:\n\nWhat is the causal claim being made?\nWhy is the evidence presented insufficient to support that causal claim?\nIf you had unlimited time and unlimited resources, what experiment would you run to test the causal claim?"
+  },
+  {
+    "objectID": "slides/warmup.html#causal-inference-2",
+    "href": "slides/warmup.html#causal-inference-2",
+    "title": "Introduction to Political Methodology",
+    "section": "Causal Inference",
+    "text": "Causal Inference"
+  },
+  {
+    "objectID": "slides/warmup.html#causal-inference-3",
+    "href": "slides/warmup.html#causal-inference-3",
+    "title": "Introduction to Political Methodology",
+    "section": "Causal Inference",
+    "text": "Causal Inference"
+  },
+  {
+    "objectID": "slides/warmup.html#causal-inference-4",
+    "href": "slides/warmup.html#causal-inference-4",
+    "title": "Introduction to Political Methodology",
+    "section": "Causal Inference",
+    "text": "Causal Inference"
+  },
+  {
+    "objectID": "slides/warmup.html#sampling",
+    "href": "slides/warmup.html#sampling",
+    "title": "Introduction to Political Methodology",
+    "section": "Sampling",
+    "text": "Sampling\n\nIt is rare that we observe the entire population that we are interested in studying.\nInstead, we make inferences about the population of interest based on what we observe in a smaller (often much smaller) sample."
+  },
+  {
+    "objectID": "slides/warmup.html#sampling-1",
+    "href": "slides/warmup.html#sampling-1",
+    "title": "Introduction to Political Methodology",
+    "section": "Sampling",
+    "text": "Sampling\nFor each of the following social media posts, try to answer the following questions:\n\nWhat is the population of interest?\nIs this sample likely to be representative of the population of interest? Why or why not?\nHow might you go about collecting a better sample?"
+  },
+  {
+    "objectID": "slides/warmup.html#sampling-2",
+    "href": "slides/warmup.html#sampling-2",
+    "title": "Introduction to Political Methodology",
+    "section": "Sampling",
+    "text": "Sampling"
+  },
+  {
+    "objectID": "slides/warmup.html#sampling-3",
+    "href": "slides/warmup.html#sampling-3",
+    "title": "Introduction to Political Methodology",
+    "section": "Sampling",
+    "text": "Sampling"
   }
 ]
