@@ -1,196 +1,164 @@
 [
   {
-    "objectID": "index.html#week-2-127",
-    "href": "index.html#week-2-127",
-    "title": "Spring 2025 Predictions",
-    "section": "Week 2 (1/27)",
-    "text": "Week 2 (1/27)"
+    "objectID": "slides/fundamentals.html#prediction-is-hard",
+    "href": "slides/fundamentals.html#prediction-is-hard",
+    "title": "Fudamentals of Probability",
+    "section": "Prediction Is Hard",
+    "text": "Prediction Is Hard\n\n\n\n\n“Stocks have reached what looks like a permanently high plateau.”\n—Irving Fisher, Economist, October 1929"
   },
   {
-    "objectID": "index.html#week-3-23",
-    "href": "index.html#week-3-23",
-    "title": "Spring 2025 Predictions",
-    "section": "Week 3 (2/3)",
-    "text": "Week 3 (2/3)"
+    "objectID": "slides/fundamentals.html#prediction-is-hard-1",
+    "href": "slides/fundamentals.html#prediction-is-hard-1",
+    "title": "Fudamentals of Probability",
+    "section": "Prediction Is Hard",
+    "text": "Prediction Is Hard\n\n\n\n“I believe it is peace for our time.”\n—Neville Chamberlain, September 30, 1938\n\n\n\n\n\nHitler invaded Poland less than a year later, on September 1, 1939."
   },
   {
-    "objectID": "index.html#leaderboard",
-    "href": "index.html#leaderboard",
-    "title": "Spring 2025 Predictions",
-    "section": "Leaderboard",
-<<<<<<< HEAD
-    "text": "Leaderboard\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nTiyanah Rowtham\n7/8\n0.0814\n\n\n2\nBrooke Cheney\n8/10\n0.1398\n\n\n3\nEthan Joyce\n9/12\n0.1441\n\n\n4\nBenjamin Jacobstein\n10/13\n0.1494\n\n\n5\nHannah Carson\n11/14\n0.1577\n\n\n6\nJoe Ornstein\n10/14\n0.1714\n\n\n7\nAndy Wyatt\n9/14\n0.1734\n\n\n8\nPablo Martinez\n8/11\n0.1777\n\n\n9\nMatthew Newby\n6/7\n0.1825\n\n\n10\nMeera Srinivasan\n7/11\n0.1906\n\n\n11\nVangeli Tsiaras\n8/11\n0.1952\n\n\n12\nAngela Jacobs\n7/9\n0.1996\n\n\n13\nJoshua Kang\n9/12\n0.2003\n\n\n14\nJoey Khashan\n8/11\n0.2030\n\n\n15\nKaitlyn Scoggins\n8/12\n0.2041\n\n\n16\nAyaan Fazal\n6/10\n0.2082\n\n\n17\nMabry Cartwright\n8/13\n0.2192\n\n\n18\nBennie Trujillano\n8/14\n0.2201\n\n\n19\nClass Average\n8/14\n0.2242\n\n\n20\nWyatt Dasher\n7/11\n0.2284\n\n\n21\nLawton Smith\n8/12\n0.2354\n\n\n22\nBailey Mattox\n8/13\n0.2403\n\n\n23\nGrace Mccann\n6/10\n0.2416\n\n\n24\nJake Garrard\n8/13\n0.2437\n\n\n25\nAva Herring\n8/12\n0.2438\n\n\n26\nLillie Puhrmann\n7/12\n0.2441\n\n\n27\nJessy Lee\n8/11\n0.2450\n\n\n28\nHampton Barrineau\n7/12\n0.2481\n\n\n29\nChristian Barr\n2/5\n0.2506\n\n\n30\nEli Henderson\n6/9\n0.2515\n\n\n31\nRiley Batz\n7/12\n0.2529\n\n\n32\nAnna Rachwalski\n8/13\n0.2559\n\n\n33\nIsabella Molina\n8/11\n0.2561\n\n\n34\nEmma Allen\n8/12\n0.2642\n\n\n35\nLevi Thomas\n8/12\n0.2642\n\n\n36\nThomas Smith\n7/11\n0.2657\n\n\n37\nDiane Johnson\n8/13\n0.2658\n\n\n38\nMilan Yadav\n7/12\n0.2672\n\n\n39\nJulia Loggins\n8/13\n0.2679\n\n\n40\nTownsend Turner\n6/12\n0.2693\n\n\n41\nJenny Qiu\n7/12\n0.2697\n\n\n42\nArchita Gaur\n7/12\n0.2725\n\n\n43\nTeya Hagy\n6/12\n0.2734\n\n\n44\nIsaac Fleischer\n5/12\n0.2758\n\n\n45\nEmma Peterson\n7/13\n0.2810\n\n\n46\nRuby Douglas\n4/11\n0.2884\n\n\n47\nMaston Corn\n7/13\n0.2891\n\n\n48\nEthan Marcum\n7/12\n0.2935\n\n\n49\nSarah Joyce\n5/12\n0.2937\n\n\n50\nMia Pisani\n7/12\n0.3027\n\n\n51\nWyatt Stevenson\n6/12\n0.3042\n\n\n52\nRebecca Mcadam\n7/13\n0.3043\n\n\n53\nElliana Williams\n3/10\n0.3058\n\n\n54\nTristan Thompson\n6/11\n0.3129\n\n\n55\nChinelo Ireh\n6/12\n0.3151\n\n\n56\nMargaret Pope\n7/13\n0.3180\n\n\n57\nSenait Pirani\n5/10\n0.3205\n\n\n58\nSreya Pandyaram\n5/12\n0.3207\n\n\n59\nNathaniel Long\n6/11\n0.3219\n\n\n60\nQuintin Gallardo\n6/12\n0.3229\n\n\n61\nChloe Cooper\n7/13\n0.3279\n\n\n62\nKyle Smith\n6/13\n0.3339\n\n\n63\nKelsey Dyar\n4/8\n0.3356\n\n\n64\nJerusalem Greenberg\n5/10\n0.3430\n\n\n65\nAndreas Papandreou\n5/11\n0.3435\n\n\n66\nGrace Reichelderfer\n5/12\n0.3484\n\n\n67\nAddisen Kameron\n7/13\n0.3544\n\n\n68\nJacob Weiss\n6/10\n0.3565\n\n\n69\nEmma Pastor\n6/13\n0.3579\n\n\n70\nDa In Song\n5/11\n0.3732\n\n\n71\nAaliyah Diaz\n4/11\n0.3833\n\n\n72\nJames Martin\n3/9\n0.4250\n\n\n73\nNiomi Nurse\n2/9\n0.4428"
-=======
-    "text": "Leaderboard\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nTiyanah Rowtham\n7/7\n0.0498\n\n\n2\nBrooke Cheney\n8/9\n0.0878\n\n\n3\nEthan Joyce\n9/11\n0.1152\n\n\n4\nBenjamin Jacobstein\n10/12\n0.1298\n\n\n5\nVangeli Tsiaras\n8/10\n0.1338\n\n\n6\nPablo Martinez\n8/10\n0.1392\n\n\n7\nAngela Jacobs\n7/8\n0.1425\n\n\n8\nAndy Wyatt\n9/13\n0.1501\n\n\n9\nHannah Carson\n10/13\n0.1575\n\n\n10\nJoe Ornstein\n10/13\n0.1614\n\n\n11\nAyaan Fazal\n6/9\n0.1769\n\n\n12\nKaitlyn Scoggins\n8/11\n0.1781\n\n\n13\nJoey Khashan\n8/10\n0.1784\n\n\n14\nMeera Srinivasan\n7/10\n0.1794\n\n\n15\nMatthew Newby\n5/6\n0.1925\n\n\n16\nLawton Smith\n8/11\n0.1986\n\n\n17\nBailey Mattox\n8/12\n0.2001\n\n\n18\nJoshua Kang\n9/12\n0.2003\n\n\n19\nGrace Mccann\n6/9\n0.2009\n\n\n20\nWyatt Dasher\n7/10\n0.2023\n\n\n21\nClass Average\n8/13\n0.2069\n\n\n22\nMabry Cartwright\n8/12\n0.2075\n\n\n23\nBennie Trujillano\n8/13\n0.2094\n\n\n24\nThomas Smith\n7/10\n0.2233\n\n\n25\nLevi Thomas\n8/11\n0.2300\n\n\n26\nHampton Barrineau\n7/11\n0.2322\n\n\n27\nJulia Loggins\n8/12\n0.2329\n\n\n28\nLillie Puhrmann\n7/11\n0.2335\n\n\n29\nDiane Johnson\n8/12\n0.2346\n\n\n30\nJenny Qiu\n7/11\n0.2417\n\n\n31\nAnna Rachwalski\n8/12\n0.2421\n\n\n32\nJessy Lee\n8/11\n0.2450\n\n\n33\nIsabella Molina\n8/10\n0.2457\n\n\n34\nTeya Hagy\n6/11\n0.2472\n\n\n35\nAva Herring\n7/11\n0.2475\n\n\n36\nJake Garrard\n7/12\n0.2486\n\n\n37\nRiley Batz\n7/11\n0.2503\n\n\n38\nChristian Barr\n2/5\n0.2506\n\n\n39\nMilan Yadav\n7/11\n0.2531\n\n\n40\nArchita Gaur\n7/11\n0.2553\n\n\n41\nEmma Allen\n8/12\n0.2642\n\n\n42\nEli Henderson\n5/8\n0.2649\n\n\n43\nIsaac Fleischer\n5/11\n0.2660\n\n\n44\nTownsend Turner\n6/11\n0.2663\n\n\n45\nEmma Peterson\n7/12\n0.2692\n\n\n46\nSarah Joyce\n5/11\n0.2758\n\n\n47\nQuintin Gallardo\n6/10\n0.2773\n\n\n48\nMaston Corn\n7/12\n0.2822\n\n\n49\nSreya Pandyaram\n5/11\n0.2826\n\n\n50\nMia Pisani\n7/11\n0.2831\n\n\n51\nWyatt Stevenson\n6/11\n0.2873\n\n\n52\nRuby Douglas\n4/11\n0.2884\n\n\n53\nEthan Marcum\n7/12\n0.2935\n\n\n54\nRebecca Mcadam\n7/12\n0.2944\n\n\n55\nChinelo Ireh\n6/11\n0.2967\n\n\n56\nElliana Williams\n3/9\n0.2998\n\n\n57\nNathaniel Long\n6/10\n0.3008\n\n\n58\nSenait Pirani\n5/9\n0.3016\n\n\n59\nKyle Smith\n6/12\n0.3084\n\n\n60\nTristan Thompson\n6/10\n0.3116\n\n\n61\nChloe Cooper\n7/12\n0.3167\n\n\n62\nMargaret Pope\n7/12\n0.3228\n\n\n63\nAddisen Kameron\n7/12\n0.3237\n\n\n64\nAndreas Papandreou\n5/10\n0.3356\n\n\n65\nKelsey Dyar\n4/8\n0.3356\n\n\n66\nEmma Pastor\n6/12\n0.3409\n\n\n67\nJerusalem Greenberg\n5/10\n0.3430\n\n\n68\nGrace Reichelderfer\n5/11\n0.3473\n\n\n69\nDa In Song\n5/10\n0.3542\n\n\n70\nJacob Weiss\n6/10\n0.3565\n\n\n71\nAaliyah Diaz\n4/10\n0.3577\n\n\n72\nJames Martin\n3/8\n0.4332\n\n\n73\nNiomi Nurse\n2/9\n0.4428"
->>>>>>> 62cfd6833f6dea867c59962ad98aedb2d59159d7
+    "objectID": "slides/fundamentals.html#prediction-is-hard-2",
+    "href": "slides/fundamentals.html#prediction-is-hard-2",
+    "title": "Fudamentals of Probability",
+    "section": "Prediction Is Hard",
+    "text": "Prediction Is Hard\n\n\n\n“There’s no chance that the iPhone is going to get any significant market share. No chance.”\n—Steve Ballmer, Microsoft CEO, 2007"
   },
   {
-    "objectID": "fall-2023.html#week-2-913",
-    "href": "fall-2023.html#week-2-913",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 2 (9/13)",
-    "text": "Week 2 (9/13)"
+    "objectID": "slides/fundamentals.html#prediction-is-hard-3",
+    "href": "slides/fundamentals.html#prediction-is-hard-3",
+    "title": "Fudamentals of Probability",
+    "section": "Prediction Is Hard",
+    "text": "Prediction Is Hard"
   },
   {
-    "objectID": "fall-2023.html#week-3-920",
-    "href": "fall-2023.html#week-3-920",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 3 (9/20)",
-    "text": "Week 3 (9/20)"
+    "objectID": "slides/fundamentals.html#prediction-is-hard-4",
+    "href": "slides/fundamentals.html#prediction-is-hard-4",
+    "title": "Fudamentals of Probability",
+    "section": "Prediction Is Hard",
+    "text": "Prediction Is Hard\n\n\n\n“The overall risk to the American public does remain low.”\n—CDC Director Robert Redfield, March 6, 2020\n\n\n\n\n\nExactly one week before the White House declared a national emergency."
   },
   {
-    "objectID": "fall-2023.html#week-4-927",
-    "href": "fall-2023.html#week-4-927",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 4 (9/27)",
-    "text": "Week 4 (9/27)"
+    "objectID": "slides/fundamentals.html#prediction-is-hard-5",
+    "href": "slides/fundamentals.html#prediction-is-hard-5",
+    "title": "Fudamentals of Probability",
+    "section": "Prediction Is Hard",
+    "text": "Prediction Is Hard\n\n\nFor those keeping track at home, that’s 15 days before the official start of the invasion. The picture is of a convoy of Russian armored vehicles heading towards Ukraine."
   },
   {
-    "objectID": "fall-2023.html#week-5-104",
-    "href": "fall-2023.html#week-5-104",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 5 (10/4)",
-    "text": "Week 5 (10/4)"
+    "objectID": "slides/fundamentals.html#prediction-is-hard-6",
+    "href": "slides/fundamentals.html#prediction-is-hard-6",
+    "title": "Fudamentals of Probability",
+    "section": "Prediction Is Hard",
+    "text": "Prediction Is Hard\n\nPredictions guide important decisions—in politics, public policy, business, and daily life.\nOverconfidence and neglect of uncertainty can have serious consequences.\nThe future is inherently uncertain—we need better ways to think about and communicate uncertainty."
   },
   {
-    "objectID": "fall-2023.html#week-6-1011",
-    "href": "fall-2023.html#week-6-1011",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 6 (10/11)",
-    "text": "Week 6 (10/11)"
+    "objectID": "slides/fundamentals.html#probability-1",
+    "href": "slides/fundamentals.html#probability-1",
+    "title": "Fudamentals of Probability",
+    "section": "Probability",
+    "text": "Probability\n\nThe language of uncertainty\nAllows us to communicate clearly and precisely how certain we are that an event will happen."
   },
   {
-    "objectID": "fall-2023.html#week-7-1018",
-    "href": "fall-2023.html#week-7-1018",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 7 (10/18)",
-    "text": "Week 7 (10/18)"
+    "objectID": "slides/fundamentals.html#probability-2",
+    "href": "slides/fundamentals.html#probability-2",
+    "title": "Fudamentals of Probability",
+    "section": "Probability",
+    "text": "Probability\nIn some contexts, probability statements seem natural:\n\n40% chance of rain on Tuesday\n12% chance the Dodgers win the World Series\n2.7% chance of rolling double sixes\n\n\nIn other contexts, feels weird:\n\n\n\n“I believe there is 42% chance of peace in our time!”\n-Neville Chamberlain, September 30, 1938\n\n\n\n(My goal is to get you comfortable with such statements.)"
   },
   {
-    "objectID": "fall-2023.html#week-8-1025",
-    "href": "fall-2023.html#week-8-1025",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 8 (10/25)",
-    "text": "Week 8 (10/25)"
+    "objectID": "slides/fundamentals.html#definitions",
+    "href": "slides/fundamentals.html#definitions",
+    "title": "Fudamentals of Probability",
+    "section": "Definitions",
+    "text": "Definitions\n\nA probability is a number between 0 and 1 that expresses how likely it is that an event will happen.\n\n\n\n0% means “impossible”\n50% means “equally likely to happen or not”\n100% means “certain”\n\n\n\nDeveloping an intuition for other probability values is trickier…"
   },
   {
-    "objectID": "fall-2023.html#week-9-111",
-    "href": "fall-2023.html#week-9-111",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 9 (11/1)",
-    "text": "Week 9 (11/1)"
+    "objectID": "slides/fundamentals.html#definitions-1",
+    "href": "slides/fundamentals.html#definitions-1",
+    "title": "Fudamentals of Probability",
+    "section": "Definitions",
+    "text": "Definitions\n\nMany of us develop an intuition for probability by playing games of chance."
   },
   {
-    "objectID": "fall-2023.html#week-10-118",
-    "href": "fall-2023.html#week-10-118",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 10 (11/8)",
-    "text": "Week 10 (11/8)"
+    "objectID": "slides/fundamentals.html#definitions-2",
+    "href": "slides/fundamentals.html#definitions-2",
+    "title": "Fudamentals of Probability",
+    "section": "Definitions",
+    "text": "Definitions\n\nIf you flip a coin 200 times, you’d expect it to come up heads roughly half the time.\nThis illustrates the frequentist interpretation of probability:\n\nProbability = how frequently we expect an event to occur in a large number of repeated trials.\n\nFormalized in the Law of Large Numbers:\n\nIf the probability of an event is \\(p\\), then the proportion of times that event occurs will approach \\(p\\) in a (very) large number of repeated trials."
   },
   {
-    "objectID": "fall-2023.html#week-11-1115",
-    "href": "fall-2023.html#week-11-1115",
-    "title": "Fall 2023 Predictions",
-    "section": "Week 11 (11/15)",
-    "text": "Week 11 (11/15)"
+    "objectID": "slides/fundamentals.html#law-of-large-numbers",
+    "href": "slides/fundamentals.html#law-of-large-numbers",
+    "title": "Fudamentals of Probability",
+    "section": "Law of Large Numbers",
+    "text": "Law of Large Numbers\nThe entire business model of casinos/lotteries rests on the Law of Large Numbers.\n\n\n\n\n\nMaybe this guy comes in one night and puts $35,000 on lucky number 32. If 32 hits, the casino pays out over $1.2 million!"
   },
   {
-    "objectID": "fall-2023.html#leaderboard",
-    "href": "fall-2023.html#leaderboard",
-    "title": "Fall 2023 Predictions",
-    "section": "Leaderboard",
-    "text": "Leaderboard\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nJoe Ornstein\n27/34\n0.1102\n\n\n2\nHarini Mohan\n25/34\n0.1850\n\n\n3\nAnsley Austin\n23/34\n0.1896\n\n\n4\nClass Average\n22/34\n0.2041\n\n\n5\nHarshini Mohan\n22/34\n0.2111\n\n\n6\nMaggie Fertig\n22/34\n0.2152\n\n\n7\nRyan Wolkofsky\n22/34\n0.2208\n\n\n8\nSamiha Sarwar\n19/34\n0.2210\n\n\n9\nBain Fulcher\n22/34\n0.2263\n\n\n10\nSimryn Patel\n20/34\n0.2674\n\n\n11\nTori Harrill\n18/34\n0.2755\n\n\n12\nRease Bauer\n17/34\n0.2759\n\n\n13\nJacob Fortner\n18/34\n0.2787\n\n\n14\nHita Boddu\n15/34\n0.3126\n\n\n15\nPeyton Murry\n16/34\n0.3638\n\n\n16\nJack Whipple\n17/34\n0.3857\n\n\n17\nKang Lee\n15/34\n0.4013\n\n\n18\nDuy Do\n13/34\n0.4599"
+    "objectID": "slides/fundamentals.html#law-of-large-numbers-1",
+    "href": "slides/fundamentals.html#law-of-large-numbers-1",
+    "title": "Fudamentals of Probability",
+    "section": "Law of Large Numbers",
+    "text": "Law of Large Numbers\nBut if you get 10,000 of those guys placing bets like that, 37 lose for every 1 that wins…"
   },
   {
-    "objectID": "fall-2023.html#calibration-plots",
-    "href": "fall-2023.html#calibration-plots",
-    "title": "Fall 2023 Predictions",
-    "section": "Calibration Plots",
-    "text": "Calibration Plots"
+    "objectID": "slides/fundamentals.html#definitions-3",
+    "href": "slides/fundamentals.html#definitions-3",
+    "title": "Fudamentals of Probability",
+    "section": "Definitions",
+    "text": "Definitions\nSometimes it will be useful to express probability as odds.\n\n50% \\(\\rightarrow\\) 1:1 (“equally likely to happen or not”)\n75% \\(\\rightarrow\\) 3:1 (“three times more likely to happen than not”)\n10% \\(\\rightarrow\\) 1:9 (“nine times less likely to happen than not”)\n\n\nTo convert probability \\(p\\) to odds, divide \\(\\frac{p}{1-p}\\).\n\n\nTo convert odds \\(p:q\\) to probability, divide \\(\\frac{p}{p+q}\\)."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Two Principles\n\nBe humble. Think in terms of probabilities rather than certainties.\nConsider multiple perspectives."
+    "objectID": "slides/fundamentals.html#practice-problems",
+    "href": "slides/fundamentals.html#practice-problems",
+    "title": "Fudamentals of Probability",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nWhat is 80% expressed as odds?\nWhat is 2:1 expressed as a probability?"
   },
   {
-    "objectID": "fall-2022.html#week-2-97",
-    "href": "fall-2022.html#week-2-97",
-    "title": "Fall 2022 Predictions",
-    "section": "Week 2 (9/7)",
-    "text": "Week 2 (9/7)"
+    "objectID": "slides/fundamentals.html#what-if-the-event-cant-be-repeated",
+    "href": "slides/fundamentals.html#what-if-the-event-cant-be-repeated",
+    "title": "Fudamentals of Probability",
+    "section": "What if the event can’t be repeated?",
+    "text": "What if the event can’t be repeated?\n\nFor events that can be repeated a large number of times, frequentist interpretation is pretty intuitive.\n\nBut what about the sorts of questions I asked in the intro survey?"
   },
   {
-    "objectID": "fall-2022.html#week-3-921",
-    "href": "fall-2022.html#week-3-921",
-    "title": "Fall 2022 Predictions",
-    "section": "Week 3 (9/21)",
-    "text": "Week 3 (9/21)"
+    "objectID": "slides/fundamentals.html#subjective-bayesian-interpretation",
+    "href": "slides/fundamentals.html#subjective-bayesian-interpretation",
+    "title": "Fudamentals of Probability",
+    "section": "Subjective (Bayesian) Interpretation",
+    "text": "Subjective (Bayesian) Interpretation\n\nProbability is not an innate characteristic of the event, but a statement about the observer’s knowledge."
   },
   {
-    "objectID": "fall-2022.html#week-4-928",
-    "href": "fall-2022.html#week-4-928",
-    "title": "Fall 2022 Predictions",
-    "section": "Week 4 (9/28)",
-    "text": "Week 4 (9/28)"
+    "objectID": "slides/fundamentals.html#subjective-bayesian-interpretation-1",
+    "href": "slides/fundamentals.html#subjective-bayesian-interpretation-1",
+    "title": "Fudamentals of Probability",
+    "section": "Subjective (Bayesian) Interpretation",
+    "text": "Subjective (Bayesian) Interpretation\n\nIf you can precisely measure a coin’s initial velocity and rate of spin, you can perfectly predict what side it will land on (Diaconis et al. 2007)."
   },
   {
-    "objectID": "fall-2022.html#week-5-105",
-    "href": "fall-2022.html#week-5-105",
-    "title": "Fall 2022 Predictions",
-    "section": "Week 5 (10/5)",
-    "text": "Week 5 (10/5)"
+    "objectID": "slides/fundamentals.html#subjective-bayesian-interpretation-2",
+    "href": "slides/fundamentals.html#subjective-bayesian-interpretation-2",
+    "title": "Fudamentals of Probability",
+    "section": "Subjective (Bayesian) Interpretation",
+    "text": "Subjective (Bayesian) Interpretation\nProbability is not an innate characteristic of the event, but a statement about the observer’s knowledge.\n\nProbability = “degree of belief”\nA probability statement (e.g. 80% chance of rain) communicates the forecaster’s confidence that the event will occur.\n\n“Based on the information I have, I think it is four times more likely to rain than to not rain.”"
   },
   {
-    "objectID": "fall-2022.html#week-6-1012",
-    "href": "fall-2022.html#week-6-1012",
-    "title": "Fall 2022 Predictions",
-    "section": "Week 6 (10/12)",
-    "text": "Week 6 (10/12)"
+    "objectID": "slides/fundamentals.html#are-people-good-at-this",
+    "href": "slides/fundamentals.html#are-people-good-at-this",
+    "title": "Fudamentals of Probability",
+    "section": "Are people good at this?",
+    "text": "Are people good at this?\n\nNo. Assessing probability is not something that comes naturally to people."
   },
   {
-    "objectID": "fall-2022.html#week-7-1019",
-    "href": "fall-2022.html#week-7-1019",
-    "title": "Fall 2022 Predictions",
-    "section": "Week 7 (10/19)",
-    "text": "Week 7 (10/19)"
+    "objectID": "slides/fundamentals.html#mental-trick-to-improve-calibration",
+    "href": "slides/fundamentals.html#mental-trick-to-improve-calibration",
+    "title": "Fudamentals of Probability",
+    "section": "Mental Trick to Improve Calibration",
+    "text": "Mental Trick to Improve Calibration\n\n\n\n\nReframe the problem as a bet.\n“Would I rather have $100 if Karl Marx was born before Queen Victoria or if I draw a red ball from this jar?”\nAlter the contents of the jar until you’re indifferent between the two bets.\nThis is called the Equivalent Bet Test (Spetzler & Staël Von Holstein, 1975; Galef, 2021)"
   },
   {
-    "objectID": "fall-2022.html#week-8-1026",
-    "href": "fall-2022.html#week-8-1026",
-    "title": "Fall 2022 Predictions",
-    "section": "Week 8 (10/26)",
-    "text": "Week 8 (10/26)"
-  },
-  {
-    "objectID": "fall-2022.html#week-9-118",
-    "href": "fall-2022.html#week-9-118",
-    "title": "Fall 2022 Predictions",
-    "section": "Week 9 (11/8)",
-    "text": "Week 9 (11/8)"
-  },
-  {
-    "objectID": "fall-2022.html#leaderboard",
-    "href": "fall-2022.html#leaderboard",
-    "title": "Fall 2022 Predictions",
-    "section": "Leaderboard",
-    "text": "Leaderboard\nNote: Updated December 22, 2022.1\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nClass Average\n30/39\n0.1824\n\n\n2\nJeremy Lee\n27/39\n0.1887\n\n\n3\nDavid Barrero\n26/39\n0.1959\n\n\n4\nJoe Ornstein\n25/39\n0.2124\n\n\n5\nNicholas Chao\n24/39\n0.2166\n\n\n6\nAdam Szczupak\n28/39\n0.2170\n\n\n7\nArianna Ycaza\n24/39\n0.2319\n\n\n8\nPatrick Egan\n26/39\n0.2332\n\n\n9\nHannah Jones\n22/39\n0.2418\n\n\n10\nAudrey Vaughan\n25/39\n0.2452\n\n\n11\nAndrew Decker\n22/39\n0.2477\n\n\n12\nJoe Kennedy\n22/39\n0.2477\n\n\n13\nNoah Herndon\n23/39\n0.2490\n\n\n14\nMeredith Stevens\n19/39\n0.2903\n\n\n15\nOlivia West\n16/39\n0.3081\n\n\n16\nEdward Cox\n20/39\n0.3169\n\n\n17\nMac Kinnebrew\n17/39\n0.3172\n\n\n18\nCharlie Estabrook\n14/39\n0.3776\n\n\n19\nIan Driggers\n14/39\n0.4218"
-  },
-  {
-    "objectID": "fall-2022.html#calibration-plots",
-    "href": "fall-2022.html#calibration-plots",
-    "title": "Fall 2022 Predictions",
-    "section": "Calibration Plots",
-    "text": "Calibration Plots"
-  },
-  {
-    "objectID": "fall-2022.html#footnotes",
-    "href": "fall-2022.html#footnotes",
-    "title": "Fall 2022 Predictions",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nI had incorrectly resolved the Netanyahu question as “yes” following the November 1 Israeli elections, but he did not secure a coalition agreement to become Prime Minister by the November 30 deadline.↩︎"
+    "objectID": "slides/fundamentals.html#practice",
+    "href": "slides/fundamentals.html#practice",
+    "title": "Fudamentals of Probability",
+    "section": "Practice",
+    "text": "Practice\n\nTake 10 minutes to play “Two Truths and a Lie” with your tablemates. Pick a person to tell two truths and a lie about themselves, and everyone else must guess which is the lie.\nOur twist on the game is that everyone must estimate a probability that their chosen statement is a lie. Use the Equivalent Bet Test to help calibrate your probability.\n(Feel free to play multiple rounds if there is time remaining.)"
   },
   {
     "objectID": "fall-2024.html#week-2-94",
@@ -298,6 +266,188 @@
     "text": "Calibration Plots"
   },
   {
+    "objectID": "fall-2022.html#week-2-97",
+    "href": "fall-2022.html#week-2-97",
+    "title": "Fall 2022 Predictions",
+    "section": "Week 2 (9/7)",
+    "text": "Week 2 (9/7)"
+  },
+  {
+    "objectID": "fall-2022.html#week-3-921",
+    "href": "fall-2022.html#week-3-921",
+    "title": "Fall 2022 Predictions",
+    "section": "Week 3 (9/21)",
+    "text": "Week 3 (9/21)"
+  },
+  {
+    "objectID": "fall-2022.html#week-4-928",
+    "href": "fall-2022.html#week-4-928",
+    "title": "Fall 2022 Predictions",
+    "section": "Week 4 (9/28)",
+    "text": "Week 4 (9/28)"
+  },
+  {
+    "objectID": "fall-2022.html#week-5-105",
+    "href": "fall-2022.html#week-5-105",
+    "title": "Fall 2022 Predictions",
+    "section": "Week 5 (10/5)",
+    "text": "Week 5 (10/5)"
+  },
+  {
+    "objectID": "fall-2022.html#week-6-1012",
+    "href": "fall-2022.html#week-6-1012",
+    "title": "Fall 2022 Predictions",
+    "section": "Week 6 (10/12)",
+    "text": "Week 6 (10/12)"
+  },
+  {
+    "objectID": "fall-2022.html#week-7-1019",
+    "href": "fall-2022.html#week-7-1019",
+    "title": "Fall 2022 Predictions",
+    "section": "Week 7 (10/19)",
+    "text": "Week 7 (10/19)"
+  },
+  {
+    "objectID": "fall-2022.html#week-8-1026",
+    "href": "fall-2022.html#week-8-1026",
+    "title": "Fall 2022 Predictions",
+    "section": "Week 8 (10/26)",
+    "text": "Week 8 (10/26)"
+  },
+  {
+    "objectID": "fall-2022.html#week-9-118",
+    "href": "fall-2022.html#week-9-118",
+    "title": "Fall 2022 Predictions",
+    "section": "Week 9 (11/8)",
+    "text": "Week 9 (11/8)"
+  },
+  {
+    "objectID": "fall-2022.html#leaderboard",
+    "href": "fall-2022.html#leaderboard",
+    "title": "Fall 2022 Predictions",
+    "section": "Leaderboard",
+    "text": "Leaderboard\nNote: Updated December 22, 2022.1\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nClass Average\n30/39\n0.1824\n\n\n2\nJeremy Lee\n27/39\n0.1887\n\n\n3\nDavid Barrero\n26/39\n0.1959\n\n\n4\nJoe Ornstein\n25/39\n0.2124\n\n\n5\nNicholas Chao\n24/39\n0.2166\n\n\n6\nAdam Szczupak\n28/39\n0.2170\n\n\n7\nArianna Ycaza\n24/39\n0.2319\n\n\n8\nPatrick Egan\n26/39\n0.2332\n\n\n9\nHannah Jones\n22/39\n0.2418\n\n\n10\nAudrey Vaughan\n25/39\n0.2452\n\n\n11\nAndrew Decker\n22/39\n0.2477\n\n\n12\nJoe Kennedy\n22/39\n0.2477\n\n\n13\nNoah Herndon\n23/39\n0.2490\n\n\n14\nMeredith Stevens\n19/39\n0.2903\n\n\n15\nOlivia West\n16/39\n0.3081\n\n\n16\nEdward Cox\n20/39\n0.3169\n\n\n17\nMac Kinnebrew\n17/39\n0.3172\n\n\n18\nCharlie Estabrook\n14/39\n0.3776\n\n\n19\nIan Driggers\n14/39\n0.4218"
+  },
+  {
+    "objectID": "fall-2022.html#calibration-plots",
+    "href": "fall-2022.html#calibration-plots",
+    "title": "Fall 2022 Predictions",
+    "section": "Calibration Plots",
+    "text": "Calibration Plots"
+  },
+  {
+    "objectID": "fall-2022.html#footnotes",
+    "href": "fall-2022.html#footnotes",
+    "title": "Fall 2022 Predictions",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nI had incorrectly resolved the Netanyahu question as “yes” following the November 1 Israeli elections, but he did not secure a coalition agreement to become Prime Minister by the November 30 deadline.↩︎"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Two Principles\n\nBe humble. Think in terms of probabilities rather than certainties.\nConsider multiple perspectives."
+  },
+  {
+    "objectID": "fall-2023.html#week-2-913",
+    "href": "fall-2023.html#week-2-913",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 2 (9/13)",
+    "text": "Week 2 (9/13)"
+  },
+  {
+    "objectID": "fall-2023.html#week-3-920",
+    "href": "fall-2023.html#week-3-920",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 3 (9/20)",
+    "text": "Week 3 (9/20)"
+  },
+  {
+    "objectID": "fall-2023.html#week-4-927",
+    "href": "fall-2023.html#week-4-927",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 4 (9/27)",
+    "text": "Week 4 (9/27)"
+  },
+  {
+    "objectID": "fall-2023.html#week-5-104",
+    "href": "fall-2023.html#week-5-104",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 5 (10/4)",
+    "text": "Week 5 (10/4)"
+  },
+  {
+    "objectID": "fall-2023.html#week-6-1011",
+    "href": "fall-2023.html#week-6-1011",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 6 (10/11)",
+    "text": "Week 6 (10/11)"
+  },
+  {
+    "objectID": "fall-2023.html#week-7-1018",
+    "href": "fall-2023.html#week-7-1018",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 7 (10/18)",
+    "text": "Week 7 (10/18)"
+  },
+  {
+    "objectID": "fall-2023.html#week-8-1025",
+    "href": "fall-2023.html#week-8-1025",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 8 (10/25)",
+    "text": "Week 8 (10/25)"
+  },
+  {
+    "objectID": "fall-2023.html#week-9-111",
+    "href": "fall-2023.html#week-9-111",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 9 (11/1)",
+    "text": "Week 9 (11/1)"
+  },
+  {
+    "objectID": "fall-2023.html#week-10-118",
+    "href": "fall-2023.html#week-10-118",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 10 (11/8)",
+    "text": "Week 10 (11/8)"
+  },
+  {
+    "objectID": "fall-2023.html#week-11-1115",
+    "href": "fall-2023.html#week-11-1115",
+    "title": "Fall 2023 Predictions",
+    "section": "Week 11 (11/15)",
+    "text": "Week 11 (11/15)"
+  },
+  {
+    "objectID": "fall-2023.html#leaderboard",
+    "href": "fall-2023.html#leaderboard",
+    "title": "Fall 2023 Predictions",
+    "section": "Leaderboard",
+    "text": "Leaderboard\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nJoe Ornstein\n27/34\n0.1102\n\n\n2\nHarini Mohan\n25/34\n0.1850\n\n\n3\nAnsley Austin\n23/34\n0.1896\n\n\n4\nClass Average\n22/34\n0.2041\n\n\n5\nHarshini Mohan\n22/34\n0.2111\n\n\n6\nMaggie Fertig\n22/34\n0.2152\n\n\n7\nRyan Wolkofsky\n22/34\n0.2208\n\n\n8\nSamiha Sarwar\n19/34\n0.2210\n\n\n9\nBain Fulcher\n22/34\n0.2263\n\n\n10\nSimryn Patel\n20/34\n0.2674\n\n\n11\nTori Harrill\n18/34\n0.2755\n\n\n12\nRease Bauer\n17/34\n0.2759\n\n\n13\nJacob Fortner\n18/34\n0.2787\n\n\n14\nHita Boddu\n15/34\n0.3126\n\n\n15\nPeyton Murry\n16/34\n0.3638\n\n\n16\nJack Whipple\n17/34\n0.3857\n\n\n17\nKang Lee\n15/34\n0.4013\n\n\n18\nDuy Do\n13/34\n0.4599"
+  },
+  {
+    "objectID": "fall-2023.html#calibration-plots",
+    "href": "fall-2023.html#calibration-plots",
+    "title": "Fall 2023 Predictions",
+    "section": "Calibration Plots",
+    "text": "Calibration Plots"
+  },
+  {
+    "objectID": "index.html#week-2-127",
+    "href": "index.html#week-2-127",
+    "title": "Spring 2025 Predictions",
+    "section": "Week 2 (1/27)",
+    "text": "Week 2 (1/27)"
+  },
+  {
+    "objectID": "index.html#week-3-23",
+    "href": "index.html#week-3-23",
+    "title": "Spring 2025 Predictions",
+    "section": "Week 3 (2/3)",
+    "text": "Week 3 (2/3)"
+  },
+  {
     "objectID": "index.html#week-4-210",
     "href": "index.html#week-4-210",
     "title": "Spring 2025 Predictions",
@@ -317,13 +467,6 @@
     "title": "Spring 2025 Predictions",
     "section": "Week 6 (2/24)",
     "text": "Week 6 (2/24)"
-  },
-  {
-    "objectID": "index.html#week-7-310",
-    "href": "index.html#week-7-310",
-    "title": "Spring 2025 Predictions",
-    "section": "Week 7 (3/10)",
-    "text": "Week 7 (3/10)"
   },
   {
     "objectID": "index.html#week-8-310",
@@ -366,5 +509,26 @@
     "title": "Spring 2025 Predictions",
     "section": "Week 13 (4/14)",
     "text": "Week 13 (4/14)"
+  },
+  {
+    "objectID": "index.html#week-14-421",
+    "href": "index.html#week-14-421",
+    "title": "Spring 2025 Predictions",
+    "section": "Week 14 (4/21)",
+    "text": "Week 14 (4/21)"
+  },
+  {
+    "objectID": "index.html#leaderboard",
+    "href": "index.html#leaderboard",
+    "title": "Spring 2025 Predictions",
+    "section": "Leaderboard",
+    "text": "Leaderboard\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score\n\n\n\n\n1\nTiyanah Rowtham\n25/28\n0.0877\n\n\n2\nJoe Ornstein\n30/36\n0.1056\n\n\n3\nBrooke Cheney\n24/29\n0.1118\n\n\n4\nAndy Wyatt\n27/33\n0.1139\n\n\n5\nAyaan Fazal\n26/32\n0.1179\n\n\n6\nEthan Joyce\n23/28\n0.1199\n\n\n7\nBenjamin Jacobstein\n29/34\n0.1226\n\n\n8\nAngela Jacobs\n27/30\n0.1276\n\n\n9\nHannah Carson\n30/36\n0.1295\n\n\n10\nKaitlyn Scoggins\n27/34\n0.1309\n\n\n11\nCrowd (Extremized)\n28/36\n0.1379\n\n\n12\nIsabella Molina\n28/31\n0.1427\n\n\n13\nVangeli Tsiaras\n24/30\n0.1443\n\n\n14\nMilan Yadav\n26/33\n0.1453\n\n\n15\nGrace Mccann\n24/30\n0.1459\n\n\n16\nClass Average\n28/36\n0.1479\n\n\n17\nMeera Srinivasan\n24/30\n0.1511\n\n\n18\nJoshua Kang\n26/33\n0.1523\n\n\n19\nPablo Martinez\n23/29\n0.1576\n\n\n20\nQuintin Gallardo\n25/31\n0.1576\n\n\n21\nArchita Gaur\n26/32\n0.1596\n\n\n22\nBennie Trujillano\n27/36\n0.1613\n\n\n23\nHampton Barrineau\n24/31\n0.1618\n\n\n24\nLillie Puhrmann\n25/33\n0.1619\n\n\n25\nTownsend Turner\n24/32\n0.1623\n\n\n26\nBailey Mattox\n25/33\n0.1640\n\n\n27\nJessy Lee\n25/32\n0.1665\n\n\n28\nSreya Pandyaram\n26/33\n0.1668\n\n\n29\nIsaac Fleischer\n21/30\n0.1681\n\n\n30\nLawton Smith\n23/31\n0.1695\n\n\n31\nRiley Batz\n25/32\n0.1701\n\n\n32\nJulia Loggins\n25/32\n0.1736\n\n\n33\nRebecca Mcadam\n27/35\n0.1743\n\n\n34\nChinelo Ireh\n24/32\n0.1745\n\n\n35\nAva Herring\n25/32\n0.1755\n\n\n36\nThomas Smith\n25/32\n0.1755\n\n\n37\nEmma Allen\n27/34\n0.1762\n\n\n38\nEmma Peterson\n27/35\n0.1779\n\n\n39\nMatthew Newby\n16/19\n0.1789\n\n\n40\nJoey Khashan\n23/31\n0.1790\n\n\n41\nAnna Rachwalski\n23/33\n0.1816\n\n\n42\nJenny Qiu\n24/32\n0.1861\n\n\n43\nMaston Corn\n23/33\n0.1876\n\n\n44\nMabry Cartwright\n27/35\n0.1882\n\n\n45\nLevi Thomas\n23/32\n0.1894\n\n\n46\nMia Pisani\n25/34\n0.1898\n\n\n47\nChristian Barr\n10/14\n0.1915\n\n\n48\nJake Garrard\n20/28\n0.1921\n\n\n49\nAddisen Kameron\n24/31\n0.1933\n\n\n50\nSenait Pirani\n18/26\n0.1936\n\n\n51\nWyatt Dasher\n21/33\n0.1948\n\n\n52\nSarah Joyce\n22/33\n0.1954\n\n\n53\nMargaret Pope\n24/33\n0.1963\n\n\n54\nGrace Reichelderfer\n23/31\n0.1987\n\n\n55\nDiane Johnson\n23/31\n0.2006\n\n\n56\nRuby Douglas\n17/29\n0.2021\n\n\n57\nChloe Cooper\n25/34\n0.2034\n\n\n58\nWyatt Stevenson\n20/30\n0.2043\n\n\n59\nEthan Marcum\n24/33\n0.2097\n\n\n60\nTristan Thompson\n24/31\n0.2100\n\n\n61\nKyle Smith\n21/31\n0.2112\n\n\n62\nAaliyah Diaz\n20/28\n0.2117\n\n\n63\nEli Henderson\n20/27\n0.2131\n\n\n64\nKelsey Dyar\n17/24\n0.2151\n\n\n65\nTeya Hagy\n20/31\n0.2166\n\n\n66\nEmma Pastor\n25/35\n0.2197\n\n\n67\nAndreas Papandreou\n20/30\n0.2205\n\n\n68\nJacob Weiss\n21/31\n0.2314\n\n\n69\nElliana Williams\n16/29\n0.2418\n\n\n70\nNathaniel Long\n21/32\n0.2518\n\n\n71\nJames Martin\n16/26\n0.2526\n\n\n72\nJerusalem Greenberg\n19/28\n0.2542\n\n\n73\nDa In Song\n17/28\n0.2787\n\n\n74\nNiomi Nurse\n14/29\n0.3183"
+  },
+  {
+    "objectID": "index.html#calibration-plots",
+    "href": "index.html#calibration-plots",
+    "title": "Spring 2025 Predictions",
+    "section": "Calibration Plots",
+    "text": "Calibration Plots"
   }
 ]
