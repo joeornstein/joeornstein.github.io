@@ -289,19 +289,161 @@
 <li class="fragment">100% means “certain”</li>
 </ul>
 </div>
+<div class="fragment">
+<p>Developing an intuition for other probability values is trickier…</p>
+</div>
 </section>
 <section id="definitions-1" class="slide level2">
 <h2>Definitions</h2>
-<p>For events that you can be repeated a large number of times, probability has a pretty intuitive interpretation.</p>
+<ul>
+<li class="fragment">Many of us develop an intuition for probability by playing games of chance.</li>
+</ul>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:45%;">
+<p><img data-src="img/monopoly-sso.jpg"></p>
+</div><div class="column" style="width:55%;">
+<p><img data-src="img/2d6-combos.png"></p>
+</div></div>
+</div>
+</section>
+<section id="definitions-2" class="slide level2">
+<h2>Definitions</h2>
+<ul>
+<li class="fragment"><p>If you <a href="https://www.random.org/coins/?num=200&amp;cur=60-usd.0025c-ga">flip a coin 200 times</a>, you’d expect it to come up heads roughly half the time.</p></li>
+<li class="fragment"><p>This illustrates the <strong>frequentist</strong> interpretation of probability:</p>
+<ul>
+<li class="fragment">Probability = how frequently we expect an event to occur in a large number of repeated trials.</li>
+</ul></li>
+<li class="fragment"><p>Formalized in the <strong>Law of Large Numbers</strong>:</p>
+<ul>
+<li class="fragment">If the probability of an event is <span class="math inline">\(p\)</span>, then the proportion of times that event occurs will approach <span class="math inline">\(p\)</span> in a (very) large number of repeated trials.</li>
+</ul></li>
+</ul>
 </section>
 <section id="law-of-large-numbers" class="slide level2">
 <h2>Law of Large Numbers</h2>
-<p>If the probability of an event is <span class="math inline">\(p\)</span>, then the proportion of times that event happens will approach <span class="math inline">\(p\)</span> in a large number of repeated trials.</p>
+<p>The entire business model of casinos/lotteries rests on the Law of Large Numbers.</p>
 <div class="fragment">
-<p><strong>Example:</strong> A coin flipped 1,000 times will land on heads pretty close to 500 times.</p>
-
-
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><img data-src="img/roulette-stack.png"></p>
+</div><div class="column" style="width:60%;">
+<p>Maybe <a href="https://www.dailymail.co.uk/news/article-4121324/2017-s-luckiest-man-Gambler-shows-friends-betting-35-000-chips-single-roulette-spin-wins-3-5M-seconds-later.html">this guy</a> comes in one night and puts $35,000 on lucky number 32. If 32 hits, the casino pays out over $1.2 million!</p>
+</div></div>
 </div>
+</section>
+<section id="law-of-large-numbers-1" class="slide level2">
+<h2>Law of Large Numbers</h2>
+<p>But if you get 10,000 of those guys placing bets like that, 37 lose for every 1 that wins…</p>
+
+<img data-src="fundamentals_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
+<section id="definitions-3" class="slide level2">
+<h2>Definitions</h2>
+<p>Sometimes it will be useful to express probability as <strong>odds</strong>.</p>
+<ul>
+<li class="fragment">50% <span class="math inline">\(\rightarrow\)</span> 1:1 (“equally likely to happen or not”)</li>
+<li class="fragment">75% <span class="math inline">\(\rightarrow\)</span> 3:1 (“three times more likely to happen than not”)</li>
+<li class="fragment">10% <span class="math inline">\(\rightarrow\)</span> 1:9 (“nine times less likely to happen than not”)</li>
+</ul>
+<div class="fragment">
+<p>To convert probability <span class="math inline">\(p\)</span> to odds, divide <span class="math inline">\(\frac{p}{1-p}\)</span>.</p>
+</div>
+<div class="fragment">
+<p>To convert odds <span class="math inline">\(p:q\)</span> to probability, divide <span class="math inline">\(\frac{p}{p+q}\)</span>.</p>
+</div>
+</section>
+<section id="practice-problems" class="slide level2">
+<h2>Practice Problems</h2>
+<ol type="1">
+<li class="fragment">What is 80% expressed as odds?</li>
+<li class="fragment">What is 2:1 expressed as a probability?</li>
+</ol>
+</section>
+<section id="what-if-the-event-cant-be-repeated" class="slide level2">
+<h2>What if the event can’t be repeated?</h2>
+<div class="fragment">
+<p>For events that can be repeated a large number of times, frequentist interpretation is pretty intuitive.</p>
+<ul>
+<li class="fragment">But what about the sorts of questions I asked in the intro survey?</li>
+</ul>
+</div>
+<div class="fragment">
+<p><img data-src="img/castro-gandhi.png"></p>
+</div>
+</section>
+<section id="subjective-bayesian-interpretation" class="slide level2">
+<h2>Subjective (Bayesian) Interpretation</h2>
+<div class="fragment">
+<p>Probability is not an innate characteristic of the event, but a statement about the <em>observer’s knowledge</em>.</p>
+</div>
+</section>
+<section id="subjective-bayesian-interpretation-1" class="slide level2">
+<h2>Subjective (Bayesian) Interpretation</h2>
+
+<img data-src="img/coin-machine.png" class="r-stretch quarto-figure-center"><p class="caption">If you can precisely measure a coin’s initial velocity and rate of spin, you can perfectly predict what side it will land on (Diaconis et al.&nbsp;2007).</p></section>
+<section id="subjective-bayesian-interpretation-2" class="slide level2">
+<h2>Subjective (Bayesian) Interpretation</h2>
+<p>Probability is not an innate characteristic of the event, but a statement about the <em>observer’s knowledge</em>.</p>
+<ul>
+<li class="fragment">Probability = “degree of belief”</li>
+<li class="fragment">A probability statement (e.g.&nbsp;80% chance of rain) communicates the forecaster’s confidence that the event will occur.
+<ul>
+<li class="fragment">“Based on the information I have, I think it is four times more likely to rain than to not rain.”</li>
+</ul></li>
+</ul>
+</section>
+<section id="are-people-good-at-this" class="slide level2">
+<h2>Are people good at this?</h2>
+<div class="fragment">
+<p>No.&nbsp;Assessing probability is not something that comes naturally to people.</p>
+</div>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+
+<img data-src="fundamentals_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+
+<img data-src="fundamentals_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+
+<img data-src="fundamentals_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+
+<img data-src="fundamentals_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+
+<img data-src="fundamentals_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<section id="mental-trick-to-improve-calibration" class="slide level2">
+<h2>Mental Trick to Improve Calibration</h2>
+<div class="fragment">
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li class="fragment"><p>Reframe the problem as a <strong>bet</strong>.</p></li>
+<li class="fragment"><p>“Would I rather have $100 if Karl Marx was born before Queen Victoria <strong><em>or</em></strong> if I draw a red ball from this jar?”</p></li>
+<li class="fragment"><p>Alter the contents of the jar until you’re indifferent between the two bets.</p></li>
+<li class="fragment"><p>This is called the <a href="https://equivalent-bet-test.vercel.app/">Equivalent Bet Test</a> (Spetzler &amp; Staël Von Holstein, 1975; Galef, 2021)</p></li>
+</ul>
+</div><div class="column" style="width:40%;">
+<p><img data-src="img/marx.png" style="width:50.0%"> <img data-src="img/jar.png" style="width:50.0%"></p>
+</div></div>
+</div>
+</section>
+<section id="practice" class="slide level2">
+<h2>Practice</h2>
+<ul>
+<li class="fragment"><p>Take 10 minutes to play “Two Truths and a Lie” with your tablemates. Pick a person to tell two truths and a lie about themselves, and everyone else must guess which is the lie.</p></li>
+<li class="fragment"><p>Our twist on the game is that everyone must estimate a <em>probability</em> that their chosen statement is a lie. Use the Equivalent Bet Test to help calibrate your probability.</p></li>
+<li class="fragment"><p>(Feel free to play multiple rounds if there is time remaining.)</p></li>
+</ul>
+
+
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
@@ -520,6 +662,82 @@
         ]
       });
     </script>
+    
+
+    <script>
+
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+
+      // slide changes (different for each slide format).
+
+      (function () {
+
+        // dispatch for htmlwidgets
+
+        function fireSlideEnter() {
+
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
