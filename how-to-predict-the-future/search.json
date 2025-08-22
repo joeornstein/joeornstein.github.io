@@ -789,5 +789,117 @@
     "title": "Spring 2025 Predictions",
     "section": "Calibration Plots",
     "text": "Calibration Plots"
+  },
+  {
+    "objectID": "slides/brier-scores.html#section",
+    "href": "slides/brier-scores.html#section",
+    "title": "Brier Scores",
+    "section": "",
+    "text": "Were these bad predictions?\nSteve Ballmer. Definitely wrong. Can we say with certainty that huffpo was wrong? What about Nate Silver?"
+  },
+  {
+    "objectID": "slides/brier-scores.html#section-1",
+    "href": "slides/brier-scores.html#section-1",
+    "title": "Brier Scores",
+    "section": "",
+    "text": "Evaluating individual probability statements is tricky.\nMuch better to evaluate a forecaster’s track record over many predictions.\nWhen the forecaster says 70% chance, does the event happen about 70% of the time?"
+  },
+  {
+    "objectID": "slides/brier-scores.html#section-2",
+    "href": "slides/brier-scores.html#section-2",
+    "title": "Brier Scores",
+    "section": "",
+    "text": "Nate Silver calibration (sports and elections) https://fivethirtyeight.com/features/when-we-say-70-percent-it-really-means-70-percent/"
+  },
+  {
+    "objectID": "slides/brier-scores.html#section-3",
+    "href": "slides/brier-scores.html#section-3",
+    "title": "Brier Scores",
+    "section": "",
+    "text": "Calibration isn’t the only thing we care about, though.\n-&gt; forecaster who predicts heads 50% of the time has perfect calibration, but that forecast isn’t terribly useful.\n-&gt; a forecaster who predict with 100% confidence whether the coin will come up heads or tails is much more impressive! Same level of calibration though.\nWe want forecasts that are both well-calibrated and discriminating."
+  },
+  {
+    "objectID": "slides/brier-scores.html#section-4",
+    "href": "slides/brier-scores.html#section-4",
+    "title": "Brier Scores",
+    "section": "",
+    "text": "Brier Score\nMean Squared Error\n0 x 1\nLower scores are better."
+  },
+  {
+    "objectID": "slides/brier-scores.html#brier-scores-are-mathematical-truth-serum",
+    "href": "slides/brier-scores.html#brier-scores-are-mathematical-truth-serum",
+    "title": "Brier Scores",
+    "section": "Brier Scores are Mathematical Truth Serum",
+    "text": "Brier Scores are Mathematical Truth Serum\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n80%\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.04)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.04)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.04)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.04)\n\n\n\n\n\n\n\nIncorrect! (Sq. Error = 0.64)\n\n\n\n\n\n\n\n\n\n\n\\(\\text{Brier Score} = \\frac{0.04+0.04+0.04+0.04+0.64}{5} = 0.16\\)"
+  },
+  {
+    "objectID": "slides/brier-scores.html#honest-strategy",
+    "href": "slides/brier-scores.html#honest-strategy",
+    "title": "Brier Scores",
+    "section": "Honest Strategy",
+    "text": "Honest Strategy\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReport 80% Confidence\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.04)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.04)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.04)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.04)\n\n\n\n\n\n\n\nIncorrect! (Sq. Error = 0.64)\n\n\n\n\n\n\n\n\n\n\n\n\\(\\text{Expected Brier Score} = \\frac{0.04+0.04+0.04+0.04+0.64}{5} = 0.16\\)"
+  },
+  {
+    "objectID": "slides/brier-scores.html#why-squared-error",
+    "href": "slides/brier-scores.html#why-squared-error",
+    "title": "Brier Scores",
+    "section": "Why Squared Error?",
+    "text": "Why Squared Error?\nSquared error puts a particularly heavy penalty on overconfident wrong predictions…"
+  },
+  {
+    "objectID": "slides/brier-scores.html#why-squared-error-1",
+    "href": "slides/brier-scores.html#why-squared-error-1",
+    "title": "Brier Scores",
+    "section": "Why Squared Error?",
+    "text": "Why Squared Error?\n\nSquared error encourages forecasters to avoid both overconfident and underconfident predictions.\nIn fact, Brier scores are a sort of mathematical truth serum.\n\nIf you want a good Brier Score, your best strategy is to always honestly report your beliefs!"
+  },
+  {
+    "objectID": "slides/brier-scores.html#section-5",
+    "href": "slides/brier-scores.html#section-5",
+    "title": "Brier Scores",
+    "section": "",
+    "text": "Some benchmarks:\n0.25 –&gt; what you expect to score if you guess 50% for everything Brier score 0 = no error. Brier score = 1 (the most possible error)."
+  },
+  {
+    "objectID": "slides/brier-scores.html#strategy-1-hedge-your-bets",
+    "href": "slides/brier-scores.html#strategy-1-hedge-your-bets",
+    "title": "Brier Scores",
+    "section": "Strategy 1: Hedge Your Bets",
+    "text": "Strategy 1: Hedge Your Bets"
+  },
+  {
+    "objectID": "slides/brier-scores.html#strategy-2-exaggerate",
+    "href": "slides/brier-scores.html#strategy-2-exaggerate",
+    "title": "Brier Scores",
+    "section": "Strategy 2: Exaggerate",
+    "text": "Strategy 2: Exaggerate\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReport 100% Confidence\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.0)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.0)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.0)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.0)\n\n\n\n\n\n\n\nIncorrect! (Sq. Error = 1.0)\n\n\n\n\n\n\n\n\n\n\n\n\\(\\text{Expected Brier Score} = \\frac{0.0+0.0+0.0+0.0+1.0}{5} = 0.2\\)"
+  },
+  {
+    "objectID": "slides/brier-scores.html#strategy-3-honesty",
+    "href": "slides/brier-scores.html#strategy-3-honesty",
+    "title": "Brier Scores",
+    "section": "Strategy 3: Honesty",
+    "text": "Strategy 3: Honesty\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReport 80% Confidence\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.04)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.04)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.04)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.04)\n\n\n\n\n\n\n\nIncorrect! (Sq. Error = 0.64)\n\n\n\n\n\n\n\n\n\n\n\n\\(\\text{Expected Brier Score} = \\frac{0.04+0.04+0.04+0.04+0.64}{5} = 0.16\\)"
+  },
+  {
+    "objectID": "slides/brier-scores.html#strategy-2-exaggerate-your-confidence",
+    "href": "slides/brier-scores.html#strategy-2-exaggerate-your-confidence",
+    "title": "Brier Scores",
+    "section": "Strategy 2: Exaggerate Your Confidence",
+    "text": "Strategy 2: Exaggerate Your Confidence"
+  },
+  {
+    "objectID": "slides/brier-scores.html#strategy-1-exaggerate",
+    "href": "slides/brier-scores.html#strategy-1-exaggerate",
+    "title": "Brier Scores",
+    "section": "Strategy 1: Exaggerate",
+    "text": "Strategy 1: Exaggerate\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReport 100% Confidence\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.0)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.0)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.0)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.0)\n\n\n\n\n\n\n\nIncorrect! (Sq. Error = 1.0)\n\n\n\n\n\n\n\n\n\n\n\n\\(\\text{Expected Brier Score} = \\frac{0.0+0.0+0.0+0.0+1.0}{5} = 0.2\\)"
+  },
+  {
+    "objectID": "slides/brier-scores.html#strategy-2-hedge-your-bets",
+    "href": "slides/brier-scores.html#strategy-2-hedge-your-bets",
+    "title": "Brier Scores",
+    "section": "Strategy 2: Hedge Your Bets",
+    "text": "Strategy 2: Hedge Your Bets\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReport 60% Confidence\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.16)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.16)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.16)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.16)\n\n\n\n\n\n\n\nIncorrect! (Sq. Error = 0.36)\n\n\n\n\n\n\n\n\n\n\n\n\\(\\text{Expected Brier Score} = \\frac{0.16+0.16+0.16+0.16+0.36}{5} = 0.2\\)"
   }
 ]
