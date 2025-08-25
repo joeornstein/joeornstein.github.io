@@ -901,5 +901,12 @@
     "title": "Brier Scores",
     "section": "Strategy 2: Hedge Your Bets",
     "text": "Strategy 2: Hedge Your Bets\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReport 60% Confidence\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.16)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.16)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.16)\n\n\n\n\n\n\n\nCorrect! (Sq. Error = 0.16)\n\n\n\n\n\n\n\nIncorrect! (Sq. Error = 0.36)\n\n\n\n\n\n\n\n\n\n\n\n\\(\\text{Expected Brier Score} = \\frac{0.16+0.16+0.16+0.16+0.36}{5} = 0.2\\)"
+  },
+  {
+    "objectID": "index.html#week-1-819",
+    "href": "index.html#week-1-819",
+    "title": "Fall 2025 Predictions",
+    "section": "Week 1 (8/19)",
+    "text": "Week 1 (8/19)"
   }
 ]
