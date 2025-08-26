@@ -123,7 +123,6 @@
       margin-right: 0; 
     }
   </style>
-  <script src="../site_libs/quarto-diagram/mermaid-postprocess-shim.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -137,323 +136,251 @@
 </div>
 
 </section>
-<section id="section" class="slide level2">
-<h2></h2>
-<p>Were these bad predictions?</p>
-<p>Steve Ballmer. Definitely wrong. Can we say with certainty that huffpo was wrong? What about Nate Silver?</p>
+<section id="todays-agenda" class="slide level2">
+<h2>Today’s Agenda</h2>
+<ul>
+<li class="fragment"><p>What is the best way to <em>evaluate</em> probabilistic predictions?</p></li>
+<li class="fragment"><p>Introduce <strong>Brier Scores</strong>, the method we’ll use to assess accuracy in our forecasting challenge this semester.</p></li>
+</ul>
 </section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-<p>Evaluating <em>individual</em> probability statements is tricky.</p>
-<p>Much better to evaluate a forecaster’s track record over <em>many</em> predictions.</p>
-<p>When the forecaster says 70% chance, does the event happen about 70% of the time?</p>
+<section id="warmup" class="slide level2">
+<h2>Warmup</h2>
+<p>Was this a <em>bad</em> prediction?</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<blockquote>
+<p><strong>“There’s no chance that the iPhone is going to get any significant market share. No chance.”</strong><br>
+<em>—Steve Ballmer, Microsoft CEO, 2007</em></p>
+</blockquote>
+</div><div class="column" style="width:50%;">
+<p><img data-src="img/ballmer-iphone.png" style="width:100.0%"></p>
+</div></div>
 </section>
-<section id="section-2" class="slide level2">
-<h2></h2>
-<p>Nate Silver calibration (sports and elections) https://fivethirtyeight.com/features/when-we-say-70-percent-it-really-means-70-percent/ <img data-src="https://fivethirtyeight.com/wp-content/uploads/2019/04/silver-bragging-0404.png?resize=1024,417"></p>
-</section>
-<section id="section-3" class="slide level2">
-<h2></h2>
-<p>Calibration isn’t the only thing we care about, though.</p>
-<p>-&gt; forecaster who predicts heads 50% of the time has perfect calibration, but that forecast isn’t terribly useful.</p>
-<p>-&gt; a forecaster who predict with 100% confidence whether the coin will come up heads or tails is much more impressive! Same level of calibration though.</p>
-<p>We want forecasts that are both well-calibrated <em>and</em> discriminating.</p>
-</section>
-<section id="section-4" class="slide level2">
-<h2></h2>
-<p>Brier Score</p>
-<p>Mean Squared Error</p>
-<p>0 x 1</p>
-<p>Lower scores are better.</p>
-</section>
-<section id="section-5" class="slide level2">
-<h2></h2>
-<p>Some benchmarks:</p>
-<p>0.25 –&gt; what you expect to score if you guess 50% for everything Brier score 0 = no error. Brier score = 1 (the most possible error).</p>
-</section>
-<section id="section-6" class="slide level2">
-<h2></h2>
+<section id="warmup-1" class="slide level2">
+<h2>Warmup</h2>
+<p>What about this prediction?</p>
 
-<img data-src="brier-scores_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
-<section id="why-squared-error" class="slide level2">
-<h2>Why Squared Error?</h2>
-<p>Squared error puts a particularly heavy penalty on overconfident wrong predictions…</p>
-</section>
-<section id="why-squared-error-1" class="slide level2">
-<h2>Why Squared Error?</h2>
+<img data-src="img/huffpost-2016.jpg" class="quarto-figure quarto-figure-center r-stretch" style="width:50.0%"></section>
+<section id="warmup-2" class="slide level2">
+<h2>Warmup</h2>
+<p>What about this one?</p>
+
+<img data-src="img/fivethirtyeight-2016.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section>
+<section id="scoring-predictions" class="slide level2">
+<h2>Scoring Predictions</h2>
 <ul>
-<li class="fragment"><p>Squared error encourages forecasters to avoid both overconfident <em>and</em> underconfident predictions.</p></li>
-<li class="fragment"><p>In fact, Brier scores are a sort of <strong>mathematical truth serum</strong>.</p>
+<li class="fragment"><p>Evaluating individual probability statements is quite tricky.</p></li>
+<li class="fragment"><p>If something happens that the forecaster said was unlikely, was the forecaster <strong>wrong</strong> or <strong>unlucky</strong>?</p></li>
+<li class="fragment"><p>Much better to evaluate a forecaster’s track record over <em>many</em> predictions.</p>
 <ul>
-<li class="fragment">If you want a good Brier Score, your best strategy is to always honestly report your beliefs!</li>
+<li class="fragment">When the forecaster says 70% chance, does the event happen about 70% of the time?</li>
 </ul></li>
 </ul>
 </section>
-<section id="strategy-1-exaggerate" class="slide level2">
-<h2>Strategy 1: Exaggerate</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="0 0 549.671875 486" style="; display: block; margin: auto auto auto auto" class="flowchart" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="480" id="mermaid-figure-1" height="480">
-<style>#mermaid-figure-1{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-1 .error-icon{fill:#552222;}#mermaid-figure-1 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-1 .edge-thickness-normal{stroke-width:1px;}#mermaid-figure-1 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-1 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-1 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-figure-1 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-1 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-1 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-1 .marker.cross{stroke:#333333;}#mermaid-figure-1 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-1 p{margin:0;}#mermaid-figure-1 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-1 .cluster-label text{fill:#333;}#mermaid-figure-1 .cluster-label span{color:#333;}#mermaid-figure-1 .cluster-label span p{background-color:transparent;}#mermaid-figure-1 .label text,#mermaid-figure-1 span{fill:#333;color:#333;}#mermaid-figure-1 .node rect,#mermaid-figure-1 .node circle,#mermaid-figure-1 .node ellipse,#mermaid-figure-1 .node polygon,#mermaid-figure-1 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-1 .rough-node .label text,#mermaid-figure-1 .node .label text{text-anchor:middle;}#mermaid-figure-1 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-figure-1 .node .label{text-align:center;}#mermaid-figure-1 .node.clickable{cursor:pointer;}#mermaid-figure-1 .arrowheadPath{fill:#333333;}#mermaid-figure-1 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-1 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-1 .edgeLabel{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaid-figure-1 .edgeLabel p{background-color:rgba(232,232,232, 0.8);}#mermaid-figure-1 .edgeLabel rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaid-figure-1 .labelBkg{background-color:rgba(232, 232, 232, 0.5);}#mermaid-figure-1 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-1 .cluster text{fill:#333;}#mermaid-figure-1 .cluster span{color:#333;}#mermaid-figure-1 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-1 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-1 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
-<g><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1755871652620_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="4.5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1755871652620_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1755871652620_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1755871652620_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1755871652620_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1755871652620_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid-1755871652620_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_B_0" d="M142.462,216L162.932,185.833C183.402,155.667,224.341,95.333,247.376,65.167C270.41,35,275.539,35,280.001,35C284.464,35,288.259,35,290.157,35L292.055,35"></path><path marker-end="url(#mermaid-1755871652620_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_C_1" d="M160.783,216L178.199,203.167C195.616,190.333,230.448,164.667,250.429,151.833C270.41,139,275.539,139,280.001,139C284.464,139,288.259,139,290.157,139L292.055,139"></path><path marker-end="url(#mermaid-1755871652620_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_D_2" d="M240.281,243L244.448,243C248.615,243,256.948,243,263.679,243C270.41,243,275.539,243,280.001,243C284.464,243,288.259,243,290.157,243L292.055,243"></path><path marker-end="url(#mermaid-1755871652620_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_E_3" d="M160.783,270L178.199,282.833C195.616,295.667,230.448,321.333,250.429,334.167C270.41,347,275.539,347,280.001,347C284.464,347,288.259,347,290.157,347L292.055,347"></path><path marker-end="url(#mermaid-1755871652620_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_F_4" d="M142.462,270L162.932,300.167C183.402,330.333,224.341,390.667,246.895,420.833C269.448,451,273.615,451,277.115,451C280.615,451,283.448,451,284.865,451L286.281,451"></path></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g></g><g class="nodes"><g transform="translate(124.140625, 243)" id="flowchart-A-0" class="node default"><rect height="54" width="232.28125" y="-27" x="-116.140625" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-86.140625, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="172.28125">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
-<p>
-Report 100% Confidence
-</p>
-</span>
-</div>
-</foreignobject></g></g><g transform="translate(415.9765625, 35)" id="flowchart-B-1" class="node default"><rect height="54" width="239.84375" y="-27" x="-119.921875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-89.921875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="179.84375">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
-<p>
-Correct! (Sq. Error = 0.0)
-</p>
-</span>
-</div>
-</foreignobject></g></g><g transform="translate(415.9765625, 139)" id="flowchart-C-3" class="node default"><rect height="54" width="239.84375" y="-27" x="-119.921875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-89.921875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="179.84375">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
-<p>
-Correct! (Sq. Error = 0.0)
-</p>
-</span>
-</div>
-</foreignobject></g></g><g transform="translate(415.9765625, 243)" id="flowchart-D-5" class="node default"><rect height="54" width="239.84375" y="-27" x="-119.921875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-89.921875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="179.84375">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
-<p>
-Correct! (Sq. Error = 0.0)
-</p>
-</span>
-</div>
-</foreignobject></g></g><g transform="translate(415.9765625, 347)" id="flowchart-E-7" class="node default"><rect height="54" width="239.84375" y="-27" x="-119.921875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-89.921875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="179.84375">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
-<p>
-Correct! (Sq. Error = 0.0)
-</p>
-</span>
-</div>
-</foreignobject></g></g><g transform="translate(415.9765625, 451)" id="flowchart-F-9" class="node default"><rect height="54" width="251.390625" y="-27" x="-125.6953125" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-95.6953125, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="191.390625">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
-<p>
-Incorrect! (Sq. Error = 1.0)
-</p>
-</span>
-</div>
-</foreignobject></g></g></g></g></g>
-</svg>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+<section id="calibration" class="slide level2">
+<h2>Calibration</h2>
+<p>Across thousands of predictions about politics and sports, Nate Silver has a pretty impressive track record…</p>
+<p><a href="https://fivethirtyeight.com/features/when-we-say-70-percent-it-really-means-70-percent/"><img data-src="https://fivethirtyeight.com/wp-content/uploads/2019/04/silver-bragging-0404.png?resize=1024,417"></a></p>
+</section>
+<section id="scoring-predictions-1" class="slide level2">
+<h2>Scoring Predictions</h2>
+<ul>
+<li class="fragment"><p>Calibration isn’t the only thing we care about, though.</p>
+<ul>
+<li class="fragment"><p>A doctor who tells his pregnant patient there is a 50% chance the baby will be a boy is perfectly-calibrated…but the forecast isn’t terribly useful.</p></li>
+<li class="fragment"><p>The ultrasound tech who can predict with100% confidence is much more useful. Same level of calibration though!</p></li>
+</ul></li>
+</ul>
 <div class="fragment">
-<p><span class="math inline">\(\text{Expected Brier Score} = \frac{0.0+0.0+0.0+0.0+1.0}{5} = 0.2\)</span></p>
+<p>We want forecasts that are both well-calibrated <em>and</em> as confident as possible.</p>
 </div>
 </section>
-<section id="strategy-2-hedge-your-bets" class="slide level2">
-<h2>Strategy 2: Hedge Your Bets</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="0 0 549.671875 486" style="; display: block; margin: auto auto auto auto" class="flowchart" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="480" id="mermaid-figure-3" height="480">
-<style>#mermaid-figure-3{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-3 .error-icon{fill:#552222;}#mermaid-figure-3 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-3 .edge-thickness-normal{stroke-width:1px;}#mermaid-figure-3 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-3 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-3 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-figure-3 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-3 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-3 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-3 .marker.cross{stroke:#333333;}#mermaid-figure-3 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-3 p{margin:0;}#mermaid-figure-3 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-3 .cluster-label text{fill:#333;}#mermaid-figure-3 .cluster-label span{color:#333;}#mermaid-figure-3 .cluster-label span p{background-color:transparent;}#mermaid-figure-3 .label text,#mermaid-figure-3 span{fill:#333;color:#333;}#mermaid-figure-3 .node rect,#mermaid-figure-3 .node circle,#mermaid-figure-3 .node ellipse,#mermaid-figure-3 .node polygon,#mermaid-figure-3 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-3 .rough-node .label text,#mermaid-figure-3 .node .label text{text-anchor:middle;}#mermaid-figure-3 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-figure-3 .node .label{text-align:center;}#mermaid-figure-3 .node.clickable{cursor:pointer;}#mermaid-figure-3 .arrowheadPath{fill:#333333;}#mermaid-figure-3 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-3 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-3 .edgeLabel{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaid-figure-3 .edgeLabel p{background-color:rgba(232,232,232, 0.8);}#mermaid-figure-3 .edgeLabel rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaid-figure-3 .labelBkg{background-color:rgba(232, 232, 232, 0.5);}#mermaid-figure-3 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-3 .cluster text{fill:#333;}#mermaid-figure-3 .cluster span{color:#333;}#mermaid-figure-3 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-3 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-3 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
-<g><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1755871657099_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="4.5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1755871657099_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1755871657099_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1755871657099_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1755871657099_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1755871657099_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid-1755871657099_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_B_0" d="M137.722,216L157.583,185.833C177.445,155.667,217.168,95.333,239.594,65.167C262.02,35,267.148,35,271.611,35C276.073,35,279.868,35,281.766,35L283.664,35"></path><path marker-end="url(#mermaid-1755871657099_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_C_1" d="M155.498,216L172.397,203.167C189.296,190.333,223.093,164.667,242.556,151.833C262.02,139,267.148,139,271.611,139C276.073,139,279.868,139,281.766,139L283.664,139"></path><path marker-end="url(#mermaid-1755871657099_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_D_2" d="M231.891,243L236.057,243C240.224,243,248.557,243,255.288,243C262.02,243,267.148,243,271.611,243C276.073,243,279.868,243,281.766,243L283.664,243"></path><path marker-end="url(#mermaid-1755871657099_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_E_3" d="M155.498,270L172.397,282.833C189.296,295.667,223.093,321.333,242.556,334.167C262.02,347,267.148,347,271.611,347C276.073,347,279.868,347,281.766,347L283.664,347"></path><path marker-end="url(#mermaid-1755871657099_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_F_4" d="M137.722,270L157.583,300.167C177.445,330.333,217.168,390.667,239.112,420.833C261.057,451,265.224,451,268.724,451C272.224,451,275.057,451,276.474,451L277.891,451"></path></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g></g><g class="nodes"><g transform="translate(119.9453125, 243)" id="flowchart-A-0" class="node default"><rect height="54" width="223.890625" y="-27" x="-111.9453125" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-81.9453125, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="163.890625">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
-<p>
-Report 60% Confidence
-</p>
-</span>
-</div>
-</foreignobject></g></g><g transform="translate(411.78125, 35)" id="flowchart-B-1" class="node default"><rect height="54" width="248.234375" y="-27" x="-124.1171875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-94.1171875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="188.234375">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
-<p>
-Correct! (Sq. Error = 0.16)
-</p>
-</span>
-</div>
-</foreignobject></g></g><g transform="translate(411.78125, 139)" id="flowchart-C-3" class="node default"><rect height="54" width="248.234375" y="-27" x="-124.1171875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-94.1171875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="188.234375">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
-<p>
-Correct! (Sq. Error = 0.16)
-</p>
-</span>
-</div>
-</foreignobject></g></g><g transform="translate(411.78125, 243)" id="flowchart-D-5" class="node default"><rect height="54" width="248.234375" y="-27" x="-124.1171875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-94.1171875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="188.234375">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
-<p>
-Correct! (Sq. Error = 0.16)
-</p>
-</span>
-</div>
-</foreignobject></g></g><g transform="translate(411.78125, 347)" id="flowchart-E-7" class="node default"><rect height="54" width="248.234375" y="-27" x="-124.1171875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-94.1171875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="188.234375">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
-<p>
-Correct! (Sq. Error = 0.16)
-</p>
-</span>
-</div>
-</foreignobject></g></g><g transform="translate(411.78125, 451)" id="flowchart-F-9" class="node default"><rect height="54" width="259.78125" y="-27" x="-129.890625" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-99.890625, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="199.78125">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
-<p>
-Incorrect! (Sq. Error = 0.36)
-</p>
-</span>
-</div>
-</foreignobject></g></g></g></g></g>
-</svg>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+<section id="scoring-predictions-2" class="slide level2">
+<h2>Scoring Predictions</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li class="fragment">Consider a scoring system where we evaluate predictions based on average error.</li>
+<li class="fragment">This has some nice properties: you score better if you are confidently correct, and score worse if you are confidently incorrect.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Prediction</th>
+<th>Outcome</th>
+<th>Error</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>70%</td>
+<td>1</td>
+<td>0.3</td>
+</tr>
+<tr class="even">
+<td>20%</td>
+<td>0</td>
+<td>0.2</td>
+</tr>
+<tr class="odd">
+<td>70%</td>
+<td>0</td>
+<td>0.7</td>
+</tr>
+<tr class="even">
+<td>40%</td>
+<td>1</td>
+<td>0.6</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li class="fragment">But there’s a <em>huge</em> problem with this scoring system…it encourages lying!</li>
+</ul>
+</div></div>
+</section>
+<section id="average-error-is-a-bad-score" class="slide level2">
+<h2>Average Error is a Bad Score</h2>
+<ul>
+<li class="fragment"><p>Suppose you are a TV meteorologist.</p></li>
+<li class="fragment"><p>Your weather model says it’s going to be a rainy week. 80% chance of rain each day.</p></li>
+<li class="fragment"><p>What do you report to your viewers if you want the best average error for the week?</p></li>
+</ul>
 <div class="fragment">
-<p><span class="math inline">\(\text{Expected Brier Score} = \frac{0.16+0.16+0.16+0.16+0.36}{5} = 0.2\)</span></p>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><img data-src="img/roker-angel.png" style="width:40.0%"></p>
+</div><div class="column" style="width:40%;">
+<p><img data-src="img/cantore-devil.png" style="width:60.0%"></p>
+</div></div>
 </div>
 </section>
-<section id="strategy-3-honesty" class="slide level2">
-<h2>Strategy 3: Honesty</h2>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="0 0 549.671875 486" style="; display: block; margin: auto auto auto auto" class="flowchart" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="480" id="mermaid-figure-2" height="480">
-<style>#mermaid-figure-2{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-2 .error-icon{fill:#552222;}#mermaid-figure-2 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-2 .edge-thickness-normal{stroke-width:1px;}#mermaid-figure-2 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-2 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-2 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-figure-2 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-2 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-2 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-2 .marker.cross{stroke:#333333;}#mermaid-figure-2 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-2 p{margin:0;}#mermaid-figure-2 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-2 .cluster-label text{fill:#333;}#mermaid-figure-2 .cluster-label span{color:#333;}#mermaid-figure-2 .cluster-label span p{background-color:transparent;}#mermaid-figure-2 .label text,#mermaid-figure-2 span{fill:#333;color:#333;}#mermaid-figure-2 .node rect,#mermaid-figure-2 .node circle,#mermaid-figure-2 .node ellipse,#mermaid-figure-2 .node polygon,#mermaid-figure-2 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-2 .rough-node .label text,#mermaid-figure-2 .node .label text{text-anchor:middle;}#mermaid-figure-2 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-figure-2 .node .label{text-align:center;}#mermaid-figure-2 .node.clickable{cursor:pointer;}#mermaid-figure-2 .arrowheadPath{fill:#333333;}#mermaid-figure-2 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-2 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-2 .edgeLabel{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaid-figure-2 .edgeLabel p{background-color:rgba(232,232,232, 0.8);}#mermaid-figure-2 .edgeLabel rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaid-figure-2 .labelBkg{background-color:rgba(232, 232, 232, 0.5);}#mermaid-figure-2 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-2 .cluster text{fill:#333;}#mermaid-figure-2 .cluster span{color:#333;}#mermaid-figure-2 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-2 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-2 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
-<g><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1755871654889_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="4.5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1755871654889_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1755871654889_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1755871654889_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1755871654889_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1755871654889_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid-1755871654889_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_B_0" d="M137.722,216L157.583,185.833C177.445,155.667,217.168,95.333,239.594,65.167C262.02,35,267.148,35,271.611,35C276.073,35,279.868,35,281.766,35L283.664,35"></path><path marker-end="url(#mermaid-1755871654889_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_C_1" d="M155.498,216L172.397,203.167C189.296,190.333,223.093,164.667,242.556,151.833C262.02,139,267.148,139,271.611,139C276.073,139,279.868,139,281.766,139L283.664,139"></path><path marker-end="url(#mermaid-1755871654889_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_D_2" d="M231.891,243L236.057,243C240.224,243,248.557,243,255.288,243C262.02,243,267.148,243,271.611,243C276.073,243,279.868,243,281.766,243L283.664,243"></path><path marker-end="url(#mermaid-1755871654889_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_E_3" d="M155.498,270L172.397,282.833C189.296,295.667,223.093,321.333,242.556,334.167C262.02,347,267.148,347,271.611,347C276.073,347,279.868,347,281.766,347L283.664,347"></path><path marker-end="url(#mermaid-1755871654889_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_F_4" d="M137.722,270L157.583,300.167C177.445,330.333,217.168,390.667,239.112,420.833C261.057,451,265.224,451,268.724,451C272.224,451,275.057,451,276.474,451L277.891,451"></path></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g></g><g class="nodes"><g transform="translate(119.9453125, 243)" id="flowchart-A-0" class="node default"><rect height="54" width="223.890625" y="-27" x="-111.9453125" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-81.9453125, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="163.890625">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
-<p>
-Report 80% Confidence
-</p>
-</span>
-</div>
-</foreignobject></g></g><g transform="translate(411.78125, 35)" id="flowchart-B-1" class="node default"><rect height="54" width="248.234375" y="-27" x="-124.1171875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-94.1171875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="188.234375">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
-<p>
-Correct! (Sq. Error = 0.04)
-</p>
-</span>
-</div>
-</foreignobject></g></g><g transform="translate(411.78125, 139)" id="flowchart-C-3" class="node default"><rect height="54" width="248.234375" y="-27" x="-124.1171875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-94.1171875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="188.234375">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
-<p>
-Correct! (Sq. Error = 0.04)
-</p>
-</span>
-</div>
-</foreignobject></g></g><g transform="translate(411.78125, 243)" id="flowchart-D-5" class="node default"><rect height="54" width="248.234375" y="-27" x="-124.1171875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-94.1171875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="188.234375">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
-<p>
-Correct! (Sq. Error = 0.04)
-</p>
-</span>
-</div>
-</foreignobject></g></g><g transform="translate(411.78125, 347)" id="flowchart-E-7" class="node default"><rect height="54" width="248.234375" y="-27" x="-124.1171875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-94.1171875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="188.234375">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
-<p>
-Correct! (Sq. Error = 0.04)
-</p>
-</span>
-</div>
-</foreignobject></g></g><g transform="translate(411.78125, 451)" id="flowchart-F-9" class="node default"><rect height="54" width="259.78125" y="-27" x="-129.890625" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-99.890625, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="199.78125">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
-<p>
-Incorrect! (Sq. Error = 0.64)
-</p>
-</span>
-</div>
-</foreignobject></g></g></g></g></g>
-</svg>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p><span class="math inline">\(\text{Expected Brier Score} = \frac{0.04+0.04+0.04+0.04+0.64}{5} = 0.16\)</span></p>
+<section id="average-error-is-a-bad-score-1" class="slide level2">
+<h2>Average Error is a Bad Score</h2>
+<div class="columns">
+<div class="column" style="width:25%;">
+<p><img data-src="img/roker-angel.png" style="width:100.0%"></p>
+</div><div class="column" style="width:75%;">
+<p><img data-src="img/honest1.png" style="width:100.0%"></p>
+</div></div>
+</section>
+<section id="average-error-is-a-bad-score-2" class="slide level2">
+<h2>Average Error is a Bad Score</h2>
+<div class="columns">
+<div class="column" style="width:25%;">
+<p><img data-src="img/roker-angel.png" style="width:100.0%"></p>
+</div><div class="column" style="width:75%;">
+<p><img data-src="img/honest2.png" style="width:100.0%"></p>
+</div></div>
+</section>
+<section id="average-error-is-a-bad-score-3" class="slide level2">
+<h2>Average Error is a Bad Score</h2>
+<div class="columns">
+<div class="column" style="width:25%;">
+<p><img data-src="img/cantore-devil.png" style="width:100.0%"></p>
+</div><div class="column" style="width:75%;">
+<p><img data-src="img/evil1.png" style="width:100.0%"></p>
+</div></div>
+</section>
+<section id="average-error-is-a-bad-score-4" class="slide level2">
+<h2>Average Error is a Bad Score</h2>
+<div class="columns">
+<div class="column" style="width:25%;">
+<p><img data-src="img/cantore-devil.png" style="width:100.0%"></p>
+</div><div class="column" style="width:75%;">
+<p><img data-src="img/evil2.png" style="width:100.0%"></p>
+</div></div>
+</section>
+<section id="brier-scores" class="slide level2">
+<h2>Brier Scores</h2>
+<ul>
+<li class="fragment"><p>We would like a scoring rule that encourages honesty (a <strong>strictly proper</strong> scoring rule).</p></li>
+<li class="fragment"><p>Penalizing extremely wrong predictions helps.</p></li>
+<li class="fragment"><p>The <strong>Brier Score</strong> does this by taking the average <em>squared</em> error (Brier, 1950).</p></li>
+</ul>
+</section>
+<section id="why-squared-error" class="slide level2">
+<h2>Why Squared Error?</h2>
+
+<img data-src="brier-scores_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"><p>Notice that the penalty is particularly steep when predictions is wrong <em>and</em> overconfident.</p>
+</section>
+<section id="brier-scores-1" class="slide level2">
+<h2>Brier Scores</h2>
+<div class="columns">
+<div class="column" style="width:25%;">
+<p><img data-src="img/roker-angel.png" style="width:100.0%"></p>
+</div><div class="column" style="width:75%;">
+<p><img data-src="img/honest1.png" style="width:100.0%"></p>
+</div></div>
+</section>
+<section id="brier-scores-2" class="slide level2">
+<h2>Brier Scores</h2>
+<div class="columns">
+<div class="column" style="width:25%;">
+<p><img data-src="img/roker-angel.png" style="width:100.0%"></p>
+</div><div class="column" style="width:75%;">
+<p><img data-src="img/honest-brier.png" style="width:100.0%"></p>
+</div></div>
+</section>
+<section id="brier-scores-3" class="slide level2">
+<h2>Brier Scores</h2>
+<div class="columns">
+<div class="column" style="width:25%;">
+<p><img data-src="img/cantore-devil.png" style="width:100.0%"></p>
+</div><div class="column" style="width:75%;">
+<p><img data-src="img/evil1.png" style="width:100.0%"></p>
+</div></div>
+</section>
+<section id="brier-scores-4" class="slide level2">
+<h2>Brier Scores</h2>
+<div class="columns">
+<div class="column" style="width:25%;">
+<p><img data-src="img/cantore-devil.png" style="width:100.0%"></p>
+</div><div class="column" style="width:75%;">
+<p><img data-src="img/evil-brier.png" style="width:100.0%"></p>
+</div></div>
+</section>
+<section id="brier-scores-5" class="slide level2">
+<h2>Brier Scores</h2>
+<div class="columns">
+<div class="column" style="width:25%;">
+<p><img data-src="img/fear.png" style="width:100.0%"></p>
+</div><div class="column" style="width:75%;">
+<p><img data-src="img/timid1.png" style="width:100.0%"></p>
+</div></div>
+</section>
+<section id="brier-scores-6" class="slide level2">
+<h2>Brier Scores</h2>
+<div class="columns">
+<div class="column" style="width:25%;">
+<p><img data-src="img/fear.png" style="width:100.0%"></p>
+</div><div class="column" style="width:75%;">
+<p><img data-src="img/timid-brier.png" style="width:100.0%"></p>
+</div></div>
+</section>
+<section id="key-takeaways" class="slide level2">
+<h2>Key Takeaways</h2>
+<ul>
+<li class="fragment"><p>Brier Scores are a sort of <strong>mathematical truth serum</strong>.</p></li>
+<li class="fragment"><p>Your optimal strategy in the forecasting challenge is to report your honest beliefs.</p></li>
+<li class="fragment"><p>A forecaster’s expected Brier Score cannot be improved by exaggerating or hedging probabilities.</p></li>
+</ul>
+<aside class="notes">
+<p>It’s rare in political science to have a system where everyone is incentivized to tell the truth. It’s quite refreshing to have a such a system here!</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 
 
-</div>
 </section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
