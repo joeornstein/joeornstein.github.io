@@ -810,5 +810,173 @@
     "title": "Fudamentals of Probability",
     "section": "Practice",
     "text": "Practice\n\nTake 10 minutes to play “Two Truths and a Lie” with your tablemates. Pick a person to tell two truths and a lie about themselves, and everyone else must guess which is the lie.\nOur twist on the game is that everyone must estimate a probability that their chosen statement is a lie. Use the Equivalent Bet Test to help calibrate your probability.\n(Feel free to play multiple rounds if there is time remaining.)"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#motivating-problem",
+    "href": "slides/conditional-probability.html#motivating-problem",
+    "title": "Conditional Probability",
+    "section": "Motivating Problem",
+    "text": "Motivating Problem\nWill the movie Roofman be “Certified Fresh” by Rotten Tomatoes?\n\n\nHow would you go about this prediction? What information would you research first?"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#practice",
+    "href": "slides/conditional-probability.html#practice",
+    "title": "Conditional Probability",
+    "section": "Practice",
+    "text": "Practice\nIs this strong evidence that Derek Cianfrance is an above-average director? \\(P(\\text{Certified Fresh}) &gt; 0.25\\)?\n\n\nIf Cianfrance was just an average director, what is the probability that all three of his films would be Certified Fresh?\nIf Cianfrance was just an average director, what is the probability that at least 2 out of his 3 films would be Certified Fresh?"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#variance",
+    "href": "slides/conditional-probability.html#variance",
+    "title": "Conditional Probability",
+    "section": "Variance",
+    "text": "Variance\nConfidence interval\nBias-variance tradeoff.\nToo little conditioning and your estimate will be biased (incorporates no information about the actual movie!)\nToo much conditioning and your estimate will be high-variance; not enough data to make a confident prediction.\nThe “art” of forecasting is learning how to balance this tradeoff. How much should you weigh the Outside View vs. the Inside View?\nNext time: Bayes Rule as a method for conditioning your predictions in light of available evidence."
+  },
+  {
+    "objectID": "slides/conditional-probability.html#data",
+    "href": "slides/conditional-probability.html#data",
+    "title": "Brier Scores",
+    "section": "Data",
+    "text": "Data"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#todays-agenda",
+    "href": "slides/conditional-probability.html#todays-agenda",
+    "title": "Conditional Probability",
+    "section": "Today’s Agenda",
+    "text": "Today’s Agenda\n\nLearn how to estimate conditional probability\nIntroduce a common approach used by successful forecasters: balancing Inside View and Outside View.\nShow how all this connects to a central problem in statistics: the bias-variance tradeoff."
+  },
+  {
+    "objectID": "slides/conditional-probability.html#two-different-approaches",
+    "href": "slides/conditional-probability.html#two-different-approaches",
+    "title": "Conditional Probability",
+    "section": "Two Different Approaches",
+    "text": "Two Different Approaches\n\nInside View: Focus on the details of the case at hand.\n\nWhat characteristics of Roofman suggest that it will be Certified Fresh?\n\nOutside View: Ignore the details of the case at hand. Focus on what happened previously with similar cases.\n\nHow often does any film achieve a Certified Fresh rating?\n\nMost people naturally gravitate towards the Inside View (Kahneman and Lovallo 1993), but the best forecasters combine both approaches!"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#outside-view",
+    "href": "slides/conditional-probability.html#outside-view",
+    "title": "Conditional Probability",
+    "section": "Outside View",
+    "text": "Outside View\n\n\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Tomatometer\n                Total\n                %\n              \n        \n        \n        \n                \n                  Certified-Fresh\n                  3,259\n                  18.4\n                \n                \n                  Fresh\n                  6,844\n                  38.7\n                \n                \n                  Rotten\n                  7,565\n                  42.8"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#variables",
+    "href": "slides/conditional-probability.html#variables",
+    "title": "Conditional Probability",
+    "section": "Variables",
+    "text": "Variables"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#references",
+    "href": "slides/conditional-probability.html#references",
+    "title": "Conditional Probability",
+    "section": "References",
+    "text": "References\n\n\n\n\nKahneman, Daniel, and Dan Lovallo. 1993. “Timid Choices and Bold Forecasts: A Cognitive Perspective on Risk Taking.” Management Science 39 (1): 17–31. https://www.jstor.org/stable/2661517."
+  },
+  {
+    "objectID": "slides/conditional-probability.html#outside-view-1",
+    "href": "slides/conditional-probability.html#outside-view-1",
+    "title": "Conditional Probability",
+    "section": "Outside View",
+    "text": "Outside View\n\nThis base rate is a useful starting point.\n\nAchieving a Certified Fresh rating is historically very rare. Serves as an “anchor” for our prediction.\n\nWhat’s the problem with this approach? Why not stop there?\n\nThe pure Outside View yields a biased prediction, because it doesn’t incorporate any information about the case in question.\nMore details about the movie Roofman should help us refine our prediction."
+  },
+  {
+    "objectID": "slides/conditional-probability.html#conditional-probability",
+    "href": "slides/conditional-probability.html#conditional-probability",
+    "title": "Conditional Probability",
+    "section": "Conditional Probability",
+    "text": "Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n36%\n\n\n\n\n\n\n\n64%\n\n\n\n\n\n\n\n22%\n\n\n\n\n\n\n\n78%\n\n\n\n\n\n\n\n16.5%\n\n\n\n\n\n\n\n83.5%\n\n\n\n\n\n\n\nAll Movies\n\n\n\n\n\n\n\nRated R\n\n\n\n\n\n\n\nNot Rated R\n\n\n\n\n\n\n\nCertified Fresh\n\n\n\n\n\n\n\nNot CF\n\n\n\n\n\n\n\nCertified Fresh\n\n\n\n\n\n\n\nNot CF"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#unconditional-probability",
+    "href": "slides/conditional-probability.html#unconditional-probability",
+    "title": "Conditional Probability",
+    "section": "Unconditional Probability",
+    "text": "Unconditional Probability\n\n\n\n\n\n\n\n\n\n\n\n18.5%\n\n\n\n\n\n\n\n81.5%\n\n\n\n\n\n\n\nAll Movies\n\n\n\n\n\n\n\nCertified Fresh\n\n\n\n\n\n\n\nNot CF"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#conditional-probability-1",
+    "href": "slides/conditional-probability.html#conditional-probability-1",
+    "title": "Conditional Probability",
+    "section": "Conditional Probability",
+    "text": "Conditional Probability"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#conditional-probability-2",
+    "href": "slides/conditional-probability.html#conditional-probability-2",
+    "title": "Conditional Probability",
+    "section": "Conditional Probability",
+    "text": "Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n36%\n\n\n\n\n\n\n\n64%\n\n\n\n\n\n\n\n63.4%\n\n\n\n\n\n\n\n36.6%\n\n\n\n\n\n\n\n25.5%\n\n\n\n\n\n\n\n74.5%\n\n\n\n\n\n\n\nAll Movies\n\n\n\n\n\n\n\nRated R\n\n\n\n\n\n\n\nNot Rated R\n\n\n\n\n\n\n\nReleased After 2000\n\n\n\n\n\n\n\nReleased Before 2000\n\n\n\n\n\n\n\nCertified Fresh\n\n\n\n\n\n\n\nNot CF"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#conditional-probability-3",
+    "href": "slides/conditional-probability.html#conditional-probability-3",
+    "title": "Conditional Probability",
+    "section": "Conditional Probability",
+    "text": "Conditional Probability"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#conditional-probability-4",
+    "href": "slides/conditional-probability.html#conditional-probability-4",
+    "title": "Conditional Probability",
+    "section": "Conditional Probability",
+    "text": "Conditional Probability"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#conditional-probability-5",
+    "href": "slides/conditional-probability.html#conditional-probability-5",
+    "title": "Conditional Probability",
+    "section": "Conditional Probability",
+    "text": "Conditional Probability"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#conditional-probability-6",
+    "href": "slides/conditional-probability.html#conditional-probability-6",
+    "title": "Conditional Probability",
+    "section": "Conditional Probability",
+    "text": "Conditional Probability\nHow far should we take this???\n\n\n\n\n\n\n\n\n\n\n\n\n36%\n\n\n\n\n\n\n\n64%\n\n\n\n\n\n\n\n63.4%\n\n\n\n\n\n\n\n36.6%\n\n\n\n\n\n\n\n0.05%\n\n\n\n\n\n\n\n99.95%\n\n\n\n\n\n\n\n100%\n\n\n\n\n\n\n\n0%\n\n\n\n\n\n\n\nAll Movies\n\n\n\n\n\n\n\nRated R\n\n\n\n\n\n\n\nNot Rated R\n\n\n\n\n\n\n\nReleased After 2000\n\n\n\n\n\n\n\nReleased Before 2000\n\n\n\n\n\n\n\nDirected by Cianfrance\n\n\n\n\n\n\n\nNot Cianfrance\n\n\n\n\n\n\n\nCertified Fresh\n\n\n\n\n\n\n\nNot CF"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#inside-view",
+    "href": "slides/conditional-probability.html#inside-view",
+    "title": "Conditional Probability",
+    "section": "Inside View",
+    "text": "Inside View\n\nThe “Inside View” is very confident about Roofman. R-movies directed by Derek Cianfrance are always Certified Fresh.\nWhat’s the problem with this approach?"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#inside-view-1",
+    "href": "slides/conditional-probability.html#inside-view-1",
+    "title": "Conditional Probability",
+    "section": "Inside View",
+    "text": "Inside View\n\nWell, there are only 3 films in the entire database directed by Derek Cianfrance."
+  },
+  {
+    "objectID": "slides/conditional-probability.html#bias-variance-tradeoff",
+    "href": "slides/conditional-probability.html#bias-variance-tradeoff",
+    "title": "Conditional Probability",
+    "section": "Bias-Variance Tradeoff",
+    "text": "Bias-Variance Tradeoff\n\nOn one end of the spectrum (pure Outside View), we have a biased but precise prediction.\n\n18.5% of all movies are Certified Fresh.\n\nOn the opposite end (pure Inside View), we have an less-biased but highly uncertain prediction.\n\n66.6% of Derek Cianfrance’s movies are Certified Fresh.\n\nThe truth probably lies somewhere in the middle.\nThe “art” of forecasting is learning how to balance this tradeoff. How much should you weigh the Outside View vs. the Inside View?"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#next-time",
+    "href": "slides/conditional-probability.html#next-time",
+    "title": "Conditional Probability",
+    "section": "Next Time",
+    "text": "Next Time\nBayes Rule as a method for computing conditional probability, and adjusting your predictions in light of available evidence."
+  },
+  {
+    "objectID": "slides/conditional-probability.html#inside-view-2",
+    "href": "slides/conditional-probability.html#inside-view-2",
+    "title": "Conditional Probability",
+    "section": "Inside View",
+    "text": "Inside View\n\nWith only three data points, we cannot claim with confidence that Cianfrance’s next movie has a \\(\\frac{2}{3}\\) probability of achieving Certified Freshness.\nIt could be that his movies are better-than-average.\nBut he also could have gotten lucky."
+  },
+  {
+    "objectID": "index.html#week-2-826",
+    "href": "index.html#week-2-826",
+    "title": "Fall 2025 Predictions",
+    "section": "Week 2 (8/26)",
+    "text": "Week 2 (8/26)"
   }
 ]
