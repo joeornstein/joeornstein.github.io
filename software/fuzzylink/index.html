@@ -5,14 +5,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Probabilistic Record Linkage Using PreTrained Text Embeddings • fuzzylink</title>
+<title>Probabilistic Record Linkage Using Pretrained Text Embeddings • fuzzylink</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Probabilistic Record Linkage Using PreTrained Text Embeddings">
-<meta name="description" content="Links datasets through fuzzy string matching using pretrained text embeddings.">
-<meta property="og:description" content="Links datasets through fuzzy string matching using pretrained text embeddings.">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Probabilistic Record Linkage Using Pretrained Text Embeddings">
+<meta name="description" content='Links datasets through fuzzy string matching using pretrained text embeddings. Produces more accurate record linkage when lexical string distance metrics are a poor guide to match quality (e.g., "Patricia" is more lexically similar to "Patrick" than it is to "Trish"). Capable of performing multilingual record linkage. Methods are described in Ornstein (2025) &lt;https://doi.org/10.1017/pan.2025.10016&gt;.'>
+<meta property="og:description" content='Links datasets through fuzzy string matching using pretrained text embeddings. Produces more accurate record linkage when lexical string distance metrics are a poor guide to match quality (e.g., "Patricia" is more lexically similar to "Patrick" than it is to "Trish"). Capable of performing multilingual record linkage. Methods are described in Ornstein (2025) &lt;https://doi.org/10.1017/pan.2025.10016&gt;.'>
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">fuzzylink</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,11 +32,13 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/joeornstein/fuzzylink/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -49,7 +51,7 @@
 </h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>The R package <code>fuzzylink</code> implements a probabilistic record linkage procedure proposed in <a href="https://joeornstein.github.io/publications/fuzzylink.pdf" class="external-link">Ornstein (2024)</a>. This method allows users to merge datasets with fuzzy matches on a key identifying variable. Suppose, for example, you have the following two datasets:</p>
+<p>The R package <code>fuzzylink</code> implements a probabilistic record linkage procedure proposed in <a href="https://doi.org/10.1017/pan.2025.10016" class="external-link">Ornstein (2025)</a>. This method allows users to merge datasets with fuzzy matches on a key identifying variable. Suppose, for example, you have the following two datasets:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dfA</span></span>
 <span><span class="co">#&gt;             name age</span></span>
@@ -73,44 +75,47 @@
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">fuzzylink</span>(dfA, dfB, <span class="at">by =</span> <span class="st">'name'</span>, <span class="at">record_type =</span> <span class="st">'person'</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>df</span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#&gt;                A                         B       sim        jw</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co">#&gt; 1      Joe Biden    Joseph Robinette Biden 0.7660045 0.7208273</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt; 2   Donald Trump        Donald John Trump  0.8388933 0.9333333</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt; 3   Barack Obama      Barack Hussein Obama 0.8457593 0.9200000</span></span>
-<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt; 4 George W. Bush        George Walker Bush 0.8446479 0.9301587</span></span>
-<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; 5   Bill Clinton William Jefferson Clinton 0.8732562 0.5788889</span></span>
-<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt;   match_probability validated age      hobby</span></span>
-<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt; 1                 1       Yes  81   Football</span></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt; 2                 1       Yes  77       Golf</span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt; 3                 1       Yes  62 Basketball</span></span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt; 4                 1       Yes  77    Reading</span></span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt; 5                 1       Yes  77  Saxophone</span></span></code></pre></div>
-<p>The procedure works by using <em>pretrained text embeddings</em> to construct a measure of similarity for each pair of names. These similarity measures are then used as predictors in a statistical model to estimate the probability that two name pairs represent the same entity. In the guide below, I will walk step-by-step through what’s happening under the hood when we call the <code><a href="reference/fuzzylink.html">fuzzylink()</a></code> function. See <a href="https://joeornstein.github.io/publications/fuzzylink.pdf" class="external-link">Ornstein (2024)</a> for technical details.</p>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#&gt;                A                         B       sim        jw match</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co">#&gt; 1      Joe Biden    Joseph Robinette Biden 0.7661285 0.7673401   Yes</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt; 2   Donald Trump        Donald John Trump  0.8388663 0.9333333   Yes</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt; 3   Barack Obama      Barack Hussein Obama 0.8457284 0.9200000   Yes</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt; 4 George W. Bush        George Walker Bush 0.8445312 0.9301587   Yes</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; 5   Bill Clinton William Jefferson Clinton 0.8730800 0.5788889   Yes</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt;   match_probability age      hobby</span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt; 1                 1  81   Football</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt; 2                 1  77       Golf</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt; 3                 1  62 Basketball</span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt; 4                 1  77    Reading</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt; 5                 1  77  Saxophone</span></span></code></pre></div>
+<p>The procedure works by using <em>pretrained text embeddings</em> to construct a measure of similarity for each pair of names. These similarity measures are then used as predictors in a statistical model to estimate the probability that two name pairs represent the same entity. See <a href="https://doi.org/10.1017/pan.2025.10016" class="external-link">Ornstein (2025)</a> for technical details.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of <code>fuzzylink</code> from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<p>You can install <code>fuzzylink</code> from CRAN with:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'fuzzylink'</span><span class="op">)</span></span></code></pre></div>
+<p>Or you can install the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"joeornstein/fuzzylink"</span><span class="op">)</span></span></code></pre></div>
 <p>You will also need API access to a large language model (LLM). The <code>fuzzylink</code> package currently supports both OpenAI and Mistral LLMs, but will default to using OpenAI unless specified by the user.</p>
 <div class="section level3">
 <h3 id="openai">OpenAI<a class="anchor" aria-label="anchor" href="#openai"></a>
 </h3>
-<p>You can sign up for an account <a href="https://beta.openai.com/signup" class="external-link">here</a>, after which you will need to create an API key <a href="https://platform.openai.com/account/api-keys" class="external-link">here</a>. For best performance, I <strong>strongly recommend</strong> purchasing at least $5 in API credits, which will significantly increase your API rate limits.</p>
+<p>You will need to create a developer account with OpenAI, and create an API key through their developer platform. For best performance, I <strong>strongly recommend</strong> purchasing at least $5 in API credits, which will significantly increase your API rate limits.</p>
 <p>Once your account is created, copy-paste your API key into the following line of R code.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">library</span>(fuzzylink)</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">openai_api_key</span>(<span class="st">'YOUR API KEY GOES HERE'</span>, <span class="at">install =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">library</span>(fuzzylink)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">openai_api_key</span>(<span class="st">'YOUR API KEY GOES HERE'</span>, <span class="at">install =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="mistral">Mistral<a class="anchor" aria-label="anchor" href="#mistral"></a>
 </h3>
 <p>If you prefer to use language models from Mistral, you can sign up for an account <a href="https://mistral.ai/" class="external-link">here</a>. As of writing, Mistral requires you to purchase prepaid credits before you can access their language models through the API.</p>
 <p>Once you have a paid account, you can create an API key <a href="https://console.mistral.ai/api-keys/" class="external-link">here</a>, and copy-paste the API key into the following line of R code:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">library</span>(fuzzylink)</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">mistral_api_key</span>(<span class="st">'YOUR API KEY GOES HERE'</span>, <span class="at">install =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">library</span>(fuzzylink)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="fu">mistral_api_key</span>(<span class="st">'YOUR API KEY GOES HERE'</span>, <span class="at">install =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Now you’re all set up!</p>
 </div>
 </div>
@@ -118,9 +123,9 @@
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <p>Here is some code to reproduce the example above and make sure that everything is working on your computer.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">fuzzylink</span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/joeornstein/fuzzylink" class="external-link">fuzzylink</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">dfA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">name</span>, <span class="op">~</span><span class="va">age</span>,</span>
 <span>               <span class="st">'Joe Biden'</span>, <span class="fl">81</span>,</span>
@@ -148,14 +153,14 @@
 </h3>
 <ul>
 <li><p>The <code>by</code> argument specifies the name of the fuzzy matching variable that you want to use to link records. The dataframes <code>dfA</code> and <code>dfB</code> must both have a column with this name.</p></li>
-<li><p>The <code>record_type</code> argument should be a singular noun describing the type of entity the <code>by</code> variable represents (e.g. “person”, “organization”, “interest group”, “city”). It is used as part of a language model prompt when training the statistical model (see Step 3 below).</p></li>
+<li><p>The <code>record_type</code> argument should be a singular noun describing the type of entity the <code>by</code> variable represents (e.g. “person”, “organization”, “interest group”, “city”). It is used as part of a language model prompt when training the statistical model.</p></li>
 <li><p>The <code>instructions</code> argument should be a string containing additional instructions to include in the language model prompt. Format these like you would format instructions to a human research assistant, including any relevant information that you think would help the model make accurate classifications.</p></li>
-<li><p>The <code>model</code> argument specifies which language model to prompt. It defaults to OpenAI’s ‘gpt-3.5-turbo-instruct’, but for more difficult problems you can try ‘gpt-4o’. Note that this will typically increase accuracy at the expense of cost and runtime. If you prefer an open-source language model, try ‘open-mixtral-8x22b’.</p></li>
+<li><p>The <code>model</code> argument specifies which language model to prompt. It defaults to OpenAI’s ‘gpt-4o’, but for simpler problems, you can try ‘gpt-3.5-turbo-instruct’, which will significantly reduce cost and runtime. If you prefer an open-source language model, try ‘open-mixtral-8x22b’.</p></li>
 <li><p>The <code>embedding_model</code> argument specifies which pretrained text embeddings to use when modeling match probability. It defaults to OpenAI’s ‘text-embedding-3-large’, but will also accept ‘text-embedding-3-small’ or Mistral’s ‘mistral-embed’.</p></li>
 <li><p>Several parameters—including <code>p</code>, <code>k</code>, <code>embedding_dimensions</code>, <code>max_validations</code>, and <code>parallel</code>—are for advanced users who wish to customize the behavior of the algorithm. See the package documentation for more details.</p></li>
 <li><p>If there are any variables that must match <em>exactly</em> in order to link two records, you will want to include them in the <code>blocking.variables</code> argument. As a practical matter, I <strong>strongly recommend</strong> including blocking variables wherever possible, as they reduce the time and cost necessary to compute pairwise distance metrics. Suppose, for example, that our two illustrative datasets have a column called <code>state</code>, and we want to instruct <code><a href="reference/fuzzylink.html">fuzzylink()</a></code> to only link people who live within the same state.</p></li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dfA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tribble.html" class="external-link">tribble</a></span><span class="op">(</span><span class="op">~</span><span class="va">name</span>, <span class="op">~</span><span class="va">state</span>, <span class="op">~</span><span class="va">age</span>,</span>
 <span>               <span class="st">'Joe Biden'</span>, <span class="st">'Delaware'</span>, <span class="fl">81</span>,</span>
 <span>               <span class="st">'Donald Trump'</span>, <span class="st">'New York'</span>, <span class="fl">77</span>,</span>
@@ -172,399 +177,234 @@
 <span>               <span class="st">'George Herbert Walker Bush'</span>, <span class="st">'Texas'</span>, <span class="st">'Skydiving'</span>,</span>
 <span>               <span class="st">'Biff Tannen'</span>, <span class="st">'California'</span>, <span class="st">'Bullying'</span>,</span>
 <span>               <span class="st">'Joe Riley'</span>, <span class="st">'South Carolina'</span>, <span class="st">'Jogging'</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/fuzzylink.html">fuzzylink</a></span><span class="op">(</span><span class="va">dfA</span>, <span class="va">dfB</span>, </span>
 <span>                by <span class="op">=</span> <span class="st">'name'</span>,</span>
 <span>                blocking.variables <span class="op">=</span> <span class="st">'state'</span>,</span>
 <span>                record_type <span class="op">=</span> <span class="st">'person'</span><span class="op">)</span></span>
 <span><span class="va">df</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co">#&gt;                A                         B       sim block        jw</span></span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="co">#&gt; 1      Joe Biden    Joseph Robinette Biden 0.7665511     1 0.7208273</span></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="co">#&gt; 2   Barack Obama      Barack Hussein Obama 0.8458046     3 0.9200000</span></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co">#&gt; 3 George W. Bush        George Walker Bush 0.8447483     4 0.9301587</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="co">#&gt; 4   Bill Clinton William Jefferson Clinton 0.8731902     5 0.5788889</span></span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co">#&gt; 5   Donald Trump                      &lt;NA&gt;        NA    NA        NA</span></span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co">#&gt;   match_probability    state validated age      hobby</span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co">#&gt; 1                 1 Delaware       Yes  81   Football</span></span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co">#&gt; 2                 1 Illinois       Yes  62 Basketball</span></span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">#&gt; 3                 1    Texas       Yes  77    Reading</span></span>
-<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">#&gt; 4                 1 Arkansas       Yes  77  Saxophone</span></span>
-<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="co">#&gt; 5                NA New York      &lt;NA&gt;  77       &lt;NA&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co">#&gt;                A                         B       sim block        jw match</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="co">#&gt; 1      Joe Biden    Joseph Robinette Biden 0.7660565     1 0.7673401   Yes</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="co">#&gt; 2   Barack Obama      Barack Hussein Obama 0.8457001     3 0.9200000   Yes</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co">#&gt; 3 George W. Bush        George Walker Bush 0.8447794     4 0.9301587   Yes</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co">#&gt; 4   Bill Clinton William Jefferson Clinton 0.8732311     5 0.5788889   Yes</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co">#&gt; 5   Donald Trump                      &lt;NA&gt;        NA    NA        NA  &lt;NA&gt;</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="co">#&gt;   match_probability    state age      hobby</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="co">#&gt; 1                 1 Delaware  81   Football</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a><span class="co">#&gt; 2                 1 Illinois  62 Basketball</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="co">#&gt; 3                 1    Texas  77    Reading</span></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="co">#&gt; 4                 1 Arkansas  77  Saxophone</span></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a><span class="co">#&gt; 5                NA New York  77       &lt;NA&gt;</span></span></code></pre></div>
 <p>Note that because Donald Trump is listed under two different states—New York in <code>dfA</code> and Florida in <code>dfB</code>–the <code><a href="reference/fuzzylink.html">fuzzylink()</a></code> function no longer returns a match for this record; all blocking variables must match exactly before the function will link two records together. You can specify as many blocking variables as needed by inputting their column names as a vector.</p>
 <p>The function returns a few additional columns along with the merged dataframe. The column <code>match_probability</code> reports the model’s estimated probability that the pair of records refer to the same entity. This column should be used to aid in validation and can be used for computing weighted averages if a record in <code>dfA</code> is matched to multiple records in <code>dFB</code>. The columns <code>sim</code> and <code>jw</code> are string distance measures that the model uses to predict whether two records are a match. And if you included <code>blocking.variables</code> in the function call, there will be a column called <code>block</code> with an ID variable denoting which block the records belong to.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="under-the-hood">Under The Hood<a class="anchor" aria-label="anchor" href="#under-the-hood"></a>
-</h2>
-<p>If you’d like to know more details about about how <code><a href="reference/fuzzylink.html">fuzzylink()</a></code> works, you can read the accompanying <a href="https://joeornstein.github.io/publications/fuzzylink.pdf" class="external-link">research paper</a>. In this section, we’ll take a look under the hood at the previous example, walking through each of the steps that <code><a href="reference/fuzzylink.html">fuzzylink()</a></code> takes to join the two dataframes.</p>
-<div class="section level3">
-<h3 id="step-1-embedding">Step 1: Embedding<a class="anchor" aria-label="anchor" href="#step-1-embedding"></a>
-</h3>
-<p>First, the function encodes each unique string in <code>dfA</code> and <code>dfB</code> as a 256-dimensional vector called an <em>embedding</em>. You can learn more about embeddings <a href="https://platform.openai.com/docs/guides/embeddings/embedding-models" class="external-link">here</a>, but the basic idea is to represent text using a vector of real-valued numbers, such that two vectors close to one another in space have similar meanings.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">strings_A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">dfA</span><span class="op">$</span><span class="va">name</span><span class="op">)</span></span>
-<span><span class="va">strings_B</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">dfB</span><span class="op">$</span><span class="va">name</span><span class="op">)</span></span>
-<span><span class="va">all_strings</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">strings_A</span>, <span class="va">strings_B</span><span class="op">)</span> <span class="op">)</span></span>
-<span><span class="va">embeddings</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_embeddings.html">get_embeddings</a></span><span class="op">(</span><span class="va">all_strings</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">embeddings</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1]  13 256</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">embeddings</span><span class="op">[</span><span class="st">'Bill Clinton'</span>,<span class="op">]</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1]  0.08031169  0.07614738 -0.01617801 -0.07958458 -0.09815873 -0.04967427</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="step-2-similarity-scores">Step 2: Similarity Scores<a class="anchor" aria-label="anchor" href="#step-2-similarity-scores"></a>
-</h3>
-<p>Next, we compute the <em>cosine similarity</em> between each name pair. This is our measure of how closely related two pieces of text are, where 0 is completely unrelated and 1 is identical. If you include <code>blocking.variables</code> in the call to <code><a href="reference/fuzzylink.html">fuzzylink()</a></code>, the function will only consider <em>within-block</em> name pairs (i.e. it will only compute similarity scores for records with an exact match on each blocking variable). I <strong>strongly recommend</strong> blocking wherever possible, as it significantly reduces cost and speeds up computation.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sim</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_similarity_matrix.html">get_similarity_matrix</a></span><span class="op">(</span><span class="va">embeddings</span>, <span class="va">strings_A</span>, <span class="va">strings_B</span><span class="op">)</span></span>
-<span><span class="va">sim</span></span>
-<span><span class="co">#&gt;                Joseph Robinette Biden Donald John Trump  Barack Hussein Obama</span></span>
-<span><span class="co">#&gt; Joe Biden                   0.7665511          0.5532816            0.5309110</span></span>
-<span><span class="co">#&gt; Donald Trump                0.4316448          0.8388565            0.4477471</span></span>
-<span><span class="co">#&gt; Barack Obama                0.5171871          0.4756583            0.8458046</span></span>
-<span><span class="co">#&gt; George W. Bush              0.4942466          0.4877767            0.5681277</span></span>
-<span><span class="co">#&gt; Bill Clinton                0.4886684          0.5037386            0.5174360</span></span>
-<span><span class="co">#&gt;                George Walker Bush William Jefferson Clinton</span></span>
-<span><span class="co">#&gt; Joe Biden               0.5094280                 0.5426318</span></span>
-<span><span class="co">#&gt; Donald Trump            0.4805295                 0.4462709</span></span>
-<span><span class="co">#&gt; Barack Obama            0.4854634                 0.5131122</span></span>
-<span><span class="co">#&gt; George W. Bush          0.8447483                 0.6113368</span></span>
-<span><span class="co">#&gt; Bill Clinton            0.6232500                 0.8731912</span></span>
-<span><span class="co">#&gt;                George Herbert Walker Bush Biff Tannen Joe Riley</span></span>
-<span><span class="co">#&gt; Joe Biden                       0.4701124   0.3016349 0.3906386</span></span>
-<span><span class="co">#&gt; Donald Trump                    0.3942993   0.3438548 0.2328768</span></span>
-<span><span class="co">#&gt; Barack Obama                    0.4243879   0.2546999 0.3480991</span></span>
-<span><span class="co">#&gt; George W. Bush                  0.7335260   0.2459214 0.3606344</span></span>
-<span><span class="co">#&gt; Bill Clinton                    0.5950811   0.2214671 0.3194544</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="step-3-create-a-training-set">Step 3: Create a Training Set<a class="anchor" aria-label="anchor" href="#step-3-create-a-training-set"></a>
-</h3>
-<p>We would like to use those cosine similarity scores to predict whether two names refer to the same entity. In order to do that, we need to first create a labeled dataset to fit a statistical model. The <code><a href="reference/get_training_set.html">get_training_set()</a></code> function selects a sample of name pairs and labels them using the following prompt to GPT-3.5 (brackets denote input variables).</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>Decide <span class="cf">if</span> the following two names refer to the same {record_type}. {instructions} Think carefully. Respond <span class="st">"Yes"</span> or <span class="st">"No"</span>.<span class="st">'</span></span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="st">Name A: {A}</span></span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="st">Name B: {B}</span></span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="st">Response:</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">train</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_training_set.html">get_training_set</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">sim</span><span class="op">)</span>, record_type <span class="op">=</span> <span class="st">'person'</span><span class="op">)</span></span>
-<span><span class="va">train</span></span>
-<span><span class="co">#&gt; # A tibble: 40 × 5</span></span>
-<span><span class="co">#&gt;    A              B                              sim    jw match</span></span>
-<span><span class="co">#&gt;    &lt;fct&gt;          &lt;fct&gt;                        &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;</span></span>
-<span><span class="co">#&gt;  1 Donald Trump   "Biff Tannen"                0.344 0.399 No   </span></span>
-<span><span class="co">#&gt;  2 Donald Trump   "William Jefferson Clinton"  0.446 0.372 No   </span></span>
-<span><span class="co">#&gt;  3 Bill Clinton   "George Herbert Walker Bush" 0.595 0.371 No   </span></span>
-<span><span class="co">#&gt;  4 Donald Trump   "George Walker Bush"         0.481 0.5   No   </span></span>
-<span><span class="co">#&gt;  5 George W. Bush "Joe Riley"                  0.361 0.410 No   </span></span>
-<span><span class="co">#&gt;  6 George W. Bush "George Herbert Walker Bush" 0.734 0.870 No   </span></span>
-<span><span class="co">#&gt;  7 Bill Clinton   "William Jefferson Clinton"  0.873 0.579 Yes  </span></span>
-<span><span class="co">#&gt;  8 Joe Biden      "William Jefferson Clinton"  0.543 0.524 No   </span></span>
-<span><span class="co">#&gt;  9 Bill Clinton   "Donald John Trump "         0.504 0.465 No   </span></span>
-<span><span class="co">#&gt; 10 Donald Trump   "George Herbert Walker Bush" 0.394 0.344 No   </span></span>
-<span><span class="co">#&gt; # ℹ 30 more rows</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="step-4-fit-model">Step 4: Fit Model<a class="anchor" aria-label="anchor" href="#step-4-fit-model"></a>
-</h3>
-<p>Next, we fit a logistic regression model on the <code>train</code> dataset, so that we can map similarity scores onto a probability that two records match. We use both the cosine similarity (<code>sim</code>) and a measure of lexical similarity (<code>jw</code>) as predictors in this model.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">match</span> <span class="op">==</span> <span class="st">'Yes'</span><span class="op">)</span> <span class="op">~</span> <span class="va">sim</span> <span class="op">+</span> <span class="va">jw</span>, </span>
-<span>             data <span class="op">=</span> <span class="va">train</span>,</span>
-<span>             family <span class="op">=</span> <span class="st">'binomial'</span><span class="op">)</span></span></code></pre></div>
-<p>Append these predictions to each name pair in <code>dfA</code> and <code>dfB</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># create a dataframe with each name pair</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="va">sim</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu">reshape2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/reshape2/man/melt.html" class="external-link">melt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rlang.r-lib.org/reference/set_names.html" class="external-link">set_names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'sim'</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="co"># compute lexical similarity measures for each name pair</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>jw <span class="op">=</span> <span class="fu">stringdist</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/stringdist/man/stringsim.html" class="external-link">stringsim</a></span><span class="op">(</span><span class="va">A</span>, <span class="va">B</span>, method <span class="op">=</span> <span class="st">'jw'</span>, p <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">df</span><span class="op">$</span><span class="va">match_probability</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">df</span>, type <span class="op">=</span> <span class="st">'response'</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                A                      B       sim        jw match_probability</span></span>
-<span><span class="co">#&gt; 1      Joe Biden Joseph Robinette Biden 0.7665511 0.7208273      1.000000e+00</span></span>
-<span><span class="co">#&gt; 2   Donald Trump Joseph Robinette Biden 0.4316448 0.4217172      2.220446e-16</span></span>
-<span><span class="co">#&gt; 3   Barack Obama Joseph Robinette Biden 0.5171871 0.4191919      2.220446e-16</span></span>
-<span><span class="co">#&gt; 4 George W. Bush Joseph Robinette Biden 0.4942466 0.5200216      2.220446e-16</span></span>
-<span><span class="co">#&gt; 5   Bill Clinton Joseph Robinette Biden 0.4886684 0.4797980      2.220446e-16</span></span>
-<span><span class="co">#&gt; 6      Joe Biden     Donald John Trump  0.5532816 0.4444444      2.220446e-16</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="step-5-validate-uncertain-matches">Step 5: Validate Uncertain Matches<a class="anchor" aria-label="anchor" href="#step-5-validate-uncertain-matches"></a>
-</h3>
-<p>We now have a dataset with estimated match probabilities for each pair of records in <code>dfA</code> and <code>dfB</code>. We could stop there and just report the match probabilities. But for larger datasets we can get better results if we conduct a final validation step. For each name pair within a range of estimated match probabilities (by default 0.1 to 0.95), we will use the GPT-4 prompt above to check whether the name pair is a match. These labeled pairs are then added to the training dataset, the logistic regression model is refined, and we repeat this process until there are no matches left to validate. At that point, every record in <code>dfA</code> is either linked to a record in <code>dfB</code> or there are no candidate matches in <code>dfB</code> with an estimated probability higher than the threshold.</p>
-<p>Note that, by default, the <code><a href="reference/fuzzylink.html">fuzzylink()</a></code> function will validate at most 100,000 name pairs during this step. This setting reduces both cost and runtime (see “A Note On Cost” below), but users who wish to validate more name pairs within larger datasets can increase the cap using the <code>max_validations</code> argument.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># find all unlabeled name pairs within a range of match probabilities</span></span>
-<span><span class="va">matches_to_validate</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">train</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'sim'</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">match_probability</span> <span class="op">&gt;</span> <span class="fl">0.1</span>, </span>
-<span>         <span class="va">match_probability</span> <span class="op">&lt;</span> <span class="fl">0.95</span>,</span>
-<span>         <span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">match</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="kw">while</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">matches_to_validate</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span><span class="op">{</span></span>
-<span>  </span>
-<span>  <span class="co"># validate matches using LLM prompt</span></span>
-<span>  <span class="va">matches_to_validate</span><span class="op">$</span><span class="va">match</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/check_match.html">check_match</a></span><span class="op">(</span><span class="va">matches_to_validate</span><span class="op">$</span><span class="va">A</span>,</span>
-<span>                                         <span class="va">matches_to_validate</span><span class="op">$</span><span class="va">B</span><span class="op">)</span></span>
-<span>  </span>
-<span>  <span class="co"># append new labeled pairs to the train set</span></span>
-<span>  <span class="va">train</span> <span class="op">&lt;-</span> <span class="va">train</span> <span class="op">|&gt;</span> </span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">matches_to_validate</span> <span class="op">|&gt;</span> </span>
-<span>              <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">B</span>,<span class="va">sim</span>,<span class="va">match</span><span class="op">)</span><span class="op">)</span></span>
-<span>  </span>
-<span>  <span class="co"># refine the model</span></span>
-<span>  <span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/glm.html" class="external-link">glm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">match</span> <span class="op">==</span> <span class="st">'Yes'</span><span class="op">)</span> <span class="op">~</span> <span class="va">sim</span> <span class="op">+</span> <span class="va">jw</span>,</span>
-<span>             data <span class="op">=</span> <span class="va">train</span>,</span>
-<span>             family <span class="op">=</span> <span class="st">'binomial'</span><span class="op">)</span></span>
-<span>  </span>
-<span>  <span class="co"># re-estimate match probabilities</span></span>
-<span>  <span class="va">df</span><span class="op">$</span><span class="va">match_probability</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/predict.html" class="external-link">predict</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">df</span>, type <span class="op">=</span> <span class="st">'response'</span><span class="op">)</span></span>
-<span>  </span>
-<span>  <span class="co"># find all unlabeled name pairs within a range of match probabilities</span></span>
-<span>  <span class="va">matches_to_validate</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span> </span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">train</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'A'</span>, <span class="st">'B'</span>, <span class="st">'sim'</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">match_probability</span> <span class="op">&gt;</span> <span class="fl">0.1</span>, </span>
-<span>           <span class="va">match_probability</span> <span class="op">&lt;</span> <span class="fl">0.95</span>,</span>
-<span>           <span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">match</span><span class="op">)</span><span class="op">)</span></span>
-<span>  </span>
-<span><span class="op">}</span></span></code></pre></div>
-</div>
-<div class="section level3">
-<h3 id="step-6-link-datasets">Step 6: Link Datasets<a class="anchor" aria-label="anchor" href="#step-6-link-datasets"></a>
-</h3>
-<p>Finally, we take all name pairs whose match probability is higher than a user-specified threshold and merge them into a single dataset.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">matches</span> <span class="op">&lt;-</span> <span class="va">df</span> <span class="op">|&gt;</span></span>
-<span>    <span class="co"># join with match labels from the training set</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">train</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">A</span>, <span class="va">B</span>, <span class="va">match</span><span class="op">)</span>,</span>
-<span>              by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'A'</span>, <span class="st">'B'</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="co"># only keep pairs that have been validated or have a match probability &gt; 0.1</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">(</span><span class="va">match_probability</span> <span class="op">&gt;</span> <span class="fl">0.1</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">match</span><span class="op">)</span><span class="op">)</span> <span class="op">|</span> <span class="va">match</span> <span class="op">==</span> <span class="st">'Yes'</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">right_join</a></span><span class="op">(</span><span class="va">dfA</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'A'</span> <span class="op">=</span> <span class="st">'name'</span><span class="op">)</span>,</span>
-<span>               relationship <span class="op">=</span> <span class="st">'many-to-many'</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">dfB</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'B'</span> <span class="op">=</span> <span class="st">'name'</span><span class="op">)</span>,</span>
-<span>                     relationship <span class="op">=</span> <span class="st">'many-to-many'</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">matches</span></span>
-<span><span class="co">#&gt;                A                         B       sim        jw</span></span>
-<span><span class="co">#&gt; 1      Joe Biden    Joseph Robinette Biden 0.7665511 0.7208273</span></span>
-<span><span class="co">#&gt; 2   Donald Trump        Donald John Trump  0.8388565 0.9333333</span></span>
-<span><span class="co">#&gt; 3   Barack Obama      Barack Hussein Obama 0.8458046 0.9200000</span></span>
-<span><span class="co">#&gt; 4 George W. Bush        George Walker Bush 0.8447483 0.9301587</span></span>
-<span><span class="co">#&gt; 5   Bill Clinton William Jefferson Clinton 0.8731912 0.5788889</span></span>
-<span><span class="co">#&gt;   match_probability match  state.x age  state.y      hobby</span></span>
-<span><span class="co">#&gt; 1                 1   Yes Delaware  81 Delaware   Football</span></span>
-<span><span class="co">#&gt; 2                 1   Yes New York  77  Florida       Golf</span></span>
-<span><span class="co">#&gt; 3                 1   Yes Illinois  62 Illinois Basketball</span></span>
-<span><span class="co">#&gt; 4                 1   Yes    Texas  77    Texas    Reading</span></span>
-<span><span class="co">#&gt; 5                 1   Yes Arkansas  77 Arkansas  Saxophone</span></span></code></pre></div>
-</div>
-</div>
-<div class="section level2">
 <h2 id="a-note-on-cost">A Note On Cost<a class="anchor" aria-label="anchor" href="#a-note-on-cost"></a>
 </h2>
-<p>Because the <code><a href="reference/fuzzylink.html">fuzzylink()</a></code> function makes several calls to the OpenAI API—which charges a <a href="https://openai.com/pricing" class="external-link">per-token fee</a>—there is a monetary cost associated with each use. Based on the package defaults and API pricing as of March 2024, here is a table of approximate costs for merging datasets of various sizes.</p>
+<p>Because the <code><a href="reference/fuzzylink.html">fuzzylink()</a></code> function makes several calls to the OpenAI API—which charges a per-token fee—there is a monetary cost associated with each use. Based on the package defaults and API pricing as of August 2025, here is a table of approximate costs for merging datasets of various sizes.</p>
 <table class="table">
-<thead><tr class="header">
+<thead><tr>
 <th align="left">dfA</th>
 <th align="left">dfB</th>
 <th align="left">Approximate Cost (Default Settings)</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="left">10</td>
 <td align="left">10</td>
-<td align="left">$0.02</td>
+<td align="left">$0</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">10</td>
 <td align="left">100</td>
-<td align="left">$0.02</td>
+<td align="left">$0</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">10</td>
 <td align="left">1,000</td>
-<td align="left">$0.02</td>
+<td align="left">$0</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">10</td>
 <td align="left">10,000</td>
-<td align="left">$0.02</td>
+<td align="left">$0.01</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">10</td>
 <td align="left">100,000</td>
-<td align="left">$0.07</td>
+<td align="left">$0.06</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">10</td>
 <td align="left">1,000,000</td>
-<td align="left">$0.6</td>
+<td align="left">$0.59</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">100</td>
 <td align="left">10</td>
-<td align="left">$0.15</td>
+<td align="left">$0.04</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">100</td>
 <td align="left">100</td>
-<td align="left">$0.15</td>
+<td align="left">$0.04</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">100</td>
 <td align="left">1,000</td>
-<td align="left">$0.15</td>
+<td align="left">$0.04</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">100</td>
 <td align="left">10,000</td>
-<td align="left">$0.16</td>
+<td align="left">$0.04</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">100</td>
 <td align="left">100,000</td>
-<td align="left">$0.21</td>
+<td align="left">$0.1</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">100</td>
 <td align="left">1,000,000</td>
-<td align="left">$0.74</td>
+<td align="left">$0.62</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">1,000</td>
 <td align="left">10</td>
-<td align="left">$1.5</td>
+<td align="left">$0.38</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">1,000</td>
 <td align="left">100</td>
-<td align="left">$1.5</td>
+<td align="left">$0.38</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">1,000</td>
 <td align="left">1,000</td>
-<td align="left">$1.5</td>
+<td align="left">$0.38</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">1,000</td>
 <td align="left">10,000</td>
-<td align="left">$1.51</td>
+<td align="left">$0.38</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">1,000</td>
 <td align="left">100,000</td>
-<td align="left">$1.56</td>
+<td align="left">$0.43</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">1,000</td>
 <td align="left">1,000,000</td>
-<td align="left">$2.09</td>
+<td align="left">$0.96</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">10,000</td>
 <td align="left">10</td>
-<td align="left">$15.01</td>
+<td align="left">$0.76</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">10,000</td>
 <td align="left">100</td>
-<td align="left">$15.01</td>
+<td align="left">$0.76</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">10,000</td>
 <td align="left">1,000</td>
-<td align="left">$15.01</td>
+<td align="left">$0.76</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">10,000</td>
 <td align="left">10,000</td>
-<td align="left">$15.01</td>
+<td align="left">$0.76</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">10,000</td>
 <td align="left">100,000</td>
-<td align="left">$15.06</td>
+<td align="left">$0.81</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">10,000</td>
 <td align="left">1,000,000</td>
-<td align="left">$15.59</td>
+<td align="left">$1.34</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">100,000</td>
 <td align="left">10</td>
-<td align="left">$30.06</td>
+<td align="left">$0.81</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">100,000</td>
 <td align="left">100</td>
-<td align="left">$30.06</td>
+<td align="left">$0.81</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">100,000</td>
 <td align="left">1,000</td>
-<td align="left">$30.06</td>
+<td align="left">$0.81</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">100,000</td>
 <td align="left">10,000</td>
-<td align="left">$30.06</td>
+<td align="left">$0.81</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">100,000</td>
 <td align="left">100,000</td>
-<td align="left">$30.12</td>
+<td align="left">$0.87</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">100,000</td>
 <td align="left">1,000,000</td>
-<td align="left">$30.64</td>
+<td align="left">$1.39</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">1,000,000</td>
 <td align="left">10</td>
-<td align="left">$30.59</td>
+<td align="left">$1.34</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">1,000,000</td>
 <td align="left">100</td>
-<td align="left">$30.59</td>
+<td align="left">$1.34</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">1,000,000</td>
 <td align="left">1,000</td>
-<td align="left">$30.59</td>
+<td align="left">$1.34</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">1,000,000</td>
 <td align="left">10,000</td>
-<td align="left">$30.59</td>
+<td align="left">$1.34</td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">1,000,000</td>
 <td align="left">100,000</td>
-<td align="left">$30.64</td>
+<td align="left">$1.39</td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left">1,000,000</td>
 <td align="left">1,000,000</td>
-<td align="left">$31.17</td>
+<td align="left">$1.92</td>
 </tr>
 </tbody>
 </table>
-<p>Note that cost scales more quickly with the size of <code>dfA</code> than with <code>dfB</code>, because it is more costly to complete LLM prompts for validation than it is to retrieve embeddings. For particularly large datasets, one can reduce costs by using GPT-3.5 (<code>model = 'gpt-3.5-turbo'</code>), blocking (<code>blocking.variables</code>), or reducing the maximum number of validations (<code>max_validations</code>).</p>
+<p>Note that cost scales more quickly with the size of <code>dfA</code> than with <code>dfB</code>, because it is more costly to complete LLM prompts for validation than it is to retrieve embeddings. With particularly large datasets, one can reduce costs by using GPT-3.5 (<code>model = 'gpt-3.5-turbo-instruct'</code>), blocking (<code>blocking.variables</code>), or reducing the maximum number of pairs labeled by the LLM (<code>max_labels</code>).</p>
 </div>
 </div>
-  </main><aside class="col-md-3"><div class="license">
+  </main><aside class="col-md-3"><div class="links">
+<h2 data-toc-skip>Links</h2>
+<ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=fuzzylink" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/joeornstein/fuzzylink/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/joeornstein/fuzzylink/issues" class="external-link">Report a bug</a></li>
+</ul>
+</div>
+
+<div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
@@ -583,7 +423,7 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Joe Ornstein <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-5704-2098" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Joe Ornstein <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0002-5704-2098" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 </ul>
 </div>
 
@@ -598,7 +438,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer>
