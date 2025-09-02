@@ -978,5 +978,117 @@
     "title": "Fall 2025 Predictions",
     "section": "Week 2 (8/26)",
     "text": "Week 2 (8/26)"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#practice-1",
+    "href": "slides/conditional-probability.html#practice-1",
+    "title": "Conditional Probability",
+    "section": "Practice",
+    "text": "Practice\n\n\n\n\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\nStart of Career\n\n\n\n\n\n\n\nFilm 1: Fresh\n\n\n\n\n\n\n\nFilm 1: Not Fresh\n\n\n\n\n\n\n\nFilm 2: Fresh\n\n\n\n\n\n\n\nFilm 2: Not Fresh\n\n\n\n\n\n\n\nFilm 2: Fresh\n\n\n\n\n\n\n\nFilm 2: Not Fresh\n\n\n\n\n\n\n\nFilm 3: Fresh (1.5%)\n\n\n\n\n\n\n\nFilm 3: Not Fresh (4.7%)\n\n\n\n\n\n\n\nFilm 3: Fresh (4.7%)\n\n\n\n\n\n\n\nFilm 3: Not Fresh (14.1%)\n\n\n\n\n\n\n\nFilm 3: Fresh (4.7%)\n\n\n\n\n\n\n\nFilm 3: Not Fresh (14.1%)\n\n\n\n\n\n\n\nFilm 3: Fresh (14.1%)\n\n\n\n\n\n\n\nFilm 3: Not Fresh (42.2%)"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#review-problems",
+    "href": "slides/conditional-probability.html#review-problems",
+    "title": "Conditional Probability",
+    "section": "Review Problems",
+    "text": "Review Problems\n\nA basketball player with an 80% free throw shooting rate goes to the line to shoot 3 free throws. What’s the probability she makes 1 or fewer?\nYou’re volunteering with a phone bank for a political campaign. People only answer their phone 10% of the time. Out of the next 3 numbers on your call sheet, what’s the probability that anyone answers your call?\nLet’s slightly modify the movie director problem from before. The average director starts out with a 25% chance of making a Certified Fresh film. But that probability can go up or down over time. If the director makes a Certified Fresh film, he gets a boost of morale, and the probability increases by 10% for the next film he directs. Otherwise, he takes a hit to morale, and the probability decreases by 10% for the next film he directs. What’s the probability that a director gets at least 2 Certified Fresh films out of his first 3?"
+  },
+  {
+    "objectID": "slides/bayes-rule.html#warmup",
+    "href": "slides/bayes-rule.html#warmup",
+    "title": "Bayes Rule",
+    "section": "Warmup",
+    "text": "Warmup\nMany federal law enforcement and national security agencies use polygraph tests to screen potential hires."
+  },
+  {
+    "objectID": "slides/bayes-rule.html#whats-going-on",
+    "href": "slides/bayes-rule.html#whats-going-on",
+    "title": "Bayes Rule",
+    "section": "What’s Going On?",
+    "text": "What’s Going On?\nIt can be helpful to think about this problem in terms of frequencies."
+  },
+  {
+    "objectID": "slides/bayes-rule.html#warmup-1",
+    "href": "slides/bayes-rule.html#warmup-1",
+    "title": "Bayes Rule",
+    "section": "Warmup",
+    "text": "Warmup\nFor this exercise, let’s make the following assumptions:\n\n1% of applicants for a job at a national security agency are secretly foreign intelligence assets. You want to avoid hiring these people.\nPolygraph screening is quite good at detecting lies. If you ask someone whether they are a spy, it will correctly identify whether they are telling the truth or lying 90% of the time.\n\n\nIf an applicant fails this question on a polygraph screening, what is the probability that they are a spy?\n\nhttps://www.npr.org/2025/04/30/g-s1-63349/fbi-polygraph-lie-detector-leak-investigation"
+  },
+  {
+    "objectID": "slides/bayes-rule.html#whats-going-on-1",
+    "href": "slides/bayes-rule.html#whats-going-on-1",
+    "title": "Bayes Rule",
+    "section": "What’s Going On?",
+    "text": "What’s Going On?\nIt can be helpful to think about this problem in terms of frequencies."
+  },
+  {
+    "objectID": "slides/bayes-rule.html#whats-going-on-2",
+    "href": "slides/bayes-rule.html#whats-going-on-2",
+    "title": "Bayes Rule",
+    "section": "What’s Going On?",
+    "text": "What’s Going On?\nIt can be helpful to think about this problem in terms of frequencies."
+  },
+  {
+    "objectID": "slides/bayes-rule.html#whats-going-on-3",
+    "href": "slides/bayes-rule.html#whats-going-on-3",
+    "title": "Bayes Rule",
+    "section": "What’s Going On?",
+    "text": "What’s Going On?\nIt can be helpful to think about this problem in terms of frequencies."
+  },
+  {
+    "objectID": "slides/bayes-rule.html#whats-going-on-4",
+    "href": "slides/bayes-rule.html#whats-going-on-4",
+    "title": "Bayes Rule",
+    "section": "What’s Going On?",
+    "text": "What’s Going On?\nIt can be helpful to think about this problem in terms of frequencies."
+  },
+  {
+    "objectID": "slides/bayes-rule.html#whats-going-on-5",
+    "href": "slides/bayes-rule.html#whats-going-on-5",
+    "title": "Bayes Rule",
+    "section": "What’s Going On?",
+    "text": "What’s Going On?\nHere’s the problem as a probability tree:\n\n\n\n\n\n\n\n\n\n\n\n99%\n\n\n\n\n\n\n\n1%\n\n\n\n\n\n\n\n90%\n\n\n\n\n\n\n\n10%\n\n\n\n\n\n\n\n90%\n\n\n\n\n\n\n\n10%\n\n\n\n\n\n\n\nAll Applicants\n\n\n\n\n\n\n\nNot A Spy\n\n\n\n\n\n\n\nSpy\n\n\n\n\n\n\n\nPass Polygraph (89.1%)\n\n\n\n\n\n\n\nFail Polygraph (9.9%)\n\n\n\n\n\n\n\nFail Polygraph (0.9%)\n\n\n\n\n\n\n\nPass Polygraph (0.1%)"
+  },
+  {
+    "objectID": "slides/bayes-rule.html#whats-going-on-6",
+    "href": "slides/bayes-rule.html#whats-going-on-6",
+    "title": "Bayes Rule",
+    "section": "What’s Going On?",
+    "text": "What’s Going On?\nHere’s the problem as a probability tree:\nftxalqypq flowchart LR   A[All Applicants] --&gt; |99%|B[Not A Spy]   A --&gt; |1%|C[Spy]   B --&gt; |90%|D[\"Pass Polygraph (89.1%)\"]   B --&gt; |10%|E[\"Fail Polygraph (9.9%)\"]   C --&gt; |90%|F[\"Fail Polygraph (0.9%)\"]   C --&gt; |10%|G[\"Pass Polygraph (0.1%)\"]}"
+  },
+  {
+    "objectID": "slides/bayes-rule.html#bayes-rule",
+    "href": "slides/bayes-rule.html#bayes-rule",
+    "title": "Bayes Rule",
+    "section": "Bayes Rule",
+    "text": "Bayes Rule\nLet’s use this example to derive Bayes Rule, a formula for updating predictions in light of evidence.\n\nBefore observing any evidence from the polygraph test, our prior odds on an applicant being a spy are 1:99.\nWe observe the applicant fail the polygraph test. This result is 9 times more likely if they are a spy than if they are not a spy. Call this value the strength of evidence.\nSo after observing this evidence, our predicted odds that the applicant is a spy should be exactly 9 times higher.\nOur posterior odds are 9:99, or 1:11."
+  },
+  {
+    "objectID": "slides/bayes-rule.html#bayes-rule-1",
+    "href": "slides/bayes-rule.html#bayes-rule-1",
+    "title": "Bayes Rule",
+    "section": "Bayes Rule",
+    "text": "Bayes Rule\n\\[\n\\text{Posterior Odds} = \\text{Prior Odds} \\times \\text{Strength of Evidence}\n\\]\n\nIn our example:\n\\[\n\\text{Posterior Odds} = \\underbrace{1:99}_\\text{Prior Odds} \\times \\underbrace{9:1}_\\text{Strength of Evidence} = 1:11\n\\]\n\n\nRemember, to convert odds to probability, divide \\(\\frac{p}{p+q}\\). So our posterior probability is \\(\\frac{1}{12} \\approx 8.3\\%\\)"
+  },
+  {
+    "objectID": "slides/bayes-rule.html#practice",
+    "href": "slides/bayes-rule.html#practice",
+    "title": "Bayes Rule",
+    "section": "Practice",
+    "text": "Practice\nYou’re trying to predict whether a bill will pass the US House of Representatives.\n\nHistorically, only 10% of bills introduced get a floor vote and pass.\nAmong bills that pass the House, 60% have bipartisan cosponsors.\nAmong bills that don’t pass the House, 15% have bipartisan cosponsors.\n\n\nIf a bill has bipartisan cosponsors, what are the odds it will pass?"
+  },
+  {
+    "objectID": "slides/bayes-rule.html#takeaways",
+    "href": "slides/bayes-rule.html#takeaways",
+    "title": "Bayes Rule",
+    "section": "Takeaways",
+    "text": "Takeaways\n\nAs we discussed last time, a common mistake when making predictions is to focus too much on the details of a particular case (Inside View), ignoring prior knowledge about similar cases (Outside View).\nBayes Rule is a useful way to discipline your thinking, because it requires you to place equal weight on prior beliefs and evidence."
+  },
+  {
+    "objectID": "index.html#week-3-92",
+    "href": "index.html#week-3-92",
+    "title": "Fall 2025 Predictions",
+    "section": "Week 3 (9/2)",
+    "text": "Week 3 (9/2)"
   }
 ]
