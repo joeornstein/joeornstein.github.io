@@ -1090,5 +1090,131 @@
     "title": "Fall 2025 Predictions",
     "section": "Week 3 (9/2)",
     "text": "Week 3 (9/2)"
+  },
+  {
+    "objectID": "slides/bell-curves.html#todays-agenda",
+    "href": "slides/bell-curves.html#todays-agenda",
+    "title": "Bell Curves",
+    "section": "Today’s Agenda",
+    "text": "Today’s Agenda\n\nIntroduce the concept of probability distributions.\nDescribe the characteristics of the bell curve distribution, and the conditions under which we can use it to estimate probabilities."
+  },
+  {
+    "objectID": "slides/bell-curves.html#warmup",
+    "href": "slides/bell-curves.html#warmup",
+    "title": "Bell Curves",
+    "section": "Warmup",
+    "text": "Warmup\n\nIn an upcoming Congressional election:\n\n60% of voters plan to vote for the Republican candidate.\n40% of voters plan to vote for the Democratic candidate.\n\nA polling firm randomly calls voters in the Congressional district and asks who they plan to vote for.\n\n\nDraw a probability tree illustrating the first two voters contacted by the polling firm. What is the probability of every possible result?"
+  },
+  {
+    "objectID": "slides/bell-curves.html#warmup-1",
+    "href": "slides/bell-curves.html#warmup-1",
+    "title": "Bell Curves",
+    "section": "Warmup",
+    "text": "Warmup\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\nR\n\n\n\n\n\n\n\nD"
+  },
+  {
+    "objectID": "slides/bell-curves.html#things-to-notice",
+    "href": "slides/bell-curves.html#things-to-notice",
+    "title": "Bell Curves",
+    "section": "Things To Notice",
+    "text": "Things To Notice\n\nA poll with two responses is pretty worthless.\n\n48% of the time you get an equal number of R’s and D’s\n16% of the time, you get all D’s\n36% of the time, you get all R’s\n\nTwo big problems:\n\nThe result will be biased. More likely to be wrong in one direction than the other.\nIt also has high variance. Your result is likely to be very far from the truth."
+  },
+  {
+    "objectID": "slides/bell-curves.html#margin-of-error",
+    "href": "slides/bell-curves.html#margin-of-error",
+    "title": "Bell Curves",
+    "section": "Margin of Error",
+    "text": "Margin of Error\nHow far off should we expect it to be from the truth? \\(\\frac{0.5}{\\sqrt{n}}\\)"
+  },
+  {
+    "objectID": "slides/bell-curves.html#wrap-up",
+    "href": "slides/bell-curves.html#wrap-up",
+    "title": "Bell Curves",
+    "section": "Wrap Up",
+    "text": "Wrap Up\n\nYour outcome will fall on a bell curve if it is the sum of a large number of independent random events (Central Limit Theorem).\nThree useful numbers to remember:\n\n68% within 1\\(\\sigma\\) of the mean.\n95% within 2\\(\\sigma\\) of the mean.\n99.7% within 3\\(\\sigma\\) of the mean.\n\n\\(\\sigma = \\sqrt{\\frac{p(1-p)}{n}}\\)\nNext Time: What happens when that independence assumption is violated?"
+  },
+  {
+    "objectID": "slides/bell-curves.html#warmup-2",
+    "href": "slides/bell-curves.html#warmup-2",
+    "title": "Bell Curves",
+    "section": "Warmup",
+    "text": "Warmup\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\nR\n\n\n\n\n\n\n\nD\n\n\n\n\n\n\n\nRR (36%)\n\n\n\n\n\n\n\nRD (24%)\n\n\n\n\n\n\n\nDR (24%)\n\n\n\n\n\n\n\nDD (16%)"
+  },
+  {
+    "objectID": "slides/bell-curves.html#simplifying-assumption",
+    "href": "slides/bell-curves.html#simplifying-assumption",
+    "title": "Bell Curves",
+    "section": "Simplifying Assumption",
+    "text": "Simplifying Assumption\nThe pollster doesn’t care about the order of responses, just the counts. So we can combine some outcomes:\n\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D (36%)\n\n\n\n\n\n\n\n1R,1D (48%)\n\n\n\n\n\n\n\n0R,2D (16%)"
+  },
+  {
+    "objectID": "slides/bell-curves.html#lets-go-wild",
+    "href": "slides/bell-curves.html#lets-go-wild",
+    "title": "Bell Curves",
+    "section": "Let’s Go Wild",
+    "text": "Let’s Go Wild"
+  },
+  {
+    "objectID": "slides/bell-curves.html#after-three-poll-responses",
+    "href": "slides/bell-curves.html#after-three-poll-responses",
+    "title": "Bell Curves",
+    "section": "After Three Poll Responses",
+    "text": "After Three Poll Responses\n\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D (21.6%)\n\n\n\n\n\n\n\n2R,1D (43.2%)\n\n\n\n\n\n\n\n1R,2D (28.8%)\n\n\n\n\n\n\n\n0R,3D (6.4%)"
+  },
+  {
+    "objectID": "slides/bell-curves.html#lets-go-wild-1",
+    "href": "slides/bell-curves.html#lets-go-wild-1",
+    "title": "Bell Curves",
+    "section": "Let’s Go Wild",
+    "text": "Let’s Go Wild"
+  },
+  {
+    "objectID": "slides/bell-curves.html#things-to-notice-1",
+    "href": "slides/bell-curves.html#things-to-notice-1",
+    "title": "Bell Curves",
+    "section": "Things To Notice",
+    "text": "Things To Notice\n\nPoll result is unbiased (equally likely to be too high or too low)."
+  },
+  {
+    "objectID": "slides/bell-curves.html#increasing-poll-size",
+    "href": "slides/bell-curves.html#increasing-poll-size",
+    "title": "Bell Curves",
+    "section": "Increasing Poll Size",
+    "text": "Increasing Poll Size\nOver the next few slides, we’ll show that increasing the size of the poll \\((n)\\) does two things:\n\nWith a large enough poll, bias is eliminated.\nAs poll size increases, variance gets smaller, but never goes away entirely."
+  },
+  {
+    "objectID": "slides/bell-curves.html#three-poll-responses",
+    "href": "slides/bell-curves.html#three-poll-responses",
+    "title": "Bell Curves",
+    "section": "Three Poll Responses",
+    "text": "Three Poll Responses\n\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D (21.6%)\n\n\n\n\n\n\n\n2R,1D (43.2%)\n\n\n\n\n\n\n\n1R,2D (28.8%)\n\n\n\n\n\n\n\n0R,3D (6.4%)"
+  },
+  {
+    "objectID": "slides/bell-curves.html#four-poll-responses",
+    "href": "slides/bell-curves.html#four-poll-responses",
+    "title": "Bell Curves",
+    "section": "Four Poll Responses",
+    "text": "Four Poll Responses\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D\n\n\n\n\n\n\n\n2R,1D\n\n\n\n\n\n\n\n1R,2D\n\n\n\n\n\n\n\n0R,3D\n\n\n\n\n\n\n\n4R,0D (13%)\n\n\n\n\n\n\n\n3R,1D (34.5%)\n\n\n\n\n\n\n\n2R,2D (34.5%)\n\n\n\n\n\n\n\n1R,3D (15.4%)\n\n\n\n\n\n\n\n0R,4D (2.6%)"
+  },
+  {
+    "objectID": "slides/bell-curves.html#n3",
+    "href": "slides/bell-curves.html#n3",
+    "title": "Bell Curves",
+    "section": "\\(n=3\\)",
+    "text": "\\(n=3\\)\n\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D (21.6%)\n\n\n\n\n\n\n\n2R,1D (43.2%)\n\n\n\n\n\n\n\n1R,2D (28.8%)\n\n\n\n\n\n\n\n0R,3D (6.4%)"
+  },
+  {
+    "objectID": "slides/bell-curves.html#n4",
+    "href": "slides/bell-curves.html#n4",
+    "title": "Bell Curves",
+    "section": "\\(n=4\\)",
+    "text": "\\(n=4\\)\n\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D\n\n\n\n\n\n\n\n2R,1D\n\n\n\n\n\n\n\n1R,2D\n\n\n\n\n\n\n\n0R,3D\n\n\n\n\n\n\n\n4R,0D (13%)\n\n\n\n\n\n\n\n3R,1D (34.5%)\n\n\n\n\n\n\n\n2R,2D (34.5%)\n\n\n\n\n\n\n\n1R,3D (15.4%)\n\n\n\n\n\n\n\n0R,4D (2.6%)\n\n\n\n\n\n\n\n\n\n\n\n\nI would never make you do this by hand! This is what computers are for."
+  },
+  {
+    "objectID": "slides/bell-curves.html#n5",
+    "href": "slides/bell-curves.html#n5",
+    "title": "Bell Curves",
+    "section": "\\(n=5\\)",
+    "text": "\\(n=5\\)\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D\n\n\n\n\n\n\n\n2R,1D\n\n\n\n\n\n\n\n1R,2D\n\n\n\n\n\n\n\n0R,3D\n\n\n\n\n\n\n\n4R,0D\n\n\n\n\n\n\n\n3R,1D\n\n\n\n\n\n\n\n2R,2D\n\n\n\n\n\n\n\n1R,3D\n\n\n\n\n\n\n\n0R,4D\n\n\n\n\n\n\n\n5R,0D (7.8%)\n\n\n\n\n\n\n\n4R,1D (25.9%)\n\n\n\n\n\n\n\n3R,2D (34.6%)\n\n\n\n\n\n\n\n2R,3D (23%)\n\n\n\n\n\n\n\n1R,4D (7.7%)\n\n\n\n\n\n\n\n0R,5D (1%)"
   }
 ]
