@@ -997,8 +997,8 @@
     "objectID": "slides/bayes-rule.html#warmup",
     "href": "slides/bayes-rule.html#warmup",
     "title": "Bayes Rule",
-    "section": "Warmup",
-    "text": "Warmup\nMany federal law enforcement and national security agencies use polygraph tests to screen potential hires."
+    "section": "",
+    "text": "Many federal law enforcement and national security agencies use polygraph tests to screen potential hires."
   },
   {
     "objectID": "slides/bayes-rule.html#whats-going-on",
@@ -1012,7 +1012,7 @@
     "href": "slides/bayes-rule.html#warmup-1",
     "title": "Bayes Rule",
     "section": "Warmup",
-    "text": "Warmup\nFor this exercise, let’s make the following assumptions:\n\n1% of applicants for a job at a national security agency are secretly foreign intelligence assets. You want to avoid hiring these people.\nPolygraph screening is quite good at detecting lies. If you ask someone whether they are a spy, it will correctly identify whether they are telling the truth or lying 90% of the time.\n\n\nIf an applicant fails this question on a polygraph screening, what is the probability that they are a spy?\n\nhttps://www.npr.org/2025/04/30/g-s1-63349/fbi-polygraph-lie-detector-leak-investigation"
+    "text": "Warmup\nFor this exercise, let’s make the following assumptions:\n\n1% of applicants for a job at a national security agency are secretly foreign intelligence assets. You want to avoid hiring these people.\nPolygraph screening is quite good at detecting lies. If you ask someone whether they are a spy, it will correctly identify whether they are telling the truth or lying 90% of the time.\n\n. . .\nIf an applicant fails this question on a polygraph screening, what is the probability that they are a spy?\n\nhttps://www.npr.org/2025/04/30/g-s1-63349/fbi-polygraph-lie-detector-leak-investigation"
   },
   {
     "objectID": "slides/bayes-rule.html#whats-going-on-1",
@@ -1047,7 +1047,7 @@
     "href": "slides/bayes-rule.html#whats-going-on-5",
     "title": "Bayes Rule",
     "section": "What’s Going On?",
-    "text": "What’s Going On?\nHere’s the problem as a probability tree:\n\n\n\n\n\n\n\n\n\n\n\n99%\n\n\n\n\n\n\n\n1%\n\n\n\n\n\n\n\n90%\n\n\n\n\n\n\n\n10%\n\n\n\n\n\n\n\n90%\n\n\n\n\n\n\n\n10%\n\n\n\n\n\n\n\nAll Applicants\n\n\n\n\n\n\n\nNot A Spy\n\n\n\n\n\n\n\nSpy\n\n\n\n\n\n\n\nPass Polygraph (89.1%)\n\n\n\n\n\n\n\nFail Polygraph (9.9%)\n\n\n\n\n\n\n\nFail Polygraph (0.9%)\n\n\n\n\n\n\n\nPass Polygraph (0.1%)"
+    "text": "What’s Going On?\nHere’s the problem as a probability tree:\n\n\n\n\n\n\n\n\n\n99%\n\n\n\n1%\n\n\n\n90%\n\n\n\n10%\n\n\n\n90%\n\n\n\n10%\n\n\n\nAll Applicants\n\n\n\nNot A Spy\n\n\n\nSpy\n\n\n\nPass Polygraph (89.1%)\n\n\n\nFail Polygraph (9.9%)\n\n\n\nFail Polygraph (0.9%)\n\n\n\nPass Polygraph (0.1%)"
   },
   {
     "objectID": "slides/bayes-rule.html#whats-going-on-6",
@@ -1068,14 +1068,14 @@
     "href": "slides/bayes-rule.html#bayes-rule-1",
     "title": "Bayes Rule",
     "section": "Bayes Rule",
-    "text": "Bayes Rule\n\\[\n\\text{Posterior Odds} = \\text{Prior Odds} \\times \\text{Strength of Evidence}\n\\]\n\nIn our example:\n\\[\n\\text{Posterior Odds} = \\underbrace{1:99}_\\text{Prior Odds} \\times \\underbrace{9:1}_\\text{Strength of Evidence} = 1:11\n\\]\n\n\nRemember, to convert odds to probability, divide \\(\\frac{p}{p+q}\\). So our posterior probability is \\(\\frac{1}{12} \\approx 8.3\\%\\)"
+    "text": "Bayes Rule\n\\[\n\\text{Posterior Odds} = \\text{Prior Odds} \\times \\text{Strength of Evidence}\n\\]\n. . .\nIn our example:\n\\[\n\\text{Posterior Odds} = \\underbrace{1:99}_\\text{Prior Odds} \\times \\underbrace{9:1}_\\text{Strength of Evidence} = 1:11\n\\]\n. . .\nRemember, to convert odds to probability, divide \\(\\frac{p}{p+q}\\). So our posterior probability is \\(\\frac{1}{12} \\approx 8.3\\%\\)"
   },
   {
     "objectID": "slides/bayes-rule.html#practice",
     "href": "slides/bayes-rule.html#practice",
     "title": "Bayes Rule",
     "section": "Practice",
-    "text": "Practice\nYou’re trying to predict whether a bill will pass the US House of Representatives.\n\nHistorically, only 10% of bills introduced get a floor vote and pass.\nAmong bills that pass the House, 60% have bipartisan cosponsors.\nAmong bills that don’t pass the House, 15% have bipartisan cosponsors.\n\n\nIf a bill has bipartisan cosponsors, what are the odds it will pass?"
+    "text": "Practice\nYou’re trying to predict whether a bill will pass the US House of Representatives.\n\nHistorically, only 10% of bills introduced get a floor vote and pass.\nAmong bills that pass the House, 60% have bipartisan cosponsors.\nAmong bills that don’t pass the House, 15% have bipartisan cosponsors.\n\n. . .\nIf a bill has bipartisan cosponsors, what are the odds it will pass?"
   },
   {
     "objectID": "slides/bayes-rule.html#takeaways",
@@ -1096,56 +1096,56 @@
     "href": "slides/bell-curves.html#todays-agenda",
     "title": "Bell Curves",
     "section": "Today’s Agenda",
-    "text": "Today’s Agenda\n\nIntroduce the concept of probability distributions.\nDescribe the characteristics of the bell curve distribution, and the conditions under which we can use it to estimate probabilities."
+    "text": "Today’s Agenda\n\nIntroduce the bell curve probability distribution\n\nAKA the normal distribution or the Gaussian distribution\n\nUnderstand the conditions that create bell curves (the Central Limit Theorem)\nExplore some useful features of bell curves for making predictions"
   },
   {
     "objectID": "slides/bell-curves.html#warmup",
     "href": "slides/bell-curves.html#warmup",
     "title": "Bell Curves",
     "section": "Warmup",
-    "text": "Warmup\n\nIn an upcoming Congressional election:\n\n60% of voters plan to vote for the Republican candidate.\n40% of voters plan to vote for the Democratic candidate.\n\nA polling firm randomly calls voters in the Congressional district and asks who they plan to vote for.\n\n\nDraw a probability tree illustrating the first two voters contacted by the polling firm. What is the probability of every possible result?"
+    "text": "Warmup\n\nIn an upcoming Congressional election:\n\n60% of voters plan to vote for the Republican candidate.\n40% of voters plan to vote for the Democratic candidate.\n\nA polling firm randomly calls voters in the Congressional district and asks who they plan to vote for.\n\n\nDraw a probability tree representing the first two voters contacted by the polling firm. What is the probability of every possible poll result?"
   },
   {
     "objectID": "slides/bell-curves.html#warmup-1",
     "href": "slides/bell-curves.html#warmup-1",
     "title": "Bell Curves",
     "section": "Warmup",
-    "text": "Warmup\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\nR\n\n\n\n\n\n\n\nD"
+    "text": "Warmup\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\nR\n\n\n\nD"
   },
   {
     "objectID": "slides/bell-curves.html#things-to-notice",
     "href": "slides/bell-curves.html#things-to-notice",
     "title": "Bell Curves",
     "section": "Things To Notice",
-    "text": "Things To Notice\n\nA poll with two responses is pretty worthless.\n\n48% of the time you get an equal number of R’s and D’s\n16% of the time, you get all D’s\n36% of the time, you get all R’s\n\nTwo big problems:\n\nThe result will be biased. More likely to be wrong in one direction than the other.\nIt also has high variance. Your result is likely to be very far from the truth."
+    "text": "Things To Notice\n\nA poll with two responses is pretty worthless.\n\n48% of the time you get an equal number of R’s and D’s\n16% of the time, you get all D’s\n36% of the time, you get all R’s\n\nTwo big problems:\n\nThe poll is biased. Result is more likely to be wrong in one direction than the other.\nIt also has high variance. Result is, on average, very far from the truth."
   },
   {
     "objectID": "slides/bell-curves.html#margin-of-error",
     "href": "slides/bell-curves.html#margin-of-error",
     "title": "Bell Curves",
     "section": "Margin of Error",
-    "text": "Margin of Error\nHow far off should we expect it to be from the truth? \\(\\frac{0.5}{\\sqrt{n}}\\)"
+    "text": "Margin of Error\n\nDefine the margin of error as the range within which you’re 95% sure your polling error will fall.\nThe back-of-the-envelope approximation of a poll’s margin of error is \\(\\frac{100\\%}{\\sqrt{n}}\\).\n\nSo, for a poll with 100 respondents, margin of error is roughly \\(\\frac{100\\%}{\\sqrt{100}} = 10\\%\\).\nPractice: what’s the margin of error for a poll with 400 respondents?"
   },
   {
     "objectID": "slides/bell-curves.html#wrap-up",
     "href": "slides/bell-curves.html#wrap-up",
     "title": "Bell Curves",
     "section": "Wrap Up",
-    "text": "Wrap Up\n\nYour outcome will fall on a bell curve if it is the sum of a large number of independent random events (Central Limit Theorem).\nThree useful numbers to remember:\n\n68% within 1\\(\\sigma\\) of the mean.\n95% within 2\\(\\sigma\\) of the mean.\n99.7% within 3\\(\\sigma\\) of the mean.\n\n\\(\\sigma = \\sqrt{\\frac{p(1-p)}{n}}\\)\nNext Time: What happens when that independence assumption is violated?"
+    "text": "Wrap Up\n\nYour outcome will fall on a bell curve if it is the sum of a large number of independent random events (Central Limit Theorem).\nIf the theorem holds, it’s great for making predictions, because bell curves are easy to work with.\n\nIn a few weeks, we’ll talk about the ways in which real-world polls fall short of this idealized model.\n\nNext Time: What happens when that independence assumption is violated?"
   },
   {
     "objectID": "slides/bell-curves.html#warmup-2",
     "href": "slides/bell-curves.html#warmup-2",
     "title": "Bell Curves",
     "section": "Warmup",
-    "text": "Warmup\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\nR\n\n\n\n\n\n\n\nD\n\n\n\n\n\n\n\nRR (36%)\n\n\n\n\n\n\n\nRD (24%)\n\n\n\n\n\n\n\nDR (24%)\n\n\n\n\n\n\n\nDD (16%)"
+    "text": "Warmup\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\nR\n\n\n\nD\n\n\n\nRR (36%)\n\n\n\nRD (24%)\n\n\n\nDR (24%)\n\n\n\nDD (16%)"
   },
   {
     "objectID": "slides/bell-curves.html#simplifying-assumption",
     "href": "slides/bell-curves.html#simplifying-assumption",
     "title": "Bell Curves",
     "section": "Simplifying Assumption",
-    "text": "Simplifying Assumption\nThe pollster doesn’t care about the order of responses, just the counts. So we can combine some outcomes:\n\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D (36%)\n\n\n\n\n\n\n\n1R,1D (48%)\n\n\n\n\n\n\n\n0R,2D (16%)"
+    "text": "Simplifying Assumption\nBecause we don’t care about the order of responses (just the counts), we can combine some outcomes:\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\n1R,0D\n\n\n\n0R,1D\n\n\n\n2R,0D (36%)\n\n\n\n1R,1D (48%)\n\n\n\n0R,2D (16%)"
   },
   {
     "objectID": "slides/bell-curves.html#lets-go-wild",
@@ -1173,14 +1173,14 @@
     "href": "slides/bell-curves.html#things-to-notice-1",
     "title": "Bell Curves",
     "section": "Things To Notice",
-    "text": "Things To Notice\n\nPoll result is unbiased (equally likely to be too high or too low)."
+    "text": "Things To Notice\n\nWith a large enough sample, the poll results are unbiased. Centered on the truth, and equally likely to be too high or too low.\nVariance shrinks with poll size.\n\nIn a poll of 50 voters, there’s a strong chance you get a result off by 10 percentage points and call the election incorrectly.\nIn a poll with 500 voters, it’s practically impossible that the result will be off by more than 10 percentage points."
   },
   {
     "objectID": "slides/bell-curves.html#increasing-poll-size",
     "href": "slides/bell-curves.html#increasing-poll-size",
     "title": "Bell Curves",
     "section": "Increasing Poll Size",
-    "text": "Increasing Poll Size\nOver the next few slides, we’ll show that increasing the size of the poll \\((n)\\) does two things:\n\nWith a large enough poll, bias is eliminated.\nAs poll size increases, variance gets smaller, but never goes away entirely."
+    "text": "Increasing Poll Size\nOver the next few slides, we’ll show that increasing the size of the poll \\((n)\\) does three things:\n\nEliminates bias\nReduces variance\nGives the polling errors a particular (bell curve) shape."
   },
   {
     "objectID": "slides/bell-curves.html#three-poll-responses",
@@ -1200,21 +1200,105 @@
     "objectID": "slides/bell-curves.html#n3",
     "href": "slides/bell-curves.html#n3",
     "title": "Bell Curves",
-    "section": "\\(n=3\\)",
-    "text": "\\(n=3\\)\n\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D (21.6%)\n\n\n\n\n\n\n\n2R,1D (43.2%)\n\n\n\n\n\n\n\n1R,2D (28.8%)\n\n\n\n\n\n\n\n0R,3D (6.4%)"
+    "section": "n=3",
+    "text": "n=3\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\n1R,0D\n\n\n\n0R,1D\n\n\n\n2R,0D\n\n\n\n1R,1D\n\n\n\n0R,2D\n\n\n\n3R,0D (21.6%)\n\n\n\n2R,1D (43.2%)\n\n\n\n1R,2D (28.8%)\n\n\n\n0R,3D (6.4%)"
   },
   {
     "objectID": "slides/bell-curves.html#n4",
     "href": "slides/bell-curves.html#n4",
     "title": "Bell Curves",
-    "section": "\\(n=4\\)",
-    "text": "\\(n=4\\)\n\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D\n\n\n\n\n\n\n\n2R,1D\n\n\n\n\n\n\n\n1R,2D\n\n\n\n\n\n\n\n0R,3D\n\n\n\n\n\n\n\n4R,0D (13%)\n\n\n\n\n\n\n\n3R,1D (34.5%)\n\n\n\n\n\n\n\n2R,2D (34.5%)\n\n\n\n\n\n\n\n1R,3D (15.4%)\n\n\n\n\n\n\n\n0R,4D (2.6%)\n\n\n\n\n\n\n\n\n\n\n\n\nI would never make you do this by hand! This is what computers are for."
+    "section": "n=4",
+    "text": "n=4\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\n1R,0D\n\n\n\n0R,1D\n\n\n\n2R,0D\n\n\n\n1R,1D\n\n\n\n0R,2D\n\n\n\n3R,0D\n\n\n\n2R,1D\n\n\n\n1R,2D\n\n\n\n0R,3D\n\n\n\n4R,0D (13%)\n\n\n\n3R,1D (34.5%)\n\n\n\n2R,2D (34.5%)\n\n\n\n1R,3D (15.4%)\n\n\n\n0R,4D (2.6%)\n\n\n\n\n\n\n\n\n\n\nI would never make you do this by hand."
   },
   {
     "objectID": "slides/bell-curves.html#n5",
     "href": "slides/bell-curves.html#n5",
     "title": "Bell Curves",
-    "section": "\\(n=5\\)",
-    "text": "\\(n=5\\)\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D\n\n\n\n\n\n\n\n2R,1D\n\n\n\n\n\n\n\n1R,2D\n\n\n\n\n\n\n\n0R,3D\n\n\n\n\n\n\n\n4R,0D\n\n\n\n\n\n\n\n3R,1D\n\n\n\n\n\n\n\n2R,2D\n\n\n\n\n\n\n\n1R,3D\n\n\n\n\n\n\n\n0R,4D\n\n\n\n\n\n\n\n5R,0D (7.8%)\n\n\n\n\n\n\n\n4R,1D (25.9%)\n\n\n\n\n\n\n\n3R,2D (34.6%)\n\n\n\n\n\n\n\n2R,3D (23%)\n\n\n\n\n\n\n\n1R,4D (7.7%)\n\n\n\n\n\n\n\n0R,5D (1%)"
+    "section": "n=5",
+    "text": "n=5\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\n1R,0D\n\n\n\n0R,1D\n\n\n\n2R,0D\n\n\n\n1R,1D\n\n\n\n0R,2D\n\n\n\n3R,0D\n\n\n\n2R,1D\n\n\n\n1R,2D\n\n\n\n0R,3D\n\n\n\n4R,0D\n\n\n\n3R,1D\n\n\n\n2R,2D\n\n\n\n1R,3D\n\n\n\n0R,4D\n\n\n\n5R,0D (7.8%)\n\n\n\n4R,1D (25.9%)\n\n\n\n3R,2D (34.6%)\n\n\n\n2R,3D (23%)\n\n\n\n1R,4D (7.7%)\n\n\n\n0R,5D (1%)\n\n\n\n\n\n\n\n\n\nIntuition Check: Why is the probability of 3R,2D so big and the probability of 0R,5D so small?"
+  },
+  {
+    "objectID": "slides/bell-curves.html#bell-curves-in-the-wild",
+    "href": "slides/bell-curves.html#bell-curves-in-the-wild",
+    "title": "Bell Curves",
+    "section": "Bell Curves In The Wild",
+    "text": "Bell Curves In The Wild\nHuman height is the sum of a large number of independent genetic and environmental factors, so…"
+  },
+  {
+    "objectID": "slides/bell-curves.html#bell-curves-in-the-wild-1",
+    "href": "slides/bell-curves.html#bell-curves-in-the-wild-1",
+    "title": "Bell Curves",
+    "section": "Bell Curves In The Wild",
+    "text": "Bell Curves In The Wild\nHuman height is the sum of a large number of independent genetic and environmental factors, so… . . ."
+  },
+  {
+    "objectID": "slides/bell-curves.html#bell-curves-in-the-wild-2",
+    "href": "slides/bell-curves.html#bell-curves-in-the-wild-2",
+    "title": "Bell Curves",
+    "section": "Bell Curves In The Wild",
+    "text": "Bell Curves In The Wild\nStandardized test scores are the sum of a large number of independent question scores, so…"
+  },
+  {
+    "objectID": "slides/bell-curves.html#n6",
+    "href": "slides/bell-curves.html#n6",
+    "title": "Bell Curves",
+    "section": "n=6",
+    "text": "n=6\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\n1R,0D\n\n\n\n0R,1D\n\n\n\n2R,0D\n\n\n\n1R,1D\n\n\n\n0R,2D\n\n\n\n3R,0D\n\n\n\n2R,1D\n\n\n\n1R,2D\n\n\n\n0R,3D\n\n\n\n4R,0D\n\n\n\n3R,1D\n\n\n\n2R,2D\n\n\n\n1R,3D\n\n\n\n0R,4D\n\n\n\n5R,0D\n\n\n\n4R,1D\n\n\n\n3R,2D\n\n\n\n2R,3D\n\n\n\n1R,4D\n\n\n\n0R,5D\n\n\n\n6D,0R (4.7%)\n\n\n\n5D,1R (18.7%)\n\n\n\n4D,2R (31.1%)\n\n\n\n3D,3R (27.6%)\n\n\n\n2D,4R (13.8%)\n\n\n\n1D,5R (3.7%)\n\n\n\n0D,6R (0.4%)"
+  },
+  {
+    "objectID": "slides/bell-curves.html#central-limit-theorem",
+    "href": "slides/bell-curves.html#central-limit-theorem",
+    "title": "Bell Curves",
+    "section": "Central Limit Theorem",
+    "text": "Central Limit Theorem\n\nAs poll size gets larger, the shape of the errors takes on that gorgeous bell curve shape.\nThis is one of the most foundational ideas in all of statistics.\n\n\nCentral Limit Theorem\n\nIf an outcome is the sum of a large number of independent random events, then it will fall on a bell curve."
+  },
+  {
+    "objectID": "slides/bell-curves.html#bell-curves",
+    "href": "slides/bell-curves.html#bell-curves",
+    "title": "Bell Curves",
+    "section": "Bell Curves",
+    "text": "Bell Curves\nWhen should you expect that\n\nCentral Limit Theorem\n\nIf an outcome is the sum of a large number of independent random events, then it will fall on a bell curve.\n\n\n\nNote the three conditions in that definition"
+  },
+  {
+    "objectID": "slides/bell-curves.html#section",
+    "href": "slides/bell-curves.html#section",
+    "title": "Bell Curves",
+    "section": "",
+    "text": "We can plot these compound probabilities on a bar chart."
+  },
+  {
+    "objectID": "slides/bell-curves.html#bell-curves-in-the-wild-3",
+    "href": "slides/bell-curves.html#bell-curves-in-the-wild-3",
+    "title": "Bell Curves",
+    "section": "Bell Curves In The Wild",
+    "text": "Bell Curves In The Wild\nCollege football scores are the sum of a large number of independent successes / failures to get the ball to the other end of the field, so…\n\n\n\n\nCollege football scores (relative to the Vegas “spread”)"
+  },
+  {
+    "objectID": "slides/bell-curves.html#bell-curves-are-nice",
+    "href": "slides/bell-curves.html#bell-curves-are-nice",
+    "title": "Bell Curves",
+    "section": "Bell Curves Are Nice",
+    "text": "Bell Curves Are Nice\n\nWhen outcomes fall on a bell curve, it makes prediction a lot easier.\nThat’s because outcomes are very unlikely to stray far from their expected values."
+  },
+  {
+    "objectID": "slides/bell-curves.html#bell-curves-are-nice-1",
+    "href": "slides/bell-curves.html#bell-curves-are-nice-1",
+    "title": "Bell Curves",
+    "section": "Bell Curves Are Nice",
+    "text": "Bell Curves Are Nice\n95% of poll results will be one of the red bars."
+  },
+  {
+    "objectID": "slides/bell-curves.html#bell-curves-are-nice-2",
+    "href": "slides/bell-curves.html#bell-curves-are-nice-2",
+    "title": "Bell Curves",
+    "section": "Bell Curves Are Nice",
+    "text": "Bell Curves Are Nice\n95% of poll results will be one of the red bars."
+  },
+  {
+    "objectID": "slides/bayes-rule.html",
+    "href": "slides/bayes-rule.html",
+    "title": "Bayes Rule",
+    "section": "",
+    "text": "Many federal law enforcement and national security agencies use polygraph tests to screen potential hires."
   }
 ]
