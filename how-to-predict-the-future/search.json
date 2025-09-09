@@ -1307,5 +1307,327 @@
     "title": "Fall 2025 Predictions",
     "section": "Leaderboard",
     "text": "Leaderboard\n\n\n\n\n\nName\nPredictions Made\n\n\n\n\nAkshara Singh\n3\n\n\nAlika Otero-Ricalde\n4\n\n\nAlizah Mudaliar\n5\n\n\nAmanda Neighbour\n5\n\n\nAna Valencia\n3\n\n\nAnna Barton-Caucci\n5\n\n\nAnna Kneser\n5\n\n\nArshia Charkhian\n4\n\n\nBlake Martin\n5\n\n\nBreanne Talley\n4\n\n\nCaleb Lux\n5\n\n\nCaroline Mattox\n5\n\n\nChris Haswell\n5\n\n\nCierra Green\n5\n\n\nCrowd\n5\n\n\nElizabeth Nelson\n4\n\n\nEllie Null\n5\n\n\nFrancesca Mariano\n4\n\n\nHunter Murray\n5\n\n\nJack Lutz\n2\n\n\nJackson Bost\n5\n\n\nJames Hunter Darke\n3\n\n\nJhaycee Barnes\n5\n\n\nJoe Ornstein\n5\n\n\nKira Fleischer\n5\n\n\nKristoffer Fields\n5\n\n\nLiz Yancey\n5\n\n\nManuv Datta\n3\n\n\nMateo Ceron\n5\n\n\nNic Curtis\n5\n\n\nOwen Johnston\n4\n\n\nPaul Frilingos\n5\n\n\nRaquel Beatriz Caldas Laranjeira\n5\n\n\nReese Fabritius\n5\n\n\nRuhi Doddamani\n4\n\n\nRyan Marx\n5\n\n\nSade Ezekiel\n5\n\n\nSarah Kate Maher\n5\n\n\nSasha Mahtani\n5\n\n\nShaheer Ul-Islam\n4\n\n\nSierra Cross-Thompson\n2\n\n\nZafar Ali\n5"
+  },
+  {
+    "objectID": "slides/long-tails.html#todays-agenda",
+    "href": "slides/long-tails.html#todays-agenda",
+    "title": "Long Tails",
+    "section": "Today’s Agenda",
+    "text": "Today’s Agenda\n\nReview the Central Limit Theorem (CLT)\nDescribe the problem of tail risk\nConsider when the assumptions of CLT may be violated\nIntroduce long tail probability distributions"
+  },
+  {
+    "objectID": "slides/long-tails.html#warmup",
+    "href": "slides/long-tails.html#warmup",
+    "title": "Long Tails",
+    "section": "Warmup",
+    "text": "Warmup\n\nUsing the definition of the Central Limit Theorem, explain why the Galton Board produces a bell curve shape."
+  },
+  {
+    "objectID": "slides/long-tails.html#tail-risk",
+    "href": "slides/long-tails.html#tail-risk",
+    "title": "Long Tails",
+    "section": "Tail Risk",
+    "text": "Tail Risk\n\nA common forecasting problem is to try to quantify “tail risk”. What’s the probability of an extreme result, far outside what we ordinarily expect?\nLast time, we discussed the margin of error, which is a measure of tail risk in political polling.\nBut this type of problem crops up everywhere: financial analysis, military planning, emergency management, etc."
+  },
+  {
+    "objectID": "slides/long-tails.html#useful-rule-of-thumb",
+    "href": "slides/long-tails.html#useful-rule-of-thumb",
+    "title": "Long Tails",
+    "section": "Useful Rule of Thumb",
+    "text": "Useful Rule of Thumb\n\n\n\n\n\nStandard deviation \\((\\sigma)\\) is a measure of the spread of the distribution. It measures how far, on average, observations lie from their expected value.\nA “2 sigma” outcome should happen only 5% of the time.\nA “3 sigma” outcome should happen only 0.3% of the time!"
+  },
+  {
+    "objectID": "slides/long-tails.html#financial-markets-example",
+    "href": "slides/long-tails.html#financial-markets-example",
+    "title": "Long Tails",
+    "section": "Financial Markets Example",
+    "text": "Financial Markets Example"
+  },
+  {
+    "objectID": "slides/long-tails.html#financial-markets-example-1",
+    "href": "slides/long-tails.html#financial-markets-example-1",
+    "title": "Long Tails",
+    "section": "Financial Markets Example",
+    "text": "Financial Markets Example\n\n\n\n\n\n\n\n\n\n\n\n\nIt…looks like a bell curve?\n\n\\(\\sigma =\\) 0.84\nSo we should expect price movements greater than 1.68% only on about 1 in every 20 trading days.\nAnd that’s basically true! On 94% of trading days, price movements are within that range."
+  },
+  {
+    "objectID": "slides/long-tails.html#so-whats-the-problem",
+    "href": "slides/long-tails.html#so-whats-the-problem",
+    "title": "Long Tails",
+    "section": "So what’s the problem?",
+    "text": "So what’s the problem?"
+  },
+  {
+    "objectID": "slides/long-tails.html#bell-curves-have-low-tail-risk",
+    "href": "slides/long-tails.html#bell-curves-have-low-tail-risk",
+    "title": "Long Tails",
+    "section": "Bell Curves Have Low Tail Risk",
+    "text": "Bell Curves Have Low Tail Risk\n\n\n\n\n\nStandard deviation \\((\\sigma)\\) is a measure of the spread of the distribution. It measures how far, on average, observations lie from their expected value.\nA “2 sigma” event should happen only 5% of the time.\nA “3 sigma” event should happen only 0.3% of the time."
+  },
+  {
+    "objectID": "slides/long-tails.html#so-whats-the-problem-1",
+    "href": "slides/long-tails.html#so-whats-the-problem-1",
+    "title": "Long Tails",
+    "section": "So what’s the problem?",
+    "text": "So what’s the problem?"
+  },
+  {
+    "objectID": "slides/long-tails.html#long-tails",
+    "href": "slides/long-tails.html#long-tails",
+    "title": "Long Tails",
+    "section": "Long Tails",
+    "text": "Long Tails\n\nOn March 16, 2020 the S&P 500 index dropped 11.98%.\nThis was a “14 sigma” event.\nThe probability of such an event, according to the standard bell curve, is approximately 0.0000000000000000000000000000000000000000007793537%.\nTo express that somewhat dramatically: if the New York Stock Exchange had operated every single day since the birth of the universe 13.8 billion years ago, we still wouldn’t expect to see a price movement that large.\n\n\n3.9282933^{-32}"
+  },
+  {
+    "objectID": "slides/long-tails.html#long-tails-1",
+    "href": "slides/long-tails.html#long-tails-1",
+    "title": "Long Tails",
+    "section": "Long Tails",
+    "text": "Long Tails\n\nSo, financial markets are clearly have greater tail risk than a bell curve would expect (Taleb 2007).\nDiscuss: Why do you think that is? Which part of the Central Limit Theorem is violated here?\nIn the rest of the lecture, we’ll discuss two types of violations, and the long tail distributions they generate."
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-1-multiplicative-processes",
+    "href": "slides/long-tails.html#violation-1-multiplicative-processes",
+    "title": "Long Tails",
+    "section": "Violation 1: Multiplicative Processes",
+    "text": "Violation 1: Multiplicative Processes\n\nImagine a group of gamblers who each start with $100.\nThey all make a series of wagers that either cause them to win or lose 10% of their money, with equal probability.\nWhat will the wealth distribution look like after a large number of these gambles?\n\nAs in CLT, wealth is the result of a large number of independent random events.\nBut wealth is the product of these events, not the sum."
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-1-multiplicative-processes-1",
+    "href": "slides/long-tails.html#violation-1-multiplicative-processes-1",
+    "title": "Long Tails",
+    "section": "Violation 1: Multiplicative Processes",
+    "text": "Violation 1: Multiplicative Processes"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-1-multiplicative-processes-2",
+    "href": "slides/long-tails.html#violation-1-multiplicative-processes-2",
+    "title": "Long Tails",
+    "section": "Violation 1: Multiplicative Processes",
+    "text": "Violation 1: Multiplicative Processes"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-1-multiplicative-processes-3",
+    "href": "slides/long-tails.html#violation-1-multiplicative-processes-3",
+    "title": "Long Tails",
+    "section": "Violation 1: Multiplicative Processes",
+    "text": "Violation 1: Multiplicative Processes"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-1-multiplicative-processes-4",
+    "href": "slides/long-tails.html#violation-1-multiplicative-processes-4",
+    "title": "Long Tails",
+    "section": "Violation 1: Multiplicative Processes",
+    "text": "Violation 1: Multiplicative Processes"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-1-multiplicative-processes-5",
+    "href": "slides/long-tails.html#violation-1-multiplicative-processes-5",
+    "title": "Long Tails",
+    "section": "Violation 1: Multiplicative Processes",
+    "text": "Violation 1: Multiplicative Processes"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-1-multiplicative-processes-6",
+    "href": "slides/long-tails.html#violation-1-multiplicative-processes-6",
+    "title": "Long Tails",
+    "section": "Violation 1: Multiplicative Processes",
+    "text": "Violation 1: Multiplicative Processes"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-1-multiplicative-processes-7",
+    "href": "slides/long-tails.html#violation-1-multiplicative-processes-7",
+    "title": "Long Tails",
+    "section": "Violation 1: Multiplicative Processes",
+    "text": "Violation 1: Multiplicative Processes"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-1-multiplicative-processes-8",
+    "href": "slides/long-tails.html#violation-1-multiplicative-processes-8",
+    "title": "Long Tails",
+    "section": "Violation 1: Multiplicative Processes",
+    "text": "Violation 1: Multiplicative Processes"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-1-multiplicative-processes-9",
+    "href": "slides/long-tails.html#violation-1-multiplicative-processes-9",
+    "title": "Long Tails",
+    "section": "Violation 1: Multiplicative Processes",
+    "text": "Violation 1: Multiplicative Processes"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-1-multiplicative-processes-10",
+    "href": "slides/long-tails.html#violation-1-multiplicative-processes-10",
+    "title": "Long Tails",
+    "section": "Violation 1: Multiplicative Processes",
+    "text": "Violation 1: Multiplicative Processes"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-1-multiplicative-processes-11",
+    "href": "slides/long-tails.html#violation-1-multiplicative-processes-11",
+    "title": "Long Tails",
+    "section": "Violation 1: Multiplicative Processes",
+    "text": "Violation 1: Multiplicative Processes"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-1-multiplicative-processes-12",
+    "href": "slides/long-tails.html#violation-1-multiplicative-processes-12",
+    "title": "Long Tails",
+    "section": "Violation 1: Multiplicative Processes",
+    "text": "Violation 1: Multiplicative Processes"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-1-multiplicative-processes-13",
+    "href": "slides/long-tails.html#violation-1-multiplicative-processes-13",
+    "title": "Long Tails",
+    "section": "Violation 1: Multiplicative Processes",
+    "text": "Violation 1: Multiplicative Processes"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-1-multiplicative-processes-14",
+    "href": "slides/long-tails.html#violation-1-multiplicative-processes-14",
+    "title": "Long Tails",
+    "section": "Violation 1: Multiplicative Processes",
+    "text": "Violation 1: Multiplicative Processes"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-1-multiplicative-processes-15",
+    "href": "slides/long-tails.html#violation-1-multiplicative-processes-15",
+    "title": "Long Tails",
+    "section": "Violation 1: Multiplicative Processes",
+    "text": "Violation 1: Multiplicative Processes"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-1-multiplicative-processes-16",
+    "href": "slides/long-tails.html#violation-1-multiplicative-processes-16",
+    "title": "Long Tails",
+    "section": "Violation 1: Multiplicative Processes",
+    "text": "Violation 1: Multiplicative Processes\nThis is called a lognormal distribution, because here’s what it looks like on a logarithmic scale:"
+  },
+  {
+    "objectID": "slides/long-tails.html#lognormal-distributions",
+    "href": "slides/long-tails.html#lognormal-distributions",
+    "title": "Long Tails",
+    "section": "Lognormal Distributions",
+    "text": "Lognormal Distributions\n\nLognormal distributions are common when outcomes are the result of multiplicative growth over time.\nFor example, the distribution of city sizes in the United States."
+  },
+  {
+    "objectID": "slides/long-tails.html#lognormal-distributions-1",
+    "href": "slides/long-tails.html#lognormal-distributions-1",
+    "title": "Long Tails",
+    "section": "Lognormal Distributions",
+    "text": "Lognormal Distributions"
+  },
+  {
+    "objectID": "slides/long-tails.html#lognormal-distributions-2",
+    "href": "slides/long-tails.html#lognormal-distributions-2",
+    "title": "Long Tails",
+    "section": "Lognormal Distributions",
+    "text": "Lognormal Distributions"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-2-interdependence",
+    "href": "slides/long-tails.html#violation-2-interdependence",
+    "title": "Long Tails",
+    "section": "Violation 2: Interdependence",
+    "text": "Violation 2: Interdependence\n\nNext, let’s consider what happens when the independence assumption of CLT is violated.\nImagine a process of students forming clubs.\nEach student can choose either to start a new club or join an existing club.\nThis process exhibits “preferential attachment”. You’re more likely to join a popular club.\nSo club size is the sum of a large number of student choices.\nBut these choices are not independent. A club is more likely to grow if it’s already popular."
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-2-interdependence-1",
+    "href": "slides/long-tails.html#violation-2-interdependence-1",
+    "title": "Long Tails",
+    "section": "Violation 2: Interdependence",
+    "text": "Violation 2: Interdependence"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-2-interdependence-2",
+    "href": "slides/long-tails.html#violation-2-interdependence-2",
+    "title": "Long Tails",
+    "section": "Violation 2: Interdependence",
+    "text": "Violation 2: Interdependence"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-2-interdependence-3",
+    "href": "slides/long-tails.html#violation-2-interdependence-3",
+    "title": "Long Tails",
+    "section": "Violation 2: Interdependence",
+    "text": "Violation 2: Interdependence"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-2-interdependence-4",
+    "href": "slides/long-tails.html#violation-2-interdependence-4",
+    "title": "Long Tails",
+    "section": "Violation 2: Interdependence",
+    "text": "Violation 2: Interdependence"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-2-interdependence-5",
+    "href": "slides/long-tails.html#violation-2-interdependence-5",
+    "title": "Long Tails",
+    "section": "Violation 2: Interdependence",
+    "text": "Violation 2: Interdependence"
+  },
+  {
+    "objectID": "slides/long-tails.html#violation-2-interdependence-6",
+    "href": "slides/long-tails.html#violation-2-interdependence-6",
+    "title": "Long Tails",
+    "section": "Violation 2: Interdependence",
+    "text": "Violation 2: Interdependence"
+  },
+  {
+    "objectID": "slides/long-tails.html#power-laws",
+    "href": "slides/long-tails.html#power-laws",
+    "title": "Long Tails",
+    "section": "Power Laws",
+    "text": "Power Laws\nDistributions generated by this type of process are called power laws. They have a very distinct shape."
+  },
+  {
+    "objectID": "slides/long-tails.html#power-laws-1",
+    "href": "slides/long-tails.html#power-laws-1",
+    "title": "Long Tails",
+    "section": "Power Laws",
+    "text": "Power Laws"
+  },
+  {
+    "objectID": "slides/long-tails.html#power-laws-2",
+    "href": "slides/long-tails.html#power-laws-2",
+    "title": "Long Tails",
+    "section": "Power Laws",
+    "text": "Power Laws"
+  },
+  {
+    "objectID": "slides/long-tails.html#power-laws-3",
+    "href": "slides/long-tails.html#power-laws-3",
+    "title": "Long Tails",
+    "section": "Power Laws",
+    "text": "Power Laws"
+  },
+  {
+    "objectID": "slides/long-tails.html#power-laws-4",
+    "href": "slides/long-tails.html#power-laws-4",
+    "title": "Long Tails",
+    "section": "Power Laws",
+    "text": "Power Laws"
+  },
+  {
+    "objectID": "slides/long-tails.html#takeaways",
+    "href": "slides/long-tails.html#takeaways",
+    "title": "Long Tails",
+    "section": "Takeaways",
+    "text": "Takeaways\n\nIf your outcome falls on a bell curve, then tail risk is low. Remember 68-95-99.7%.\nBut if the sum or independence assumptions of CLT are violated, expect to observe much longer tails.\nLognormal and power law distributions are dominated by extreme events, when occur much more frequently than the bell curve would suggest."
+  },
+  {
+    "objectID": "slides/long-tails.html#references",
+    "href": "slides/long-tails.html#references",
+    "title": "Long Tails",
+    "section": "References",
+    "text": "References\n\n\n\n\nTaleb, Nassim Nicholas. 2007. The black swan: the impact of the highly improbable. London: Allen Lane."
+  },
+  {
+    "objectID": "slides/long-tails.html#power-laws-5",
+    "href": "slides/long-tails.html#power-laws-5",
+    "title": "Long Tails",
+    "section": "Power Laws",
+    "text": "Power Laws\n\nPower laws are the result of processes where large events are more likely grow than small ones.\nEach of these outcomes – social media subscribers, word usage, earthquakes, armed conflict – exhibit “snowball effects”.\nThis violates the independence assumption of CLT."
   }
 ]
