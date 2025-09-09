@@ -98,6 +98,167 @@
     "text": "Calibration Plots"
   },
   {
+    "objectID": "slides/fundamentals.html#prediction-is-hard",
+    "href": "slides/fundamentals.html#prediction-is-hard",
+    "title": "Fudamentals of Probability",
+    "section": "Prediction Is Hard",
+    "text": "Prediction Is Hard\n\n\n\n\n“Stocks have reached what looks like a permanently high plateau.”\n—Irving Fisher, Economist, October 1929"
+  },
+  {
+    "objectID": "slides/fundamentals.html#prediction-is-hard-1",
+    "href": "slides/fundamentals.html#prediction-is-hard-1",
+    "title": "Fudamentals of Probability",
+    "section": "Prediction Is Hard",
+    "text": "Prediction Is Hard\n\n\n\n“I believe it is peace for our time.”\n—Neville Chamberlain, September 30, 1938\n\n\n\n\n\nHitler invaded Poland less than a year later, on September 1, 1939."
+  },
+  {
+    "objectID": "slides/fundamentals.html#prediction-is-hard-2",
+    "href": "slides/fundamentals.html#prediction-is-hard-2",
+    "title": "Fudamentals of Probability",
+    "section": "Prediction Is Hard",
+    "text": "Prediction Is Hard\n\n\n\n“There’s no chance that the iPhone is going to get any significant market share. No chance.”\n—Steve Ballmer, Microsoft CEO, 2007"
+  },
+  {
+    "objectID": "slides/fundamentals.html#prediction-is-hard-3",
+    "href": "slides/fundamentals.html#prediction-is-hard-3",
+    "title": "Fudamentals of Probability",
+    "section": "Prediction Is Hard",
+    "text": "Prediction Is Hard"
+  },
+  {
+    "objectID": "slides/fundamentals.html#prediction-is-hard-4",
+    "href": "slides/fundamentals.html#prediction-is-hard-4",
+    "title": "Fudamentals of Probability",
+    "section": "Prediction Is Hard",
+    "text": "Prediction Is Hard\n\n\n\n“The overall risk to the American public does remain low.”\n—CDC Director Robert Redfield, March 6, 2020\n\n\n\n\n\nExactly one week before the White House declared a national emergency."
+  },
+  {
+    "objectID": "slides/fundamentals.html#prediction-is-hard-5",
+    "href": "slides/fundamentals.html#prediction-is-hard-5",
+    "title": "Fudamentals of Probability",
+    "section": "Prediction Is Hard",
+    "text": "Prediction Is Hard\n\n\nFor those keeping track at home, that’s 15 days before the official start of the invasion. The picture is of a convoy of Russian armored vehicles heading towards Ukraine."
+  },
+  {
+    "objectID": "slides/fundamentals.html#prediction-is-hard-6",
+    "href": "slides/fundamentals.html#prediction-is-hard-6",
+    "title": "Fudamentals of Probability",
+    "section": "Prediction Is Hard",
+    "text": "Prediction Is Hard\n\nPredictions guide important decisions—in politics, public policy, business, and daily life.\nOverconfidence and neglect of uncertainty can have serious consequences.\nThe future is inherently uncertain—we need better ways to think about and communicate uncertainty."
+  },
+  {
+    "objectID": "slides/fundamentals.html#probability-1",
+    "href": "slides/fundamentals.html#probability-1",
+    "title": "Fudamentals of Probability",
+    "section": "Probability",
+    "text": "Probability\n\nThe language of uncertainty\nAllows us to communicate clearly and precisely how certain we are that an event will happen."
+  },
+  {
+    "objectID": "slides/fundamentals.html#probability-2",
+    "href": "slides/fundamentals.html#probability-2",
+    "title": "Fudamentals of Probability",
+    "section": "Probability",
+    "text": "Probability\nIn some contexts, probability statements seem natural:\n\n40% chance of rain on Tuesday\n12% chance the Dodgers win the World Series\n2.7% chance of rolling double sixes\n\n\nIn other contexts, feels weird:\n\n\n\n“I believe there is 42% chance of peace in our time!”\n-Neville Chamberlain, September 30, 1938\n\n\n\n(My goal is to get you comfortable with such statements.)"
+  },
+  {
+    "objectID": "slides/fundamentals.html#definitions",
+    "href": "slides/fundamentals.html#definitions",
+    "title": "Fudamentals of Probability",
+    "section": "Definitions",
+    "text": "Definitions\n\nA probability is a number between 0 and 1 that expresses how likely it is that an event will happen.\n\n\n\n0% means “impossible”\n50% means “equally likely to happen or not”\n100% means “certain”\n\n\n\nDeveloping an intuition for other probability values is trickier…"
+  },
+  {
+    "objectID": "slides/fundamentals.html#definitions-1",
+    "href": "slides/fundamentals.html#definitions-1",
+    "title": "Fudamentals of Probability",
+    "section": "Definitions",
+    "text": "Definitions\n\nMany of us develop an intuition for probability by playing games of chance."
+  },
+  {
+    "objectID": "slides/fundamentals.html#definitions-2",
+    "href": "slides/fundamentals.html#definitions-2",
+    "title": "Fudamentals of Probability",
+    "section": "Definitions",
+    "text": "Definitions\n\nIf you flip a coin 200 times, you’d expect it to come up heads roughly half the time.\nThis illustrates the frequentist interpretation of probability:\n\nProbability = how frequently we expect an event to occur in a large number of repeated trials.\n\nFormalized in the Law of Large Numbers:\n\nIf the probability of an event is \\(p\\), then the proportion of times that event occurs will approach \\(p\\) in a (very) large number of repeated trials."
+  },
+  {
+    "objectID": "slides/fundamentals.html#law-of-large-numbers",
+    "href": "slides/fundamentals.html#law-of-large-numbers",
+    "title": "Fudamentals of Probability",
+    "section": "Law of Large Numbers",
+    "text": "Law of Large Numbers\nThe entire business model of casinos/lotteries rests on the Law of Large Numbers.\n\n\n\n\n\nMaybe this guy comes in one night and puts $35,000 on lucky number 32. If 32 hits, the casino pays out over $1.2 million!"
+  },
+  {
+    "objectID": "slides/fundamentals.html#law-of-large-numbers-1",
+    "href": "slides/fundamentals.html#law-of-large-numbers-1",
+    "title": "Fudamentals of Probability",
+    "section": "Law of Large Numbers",
+    "text": "Law of Large Numbers\nBut if you get 10,000 of those guys placing bets like that, 37 lose for every 1 that wins…"
+  },
+  {
+    "objectID": "slides/fundamentals.html#definitions-3",
+    "href": "slides/fundamentals.html#definitions-3",
+    "title": "Fudamentals of Probability",
+    "section": "Definitions",
+    "text": "Definitions\nSometimes it will be useful to express probability as odds.\n\n50% \\(\\rightarrow\\) 1:1 (“equally likely to happen or not”)\n75% \\(\\rightarrow\\) 3:1 (“three times more likely to happen than not”)\n10% \\(\\rightarrow\\) 1:9 (“nine times less likely to happen than not”)\n\n\nTo convert probability \\(p\\) to odds, divide \\(\\frac{p}{1-p}\\).\n\n\nTo convert odds \\(p:q\\) to probability, divide \\(\\frac{p}{p+q}\\)."
+  },
+  {
+    "objectID": "slides/fundamentals.html#practice-problems",
+    "href": "slides/fundamentals.html#practice-problems",
+    "title": "Fudamentals of Probability",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nWhat is 80% expressed as odds?\nWhat is 2:1 expressed as a probability?"
+  },
+  {
+    "objectID": "slides/fundamentals.html#what-if-the-event-cant-be-repeated",
+    "href": "slides/fundamentals.html#what-if-the-event-cant-be-repeated",
+    "title": "Fudamentals of Probability",
+    "section": "What if the event can’t be repeated?",
+    "text": "What if the event can’t be repeated?\n\nFor events that can be repeated a large number of times, frequentist interpretation is pretty intuitive.\n\nBut what about the sorts of questions I asked in the intro survey?"
+  },
+  {
+    "objectID": "slides/fundamentals.html#subjective-bayesian-interpretation",
+    "href": "slides/fundamentals.html#subjective-bayesian-interpretation",
+    "title": "Fudamentals of Probability",
+    "section": "Subjective (Bayesian) Interpretation",
+    "text": "Subjective (Bayesian) Interpretation\n\nProbability is not an innate characteristic of the event, but a statement about the observer’s knowledge."
+  },
+  {
+    "objectID": "slides/fundamentals.html#subjective-bayesian-interpretation-1",
+    "href": "slides/fundamentals.html#subjective-bayesian-interpretation-1",
+    "title": "Fudamentals of Probability",
+    "section": "Subjective (Bayesian) Interpretation",
+    "text": "Subjective (Bayesian) Interpretation\n\nIf you can precisely measure a coin’s initial velocity and rate of spin, you can perfectly predict what side it will land on (Diaconis et al. 2007)."
+  },
+  {
+    "objectID": "slides/fundamentals.html#subjective-bayesian-interpretation-2",
+    "href": "slides/fundamentals.html#subjective-bayesian-interpretation-2",
+    "title": "Fudamentals of Probability",
+    "section": "Subjective (Bayesian) Interpretation",
+    "text": "Subjective (Bayesian) Interpretation\nProbability is not an innate characteristic of the event, but a statement about the observer’s knowledge.\n\nProbability = “degree of belief”\nA probability statement (e.g. 80% chance of rain) communicates the forecaster’s confidence that the event will occur.\n\n“Based on the information I have, I think it is four times more likely to rain than to not rain.”"
+  },
+  {
+    "objectID": "slides/fundamentals.html#are-people-good-at-this",
+    "href": "slides/fundamentals.html#are-people-good-at-this",
+    "title": "Fudamentals of Probability",
+    "section": "Are people good at this?",
+    "text": "Are people good at this?\n\nNo. Assessing probability is not something that comes naturally to people."
+  },
+  {
+    "objectID": "slides/fundamentals.html#mental-trick-to-improve-calibration",
+    "href": "slides/fundamentals.html#mental-trick-to-improve-calibration",
+    "title": "Fudamentals of Probability",
+    "section": "Mental Trick to Improve Calibration",
+    "text": "Mental Trick to Improve Calibration\n\n\n\n\nReframe the problem as a bet.\n“Would I rather have $100 if Karl Marx was born before Queen Victoria or if I draw a red ball from this jar?”\nAlter the contents of the jar until you’re indifferent between the two bets.\nThis is called the Equivalent Bet Test (Spetzler & Staël Von Holstein, 1975; Galef, 2021)"
+  },
+  {
+    "objectID": "slides/fundamentals.html#practice",
+    "href": "slides/fundamentals.html#practice",
+    "title": "Fudamentals of Probability",
+    "section": "Practice",
+    "text": "Practice\n\nTake 10 minutes to play “Two Truths and a Lie” with your tablemates. Pick a person to tell two truths and a lie about themselves, and everyone else must guess which is the lie.\nOur twist on the game is that everyone must estimate a probability that their chosen statement is a lie. Use the Equivalent Bet Test to help calibrate your probability.\n(Feel free to play multiple rounds if there is time remaining.)"
+  },
+  {
     "objectID": "slides/compound-probability.html#warmup",
     "href": "slides/compound-probability.html#warmup",
     "title": "Compound Probability",
@@ -210,6 +371,167 @@
     "text": "Wrap Up\nThis gives us some insight into the birthday problem we started with:\n\n\n\n\n\n\n\n\n\n\n\n364/365\n\n\n\n\n\n\n\n1/365\n\n\n\n\n\n\n\n363/365\n\n\n\n\n\n\n\n2/365\n\n\n\n\n\n\n\n362/365\n\n\n\n\n\n\n\n3/365\n\n\n\n\n\n\n\nPerson A\n\n\n\n\n\n\n\nNo match\n\n\n\n\n\n\n\nPerson B shares birthday\n\n\n\n\n\n\n\nNo match\n\n\n\n\n\n\n\nPerson C shares birthday\n\n\n\n\n\n\n\nNo match\n\n\n\n\n\n\n\nPerson D shares birthday"
   },
   {
+    "objectID": "slides/bell-curves.html#todays-agenda",
+    "href": "slides/bell-curves.html#todays-agenda",
+    "title": "Bell Curves",
+    "section": "Today’s Agenda",
+    "text": "Today’s Agenda\n\nIntroduce the bell curve probability distribution\n\nAKA the normal distribution or the Gaussian distribution\n\nUnderstand the conditions that create bell curves (the Central Limit Theorem)\nExplore some useful features of bell curves for making predictions"
+  },
+  {
+    "objectID": "slides/bell-curves.html#warmup",
+    "href": "slides/bell-curves.html#warmup",
+    "title": "Bell Curves",
+    "section": "Warmup",
+    "text": "Warmup\n\nIn an upcoming Congressional election:\n\n60% of voters plan to vote for the Republican candidate.\n40% of voters plan to vote for the Democratic candidate.\n\nA polling firm randomly calls voters in the Congressional district and asks who they plan to vote for.\n\n\nDraw a probability tree representing the first two voters contacted by the polling firm. What is the probability of every possible poll result?"
+  },
+  {
+    "objectID": "slides/bell-curves.html#warmup-1",
+    "href": "slides/bell-curves.html#warmup-1",
+    "title": "Bell Curves",
+    "section": "Warmup",
+    "text": "Warmup\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\nR\n\n\n\n\n\n\n\nD"
+  },
+  {
+    "objectID": "slides/bell-curves.html#warmup-2",
+    "href": "slides/bell-curves.html#warmup-2",
+    "title": "Bell Curves",
+    "section": "Warmup",
+    "text": "Warmup\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\nR\n\n\n\n\n\n\n\nD\n\n\n\n\n\n\n\nRR (36%)\n\n\n\n\n\n\n\nRD (24%)\n\n\n\n\n\n\n\nDR (24%)\n\n\n\n\n\n\n\nDD (16%)"
+  },
+  {
+    "objectID": "slides/bell-curves.html#simplifying-assumption",
+    "href": "slides/bell-curves.html#simplifying-assumption",
+    "title": "Bell Curves",
+    "section": "Simplifying Assumption",
+    "text": "Simplifying Assumption\nBecause we don’t care about the order of responses (just the counts), we can combine some outcomes:\n\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D (36%)\n\n\n\n\n\n\n\n1R,1D (48%)\n\n\n\n\n\n\n\n0R,2D (16%)"
+  },
+  {
+    "objectID": "slides/bell-curves.html#things-to-notice",
+    "href": "slides/bell-curves.html#things-to-notice",
+    "title": "Bell Curves",
+    "section": "Things To Notice",
+    "text": "Things To Notice\n\nA poll with two responses is pretty worthless.\n\n48% of the time you get an equal number of R’s and D’s\n16% of the time, you get all D’s\n36% of the time, you get all R’s\n\nTwo big problems:\n\nThe poll is biased. Result is more likely to be wrong in one direction than the other.\nIt also has high variance. Result is, on average, very far from the truth."
+  },
+  {
+    "objectID": "slides/bell-curves.html#increasing-poll-size",
+    "href": "slides/bell-curves.html#increasing-poll-size",
+    "title": "Bell Curves",
+    "section": "Increasing Poll Size",
+    "text": "Increasing Poll Size\nOver the next few slides, we’ll show that increasing the size of the poll \\((n)\\) does three things:\n\nEliminates bias\nReduces variance\nGives the polling errors a particular (bell curve) shape."
+  },
+  {
+    "objectID": "slides/bell-curves.html#n3",
+    "href": "slides/bell-curves.html#n3",
+    "title": "Bell Curves",
+    "section": "n=3",
+    "text": "n=3\n\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D (21.6%)\n\n\n\n\n\n\n\n2R,1D (43.2%)\n\n\n\n\n\n\n\n1R,2D (28.8%)\n\n\n\n\n\n\n\n0R,3D (6.4%)"
+  },
+  {
+    "objectID": "slides/bell-curves.html#section",
+    "href": "slides/bell-curves.html#section",
+    "title": "Bell Curves",
+    "section": "",
+    "text": "We can plot these compound probabilities on a bar chart."
+  },
+  {
+    "objectID": "slides/bell-curves.html#n4",
+    "href": "slides/bell-curves.html#n4",
+    "title": "Bell Curves",
+    "section": "n=4",
+    "text": "n=4\n\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D\n\n\n\n\n\n\n\n2R,1D\n\n\n\n\n\n\n\n1R,2D\n\n\n\n\n\n\n\n0R,3D\n\n\n\n\n\n\n\n4R,0D (13%)\n\n\n\n\n\n\n\n3R,1D (34.5%)\n\n\n\n\n\n\n\n2R,2D (34.5%)\n\n\n\n\n\n\n\n1R,3D (15.4%)\n\n\n\n\n\n\n\n0R,4D (2.6%)\n\n\n\n\n\n\n\n\n\n\n\n\nI would never make you do this by hand."
+  },
+  {
+    "objectID": "slides/bell-curves.html#n5",
+    "href": "slides/bell-curves.html#n5",
+    "title": "Bell Curves",
+    "section": "n=5",
+    "text": "n=5\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D\n\n\n\n\n\n\n\n2R,1D\n\n\n\n\n\n\n\n1R,2D\n\n\n\n\n\n\n\n0R,3D\n\n\n\n\n\n\n\n4R,0D\n\n\n\n\n\n\n\n3R,1D\n\n\n\n\n\n\n\n2R,2D\n\n\n\n\n\n\n\n1R,3D\n\n\n\n\n\n\n\n0R,4D\n\n\n\n\n\n\n\n5R,0D (7.8%)\n\n\n\n\n\n\n\n4R,1D (25.9%)\n\n\n\n\n\n\n\n3R,2D (34.6%)\n\n\n\n\n\n\n\n2R,3D (23%)\n\n\n\n\n\n\n\n1R,4D (7.7%)\n\n\n\n\n\n\n\n0R,5D (1%)\n\n\n\n\n\n\n\n\n\n\n\nIntuition Check: Why is the probability of 3R,2D so big and the probability of 0R,5D so small?"
+  },
+  {
+    "objectID": "slides/bell-curves.html#n6",
+    "href": "slides/bell-curves.html#n6",
+    "title": "Bell Curves",
+    "section": "n=6",
+    "text": "n=6\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D\n\n\n\n\n\n\n\n2R,1D\n\n\n\n\n\n\n\n1R,2D\n\n\n\n\n\n\n\n0R,3D\n\n\n\n\n\n\n\n4R,0D\n\n\n\n\n\n\n\n3R,1D\n\n\n\n\n\n\n\n2R,2D\n\n\n\n\n\n\n\n1R,3D\n\n\n\n\n\n\n\n0R,4D\n\n\n\n\n\n\n\n5R,0D\n\n\n\n\n\n\n\n4R,1D\n\n\n\n\n\n\n\n3R,2D\n\n\n\n\n\n\n\n2R,3D\n\n\n\n\n\n\n\n1R,4D\n\n\n\n\n\n\n\n0R,5D\n\n\n\n\n\n\n\n6D,0R (4.7%)\n\n\n\n\n\n\n\n5D,1R (18.7%)\n\n\n\n\n\n\n\n4D,2R (31.1%)\n\n\n\n\n\n\n\n3D,3R (27.6%)\n\n\n\n\n\n\n\n2D,4R (13.8%)\n\n\n\n\n\n\n\n1D,5R (3.7%)\n\n\n\n\n\n\n\n0D,6R (0.4%)"
+  },
+  {
+    "objectID": "slides/bell-curves.html#things-to-notice-1",
+    "href": "slides/bell-curves.html#things-to-notice-1",
+    "title": "Bell Curves",
+    "section": "Things To Notice",
+    "text": "Things To Notice\n\nWith a large enough sample, the poll results are unbiased. Centered on the truth, and equally likely to be too high or too low.\nVariance shrinks with poll size.\n\nIn a poll of 50 voters, there’s a strong chance you get a result off by 10 percentage points and call the election incorrectly.\nIn a poll with 500 voters, it’s practically impossible that the result will be off by more than 10 percentage points."
+  },
+  {
+    "objectID": "slides/bell-curves.html#central-limit-theorem",
+    "href": "slides/bell-curves.html#central-limit-theorem",
+    "title": "Bell Curves",
+    "section": "Central Limit Theorem",
+    "text": "Central Limit Theorem\n\nAs poll size gets larger, the shape of the errors takes on that gorgeous bell curve shape.\nThis is one of the most foundational ideas in all of statistics.\n\n\nCentral Limit Theorem\n\nIf an outcome is the sum of a large number of independent random events, then it will fall on a bell curve."
+  },
+  {
+    "objectID": "slides/bell-curves.html#bell-curves-in-the-wild",
+    "href": "slides/bell-curves.html#bell-curves-in-the-wild",
+    "title": "Bell Curves",
+    "section": "Bell Curves In The Wild",
+    "text": "Bell Curves In The Wild\nHuman height is the sum of a large number of independent genetic and environmental factors, so…"
+  },
+  {
+    "objectID": "slides/bell-curves.html#bell-curves-in-the-wild-1",
+    "href": "slides/bell-curves.html#bell-curves-in-the-wild-1",
+    "title": "Bell Curves",
+    "section": "Bell Curves In The Wild",
+    "text": "Bell Curves In The Wild\nHuman height is the sum of a large number of independent genetic and environmental factors, so… . . ."
+  },
+  {
+    "objectID": "slides/bell-curves.html#bell-curves-in-the-wild-2",
+    "href": "slides/bell-curves.html#bell-curves-in-the-wild-2",
+    "title": "Bell Curves",
+    "section": "Bell Curves In The Wild",
+    "text": "Bell Curves In The Wild\nStandardized test scores are the sum of a large number of independent question scores, so…"
+  },
+  {
+    "objectID": "slides/bell-curves.html#bell-curves-in-the-wild-3",
+    "href": "slides/bell-curves.html#bell-curves-in-the-wild-3",
+    "title": "Bell Curves",
+    "section": "Bell Curves In The Wild",
+    "text": "Bell Curves In The Wild\nCollege football scores are the sum of a large number of independent successes / failures to get the ball to the other end of the field, so…\n\n\n\n\nCollege football scores (relative to the Vegas “spread”)"
+  },
+  {
+    "objectID": "slides/bell-curves.html#bell-curves-are-nice",
+    "href": "slides/bell-curves.html#bell-curves-are-nice",
+    "title": "Bell Curves",
+    "section": "Bell Curves Are Nice",
+    "text": "Bell Curves Are Nice\n\nWhen outcomes fall on a bell curve, it makes prediction a lot easier.\nThat’s because outcomes are very unlikely to stray far from their expected values."
+  },
+  {
+    "objectID": "slides/bell-curves.html#bell-curves-are-nice-1",
+    "href": "slides/bell-curves.html#bell-curves-are-nice-1",
+    "title": "Bell Curves",
+    "section": "Bell Curves Are Nice",
+    "text": "Bell Curves Are Nice\n95% of poll results will be one of the red bars."
+  },
+  {
+    "objectID": "slides/bell-curves.html#bell-curves-are-nice-2",
+    "href": "slides/bell-curves.html#bell-curves-are-nice-2",
+    "title": "Bell Curves",
+    "section": "Bell Curves Are Nice",
+    "text": "Bell Curves Are Nice\n95% of poll results will be one of the red bars."
+  },
+  {
+    "objectID": "slides/bell-curves.html#margin-of-error",
+    "href": "slides/bell-curves.html#margin-of-error",
+    "title": "Bell Curves",
+    "section": "Margin of Error",
+    "text": "Margin of Error\n\nDefine the margin of error as the range within which you’re 95% sure your polling error will fall.\nThe back-of-the-envelope approximation of a poll’s margin of error is \\(\\frac{100\\%}{\\sqrt{n}}\\).\n\nSo, for a poll with 100 respondents, margin of error is roughly \\(\\frac{100\\%}{\\sqrt{100}} = 10\\%\\).\nPractice: what’s the margin of error for a poll with 400 respondents?"
+  },
+  {
+    "objectID": "slides/bell-curves.html#wrap-up",
+    "href": "slides/bell-curves.html#wrap-up",
+    "title": "Bell Curves",
+    "section": "Wrap Up",
+    "text": "Wrap Up\n\nYour outcome will fall on a bell curve if it is the sum of a large number of independent random events (Central Limit Theorem).\nIf the theorem holds, it’s great for making predictions, because bell curves are easy to work with.\n\nIn a few weeks, we’ll talk about the ways in which real-world polls fall short of this idealized model.\n\nNext Time: What happens when that independence assumption is violated?"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Fall 2025 Predictions",
@@ -222,6 +544,27 @@
     "title": "Fall 2025 Predictions",
     "section": "Week 1 (8/19)",
     "text": "Week 1 (8/19)"
+  },
+  {
+    "objectID": "index.html#week-2-826",
+    "href": "index.html#week-2-826",
+    "title": "Fall 2025 Predictions",
+    "section": "Week 2 (8/26)",
+    "text": "Week 2 (8/26)"
+  },
+  {
+    "objectID": "index.html#week-3-92",
+    "href": "index.html#week-3-92",
+    "title": "Fall 2025 Predictions",
+    "section": "Week 3 (9/2)",
+    "text": "Week 3 (9/2)"
+  },
+  {
+    "objectID": "index.html#leaderboard",
+    "href": "index.html#leaderboard",
+    "title": "Fall 2025 Predictions",
+    "section": "Leaderboard",
+    "text": "Leaderboard\n\n\n\n\n\nName\nPredictions Made\n\n\n\n\nAkshara Singh\n3\n\n\nAlika Otero-Ricalde\n4\n\n\nAlizah Mudaliar\n5\n\n\nAmanda Neighbour\n5\n\n\nAna Valencia\n3\n\n\nAnna Barton-Caucci\n5\n\n\nAnna Kneser\n5\n\n\nArshia Charkhian\n4\n\n\nBlake Martin\n5\n\n\nBreanne Talley\n4\n\n\nCaleb Lux\n5\n\n\nCaroline Mattox\n5\n\n\nChris Haswell\n5\n\n\nCierra Green\n5\n\n\nCrowd\n5\n\n\nElizabeth Nelson\n4\n\n\nEllie Null\n5\n\n\nFrancesca Mariano\n4\n\n\nHunter Murray\n5\n\n\nJack Lutz\n2\n\n\nJackson Bost\n5\n\n\nJames Hunter Darke\n3\n\n\nJhaycee Barnes\n5\n\n\nJoe Ornstein\n5\n\n\nKira Fleischer\n5\n\n\nKristoffer Fields\n5\n\n\nLiz Yancey\n5\n\n\nManuv Datta\n3\n\n\nMateo Ceron\n5\n\n\nNic Curtis\n5\n\n\nOwen Johnston\n4\n\n\nPaul Frilingos\n5\n\n\nRaquel Beatriz Caldas Laranjeira\n5\n\n\nReese Fabritius\n5\n\n\nRuhi Doddamani\n4\n\n\nRyan Marx\n5\n\n\nSade Ezekiel\n5\n\n\nSarah Kate Maher\n5\n\n\nSasha Mahtani\n5\n\n\nShaheer Ul-Islam\n4\n\n\nSierra Cross-Thompson\n2\n\n\nZafar Ali\n5"
   },
   {
     "objectID": "fall-2023.html#week-2-913",
@@ -497,6 +840,90 @@
     "text": "Calibration Plots"
   },
   {
+    "objectID": "slides/bayes-rule.html#warmup",
+    "href": "slides/bayes-rule.html#warmup",
+    "title": "Bayes Rule",
+    "section": "Warmup",
+    "text": "Warmup\nMany federal law enforcement and national security agencies use polygraph tests to screen potential hires."
+  },
+  {
+    "objectID": "slides/bayes-rule.html#warmup-1",
+    "href": "slides/bayes-rule.html#warmup-1",
+    "title": "Bayes Rule",
+    "section": "Warmup",
+    "text": "Warmup\nFor this exercise, let’s make the following assumptions:\n\n1% of applicants for a job at a national security agency are secretly foreign intelligence assets. You want to avoid hiring these people.\nPolygraph screening is quite good at detecting lies. If you ask someone whether they are a spy, it will correctly identify whether they are telling the truth or lying 90% of the time.\n\n\nIf an applicant fails this question on a polygraph screening, what is the probability that they are a spy?\n\nhttps://www.npr.org/2025/04/30/g-s1-63349/fbi-polygraph-lie-detector-leak-investigation"
+  },
+  {
+    "objectID": "slides/bayes-rule.html#whats-going-on",
+    "href": "slides/bayes-rule.html#whats-going-on",
+    "title": "Bayes Rule",
+    "section": "What’s Going On?",
+    "text": "What’s Going On?\nIt can be helpful to think about this problem in terms of frequencies."
+  },
+  {
+    "objectID": "slides/bayes-rule.html#whats-going-on-1",
+    "href": "slides/bayes-rule.html#whats-going-on-1",
+    "title": "Bayes Rule",
+    "section": "What’s Going On?",
+    "text": "What’s Going On?\nIt can be helpful to think about this problem in terms of frequencies."
+  },
+  {
+    "objectID": "slides/bayes-rule.html#whats-going-on-2",
+    "href": "slides/bayes-rule.html#whats-going-on-2",
+    "title": "Bayes Rule",
+    "section": "What’s Going On?",
+    "text": "What’s Going On?\nIt can be helpful to think about this problem in terms of frequencies."
+  },
+  {
+    "objectID": "slides/bayes-rule.html#whats-going-on-3",
+    "href": "slides/bayes-rule.html#whats-going-on-3",
+    "title": "Bayes Rule",
+    "section": "What’s Going On?",
+    "text": "What’s Going On?\nIt can be helpful to think about this problem in terms of frequencies."
+  },
+  {
+    "objectID": "slides/bayes-rule.html#whats-going-on-4",
+    "href": "slides/bayes-rule.html#whats-going-on-4",
+    "title": "Bayes Rule",
+    "section": "What’s Going On?",
+    "text": "What’s Going On?\nIt can be helpful to think about this problem in terms of frequencies."
+  },
+  {
+    "objectID": "slides/bayes-rule.html#whats-going-on-5",
+    "href": "slides/bayes-rule.html#whats-going-on-5",
+    "title": "Bayes Rule",
+    "section": "What’s Going On?",
+    "text": "What’s Going On?\nHere’s the problem as a probability tree:\n\n\n\n\n\n\n\n\n\n\n\n99%\n\n\n\n\n\n\n\n1%\n\n\n\n\n\n\n\n90%\n\n\n\n\n\n\n\n10%\n\n\n\n\n\n\n\n90%\n\n\n\n\n\n\n\n10%\n\n\n\n\n\n\n\nAll Applicants\n\n\n\n\n\n\n\nNot A Spy\n\n\n\n\n\n\n\nSpy\n\n\n\n\n\n\n\nPass Polygraph (89.1%)\n\n\n\n\n\n\n\nFail Polygraph (9.9%)\n\n\n\n\n\n\n\nFail Polygraph (0.9%)\n\n\n\n\n\n\n\nPass Polygraph (0.1%)"
+  },
+  {
+    "objectID": "slides/bayes-rule.html#bayes-rule",
+    "href": "slides/bayes-rule.html#bayes-rule",
+    "title": "Bayes Rule",
+    "section": "Bayes Rule",
+    "text": "Bayes Rule\nLet’s use this example to derive Bayes Rule, a formula for updating predictions in light of evidence.\n\nBefore observing any evidence from the polygraph test, our prior odds on an applicant being a spy are 1:99.\nWe observe the applicant fail the polygraph test. This result is 9 times more likely if they are a spy than if they are not a spy. Call this value the strength of evidence.\nSo after observing this evidence, our predicted odds that the applicant is a spy should be exactly 9 times higher.\nOur posterior odds are 9:99, or 1:11."
+  },
+  {
+    "objectID": "slides/bayes-rule.html#bayes-rule-1",
+    "href": "slides/bayes-rule.html#bayes-rule-1",
+    "title": "Bayes Rule",
+    "section": "Bayes Rule",
+    "text": "Bayes Rule\n\\[\n\\text{Posterior Odds} = \\text{Prior Odds} \\times \\text{Strength of Evidence}\n\\]\n\nIn our example:\n\\[\n\\text{Posterior Odds} = \\underbrace{1:99}_\\text{Prior Odds} \\times \\underbrace{9:1}_\\text{Strength of Evidence} = 1:11\n\\]\n\n\nRemember, to convert odds to probability, divide \\(\\frac{p}{p+q}\\). So our posterior probability is \\(\\frac{1}{12} \\approx 8.3\\%\\)"
+  },
+  {
+    "objectID": "slides/bayes-rule.html#practice",
+    "href": "slides/bayes-rule.html#practice",
+    "title": "Bayes Rule",
+    "section": "Practice",
+    "text": "Practice\nYou’re trying to predict whether a bill will pass the US House of Representatives.\n\nHistorically, only 10% of bills introduced get a floor vote and pass.\nAmong bills that pass the House, 60% have bipartisan cosponsors.\nAmong bills that don’t pass the House, 15% have bipartisan cosponsors.\n\n\nIf a bill has bipartisan cosponsors, what are the odds it will pass?"
+  },
+  {
+    "objectID": "slides/bayes-rule.html#takeaways",
+    "href": "slides/bayes-rule.html#takeaways",
+    "title": "Bayes Rule",
+    "section": "Takeaways",
+    "text": "Takeaways\n\nAs we discussed last time, a common mistake when making predictions is to focus too much on the details of a particular case (Inside View), ignoring prior knowledge about similar cases (Outside View).\nBayes Rule is a useful way to discipline your thinking, because it requires you to place equal weight on prior beliefs and evidence."
+  },
+  {
     "objectID": "slides/brier-scores.html#todays-agenda",
     "href": "slides/brier-scores.html#todays-agenda",
     "title": "Brier Scores",
@@ -651,165 +1078,11 @@
     "text": "Key Takeaways\n\nBrier Scores are a sort of mathematical truth serum.\nYour optimal strategy in the forecasting challenge is to report your honest beliefs.\nA forecaster’s expected Brier Score cannot be improved by exaggerating or hedging probabilities.\n\n\nIt’s rare in political science to have a system where everyone is incentivized to tell the truth. It’s quite refreshing to have a such a system here!"
   },
   {
-    "objectID": "slides/fundamentals.html#prediction-is-hard",
-    "href": "slides/fundamentals.html#prediction-is-hard",
-    "title": "Fudamentals of Probability",
-    "section": "Prediction Is Hard",
-    "text": "Prediction Is Hard\n\n\n\n\n“Stocks have reached what looks like a permanently high plateau.”\n—Irving Fisher, Economist, October 1929"
-  },
-  {
-    "objectID": "slides/fundamentals.html#prediction-is-hard-1",
-    "href": "slides/fundamentals.html#prediction-is-hard-1",
-    "title": "Fudamentals of Probability",
-    "section": "Prediction Is Hard",
-    "text": "Prediction Is Hard\n\n\n\n“I believe it is peace for our time.”\n—Neville Chamberlain, September 30, 1938\n\n\n\n\n\nHitler invaded Poland less than a year later, on September 1, 1939."
-  },
-  {
-    "objectID": "slides/fundamentals.html#prediction-is-hard-2",
-    "href": "slides/fundamentals.html#prediction-is-hard-2",
-    "title": "Fudamentals of Probability",
-    "section": "Prediction Is Hard",
-    "text": "Prediction Is Hard\n\n\n\n“There’s no chance that the iPhone is going to get any significant market share. No chance.”\n—Steve Ballmer, Microsoft CEO, 2007"
-  },
-  {
-    "objectID": "slides/fundamentals.html#prediction-is-hard-3",
-    "href": "slides/fundamentals.html#prediction-is-hard-3",
-    "title": "Fudamentals of Probability",
-    "section": "Prediction Is Hard",
-    "text": "Prediction Is Hard"
-  },
-  {
-    "objectID": "slides/fundamentals.html#prediction-is-hard-4",
-    "href": "slides/fundamentals.html#prediction-is-hard-4",
-    "title": "Fudamentals of Probability",
-    "section": "Prediction Is Hard",
-    "text": "Prediction Is Hard\n\n\n\n“The overall risk to the American public does remain low.”\n—CDC Director Robert Redfield, March 6, 2020\n\n\n\n\n\nExactly one week before the White House declared a national emergency."
-  },
-  {
-    "objectID": "slides/fundamentals.html#prediction-is-hard-5",
-    "href": "slides/fundamentals.html#prediction-is-hard-5",
-    "title": "Fudamentals of Probability",
-    "section": "Prediction Is Hard",
-    "text": "Prediction Is Hard\n\n\nFor those keeping track at home, that’s 15 days before the official start of the invasion. The picture is of a convoy of Russian armored vehicles heading towards Ukraine."
-  },
-  {
-    "objectID": "slides/fundamentals.html#prediction-is-hard-6",
-    "href": "slides/fundamentals.html#prediction-is-hard-6",
-    "title": "Fudamentals of Probability",
-    "section": "Prediction Is Hard",
-    "text": "Prediction Is Hard\n\nPredictions guide important decisions—in politics, public policy, business, and daily life.\nOverconfidence and neglect of uncertainty can have serious consequences.\nThe future is inherently uncertain—we need better ways to think about and communicate uncertainty."
-  },
-  {
-    "objectID": "slides/fundamentals.html#probability-1",
-    "href": "slides/fundamentals.html#probability-1",
-    "title": "Fudamentals of Probability",
-    "section": "Probability",
-    "text": "Probability\n\nThe language of uncertainty\nAllows us to communicate clearly and precisely how certain we are that an event will happen."
-  },
-  {
-    "objectID": "slides/fundamentals.html#probability-2",
-    "href": "slides/fundamentals.html#probability-2",
-    "title": "Fudamentals of Probability",
-    "section": "Probability",
-    "text": "Probability\nIn some contexts, probability statements seem natural:\n\n40% chance of rain on Tuesday\n12% chance the Dodgers win the World Series\n2.7% chance of rolling double sixes\n\n\nIn other contexts, feels weird:\n\n\n\n“I believe there is 42% chance of peace in our time!”\n-Neville Chamberlain, September 30, 1938\n\n\n\n(My goal is to get you comfortable with such statements.)"
-  },
-  {
-    "objectID": "slides/fundamentals.html#definitions",
-    "href": "slides/fundamentals.html#definitions",
-    "title": "Fudamentals of Probability",
-    "section": "Definitions",
-    "text": "Definitions\n\nA probability is a number between 0 and 1 that expresses how likely it is that an event will happen.\n\n\n\n0% means “impossible”\n50% means “equally likely to happen or not”\n100% means “certain”\n\n\n\nDeveloping an intuition for other probability values is trickier…"
-  },
-  {
-    "objectID": "slides/fundamentals.html#definitions-1",
-    "href": "slides/fundamentals.html#definitions-1",
-    "title": "Fudamentals of Probability",
-    "section": "Definitions",
-    "text": "Definitions\n\nMany of us develop an intuition for probability by playing games of chance."
-  },
-  {
-    "objectID": "slides/fundamentals.html#definitions-2",
-    "href": "slides/fundamentals.html#definitions-2",
-    "title": "Fudamentals of Probability",
-    "section": "Definitions",
-    "text": "Definitions\n\nIf you flip a coin 200 times, you’d expect it to come up heads roughly half the time.\nThis illustrates the frequentist interpretation of probability:\n\nProbability = how frequently we expect an event to occur in a large number of repeated trials.\n\nFormalized in the Law of Large Numbers:\n\nIf the probability of an event is \\(p\\), then the proportion of times that event occurs will approach \\(p\\) in a (very) large number of repeated trials."
-  },
-  {
-    "objectID": "slides/fundamentals.html#law-of-large-numbers",
-    "href": "slides/fundamentals.html#law-of-large-numbers",
-    "title": "Fudamentals of Probability",
-    "section": "Law of Large Numbers",
-    "text": "Law of Large Numbers\nThe entire business model of casinos/lotteries rests on the Law of Large Numbers.\n\n\n\n\n\nMaybe this guy comes in one night and puts $35,000 on lucky number 32. If 32 hits, the casino pays out over $1.2 million!"
-  },
-  {
-    "objectID": "slides/fundamentals.html#law-of-large-numbers-1",
-    "href": "slides/fundamentals.html#law-of-large-numbers-1",
-    "title": "Fudamentals of Probability",
-    "section": "Law of Large Numbers",
-    "text": "Law of Large Numbers\nBut if you get 10,000 of those guys placing bets like that, 37 lose for every 1 that wins…"
-  },
-  {
-    "objectID": "slides/fundamentals.html#definitions-3",
-    "href": "slides/fundamentals.html#definitions-3",
-    "title": "Fudamentals of Probability",
-    "section": "Definitions",
-    "text": "Definitions\nSometimes it will be useful to express probability as odds.\n\n50% \\(\\rightarrow\\) 1:1 (“equally likely to happen or not”)\n75% \\(\\rightarrow\\) 3:1 (“three times more likely to happen than not”)\n10% \\(\\rightarrow\\) 1:9 (“nine times less likely to happen than not”)\n\n\nTo convert probability \\(p\\) to odds, divide \\(\\frac{p}{1-p}\\).\n\n\nTo convert odds \\(p:q\\) to probability, divide \\(\\frac{p}{p+q}\\)."
-  },
-  {
-    "objectID": "slides/fundamentals.html#practice-problems",
-    "href": "slides/fundamentals.html#practice-problems",
-    "title": "Fudamentals of Probability",
-    "section": "Practice Problems",
-    "text": "Practice Problems\n\nWhat is 80% expressed as odds?\nWhat is 2:1 expressed as a probability?"
-  },
-  {
-    "objectID": "slides/fundamentals.html#what-if-the-event-cant-be-repeated",
-    "href": "slides/fundamentals.html#what-if-the-event-cant-be-repeated",
-    "title": "Fudamentals of Probability",
-    "section": "What if the event can’t be repeated?",
-    "text": "What if the event can’t be repeated?\n\nFor events that can be repeated a large number of times, frequentist interpretation is pretty intuitive.\n\nBut what about the sorts of questions I asked in the intro survey?"
-  },
-  {
-    "objectID": "slides/fundamentals.html#subjective-bayesian-interpretation",
-    "href": "slides/fundamentals.html#subjective-bayesian-interpretation",
-    "title": "Fudamentals of Probability",
-    "section": "Subjective (Bayesian) Interpretation",
-    "text": "Subjective (Bayesian) Interpretation\n\nProbability is not an innate characteristic of the event, but a statement about the observer’s knowledge."
-  },
-  {
-    "objectID": "slides/fundamentals.html#subjective-bayesian-interpretation-1",
-    "href": "slides/fundamentals.html#subjective-bayesian-interpretation-1",
-    "title": "Fudamentals of Probability",
-    "section": "Subjective (Bayesian) Interpretation",
-    "text": "Subjective (Bayesian) Interpretation\n\nIf you can precisely measure a coin’s initial velocity and rate of spin, you can perfectly predict what side it will land on (Diaconis et al. 2007)."
-  },
-  {
-    "objectID": "slides/fundamentals.html#subjective-bayesian-interpretation-2",
-    "href": "slides/fundamentals.html#subjective-bayesian-interpretation-2",
-    "title": "Fudamentals of Probability",
-    "section": "Subjective (Bayesian) Interpretation",
-    "text": "Subjective (Bayesian) Interpretation\nProbability is not an innate characteristic of the event, but a statement about the observer’s knowledge.\n\nProbability = “degree of belief”\nA probability statement (e.g. 80% chance of rain) communicates the forecaster’s confidence that the event will occur.\n\n“Based on the information I have, I think it is four times more likely to rain than to not rain.”"
-  },
-  {
-    "objectID": "slides/fundamentals.html#are-people-good-at-this",
-    "href": "slides/fundamentals.html#are-people-good-at-this",
-    "title": "Fudamentals of Probability",
-    "section": "Are people good at this?",
-    "text": "Are people good at this?\n\nNo. Assessing probability is not something that comes naturally to people."
-  },
-  {
-    "objectID": "slides/fundamentals.html#mental-trick-to-improve-calibration",
-    "href": "slides/fundamentals.html#mental-trick-to-improve-calibration",
-    "title": "Fudamentals of Probability",
-    "section": "Mental Trick to Improve Calibration",
-    "text": "Mental Trick to Improve Calibration\n\n\n\n\nReframe the problem as a bet.\n“Would I rather have $100 if Karl Marx was born before Queen Victoria or if I draw a red ball from this jar?”\nAlter the contents of the jar until you’re indifferent between the two bets.\nThis is called the Equivalent Bet Test (Spetzler & Staël Von Holstein, 1975; Galef, 2021)"
-  },
-  {
-    "objectID": "slides/fundamentals.html#practice",
-    "href": "slides/fundamentals.html#practice",
-    "title": "Fudamentals of Probability",
-    "section": "Practice",
-    "text": "Practice\n\nTake 10 minutes to play “Two Truths and a Lie” with your tablemates. Pick a person to tell two truths and a lie about themselves, and everyone else must guess which is the lie.\nOur twist on the game is that everyone must estimate a probability that their chosen statement is a lie. Use the Equivalent Bet Test to help calibrate your probability.\n(Feel free to play multiple rounds if there is time remaining.)"
+    "objectID": "slides/conditional-probability.html#todays-agenda",
+    "href": "slides/conditional-probability.html#todays-agenda",
+    "title": "Conditional Probability",
+    "section": "Today’s Agenda",
+    "text": "Today’s Agenda\n\nLearn how to estimate conditional probability\nIntroduce a common approach used by successful forecasters: balancing Inside View and Outside View.\nShow how all this connects to a central problem in statistics: the bias-variance tradeoff."
   },
   {
     "objectID": "slides/conditional-probability.html#motivating-problem",
@@ -817,34 +1090,6 @@
     "title": "Conditional Probability",
     "section": "Motivating Problem",
     "text": "Motivating Problem\nWill the movie Roofman be “Certified Fresh” by Rotten Tomatoes?\n\n\nHow would you go about this prediction? What information would you research first?"
-  },
-  {
-    "objectID": "slides/conditional-probability.html#practice",
-    "href": "slides/conditional-probability.html#practice",
-    "title": "Conditional Probability",
-    "section": "Practice",
-    "text": "Practice\nIs this strong evidence that Derek Cianfrance is an above-average director? \\(P(\\text{Certified Fresh}) &gt; 0.25\\)?\n\n\nIf Cianfrance was just an average director, what is the probability that all three of his films would be Certified Fresh?\nIf Cianfrance was just an average director, what is the probability that at least 2 out of his 3 films would be Certified Fresh?"
-  },
-  {
-    "objectID": "slides/conditional-probability.html#variance",
-    "href": "slides/conditional-probability.html#variance",
-    "title": "Conditional Probability",
-    "section": "Variance",
-    "text": "Variance\nConfidence interval\nBias-variance tradeoff.\nToo little conditioning and your estimate will be biased (incorporates no information about the actual movie!)\nToo much conditioning and your estimate will be high-variance; not enough data to make a confident prediction.\nThe “art” of forecasting is learning how to balance this tradeoff. How much should you weigh the Outside View vs. the Inside View?\nNext time: Bayes Rule as a method for conditioning your predictions in light of available evidence."
-  },
-  {
-    "objectID": "slides/conditional-probability.html#data",
-    "href": "slides/conditional-probability.html#data",
-    "title": "Brier Scores",
-    "section": "Data",
-    "text": "Data"
-  },
-  {
-    "objectID": "slides/conditional-probability.html#todays-agenda",
-    "href": "slides/conditional-probability.html#todays-agenda",
-    "title": "Conditional Probability",
-    "section": "Today’s Agenda",
-    "text": "Today’s Agenda\n\nLearn how to estimate conditional probability\nIntroduce a common approach used by successful forecasters: balancing Inside View and Outside View.\nShow how all this connects to a central problem in statistics: the bias-variance tradeoff."
   },
   {
     "objectID": "slides/conditional-probability.html#two-different-approaches",
@@ -861,20 +1106,6 @@
     "text": "Outside View\n\n\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Tomatometer\n                Total\n                %\n              \n        \n        \n        \n                \n                  Certified-Fresh\n                  3,259\n                  18.4\n                \n                \n                  Fresh\n                  6,844\n                  38.7\n                \n                \n                  Rotten\n                  7,565\n                  42.8"
   },
   {
-    "objectID": "slides/conditional-probability.html#variables",
-    "href": "slides/conditional-probability.html#variables",
-    "title": "Conditional Probability",
-    "section": "Variables",
-    "text": "Variables"
-  },
-  {
-    "objectID": "slides/conditional-probability.html#references",
-    "href": "slides/conditional-probability.html#references",
-    "title": "Conditional Probability",
-    "section": "References",
-    "text": "References\n\n\n\n\nKahneman, Daniel, and Dan Lovallo. 1993. “Timid Choices and Bold Forecasts: A Cognitive Perspective on Risk Taking.” Management Science 39 (1): 17–31. https://www.jstor.org/stable/2661517."
-  },
-  {
     "objectID": "slides/conditional-probability.html#outside-view-1",
     "href": "slides/conditional-probability.html#outside-view-1",
     "title": "Conditional Probability",
@@ -882,18 +1113,18 @@
     "text": "Outside View\n\nThis base rate is a useful starting point.\n\nAchieving a Certified Fresh rating is historically very rare. Serves as an “anchor” for our prediction.\n\nWhat’s the problem with this approach? Why not stop there?\n\nThe pure Outside View yields a biased prediction, because it doesn’t incorporate any information about the case in question.\nMore details about the movie Roofman should help us refine our prediction."
   },
   {
-    "objectID": "slides/conditional-probability.html#conditional-probability",
-    "href": "slides/conditional-probability.html#conditional-probability",
-    "title": "Conditional Probability",
-    "section": "Conditional Probability",
-    "text": "Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n36%\n\n\n\n\n\n\n\n64%\n\n\n\n\n\n\n\n22%\n\n\n\n\n\n\n\n78%\n\n\n\n\n\n\n\n16.5%\n\n\n\n\n\n\n\n83.5%\n\n\n\n\n\n\n\nAll Movies\n\n\n\n\n\n\n\nRated R\n\n\n\n\n\n\n\nNot Rated R\n\n\n\n\n\n\n\nCertified Fresh\n\n\n\n\n\n\n\nNot CF\n\n\n\n\n\n\n\nCertified Fresh\n\n\n\n\n\n\n\nNot CF"
-  },
-  {
     "objectID": "slides/conditional-probability.html#unconditional-probability",
     "href": "slides/conditional-probability.html#unconditional-probability",
     "title": "Conditional Probability",
     "section": "Unconditional Probability",
     "text": "Unconditional Probability\n\n\n\n\n\n\n\n\n\n\n\n18.5%\n\n\n\n\n\n\n\n81.5%\n\n\n\n\n\n\n\nAll Movies\n\n\n\n\n\n\n\nCertified Fresh\n\n\n\n\n\n\n\nNot CF"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#conditional-probability",
+    "href": "slides/conditional-probability.html#conditional-probability",
+    "title": "Conditional Probability",
+    "section": "Conditional Probability",
+    "text": "Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n36%\n\n\n\n\n\n\n\n64%\n\n\n\n\n\n\n\n22%\n\n\n\n\n\n\n\n78%\n\n\n\n\n\n\n\n16.5%\n\n\n\n\n\n\n\n83.5%\n\n\n\n\n\n\n\nAll Movies\n\n\n\n\n\n\n\nRated R\n\n\n\n\n\n\n\nNot Rated R\n\n\n\n\n\n\n\nCertified Fresh\n\n\n\n\n\n\n\nNot CF\n\n\n\n\n\n\n\nCertified Fresh\n\n\n\n\n\n\n\nNot CF"
   },
   {
     "objectID": "slides/conditional-probability.html#conditional-probability-1",
@@ -952,6 +1183,27 @@
     "text": "Inside View\n\nWell, there are only 3 films in the entire database directed by Derek Cianfrance."
   },
   {
+    "objectID": "slides/conditional-probability.html#practice",
+    "href": "slides/conditional-probability.html#practice",
+    "title": "Conditional Probability",
+    "section": "Practice",
+    "text": "Practice\nIs this strong evidence that Derek Cianfrance is an above-average director? \\(P(\\text{Certified Fresh}) &gt; 0.25\\)?\n\n\nIf Cianfrance was just an average director, what is the probability that all three of his films would be Certified Fresh?\nIf Cianfrance was just an average director, what is the probability that at least 2 out of his 3 films would be Certified Fresh?"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#practice-1",
+    "href": "slides/conditional-probability.html#practice-1",
+    "title": "Conditional Probability",
+    "section": "Practice",
+    "text": "Practice\n\n\n\n\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\nStart of Career\n\n\n\n\n\n\n\nFilm 1: Fresh\n\n\n\n\n\n\n\nFilm 1: Not Fresh\n\n\n\n\n\n\n\nFilm 2: Fresh\n\n\n\n\n\n\n\nFilm 2: Not Fresh\n\n\n\n\n\n\n\nFilm 2: Fresh\n\n\n\n\n\n\n\nFilm 2: Not Fresh\n\n\n\n\n\n\n\nFilm 3: Fresh (1.5%)\n\n\n\n\n\n\n\nFilm 3: Not Fresh (4.7%)\n\n\n\n\n\n\n\nFilm 3: Fresh (4.7%)\n\n\n\n\n\n\n\nFilm 3: Not Fresh (14.1%)\n\n\n\n\n\n\n\nFilm 3: Fresh (4.7%)\n\n\n\n\n\n\n\nFilm 3: Not Fresh (14.1%)\n\n\n\n\n\n\n\nFilm 3: Fresh (14.1%)\n\n\n\n\n\n\n\nFilm 3: Not Fresh (42.2%)"
+  },
+  {
+    "objectID": "slides/conditional-probability.html#inside-view-2",
+    "href": "slides/conditional-probability.html#inside-view-2",
+    "title": "Conditional Probability",
+    "section": "Inside View",
+    "text": "Inside View\n\nWith only three data points, we cannot claim with confidence that Cianfrance’s next movie has a \\(\\frac{2}{3}\\) probability of achieving Certified Freshness.\nIt could be that his movies are better-than-average.\nBut he also could have gotten lucky."
+  },
+  {
     "objectID": "slides/conditional-probability.html#bias-variance-tradeoff",
     "href": "slides/conditional-probability.html#bias-variance-tradeoff",
     "title": "Conditional Probability",
@@ -966,347 +1218,25 @@
     "text": "Next Time\nBayes Rule as a method for computing conditional probability, and adjusting your predictions in light of available evidence."
   },
   {
-    "objectID": "slides/conditional-probability.html#inside-view-2",
-    "href": "slides/conditional-probability.html#inside-view-2",
-    "title": "Conditional Probability",
-    "section": "Inside View",
-    "text": "Inside View\n\nWith only three data points, we cannot claim with confidence that Cianfrance’s next movie has a \\(\\frac{2}{3}\\) probability of achieving Certified Freshness.\nIt could be that his movies are better-than-average.\nBut he also could have gotten lucky."
-  },
-  {
-    "objectID": "index.html#week-2-826",
-    "href": "index.html#week-2-826",
-    "title": "Fall 2025 Predictions",
-    "section": "Week 2 (8/26)",
-    "text": "Week 2 (8/26)"
-  },
-  {
-    "objectID": "slides/conditional-probability.html#practice-1",
-    "href": "slides/conditional-probability.html#practice-1",
-    "title": "Conditional Probability",
-    "section": "Practice",
-    "text": "Practice\n\n\n\n\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\nStart of Career\n\n\n\n\n\n\n\nFilm 1: Fresh\n\n\n\n\n\n\n\nFilm 1: Not Fresh\n\n\n\n\n\n\n\nFilm 2: Fresh\n\n\n\n\n\n\n\nFilm 2: Not Fresh\n\n\n\n\n\n\n\nFilm 2: Fresh\n\n\n\n\n\n\n\nFilm 2: Not Fresh\n\n\n\n\n\n\n\nFilm 3: Fresh (1.5%)\n\n\n\n\n\n\n\nFilm 3: Not Fresh (4.7%)\n\n\n\n\n\n\n\nFilm 3: Fresh (4.7%)\n\n\n\n\n\n\n\nFilm 3: Not Fresh (14.1%)\n\n\n\n\n\n\n\nFilm 3: Fresh (4.7%)\n\n\n\n\n\n\n\nFilm 3: Not Fresh (14.1%)\n\n\n\n\n\n\n\nFilm 3: Fresh (14.1%)\n\n\n\n\n\n\n\nFilm 3: Not Fresh (42.2%)"
-  },
-  {
     "objectID": "slides/conditional-probability.html#review-problems",
     "href": "slides/conditional-probability.html#review-problems",
     "title": "Conditional Probability",
     "section": "Review Problems",
-    "text": "Review Problems\n\nA basketball player with an 80% free throw shooting rate goes to the line to shoot 3 free throws. What’s the probability she makes 1 or fewer?\nYou’re volunteering with a phone bank for a political campaign. People only answer their phone 10% of the time. Out of the next 3 numbers on your call sheet, what’s the probability that anyone answers your call?\nLet’s slightly modify the movie director problem from before. The average director starts out with a 25% chance of making a Certified Fresh film. But that probability can go up or down over time. If the director makes a Certified Fresh film, he gets a boost of morale, and the probability increases by 10% for the next film he directs. Otherwise, he takes a hit to morale, and the probability decreases by 10% for the next film he directs. What’s the probability that a director gets at least 2 Certified Fresh films out of his first 3?"
+    "text": "Review Problems\n\nA basketball player with an 80% free throw shooting rate goes to the line to shoot 3 free throws. What’s the probability she makes 1 or fewer?\nYou’re volunteering with a phone bank for a political campaign. People only answer their phone 10% of the time. Out of the next 3 numbers on your call sheet, what’s the probability that anyone answers your call?"
   },
   {
-    "objectID": "slides/bayes-rule.html#warmup",
-    "href": "slides/bayes-rule.html#warmup",
-    "title": "Bayes Rule",
-    "section": "",
-    "text": "Many federal law enforcement and national security agencies use polygraph tests to screen potential hires."
+    "objectID": "slides/conditional-probability.html#review-problems-1",
+    "href": "slides/conditional-probability.html#review-problems-1",
+    "title": "Conditional Probability",
+    "section": "Review Problems",
+    "text": "Review Problems\n\nLet’s slightly modify the movie director problem from before. The average director starts out with a 25% chance of making a Certified Fresh film. But that probability can go up or down over time. If the director makes a Certified Fresh film, he gets a boost of morale, and the probability increases by 10% for the next film he directs. Otherwise, he takes a hit to morale, and the probability decreases by 10% for the next film he directs. What’s the probability that a director gets at least 2 Certified Fresh films out of his first 3?"
   },
   {
-    "objectID": "slides/bayes-rule.html#whats-going-on",
-    "href": "slides/bayes-rule.html#whats-going-on",
-    "title": "Bayes Rule",
-    "section": "What’s Going On?",
-    "text": "What’s Going On?\nIt can be helpful to think about this problem in terms of frequencies."
-  },
-  {
-    "objectID": "slides/bayes-rule.html#warmup-1",
-    "href": "slides/bayes-rule.html#warmup-1",
-    "title": "Bayes Rule",
-    "section": "Warmup",
-    "text": "Warmup\nFor this exercise, let’s make the following assumptions:\n\n1% of applicants for a job at a national security agency are secretly foreign intelligence assets. You want to avoid hiring these people.\nPolygraph screening is quite good at detecting lies. If you ask someone whether they are a spy, it will correctly identify whether they are telling the truth or lying 90% of the time.\n\n. . .\nIf an applicant fails this question on a polygraph screening, what is the probability that they are a spy?\n\nhttps://www.npr.org/2025/04/30/g-s1-63349/fbi-polygraph-lie-detector-leak-investigation"
-  },
-  {
-    "objectID": "slides/bayes-rule.html#whats-going-on-1",
-    "href": "slides/bayes-rule.html#whats-going-on-1",
-    "title": "Bayes Rule",
-    "section": "What’s Going On?",
-    "text": "What’s Going On?\nIt can be helpful to think about this problem in terms of frequencies."
-  },
-  {
-    "objectID": "slides/bayes-rule.html#whats-going-on-2",
-    "href": "slides/bayes-rule.html#whats-going-on-2",
-    "title": "Bayes Rule",
-    "section": "What’s Going On?",
-    "text": "What’s Going On?\nIt can be helpful to think about this problem in terms of frequencies."
-  },
-  {
-    "objectID": "slides/bayes-rule.html#whats-going-on-3",
-    "href": "slides/bayes-rule.html#whats-going-on-3",
-    "title": "Bayes Rule",
-    "section": "What’s Going On?",
-    "text": "What’s Going On?\nIt can be helpful to think about this problem in terms of frequencies."
-  },
-  {
-    "objectID": "slides/bayes-rule.html#whats-going-on-4",
-    "href": "slides/bayes-rule.html#whats-going-on-4",
-    "title": "Bayes Rule",
-    "section": "What’s Going On?",
-    "text": "What’s Going On?\nIt can be helpful to think about this problem in terms of frequencies."
-  },
-  {
-    "objectID": "slides/bayes-rule.html#whats-going-on-5",
-    "href": "slides/bayes-rule.html#whats-going-on-5",
-    "title": "Bayes Rule",
-    "section": "What’s Going On?",
-    "text": "What’s Going On?\nHere’s the problem as a probability tree:\n\n\n\n\n\n\n\n\n\n99%\n\n\n\n1%\n\n\n\n90%\n\n\n\n10%\n\n\n\n90%\n\n\n\n10%\n\n\n\nAll Applicants\n\n\n\nNot A Spy\n\n\n\nSpy\n\n\n\nPass Polygraph (89.1%)\n\n\n\nFail Polygraph (9.9%)\n\n\n\nFail Polygraph (0.9%)\n\n\n\nPass Polygraph (0.1%)"
-  },
-  {
-    "objectID": "slides/bayes-rule.html#whats-going-on-6",
-    "href": "slides/bayes-rule.html#whats-going-on-6",
-    "title": "Bayes Rule",
-    "section": "What’s Going On?",
-    "text": "What’s Going On?\nHere’s the problem as a probability tree:\nftxalqypq flowchart LR   A[All Applicants] --&gt; |99%|B[Not A Spy]   A --&gt; |1%|C[Spy]   B --&gt; |90%|D[\"Pass Polygraph (89.1%)\"]   B --&gt; |10%|E[\"Fail Polygraph (9.9%)\"]   C --&gt; |90%|F[\"Fail Polygraph (0.9%)\"]   C --&gt; |10%|G[\"Pass Polygraph (0.1%)\"]}"
-  },
-  {
-    "objectID": "slides/bayes-rule.html#bayes-rule",
-    "href": "slides/bayes-rule.html#bayes-rule",
-    "title": "Bayes Rule",
-    "section": "Bayes Rule",
-    "text": "Bayes Rule\nLet’s use this example to derive Bayes Rule, a formula for updating predictions in light of evidence.\n\nBefore observing any evidence from the polygraph test, our prior odds on an applicant being a spy are 1:99.\nWe observe the applicant fail the polygraph test. This result is 9 times more likely if they are a spy than if they are not a spy. Call this value the strength of evidence.\nSo after observing this evidence, our predicted odds that the applicant is a spy should be exactly 9 times higher.\nOur posterior odds are 9:99, or 1:11."
-  },
-  {
-    "objectID": "slides/bayes-rule.html#bayes-rule-1",
-    "href": "slides/bayes-rule.html#bayes-rule-1",
-    "title": "Bayes Rule",
-    "section": "Bayes Rule",
-    "text": "Bayes Rule\n\\[\n\\text{Posterior Odds} = \\text{Prior Odds} \\times \\text{Strength of Evidence}\n\\]\n. . .\nIn our example:\n\\[\n\\text{Posterior Odds} = \\underbrace{1:99}_\\text{Prior Odds} \\times \\underbrace{9:1}_\\text{Strength of Evidence} = 1:11\n\\]\n. . .\nRemember, to convert odds to probability, divide \\(\\frac{p}{p+q}\\). So our posterior probability is \\(\\frac{1}{12} \\approx 8.3\\%\\)"
-  },
-  {
-    "objectID": "slides/bayes-rule.html#practice",
-    "href": "slides/bayes-rule.html#practice",
-    "title": "Bayes Rule",
-    "section": "Practice",
-    "text": "Practice\nYou’re trying to predict whether a bill will pass the US House of Representatives.\n\nHistorically, only 10% of bills introduced get a floor vote and pass.\nAmong bills that pass the House, 60% have bipartisan cosponsors.\nAmong bills that don’t pass the House, 15% have bipartisan cosponsors.\n\n. . .\nIf a bill has bipartisan cosponsors, what are the odds it will pass?"
-  },
-  {
-    "objectID": "slides/bayes-rule.html#takeaways",
-    "href": "slides/bayes-rule.html#takeaways",
-    "title": "Bayes Rule",
-    "section": "Takeaways",
-    "text": "Takeaways\n\nAs we discussed last time, a common mistake when making predictions is to focus too much on the details of a particular case (Inside View), ignoring prior knowledge about similar cases (Outside View).\nBayes Rule is a useful way to discipline your thinking, because it requires you to place equal weight on prior beliefs and evidence."
-  },
-  {
-    "objectID": "index.html#week-3-92",
-    "href": "index.html#week-3-92",
-    "title": "Fall 2025 Predictions",
-    "section": "Week 3 (9/2)",
-    "text": "Week 3 (9/2)"
-  },
-  {
-    "objectID": "slides/bell-curves.html#todays-agenda",
-    "href": "slides/bell-curves.html#todays-agenda",
-    "title": "Bell Curves",
-    "section": "Today’s Agenda",
-    "text": "Today’s Agenda\n\nIntroduce the bell curve probability distribution\n\nAKA the normal distribution or the Gaussian distribution\n\nUnderstand the conditions that create bell curves (the Central Limit Theorem)\nExplore some useful features of bell curves for making predictions"
-  },
-  {
-    "objectID": "slides/bell-curves.html#warmup",
-    "href": "slides/bell-curves.html#warmup",
-    "title": "Bell Curves",
-    "section": "Warmup",
-    "text": "Warmup\n\nIn an upcoming Congressional election:\n\n60% of voters plan to vote for the Republican candidate.\n40% of voters plan to vote for the Democratic candidate.\n\nA polling firm randomly calls voters in the Congressional district and asks who they plan to vote for.\n\n\nDraw a probability tree representing the first two voters contacted by the polling firm. What is the probability of every possible poll result?"
-  },
-  {
-    "objectID": "slides/bell-curves.html#warmup-1",
-    "href": "slides/bell-curves.html#warmup-1",
-    "title": "Bell Curves",
-    "section": "Warmup",
-    "text": "Warmup\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\nR\n\n\n\nD"
-  },
-  {
-    "objectID": "slides/bell-curves.html#things-to-notice",
-    "href": "slides/bell-curves.html#things-to-notice",
-    "title": "Bell Curves",
-    "section": "Things To Notice",
-    "text": "Things To Notice\n\nA poll with two responses is pretty worthless.\n\n48% of the time you get an equal number of R’s and D’s\n16% of the time, you get all D’s\n36% of the time, you get all R’s\n\nTwo big problems:\n\nThe poll is biased. Result is more likely to be wrong in one direction than the other.\nIt also has high variance. Result is, on average, very far from the truth."
-  },
-  {
-    "objectID": "slides/bell-curves.html#margin-of-error",
-    "href": "slides/bell-curves.html#margin-of-error",
-    "title": "Bell Curves",
-    "section": "Margin of Error",
-    "text": "Margin of Error\n\nDefine the margin of error as the range within which you’re 95% sure your polling error will fall.\nThe back-of-the-envelope approximation of a poll’s margin of error is \\(\\frac{100\\%}{\\sqrt{n}}\\).\n\nSo, for a poll with 100 respondents, margin of error is roughly \\(\\frac{100\\%}{\\sqrt{100}} = 10\\%\\).\nPractice: what’s the margin of error for a poll with 400 respondents?"
-  },
-  {
-    "objectID": "slides/bell-curves.html#wrap-up",
-    "href": "slides/bell-curves.html#wrap-up",
-    "title": "Bell Curves",
-    "section": "Wrap Up",
-    "text": "Wrap Up\n\nYour outcome will fall on a bell curve if it is the sum of a large number of independent random events (Central Limit Theorem).\nIf the theorem holds, it’s great for making predictions, because bell curves are easy to work with.\n\nIn a few weeks, we’ll talk about the ways in which real-world polls fall short of this idealized model.\n\nNext Time: What happens when that independence assumption is violated?"
-  },
-  {
-    "objectID": "slides/bell-curves.html#warmup-2",
-    "href": "slides/bell-curves.html#warmup-2",
-    "title": "Bell Curves",
-    "section": "Warmup",
-    "text": "Warmup\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\nR\n\n\n\nD\n\n\n\nRR (36%)\n\n\n\nRD (24%)\n\n\n\nDR (24%)\n\n\n\nDD (16%)"
-  },
-  {
-    "objectID": "slides/bell-curves.html#simplifying-assumption",
-    "href": "slides/bell-curves.html#simplifying-assumption",
-    "title": "Bell Curves",
-    "section": "Simplifying Assumption",
-    "text": "Simplifying Assumption\nBecause we don’t care about the order of responses (just the counts), we can combine some outcomes:\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\n1R,0D\n\n\n\n0R,1D\n\n\n\n2R,0D (36%)\n\n\n\n1R,1D (48%)\n\n\n\n0R,2D (16%)"
-  },
-  {
-    "objectID": "slides/bell-curves.html#lets-go-wild",
-    "href": "slides/bell-curves.html#lets-go-wild",
-    "title": "Bell Curves",
-    "section": "Let’s Go Wild",
-    "text": "Let’s Go Wild"
-  },
-  {
-    "objectID": "slides/bell-curves.html#after-three-poll-responses",
-    "href": "slides/bell-curves.html#after-three-poll-responses",
-    "title": "Bell Curves",
-    "section": "After Three Poll Responses",
-    "text": "After Three Poll Responses\n\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D (21.6%)\n\n\n\n\n\n\n\n2R,1D (43.2%)\n\n\n\n\n\n\n\n1R,2D (28.8%)\n\n\n\n\n\n\n\n0R,3D (6.4%)"
-  },
-  {
-    "objectID": "slides/bell-curves.html#lets-go-wild-1",
-    "href": "slides/bell-curves.html#lets-go-wild-1",
-    "title": "Bell Curves",
-    "section": "Let’s Go Wild",
-    "text": "Let’s Go Wild"
-  },
-  {
-    "objectID": "slides/bell-curves.html#things-to-notice-1",
-    "href": "slides/bell-curves.html#things-to-notice-1",
-    "title": "Bell Curves",
-    "section": "Things To Notice",
-    "text": "Things To Notice\n\nWith a large enough sample, the poll results are unbiased. Centered on the truth, and equally likely to be too high or too low.\nVariance shrinks with poll size.\n\nIn a poll of 50 voters, there’s a strong chance you get a result off by 10 percentage points and call the election incorrectly.\nIn a poll with 500 voters, it’s practically impossible that the result will be off by more than 10 percentage points."
-  },
-  {
-    "objectID": "slides/bell-curves.html#increasing-poll-size",
-    "href": "slides/bell-curves.html#increasing-poll-size",
-    "title": "Bell Curves",
-    "section": "Increasing Poll Size",
-    "text": "Increasing Poll Size\nOver the next few slides, we’ll show that increasing the size of the poll \\((n)\\) does three things:\n\nEliminates bias\nReduces variance\nGives the polling errors a particular (bell curve) shape."
-  },
-  {
-    "objectID": "slides/bell-curves.html#three-poll-responses",
-    "href": "slides/bell-curves.html#three-poll-responses",
-    "title": "Bell Curves",
-    "section": "Three Poll Responses",
-    "text": "Three Poll Responses\n\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D (21.6%)\n\n\n\n\n\n\n\n2R,1D (43.2%)\n\n\n\n\n\n\n\n1R,2D (28.8%)\n\n\n\n\n\n\n\n0R,3D (6.4%)"
-  },
-  {
-    "objectID": "slides/bell-curves.html#four-poll-responses",
-    "href": "slides/bell-curves.html#four-poll-responses",
-    "title": "Bell Curves",
-    "section": "Four Poll Responses",
-    "text": "Four Poll Responses\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D\n\n\n\n\n\n\n\n2R,1D\n\n\n\n\n\n\n\n1R,2D\n\n\n\n\n\n\n\n0R,3D\n\n\n\n\n\n\n\n4R,0D (13%)\n\n\n\n\n\n\n\n3R,1D (34.5%)\n\n\n\n\n\n\n\n2R,2D (34.5%)\n\n\n\n\n\n\n\n1R,3D (15.4%)\n\n\n\n\n\n\n\n0R,4D (2.6%)"
-  },
-  {
-    "objectID": "slides/bell-curves.html#n3",
-    "href": "slides/bell-curves.html#n3",
-    "title": "Bell Curves",
-    "section": "n=3",
-    "text": "n=3\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\n1R,0D\n\n\n\n0R,1D\n\n\n\n2R,0D\n\n\n\n1R,1D\n\n\n\n0R,2D\n\n\n\n3R,0D (21.6%)\n\n\n\n2R,1D (43.2%)\n\n\n\n1R,2D (28.8%)\n\n\n\n0R,3D (6.4%)"
-  },
-  {
-    "objectID": "slides/bell-curves.html#n4",
-    "href": "slides/bell-curves.html#n4",
-    "title": "Bell Curves",
-    "section": "n=4",
-    "text": "n=4\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\n1R,0D\n\n\n\n0R,1D\n\n\n\n2R,0D\n\n\n\n1R,1D\n\n\n\n0R,2D\n\n\n\n3R,0D\n\n\n\n2R,1D\n\n\n\n1R,2D\n\n\n\n0R,3D\n\n\n\n4R,0D (13%)\n\n\n\n3R,1D (34.5%)\n\n\n\n2R,2D (34.5%)\n\n\n\n1R,3D (15.4%)\n\n\n\n0R,4D (2.6%)\n\n\n\n\n\n\n\n\n\n\nI would never make you do this by hand."
-  },
-  {
-    "objectID": "slides/bell-curves.html#n5",
-    "href": "slides/bell-curves.html#n5",
-    "title": "Bell Curves",
-    "section": "n=5",
-    "text": "n=5\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\n1R,0D\n\n\n\n0R,1D\n\n\n\n2R,0D\n\n\n\n1R,1D\n\n\n\n0R,2D\n\n\n\n3R,0D\n\n\n\n2R,1D\n\n\n\n1R,2D\n\n\n\n0R,3D\n\n\n\n4R,0D\n\n\n\n3R,1D\n\n\n\n2R,2D\n\n\n\n1R,3D\n\n\n\n0R,4D\n\n\n\n5R,0D (7.8%)\n\n\n\n4R,1D (25.9%)\n\n\n\n3R,2D (34.6%)\n\n\n\n2R,3D (23%)\n\n\n\n1R,4D (7.7%)\n\n\n\n0R,5D (1%)\n\n\n\n\n\n\n\n\n\nIntuition Check: Why is the probability of 3R,2D so big and the probability of 0R,5D so small?"
-  },
-  {
-    "objectID": "slides/bell-curves.html#bell-curves-in-the-wild",
-    "href": "slides/bell-curves.html#bell-curves-in-the-wild",
-    "title": "Bell Curves",
-    "section": "Bell Curves In The Wild",
-    "text": "Bell Curves In The Wild\nHuman height is the sum of a large number of independent genetic and environmental factors, so…"
-  },
-  {
-    "objectID": "slides/bell-curves.html#bell-curves-in-the-wild-1",
-    "href": "slides/bell-curves.html#bell-curves-in-the-wild-1",
-    "title": "Bell Curves",
-    "section": "Bell Curves In The Wild",
-    "text": "Bell Curves In The Wild\nHuman height is the sum of a large number of independent genetic and environmental factors, so… . . ."
-  },
-  {
-    "objectID": "slides/bell-curves.html#bell-curves-in-the-wild-2",
-    "href": "slides/bell-curves.html#bell-curves-in-the-wild-2",
-    "title": "Bell Curves",
-    "section": "Bell Curves In The Wild",
-    "text": "Bell Curves In The Wild\nStandardized test scores are the sum of a large number of independent question scores, so…"
-  },
-  {
-    "objectID": "slides/bell-curves.html#n6",
-    "href": "slides/bell-curves.html#n6",
-    "title": "Bell Curves",
-    "section": "n=6",
-    "text": "n=6\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\n1R,0D\n\n\n\n0R,1D\n\n\n\n2R,0D\n\n\n\n1R,1D\n\n\n\n0R,2D\n\n\n\n3R,0D\n\n\n\n2R,1D\n\n\n\n1R,2D\n\n\n\n0R,3D\n\n\n\n4R,0D\n\n\n\n3R,1D\n\n\n\n2R,2D\n\n\n\n1R,3D\n\n\n\n0R,4D\n\n\n\n5R,0D\n\n\n\n4R,1D\n\n\n\n3R,2D\n\n\n\n2R,3D\n\n\n\n1R,4D\n\n\n\n0R,5D\n\n\n\n6D,0R (4.7%)\n\n\n\n5D,1R (18.7%)\n\n\n\n4D,2R (31.1%)\n\n\n\n3D,3R (27.6%)\n\n\n\n2D,4R (13.8%)\n\n\n\n1D,5R (3.7%)\n\n\n\n0D,6R (0.4%)"
-  },
-  {
-    "objectID": "slides/bell-curves.html#central-limit-theorem",
-    "href": "slides/bell-curves.html#central-limit-theorem",
-    "title": "Bell Curves",
-    "section": "Central Limit Theorem",
-    "text": "Central Limit Theorem\n\nAs poll size gets larger, the shape of the errors takes on that gorgeous bell curve shape.\nThis is one of the most foundational ideas in all of statistics.\n\n\nCentral Limit Theorem\n\nIf an outcome is the sum of a large number of independent random events, then it will fall on a bell curve."
-  },
-  {
-    "objectID": "slides/bell-curves.html#bell-curves",
-    "href": "slides/bell-curves.html#bell-curves",
-    "title": "Bell Curves",
-    "section": "Bell Curves",
-    "text": "Bell Curves\nWhen should you expect that\n\nCentral Limit Theorem\n\nIf an outcome is the sum of a large number of independent random events, then it will fall on a bell curve.\n\n\n\nNote the three conditions in that definition"
-  },
-  {
-    "objectID": "slides/bell-curves.html#section",
-    "href": "slides/bell-curves.html#section",
-    "title": "Bell Curves",
-    "section": "",
-    "text": "We can plot these compound probabilities on a bar chart."
-  },
-  {
-    "objectID": "slides/bell-curves.html#bell-curves-in-the-wild-3",
-    "href": "slides/bell-curves.html#bell-curves-in-the-wild-3",
-    "title": "Bell Curves",
-    "section": "Bell Curves In The Wild",
-    "text": "Bell Curves In The Wild\nCollege football scores are the sum of a large number of independent successes / failures to get the ball to the other end of the field, so…\n\n\n\n\nCollege football scores (relative to the Vegas “spread”)"
-  },
-  {
-    "objectID": "slides/bell-curves.html#bell-curves-are-nice",
-    "href": "slides/bell-curves.html#bell-curves-are-nice",
-    "title": "Bell Curves",
-    "section": "Bell Curves Are Nice",
-    "text": "Bell Curves Are Nice\n\nWhen outcomes fall on a bell curve, it makes prediction a lot easier.\nThat’s because outcomes are very unlikely to stray far from their expected values."
-  },
-  {
-    "objectID": "slides/bell-curves.html#bell-curves-are-nice-1",
-    "href": "slides/bell-curves.html#bell-curves-are-nice-1",
-    "title": "Bell Curves",
-    "section": "Bell Curves Are Nice",
-    "text": "Bell Curves Are Nice\n95% of poll results will be one of the red bars."
-  },
-  {
-    "objectID": "slides/bell-curves.html#bell-curves-are-nice-2",
-    "href": "slides/bell-curves.html#bell-curves-are-nice-2",
-    "title": "Bell Curves",
-    "section": "Bell Curves Are Nice",
-    "text": "Bell Curves Are Nice\n95% of poll results will be one of the red bars."
-  },
-  {
-    "objectID": "slides/bayes-rule.html",
-    "href": "slides/bayes-rule.html",
-    "title": "Bayes Rule",
-    "section": "",
-    "text": "Many federal law enforcement and national security agencies use polygraph tests to screen potential hires."
-  },
-  {
-    "objectID": "index.html#leaderboard",
-    "href": "index.html#leaderboard",
-    "title": "Fall 2025 Predictions",
-    "section": "Leaderboard",
-    "text": "Leaderboard\n\n\n\n\n\nName\nPredictions Made\n\n\n\n\nAkshara Singh\n3\n\n\nAlika Otero-Ricalde\n4\n\n\nAlizah Mudaliar\n5\n\n\nAmanda Neighbour\n5\n\n\nAna Valencia\n3\n\n\nAnna Barton-Caucci\n5\n\n\nAnna Kneser\n5\n\n\nArshia Charkhian\n4\n\n\nBlake Martin\n5\n\n\nBreanne Talley\n4\n\n\nCaleb Lux\n5\n\n\nCaroline Mattox\n5\n\n\nChris Haswell\n5\n\n\nCierra Green\n5\n\n\nCrowd\n5\n\n\nElizabeth Nelson\n4\n\n\nEllie Null\n5\n\n\nFrancesca Mariano\n4\n\n\nHunter Murray\n5\n\n\nJack Lutz\n2\n\n\nJackson Bost\n5\n\n\nJames Hunter Darke\n3\n\n\nJhaycee Barnes\n5\n\n\nJoe Ornstein\n5\n\n\nKira Fleischer\n5\n\n\nKristoffer Fields\n5\n\n\nLiz Yancey\n5\n\n\nManuv Datta\n3\n\n\nMateo Ceron\n5\n\n\nNic Curtis\n5\n\n\nOwen Johnston\n4\n\n\nPaul Frilingos\n5\n\n\nRaquel Beatriz Caldas Laranjeira\n5\n\n\nReese Fabritius\n5\n\n\nRuhi Doddamani\n4\n\n\nRyan Marx\n5\n\n\nSade Ezekiel\n5\n\n\nSarah Kate Maher\n5\n\n\nSasha Mahtani\n5\n\n\nShaheer Ul-Islam\n4\n\n\nSierra Cross-Thompson\n2\n\n\nZafar Ali\n5"
+    "objectID": "slides/conditional-probability.html#references",
+    "href": "slides/conditional-probability.html#references",
+    "title": "Conditional Probability",
+    "section": "References",
+    "text": "References\n\n\n\n\nKahneman, Daniel, and Dan Lovallo. 1993. “Timid Choices and Bold Forecasts: A Cognitive Perspective on Risk Taking.” Management Science 39 (1): 17–31. https://www.jstor.org/stable/2661517."
   },
   {
     "objectID": "slides/long-tails.html#todays-agenda",
@@ -1330,11 +1260,11 @@
     "text": "Tail Risk\n\nA common forecasting problem is to try to quantify “tail risk”. What’s the probability of an extreme result, far outside what we ordinarily expect?\nLast time, we discussed the margin of error, which is a measure of tail risk in political polling.\nBut this type of problem crops up everywhere: financial analysis, military planning, emergency management, etc."
   },
   {
-    "objectID": "slides/long-tails.html#useful-rule-of-thumb",
-    "href": "slides/long-tails.html#useful-rule-of-thumb",
+    "objectID": "slides/long-tails.html#bell-curves-have-low-tail-risk",
+    "href": "slides/long-tails.html#bell-curves-have-low-tail-risk",
     "title": "Long Tails",
-    "section": "Useful Rule of Thumb",
-    "text": "Useful Rule of Thumb\n\n\n\n\n\nStandard deviation \\((\\sigma)\\) is a measure of the spread of the distribution. It measures how far, on average, observations lie from their expected value.\nA “2 sigma” outcome should happen only 5% of the time.\nA “3 sigma” outcome should happen only 0.3% of the time!"
+    "section": "Bell Curves Have Low Tail Risk",
+    "text": "Bell Curves Have Low Tail Risk\n\n\n\n\n\nStandard deviation \\((\\sigma)\\) is a measure of the spread of the distribution. It measures how far, on average, observations lie from their expected value.\nA “2 sigma” event should happen only 5% of the time.\nA “3 sigma” event should happen only 0.3% of the time."
   },
   {
     "objectID": "slides/long-tails.html#financial-markets-example",
@@ -1356,13 +1286,6 @@
     "title": "Long Tails",
     "section": "So what’s the problem?",
     "text": "So what’s the problem?"
-  },
-  {
-    "objectID": "slides/long-tails.html#bell-curves-have-low-tail-risk",
-    "href": "slides/long-tails.html#bell-curves-have-low-tail-risk",
-    "title": "Long Tails",
-    "section": "Bell Curves Have Low Tail Risk",
-    "text": "Bell Curves Have Low Tail Risk\n\n\n\n\n\nStandard deviation \\((\\sigma)\\) is a measure of the spread of the distribution. It measures how far, on average, observations lie from their expected value.\nA “2 sigma” event should happen only 5% of the time.\nA “3 sigma” event should happen only 0.3% of the time."
   },
   {
     "objectID": "slides/long-tails.html#so-whats-the-problem-1",
@@ -1610,6 +1533,13 @@
     "text": "Power Laws"
   },
   {
+    "objectID": "slides/long-tails.html#power-laws-5",
+    "href": "slides/long-tails.html#power-laws-5",
+    "title": "Long Tails",
+    "section": "Power Laws",
+    "text": "Power Laws\n\nPower laws are the result of processes where large events are more likely grow than small ones.\nEach of these outcomes – social media subscribers, word usage, earthquakes, armed conflict – exhibit “snowball effects”.\nThis violates the independence assumption of CLT."
+  },
+  {
     "objectID": "slides/long-tails.html#takeaways",
     "href": "slides/long-tails.html#takeaways",
     "title": "Long Tails",
@@ -1622,12 +1552,5 @@
     "title": "Long Tails",
     "section": "References",
     "text": "References\n\n\n\n\nTaleb, Nassim Nicholas. 2007. The black swan: the impact of the highly improbable. London: Allen Lane."
-  },
-  {
-    "objectID": "slides/long-tails.html#power-laws-5",
-    "href": "slides/long-tails.html#power-laws-5",
-    "title": "Long Tails",
-    "section": "Power Laws",
-    "text": "Power Laws\n\nPower laws are the result of processes where large events are more likely grow than small ones.\nEach of these outcomes – social media subscribers, word usage, earthquakes, armed conflict – exhibit “snowball effects”.\nThis violates the independence assumption of CLT."
   }
 ]
