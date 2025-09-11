@@ -277,14 +277,14 @@
     "href": "slides/compound-probability.html#probability-trees-1",
     "title": "Compound Probability",
     "section": "Probability Trees",
-    "text": "Probability Trees\n\nImagine the future as a series of branching paths.\nEach branch represents a different path that the universe could take.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBorn\n\n\n\n\n\n\n\nGo to UGA\n\n\n\n\n\n\n\nGo somewhere else\n\n\n\n\n\n\n\nEnroll in POLS 3220\n\n\n\n\n\n\n\nStudy biochem instead\n\n\n\n\n\n\n\nAttend class today\n\n\n\n\n\n\n\nSkip class today"
+    "text": "Probability Trees\n\nImagine the future as a series of branching paths.\nEach branch represents a different path that the universe could take.\n\n. . .\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart\n\n\n\n\n\n\n\n1R,0W\n\n\n\n\n\n\n\n0R,1W\n\n\n\n\n\n\n\n2R,0W\n\n\n\n\n\n\n\n1R,1W\n\n\n\n\n\n\n\n0R,2W\n\n\n\n\n\n\n\n3R,0W\n\n\n\n\n\n\n\n2R,1W\n\n\n\n\n\n\n\n1R,2W\n\n\n\n\n\n\n\n0R,3W\n\n\n\n\n\n\n\n4R,0W\n\n\n\n\n\n\n\n3R,1W\n\n\n\n\n\n\n\n2R,2W\n\n\n\n\n\n\n\n1R,3W\n\n\n\n\n\n\n\n0R,4W\n\n\n\n\n\n\n\n5R,0W (7.8%)\n\n\n\n\n\n\n\n4R,1W (25.9%)\n\n\n\n\n\n\n\n3R,2W (34.6%)\n\n\n\n\n\n\n\n2R,3W (23%)\n\n\n\n\n\n\n\n1R,4W (7.7%)\n\n\n\n\n\n\n\n0R,5W (1%)"
   },
   {
     "objectID": "slides/compound-probability.html#rules-for-tree-construction",
     "href": "slides/compound-probability.html#rules-for-tree-construction",
     "title": "Compound Probability",
     "section": "Rules for Tree Construction",
-    "text": "Rules for Tree Construction\n\nBranches originating from a single point must be mutually exclusive and collectively exhaustive.\n\nMutually Exclusive: if one event happens, the others cannot happen\n\ne.g. “Georgia beats Texas” and “Texas beats Georgia”.\n\nCollectively Exhaustive: covers every possible outcome\n\ne.g. “I drink coffee this afternoon” and “I don’t drink coffee this afternoon”."
+    "text": "Rules for Tree Construction\n. . .\nBranches originating from a single point must be mutually exclusive and collectively exhaustive.\n\nMutually Exclusive: if one event happens, the others cannot happen\n\ne.g. “Georgia beats Texas” and “Texas beats Georgia”.\n\nCollectively Exhaustive: covers every possible outcome\n\ne.g. “I drink coffee this afternoon” and “I don’t drink coffee this afternoon”."
   },
   {
     "objectID": "slides/compound-probability.html#rules-for-tree-construction-1",
@@ -305,21 +305,21 @@
     "href": "slides/compound-probability.html#rules-for-tree-construction-2",
     "title": "Compound Probability",
     "section": "Rules for Tree Construction",
-    "text": "Rules for Tree Construction\nNext, we will assign a probability to each branch. When doing so, remember two rules:\n\nIf events \\(A\\) and \\(B\\) are mutually exclusive, then \\(P(A \\text{ or } B) = P(A) + P(B)\\).\nIf events \\(A\\), \\(B\\), and \\(C\\) are mutually exclusive and collectively exhaustive, then \\(P(A) + P(B) + P(C) = 1\\).\n\n\nThese two rules are called the axioms of probability."
+    "text": "Rules for Tree Construction\nNext, we will assign a probability to each branch. When doing so, remember two rules:\n\nIf events \\(A\\) and \\(B\\) are mutually exclusive, then \\(P(A \\text{ or } B) = P(A) + P(B)\\).\nIf events \\(A\\), \\(B\\), and \\(C\\) are mutually exclusive and collectively exhaustive, then \\(P(A) + P(B) + P(C) = 1\\).\n\n. . .\nThese two rules are called the axioms of probability."
   },
   {
     "objectID": "slides/compound-probability.html#rules-for-tree-construction-3",
     "href": "slides/compound-probability.html#rules-for-tree-construction-3",
     "title": "Compound Probability",
     "section": "Rules for Tree Construction",
-    "text": "Rules for Tree Construction\n\n\n\n\n\n\n\n\n\n\n\n0.6\n\n\n\n\n\n\n\n0.4\n\n\n\n\n\n\n\n0.6\n\n\n\n\n\n\n\n0.4\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\nStart of Season\n\n\n\n\n\n\n\nUGA beats Alabama\n\n\n\n\n\n\n\nAlabama beats UGA\n\n\n\n\n\n\n\nUGA beats Texas\n\n\n\n\n\n\n\nTexas beats UGA\n\n\n\n\n\n\n\nUGA beats Texas\n\n\n\n\n\n\n\nTexas beats UGA\n\n\n\n\n\n\n\n\n\n\n\nThe second set of probabilities are called conditional probabilities."
+    "text": "Rules for Tree Construction\n\n\n\n\n\n\n\n\n\n\n\n0.6\n\n\n\n\n\n\n\n0.4\n\n\n\n\n\n\n\n0.6\n\n\n\n\n\n\n\n0.4\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\nStart of Season\n\n\n\n\n\n\n\nUGA beats Alabama\n\n\n\n\n\n\n\nAlabama beats UGA\n\n\n\n\n\n\n\nUGA beats Texas\n\n\n\n\n\n\n\nTexas beats UGA\n\n\n\n\n\n\n\nUGA beats Texas\n\n\n\n\n\n\n\nTexas beats UGA\n\n\n\n\n\n\n\n\n\n\n. . .\nThe second set of probabilities are called conditional probabilities."
   },
   {
     "objectID": "slides/compound-probability.html#conditional-probability",
     "href": "slides/compound-probability.html#conditional-probability",
     "title": "Compound Probability",
     "section": "Conditional Probability",
-    "text": "Conditional Probability\nWe denote the probability of event \\(A\\) conditional on event \\(B\\) as:\n\\[\nP(A|B)\n\\]\n\nAnd the probability of \\(A\\) conditional on \\(B\\) not happening is:\n\\[\nP(A|\\neg B)\\]"
+    "text": "Conditional Probability\nWe denote the probability of event \\(A\\) conditional on event \\(B\\) as:\n\\[\nP(A|B)\n\\]\n. . .\nAnd the probability of \\(A\\) conditional on \\(B\\) not happening is:\n\\[\nP(A|\\neg B)\\]"
   },
   {
     "objectID": "slides/compound-probability.html#independence",
@@ -354,7 +354,7 @@
     "href": "slides/compound-probability.html#joint-probability-1",
     "title": "Compound Probability",
     "section": "Joint Probability",
-    "text": "Joint Probability\nTo find the probability of ending up at any node of the tree, multiply the probabilities of all the branches that feed into it.\n\n\n\n\n\n\n\n\n\n\n\n\n0.6\n\n\n\n\n\n\n\n0.4\n\n\n\n\n\n\n\n0.6\n\n\n\n\n\n\n\n0.4\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\nStart of Season\n\n\n\n\n\n\n\nUGA beats Alabama\n\n\n\n\n\n\n\nAlabama beats UGA\n\n\n\n\n\n\n\nUGA beats Texas (36%)\n\n\n\n\n\n\n\nTexas beats UGA (24%)\n\n\n\n\n\n\n\nUGA beats Texas (20%)\n\n\n\n\n\n\n\nTexas beats UGA (20%)"
+    "text": "Joint Probability\nTo find the probability of ending up at any node of the tree, multiply the probabilities of all the branches that feed into it.\n. . .\n\n\n\n\n\n\n\n\n\n\n\n0.6\n\n\n\n\n\n\n\n0.4\n\n\n\n\n\n\n\n0.6\n\n\n\n\n\n\n\n0.4\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\nStart of Season\n\n\n\n\n\n\n\nUGA beats Alabama\n\n\n\n\n\n\n\nAlabama beats UGA\n\n\n\n\n\n\n\nUGA beats Texas (36%)\n\n\n\n\n\n\n\nTexas beats UGA (24%)\n\n\n\n\n\n\n\nUGA beats Texas (20%)\n\n\n\n\n\n\n\nTexas beats UGA (20%)"
   },
   {
     "objectID": "slides/compound-probability.html#practice-2",
@@ -564,7 +564,7 @@
     "href": "index.html#leaderboard",
     "title": "Fall 2025 Predictions",
     "section": "Leaderboard",
-    "text": "Leaderboard\n\n\n\n\n\nName\nPredictions Made\n\n\n\n\nAkshara Singh\n3\n\n\nAlika Otero-Ricalde\n4\n\n\nAlizah Mudaliar\n5\n\n\nAmanda Neighbour\n5\n\n\nAna Valencia\n3\n\n\nAnna Barton-Caucci\n5\n\n\nAnna Kneser\n5\n\n\nArshia Charkhian\n4\n\n\nBlake Martin\n5\n\n\nBreanne Talley\n4\n\n\nCaleb Lux\n5\n\n\nCaroline Mattox\n5\n\n\nChris Haswell\n5\n\n\nCierra Green\n5\n\n\nCrowd\n5\n\n\nElizabeth Nelson\n4\n\n\nEllie Null\n5\n\n\nFrancesca Mariano\n4\n\n\nHunter Murray\n5\n\n\nJack Lutz\n2\n\n\nJackson Bost\n5\n\n\nJames Hunter Darke\n3\n\n\nJhaycee Barnes\n5\n\n\nJoe Ornstein\n5\n\n\nKira Fleischer\n5\n\n\nKristoffer Fields\n5\n\n\nLiz Yancey\n5\n\n\nManuv Datta\n3\n\n\nMateo Ceron\n5\n\n\nNic Curtis\n5\n\n\nOwen Johnston\n4\n\n\nPaul Frilingos\n5\n\n\nRaquel Beatriz Caldas Laranjeira\n5\n\n\nReese Fabritius\n5\n\n\nRuhi Doddamani\n4\n\n\nRyan Marx\n5\n\n\nSade Ezekiel\n5\n\n\nSarah Kate Maher\n5\n\n\nSasha Mahtani\n5\n\n\nShaheer Ul-Islam\n4\n\n\nSierra Cross-Thompson\n2\n\n\nZafar Ali\n5"
+    "text": "Leaderboard\n\n\n\n\n\nName\nPredictions Made\n\n\n\n\nAkshara Singh\n4\n\n\nAlika Otero-Ricalde\n5\n\n\nAlizah Mudaliar\n6\n\n\nAmanda Neighbour\n5\n\n\nAna Valencia\n4\n\n\nAnna Barton-Caucci\n6\n\n\nAnna Kneser\n6\n\n\nArshia Charkhian\n5\n\n\nBlake Martin\n6\n\n\nBreanne Talley\n5\n\n\nCaleb Lux\n6\n\n\nCaroline Mattox\n6\n\n\nChris Haswell\n6\n\n\nCierra Green\n6\n\n\nCrowd\n6\n\n\nElizabeth Nelson\n5\n\n\nEllie Null\n6\n\n\nFrancesca Mariano\n5\n\n\nHunter Murray\n5\n\n\nJack Lutz\n3\n\n\nJackson Bost\n6\n\n\nJames Hunter Darke\n3\n\n\nJhaycee Barnes\n6\n\n\nJoe Ornstein\n6\n\n\nKira Fleischer\n6\n\n\nKristoffer Fields\n5\n\n\nLiz Yancey\n6\n\n\nManuv Datta\n4\n\n\nMateo Ceron\n5\n\n\nNic Curtis\n6\n\n\nOwen Johnston\n5\n\n\nPaul Frilingos\n6\n\n\nRaquel Beatriz Caldas Laranjeira\n6\n\n\nReese Fabritius\n6\n\n\nRuhi Doddamani\n6\n\n\nRyan Marx\n6\n\n\nSade Ezekiel\n6\n\n\nSarah Kate Maher\n6\n\n\nSasha Mahtani\n6\n\n\nShaheer Ul-Islam\n5\n\n\nSierra Cross-Thompson\n2\n\n\nZafar Ali\n5"
   },
   {
     "objectID": "fall-2023.html#week-2-913",
@@ -1552,5 +1552,243 @@
     "title": "Long Tails",
     "section": "References",
     "text": "References\n\n\n\n\nTaleb, Nassim Nicholas. 2007. The black swan: the impact of the highly improbable. London: Allen Lane."
+  },
+  {
+    "objectID": "slides/jury-theorems.html#warmup",
+    "href": "slides/jury-theorems.html#warmup",
+    "title": "Jury Theorems",
+    "section": "Warmup",
+    "text": "Warmup"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#warmup-1",
+    "href": "slides/jury-theorems.html#warmup-1",
+    "title": "Jury Theorems",
+    "section": "Warmup",
+    "text": "Warmup"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#warmup-2",
+    "href": "slides/jury-theorems.html#warmup-2",
+    "title": "Jury Theorems",
+    "section": "Warmup",
+    "text": "Warmup\nPonder: What if I asked the class to vote on the answers? How many correct answers do you think the majority would get?"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#warmup-3",
+    "href": "slides/jury-theorems.html#warmup-3",
+    "title": "Jury Theorems",
+    "section": "Warmup",
+    "text": "Warmup"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#warmup-4",
+    "href": "slides/jury-theorems.html#warmup-4",
+    "title": "Jury Theorems",
+    "section": "Warmup",
+    "text": "Warmup"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#warmup-5",
+    "href": "slides/jury-theorems.html#warmup-5",
+    "title": "Jury Theorems",
+    "section": "Warmup",
+    "text": "Warmup\nPonder: What if I only took the majority vote of students who were really confident in their answers (&gt;95%)? Would that result be better or worse?"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#warmup-6",
+    "href": "slides/jury-theorems.html#warmup-6",
+    "title": "Jury Theorems",
+    "section": "Warmup",
+    "text": "Warmup"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#warmup-7",
+    "href": "slides/jury-theorems.html#warmup-7",
+    "title": "Jury Theorems",
+    "section": "Warmup",
+    "text": "Warmup"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#wisdom-of-crowds",
+    "href": "slides/jury-theorems.html#wisdom-of-crowds",
+    "title": "Jury Theorems",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds\n\nThis phenomenon is known as the Wisdom of Crowds.\n\nGroups of people often outperform the individuals that make them up.\n\nOver the next few weeks, we’ll discuss how to harness the Wisdom of Crowds to make better predictions.\nWe’ll also explore the conditions under which groups of people perform worse than individuals (the Madness of Crowds)."
+  },
+  {
+    "objectID": "slides/jury-theorems.html#condorcet",
+    "href": "slides/jury-theorems.html#condorcet",
+    "title": "Jury Theorems",
+    "section": "Condorcet",
+    "text": "Condorcet"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#condorcet-jury-theorem",
+    "href": "slides/jury-theorems.html#condorcet-jury-theorem",
+    "title": "Jury Theorems",
+    "section": "Condorcet Jury Theorem",
+    "text": "Condorcet Jury Theorem\n\nAssumptions:\n\nA group is voting on a binary (Yes/No) decision.\nEach voter has probability \\(p &gt; \\frac{1}{2}\\) of making the correct choice.\nIndividual votes are independent of one another.\n\n\n\nTheorem:\n\nAs the size of the group \\(n\\) gets large:\n\nThe probability that the majority makes the correct choice approaches 100%."
+  },
+  {
+    "objectID": "slides/jury-theorems.html#marquis-de-condorcet-1743-1794",
+    "href": "slides/jury-theorems.html#marquis-de-condorcet-1743-1794",
+    "title": "Jury Theorems",
+    "section": "Marquis de Condorcet (1743-1794)",
+    "text": "Marquis de Condorcet (1743-1794)"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#condorcet-jury-theorem-1",
+    "href": "slides/jury-theorems.html#condorcet-jury-theorem-1",
+    "title": "Jury Theorems",
+    "section": "Condorcet Jury Theorem",
+    "text": "Condorcet Jury Theorem\nPonder: Does the Condorcet Jury Theorem remind you of anything?"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#condorcet-jury-theorem-2",
+    "href": "slides/jury-theorems.html#condorcet-jury-theorem-2",
+    "title": "Jury Theorems",
+    "section": "Condorcet Jury Theorem",
+    "text": "Condorcet Jury Theorem\nExample: A jury with 5 members, where each individual has a 60% probability of choosing the right answer.\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Voting\n\n\n\n\n\n\n\n1R,0W\n\n\n\n\n\n\n\n0R,1W\n\n\n\n\n\n\n\n2R,0W\n\n\n\n\n\n\n\n1R,1W\n\n\n\n\n\n\n\n0R,2W\n\n\n\n\n\n\n\n3R,0W\n\n\n\n\n\n\n\n2R,1W\n\n\n\n\n\n\n\n1R,2W\n\n\n\n\n\n\n\n0R,3W\n\n\n\n\n\n\n\n4R,0W\n\n\n\n\n\n\n\n3R,1W\n\n\n\n\n\n\n\n2R,2W\n\n\n\n\n\n\n\n1R,3W\n\n\n\n\n\n\n\n0R,4W\n\n\n\n\n\n\n\n5R,0W (7.8%)\n\n\n\n\n\n\n\n4R,1W (25.9%)\n\n\n\n\n\n\n\n3R,2W (34.6%)\n\n\n\n\n\n\n\n2R,3W (23%)\n\n\n\n\n\n\n\n1R,4W (7.7%)\n\n\n\n\n\n\n\n0R,5W (1%)"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#condorcet-jury-theorem-3",
+    "href": "slides/jury-theorems.html#condorcet-jury-theorem-3",
+    "title": "Jury Theorems",
+    "section": "Condorcet Jury Theorem",
+    "text": "Condorcet Jury Theorem"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#condorcet-jury-theorem-4",
+    "href": "slides/jury-theorems.html#condorcet-jury-theorem-4",
+    "title": "Jury Theorems",
+    "section": "Condorcet Jury Theorem",
+    "text": "Condorcet Jury Theorem"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#condorcet-jury-theorem-5",
+    "href": "slides/jury-theorems.html#condorcet-jury-theorem-5",
+    "title": "Jury Theorems",
+    "section": "Condorcet Jury Theorem",
+    "text": "Condorcet Jury Theorem"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#condorcet-jury-theorem-6",
+    "href": "slides/jury-theorems.html#condorcet-jury-theorem-6",
+    "title": "Jury Theorems",
+    "section": "Condorcet Jury Theorem",
+    "text": "Condorcet Jury Theorem"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#condorcet-jury-theorem-7",
+    "href": "slides/jury-theorems.html#condorcet-jury-theorem-7",
+    "title": "Jury Theorems",
+    "section": "Condorcet Jury Theorem",
+    "text": "Condorcet Jury Theorem"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#condorcet-jury-theorem-8",
+    "href": "slides/jury-theorems.html#condorcet-jury-theorem-8",
+    "title": "Jury Theorems",
+    "section": "Condorcet Jury Theorem",
+    "text": "Condorcet Jury Theorem"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#condorcet-jury-theorem-9",
+    "href": "slides/jury-theorems.html#condorcet-jury-theorem-9",
+    "title": "Jury Theorems",
+    "section": "Condorcet Jury Theorem",
+    "text": "Condorcet Jury Theorem"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#condorcet-jury-theorem-10",
+    "href": "slides/jury-theorems.html#condorcet-jury-theorem-10",
+    "title": "Jury Theorems",
+    "section": "Condorcet Jury Theorem",
+    "text": "Condorcet Jury Theorem\n\nMajority rule is a powerful method for finding the right answer, if:\n\nIndividuals are competent \\((p &gt; \\frac{1}{2})\\).\nChoices are made independently.\nThe group is large enough."
+  },
+  {
+    "objectID": "slides/jury-theorems.html#majority-rule",
+    "href": "slides/jury-theorems.html#majority-rule",
+    "title": "Jury Theorems",
+    "section": "Majority Rule",
+    "text": "Majority Rule\n\nOne final wrinkle:\n\nWhat if the decision being made isn’t binary (Yes/No)?\nWhat if it’s something like trying to guess the weight of Galton’s ox (1906)?\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhat is the “majority judgment”?"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#wisdom-of-crowds-1",
+    "href": "slides/jury-theorems.html#wisdom-of-crowds-1",
+    "title": "Jury Theorems",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds\n\nOne last wrinkle: what if the decision being made isn’t binary (Yes/No)?\nWhat if the group is trying to make a decision about a continuous value?\nConsider the ox weight-judging competition described in Tetlock Chapter 3.\nParticipants paid sixpence to enter a competition to guess the weight of a “fat ox” (Galton 1907)."
+  },
+  {
+    "objectID": "slides/jury-theorems.html#wisdom-of-crowds-2",
+    "href": "slides/jury-theorems.html#wisdom-of-crowds-2",
+    "title": "Jury Theorems",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds\n\n\nWhat is the “majority judgment” here?"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#wisdom-of-crowds-3",
+    "href": "slides/jury-theorems.html#wisdom-of-crowds-3",
+    "title": "Jury Theorems",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds\nImagine we broke this down into a series of binary (Yes/No) votes."
+  },
+  {
+    "objectID": "slides/jury-theorems.html#wisdom-of-crowds-4",
+    "href": "slides/jury-theorems.html#wisdom-of-crowds-4",
+    "title": "Jury Theorems",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds\nIf the majority says “it weighs more than that”, adjust the question higher:"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#wisdom-of-crowds-5",
+    "href": "slides/jury-theorems.html#wisdom-of-crowds-5",
+    "title": "Jury Theorems",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds\nIf the majority says “it weighs less than that”, adjust the question lower:"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#wisdom-of-crowds-6",
+    "href": "slides/jury-theorems.html#wisdom-of-crowds-6",
+    "title": "Jury Theorems",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds\nThis process will finally stop when we get to the median voter (Black 1948)."
+  },
+  {
+    "objectID": "slides/jury-theorems.html#wisdom-of-crowds-7",
+    "href": "slides/jury-theorems.html#wisdom-of-crowds-7",
+    "title": "Jury Theorems",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds\nIn Galton’s experiment, the median voter was off by only 9 pounds!"
+  },
+  {
+    "objectID": "slides/jury-theorems.html#median-voter-theorem",
+    "href": "slides/jury-theorems.html#median-voter-theorem",
+    "title": "Jury Theorems",
+    "section": "Median Voter Theorem",
+    "text": "Median Voter Theorem\n\nThe median voter theorem (Black 1948) says that the median is the only position that cannot be defeated by a majority vote.\nThis follows from the definition of the median:\n\n50% of the group lies to the right.\n50% of the group lies to the left.\nAny majority voting bloc (&gt;50%) must include the median.\n\nSo we can think of the “majority judgment” as the position of the median voter."
+  },
+  {
+    "objectID": "slides/jury-theorems.html#references",
+    "href": "slides/jury-theorems.html#references",
+    "title": "Jury Theorems",
+    "section": "References",
+    "text": "References\n\n\n\n\nBlack, Duncan. 1948. “On the Rationale of Group Decision-Making.” Journal of Political Economy 56 (1): 23–34. https://doi.org/10.1086/256633.\n\n\nGalton, Francis. 1907. “Vox Populi.” Nature 75 (1949): 450–51. https://doi.org/10.1038/075450a0."
+  },
+  {
+    "objectID": "slides/jury-theorems.html#takeaways",
+    "href": "slides/jury-theorems.html#takeaways",
+    "title": "Jury Theorems",
+    "section": "Takeaways",
+    "text": "Takeaways\n\nThe Condorcet Jury Theorem shows when we can expect majority rule to yield good judgments.\n\nIndividuals must be competent/independent, and you need a large group.\n\nThe median voter theorem says that, when you’re making judgments on a continuous spectrum, majority = median.\n\nThis is why the “Crowd” point on our course website is the median forecast.\n\nNext Time: What to do when we don’t quite believe that independence assumption…"
+  },
+  {
+    "objectID": "index.html#week-4-99",
+    "href": "index.html#week-4-99",
+    "title": "Fall 2025 Predictions",
+    "section": "Week 4 (9/9)",
+    "text": "Week 4 (9/9)"
   }
 ]

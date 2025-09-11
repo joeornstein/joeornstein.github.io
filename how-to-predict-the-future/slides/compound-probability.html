@@ -1,251 +1,687 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<link href="../img/favicon_io/favicon.ico" rel="icon">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Compound Probability – How To Predict The Future</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../img/favicon_io/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-39f7db0e33c7e7e0f37d956b9f0706d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../site_libs/quarto-diagram/mermaid-postprocess-shim.js"></script>
 
-  <title>How To Predict The Future – Compound Probability</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    ul.task-list li input[type="checkbox"] {
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-      vertical-align: middle;
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
     }
-  </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2f366650f320edcfcf53d73c80250a32.css">
-  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
-    .reveal div.sourceCode {
-      margin: 0;
-      overflow: auto;
-    }
-    .reveal div.hanging-indent {
-      margin-left: 1em;
-      text-indent: -1em;
-    }
-    .reveal .slide:not(.center) {
-      height: 100%;
-    }
-    .reveal .slide.scrollable {
-      overflow-y: auto;
-    }
-    .reveal .footnotes {
-      height: 100%;
-      overflow-y: auto;
-    }
-    .reveal .slide .absolute {
-      position: absolute;
-      display: block;
-    }
-    .reveal .footnotes ol {
-      counter-reset: ol;
-      list-style-type: none; 
-      margin-left: 0;
-    }
-    .reveal .footnotes ol li:before {
-      counter-increment: ol;
-      content: counter(ol) ". "; 
-    }
-    .reveal .footnotes ol li > p:first-child {
-      display: inline-block;
-    }
-    .reveal .slide ul,
-    .reveal .slide ol {
-      margin-bottom: 0.5em;
-    }
-    .reveal .slide ul li,
-    .reveal .slide ol li {
-      margin-top: 0.4em;
-      margin-bottom: 0.2em;
-    }
-    .reveal .slide ul[role="tablist"] li {
-      margin-bottom: 0;
-    }
-    .reveal .slide ul li > *:first-child,
-    .reveal .slide ol li > *:first-child {
-      margin-block-start: 0;
-    }
-    .reveal .slide ul li > *:last-child,
-    .reveal .slide ol li > *:last-child {
-      margin-block-end: 0;
-    }
-    .reveal .slide .columns:nth-child(3) {
-      margin-block-start: 0.8em;
-    }
-    .reveal blockquote {
-      box-shadow: none;
-    }
-    .reveal .tippy-content>* {
-      margin-top: 0.2em;
-      margin-bottom: 0.7em;
-    }
-    .reveal .tippy-content>*:last-child {
-      margin-bottom: 0.2em;
-    }
-    .reveal .slide > img.stretch.quarto-figure-center,
-    .reveal .slide > img.r-stretch.quarto-figure-center {
-      display: block;
-      margin-left: auto;
-      margin-right: auto; 
-    }
-    .reveal .slide > img.stretch.quarto-figure-left,
-    .reveal .slide > img.r-stretch.quarto-figure-left  {
-      display: block;
-      margin-left: 0;
-      margin-right: auto; 
-    }
-    .reveal .slide > img.stretch.quarto-figure-right,
-    .reveal .slide > img.r-stretch.quarto-figure-right  {
-      display: block;
-      margin-left: auto;
-      margin-right: 0; 
-    }
-  </style>
-  <script src="../site_libs/quarto-diagram/mermaid-postprocess-shim.js"></script>
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
-<body class="quarto-light">
-  <div class="reveal">
-    <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Compound Probability</h1>
-  <p class="subtitle">POLS 3220: How to Predict the Future</p>
+<body class="nav-fixed">
 
-<div class="quarto-title-authors">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">How To Predict The Future</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-slides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Slides</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-slides">    
+        <li class="dropdown-header">I. Uncertainty</li>
+        <li>
+    <a class="dropdown-item" href="../slides/fundamentals.html">
+ <span class="dropdown-text">Fundamentals of Probability</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/compound-probability.html">
+ <span class="dropdown-text">Compound Probability</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/brier-scores.html">
+ <span class="dropdown-text">Brier Scores</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/conditional-probability.html">
+ <span class="dropdown-text">Conditional Probability</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/bayes-rule.html">
+ <span class="dropdown-text">Bayes Rule</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/bell-curves.html">
+ <span class="dropdown-text">Bell Curves</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../slides/long-tails.html">
+ <span class="dropdown-text">Long Tails</span></a>
+  </li>  
+        <li class="dropdown-header">II. Wisdom of Crowds</li>
+        <li>
+    <a class="dropdown-item" href="../slides/jury-theorems.html">
+ <span class="dropdown-text">Jury Theorems</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-archive" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Archive</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-archive">    
+        <li>
+    <a class="dropdown-item" href="../fall-2022.html">
+ <span class="dropdown-text">Fall 2022 Predictions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../fall-2023.html">
+ <span class="dropdown-text">Fall 2023 Predictions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../fall-2024.html">
+ <span class="dropdown-text">Fall 2024 Predictions</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../spring-2025.html">
+ <span class="dropdown-text">Spring 2025 Predictions</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../POLS-3220-syllabus.pdf"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#warmup" id="toc-warmup" class="nav-link active" data-scroll-target="#warmup">Warmup</a></li>
+  <li><a href="#compound-probability" id="toc-compound-probability" class="nav-link" data-scroll-target="#compound-probability">Compound Probability</a></li>
+  <li><a href="#probability-trees" id="toc-probability-trees" class="nav-link" data-scroll-target="#probability-trees">Probability Trees</a>
+  <ul class="collapse">
+  <li><a href="#probability-trees-1" id="toc-probability-trees-1" class="nav-link" data-scroll-target="#probability-trees-1">Probability Trees</a></li>
+  <li><a href="#rules-for-tree-construction" id="toc-rules-for-tree-construction" class="nav-link" data-scroll-target="#rules-for-tree-construction">Rules for Tree Construction</a></li>
+  <li><a href="#rules-for-tree-construction-1" id="toc-rules-for-tree-construction-1" class="nav-link" data-scroll-target="#rules-for-tree-construction-1">Rules for Tree Construction</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice">Practice</a></li>
+  <li><a href="#rules-for-tree-construction-2" id="toc-rules-for-tree-construction-2" class="nav-link" data-scroll-target="#rules-for-tree-construction-2">Rules for Tree Construction</a></li>
+  <li><a href="#rules-for-tree-construction-3" id="toc-rules-for-tree-construction-3" class="nav-link" data-scroll-target="#rules-for-tree-construction-3">Rules for Tree Construction</a></li>
+  <li><a href="#conditional-probability" id="toc-conditional-probability" class="nav-link" data-scroll-target="#conditional-probability">Conditional Probability</a></li>
+  <li><a href="#independence" id="toc-independence" class="nav-link" data-scroll-target="#independence">Independence</a></li>
+  <li><a href="#independence-1" id="toc-independence-1" class="nav-link" data-scroll-target="#independence-1">Independence</a></li>
+  <li><a href="#practice-1" id="toc-practice-1" class="nav-link" data-scroll-target="#practice-1">Practice</a></li>
+  <li><a href="#joint-probability" id="toc-joint-probability" class="nav-link" data-scroll-target="#joint-probability">Joint Probability</a></li>
+  <li><a href="#joint-probability-1" id="toc-joint-probability-1" class="nav-link" data-scroll-target="#joint-probability-1">Joint Probability</a></li>
+  <li><a href="#practice-2" id="toc-practice-2" class="nav-link" data-scroll-target="#practice-2">Practice</a></li>
+  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap Up</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="compound-probability.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Compound Probability</h1>
+<p class="subtitle lead">POLS 3220: How to Predict the Future</p>
 </div>
 
-</section>
-<section id="warmup" class="slide level2">
-<h2>Warmup</h2>
-<p><a href="https://www.polleverywhere.com/activities?folder=18421452"><img data-src="img/birthday-problem.png"></a></p>
-</section>
-<section id="compound-probability" class="slide level2">
-<h2>Compound Probability</h2>
-<ul>
-<li class="fragment"><p>Last time, we defined <strong>probability</strong> as a number between 0 and 1 describing the likelihood of an event.</p></li>
-<li class="fragment"><p>Today, our focus is <strong>compound probability</strong>, the likelihood of some <em>combination</em> of two or more events.</p></li>
-<li class="fragment"><p>Compound probability is particularly counterintuitive.</p></li>
-<li class="fragment"><p>By the end of the lecture, you’ll be equipped with some tools for dealing with these sorts of problems.</p></li>
-</ul>
-</section>
-<section>
-<section id="probability-trees" class="title-slide slide level1 center">
-<h1>Probability Trees</h1>
 
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="warmup" class="level2">
+<h2 class="anchored" data-anchor-id="warmup">Warmup</h2>
+<p><a href="https://www.polleverywhere.com/activities?folder=18421452"><img src="img/birthday-problem.png" class="img-fluid"></a></p>
 </section>
-<section id="probability-trees-1" class="slide level2">
-<h2>Probability Trees</h2>
+<section id="compound-probability" class="level2">
+<h2 class="anchored" data-anchor-id="compound-probability">Compound Probability</h2>
 <ul>
-<li class="fragment"><p>Imagine the future as a series of branching paths.</p></li>
-<li class="fragment"><p>Each branch represents a different path that the universe could take.</p></li>
+<li><p>Last time, we defined <strong>probability</strong> as a number between 0 and 1 describing the likelihood of an event.</p></li>
+<li><p>Today, our focus is <strong>compound probability</strong>, the likelihood of some <em>combination</em> of two or more events.</p></li>
+<li><p>Compound probability is particularly counterintuitive.</p></li>
+<li><p>By the end of the lecture, you’ll be equipped with some tools for dealing with these sorts of problems.</p></li>
 </ul>
-<div class="fragment">
+</section>
+<section id="probability-trees" class="level1">
+<h1>Probability Trees</h1>
+<section id="probability-trees-1" class="level2">
+<h2 class="anchored" data-anchor-id="probability-trees-1">Probability Trees</h2>
+<ul>
+<li><p>Imagine the future as a series of branching paths.</p></li>
+<li><p>Each branch represents a different path that the universe could take.</p></li>
+</ul>
+<p>. . .</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
-<p></p><figure class=""><p></p>
+<p></p><figure class="figure"><p></p>
 <div>
-<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="0 0 872.140625 278" style="; display: block; margin: auto auto auto auto" class="flowchart" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="960" id="mermaid-figure-1" height="480">
+<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="0 0 1078.234375 590" class="flowchart" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="672" id="mermaid-figure-1" height="480">
 <style>#mermaid-figure-1{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-1 .error-icon{fill:#552222;}#mermaid-figure-1 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-1 .edge-thickness-normal{stroke-width:1px;}#mermaid-figure-1 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-1 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-1 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-figure-1 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-1 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-1 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-1 .marker.cross{stroke:#333333;}#mermaid-figure-1 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-1 p{margin:0;}#mermaid-figure-1 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-1 .cluster-label text{fill:#333;}#mermaid-figure-1 .cluster-label span{color:#333;}#mermaid-figure-1 .cluster-label span p{background-color:transparent;}#mermaid-figure-1 .label text,#mermaid-figure-1 span{fill:#333;color:#333;}#mermaid-figure-1 .node rect,#mermaid-figure-1 .node circle,#mermaid-figure-1 .node ellipse,#mermaid-figure-1 .node polygon,#mermaid-figure-1 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-1 .rough-node .label text,#mermaid-figure-1 .node .label text{text-anchor:middle;}#mermaid-figure-1 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-figure-1 .node .label{text-align:center;}#mermaid-figure-1 .node.clickable{cursor:pointer;}#mermaid-figure-1 .arrowheadPath{fill:#333333;}#mermaid-figure-1 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-1 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-1 .edgeLabel{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaid-figure-1 .edgeLabel p{background-color:rgba(232,232,232, 0.8);}#mermaid-figure-1 .edgeLabel rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaid-figure-1 .labelBkg{background-color:rgba(232, 232, 232, 0.5);}#mermaid-figure-1 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-1 .cluster text{fill:#333;}#mermaid-figure-1 .cluster span{color:#333;}#mermaid-figure-1 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-1 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-1 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
-<g><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434324642_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="4.5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434324642_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434324642_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434324642_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757434324642_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757434324642_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid-1757434324642_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_B_0" d="M91.328,164L97.042,159.833C102.755,155.667,114.182,147.333,124.666,143.167C135.15,139,144.69,139,153.564,139C162.438,139,170.645,139,174.748,139L178.852,139"></path><path marker-end="url(#mermaid-1757434324642_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_C_1" d="M91.328,218L97.042,222.167C102.755,226.333,114.182,234.667,121.979,238.833C129.776,243,133.943,243,137.443,243C140.943,243,143.776,243,145.193,243L146.609,243"></path><path marker-end="url(#mermaid-1757434324642_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_D_2" d="M314.825,112L324.805,107.833C334.784,103.667,354.744,95.333,367.796,91.167C380.849,87,386.995,87,392.474,87C397.953,87,402.766,87,405.172,87L407.578,87"></path><path marker-end="url(#mermaid-1757434324642_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_E_3" d="M314.825,166L324.805,170.167C334.784,174.333,354.744,182.667,366.807,186.833C378.87,191,383.036,191,386.536,191C390.036,191,392.87,191,394.286,191L395.703,191"></path><path marker-end="url(#mermaid-1757434324642_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_D_F_4" d="M581.425,60L592.328,55.833C603.231,51.667,625.038,43.333,638.024,39.167C651.01,35,655.177,35,658.677,35C662.177,35,665.01,35,666.427,35L667.844,35"></path><path marker-end="url(#mermaid-1757434324642_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_D_G_5" d="M581.425,114L592.328,118.167C603.231,122.333,625.038,130.667,638.827,134.833C652.616,139,658.388,139,663.493,139C668.599,139,673.038,139,675.257,139L677.477,139"></path></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
+<g><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604777565_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="4.5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604777565_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604777565_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604777565_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757604777565_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757604777565_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_B_0" d="M68.961,268L81.003,243.833C93.044,219.667,117.128,171.333,132.352,147.167C147.577,123,153.943,123,159.642,123C165.341,123,170.374,123,172.89,123L175.406,123"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_C_1" d="M68.961,322L81.003,346.167C93.044,370.333,117.128,418.667,132.352,442.833C147.577,467,153.943,467,159.642,467C165.341,467,170.374,467,172.89,467L175.406,467"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_D_2" d="M285.016,110.234L291.382,108.695C297.747,107.156,310.479,104.078,320.028,102.539C329.577,101,335.943,101,341.642,101C347.341,101,352.374,101,354.89,101L357.406,101"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_E_3" d="M249.514,150L261.797,169.167C274.079,188.333,298.645,226.667,314.111,246.883C329.577,267.099,335.943,269.197,341.675,271.087C347.408,272.977,352.508,274.658,355.058,275.499L357.607,276.339"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_E_4" d="M249.514,440L261.797,420.833C274.079,401.667,298.645,363.333,314.111,343.117C329.577,322.901,335.943,320.803,341.675,318.913C347.408,317.023,352.508,315.342,355.058,314.501L357.607,313.661"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_F_5" d="M285.016,479.766L291.382,481.305C297.747,482.844,310.479,485.922,320.028,487.461C329.577,489,335.943,489,341.642,489C347.341,489,352.374,489,354.89,489L357.406,489"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_D_G_6" d="M467.016,88.234L473.382,86.695C479.747,85.156,492.479,82.078,502.028,80.539C511.577,79,517.943,79,523.642,79C529.341,79,534.374,79,536.89,79L539.406,79"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_D_H_7" d="M436.148,128L447.659,142.167C459.169,156.333,482.19,184.667,496.883,199.883C511.577,215.099,517.943,217.197,523.675,219.087C529.408,220.977,534.508,222.658,537.058,223.499L539.607,224.339"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_E_H_8" d="M467.016,282.234L473.382,280.695C479.747,279.156,492.479,276.078,502.028,273.49C511.577,270.901,517.943,268.803,523.675,266.913C529.408,265.023,534.508,263.342,537.058,262.501L539.607,261.661"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_E_I_9" d="M467.016,307.766L473.382,309.305C479.747,310.844,492.479,313.922,502.028,316.51C511.577,319.099,517.943,321.197,523.675,323.087C529.408,324.977,534.508,326.658,537.058,327.499L539.607,328.339"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_F_I_10" d="M436.148,462L447.659,447.833C459.169,433.667,482.19,405.333,496.883,390.117C511.577,374.901,517.943,372.803,523.675,370.913C529.408,369.023,534.508,367.342,537.058,366.501L539.607,365.661"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_F_J_11" d="M467.016,501.766L473.382,503.305C479.747,504.844,492.479,507.922,502.028,509.461C511.577,511,517.943,511,523.642,511C529.341,511,534.374,511,536.89,511L539.406,511"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_G_K_12" d="M649.016,66.234L655.382,64.695C661.747,63.156,674.479,60.078,684.028,58.539C693.577,57,699.943,57,705.642,57C711.341,57,716.374,57,718.89,57L721.406,57"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_G_L_13" d="M626.174,106L636.347,115.167C646.52,124.333,666.865,142.667,680.221,152.883C693.577,163.099,699.943,165.197,705.675,167.087C711.408,168.977,716.508,170.658,719.058,171.499L721.607,172.339"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_H_L_14" d="M649.016,230.234L655.382,228.695C661.747,227.156,674.479,224.078,684.028,221.49C693.577,218.901,699.943,216.803,705.675,214.913C711.408,213.023,716.508,211.342,719.058,210.501L721.607,209.661"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_H_M_15" d="M649.016,255.766L655.382,257.305C661.747,258.844,674.479,261.922,684.028,264.51C693.577,267.099,699.943,269.197,705.675,271.087C711.408,272.977,716.508,274.658,719.058,275.499L721.607,276.339"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_I_M_16" d="M649.016,334.234L655.382,332.695C661.747,331.156,674.479,328.078,684.028,325.49C693.577,322.901,699.943,320.803,705.675,318.913C711.408,317.023,716.508,315.342,719.058,314.501L721.607,313.661"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_I_N_17" d="M649.016,359.766L655.382,361.305C661.747,362.844,674.479,365.922,684.028,368.51C693.577,371.099,699.943,373.197,705.675,375.087C711.408,376.977,716.508,378.658,719.058,379.499L721.607,380.339"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_J_N_18" d="M626.174,484L636.347,474.833C646.52,465.667,666.865,447.333,680.221,437.117C693.577,426.901,699.943,424.803,705.675,422.913C711.408,421.023,716.508,419.342,719.058,418.501L721.607,417.661"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_J_O_19" d="M649.016,523.766L655.382,525.305C661.747,526.844,674.479,529.922,684.028,531.461C693.577,533,699.943,533,705.642,533C711.341,533,716.374,533,718.89,533L721.406,533"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_K_P_20" d="M831.016,44.234L837.382,42.695C843.747,41.156,856.479,38.078,866.378,36.539C876.276,35,883.341,35,889.74,35C896.138,35,901.87,35,904.736,35L907.602,35"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_K_Q_21" d="M825.461,84L832.753,88.167C840.044,92.333,854.628,100.667,865.102,105.632C875.577,110.597,881.943,112.193,887.662,113.628C893.381,115.062,898.454,116.335,900.99,116.971L903.526,117.607"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_L_Q_22" d="M831.016,178.234L837.382,176.695C843.747,175.156,856.479,172.078,866.028,169.741C875.577,167.403,881.943,165.807,887.662,164.372C893.381,162.938,898.454,161.665,900.99,161.029L903.526,160.393"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_L_R_23" d="M831.016,203.766L837.382,205.305C843.747,206.844,856.479,209.922,866.028,212.259C875.577,214.597,881.943,216.193,887.662,217.628C893.381,219.062,898.454,220.335,900.99,220.971L903.526,221.607"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_M_R_24" d="M831.016,282.234L837.382,280.695C843.747,279.156,856.479,276.078,866.028,273.741C875.577,271.403,881.943,269.807,887.662,268.372C893.381,266.938,898.454,265.665,900.99,265.029L903.526,264.393"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_M_S_25" d="M831.016,307.766L837.382,309.305C843.747,310.844,856.479,313.922,866.622,316.408C876.766,318.895,884.32,320.79,891.228,322.522C898.136,324.255,904.398,325.825,907.529,326.611L910.659,327.396"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_N_S_26" d="M831.016,386.234L837.382,384.695C843.747,383.156,856.479,380.078,866.622,377.592C876.766,375.105,884.32,373.21,891.228,371.478C898.136,369.745,904.398,368.175,907.529,367.389L910.659,366.604"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_N_T_27" d="M831.016,411.766L837.382,413.305C843.747,414.844,856.479,417.922,866.378,420.347C876.276,422.772,883.341,424.544,889.76,426.154C896.178,427.764,901.95,429.211,904.836,429.935L907.722,430.659"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_O_T_28" d="M825.461,506L832.753,501.833C840.044,497.667,854.628,489.333,865.452,484.281C876.276,479.228,883.341,477.456,889.76,475.846C896.178,474.236,901.95,472.789,904.836,472.065L907.722,471.341"></path><path marker-end="url(#mermaid-1757604777565_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_O_U_29" d="M831.016,545.766L837.382,547.305C843.747,548.844,856.479,551.922,866.972,553.461C877.465,555,885.719,555,893.306,555C900.893,555,907.814,555,911.274,555L914.734,555"></path></g><g class="edgeLabels"><g transform="translate(141.2109375, 123)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
 <div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
-<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="edgeLabel"></span>
-</div>
-</foreignobject></g></g></g><g class="nodes"><g transform="translate(54.3046875, 191)" id="flowchart-A-0" class="node default"><rect height="54" width="92.609375" y="-27" x="-46.3046875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-16.3046875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="32.609375">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
+<span class="edgeLabel">
 <p>
-Born
+60%
 </p>
 </span>
 </div>
-</foreignobject></g></g><g transform="translate(250.15625, 139)" id="flowchart-B-1" class="node default"><rect height="54" width="134.609375" y="-27" x="-67.3046875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-37.3046875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="74.609375">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
+</foreignobject></g></g><g transform="translate(141.2109375, 467)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
 <p>
-Go to UGA
+40%
 </p>
 </span>
 </div>
-</foreignobject></g></g><g transform="translate(250.15625, 243)" id="flowchart-C-3" class="node default"><rect height="54" width="199.09375" y="-27" x="-99.546875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-69.546875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="139.09375">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
+</foreignobject></g></g><g transform="translate(323.2109375, 101)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
 <p>
-Go somewhere else
+60%
 </p>
 </span>
 </div>
-</foreignobject></g></g><g transform="translate(510.7734375, 87)" id="flowchart-D-5" class="node default"><rect height="54" width="198.390625" y="-27" x="-99.1953125" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-69.1953125, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="138.390625">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
+</foreignobject></g></g><g transform="translate(323.2109375, 265)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
 <p>
-Enroll in POLS 3220
+40%
 </p>
 </span>
 </div>
-</foreignobject></g></g><g transform="translate(510.7734375, 191)" id="flowchart-E-7" class="node default"><rect height="54" width="222.140625" y="-27" x="-111.0703125" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-81.0703125, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="162.140625">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
+</foreignobject></g></g><g transform="translate(323.2109375, 325)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
 <p>
-Study biochem instead
+60%
 </p>
 </span>
 </div>
-</foreignobject></g></g><g transform="translate(767.9921875, 35)" id="flowchart-F-9" class="node default"><rect height="54" width="192.296875" y="-27" x="-96.1484375" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-66.1484375, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="132.296875">
-<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">
+</foreignobject></g></g><g transform="translate(323.2109375, 489)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
 <p>
-Attend class today
+40%
 </p>
 </span>
 </div>
-</foreignobject></g></g><g transform="translate(767.9921875, 139)" id="flowchart-G-11" class="node default"><rect height="54" width="173.03125" y="-27" x="-86.515625" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-56.515625, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="113.03125">
+</foreignobject></g></g><g transform="translate(505.2109375, 79)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+60%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(505.2109375, 213)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+40%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(505.2109375, 273)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+60%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(505.2109375, 317)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+40%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(505.2109375, 377)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+60%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(505.2109375, 511)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+40%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(687.2109375, 57)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+60%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(687.2109375, 161)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+40%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(687.2109375, 221)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+60%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(687.2109375, 265)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+40%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(687.2109375, 325)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+60%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(687.2109375, 369)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+40%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(687.2109375, 429)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+60%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(687.2109375, 533)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+40%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(869.2109375, 35)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+60%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(869.2109375, 109)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+40%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(869.2109375, 169)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+60%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(869.2109375, 213)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+40%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(869.2109375, 273)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+60%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(869.2109375, 317)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+40%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(869.2109375, 377)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+60%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(869.2109375, 421)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+40%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(869.2109375, 481)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+60%
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(869.2109375, 555)" class="edgeLabel"><g transform="translate(-13.1953125, -12)" class="label"><foreignobject height="24" width="26.390625">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+40%
+</p>
+</span>
+</div>
+</foreignobject></g></g></g><g class="nodes"><g transform="translate(55.5078125, 295)" id="flowchart-A-0" class="node default"><rect height="54" width="95.015625" y="-27" x="-47.5078125" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-17.5078125, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="35.015625">
 <div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">
 <p>
-Skip class today
+Start
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(232.2109375, 123)" id="flowchart-B-1" class="node default"><rect height="54" width="105.609375" y="-27" x="-52.8046875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-22.8046875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="45.609375">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+1R,0W
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(232.2109375, 467)" id="flowchart-C-3" class="node default"><rect height="54" width="105.609375" y="-27" x="-52.8046875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-22.8046875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="45.609375">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+0R,1W
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(414.2109375, 101)" id="flowchart-D-5" class="node default"><rect height="54" width="105.609375" y="-27" x="-52.8046875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-22.8046875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="45.609375">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+2R,0W
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(414.2109375, 295)" id="flowchart-E-7" class="node default"><rect height="54" width="105.609375" y="-27" x="-52.8046875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-22.8046875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="45.609375">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+1R,1W
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(414.2109375, 489)" id="flowchart-F-11" class="node default"><rect height="54" width="105.609375" y="-27" x="-52.8046875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-22.8046875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="45.609375">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+0R,2W
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(596.2109375, 79)" id="flowchart-G-13" class="node default"><rect height="54" width="105.609375" y="-27" x="-52.8046875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-22.8046875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="45.609375">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+3R,0W
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(596.2109375, 243)" id="flowchart-H-15" class="node default"><rect height="54" width="105.609375" y="-27" x="-52.8046875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-22.8046875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="45.609375">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+2R,1W
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(596.2109375, 347)" id="flowchart-I-19" class="node default"><rect height="54" width="105.609375" y="-27" x="-52.8046875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-22.8046875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="45.609375">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+1R,2W
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(596.2109375, 511)" id="flowchart-J-23" class="node default"><rect height="54" width="105.609375" y="-27" x="-52.8046875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-22.8046875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="45.609375">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+0R,3W
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(778.2109375, 57)" id="flowchart-K-25" class="node default"><rect height="54" width="105.609375" y="-27" x="-52.8046875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-22.8046875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="45.609375">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+4R,0W
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(778.2109375, 191)" id="flowchart-L-27" class="node default"><rect height="54" width="105.609375" y="-27" x="-52.8046875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-22.8046875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="45.609375">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+3R,1W
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(778.2109375, 295)" id="flowchart-M-31" class="node default"><rect height="54" width="105.609375" y="-27" x="-52.8046875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-22.8046875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="45.609375">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+2R,2W
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(778.2109375, 399)" id="flowchart-N-35" class="node default"><rect height="54" width="105.609375" y="-27" x="-52.8046875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-22.8046875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="45.609375">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+1R,3W
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(778.2109375, 533)" id="flowchart-O-39" class="node default"><rect height="54" width="105.609375" y="-27" x="-52.8046875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-22.8046875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="45.609375">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+0R,4W
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(988.8203125, 35)" id="flowchart-P-41" class="node default"><rect height="54" width="154.4375" y="-27" x="-77.21875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-47.21875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="94.4375">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+5R,0W (7.8%)
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(988.8203125, 139)" id="flowchart-Q-43" class="node default"><rect height="54" width="162.828125" y="-27" x="-81.4140625" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-51.4140625, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="102.828125">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+4R,1W (25.9%)
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(988.8203125, 243)" id="flowchart-R-47" class="node default"><rect height="54" width="162.828125" y="-27" x="-81.4140625" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-51.4140625, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="102.828125">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+3R,2W (34.6%)
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(988.8203125, 347)" id="flowchart-S-51" class="node default"><rect height="54" width="148.5625" y="-27" x="-74.28125" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-44.28125, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="88.5625">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+2R,3W (23%)
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(988.8203125, 451)" id="flowchart-T-55" class="node default"><rect height="54" width="154.4375" y="-27" x="-77.21875" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-47.21875, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="94.4375">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+1R,4W (7.7%)
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(988.8203125, 555)" id="flowchart-U-59" class="node default"><rect height="54" width="140.171875" y="-27" x="-70.0859375" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-40.0859375, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="80.171875">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+0R,5W (1%)
 </p>
 </span>
 </div>
@@ -256,34 +692,32 @@ Skip class today
 </div>
 </div>
 </div>
-</div>
 </section>
-<section id="rules-for-tree-construction" class="slide level2">
-<h2>Rules for Tree Construction</h2>
-<div class="fragment">
+<section id="rules-for-tree-construction" class="level2">
+<h2 class="anchored" data-anchor-id="rules-for-tree-construction">Rules for Tree Construction</h2>
+<p>. . .</p>
 <p>Branches originating from a single point must be <strong>mutually exclusive</strong> and <strong>collectively exhaustive</strong>.</p>
 <ul>
-<li class="fragment"><p><strong>Mutually Exclusive</strong>: if one event happens, the others cannot happen</p>
+<li><p><strong>Mutually Exclusive</strong>: if one event happens, the others cannot happen</p>
 <ul>
-<li class="fragment">e.g.&nbsp;“Georgia beats Texas” and “Texas beats Georgia”.</li>
+<li>e.g.&nbsp;“Georgia beats Texas” and “Texas beats Georgia”.</li>
 </ul></li>
-<li class="fragment"><p><strong>Collectively Exhaustive</strong>: covers every possible outcome</p>
+<li><p><strong>Collectively Exhaustive</strong>: covers every possible outcome</p>
 <ul>
-<li class="fragment">e.g.&nbsp;“I drink coffee this afternoon” and “I <em>don’t</em> drink coffee this afternoon”.</li>
+<li>e.g.&nbsp;“I drink coffee this afternoon” and “I <em>don’t</em> drink coffee this afternoon”.</li>
 </ul></li>
 </ul>
-</div>
 </section>
-<section id="rules-for-tree-construction-1" class="slide level2">
-<h2>Rules for Tree Construction</h2>
+<section id="rules-for-tree-construction-1" class="level2">
+<h2 class="anchored" data-anchor-id="rules-for-tree-construction-1">Rules for Tree Construction</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
-<p></p><figure class=""><p></p>
+<p></p><figure class="figure"><p></p>
 <div>
-<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="0 0 662.5625 382" style="; display: block; margin: auto auto auto auto" class="flowchart" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="960" id="mermaid-figure-7" height="480">
+<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="0 0 662.5625 382" class="flowchart" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="672" id="mermaid-figure-7" height="480">
 <style>#mermaid-figure-7{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-7 .error-icon{fill:#552222;}#mermaid-figure-7 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-7 .edge-thickness-normal{stroke-width:1px;}#mermaid-figure-7 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-7 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-7 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-figure-7 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-7 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-7 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-7 .marker.cross{stroke:#333333;}#mermaid-figure-7 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-7 p{margin:0;}#mermaid-figure-7 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-7 .cluster-label text{fill:#333;}#mermaid-figure-7 .cluster-label span{color:#333;}#mermaid-figure-7 .cluster-label span p{background-color:transparent;}#mermaid-figure-7 .label text,#mermaid-figure-7 span{fill:#333;color:#333;}#mermaid-figure-7 .node rect,#mermaid-figure-7 .node circle,#mermaid-figure-7 .node ellipse,#mermaid-figure-7 .node polygon,#mermaid-figure-7 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-7 .rough-node .label text,#mermaid-figure-7 .node .label text{text-anchor:middle;}#mermaid-figure-7 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-figure-7 .node .label{text-align:center;}#mermaid-figure-7 .node.clickable{cursor:pointer;}#mermaid-figure-7 .arrowheadPath{fill:#333333;}#mermaid-figure-7 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-7 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-7 .edgeLabel{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaid-figure-7 .edgeLabel p{background-color:rgba(232,232,232, 0.8);}#mermaid-figure-7 .edgeLabel rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaid-figure-7 .labelBkg{background-color:rgba(232, 232, 232, 0.5);}#mermaid-figure-7 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-7 .cluster text{fill:#333;}#mermaid-figure-7 .cluster span{color:#333;}#mermaid-figure-7 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-7 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-7 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
-<g><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434340278_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="4.5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434340278_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434340278_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434340278_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757434340278_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757434340278_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid-1757434340278_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_B_0" d="M120.16,164L133.597,151.167C147.034,138.333,173.908,112.667,189.501,99.833C205.095,87,209.409,87,213.056,87C216.703,87,219.684,87,221.174,87L222.664,87"></path><path marker-end="url(#mermaid-1757434340278_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_C_1" d="M120.16,218L133.597,230.833C147.034,243.667,173.908,269.333,189.428,282.167C204.948,295,209.115,295,212.615,295C216.115,295,218.948,295,220.365,295L221.781,295"></path><path marker-end="url(#mermaid-1757434340278_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_D_2" d="M391.231,60L401.276,55.833C411.321,51.667,431.41,43.333,443.587,39.167C455.764,35,460.029,35,463.626,35C467.224,35,470.155,35,471.62,35L473.086,35"></path><path marker-end="url(#mermaid-1757434340278_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_E_3" d="M391.231,114L401.276,118.167C411.321,122.333,431.41,130.667,443.539,134.833C455.667,139,459.833,139,463.333,139C466.833,139,469.667,139,471.083,139L472.5,139"></path><path marker-end="url(#mermaid-1757434340278_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_F_4" d="M391.231,268L401.276,263.833C411.321,259.667,431.41,251.333,443.587,247.167C455.764,243,460.029,243,463.626,243C467.224,243,470.155,243,471.62,243L473.086,243"></path><path marker-end="url(#mermaid-1757434340278_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_G_5" d="M391.231,322L401.276,326.167C411.321,330.333,431.41,338.667,443.539,342.833C455.667,347,459.833,347,463.333,347C466.833,347,469.667,347,471.083,347L472.5,347"></path></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
+<g><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604791217_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="4.5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604791217_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604791217_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604791217_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757604791217_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757604791217_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid-1757604791217_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_B_0" d="M120.16,164L133.597,151.167C147.034,138.333,173.908,112.667,189.501,99.833C205.095,87,209.409,87,213.056,87C216.703,87,219.684,87,221.174,87L222.664,87"></path><path marker-end="url(#mermaid-1757604791217_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_C_1" d="M120.16,218L133.597,230.833C147.034,243.667,173.908,269.333,189.428,282.167C204.948,295,209.115,295,212.615,295C216.115,295,218.948,295,220.365,295L221.781,295"></path><path marker-end="url(#mermaid-1757604791217_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_D_2" d="M391.231,60L401.276,55.833C411.321,51.667,431.41,43.333,443.587,39.167C455.764,35,460.029,35,463.626,35C467.224,35,470.155,35,471.62,35L473.086,35"></path><path marker-end="url(#mermaid-1757604791217_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_E_3" d="M391.231,114L401.276,118.167C411.321,122.333,431.41,130.667,443.539,134.833C455.667,139,459.833,139,463.333,139C466.833,139,469.667,139,471.083,139L472.5,139"></path><path marker-end="url(#mermaid-1757604791217_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_F_4" d="M391.231,268L401.276,263.833C411.321,259.667,431.41,251.333,443.587,247.167C455.764,243,460.029,243,463.626,243C467.224,243,470.155,243,471.62,243L473.086,243"></path><path marker-end="url(#mermaid-1757604791217_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_G_5" d="M391.231,322L401.276,326.167C411.321,330.333,431.41,338.667,443.539,342.833C455.667,347,459.833,347,463.333,347C466.833,347,469.667,347,471.083,347L472.5,347"></path></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
 <div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="edgeLabel"></span>
 </div>
@@ -371,31 +805,30 @@ Texas beats UGA
 </div>
 </div>
 </section>
-<section id="practice" class="slide level2">
-<h2>Practice</h2>
+<section id="practice" class="level2">
+<h2 class="anchored" data-anchor-id="practice">Practice</h2>
 <p>Think about a sequence of 2-3 choices you expect to make after class is over (e.g.&nbsp;where you’ll eat dinner). Draw a tree illustrating all the possible paths your evening could take.</p>
 </section>
-<section id="rules-for-tree-construction-2" class="slide level2">
-<h2>Rules for Tree Construction</h2>
+<section id="rules-for-tree-construction-2" class="level2">
+<h2 class="anchored" data-anchor-id="rules-for-tree-construction-2">Rules for Tree Construction</h2>
 <p>Next, we will assign a probability to each branch. When doing so, remember two rules:</p>
 <ol type="1">
-<li class="fragment">If events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are mutually exclusive, then <span class="math inline">\(P(A \text{ or } B) = P(A) + P(B)\)</span>.</li>
-<li class="fragment">If events <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span> are mutually exclusive and collectively exhaustive, then <span class="math inline">\(P(A) + P(B) + P(C) = 1\)</span>.</li>
+<li>If events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are mutually exclusive, then <span class="math inline">\(P(A \text{ or } B) = P(A) + P(B)\)</span>.</li>
+<li>If events <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span> are mutually exclusive and collectively exhaustive, then <span class="math inline">\(P(A) + P(B) + P(C) = 1\)</span>.</li>
 </ol>
-<div class="fragment">
+<p>. . .</p>
 <p>These two rules are called the <strong>axioms of probability</strong>.</p>
-</div>
 </section>
-<section id="rules-for-tree-construction-3" class="slide level2">
-<h2>Rules for Tree Construction</h2>
+<section id="rules-for-tree-construction-3" class="level2">
+<h2 class="anchored" data-anchor-id="rules-for-tree-construction-3">Rules for Tree Construction</h2>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
-<p></p><figure class=""><p></p>
+<p></p><figure class="figure"><p></p>
 <div>
-<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="0 0 707.875 382" style="; display: block; margin: auto auto auto auto" class="flowchart" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="960" id="mermaid-figure-6" height="480">
+<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="0 0 707.875 382" class="flowchart" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="672" id="mermaid-figure-6" height="480">
 <style>#mermaid-figure-6{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-6 .error-icon{fill:#552222;}#mermaid-figure-6 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-6 .edge-thickness-normal{stroke-width:1px;}#mermaid-figure-6 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-6 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-6 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-figure-6 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-6 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-6 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-6 .marker.cross{stroke:#333333;}#mermaid-figure-6 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-6 p{margin:0;}#mermaid-figure-6 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-6 .cluster-label text{fill:#333;}#mermaid-figure-6 .cluster-label span{color:#333;}#mermaid-figure-6 .cluster-label span p{background-color:transparent;}#mermaid-figure-6 .label text,#mermaid-figure-6 span{fill:#333;color:#333;}#mermaid-figure-6 .node rect,#mermaid-figure-6 .node circle,#mermaid-figure-6 .node ellipse,#mermaid-figure-6 .node polygon,#mermaid-figure-6 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-6 .rough-node .label text,#mermaid-figure-6 .node .label text{text-anchor:middle;}#mermaid-figure-6 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-figure-6 .node .label{text-align:center;}#mermaid-figure-6 .node.clickable{cursor:pointer;}#mermaid-figure-6 .arrowheadPath{fill:#333333;}#mermaid-figure-6 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-6 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-6 .edgeLabel{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaid-figure-6 .edgeLabel p{background-color:rgba(232,232,232, 0.8);}#mermaid-figure-6 .edgeLabel rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaid-figure-6 .labelBkg{background-color:rgba(232, 232, 232, 0.5);}#mermaid-figure-6 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-6 .cluster text{fill:#333;}#mermaid-figure-6 .cluster span{color:#333;}#mermaid-figure-6 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-6 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-6 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
-<g><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434337541_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="4.5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434337541_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434337541_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434337541_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757434337541_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757434337541_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid-1757434337541_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_B_0" d="M123.101,164L137.936,151.167C152.771,138.333,182.44,112.667,200.376,99.833C218.311,87,224.513,87,230.048,87C235.583,87,240.452,87,242.886,87L245.32,87"></path><path marker-end="url(#mermaid-1757434337541_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_C_1" d="M123.101,218L137.936,230.833C152.771,243.667,182.44,269.333,200.302,282.167C218.164,295,224.219,295,229.607,295C234.995,295,239.716,295,242.077,295L244.438,295"></path><path marker-end="url(#mermaid-1757434337541_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_D_2" d="M419.769,60L430.722,55.833C441.674,51.667,463.579,43.333,477.608,39.167C491.637,35,497.789,35,503.275,35C508.76,35,513.579,35,515.989,35L518.398,35"></path><path marker-end="url(#mermaid-1757434337541_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_E_3" d="M419.769,114L430.722,118.167C441.674,122.333,463.579,130.667,477.559,134.833C491.539,139,497.594,139,502.982,139C508.37,139,513.091,139,515.452,139L517.813,139"></path><path marker-end="url(#mermaid-1757434337541_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_F_4" d="M419.769,268L430.722,263.833C441.674,259.667,463.579,251.333,477.608,247.167C491.637,243,497.789,243,503.275,243C508.76,243,513.579,243,515.989,243L518.398,243"></path><path marker-end="url(#mermaid-1757434337541_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_G_5" d="M419.769,322L430.722,326.167C441.674,330.333,463.579,338.667,477.559,342.833C491.539,347,497.594,347,502.982,347C508.37,347,513.091,347,515.452,347L517.813,347"></path></g><g class="edgeLabels"><g transform="translate(212.109375, 87)" class="edgeLabel"><g transform="translate(-11.328125, -12)" class="label"><foreignobject height="24" width="22.65625">
+<g><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604788996_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="4.5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604788996_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604788996_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604788996_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757604788996_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757604788996_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid-1757604788996_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_B_0" d="M123.101,164L137.936,151.167C152.771,138.333,182.44,112.667,200.376,99.833C218.311,87,224.513,87,230.048,87C235.583,87,240.452,87,242.886,87L245.32,87"></path><path marker-end="url(#mermaid-1757604788996_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_C_1" d="M123.101,218L137.936,230.833C152.771,243.667,182.44,269.333,200.302,282.167C218.164,295,224.219,295,229.607,295C234.995,295,239.716,295,242.077,295L244.438,295"></path><path marker-end="url(#mermaid-1757604788996_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_D_2" d="M419.769,60L430.722,55.833C441.674,51.667,463.579,43.333,477.608,39.167C491.637,35,497.789,35,503.275,35C508.76,35,513.579,35,515.989,35L518.398,35"></path><path marker-end="url(#mermaid-1757604788996_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_E_3" d="M419.769,114L430.722,118.167C441.674,122.333,463.579,130.667,477.559,134.833C491.539,139,497.594,139,502.982,139C508.37,139,513.091,139,515.452,139L517.813,139"></path><path marker-end="url(#mermaid-1757604788996_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_F_4" d="M419.769,268L430.722,263.833C441.674,259.667,463.579,251.333,477.608,247.167C491.637,243,497.789,243,503.275,243C508.76,243,513.579,243,515.989,243L518.398,243"></path><path marker-end="url(#mermaid-1757604788996_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_G_5" d="M419.769,322L430.722,326.167C441.674,330.333,463.579,338.667,477.559,342.833C491.539,347,497.594,347,502.982,347C508.37,347,513.091,347,515.452,347L517.813,347"></path></g><g class="edgeLabels"><g transform="translate(212.109375, 87)" class="edgeLabel"><g transform="translate(-11.328125, -12)" class="label"><foreignobject height="24" width="22.65625">
 <div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="edgeLabel">
 <p>
@@ -506,38 +939,36 @@ Texas beats UGA
 </div>
 </div>
 </div>
-<div class="fragment">
+<p>. . .</p>
 <p>The second set of probabilities are called <strong>conditional probabilities</strong>.</p>
-</div>
 </section>
-<section id="conditional-probability" class="slide level2">
-<h2>Conditional Probability</h2>
+<section id="conditional-probability" class="level2">
+<h2 class="anchored" data-anchor-id="conditional-probability">Conditional Probability</h2>
 <p>We denote the probability of event <span class="math inline">\(A\)</span> conditional on event <span class="math inline">\(B\)</span> as:</p>
 <p><span class="math display">\[
 P(A|B)
 \]</span></p>
-<div class="fragment">
+<p>. . .</p>
 <p>And the probability of <span class="math inline">\(A\)</span> conditional on <span class="math inline">\(B\)</span> <em>not happening</em> is:</p>
 <p><span class="math display">\[
 P(A|\neg B)\]</span></p>
-</div>
 </section>
-<section id="independence" class="slide level2">
-<h2>Independence</h2>
+<section id="independence" class="level2">
+<h2 class="anchored" data-anchor-id="independence">Independence</h2>
 <p>Two events are <strong>independent</strong> if the outcome of one doesn’t affect the probability of the other. Formally:</p>
 <p><span class="math display">\[P(A|B) = P(A|\neg B)\]</span></p>
 </section>
-<section id="independence-1" class="slide level2">
-<h2>Independence</h2>
+<section id="independence-1" class="level2">
+<h2 class="anchored" data-anchor-id="independence-1">Independence</h2>
 <p>Coin flips are a classic example of independent events:</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
-<p></p><figure class=""><p></p>
+<p></p><figure class="figure"><p></p>
 <div>
-<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="0 0 745.015625 798" style="; display: block; margin: auto auto auto auto" class="flowchart" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="960" id="mermaid-figure-5" height="480">
+<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="0 0 745.015625 798" class="flowchart" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="672" id="mermaid-figure-5" height="480">
 <style>#mermaid-figure-5{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-5 .error-icon{fill:#552222;}#mermaid-figure-5 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-5 .edge-thickness-normal{stroke-width:1px;}#mermaid-figure-5 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-5 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-5 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-figure-5 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-5 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-5 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-5 .marker.cross{stroke:#333333;}#mermaid-figure-5 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-5 p{margin:0;}#mermaid-figure-5 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-5 .cluster-label text{fill:#333;}#mermaid-figure-5 .cluster-label span{color:#333;}#mermaid-figure-5 .cluster-label span p{background-color:transparent;}#mermaid-figure-5 .label text,#mermaid-figure-5 span{fill:#333;color:#333;}#mermaid-figure-5 .node rect,#mermaid-figure-5 .node circle,#mermaid-figure-5 .node ellipse,#mermaid-figure-5 .node polygon,#mermaid-figure-5 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-5 .rough-node .label text,#mermaid-figure-5 .node .label text{text-anchor:middle;}#mermaid-figure-5 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-figure-5 .node .label{text-align:center;}#mermaid-figure-5 .node.clickable{cursor:pointer;}#mermaid-figure-5 .arrowheadPath{fill:#333333;}#mermaid-figure-5 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-5 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-5 .edgeLabel{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaid-figure-5 .edgeLabel p{background-color:rgba(232,232,232, 0.8);}#mermaid-figure-5 .edgeLabel rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaid-figure-5 .labelBkg{background-color:rgba(232, 232, 232, 0.5);}#mermaid-figure-5 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-5 .cluster text{fill:#333;}#mermaid-figure-5 .cluster span{color:#333;}#mermaid-figure-5 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-5 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-5 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
-<g><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434334643_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="4.5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434334643_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434334643_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434334643_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757434334643_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757434334643_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid-1757434334643_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_B_0" d="M126.853,372L146.773,341.833C166.693,311.667,206.534,251.333,229.482,221.167C252.43,191,258.484,191,263.872,191C269.26,191,273.982,191,276.342,191L278.703,191"></path><path marker-end="url(#mermaid-1757434334643_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_C_1" d="M126.853,426L146.773,456.167C166.693,486.333,206.534,546.667,229.962,576.833C253.391,607,260.406,607,266.755,607C273.104,607,278.786,607,281.628,607L284.469,607"></path><path marker-end="url(#mermaid-1757434334643_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_D_2" d="M357.005,164L367.842,151.167C378.68,138.333,400.356,112.667,414.221,99.833C428.086,87,434.141,87,439.529,87C444.917,87,449.638,87,451.999,87L454.359,87"></path><path marker-end="url(#mermaid-1757434334643_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_E_3" d="M357.005,218L367.842,230.833C378.68,243.667,400.356,269.333,414.701,282.167C429.047,295,436.063,295,442.411,295C448.76,295,454.443,295,457.284,295L460.125,295"></path><path marker-end="url(#mermaid-1757434334643_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_F_4" d="M357.005,580L367.842,567.167C378.68,554.333,400.356,528.667,414.221,515.833C428.086,503,434.141,503,439.529,503C444.917,503,449.638,503,451.999,503L454.359,503"></path><path marker-end="url(#mermaid-1757434334643_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_G_5" d="M357.005,634L367.842,646.833C378.68,659.667,400.356,685.333,414.701,698.167C429.047,711,436.063,711,442.411,711C448.76,711,454.443,711,457.284,711L460.125,711"></path><path marker-end="url(#mermaid-1757434334643_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_D_H_6" d="M555.462,60L562.5,55.833C569.537,51.667,583.612,43.333,593.677,39.167C603.742,35,609.797,35,615.185,35C620.573,35,625.294,35,627.655,35L630.016,35"></path><path marker-end="url(#mermaid-1757434334643_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_D_I_7" d="M555.462,114L562.5,118.167C569.537,122.333,583.612,130.667,594.158,134.833C604.703,139,611.719,139,618.068,139C624.417,139,630.099,139,632.94,139L635.781,139"></path><path marker-end="url(#mermaid-1757434334643_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_E_J_8" d="M555.462,268L562.5,263.833C569.537,259.667,583.612,251.333,593.677,247.167C603.742,243,609.797,243,615.185,243C620.573,243,625.294,243,627.655,243L630.016,243"></path><path marker-end="url(#mermaid-1757434334643_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_E_K_9" d="M555.462,322L562.5,326.167C569.537,330.333,583.612,338.667,594.158,342.833C604.703,347,611.719,347,618.068,347C624.417,347,630.099,347,632.94,347L635.781,347"></path><path marker-end="url(#mermaid-1757434334643_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_F_L_10" d="M555.462,476L562.5,471.833C569.537,467.667,583.612,459.333,593.677,455.167C603.742,451,609.797,451,615.185,451C620.573,451,625.294,451,627.655,451L630.016,451"></path><path marker-end="url(#mermaid-1757434334643_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_F_M_11" d="M555.462,530L562.5,534.167C569.537,538.333,583.612,546.667,594.158,550.833C604.703,555,611.719,555,618.068,555C624.417,555,630.099,555,632.94,555L635.781,555"></path><path marker-end="url(#mermaid-1757434334643_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_G_N_12" d="M555.462,684L562.5,679.833C569.537,675.667,583.612,667.333,593.677,663.167C603.742,659,609.797,659,615.185,659C620.573,659,625.294,659,627.655,659L630.016,659"></path><path marker-end="url(#mermaid-1757434334643_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_G_O_13" d="M555.462,738L562.5,742.167C569.537,746.333,583.612,754.667,594.158,758.833C604.703,763,611.719,763,618.068,763C624.417,763,630.099,763,632.94,763L635.781,763"></path></g><g class="edgeLabels"><g transform="translate(246.375, 191)" class="edgeLabel"><g transform="translate(-11.328125, -12)" class="label"><foreignobject height="24" width="22.65625">
+<g><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604786706_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="4.5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604786706_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604786706_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604786706_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757604786706_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757604786706_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid-1757604786706_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_B_0" d="M126.853,372L146.773,341.833C166.693,311.667,206.534,251.333,229.482,221.167C252.43,191,258.484,191,263.872,191C269.26,191,273.982,191,276.342,191L278.703,191"></path><path marker-end="url(#mermaid-1757604786706_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_C_1" d="M126.853,426L146.773,456.167C166.693,486.333,206.534,546.667,229.962,576.833C253.391,607,260.406,607,266.755,607C273.104,607,278.786,607,281.628,607L284.469,607"></path><path marker-end="url(#mermaid-1757604786706_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_D_2" d="M357.005,164L367.842,151.167C378.68,138.333,400.356,112.667,414.221,99.833C428.086,87,434.141,87,439.529,87C444.917,87,449.638,87,451.999,87L454.359,87"></path><path marker-end="url(#mermaid-1757604786706_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_E_3" d="M357.005,218L367.842,230.833C378.68,243.667,400.356,269.333,414.701,282.167C429.047,295,436.063,295,442.411,295C448.76,295,454.443,295,457.284,295L460.125,295"></path><path marker-end="url(#mermaid-1757604786706_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_F_4" d="M357.005,580L367.842,567.167C378.68,554.333,400.356,528.667,414.221,515.833C428.086,503,434.141,503,439.529,503C444.917,503,449.638,503,451.999,503L454.359,503"></path><path marker-end="url(#mermaid-1757604786706_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_G_5" d="M357.005,634L367.842,646.833C378.68,659.667,400.356,685.333,414.701,698.167C429.047,711,436.063,711,442.411,711C448.76,711,454.443,711,457.284,711L460.125,711"></path><path marker-end="url(#mermaid-1757604786706_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_D_H_6" d="M555.462,60L562.5,55.833C569.537,51.667,583.612,43.333,593.677,39.167C603.742,35,609.797,35,615.185,35C620.573,35,625.294,35,627.655,35L630.016,35"></path><path marker-end="url(#mermaid-1757604786706_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_D_I_7" d="M555.462,114L562.5,118.167C569.537,122.333,583.612,130.667,594.158,134.833C604.703,139,611.719,139,618.068,139C624.417,139,630.099,139,632.94,139L635.781,139"></path><path marker-end="url(#mermaid-1757604786706_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_E_J_8" d="M555.462,268L562.5,263.833C569.537,259.667,583.612,251.333,593.677,247.167C603.742,243,609.797,243,615.185,243C620.573,243,625.294,243,627.655,243L630.016,243"></path><path marker-end="url(#mermaid-1757604786706_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_E_K_9" d="M555.462,322L562.5,326.167C569.537,330.333,583.612,338.667,594.158,342.833C604.703,347,611.719,347,618.068,347C624.417,347,630.099,347,632.94,347L635.781,347"></path><path marker-end="url(#mermaid-1757604786706_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_F_L_10" d="M555.462,476L562.5,471.833C569.537,467.667,583.612,459.333,593.677,455.167C603.742,451,609.797,451,615.185,451C620.573,451,625.294,451,627.655,451L630.016,451"></path><path marker-end="url(#mermaid-1757604786706_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_F_M_11" d="M555.462,530L562.5,534.167C569.537,538.333,583.612,546.667,594.158,550.833C604.703,555,611.719,555,618.068,555C624.417,555,630.099,555,632.94,555L635.781,555"></path><path marker-end="url(#mermaid-1757604786706_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_G_N_12" d="M555.462,684L562.5,679.833C569.537,675.667,583.612,667.333,593.677,663.167C603.742,659,609.797,659,615.185,659C620.573,659,625.294,659,627.655,659L630.016,659"></path><path marker-end="url(#mermaid-1757604786706_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_G_O_13" d="M555.462,738L562.5,742.167C569.537,746.333,583.612,754.667,594.158,758.833C604.703,763,611.719,763,618.068,763C624.417,763,630.099,763,632.94,763L635.781,763"></path></g><g class="edgeLabels"><g transform="translate(246.375, 191)" class="edgeLabel"><g transform="translate(-11.328125, -12)" class="label"><foreignobject height="24" width="22.65625">
 <div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="edgeLabel">
 <p>
@@ -777,21 +1208,21 @@ Tails
 </div>
 </div>
 </section>
-<section id="practice-1" class="slide level2">
-<h2>Practice</h2>
+<section id="practice-1" class="level2">
+<h2 class="anchored" data-anchor-id="practice-1">Practice</h2>
 <p>Assign probabilities to each branch of your evening tree. Make sure you adhere to the axioms. And consider whether your choices are independent, or if one event might affect the probabilities of subsequent events.</p>
 </section>
-<section id="joint-probability" class="slide level2">
-<h2>Joint Probability</h2>
+<section id="joint-probability" class="level2">
+<h2 class="anchored" data-anchor-id="joint-probability">Joint Probability</h2>
 <p>Now we’re ready to tackle <strong>joint probability</strong>. What is the probability of event <span class="math inline">\(A\)</span> <em>and</em> event <span class="math inline">\(B\)</span> both happening?</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
-<p></p><figure class=""><p></p>
+<p></p><figure class="figure"><p></p>
 <div>
-<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="0 0 707.875 382" style="; display: block; margin: auto auto auto auto" class="flowchart" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="960" id="mermaid-figure-4" height="480">
+<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="0 0 707.875 382" class="flowchart" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="672" id="mermaid-figure-4" height="480">
 <style>#mermaid-figure-4{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-4 .error-icon{fill:#552222;}#mermaid-figure-4 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-4 .edge-thickness-normal{stroke-width:1px;}#mermaid-figure-4 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-4 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-4 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-figure-4 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-4 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-4 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-4 .marker.cross{stroke:#333333;}#mermaid-figure-4 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-4 p{margin:0;}#mermaid-figure-4 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-4 .cluster-label text{fill:#333;}#mermaid-figure-4 .cluster-label span{color:#333;}#mermaid-figure-4 .cluster-label span p{background-color:transparent;}#mermaid-figure-4 .label text,#mermaid-figure-4 span{fill:#333;color:#333;}#mermaid-figure-4 .node rect,#mermaid-figure-4 .node circle,#mermaid-figure-4 .node ellipse,#mermaid-figure-4 .node polygon,#mermaid-figure-4 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-4 .rough-node .label text,#mermaid-figure-4 .node .label text{text-anchor:middle;}#mermaid-figure-4 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-figure-4 .node .label{text-align:center;}#mermaid-figure-4 .node.clickable{cursor:pointer;}#mermaid-figure-4 .arrowheadPath{fill:#333333;}#mermaid-figure-4 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-4 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-4 .edgeLabel{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaid-figure-4 .edgeLabel p{background-color:rgba(232,232,232, 0.8);}#mermaid-figure-4 .edgeLabel rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaid-figure-4 .labelBkg{background-color:rgba(232, 232, 232, 0.5);}#mermaid-figure-4 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-4 .cluster text{fill:#333;}#mermaid-figure-4 .cluster span{color:#333;}#mermaid-figure-4 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-4 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-4 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
-<g><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434331997_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="4.5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434331997_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434331997_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434331997_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757434331997_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757434331997_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid-1757434331997_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_B_0" d="M123.101,164L137.936,151.167C152.771,138.333,182.44,112.667,200.376,99.833C218.311,87,224.513,87,230.048,87C235.583,87,240.452,87,242.886,87L245.32,87"></path><path marker-end="url(#mermaid-1757434331997_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_C_1" d="M123.101,218L137.936,230.833C152.771,243.667,182.44,269.333,200.302,282.167C218.164,295,224.219,295,229.607,295C234.995,295,239.716,295,242.077,295L244.438,295"></path><path marker-end="url(#mermaid-1757434331997_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_D_2" d="M419.769,60L430.722,55.833C441.674,51.667,463.579,43.333,477.608,39.167C491.637,35,497.789,35,503.275,35C508.76,35,513.579,35,515.989,35L518.398,35"></path><path marker-end="url(#mermaid-1757434331997_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_E_3" d="M419.769,114L430.722,118.167C441.674,122.333,463.579,130.667,477.559,134.833C491.539,139,497.594,139,502.982,139C508.37,139,513.091,139,515.452,139L517.813,139"></path><path marker-end="url(#mermaid-1757434331997_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_F_4" d="M419.769,268L430.722,263.833C441.674,259.667,463.579,251.333,477.608,247.167C491.637,243,497.789,243,503.275,243C508.76,243,513.579,243,515.989,243L518.398,243"></path><path marker-end="url(#mermaid-1757434331997_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_G_5" d="M419.769,322L430.722,326.167C441.674,330.333,463.579,338.667,477.559,342.833C491.539,347,497.594,347,502.982,347C508.37,347,513.091,347,515.452,347L517.813,347"></path></g><g class="edgeLabels"><g transform="translate(212.109375, 87)" class="edgeLabel"><g transform="translate(-11.328125, -12)" class="label"><foreignobject height="24" width="22.65625">
+<g><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604784462_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="4.5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604784462_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604784462_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604784462_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757604784462_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757604784462_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid-1757604784462_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_B_0" d="M123.101,164L137.936,151.167C152.771,138.333,182.44,112.667,200.376,99.833C218.311,87,224.513,87,230.048,87C235.583,87,240.452,87,242.886,87L245.32,87"></path><path marker-end="url(#mermaid-1757604784462_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_C_1" d="M123.101,218L137.936,230.833C152.771,243.667,182.44,269.333,200.302,282.167C218.164,295,224.219,295,229.607,295C234.995,295,239.716,295,242.077,295L244.438,295"></path><path marker-end="url(#mermaid-1757604784462_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_D_2" d="M419.769,60L430.722,55.833C441.674,51.667,463.579,43.333,477.608,39.167C491.637,35,497.789,35,503.275,35C508.76,35,513.579,35,515.989,35L518.398,35"></path><path marker-end="url(#mermaid-1757604784462_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_E_3" d="M419.769,114L430.722,118.167C441.674,122.333,463.579,130.667,477.559,134.833C491.539,139,497.594,139,502.982,139C508.37,139,513.091,139,515.452,139L517.813,139"></path><path marker-end="url(#mermaid-1757604784462_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_F_4" d="M419.769,268L430.722,263.833C441.674,259.667,463.579,251.333,477.608,247.167C491.637,243,497.789,243,503.275,243C508.76,243,513.579,243,515.989,243L518.398,243"></path><path marker-end="url(#mermaid-1757604784462_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_G_5" d="M419.769,322L430.722,326.167C441.674,330.333,463.579,338.667,477.559,342.833C491.539,347,497.594,347,502.982,347C508.37,347,513.091,347,515.452,347L517.813,347"></path></g><g class="edgeLabels"><g transform="translate(212.109375, 87)" class="edgeLabel"><g transform="translate(-11.328125, -12)" class="label"><foreignobject height="24" width="22.65625">
 <div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="edgeLabel">
 <p>
@@ -903,18 +1334,18 @@ Texas beats UGA
 </div>
 </div>
 </section>
-<section id="joint-probability-1" class="slide level2">
-<h2>Joint Probability</h2>
+<section id="joint-probability-1" class="level2">
+<h2 class="anchored" data-anchor-id="joint-probability-1">Joint Probability</h2>
 <p>To find the probability of ending up at any node of the tree, <em>multiply</em>&nbsp;the probabilities of all the branches that feed into it.</p>
-<div class="fragment">
+<p>. . .</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
-<p></p><figure class=""><p></p>
+<p></p><figure class="figure"><p></p>
 <div>
-<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="0 0 749.953125 382" style="; display: block; margin: auto auto auto auto" class="flowchart" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="960" id="mermaid-figure-3" height="480">
+<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="0 0 749.953125 382" class="flowchart" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="672" id="mermaid-figure-3" height="480">
 <style>#mermaid-figure-3{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-3 .error-icon{fill:#552222;}#mermaid-figure-3 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-3 .edge-thickness-normal{stroke-width:1px;}#mermaid-figure-3 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-3 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-3 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-figure-3 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-3 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-3 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-3 .marker.cross{stroke:#333333;}#mermaid-figure-3 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-3 p{margin:0;}#mermaid-figure-3 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-3 .cluster-label text{fill:#333;}#mermaid-figure-3 .cluster-label span{color:#333;}#mermaid-figure-3 .cluster-label span p{background-color:transparent;}#mermaid-figure-3 .label text,#mermaid-figure-3 span{fill:#333;color:#333;}#mermaid-figure-3 .node rect,#mermaid-figure-3 .node circle,#mermaid-figure-3 .node ellipse,#mermaid-figure-3 .node polygon,#mermaid-figure-3 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-3 .rough-node .label text,#mermaid-figure-3 .node .label text{text-anchor:middle;}#mermaid-figure-3 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-figure-3 .node .label{text-align:center;}#mermaid-figure-3 .node.clickable{cursor:pointer;}#mermaid-figure-3 .arrowheadPath{fill:#333333;}#mermaid-figure-3 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-3 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-3 .edgeLabel{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaid-figure-3 .edgeLabel p{background-color:rgba(232,232,232, 0.8);}#mermaid-figure-3 .edgeLabel rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaid-figure-3 .labelBkg{background-color:rgba(232, 232, 232, 0.5);}#mermaid-figure-3 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-3 .cluster text{fill:#333;}#mermaid-figure-3 .cluster span{color:#333;}#mermaid-figure-3 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-3 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-3 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
-<g><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434329558_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="4.5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434329558_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434329558_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434329558_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757434329558_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757434329558_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid-1757434329558_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_B_0" d="M123.101,164L137.936,151.167C152.771,138.333,182.44,112.667,200.376,99.833C218.311,87,224.513,87,230.048,87C235.583,87,240.452,87,242.886,87L245.32,87"></path><path marker-end="url(#mermaid-1757434329558_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_C_1" d="M123.101,218L137.936,230.833C152.771,243.667,182.44,269.333,200.302,282.167C218.164,295,224.219,295,229.607,295C234.995,295,239.716,295,242.077,295L244.438,295"></path><path marker-end="url(#mermaid-1757434329558_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_D_2" d="M419.769,60L430.722,55.833C441.674,51.667,463.579,43.333,477.572,39.167C491.564,35,497.643,35,503.056,35C508.469,35,513.215,35,515.588,35L517.961,35"></path><path marker-end="url(#mermaid-1757434329558_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_E_3" d="M419.769,114L430.722,118.167C441.674,122.333,463.579,130.667,477.559,134.833C491.539,139,497.594,139,502.982,139C508.37,139,513.091,139,515.452,139L517.813,139"></path><path marker-end="url(#mermaid-1757434329558_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_F_4" d="M419.769,268L430.722,263.833C441.674,259.667,463.579,251.333,477.572,247.167C491.564,243,497.643,243,503.056,243C508.469,243,513.215,243,515.588,243L517.961,243"></path><path marker-end="url(#mermaid-1757434329558_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_G_5" d="M419.769,322L430.722,326.167C441.674,330.333,463.579,338.667,477.559,342.833C491.539,347,497.594,347,502.982,347C508.37,347,513.091,347,515.452,347L517.813,347"></path></g><g class="edgeLabels"><g transform="translate(212.109375, 87)" class="edgeLabel"><g transform="translate(-11.328125, -12)" class="label"><foreignobject height="24" width="22.65625">
+<g><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604782207_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="4.5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604782207_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604782207_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604782207_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757604782207_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757604782207_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid-1757604782207_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_B_0" d="M123.101,164L137.936,151.167C152.771,138.333,182.44,112.667,200.376,99.833C218.311,87,224.513,87,230.048,87C235.583,87,240.452,87,242.886,87L245.32,87"></path><path marker-end="url(#mermaid-1757604782207_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_C_1" d="M123.101,218L137.936,230.833C152.771,243.667,182.44,269.333,200.302,282.167C218.164,295,224.219,295,229.607,295C234.995,295,239.716,295,242.077,295L244.438,295"></path><path marker-end="url(#mermaid-1757604782207_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_D_2" d="M419.769,60L430.722,55.833C441.674,51.667,463.579,43.333,477.572,39.167C491.564,35,497.643,35,503.056,35C508.469,35,513.215,35,515.588,35L517.961,35"></path><path marker-end="url(#mermaid-1757604782207_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_B_E_3" d="M419.769,114L430.722,118.167C441.674,122.333,463.579,130.667,477.559,134.833C491.539,139,497.594,139,502.982,139C508.37,139,513.091,139,515.452,139L517.813,139"></path><path marker-end="url(#mermaid-1757604782207_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_F_4" d="M419.769,268L430.722,263.833C441.674,259.667,463.579,251.333,477.572,247.167C491.564,243,497.643,243,503.056,243C508.469,243,513.215,243,515.588,243L517.961,243"></path><path marker-end="url(#mermaid-1757604782207_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_G_5" d="M419.769,322L430.722,326.167C441.674,330.333,463.579,338.667,477.559,342.833C491.539,347,497.594,347,502.982,347C508.37,347,513.091,347,515.452,347L517.813,347"></path></g><g class="edgeLabels"><g transform="translate(212.109375, 87)" class="edgeLabel"><g transform="translate(-11.328125, -12)" class="label"><foreignobject height="24" width="22.65625">
 <div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="edgeLabel">
 <p>
@@ -1025,27 +1456,26 @@ Texas beats UGA (20%)
 </div>
 </div>
 </div>
-</div>
 </section>
-<section id="practice-2" class="slide level2">
-<h2>Practice</h2>
+<section id="practice-2" class="level2">
+<h2 class="anchored" data-anchor-id="practice-2">Practice</h2>
 <p>Calculate joint probabilities for every node in your evening tree. To check your work, make sure everything satisfies the <strong>axioms of probability</strong>.</p>
 <ol type="1">
-<li class="fragment">If two events are <strong>mutually exclusive</strong>, then <span class="math inline">\(P(A \text{ or } B) = P(A) + P(B)\)</span></li>
-<li class="fragment">If a set of events are <strong>collectively exhaustive</strong>, then their probabilities should sum to 100%.</li>
+<li>If two events are <strong>mutually exclusive</strong>, then <span class="math inline">\(P(A \text{ or } B) = P(A) + P(B)\)</span></li>
+<li>If a set of events are <strong>collectively exhaustive</strong>, then their probabilities should sum to 100%.</li>
 </ol>
 </section>
-<section id="wrap-up" class="slide level2">
-<h2>Wrap Up</h2>
+<section id="wrap-up" class="level2">
+<h2 class="anchored" data-anchor-id="wrap-up">Wrap Up</h2>
 <p>This gives us some insight into the birthday problem we started with:</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
-<p></p><figure class=""><p></p>
+<p></p><figure class="figure"><p></p>
 <div>
-<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="0 0 1170.21875 278" style="; display: block; margin: auto auto auto auto" class="flowchart" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="960" id="mermaid-figure-2" height="480">
+<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="0 0 1170.21875 278" class="flowchart" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="672" id="mermaid-figure-2" height="480">
 <style>#mermaid-figure-2{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-2 .error-icon{fill:#552222;}#mermaid-figure-2 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-2 .edge-thickness-normal{stroke-width:1px;}#mermaid-figure-2 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-2 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-2 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-figure-2 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-2 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-2 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-2 .marker.cross{stroke:#333333;}#mermaid-figure-2 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-2 p{margin:0;}#mermaid-figure-2 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-2 .cluster-label text{fill:#333;}#mermaid-figure-2 .cluster-label span{color:#333;}#mermaid-figure-2 .cluster-label span p{background-color:transparent;}#mermaid-figure-2 .label text,#mermaid-figure-2 span{fill:#333;color:#333;}#mermaid-figure-2 .node rect,#mermaid-figure-2 .node circle,#mermaid-figure-2 .node ellipse,#mermaid-figure-2 .node polygon,#mermaid-figure-2 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-2 .rough-node .label text,#mermaid-figure-2 .node .label text{text-anchor:middle;}#mermaid-figure-2 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-figure-2 .node .label{text-align:center;}#mermaid-figure-2 .node.clickable{cursor:pointer;}#mermaid-figure-2 .arrowheadPath{fill:#333333;}#mermaid-figure-2 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-2 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-2 .edgeLabel{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaid-figure-2 .edgeLabel p{background-color:rgba(232,232,232, 0.8);}#mermaid-figure-2 .edgeLabel rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaid-figure-2 .labelBkg{background-color:rgba(232, 232, 232, 0.5);}#mermaid-figure-2 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-2 .cluster text{fill:#333;}#mermaid-figure-2 .cluster span{color:#333;}#mermaid-figure-2 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-2 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-2 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
-<g><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434327170_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="4.5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434327170_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434327170_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757434327170_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757434327170_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757434327170_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid-1757434327170_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_C_0" d="M127.608,164L136.784,159.833C145.96,155.667,164.312,147.333,182.484,143.167C200.656,139,218.648,139,235.974,139C253.299,139,269.958,139,278.288,139L286.617,139"></path><path marker-end="url(#mermaid-1757434327170_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_B_1" d="M127.608,218L136.784,222.167C145.96,226.333,164.312,234.667,178.019,238.833C191.725,243,200.786,243,209.181,243C217.576,243,225.303,243,229.167,243L233.031,243"></path><path marker-end="url(#mermaid-1757434327170_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_D_2" d="M418.93,119.616L436.922,114.18C454.914,108.744,490.898,97.872,517.908,92.436C544.918,87,562.953,87,580.322,87C597.69,87,614.392,87,622.743,87L631.094,87"></path><path marker-end="url(#mermaid-1757434327170_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_E_3" d="M418.93,158.384L436.922,163.82C454.914,169.256,490.898,180.128,513.421,185.564C535.944,191,545.005,191,553.4,191C561.794,191,569.522,191,573.386,191L577.25,191"></path><path marker-end="url(#mermaid-1757434327170_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_D_F_4" d="M763.406,67.645L781.441,62.204C799.477,56.763,835.547,45.882,862.609,40.441C889.672,35,907.727,35,925.115,35C942.503,35,959.224,35,967.585,35L975.945,35"></path><path marker-end="url(#mermaid-1757434327170_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_D_G_5" d="M763.406,106.355L781.441,111.796C799.477,117.237,835.547,128.118,858.113,133.559C880.678,139,889.74,139,898.134,139C906.529,139,914.257,139,918.12,139L921.984,139"></path></g><g class="edgeLabels"><g transform="translate(182.6640625, 139)" class="edgeLabel"><g transform="translate(-29.3671875, -12)" class="label"><foreignobject height="24" width="58.734375">
+<g><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604779939_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="4.5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604779939_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604779939_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1757604779939_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757604779939_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1757604779939_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid-1757604779939_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_C_0" d="M127.608,164L136.784,159.833C145.96,155.667,164.312,147.333,182.484,143.167C200.656,139,218.648,139,235.974,139C253.299,139,269.958,139,278.288,139L286.617,139"></path><path marker-end="url(#mermaid-1757604779939_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_A_B_1" d="M127.608,218L136.784,222.167C145.96,226.333,164.312,234.667,178.019,238.833C191.725,243,200.786,243,209.181,243C217.576,243,225.303,243,229.167,243L233.031,243"></path><path marker-end="url(#mermaid-1757604779939_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_D_2" d="M418.93,119.616L436.922,114.18C454.914,108.744,490.898,97.872,517.908,92.436C544.918,87,562.953,87,580.322,87C597.69,87,614.392,87,622.743,87L631.094,87"></path><path marker-end="url(#mermaid-1757604779939_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_C_E_3" d="M418.93,158.384L436.922,163.82C454.914,169.256,490.898,180.128,513.421,185.564C535.944,191,545.005,191,553.4,191C561.794,191,569.522,191,573.386,191L577.25,191"></path><path marker-end="url(#mermaid-1757604779939_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_D_F_4" d="M763.406,67.645L781.441,62.204C799.477,56.763,835.547,45.882,862.609,40.441C889.672,35,907.727,35,925.115,35C942.503,35,959.224,35,967.585,35L975.945,35"></path><path marker-end="url(#mermaid-1757604779939_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_D_G_5" d="M763.406,106.355L781.441,111.796C799.477,117.237,835.547,128.118,858.113,133.559C880.678,139,889.74,139,898.134,139C906.529,139,914.257,139,918.12,139L921.984,139"></path></g><g class="edgeLabels"><g transform="translate(182.6640625, 139)" class="edgeLabel"><g transform="translate(-29.3671875, -12)" class="label"><foreignobject height="24" width="58.734375">
 <div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="edgeLabel">
 <p>
@@ -1158,409 +1588,430 @@ Person D shares birthday
 </div>
 
 
-</section></section>
-    </div>
-  <div class="quarto-auto-generated-content" style="display: none;">
-<div class="footer footer-default">
+</section>
+</section>
 
-</div>
-</div></div>
-
-  <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="../site_libs/revealjs/dist/reveal.js"></script>
-  <!-- reveal.js plugins -->
-  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
-  
-
-  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
-  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
-
-  <script>
-
-      // Full list of configuration options available at:
-      // https://revealjs.com/config/
-      Reveal.initialize({
-'controlsAuto': true,
-'previewLinksAuto': true,
-'pdfSeparateFragments': false,
-'autoAnimateEasing': "ease",
-'autoAnimateDuration': 1,
-'autoAnimateUnmatched': true,
-'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'chalkboard': {"buttons":true},
-'smaller': false,
- 
-        // Display controls in the bottom right corner
-        controls: false,
-
-        // Help the user learn the controls by providing hints, for example by
-        // bouncing the down arrow when they first encounter a vertical slide
-        controlsTutorial: false,
-
-        // Determines where controls appear, "edges" or "bottom-right"
-        controlsLayout: 'edges',
-
-        // Visibility rule for backwards navigation arrows; "faded", "hidden"
-        // or "visible"
-        controlsBackArrows: 'faded',
-
-        // Display a presentation progress bar
-        progress: true,
-
-        // Display the page number of the current slide
-        slideNumber: 'c/t',
-
-        // 'all', 'print', or 'speaker'
-        showSlideNumber: 'all',
-
-        // Add the current slide number to the URL hash so that reloading the
-        // page/copying the URL will return you to the same slide
-        hash: true,
-
-        // Start with 1 for the hash rather than 0
-        hashOneBasedIndex: false,
-
-        // Flags if we should monitor the hash and change slides accordingly
-        respondToHashChanges: true,
-
-        // Push each slide change to the browser history
-        history: true,
-
-        // Enable keyboard shortcuts for navigation
-        keyboard: true,
-
-        // Enable the slide overview mode
-        overview: true,
-
-        // Disables the default reveal.js slide layout (scaling and centering)
-        // so that you can use custom CSS layout
-        disableLayout: false,
-
-        // Vertical centering of slides
-        center: false,
-
-        // Enables touch navigation on devices with touch input
-        touch: true,
-
-        // Loop the presentation
-        loop: false,
-
-        // Change the presentation direction to be RTL
-        rtl: false,
-
-        // see https://revealjs.com/vertical-slides/#navigation-mode
-        navigationMode: 'linear',
-
-        // Randomizes the order of slides each time the presentation loads
-        shuffle: false,
-
-        // Turns fragments on and off globally
-        fragments: true,
-
-        // Flags whether to include the current fragment in the URL,
-        // so that reloading brings you to the same fragment position
-        fragmentInURL: false,
-
-        // Flags if the presentation is running in an embedded mode,
-        // i.e. contained within a limited portion of the screen
-        embedded: false,
-
-        // Flags if we should show a help overlay when the questionmark
-        // key is pressed
-        help: true,
-
-        // Flags if it should be possible to pause the presentation (blackout)
-        pause: true,
-
-        // Flags if speaker notes should be visible to all viewers
-        showNotes: false,
-
-        // Global override for autoplaying embedded media (null/true/false)
-        autoPlayMedia: null,
-
-        // Global override for preloading lazy-loaded iframes (null/true/false)
-        preloadIframes: null,
-
-        // Number of milliseconds between automatically proceeding to the
-        // next slide, disabled when set to 0, this value can be overwritten
-        // by using a data-autoslide attribute on your slides
-        autoSlide: 0,
-
-        // Stop auto-sliding after user input
-        autoSlideStoppable: true,
-
-        // Use this method for navigation when auto-sliding
-        autoSlideMethod: null,
-
-        // Specify the average time in seconds that you think you will spend
-        // presenting each slide. This is used to show a pacing timer in the
-        // speaker view
-        defaultTiming: null,
-
-        // Enable slide navigation via mouse wheel
-        mouseWheel: false,
-
-        // The display mode that will be used to show slides
-        display: 'block',
-
-        // Hide cursor if inactive
-        hideInactiveCursor: true,
-
-        // Time before the cursor is hidden (in ms)
-        hideCursorTime: 5000,
-
-        // Opens links in an iframe preview overlay
-        previewLinks: false,
-
-        // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'none',
-
-        // Transition speed (default/fast/slow)
-        transitionSpeed: 'default',
-
-        // Transition style for full page slide backgrounds
-        // (none/fade/slide/convex/concave/zoom)
-        backgroundTransition: 'fade',
-
-        // Number of slides away from the current that are visible
-        viewDistance: 3,
-
-        // Number of slides away from the current that are visible on mobile
-        // devices. It is advisable to set this to a lower number than
-        // viewDistance in order to save resources.
-        mobileViewDistance: 2,
-
-        // The "normal" size of the presentation, aspect ratio will be preserved
-        // when the presentation is scaled to fit different resolutions. Can be
-        // specified using percentage units.
-        width: 1050,
-
-        height: 700,
-
-        // Factor of the display size that should remain empty around the content
-        margin: 0.1,
-
-        math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
-        // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
-
-          RevealMath,
-          RevealNotes,
-          RevealSearch,
-          RevealZoom
-        ]
-      });
-    </script>
-    <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
       }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
         }
       }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
-          }
-        }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
-          }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp('/' + window.location.host + '/');
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-        }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
-            }
-          }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
-          }
-        } else {
-          return undefined;
-        }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
-              }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
-          });
-        }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
       }
     });
-    </script>
-    
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
 
 </body></html>
