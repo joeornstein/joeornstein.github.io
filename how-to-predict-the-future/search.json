@@ -564,7 +564,7 @@
     "href": "index.html#leaderboard",
     "title": "Fall 2025 Predictions",
     "section": "Leaderboard",
-    "text": "Leaderboard\n\n\n\n\n\nName\nPredictions Made\n\n\n\n\nAkshara Singh\n6\n\n\nAlika Otero-Ricalde\n5\n\n\nAlizah Mudaliar\n8\n\n\nAmanda Neighbour\n6\n\n\nAna Valencia\n6\n\n\nAnna Barton-Caucci\n7\n\n\nAnna Kneser\n7\n\n\nArshia Charkhian\n6\n\n\nBlake Martin\n6\n\n\nBreanne Talley\n7\n\n\nCaleb Lux\n8\n\n\nCaroline Mattox\n7\n\n\nChris Haswell\n8\n\n\nCierra Green\n8\n\n\nCrowd\n8\n\n\nElizabeth Nelson\n6\n\n\nEllie Null\n7\n\n\nFrancesca Mariano\n7\n\n\nHunter Murray\n5\n\n\nJack Lutz\n5\n\n\nJackson Bost\n8\n\n\nJames Hunter Darke\n5\n\n\nJhaycee Barnes\n8\n\n\nJoe Ornstein\n8\n\n\nKira Fleischer\n7\n\n\nKristoffer Fields\n8\n\n\nLiz Yancey\n8\n\n\nManuv Datta\n6\n\n\nMateo Ceron\n7\n\n\nNic Curtis\n8\n\n\nOwen Johnston\n7\n\n\nPaul Frilingos\n6\n\n\nRaquel Beatriz Caldas Laranjeira\n8\n\n\nReese Fabritius\n6\n\n\nRuhi Doddamani\n7\n\n\nRyan Marx\n7\n\n\nSade Ezekiel\n8\n\n\nSarah Kate Maher\n8\n\n\nSasha Mahtani\n7\n\n\nShaheer Ul-Islam\n7\n\n\nSierra Cross-Thompson\n4\n\n\nZafar Ali\n7"
+    "text": "Leaderboard\n\n\n\n\n\n\n\n\n\n\n\n\nRank\nName\nSubmissions\nCorrect Calls\nBrier Score\n\n\n\n\n1\nJhaycee Barnes\n8\n0/1\n0.3600\n\n\n2\nSarah Kate Maher\n8\n0/1\n0.3600\n\n\n3\nChris Haswell\n8\n0/1\n0.4225\n\n\n4\nLiz Yancey\n8\n0/1\n0.4225\n\n\n5\nNic Curtis\n8\n0/1\n0.4225\n\n\n6\nRyan Marx\n7\n0/1\n0.4225\n\n\n7\nZafar Ali\n7\n0/1\n0.4225\n\n\n8\nRuhi Doddamani\n7\n0/1\n0.4489\n\n\n9\nAlizah Mudaliar\n8\n0/1\n0.4624\n\n\n10\nBlake Martin\n6\n0/1\n0.4624\n\n\n11\nJackson Bost\n8\n0/1\n0.4624\n\n\n12\nSade Ezekiel\n8\n0/1\n0.4624\n\n\n13\nEllie Null\n7\n0/1\n0.4761\n\n\n14\nAmanda Neighbour\n6\n0/1\n0.4900\n\n\n15\nAnna Barton-Caucci\n7\n0/1\n0.4900\n\n\n16\nAnna Kneser\n7\n0/1\n0.4900\n\n\n17\nBreanne Talley\n7\n0/1\n0.4900\n\n\n18\nCrowd\n8\n0/1\n0.4900\n\n\n19\nFrancesca Mariano\n7\n0/1\n0.4900\n\n\n20\nJames Hunter Darke\n5\n0/1\n0.4900\n\n\n21\nMateo Ceron\n7\n0/1\n0.4900\n\n\n22\nCaleb Lux\n8\n0/1\n0.5041\n\n\n23\nRaquel Beatriz Caldas Laranjeira\n8\n0/1\n0.5329\n\n\n24\nPaul Frilingos\n6\n0/1\n0.5476\n\n\n25\nSasha Mahtani\n7\n0/1\n0.5476\n\n\n26\nAlika Otero-Ricalde\n5\n0/1\n0.5625\n\n\n27\nCierra Green\n8\n0/1\n0.5625\n\n\n28\nShaheer Ul-Islam\n7\n0/1\n0.5625\n\n\n29\nHunter Murray\n5\n0/1\n0.6241\n\n\n30\nCaroline Mattox\n7\n0/1\n0.6400\n\n\n31\nElizabeth Nelson\n6\n0/1\n0.6400\n\n\n32\nReese Fabritius\n6\n0/1\n0.6400\n\n\n33\nKristoffer Fields\n8\n0/1\n0.6724\n\n\n34\nKira Fleischer\n7\n0/1\n0.7056\n\n\n35\nJoe Ornstein\n8\n0/1\n0.7225\n\n\n36\nArshia Charkhian\n6\n0/1\n0.8100\n\n\n37\nAkshara Singh\n6\n0/0\nNaN\n\n\n38\nAna Valencia\n6\n0/0\nNaN\n\n\n39\nJack Lutz\n5\n0/0\nNaN\n\n\n40\nManuv Datta\n6\n0/0\nNaN\n\n\n41\nOwen Johnston\n7\n0/0\nNaN\n\n\n42\nSierra Cross-Thompson\n4\n0/0\nNaN"
   },
   {
     "objectID": "fall-2023.html#week-2-913",
@@ -1915,7 +1915,7 @@
     "href": "slides/prediction-markets.html#todays-agenda",
     "title": "Prediction Markets",
     "section": "Today’s Agenda",
-    "text": "Today’s Agenda\n\nWhat are prediction markets?\nHow do they work?\nWhen should you trust them (more than your professor)?\nWhen should you be skeptical?"
+    "text": "Today’s Agenda\n\nWhat are prediction markets?\nHow do they work?\nWhen should you trust them?\nWhen should you be skeptical?"
   },
   {
     "objectID": "slides/prediction-markets.html#hedgehog-professor-vs.-the-market",
@@ -1929,7 +1929,7 @@
     "href": "slides/prediction-markets.html#probability-as-a-bet",
     "title": "Prediction Markets",
     "section": "Probability As A Bet",
-    "text": "Probability As A Bet\n\nSuppose I offered to sell you a magical piece of paper.\n\nIf X happens, it turns into a $1 bill.\nOtherwise, the paper disintegrates.\n\nPonder: How much would you be willing to pay for this piece of paper?\nIt depends on what you think the probability of X is!"
+    "text": "Probability As A Bet\n\nSuppose I offered you a contract that pays $1 if it rains tomorrow.\nPonder: How much would you be willing to pay for this contract?\nIt depends on the probability of rain!\nIf \\(P(\\text{rain}) = 0.2\\), then buying the contract for any price less than 20¢, will, on average, earn you a profit."
   },
   {
     "objectID": "slides/prediction-markets.html#probability-as-a-bet-1",
@@ -1937,5 +1937,33 @@
     "title": "Prediction Markets",
     "section": "Probability As A Bet",
     "text": "Probability As A Bet\n\n\n\n\n\n\n\nSyntax error in textmermaid version 11.2.0\n\n\n\n\n\n\n\nThe expected value of this bet is 20¢."
+  },
+  {
+    "objectID": "slides/prediction-markets.html#prediction-markets",
+    "href": "slides/prediction-markets.html#prediction-markets",
+    "title": "Prediction Markets",
+    "section": "Prediction Markets",
+    "text": "Prediction Markets\n\nA prediction market is an exchange where people buy and sell these types of contracts.\nThe potential for profit creates strong incentives for participants to seek out good information and make good predictions (Arrow et al. 2008).\nThe “market price” for each contract reflects participants’ beliefs about the probability of that event."
+  },
+  {
+    "objectID": "slides/prediction-markets.html#class-activity",
+    "href": "slides/prediction-markets.html#class-activity",
+    "title": "Prediction Markets",
+    "section": "Class Activity",
+    "text": "Class Activity\n\nTo demonstrate how prediction markets work, we’re going to create our own.\nEveryone starts the game with a sheet of 300 foxcoin and a stack of contracts.\n\nYour goal is to have the most foxcoin by November 25.\n\nWe’ll record the order book for each contract on the board.\n\nIf you want to buy a contract, put your name and the price you’re wiling to pay in the “Bid” column.\nIf you want to sell a contract, put your name and the price you’re willing to pay in the “Ask” column."
+  },
+  {
+    "objectID": "slides/prediction-markets.html#references",
+    "href": "slides/prediction-markets.html#references",
+    "title": "Prediction Markets",
+    "section": "References",
+    "text": "References\n\n\n\n\nArrow, Kenneth J., Robert Forsythe, Michael Gorham, Robert Hahn, Robin Hanson, John O. Ledyard, Saul Levmore, et al. 2008. “The Promise of Prediction Markets.” Science 320 (5878): 877–78. https://doi.org/10.1126/science.1157679."
+  },
+  {
+    "objectID": "slides/prediction-markets.html#when-should-you-trust-the-market",
+    "href": "slides/prediction-markets.html#when-should-you-trust-the-market",
+    "title": "Prediction Markets",
+    "section": "When should you trust the market?",
+    "text": "When should you trust the market?\n\nGenerally speaking, prediction markets will work best when:\n\nTrading volume is high.\n\nJust like we saw with the Condorcet Jury Theorem, the “wisdom of crowds” works best when the crowd is large, and there are many different perspectives to aggregate.\n\nTime horizons are short.\n\nMarket tend to be more accurate the closer you get to an event.\nThe profit incentive is much weaker for long-term contracts.\n\n(Why put in the effort to accurately price a 10-year prediction contract when you could just earn 50% compound interest on a US Treasury Bond?)"
   }
 ]

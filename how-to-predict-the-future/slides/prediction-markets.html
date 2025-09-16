@@ -28,7 +28,27 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2f366650f320edcfcf53d73c80250a32.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -123,7 +143,6 @@
       margin-right: 0; 
     }
   </style>
-  <script src="../site_libs/quarto-diagram/mermaid-postprocess-shim.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -155,44 +174,71 @@
 <ul>
 <li class="fragment"><p>What are prediction markets?</p></li>
 <li class="fragment"><p>How do they work?</p></li>
-<li class="fragment"><p>When should you trust them (more than your professor)?</p></li>
+<li class="fragment"><p>When should you trust them?</p></li>
 <li class="fragment"><p>When should you be skeptical?</p></li>
 </ul>
 </section>
 <section id="probability-as-a-bet" class="slide level2">
 <h2>Probability As A Bet</h2>
 <ul>
-<li class="fragment"><p>Suppose I offered to sell you a magical piece of paper.</p>
-<ul>
-<li class="fragment">If X happens, it turns into a $1 bill.</li>
-<li class="fragment">Otherwise, the paper disintegrates.</li>
-</ul></li>
-<li class="fragment"><p><strong>Ponder:</strong> How much would you be willing to pay for this piece of paper?</p></li>
-<li class="fragment"><p>It depends on what you think the probability of X is!</p></li>
+<li class="fragment"><p>Suppose I offered you a contract that pays $1 if it rains tomorrow.</p></li>
+<li class="fragment"><p><strong>Ponder:</strong> How much would you be willing to pay for this contract?</p></li>
+<li class="fragment"><p>It depends on the probability of rain!</p></li>
+<li class="fragment"><p>If <span class="math inline">\(P(\text{rain}) = 0.2\)</span>, then buying the contract for any price less than 20¢, will, on average, earn you a profit.</p></li>
 </ul>
 </section>
-<section id="probability-as-a-bet-1" class="slide level2">
-<h2>Probability As A Bet</h2>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<svg id="mermaid-figure-1" width="768" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewbox="0 0 2412 512" style="; display: block; margin: auto auto auto auto" role="graphics-document document" aria-roledescription="error" height="480">
-<style>#mermaid-figure-1{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-1 .error-icon{fill:#552222;}#mermaid-figure-1 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-1 .edge-thickness-normal{stroke-width:1px;}#mermaid-figure-1 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-1 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-1 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-figure-1 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-1 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-1 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-1 .marker.cross{stroke:#333333;}#mermaid-figure-1 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-1 p{margin:0;}#mermaid-figure-1 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
-<g></g><g><path class="error-icon" d="m411.313,123.313c6.25-6.25 6.25-16.375 0-22.625s-16.375-6.25-22.625,0l-32,32-9.375,9.375-20.688-20.688c-12.484-12.5-32.766-12.5-45.25,0l-16,16c-1.261,1.261-2.304,2.648-3.31,4.051-21.739-8.561-45.324-13.426-70.065-13.426-105.867,0-192,86.133-192,192s86.133,192 192,192 192-86.133 192-192c0-24.741-4.864-48.327-13.426-70.065 1.402-1.007 2.79-2.049 4.051-3.31l16-16c12.5-12.492 12.5-32.758 0-45.25l-20.688-20.688 9.375-9.375 32.001-31.999zm-219.313,100.687c-52.938,0-96,43.063-96,96 0,8.836-7.164,16-16,16s-16-7.164-16-16c0-70.578 57.422-128 128-128 8.836,0 16,7.164 16,16s-7.164,16-16,16z"></path><path class="error-icon" d="m459.02,148.98c-6.25-6.25-16.375-6.25-22.625,0s-6.25,16.375 0,22.625l16,16c3.125,3.125 7.219,4.688 11.313,4.688 4.094,0 8.188-1.563 11.313-4.688 6.25-6.25 6.25-16.375 0-22.625l-16.001-16z"></path><path class="error-icon" d="m340.395,75.605c3.125,3.125 7.219,4.688 11.313,4.688 4.094,0 8.188-1.563 11.313-4.688 6.25-6.25 6.25-16.375 0-22.625l-16-16c-6.25-6.25-16.375-6.25-22.625,0s-6.25,16.375 0,22.625l15.999,16z"></path><path class="error-icon" d="m400,64c8.844,0 16-7.164 16-16v-32c0-8.836-7.156-16-16-16-8.844,0-16,7.164-16,16v32c0,8.836 7.156,16 16,16z"></path><path class="error-icon" d="m496,96.586h-32c-8.844,0-16,7.164-16,16 0,8.836 7.156,16 16,16h32c8.844,0 16-7.164 16-16 0-8.836-7.156-16-16-16z"></path><path class="error-icon" d="m436.98,75.605c3.125,3.125 7.219,4.688 11.313,4.688 4.094,0 8.188-1.563 11.313-4.688l32-32c6.25-6.25 6.25-16.375 0-22.625s-16.375-6.25-22.625,0l-32,32c-6.251,6.25-6.251,16.375-0.001,22.625z"></path><text class="error-text" x="1440" y="250" font-size="150px" style="text-anchor: middle;">Syntax error in text</text><text class="error-text" x="1250" y="400" font-size="100px" style="text-anchor: middle;">mermaid version 11.2.0</text></g>
-</svg>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+<section id="prediction-markets" class="slide level2">
+<h2>Prediction Markets</h2>
 <ul>
-<li class="fragment"><p>The <strong>expected value</strong> of this bet is 20¢.</p></li>
-<li class="fragment"></li>
+<li class="fragment"><p>A <strong>prediction market</strong> is an exchange where people buy and sell these types of contracts.</p></li>
+<li class="fragment"><p>The potential for profit creates strong incentives for participants to seek out good information and make good predictions <span class="citation" data-cites="arrowPromisePredictionMarkets2008">(<a href="#/references" role="doc-biblioref" onclick="">Arrow et al. 2008</a>)</span>.</p></li>
+<li class="fragment"><p>The “market price” for each contract reflects participants’ beliefs about the probability of that event.</p></li>
 </ul>
+</section>
+<section id="class-activity" class="slide level2">
+<h2>Class Activity</h2>
+<ul>
+<li class="fragment"><p>To demonstrate how prediction markets work, we’re going to create our own.</p></li>
+<li class="fragment"><p>Everyone starts the game with a sheet of 300 <strong>foxcoin</strong> and a stack of contracts.</p>
+<ul>
+<li class="fragment">Your goal is to have the most foxcoin by November 25.</li>
+</ul></li>
+<li class="fragment"><p>We’ll record the <strong>order book</strong> for each contract on the board.</p>
+<ul>
+<li class="fragment"><p>If you want to <em>buy</em> a contract, put your name and the price you’re wiling to pay in the “Bid” column.</p></li>
+<li class="fragment"><p>If you want to <em>sell</em> a contract, put your name and the price you’re willing to pay in the “Ask” column.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="when-should-you-trust-the-market" class="slide level2">
+<h2>When should you trust the market?</h2>
+<div class="fragment">
+<p>Generally speaking, prediction markets will work best when:</p>
+<ul>
+<li class="fragment"><p><strong>Trading volume is high.</strong></p>
+<ul>
+<li class="fragment">Just like we saw with the Condorcet Jury Theorem, the “wisdom of crowds” works best when the crowd is large, and there are many different perspectives to aggregate.</li>
+</ul></li>
+<li class="fragment"><p><strong>Time horizons are short.</strong></p>
+<ul>
+<li class="fragment"><p>Market tend to be more accurate the closer you get to an event.</p></li>
+<li class="fragment"><p>The profit incentive is much weaker for long-term contracts.</p>
+<ul>
+<li class="fragment">(Why put in the effort to accurately price a 10-year prediction contract when you could just earn 50% compound interest on a US Treasury Bond?)</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-arrowPromisePredictionMarkets2008" class="csl-entry" role="listitem">
+Arrow, Kenneth J., Robert Forsythe, Michael Gorham, Robert Hahn, Robin Hanson, John O. Ledyard, Saul Levmore, et al. 2008. <span>“The Promise of Prediction Markets.”</span> <em>Science</em> 320 (5878): 877–78. <a href="https://doi.org/10.1126/science.1157679">https://doi.org/10.1126/science.1157679</a>.
+</div>
+</div>
 </section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
