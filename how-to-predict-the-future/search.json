@@ -1965,5 +1965,19 @@
     "title": "Prediction Markets",
     "section": "When should you trust the market?",
     "text": "When should you trust the market?\n\nGenerally speaking, prediction markets will work best when:\n\nTrading volume is high.\n\nJust like we saw with the Condorcet Jury Theorem, the “wisdom of crowds” works best when the crowd is large, and there are many different perspectives to aggregate.\n\nTime horizons are short.\n\nMarket tend to be more accurate the closer you get to an event.\nThe profit incentive is much weaker for long-term contracts.\n\n(Why put in the effort to accurately price a 10-year prediction contract when you could just earn 50% compound interest on a US Treasury Bond?)"
+  },
+  {
+    "objectID": "slides/prediction-markets.html#when-do-markets-work-best",
+    "href": "slides/prediction-markets.html#when-do-markets-work-best",
+    "title": "Prediction Markets",
+    "section": "When do markets work best?",
+    "text": "When do markets work best?\n\nTrading volume is high.\n\nJust like we saw with the Condorcet Jury Theorem, the “wisdom of crowds” works best when the crowd is large.\n\nTime horizons are short.\n\nMarkets tend to be more accurate the closer you get to an event.\nProfit motive is much weaker for long-term contracts.\n\n(Why put in the effort to accurately price a 10-year prediction contract when you could just earn 50% compound interest on a US Treasury Bond?)"
+  },
+  {
+    "objectID": "slides/prediction-markets.html#when-should-you-be-skeptical",
+    "href": "slides/prediction-markets.html#when-should-you-be-skeptical",
+    "title": "Prediction Markets",
+    "section": "When should you be skeptical?",
+    "text": "When should you be skeptical?\n\n\n\n\n\n\n\nAnyone who thinks the answer is less than 20% has no incentive to participate in this market!"
   }
 ]
