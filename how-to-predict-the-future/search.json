@@ -1790,5 +1790,152 @@
     "title": "Fall 2025 Predictions",
     "section": "Week 4 (9/9)",
     "text": "Week 4 (9/9)"
+  },
+  {
+    "objectID": "slides/aggregating-forecasts.html#motivating-problem",
+    "href": "slides/aggregating-forecasts.html#motivating-problem",
+    "title": "Aggregating Forecasts",
+    "section": "Motivating Problem",
+    "text": "Motivating Problem\n\nSuppose the class is trying to predict whether the Federal Reserve will cut interest rates at its next meeting.\nThree students submit briefings, and all three say 75%.\nWhat should you predict after observing those three forecasts?\nLast time, we considered taking the median forecast (i.e. majority rule).\n\nBut that strategy required some strong assumptions.\nAre those assumptions met here?"
+  },
+  {
+    "objectID": "slides/aggregating-forecasts.html#todays-agen",
+    "href": "slides/aggregating-forecasts.html#todays-agen",
+    "title": "Aggregating Forecasts",
+    "section": "Today’s Agen",
+    "text": "Today’s Agen"
+  },
+  {
+    "objectID": "slides/aggregating-forecasts.html#todays-agenda",
+    "href": "slides/aggregating-forecasts.html#todays-agenda",
+    "title": "Aggregating Forecasts",
+    "section": "Today’s Agenda",
+    "text": "Today’s Agenda\n\nHow best to aggregate individual forecasts into a group forecast?\nI’ll try to convince you that, if three individual forecasts are at 75%, the best aggregation is probably &gt;75%.\n\nThis is called extremizing—increasing the confidence of the group forecast when multiple individuals all make a prediction in the same direction.\n\nWe’ll motivate this idea from the perspective of Bayesian updating."
+  },
+  {
+    "objectID": "slides/aggregating-forecasts.html#warmup",
+    "href": "slides/aggregating-forecasts.html#warmup",
+    "title": "Aggregating Forecasts",
+    "section": "Warmup",
+    "text": "Warmup\n\nSuppose you’re writing a briefing about the interest rates question.\nAt first, you have no idea what will happen (prior odds = 1:1).\nThen you find a statement from a Fed official expressing worry about unemployment.\nHistorically, he makes statements like this three times more often before an interest rate cut than he does otherwise.\nProblem: What should your new forecast be, after observing this evidence?"
+  },
+  {
+    "objectID": "slides/aggregating-forecasts.html#warmup-1",
+    "href": "slides/aggregating-forecasts.html#warmup-1",
+    "title": "Aggregating Forecasts",
+    "section": "Warmup",
+    "text": "Warmup\nRemember Bayes Rule:\n\\[\n\\text{Posterior Odds} = \\text{Prior Odds} \\times \\text{Strength of Evidence}\n\\]"
+  },
+  {
+    "objectID": "slides/aggregating-forecasts.html#warmup-2",
+    "href": "slides/aggregating-forecasts.html#warmup-2",
+    "title": "Aggregating Forecasts",
+    "section": "Warmup",
+    "text": "Warmup\nRemember Bayes Rule:\n\\[\n\\underbrace{\\text{Posterior Odds}}_{\\text{New Forecast}} = \\underbrace{\\text{Prior Odds}}_{\\text{Old Forecast}}\\times  \\underbrace{\\text{Strength of Evidence}}_{\\text{Likelihood Ratio}}\n\\]\n\nPrior Odds: 1:1\nLikelihood Ratio: 3:1\nPosterior Odds: 3:1\nNew Forecast: 75%"
+  },
+  {
+    "objectID": "slides/aggregating-forecasts.html#bayesian-updating",
+    "href": "slides/aggregating-forecasts.html#bayesian-updating",
+    "title": "Aggregating Forecasts",
+    "section": "Bayesian Updating",
+    "text": "Bayesian Updating\n\nNow suppose you read that JP Morgan’s analysts are predicting an interest rate cut.\nHistorically, this appears to have the same strength of evidence as the Fed official’s statements.\nBayes Rule handles this problem exactly like the first one!\n\nPrior Odds: 3:1\nLikelihood Ratio: 3:1\nPosterior Odds: \\(3:1 \\times 3:1 = 9:1\\)\nNew Prediction: 90%"
+  },
+  {
+    "objectID": "slides/aggregating-forecasts.html#practice",
+    "href": "slides/aggregating-forecasts.html#practice",
+    "title": "Aggregating Forecasts",
+    "section": "Practice",
+    "text": "Practice\n40%, then 3:1 then 1:2 2:3 -&gt; 6:3 - &gt; 6:6 (50%)"
+  },
+  {
+    "objectID": "slides/aggregating-forecasts.html#extremizing",
+    "href": "slides/aggregating-forecasts.html#extremizing",
+    "title": "Aggregating Forecasts",
+    "section": "Extremizing",
+    "text": "Extremizing\n\nThis is the intuition behind extremizing predictions.\nIf a group of forecasters have independent pieces of information, they would become more confident if they shared what they know.\nHow much you extremize depends on how much independent information you think the crowd has.\n\nOn one extreme, everyone found totally different information.\nOn the other extreme, everyone found exactly the same information (don’t extremize).\nThe truth probably lies somewhere in the middle."
+  },
+  {
+    "objectID": "slides/aggregating-forecasts.html#extremizing-1",
+    "href": "slides/aggregating-forecasts.html#extremizing-1",
+    "title": "Aggregating Forecasts",
+    "section": "Extremizing",
+    "text": "Extremizing\nTetlock suggests using \\(\\alpha = 2.5\\)"
+  },
+  {
+    "objectID": "slides/aggregating-forecasts.html#extremizing-2",
+    "href": "slides/aggregating-forecasts.html#extremizing-2",
+    "title": "Aggregating Forecasts",
+    "section": "Extremizing",
+    "text": "Extremizing\nIf each individual is bringing unique information, then multiply odds.\nBut that’s a strong assumption."
+  },
+  {
+    "objectID": "slides/aggregating-forecasts.html#takeaways",
+    "href": "slides/aggregating-forecasts.html#takeaways",
+    "title": "Aggregating Forecasts",
+    "section": "Takeaways",
+    "text": "Takeaways\n\nOrganize teams so that they share information rather than enforcing consensus."
+  },
+  {
+    "objectID": "slides/aggregating-forecasts.html#bayesian-updating-1",
+    "href": "slides/aggregating-forecasts.html#bayesian-updating-1",
+    "title": "Aggregating Forecasts",
+    "section": "Bayesian Updating",
+    "text": "Bayesian Updating\n\nThis process of Bayesian updating can proceed indefinitely.\nFor each piece of evidence:\n\nAssess its likelihood ratio—conditional on everything you know, how much more likely are you to observe this information if the event happens than if not?\nAdjust your prediction up or down using Bayes Rule."
+  },
+  {
+    "objectID": "slides/aggregating-forecasts.html#bayesian-updating-2",
+    "href": "slides/aggregating-forecasts.html#bayesian-updating-2",
+    "title": "Aggregating Forecasts",
+    "section": "Bayesian Updating",
+    "text": "Bayesian Updating"
+  },
+  {
+    "objectID": "slides/aggregating-forecasts.html#back-to-the-motivating-problem",
+    "href": "slides/aggregating-forecasts.html#back-to-the-motivating-problem",
+    "title": "Aggregating Forecasts",
+    "section": "Back to the Motivating Problem",
+    "text": "Back to the Motivating Problem\n\nConsider the three students writing briefings. All three start with prior odds 1:1.\nStudent A only finds the statement by the Fed official (3:1 likelihood ratio).\n\nStudent B finds the JP Morgan report (3:1 likelihood ratio).\nStudent C finds a third piece of evidence (also 3:1).\nIf nobody shares information with each other, what would each student predict?\nIf they shared all three pieces of information with each other, what would they predict (using Bayesian updating)?"
+  },
+  {
+    "objectID": "slides/aggregating-forecasts.html#example",
+    "href": "slides/aggregating-forecasts.html#example",
+    "title": "Aggregating Forecasts",
+    "section": "Example",
+    "text": "Example\n\nFive forecasters predict 40%, 50%, 60%, 75%, and 75%.\nThe median forecast is 60%.\nThe extremized forecast (setting \\(\\alpha = 2.5\\)) is:\n\n\n\\[\n(2:3 \\times 1:1 \\times 3:2 \\times 3:1 \\times 3:1)^\\frac{2.5}{5} =\n(9:1)^\\frac{1}{2} = 3:1 = 75\\%\n\\] -"
+  },
+  {
+    "objectID": "slides/prediction-markets.html#hedgehog-professor",
+    "href": "slides/prediction-markets.html#hedgehog-professor",
+    "title": "Prediction Markets",
+    "section": "Hedgehog Professor",
+    "text": "Hedgehog Professor"
+  },
+  {
+    "objectID": "slides/prediction-markets.html#todays-agenda",
+    "href": "slides/prediction-markets.html#todays-agenda",
+    "title": "Prediction Markets",
+    "section": "Today’s Agenda",
+    "text": "Today’s Agenda\n\nWhat are prediction markets?\nHow do they work?\nWhen should you trust them (more than your professor)?\nWhen should you be skeptical?"
+  },
+  {
+    "objectID": "slides/prediction-markets.html#hedgehog-professor-vs.-the-market",
+    "href": "slides/prediction-markets.html#hedgehog-professor-vs.-the-market",
+    "title": "Prediction Markets",
+    "section": "Hedgehog Professor vs. The Market",
+    "text": "Hedgehog Professor vs. The Market"
+  },
+  {
+    "objectID": "slides/prediction-markets.html#probability-as-a-bet",
+    "href": "slides/prediction-markets.html#probability-as-a-bet",
+    "title": "Prediction Markets",
+    "section": "Probability As A Bet",
+    "text": "Probability As A Bet\n\nSuppose I offered to sell you a magical piece of paper.\n\nIf X happens, it turns into a $1 bill.\nOtherwise, the paper disintegrates.\n\nPonder: How much would you be willing to pay for this piece of paper?\nIt depends on what you think the probability of X is!"
+  },
+  {
+    "objectID": "slides/prediction-markets.html#probability-as-a-bet-1",
+    "href": "slides/prediction-markets.html#probability-as-a-bet-1",
+    "title": "Prediction Markets",
+    "section": "Probability As A Bet",
+    "text": "Probability As A Bet\n\n\n\n\n\n\n\nSyntax error in textmermaid version 11.2.0\n\n\n\n\n\n\n\nThe expected value of this bet is 20¢."
   }
 ]
