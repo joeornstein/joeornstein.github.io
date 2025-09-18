@@ -10,7 +10,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.42">
 
-  <title>How To Predict The Future – Aggregating Forecasts</title>
+  <title>How To Predict The Future – Aggregating Information</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -149,7 +149,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Aggregating Forecasts</h1>
+  <h1 class="title">Aggregating Information</h1>
   <p class="subtitle">POLS 3220: How to Predict the Future</p>
 
 <div class="quarto-title-authors">
@@ -238,11 +238,13 @@
 <section id="back-to-the-motivating-problem" class="slide level2">
 <h2>Back to the Motivating Problem</h2>
 <ul>
-<li class="fragment"><p>Consider the three students writing briefings. All three start with prior odds 1:1.</p></li>
-<li class="fragment"><p><strong>Student A</strong> only finds the statement by the Fed official (3:1 likelihood ratio).<br>
-</p></li>
-<li class="fragment"><p><strong>Student B</strong> finds the JP Morgan report (3:1 likelihood ratio).</p></li>
-<li class="fragment"><p><strong>Student C</strong> finds a <em>third</em> piece of evidence (also 3:1).</p></li>
+<li class="fragment"><p>Consider the three students writing briefings. All three start with prior odds 1:1.</p>
+<ul>
+<li class="fragment"><strong>Student A</strong> only finds the statement by the Fed official (3:1 likelihood ratio).<br>
+</li>
+<li class="fragment"><strong>Student B</strong> finds the JP Morgan report (3:1 likelihood ratio).</li>
+<li class="fragment"><strong>Student C</strong> finds a <em>third</em> piece of independent evidence (also 3:1).</li>
+</ul></li>
 <li class="fragment"><p>If nobody shares information with each other, what would each student predict?</p></li>
 <li class="fragment"><p>If everyone shared their information, what would they predict (using Bayesian updating)?</p></li>
 </ul>
@@ -278,18 +280,15 @@ o_{group} = o_1 \times o_2 \times o_3 \times \ldots \times o_n
 </section>
 <section id="extremizing-3" class="slide level2">
 <h2>Extremizing</h2>
-<p>If each individual has <em>some</em> independent information:</p>
-<div class="fragment">
 <p><span class="math display">\[
 o_{group} = (o_1 \times o_2 \times o_3 \times \ldots \times o_n)^\frac{\alpha}{n}
 \]</span></p>
-</div>
 <div class="fragment">
 <ul>
-<li class="fragment"><p><span class="math inline">\(\alpha\)</span> represents the amount of independent information.</p></li>
+<li class="fragment"><p><span class="math inline">\(\alpha\)</span> represents the amount of independent information the group has.</p></li>
 <li class="fragment"><p><span class="math inline">\(\alpha = n\)</span>: Everyone has completely independent information. Group forecast is full Bayesian updating.</p></li>
 <li class="fragment"><p><span class="math inline">\(\alpha = 1\)</span>: No one has independent information. Group forecast is just the average individual forecast.</p></li>
-<li class="fragment"><p>Truth is probably somewhere in the middle. For superforecasters, <span class="citation" data-cites="satopaaCombiningMultipleProbability2014">Satopää et al. (<a href="#/references" role="doc-biblioref" onclick="">2014</a>)</span> use <span class="math inline">\(\alpha = 2.5\)</span>.</p></li>
+<li class="fragment"><p>Truth is probably somewhere in the middle. <span class="citation" data-cites="satopaaCombiningMultipleProbability2014">Satopää et al. (<a href="#/takeaways" role="doc-biblioref" onclick="">2014</a>)</span> suggest <span class="math inline">\(\alpha = 2.5\)</span>.</p></li>
 </ul>
 </div>
 </section>
@@ -305,25 +304,18 @@ o_{group} = (o_1 \times o_2 \times o_3 \times \ldots \times o_n)^\frac{\alpha}{n
 (2:3 \times 1:1 \times 3:2 \times 3:1 \times 3:1)^\frac{2.5}{5} =
 (9:1)^\frac{1}{2} = 3:1 = 75\%
 \]</span></p>
-<ul>
-<li class="fragment"><p>This isn’t the sort of math I’d ask you to perform on an exam.</p></li>
-<li class="fragment"><p>I just want you to have it in your toolbox.</p></li>
-</ul>
 </div>
 </section>
-<section id="takeaways" class="slide level2">
+<section id="takeaways" class="slide level2 smaller scrollable">
 <h2>Takeaways</h2>
 <ul>
 <li class="fragment"><p>Confident predictions are justified if multiple, independent pieces of evidence point towards the same conclusion (<strong>Bayesian updating</strong>, dragonfly-eyed foxes).</p></li>
 <li class="fragment"><p>When reading briefings, consider whether each author is bringing a different perspective, or if everyone is relying on the same evidence.</p>
 <ul>
-<li class="fragment">If the former, then the group forecast should be more confident than the individual forecasts (<strong>extremizing</strong>).</li>
+<li class="fragment">If the former, then the group forecast can be more confident than the individual forecasts (<strong>extremizing</strong>).</li>
 </ul></li>
 <li class="fragment"><p>Organize teams so that they <em>share information</em> rather than just sharing conclusions.</p></li>
 </ul>
-</section>
-<section id="references" class="slide level2 smaller scrollable">
-<h2>References</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
