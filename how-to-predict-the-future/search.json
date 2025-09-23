@@ -564,7 +564,7 @@
     "href": "index.html#leaderboard",
     "title": "Fall 2025 Predictions",
     "section": "Leaderboard",
-    "text": "Leaderboard\n\n\n\n\n\n\n\n\n\n\n\n\nRank\nName\nSubmissions\nCorrect Calls\nBrier Score\n\n\n\n\n1\nJhaycee Barnes\n9\n0/1\n0.3600\n\n\n2\nSarah Kate Maher\n9\n0/1\n0.3600\n\n\n3\nChris Haswell\n9\n0/1\n0.4225\n\n\n4\nLiz Yancey\n10\n0/1\n0.4225\n\n\n5\nNic Curtis\n9\n0/1\n0.4225\n\n\n6\nRyan Marx\n8\n0/1\n0.4225\n\n\n7\nZafar Ali\n8\n0/1\n0.4225\n\n\n8\nRuhi Doddamani\n8\n0/1\n0.4489\n\n\n9\nAlizah Mudaliar\n9\n0/1\n0.4624\n\n\n10\nBlake Martin\n8\n0/1\n0.4624\n\n\n11\nJackson Bost\n9\n0/1\n0.4624\n\n\n12\nSade Ezekiel\n9\n0/1\n0.4624\n\n\n13\nEllie Null\n8\n0/1\n0.4761\n\n\n14\nAmanda Neighbour\n9\n0/1\n0.4900\n\n\n15\nAnna Barton-Caucci\n8\n0/1\n0.4900\n\n\n16\nAnna Kneser\n8\n0/1\n0.4900\n\n\n17\nBreanne Talley\n8\n0/1\n0.4900\n\n\n18\nCrowd\n10\n0/1\n0.4900\n\n\n19\nFrancesca Mariano\n8\n0/1\n0.4900\n\n\n20\nJames Hunter Darke\n6\n0/1\n0.4900\n\n\n21\nMateo Ceron\n8\n0/1\n0.4900\n\n\n22\nCaleb Lux\n9\n0/1\n0.5041\n\n\n23\nRaquel Beatriz Caldas Laranjeira\n9\n0/1\n0.5329\n\n\n24\nPaul Frilingos\n7\n0/1\n0.5476\n\n\n25\nSasha Mahtani\n8\n0/1\n0.5476\n\n\n26\nAlika Otero-Ricalde\n5\n0/1\n0.5625\n\n\n27\nCierra Green\n9\n0/1\n0.5625\n\n\n28\nShaheer Ul-Islam\n8\n0/1\n0.5625\n\n\n29\nHunter Murray\n6\n0/1\n0.6241\n\n\n30\nCaroline Mattox\n8\n0/1\n0.6400\n\n\n31\nElizabeth Nelson\n7\n0/1\n0.6400\n\n\n32\nReese Fabritius\n7\n0/1\n0.6400\n\n\n33\nKristoffer Fields\n9\n0/1\n0.6724\n\n\n34\nKira Fleischer\n8\n0/1\n0.7056\n\n\n35\nJoe Ornstein\n9\n0/1\n0.7225\n\n\n36\nArshia Charkhian\n7\n0/1\n0.8100\n\n\n37\nAkshara Singh\n7\n0/0\nNaN\n\n\n38\nAna Valencia\n7\n0/0\nNaN\n\n\n39\nJack Lutz\n6\n0/0\nNaN\n\n\n40\nManuv Datta\n7\n0/0\nNaN\n\n\n41\nOwen Johnston\n8\n0/0\nNaN\n\n\n42\nSierra Cross-Thompson\n5\n0/0\nNaN"
+    "text": "Leaderboard\n\n\n\n\n\n\n\n\n\n\n\n\nRank\nName\nSubmissions\nCorrect Calls\nBrier Score\n\n\n\n\n1\nJhaycee Barnes\n10\n0/1\n0.3600\n\n\n2\nSarah Kate Maher\n10\n0/1\n0.3600\n\n\n3\nChris Haswell\n10\n0/1\n0.4225\n\n\n4\nLiz Yancey\n10\n0/1\n0.4225\n\n\n5\nNic Curtis\n10\n0/1\n0.4225\n\n\n6\nRyan Marx\n9\n0/1\n0.4225\n\n\n7\nZafar Ali\n9\n0/1\n0.4225\n\n\n8\nRuhi Doddamani\n9\n0/1\n0.4489\n\n\n9\nAlizah Mudaliar\n10\n0/1\n0.4624\n\n\n10\nBlake Martin\n9\n0/1\n0.4624\n\n\n11\nJackson Bost\n10\n0/1\n0.4624\n\n\n12\nSade Ezekiel\n10\n0/1\n0.4624\n\n\n13\nEllie Null\n9\n0/1\n0.4761\n\n\n14\nAmanda Neighbour\n10\n0/1\n0.4900\n\n\n15\nAnna Barton-Caucci\n9\n0/1\n0.4900\n\n\n16\nAnna Kneser\n9\n0/1\n0.4900\n\n\n17\nBreanne Talley\n9\n0/1\n0.4900\n\n\n18\nCrowd\n10\n0/1\n0.4900\n\n\n19\nFrancesca Mariano\n9\n0/1\n0.4900\n\n\n20\nJames Hunter Darke\n7\n0/1\n0.4900\n\n\n21\nMateo Ceron\n9\n0/1\n0.4900\n\n\n22\nCaleb Lux\n10\n0/1\n0.5041\n\n\n23\nRaquel Beatriz Caldas Laranjeira\n10\n0/1\n0.5329\n\n\n24\nPaul Frilingos\n8\n0/1\n0.5476\n\n\n25\nSasha Mahtani\n9\n0/1\n0.5476\n\n\n26\nAlika Otero-Ricalde\n6\n0/1\n0.5625\n\n\n27\nCierra Green\n10\n0/1\n0.5625\n\n\n28\nShaheer Ul-Islam\n9\n0/1\n0.5625\n\n\n29\nHunter Murray\n7\n0/1\n0.6241\n\n\n30\nCaroline Mattox\n9\n0/1\n0.6400\n\n\n31\nElizabeth Nelson\n8\n0/1\n0.6400\n\n\n32\nReese Fabritius\n8\n0/1\n0.6400\n\n\n33\nKristoffer Fields\n10\n0/1\n0.6724\n\n\n34\nKira Fleischer\n8\n0/1\n0.7056\n\n\n35\nJoe Ornstein\n10\n0/1\n0.7225\n\n\n36\nArshia Charkhian\n7\n0/1\n0.8100\n\n\n37\nAkshara Singh\n8\n0/0\nNaN\n\n\n38\nAna Valencia\n8\n0/0\nNaN\n\n\n39\nJack Lutz\n7\n0/0\nNaN\n\n\n40\nManuv Datta\n8\n0/0\nNaN\n\n\n41\nOwen Johnston\n9\n0/0\nNaN\n\n\n42\nSierra Cross-Thompson\n5\n0/0\nNaN"
   },
   {
     "objectID": "fall-2023.html#week-2-913",
@@ -2098,5 +2098,117 @@
     "title": "Fall 2025 Predictions",
     "section": "Week 5 (9/16)",
     "text": "Week 5 (9/16)"
+  },
+  {
+    "objectID": "slides/madness-of-crowds.html#outline",
+    "href": "slides/madness-of-crowds.html#outline",
+    "title": "Madness of Crowds",
+    "section": "Outline",
+    "text": "Outline"
+  },
+  {
+    "objectID": "slides/madness-of-crowds.html#herding",
+    "href": "slides/madness-of-crowds.html#herding",
+    "title": "Madness of Crowds",
+    "section": "Herding",
+    "text": "Herding"
+  },
+  {
+    "objectID": "slides/madness-of-crowds.html#social-influence-and-herding",
+    "href": "slides/madness-of-crowds.html#social-influence-and-herding",
+    "title": "Madness of Crowds",
+    "section": "Social Influence and Herding",
+    "text": "Social Influence and Herding"
+  },
+  {
+    "objectID": "slides/madness-of-crowds.html#groupthink",
+    "href": "slides/madness-of-crowds.html#groupthink",
+    "title": "Madness of Crowds",
+    "section": "Groupthink",
+    "text": "Groupthink\nWhen individuals suppress their private information for the sake of group harmony/cohesion, we call it groupthink.\n\n\nhttps://mediationworksfl.com/going-with-the-flow-the-influence-of-groupthink-on-mediation-outcomes/"
+  },
+  {
+    "objectID": "slides/madness-of-crowds.html#social-influence",
+    "href": "slides/madness-of-crowds.html#social-influence",
+    "title": "Madness of Crowds",
+    "section": "Social Influence",
+    "text": "Social Influence\nEven when there is no rational basis for doing so, we still might face strong pressures to conform with the group…"
+  },
+  {
+    "objectID": "slides/madness-of-crowds.html#todays-agenda",
+    "href": "slides/madness-of-crowds.html#todays-agenda",
+    "title": "Madness of Crowds",
+    "section": "Today’s Agenda",
+    "text": "Today’s Agenda\n\nIf you can engineer conditions so that you have a large group of independent and competent individuals, then your crowd will be wise.\n\nCongratulations!\n\nBut in most real-world groups, those assumptions are rarely met.\nToday, a few violations of the independence assumption, and how it can affect group decision-making."
+  },
+  {
+    "objectID": "slides/madness-of-crowds.html#class-demonstration",
+    "href": "slides/madness-of-crowds.html#class-demonstration",
+    "title": "Madness of Crowds",
+    "section": "Class Demonstration",
+    "text": "Class Demonstration\n\n\n15 volunteers to play Anderson & Holt\n2 red, 1 blue or 2 blue, 1 red poker chip.\nDraw a chip then write your name on the board; blue marker if you think the bag is mostly blue, red marker if you think the bag is mostly red.\n1 bonus point on the midterm if you predict correctly."
+  },
+  {
+    "objectID": "slides/madness-of-crowds.html#information-cascades",
+    "href": "slides/madness-of-crowds.html#information-cascades",
+    "title": "Madness of Crowds",
+    "section": "Information Cascades",
+    "text": "Information Cascades\n\nAn information cascade occurs whenever individuals ignore their private information and go with the group consensus.\nThis can be a perfectly rational decision from a Bayesian perspective.\n\nIf the first two students draw blue chips, posterior odds are \\(1:1 \\times 2:1 \\times 2:1 = 4:1\\) that it’s the blue bag.\nIf the third student draws a blue chip, posterior odds are \\(8:1\\). Guess blue!\nIf the third student draws a red chip, posterior odds are \\(2:1\\). Guess blue!"
+  },
+  {
+    "objectID": "slides/madness-of-crowds.html#groupthink-1",
+    "href": "slides/madness-of-crowds.html#groupthink-1",
+    "title": "Madness of Crowds",
+    "section": "Groupthink",
+    "text": "Groupthink\n\nHistory is full of examples of catastrophic predictions / decisions made by groups that valued harmony over accuracy:\n\nBay of Pigs invasion (1961)\nPearl Harbor attacks (1941)\nSpace Shuttle Challenger disaster (1986)\n\nThese are just a few examples of cases where people kept their private doubts quiet to conform with the group consensus."
+  },
+  {
+    "objectID": "slides/madness-of-crowds.html#takeaways",
+    "href": "slides/madness-of-crowds.html#takeaways",
+    "title": "Madness of Crowds",
+    "section": "Takeaways",
+    "text": "Takeaways\n\nWe don’t naturally design our groups in a way that promotes independence.\n\nWhen people share their predictions but not their reasoning, a common result is information cascades.\nWe are social creatures, and so face strong pressures towards group conformity.\n\nIf you want to harness the wisdom of crowds, give individuals the freedom and motivation to work independently and report their information honestly."
+  },
+  {
+    "objectID": "slides/madness-of-crowds.html#quiz-results",
+    "href": "slides/madness-of-crowds.html#quiz-results",
+    "title": "Madness of Crowds",
+    "section": "Quiz Results",
+    "text": "Quiz Results"
+  },
+  {
+    "objectID": "slides/madness-of-crowds.html#lets-play-a-game",
+    "href": "slides/madness-of-crowds.html#lets-play-a-game",
+    "title": "Madness of Crowds",
+    "section": "Let’s Play A Game",
+    "text": "Let’s Play A Game\n\nI need 15 volunteers to play a little game.\nI have two bags, and will randomly choose one to play with:\n\nBag A has 2 red poker chips and 1 blue poker chip.\nBag B has 1 red poker chip and 2 blue poker chips.\n\nOn your turn, secretly draw a chip from the bag, put it back, then write your name on the board.\n\nUse blue marker if you think the bag is mostly blue.\nUse red marker if you think the bag is mostly red.\n\n1 bonus point on the midterm if you predict correctly."
+  },
+  {
+    "objectID": "slides/madness-of-crowds.html#information-cascades-1",
+    "href": "slides/madness-of-crowds.html#information-cascades-1",
+    "title": "Madness of Crowds",
+    "section": "Information Cascades",
+    "text": "Information Cascades\n\nInformation cascades don’t always mean that the group will always get the wrong answer.\nBut they do illustrate how hard it is to make a truly independent prediction in a group setting.\nIf we can observe the predictions that other people make, there’s a strong rational basis for ignoring our individual information and just going with the group."
+  },
+  {
+    "objectID": "slides/madness-of-crowds.html#wisdom-of-crowds",
+    "href": "slides/madness-of-crowds.html#wisdom-of-crowds",
+    "title": "Madness of Crowds",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds"
+  },
+  {
+    "objectID": "slides/madness-of-crowds.html#wisdom-of-crowds-1",
+    "href": "slides/madness-of-crowds.html#wisdom-of-crowds-1",
+    "title": "Madness of Crowds",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds"
+  },
+  {
+    "objectID": "slides/madness-of-crowds.html#wisdom-of-crowds-2",
+    "href": "slides/madness-of-crowds.html#wisdom-of-crowds-2",
+    "title": "Madness of Crowds",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds"
   }
 ]
