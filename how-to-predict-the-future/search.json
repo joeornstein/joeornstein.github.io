@@ -277,21 +277,21 @@
     "href": "slides/compound-probability.html#probability-trees-1",
     "title": "Compound Probability",
     "section": "Probability Trees",
-    "text": "Probability Trees\n\nImagine the future as a series of branching paths.\nEach branch represents a different path that the universe could take.\n\n. . .\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart\n\n\n\n\n\n\n\n1R,0W\n\n\n\n\n\n\n\n0R,1W\n\n\n\n\n\n\n\n2R,0W\n\n\n\n\n\n\n\n1R,1W\n\n\n\n\n\n\n\n0R,2W\n\n\n\n\n\n\n\n3R,0W\n\n\n\n\n\n\n\n2R,1W\n\n\n\n\n\n\n\n1R,2W\n\n\n\n\n\n\n\n0R,3W\n\n\n\n\n\n\n\n4R,0W\n\n\n\n\n\n\n\n3R,1W\n\n\n\n\n\n\n\n2R,2W\n\n\n\n\n\n\n\n1R,3W\n\n\n\n\n\n\n\n0R,4W\n\n\n\n\n\n\n\n5R,0W (7.8%)\n\n\n\n\n\n\n\n4R,1W (25.9%)\n\n\n\n\n\n\n\n3R,2W (34.6%)\n\n\n\n\n\n\n\n2R,3W (23%)\n\n\n\n\n\n\n\n1R,4W (7.7%)\n\n\n\n\n\n\n\n0R,5W (1%)"
+    "text": "Probability Trees\n\nImagine the future as a series of branching paths.\nEach branch represents a different path that the universe could take.\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart\n\n\n\n1R,0W\n\n\n\n0R,1W\n\n\n\n2R,0W\n\n\n\n1R,1W\n\n\n\n0R,2W\n\n\n\n3R,0W\n\n\n\n2R,1W\n\n\n\n1R,2W\n\n\n\n0R,3W\n\n\n\n4R,0W\n\n\n\n3R,1W\n\n\n\n2R,2W\n\n\n\n1R,3W\n\n\n\n0R,4W\n\n\n\n5R,0W (7.8%)\n\n\n\n4R,1W (25.9%)\n\n\n\n3R,2W (34.6%)\n\n\n\n2R,3W (23%)\n\n\n\n1R,4W (7.7%)\n\n\n\n0R,5W (1%)"
   },
   {
     "objectID": "slides/compound-probability.html#rules-for-tree-construction",
     "href": "slides/compound-probability.html#rules-for-tree-construction",
     "title": "Compound Probability",
     "section": "Rules for Tree Construction",
-    "text": "Rules for Tree Construction\n. . .\nBranches originating from a single point must be mutually exclusive and collectively exhaustive.\n\nMutually Exclusive: if one event happens, the others cannot happen\n\ne.g. “Georgia beats Texas” and “Texas beats Georgia”.\n\nCollectively Exhaustive: covers every possible outcome\n\ne.g. “I drink coffee this afternoon” and “I don’t drink coffee this afternoon”."
+    "text": "Rules for Tree Construction\n\nBranches originating from a single point must be mutually exclusive and collectively exhaustive.\n\nMutually Exclusive: if one event happens, the others cannot happen\n\ne.g. “Georgia beats Texas” and “Texas beats Georgia”.\n\nCollectively Exhaustive: covers every possible outcome\n\ne.g. “I drink coffee this afternoon” and “I don’t drink coffee this afternoon”."
   },
   {
     "objectID": "slides/compound-probability.html#rules-for-tree-construction-1",
     "href": "slides/compound-probability.html#rules-for-tree-construction-1",
     "title": "Compound Probability",
     "section": "Rules for Tree Construction",
-    "text": "Rules for Tree Construction\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStart of Season\n\n\n\n\n\n\n\nUGA beats Alabama\n\n\n\n\n\n\n\nAlabama beats UGA\n\n\n\n\n\n\n\nUGA beats Texas\n\n\n\n\n\n\n\nTexas beats UGA\n\n\n\n\n\n\n\nUGA beats Texas\n\n\n\n\n\n\n\nTexas beats UGA"
+    "text": "Rules for Tree Construction\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStart of Season\n\n\n\nUGA beats Alabama\n\n\n\nAlabama beats UGA\n\n\n\nUGA beats Texas\n\n\n\nTexas beats UGA\n\n\n\nUGA beats Texas\n\n\n\nTexas beats UGA"
   },
   {
     "objectID": "slides/compound-probability.html#practice",
@@ -305,21 +305,21 @@
     "href": "slides/compound-probability.html#rules-for-tree-construction-2",
     "title": "Compound Probability",
     "section": "Rules for Tree Construction",
-    "text": "Rules for Tree Construction\nNext, we will assign a probability to each branch. When doing so, remember two rules:\n\nIf events \\(A\\) and \\(B\\) are mutually exclusive, then \\(P(A \\text{ or } B) = P(A) + P(B)\\).\nIf events \\(A\\), \\(B\\), and \\(C\\) are mutually exclusive and collectively exhaustive, then \\(P(A) + P(B) + P(C) = 1\\).\n\n. . .\nThese two rules are called the axioms of probability."
+    "text": "Rules for Tree Construction\nNext, we will assign a probability to each branch. When doing so, remember two rules:\n\nIf events \\(A\\) and \\(B\\) are mutually exclusive, then \\(P(A \\text{ or } B) = P(A) + P(B)\\).\nIf events \\(A\\), \\(B\\), and \\(C\\) are mutually exclusive and collectively exhaustive, then \\(P(A) + P(B) + P(C) = 1\\).\n\n\nThese two rules are called the axioms of probability."
   },
   {
     "objectID": "slides/compound-probability.html#rules-for-tree-construction-3",
     "href": "slides/compound-probability.html#rules-for-tree-construction-3",
     "title": "Compound Probability",
     "section": "Rules for Tree Construction",
-    "text": "Rules for Tree Construction\n\n\n\n\n\n\n\n\n\n\n\n0.6\n\n\n\n\n\n\n\n0.4\n\n\n\n\n\n\n\n0.6\n\n\n\n\n\n\n\n0.4\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\nStart of Season\n\n\n\n\n\n\n\nUGA beats Alabama\n\n\n\n\n\n\n\nAlabama beats UGA\n\n\n\n\n\n\n\nUGA beats Texas\n\n\n\n\n\n\n\nTexas beats UGA\n\n\n\n\n\n\n\nUGA beats Texas\n\n\n\n\n\n\n\nTexas beats UGA\n\n\n\n\n\n\n\n\n\n\n. . .\nThe second set of probabilities are called conditional probabilities."
+    "text": "Rules for Tree Construction\n\n\n\n\n\n\n\n\n\n0.6\n\n\n\n0.4\n\n\n\n0.6\n\n\n\n0.4\n\n\n\n0.5\n\n\n\n0.5\n\n\n\nStart of Season\n\n\n\nUGA beats Alabama\n\n\n\nAlabama beats UGA\n\n\n\nUGA beats Texas\n\n\n\nTexas beats UGA\n\n\n\nUGA beats Texas\n\n\n\nTexas beats UGA\n\n\n\n\n\n\n\n\n\nThe second set of probabilities are called conditional probabilities."
   },
   {
     "objectID": "slides/compound-probability.html#conditional-probability",
     "href": "slides/compound-probability.html#conditional-probability",
     "title": "Compound Probability",
     "section": "Conditional Probability",
-    "text": "Conditional Probability\nWe denote the probability of event \\(A\\) conditional on event \\(B\\) as:\n\\[\nP(A|B)\n\\]\n. . .\nAnd the probability of \\(A\\) conditional on \\(B\\) not happening is:\n\\[\nP(A|\\neg B)\\]"
+    "text": "Conditional Probability\nWe denote the probability of event \\(A\\) conditional on event \\(B\\) as:\n\\[\nP(A|B)\n\\]\n\nAnd the probability of \\(A\\) conditional on \\(B\\) not happening is:\n\\[\nP(A|\\neg B)\\]"
   },
   {
     "objectID": "slides/compound-probability.html#independence",
@@ -333,7 +333,7 @@
     "href": "slides/compound-probability.html#independence-1",
     "title": "Compound Probability",
     "section": "Independence",
-    "text": "Independence\nCoin flips are a classic example of independent events:\n\n\n\n\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\nStart flipping a coin\n\n\n\n\n\n\n\nHeads\n\n\n\n\n\n\n\nTails\n\n\n\n\n\n\n\nHeads\n\n\n\n\n\n\n\nTails\n\n\n\n\n\n\n\nHeads\n\n\n\n\n\n\n\nTails\n\n\n\n\n\n\n\nHeads\n\n\n\n\n\n\n\nTails\n\n\n\n\n\n\n\nHeads\n\n\n\n\n\n\n\nTails\n\n\n\n\n\n\n\nHeads\n\n\n\n\n\n\n\nTails\n\n\n\n\n\n\n\nHeads\n\n\n\n\n\n\n\nTails"
+    "text": "Independence\nCoin flips are a classic example of independent events:\n\n\n\n\n\n\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\nStart flipping a coin\n\n\n\nHeads\n\n\n\nTails\n\n\n\nHeads\n\n\n\nTails\n\n\n\nHeads\n\n\n\nTails\n\n\n\nHeads\n\n\n\nTails\n\n\n\nHeads\n\n\n\nTails\n\n\n\nHeads\n\n\n\nTails\n\n\n\nHeads\n\n\n\nTails"
   },
   {
     "objectID": "slides/compound-probability.html#practice-1",
@@ -347,14 +347,14 @@
     "href": "slides/compound-probability.html#joint-probability",
     "title": "Compound Probability",
     "section": "Joint Probability",
-    "text": "Joint Probability\nNow we’re ready to tackle joint probability. What is the probability of event \\(A\\) and event \\(B\\) both happening?\n\n\n\n\n\n\n\n\n\n\n\n0.6\n\n\n\n\n\n\n\n0.4\n\n\n\n\n\n\n\n0.6\n\n\n\n\n\n\n\n0.4\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\nStart of Season\n\n\n\n\n\n\n\nUGA beats Alabama\n\n\n\n\n\n\n\nAlabama beats UGA\n\n\n\n\n\n\n\nUGA beats Texas\n\n\n\n\n\n\n\nTexas beats UGA\n\n\n\n\n\n\n\nUGA beats Texas\n\n\n\n\n\n\n\nTexas beats UGA"
+    "text": "Joint Probability\nNow we’re ready to tackle joint probability. What is the probability of event \\(A\\) and event \\(B\\) both happening?\n\n\n\n\n\n\n\n\n\n0.6\n\n\n\n0.4\n\n\n\n0.6\n\n\n\n0.4\n\n\n\n0.5\n\n\n\n0.5\n\n\n\nStart of Season\n\n\n\nUGA beats Alabama\n\n\n\nAlabama beats UGA\n\n\n\nUGA beats Texas\n\n\n\nTexas beats UGA\n\n\n\nUGA beats Texas\n\n\n\nTexas beats UGA"
   },
   {
     "objectID": "slides/compound-probability.html#joint-probability-1",
     "href": "slides/compound-probability.html#joint-probability-1",
     "title": "Compound Probability",
     "section": "Joint Probability",
-    "text": "Joint Probability\nTo find the probability of ending up at any node of the tree, multiply the probabilities of all the branches that feed into it.\n. . .\n\n\n\n\n\n\n\n\n\n\n\n0.6\n\n\n\n\n\n\n\n0.4\n\n\n\n\n\n\n\n0.6\n\n\n\n\n\n\n\n0.4\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\nStart of Season\n\n\n\n\n\n\n\nUGA beats Alabama\n\n\n\n\n\n\n\nAlabama beats UGA\n\n\n\n\n\n\n\nUGA beats Texas (36%)\n\n\n\n\n\n\n\nTexas beats UGA (24%)\n\n\n\n\n\n\n\nUGA beats Texas (20%)\n\n\n\n\n\n\n\nTexas beats UGA (20%)"
+    "text": "Joint Probability\nTo find the probability of ending up at any node of the tree, multiply the probabilities of all the branches that feed into it.\n\n\n\n\n\n\n\n\n\n\n0.6\n\n\n\n0.4\n\n\n\n0.6\n\n\n\n0.4\n\n\n\n0.5\n\n\n\n0.5\n\n\n\nStart of Season\n\n\n\nUGA beats Alabama\n\n\n\nAlabama beats UGA\n\n\n\nUGA beats Texas (36%)\n\n\n\nTexas beats UGA (24%)\n\n\n\nUGA beats Texas (20%)\n\n\n\nTexas beats UGA (20%)"
   },
   {
     "objectID": "slides/compound-probability.html#practice-2",
@@ -368,7 +368,7 @@
     "href": "slides/compound-probability.html#wrap-up",
     "title": "Compound Probability",
     "section": "Wrap Up",
-    "text": "Wrap Up\nThis gives us some insight into the birthday problem we started with:\n\n\n\n\n\n\n\n\n\n\n\n364/365\n\n\n\n\n\n\n\n1/365\n\n\n\n\n\n\n\n363/365\n\n\n\n\n\n\n\n2/365\n\n\n\n\n\n\n\n362/365\n\n\n\n\n\n\n\n3/365\n\n\n\n\n\n\n\nPerson A\n\n\n\n\n\n\n\nNo match\n\n\n\n\n\n\n\nPerson B shares birthday\n\n\n\n\n\n\n\nNo match\n\n\n\n\n\n\n\nPerson C shares birthday\n\n\n\n\n\n\n\nNo match\n\n\n\n\n\n\n\nPerson D shares birthday"
+    "text": "Wrap Up\nThis gives us some insight into the birthday problem we started with:\n\n\n\n\n\n\n\n\n\n364/365\n\n\n\n1/365\n\n\n\n363/365\n\n\n\n2/365\n\n\n\n362/365\n\n\n\n3/365\n\n\n\nPerson A\n\n\n\nNo match\n\n\n\nPerson B shares birthday\n\n\n\nNo match\n\n\n\nPerson C shares birthday\n\n\n\nNo match\n\n\n\nPerson D shares birthday"
   },
   {
     "objectID": "slides/bell-curves.html#todays-agenda",
