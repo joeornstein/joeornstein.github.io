@@ -2210,5 +2210,278 @@
     "title": "Madness of Crowds",
     "section": "Wisdom of Crowds",
     "text": "Wisdom of Crowds"
+  },
+  {
+    "objectID": "slides/information-theory.html#information-surprise",
+    "href": "slides/information-theory.html#information-surprise",
+    "title": "Thinking Like A Crowd",
+    "section": "Information = Surprise",
+    "text": "Information = Surprise\nHow surprised would you be to learn that an event happened?"
+  },
+  {
+    "objectID": "slides/information-theory.html#surprise",
+    "href": "slides/information-theory.html#surprise",
+    "title": "Information Theory",
+    "section": "Surprise",
+    "text": "Surprise\n\nHow surprised would you be to learn that an event happened?\nDepends on how probable you thought the event was!"
+  },
+  {
+    "objectID": "slides/information-theory.html#surprise-1",
+    "href": "slides/information-theory.html#surprise-1",
+    "title": "Information Theory",
+    "section": "Surprise",
+    "text": "Surprise"
+  },
+  {
+    "objectID": "slides/information-theory.html#surprise-2",
+    "href": "slides/information-theory.html#surprise-2",
+    "title": "Information Theory",
+    "section": "Surprise",
+    "text": "Surprise\nIf you were 100% sure an event would happen, you wouldn’t be surprised at all to learn that it happened.\n\n“The sun rose in the east today.”"
+  },
+  {
+    "objectID": "slides/information-theory.html#surprise-3",
+    "href": "slides/information-theory.html#surprise-3",
+    "title": "Information Theory",
+    "section": "Surprise",
+    "text": "Surprise"
+  },
+  {
+    "objectID": "slides/information-theory.html#surprise-4",
+    "href": "slides/information-theory.html#surprise-4",
+    "title": "Information Theory",
+    "section": "Surprise",
+    "text": "Surprise\nIf you thought there was a 75% chance of it happening, you still wouldn’t be very surprised.\n\n“I found my shoes on the shoe rack this morning!”"
+  },
+  {
+    "objectID": "slides/information-theory.html#surprise-5",
+    "href": "slides/information-theory.html#surprise-5",
+    "title": "Information Theory",
+    "section": "Surprise",
+    "text": "Surprise"
+  },
+  {
+    "objectID": "slides/information-theory.html#surprise-6",
+    "href": "slides/information-theory.html#surprise-6",
+    "title": "Information Theory",
+    "section": "Surprise",
+    "text": "Surprise\nIf you thought there was a 50-50 chance, you’d be kinda surprised.\n\n“The coin landed on heads!”"
+  },
+  {
+    "objectID": "slides/information-theory.html#surprise-7",
+    "href": "slides/information-theory.html#surprise-7",
+    "title": "Information Theory",
+    "section": "Surprise",
+    "text": "Surprise"
+  },
+  {
+    "objectID": "slides/information-theory.html#surprise-8",
+    "href": "slides/information-theory.html#surprise-8",
+    "title": "Information Theory",
+    "section": "Surprise",
+    "text": "Surprise\nIf you thought there was only a 25% chance, now this would be surprising information."
+  },
+  {
+    "objectID": "slides/information-theory.html#references",
+    "href": "slides/information-theory.html#references",
+    "title": "Information Theory",
+    "section": "References",
+    "text": "References\n\n\n\n\nShannon, C E. 1948. “A Mathematical Theory of Communication.” The Bell System Technical Journal 27: 379–423.\n\n\nTaber, Charles S., and Milton Lodge. 2006. “Motivated Skepticism in the Evaluation of Political Beliefs.” American Journal of Political Science 50 (3): 755–69. https://doi.org/10.1111/j.1540-5907.2006.00214.x."
+  },
+  {
+    "objectID": "slides/information-theory.html#surprise-9",
+    "href": "slides/information-theory.html#surprise-9",
+    "title": "Information Theory",
+    "section": "Surprise",
+    "text": "Surprise"
+  },
+  {
+    "objectID": "slides/information-theory.html#surprise-10",
+    "href": "slides/information-theory.html#surprise-10",
+    "title": "Information Theory",
+    "section": "Surprise",
+    "text": "Surprise\nIf you thought there was only a 5% chance, you’ve reached what statisticians would call “statistical significance”.\n\nYou’ve observed an event you really didn’t expect to see!\nMaybe your theory was wrong!"
+  },
+  {
+    "objectID": "slides/information-theory.html#surprise-11",
+    "href": "slides/information-theory.html#surprise-11",
+    "title": "Information Theory",
+    "section": "Surprise",
+    "text": "Surprise"
+  },
+  {
+    "objectID": "slides/information-theory.html#surprise-12",
+    "href": "slides/information-theory.html#surprise-12",
+    "title": "Information Theory",
+    "section": "Surprise",
+    "text": "Surprise\nIf you thought there was a 1-in-1,000 chance, now it’s downright shocking!\n\nLearning this information should change how you think about the world."
+  },
+  {
+    "objectID": "slides/information-theory.html#surprise-13",
+    "href": "slides/information-theory.html#surprise-13",
+    "title": "Information Theory",
+    "section": "Surprise",
+    "text": "Surprise"
+  },
+  {
+    "objectID": "slides/information-theory.html#surprise-14",
+    "href": "slides/information-theory.html#surprise-14",
+    "title": "Information Theory",
+    "section": "Surprise",
+    "text": "Surprise\n1-in-a-million chance?\n\nThis is, like, winning the lottery level of surprise.\nHeart-attack-inducing surprise."
+  },
+  {
+    "objectID": "slides/information-theory.html#lets-play-another-game",
+    "href": "slides/information-theory.html#lets-play-another-game",
+    "title": "Information Theory",
+    "section": "Let’s Play Another Game!",
+    "text": "Let’s Play Another Game!\n\nI’m going to write a sequence of three numbers on the board.\nYour goal is to guess what “rule” these numbers follow (e.g. “all the numbers must be positive”).\nYou can shout any sequence of three numbers at me, and I’ll tell you if it satisfies the rule.\nWhen you think you know the rule, write it down on a slip of paper and bring it up front.\n\nFirst person to guess correctly wins."
+  },
+  {
+    "objectID": "slides/information-theory.html#discuss",
+    "href": "slides/information-theory.html#discuss",
+    "title": "Information Theory",
+    "section": "Discuss",
+    "text": "Discuss\nWhat did we learn about ourselves?"
+  },
+  {
+    "objectID": "slides/information-theory.html#todays-agenda",
+    "href": "slides/information-theory.html#todays-agenda",
+    "title": "Thinking Like A Crowd",
+    "section": "Today’s Agenda",
+    "text": "Today’s Agenda\n\nDiscuss confirmation bias, and how it affects the information that people tend to seek out.\nDip our toes into information theory, a branch of mathematics that deals with, well, information.\nDefine active open-minded thinking (AOMT), and consider how crowds of people might be actively open-minded even when their individual members are not."
+  },
+  {
+    "objectID": "slides/information-theory.html#confirmation-bias",
+    "href": "slides/information-theory.html#confirmation-bias",
+    "title": "Information Theory",
+    "section": "Confirmation Bias",
+    "text": "Confirmation Bias\n\nConfirmation bias is the tendency of people to seek out information that confirms their pre-existing beliefs.\nThis is particularly true in when we’re arguing about politics (Taber and Lodge 2006).\n\n\n\n“So convenient a thing is it to be a rational creature, since it enables us to find or make a reason for everything one has a mind to.”\n- Benjamin Franklin"
+  },
+  {
+    "objectID": "slides/information-theory.html#confirmation-bias-1",
+    "href": "slides/information-theory.html#confirmation-bias-1",
+    "title": "Information Theory",
+    "section": "Confirmation Bias",
+    "text": "Confirmation Bias\n\nThis tendency makes playing our opening game difficult.\nThe most common strategy is to focus in on a particular rule, then keep guessing number sequences that satisfy the rule.\nBut the optimal strategy is to guess sequences that narrow down the set of possible rules.\n\nIf you think the rule could be “double each number” or “all numbers are even”, don’t guess 4-8-16!"
+  },
+  {
+    "objectID": "slides/information-theory.html#active-open-mindedness",
+    "href": "slides/information-theory.html#active-open-mindedness",
+    "title": "Information Theory",
+    "section": "Active Open-Mindedness",
+    "text": "Active Open-Mindedness\n\nThe opposite of confirmation bias is what psychologists call active open-minded thinking (AOMT)."
+  },
+  {
+    "objectID": "slides/information-theory.html#active-open-minded-thinking",
+    "href": "slides/information-theory.html#active-open-minded-thinking",
+    "title": "Information Theory",
+    "section": "Active Open-Minded Thinking",
+    "text": "Active Open-Minded Thinking\nI’m skeptical that asking these questions is a great way to measure AOMT."
+  },
+  {
+    "objectID": "slides/information-theory.html#active-open-minded-thinking-1",
+    "href": "slides/information-theory.html#active-open-minded-thinking-1",
+    "title": "Information Theory",
+    "section": "Active Open-Minded Thinking",
+    "text": "Active Open-Minded Thinking\nNot many people disagree with the statement: “A person should always consider new information.”"
+  },
+  {
+    "objectID": "slides/information-theory.html#information",
+    "href": "slides/information-theory.html#information",
+    "title": "Information Theory",
+    "section": "Information",
+    "text": "Information\n\nWhat is “information”, anyway?\nLet’s briefly dip our toes into information theory, a branch of mathematics that deals with, well, information.\nIntuitively, information is something that shifts our beliefs.\nThe more surprising a piece of information is, the more it should shift our beliefs.\nIn a deep sense, information = surprise (Shannon 1948)."
+  },
+  {
+    "objectID": "slides/information-theory.html#surprise-15",
+    "href": "slides/information-theory.html#surprise-15",
+    "title": "Information Theory",
+    "section": "Surprise",
+    "text": "Surprise"
+  },
+  {
+    "objectID": "slides/information-theory.html#surprise-16",
+    "href": "slides/information-theory.html#surprise-16",
+    "title": "Information Theory",
+    "section": "Surprise",
+    "text": "Surprise\nNotice the shape of the curve we’re drawing here. Surprise increases exponentially as we get closer to \\(P(x) = 0\\)."
+  },
+  {
+    "objectID": "slides/information-theory.html#surprise-17",
+    "href": "slides/information-theory.html#surprise-17",
+    "title": "Information Theory",
+    "section": "Surprise",
+    "text": "Surprise"
+  },
+  {
+    "objectID": "slides/information-theory.html#surprise-18",
+    "href": "slides/information-theory.html#surprise-18",
+    "title": "Information Theory",
+    "section": "Surprise",
+    "text": "Surprise\n\nThis looks an awful lot like the charts I was showing you in the lecture on Long Tails.\nWhat I’m arguing is that the amount of information revealed by an event is a logarithmic function of how probable you thought it was."
+  },
+  {
+    "objectID": "slides/information-theory.html#information-1",
+    "href": "slides/information-theory.html#information-1",
+    "title": "Information Theory",
+    "section": "Information",
+    "text": "Information\n\nThis idea motivates the mathematical definition of information content.\n\n\n\\[\nI(x) = -\\text{log}(P(x))\n\\]\n\nThis function tells you, in essence, how much you learn from observing a piece of information.\nA unit of information is called a bit."
+  },
+  {
+    "objectID": "slides/information-theory.html#surprise-19",
+    "href": "slides/information-theory.html#surprise-19",
+    "title": "Information Theory",
+    "section": "Surprise",
+    "text": "Surprise"
+  },
+  {
+    "objectID": "slides/information-theory.html#information-entropy",
+    "href": "slides/information-theory.html#information-entropy",
+    "title": "Information Theory",
+    "section": "Information Entropy",
+    "text": "Information Entropy\n\nThis leads us to a related concept, called entropy (“average surprise”).\n\n“On average, how much information do you expect to learn by observing an event?”\n\nAn event with probability 100% has zero entropy.\n\nBecause you get 0 bits of information when it happens. And it always happens.\n\nAn event with probability \\(\\frac{1}{1,000,000}\\) also has no entropy.\n\nYou get about 20 bits of information if it happens, but it basically never happens!"
+  },
+  {
+    "objectID": "slides/information-theory.html#entropy",
+    "href": "slides/information-theory.html#entropy",
+    "title": "Information Theory",
+    "section": "Entropy",
+    "text": "Entropy"
+  },
+  {
+    "objectID": "slides/information-theory.html#entropy-1",
+    "href": "slides/information-theory.html#entropy-1",
+    "title": "Information Theory",
+    "section": "Entropy",
+    "text": "Entropy\n\nWhen seeking out information, your goal should be to decrease entropy as much as possible.\nThis idea will be particularly useful after the midterm, when we start discussing machine learning.\nBut we can also apply it to the game we played at the start of class."
+  },
+  {
+    "objectID": "slides/information-theory.html#guess-the-rule",
+    "href": "slides/information-theory.html#guess-the-rule",
+    "title": "Information Theory",
+    "section": "Guess The Rule",
+    "text": "Guess The Rule\n\nI observe that “2-4-8” satisfies the rule.\nA lot of potential rules here: (1) numbers go up, (2) second number goes up, (3) third number goes up, (4) all evens, (5) all positives, (6) sums to 14\nIf I think these six rules are equally likely, then my entropy is \\(-\\text{log}(\\frac{1}{6}) \\approx 2.6\\).\nThe move that decreases entropy the most is one that splits the set of hypotheses in half, like “8-4-2”. No matter what happens, entropy will decrease to \\(-\\text{log}(\\frac{1}{3}) \\approx 1.6\\)."
+  },
+  {
+    "objectID": "slides/information-theory.html#wisdom-of-crowds",
+    "href": "slides/information-theory.html#wisdom-of-crowds",
+    "title": "Information Theory",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds\n\nHere’s a final perspective on what’s happening with the “wisdom of crowds”.\nIndividuals are prone to confirmation bias. We tend to look for information that confirms our theories (“4-8-16”).\nBut in a large enough crowd of people, you’ll end up with a diverse set of theories.\nIf everyone looks for information that confirms their theory, then the group ends up finding a bunch of information that collectively decreases entropy."
+  },
+  {
+    "objectID": "slides/information-theory.html#if-you-want-more-information-theory",
+    "href": "slides/information-theory.html#if-you-want-more-information-theory",
+    "title": "Thinking Like A Crowd",
+    "section": "If you want more information theory…",
+    "text": "If you want more information theory…"
+  },
+  {
+    "objectID": "slides/information-theory.html#for-more-information-theory",
+    "href": "slides/information-theory.html#for-more-information-theory",
+    "title": "Information Theory",
+    "section": "For more information theory…",
+    "text": "For more information theory…"
   }
 ]
