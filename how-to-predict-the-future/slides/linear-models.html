@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Aggregating Forecasts – How To Predict The Future</title>
+<title>Linear Models – How To Predict The Future</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -88,35 +68,6 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -238,30 +189,21 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#motivating-problem" id="toc-motivating-problem" class="nav-link active" data-scroll-target="#motivating-problem">Motivating Problem</a></li>
-  <li><a href="#todays-agenda" id="toc-todays-agenda" class="nav-link" data-scroll-target="#todays-agenda">Today’s Agenda</a></li>
-  <li><a href="#warmup" id="toc-warmup" class="nav-link" data-scroll-target="#warmup">Warmup</a></li>
-  <li><a href="#warmup-1" id="toc-warmup-1" class="nav-link" data-scroll-target="#warmup-1">Warmup</a></li>
-  <li><a href="#warmup-2" id="toc-warmup-2" class="nav-link" data-scroll-target="#warmup-2">Warmup</a></li>
-  <li><a href="#bayesian-updating" id="toc-bayesian-updating" class="nav-link" data-scroll-target="#bayesian-updating">Bayesian Updating</a></li>
-  <li><a href="#bayesian-updating-1" id="toc-bayesian-updating-1" class="nav-link" data-scroll-target="#bayesian-updating-1">Bayesian Updating</a></li>
-  <li><a href="#back-to-the-motivating-problem" id="toc-back-to-the-motivating-problem" class="nav-link" data-scroll-target="#back-to-the-motivating-problem">Back to the Motivating Problem</a></li>
-  <li><a href="#extremizing" id="toc-extremizing" class="nav-link" data-scroll-target="#extremizing">Extremizing</a></li>
-  <li><a href="#extremizing-1" id="toc-extremizing-1" class="nav-link" data-scroll-target="#extremizing-1">Extremizing</a></li>
-  <li><a href="#extremizing-2" id="toc-extremizing-2" class="nav-link" data-scroll-target="#extremizing-2">Extremizing</a></li>
-  <li><a href="#extremizing-3" id="toc-extremizing-3" class="nav-link" data-scroll-target="#extremizing-3">Extremizing</a></li>
-  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
-  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways">Takeaways</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#looking-ahead" id="toc-looking-ahead" class="nav-link active" data-scroll-target="#looking-ahead">Looking Ahead</a></li>
+  <li><a href="#dutch" id="toc-dutch" class="nav-link" data-scroll-target="#dutch">Dutch</a></li>
+  <li><a href="#four-dangers" id="toc-four-dangers" class="nav-link" data-scroll-target="#four-dangers">Four Dangers</a></li>
+  <li><a href="#danger-1-nonlinearity" id="toc-danger-1-nonlinearity" class="nav-link" data-scroll-target="#danger-1-nonlinearity">Danger 1: Nonlinearity</a></li>
+  <li><a href="#danger-2-extrapolation" id="toc-danger-2-extrapolation" class="nav-link" data-scroll-target="#danger-2-extrapolation">Danger 2: Extrapolation</a></li>
+  <li><a href="#danger-3-structural-breaks" id="toc-danger-3-structural-breaks" class="nav-link" data-scroll-target="#danger-3-structural-breaks">Danger 3: Structural Breaks</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="aggregating-forecasts.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="linear-models.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Aggregating Forecasts</h1>
+<h1 class="title">Linear Models</h1>
 <p class="subtitle lead">POLS 3220: How to Predict the Future</p>
 </div>
 
@@ -279,179 +221,89 @@ window.Quarto = {
 </header>
 
 
-<section id="motivating-problem" class="level2">
-<h2 class="anchored" data-anchor-id="motivating-problem">Motivating Problem</h2>
+<section id="looking-ahead" class="level2">
+<h2 class="anchored" data-anchor-id="looking-ahead">Looking Ahead</h2>
 <ul>
-<li><p>Suppose the class is trying to predict whether the Federal Reserve will cut interest rates at its next meeting.</p></li>
-<li><p>Three students submit briefings, and all three say 75%.</p></li>
-<li><p>What should you predict after observing those three forecasts?</p></li>
-<li><p>Previously, we considered taking the <strong>median</strong> forecast (i.e.&nbsp;majority rule).</p>
+<li><p>Over the next three weeks, we’ll study the fundamentals of <strong>machine learning</strong>.</p>
 <ul>
-<li>But that strategy required some strong assumptions.</li>
-<li><em>Are those assumptions met here?</em></li>
+<li></li>
 </ul></li>
 </ul>
 </section>
-<section id="todays-agenda" class="level2">
-<h2 class="anchored" data-anchor-id="todays-agenda">Today’s Agenda</h2>
-<ul>
-<li><p>How best to <strong>aggregate</strong> individual forecasts into a group forecast?</p></li>
-<li><p>I’ll try to convince you that, if three individual forecasts are at 75%, the best aggregation is probably &gt;75%.</p>
-<ul>
-<li>This is called <strong>extremizing</strong>—increasing the confidence of the group forecast when multiple individuals all make a prediction in the same direction.</li>
-</ul></li>
-<li><p>We’ll motivate this idea from the perspective of <strong>Bayesian updating</strong>.</p></li>
-</ul>
-</section>
-<section id="warmup" class="level2">
-<h2 class="anchored" data-anchor-id="warmup">Warmup</h2>
-<ul>
-<li><p>Suppose you’re writing a briefing about the interest rates question.</p></li>
-<li><p>At first, you have no idea what will happen (prior odds = 1:1).</p></li>
-<li><p>Then you find a statement from a Fed official expressing concern about unemployment.</p></li>
-<li><p>Historically, he makes statements like this three times more often before an interest rate cut than he does otherwise.</p></li>
-<li><p><strong>Problem:</strong> What should your new forecast be, after observing this evidence?</p></li>
-</ul>
-</section>
-<section id="warmup-1" class="level2">
-<h2 class="anchored" data-anchor-id="warmup-1">Warmup</h2>
-<p>Remember <strong>Bayes Rule</strong>:</p>
-<p><span class="math display">\[
-\text{Posterior Odds} = \text{Prior Odds} \times \text{Strength of Evidence}
-\]</span></p>
-</section>
-<section id="warmup-2" class="level2">
-<h2 class="anchored" data-anchor-id="warmup-2">Warmup</h2>
-<p>Remember <strong>Bayes Rule</strong>:</p>
-<p><span class="math display">\[
-\underbrace{\text{Posterior Odds}}_{\text{New Forecast}} = \underbrace{\text{Prior Odds}}_{\text{Old Forecast}}\times  \underbrace{\text{Strength of Evidence}}_{\text{Likelihood Ratio}}
-\]</span></p>
-<ul>
-<li><strong>Prior Odds:</strong> 1:1</li>
-<li><strong>Likelihood Ratio:</strong> 3:1</li>
-<li><strong>Posterior Odds:</strong> 3:1</li>
-<li><strong>New Forecast</strong>: 75%</li>
-</ul>
-</section>
-<section id="bayesian-updating" class="level2">
-<h2 class="anchored" data-anchor-id="bayesian-updating">Bayesian Updating</h2>
-<ul>
-<li><p>Now suppose you read that JP Morgan’s analysts are predicting an interest rate cut.</p></li>
-<li><p>Historically, this appears to have the same strength of evidence as the Fed official’s statements.</p></li>
-<li><p>Bayes Rule handles this problem exactly like the first one!</p>
-<ul>
-<li><strong>Prior Odds:</strong> 3:1</li>
-<li><strong>Likelihood Ratio</strong>: 3:1</li>
-<li><strong>Posterior Odds</strong>: <span class="math inline">\(3:1 \times 3:1 = 9:1\)</span></li>
-<li><strong>New Prediction</strong>: 90%</li>
-</ul></li>
-</ul>
-</section>
-<section id="bayesian-updating-1" class="level2">
-<h2 class="anchored" data-anchor-id="bayesian-updating-1">Bayesian Updating</h2>
-<ul>
-<li><p>This process of <strong>Bayesian updating</strong> can proceed indefinitely.</p></li>
-<li><p>For each piece of evidence:</p>
-<ul>
-<li>Assess its likelihood ratio—conditional on everything you already know, how much more likely are you to observe this evidence if the event happens?</li>
-<li>Adjust your prediction up or down using Bayes Rule.</li>
-</ul></li>
-</ul>
-</section>
-<section id="back-to-the-motivating-problem" class="level2">
-<h2 class="anchored" data-anchor-id="back-to-the-motivating-problem">Back to the Motivating Problem</h2>
-<ul>
-<li><p>Consider the three students writing briefings. All three start with prior odds 1:1.</p></li>
-<li><p><strong>Student A</strong> only finds the statement by the Fed official (3:1 likelihood ratio).<br>
-</p></li>
-<li><p><strong>Student B</strong> finds the JP Morgan report (3:1 likelihood ratio).</p></li>
-<li><p><strong>Student C</strong> finds a <em>third</em> piece of evidence (also 3:1).</p></li>
-<li><p>If nobody shares information with each other, what would each student predict?</p></li>
-<li><p>If everyone shared their information, what would they predict (using Bayesian updating)?</p></li>
-</ul>
-</section>
-<section id="extremizing" class="level2">
-<h2 class="anchored" data-anchor-id="extremizing">Extremizing</h2>
-<ul>
-<li><p>This is the intuition behind <strong>extremizing</strong> predictions.</p></li>
-<li><p>If a group of forecasters have independent pieces of information, they should become more confident if they shared what they know.</p></li>
-<li><p>We can simulate this process by making everyone’s forecast a bit more confident before taking the average.</p></li>
-<li><p>How much you extremize depends on how much independent information you think the crowd has.</p></li>
-</ul>
-</section>
-<section id="extremizing-1" class="level2">
-<h2 class="anchored" data-anchor-id="extremizing-1">Extremizing</h2>
-<p>If every individual has fully independent evidence informing their prediction:</p>
-<p>. . .</p>
-<p><span class="math display">\[
-o_{group} = o_1 \times o_2 \times o_3 \times \ldots \times o_n
-\]</span></p>
-<p>. . .</p>
-<p>This is full Bayesian updating; multiply everyone’s odds together to get the posterior.</p>
-</section>
-<section id="extremizing-2" class="level2">
-<h2 class="anchored" data-anchor-id="extremizing-2">Extremizing</h2>
-<ul>
-<li><p>But that independence assumption is wildly optimistic!</p></li>
-<li><p>Forecasters are usually relying on the same sources of information (Google searches, chatbots, newspapers, etc.)</p></li>
-<li><p>More reasonable assumption: the crowd has <em>some</em> independent pieces of information.</p></li>
-</ul>
-</section>
-<section id="extremizing-3" class="level2">
-<h2 class="anchored" data-anchor-id="extremizing-3">Extremizing</h2>
-<p>If each individual has <em>some</em> independent information:</p>
-<p>. . .</p>
-<p><span class="math display">\[
-o_{group} = (o_1 \times o_2 \times o_3 \times \ldots \times o_n)^\frac{\alpha}{n}
-\]</span></p>
-<p>. . .</p>
-<ul>
-<li><p><span class="math inline">\(\alpha\)</span> represents the amount of independent information.</p></li>
-<li><p><span class="math inline">\(\alpha = n\)</span>: Everyone has completely independent information. Group forecast is full Bayesian updating.</p></li>
-<li><p><span class="math inline">\(\alpha = 1\)</span>: No one has independent information. Group forecast is just the average individual forecast.</p></li>
-<li><p>Truth is probably somewhere in the middle. For superforecasters, <span class="citation" data-cites="satopaaCombiningMultipleProbability2014">Satopää et al. (<a href="#ref-satopaaCombiningMultipleProbability2014" role="doc-biblioref">2014</a>)</span> use <span class="math inline">\(\alpha = 2.5\)</span>.</p></li>
-</ul>
-</section>
-<section id="example" class="level2">
-<h2 class="anchored" data-anchor-id="example">Example</h2>
-<ul>
-<li><p>Five forecasters predict 40%, 50%, 60%, 75%, and 75%.</p></li>
-<li><p>The <strong>median forecast</strong> is 60%.</p></li>
-<li><p>The <strong>extremized forecast</strong> <span class="math inline">\((\alpha = 2.5)\)</span> is:</p></li>
-</ul>
-<p>. . .</p>
-<p><span class="math display">\[
-(2:3 \times 1:1 \times 3:2 \times 3:1 \times 3:1)^\frac{2.5}{5} =
-(9:1)^\frac{1}{2} = 3:1 = 75\%
-\]</span></p>
-<ul>
-<li><p>This isn’t the sort of math I’d ask you to perform on an exam.</p></li>
-<li><p>I just want you to have it in your toolbox.</p></li>
-</ul>
-</section>
-<section id="takeaways" class="level2">
-<h2 class="anchored" data-anchor-id="takeaways">Takeaways</h2>
-<ul>
-<li><p>Confident predictions are justified if multiple, independent pieces of evidence point towards the same conclusion (<strong>Bayesian updating</strong>, dragonfly-eyed foxes).</p></li>
-<li><p>When reading briefings, consider whether each author is bringing a different perspective, or if everyone is relying on the same evidence.</p>
-<ul>
-<li>If the former, then the group forecast should be more confident than the individual forecasts (<strong>extremizing</strong>).</li>
-</ul></li>
-<li><p>Organize teams so that they <em>share information</em> rather than just sharing conclusions.</p></li>
-</ul>
-</section>
-<section id="references" class="level2">
+<section id="dutch" class="level2">
+<h2 class="anchored" data-anchor-id="dutch">Dutch</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = result ~ poll_average_one_month_out, data = d)
 
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-13.249  -2.525  -1.010   1.519  18.635 
 
+Coefficients:
+                           Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                 1.29219    1.19670    1.08    0.285    
+poll_average_one_month_out  0.89857    0.06396   14.05   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-satopaaCombiningMultipleProbability2014" class="csl-entry" role="listitem">
-Satopää, Ville A., Jonathan Baron, Dean P. Foster, Barbara A. Mellers, Philip E. Tetlock, and Lyle H. Ungar. 2014. <span>“Combining Multiple Probability Predictions Using a Simple Logit Model.”</span> <em>International Journal of Forecasting</em> 30 (2): 344–56. <a href="https://doi.org/10.1016/j.ijforecast.2013.09.009">https://doi.org/10.1016/j.ijforecast.2013.09.009</a>.
+Residual standard error: 5.323 on 55 degrees of freedom
+Multiple R-squared:  0.7821,    Adjusted R-squared:  0.7781 
+F-statistic: 197.4 on 1 and 55 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-</div></section></div></main> <!-- /main -->
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="linear-models_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  `residual &gt;= 8`     n
+  &lt;lgl&gt;           &lt;int&gt;
+1 FALSE              22
+2 TRUE                5</code></pre>
+</div>
+</div>
+</section>
+<section id="four-dangers" class="level2">
+<h2 class="anchored" data-anchor-id="four-dangers">Four Dangers</h2>
+<p>When using a linear model, keep in mind four dangers that could ruin your predictions:</p>
+<ol type="1">
+<li><p>Nonlinearity</p></li>
+<li><p>Extrapolation</p></li>
+<li><p>Overfitting</p></li>
+<li><p>(Structural Breaks?)</p></li>
+</ol>
+</section>
+<section id="danger-1-nonlinearity" class="level2">
+<h2 class="anchored" data-anchor-id="danger-1-nonlinearity">Danger 1: Nonlinearity</h2>
+<p>. . .</p>
+<p>The linear model faithfully gives you the line of best fit…</p>
+<p>. . .</p>
+<p>…even when a straight line is a bad model.</p>
+<ul>
+<li><strong>Diagnostic</strong>: Look at a chart! Are there patterns in the errors?</li>
+</ul>
+</section>
+<section id="danger-2-extrapolation" class="level2">
+<h2 class="anchored" data-anchor-id="danger-2-extrapolation">Danger 2: Extrapolation</h2>
+</section>
+<section id="danger-3-structural-breaks" class="level2">
+<h2 class="anchored" data-anchor-id="danger-3-structural-breaks">Danger 3: Structural Breaks</h2>
+<ul>
+<li><p>Predicting with a linear model assumes that the relationships observed in your data will be <em>stable</em> over time.</p></li>
+<li><p>In other words, you’re assuming that the future will follow the same rules as the past.</p></li>
+<li></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

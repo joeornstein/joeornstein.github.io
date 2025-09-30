@@ -1628,7 +1628,7 @@
     "href": "slides/jury-theorems.html#condorcet-jury-theorem",
     "title": "Jury Theorems",
     "section": "Condorcet Jury Theorem",
-    "text": "Condorcet Jury Theorem\n\nAssumptions:\n\nA group is voting on a binary (Yes/No) decision.\nEach voter has probability \\(p &gt; \\frac{1}{2}\\) of making the correct choice.\nIndividual votes are independent of one another.\n\n\n\nTheorem:\n\nAs the size of the group \\(n\\) gets large:\n\nThe probability that the majority makes the correct choice approaches 100%."
+    "text": "Condorcet Jury Theorem\n. . .\nAssumptions:\n\nA group is voting on a binary (Yes/No) decision.\nEach voter has probability \\(p &gt; \\frac{1}{2}\\) of making the correct choice.\nIndividual votes are independent of one another.\n\n. . .\nTheorem:\n\nAs the size of the group \\(n\\) gets large:\n\nThe probability that the majority makes the correct choice approaches 100%."
   },
   {
     "objectID": "slides/jury-theorems.html#marquis-de-condorcet-1743-1794",
@@ -1649,7 +1649,7 @@
     "href": "slides/jury-theorems.html#condorcet-jury-theorem-2",
     "title": "Jury Theorems",
     "section": "Condorcet Jury Theorem",
-    "text": "Condorcet Jury Theorem\nExample: A jury with 5 members, where each individual has a 60% probability of choosing the right answer.\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Voting\n\n\n\n\n\n\n\n1R,0W\n\n\n\n\n\n\n\n0R,1W\n\n\n\n\n\n\n\n2R,0W\n\n\n\n\n\n\n\n1R,1W\n\n\n\n\n\n\n\n0R,2W\n\n\n\n\n\n\n\n3R,0W\n\n\n\n\n\n\n\n2R,1W\n\n\n\n\n\n\n\n1R,2W\n\n\n\n\n\n\n\n0R,3W\n\n\n\n\n\n\n\n4R,0W\n\n\n\n\n\n\n\n3R,1W\n\n\n\n\n\n\n\n2R,2W\n\n\n\n\n\n\n\n1R,3W\n\n\n\n\n\n\n\n0R,4W\n\n\n\n\n\n\n\n5R,0W (7.8%)\n\n\n\n\n\n\n\n4R,1W (25.9%)\n\n\n\n\n\n\n\n3R,2W (34.6%)\n\n\n\n\n\n\n\n2R,3W (23%)\n\n\n\n\n\n\n\n1R,4W (7.7%)\n\n\n\n\n\n\n\n0R,5W (1%)"
+    "text": "Condorcet Jury Theorem\nExample: A jury with 5 members, where each individual has a 60% probability of choosing the right answer.\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Voting\n\n\n\n1R,0W\n\n\n\n0R,1W\n\n\n\n2R,0W\n\n\n\n1R,1W\n\n\n\n0R,2W\n\n\n\n3R,0W\n\n\n\n2R,1W\n\n\n\n1R,2W\n\n\n\n0R,3W\n\n\n\n4R,0W\n\n\n\n3R,1W\n\n\n\n2R,2W\n\n\n\n1R,3W\n\n\n\n0R,4W\n\n\n\n5R,0W (7.8%)\n\n\n\n4R,1W (25.9%)\n\n\n\n3R,2W (34.6%)\n\n\n\n2R,3W (23%)\n\n\n\n1R,4W (7.7%)\n\n\n\n0R,5W (1%)"
   },
   {
     "objectID": "slides/jury-theorems.html#condorcet-jury-theorem-3",
@@ -1726,7 +1726,7 @@
     "href": "slides/jury-theorems.html#wisdom-of-crowds-2",
     "title": "Jury Theorems",
     "section": "Wisdom of Crowds",
-    "text": "Wisdom of Crowds\n\n\nWhat is the “majority judgment” here?"
+    "text": "Wisdom of Crowds\n\n\n\n\n\n\n\n\n\n. . .\nWhat is the “majority judgment” here?"
   },
   {
     "objectID": "slides/jury-theorems.html#wisdom-of-crowds-3",
@@ -1795,8 +1795,8 @@
     "objectID": "slides/aggregating-forecasts.html#motivating-problem",
     "href": "slides/aggregating-forecasts.html#motivating-problem",
     "title": "Aggregating Forecasts",
-    "section": "Motivating Problem",
-    "text": "Motivating Problem\n\nSuppose the class is trying to predict whether the Federal Reserve will cut interest rates at its next meeting.\nThree students submit briefings, and all three say 75%.\nWhat should you predict after observing those three forecasts?\nPreviously, we considered taking the median forecast (i.e. majority rule).\n\nBut that strategy required some strong assumptions.\nAre those assumptions met here?"
+    "section": "",
+    "text": "Suppose the class is trying to predict whether the Federal Reserve will cut interest rates at its next meeting.\nThree students submit briefings, and all three say 75%.\nWhat should you predict after observing those three forecasts?\nPreviously, we considered taking the median forecast (i.e. majority rule).\n\nBut that strategy required some strong assumptions.\nAre those assumptions met here?"
   },
   {
     "objectID": "slides/aggregating-forecasts.html#todays-agen",
@@ -1859,7 +1859,7 @@
     "href": "slides/aggregating-forecasts.html#extremizing-1",
     "title": "Aggregating Forecasts",
     "section": "Extremizing",
-    "text": "Extremizing\nIf every individual has fully independent evidence informing their prediction:\n\n\\[\no_{group} = o_1 \\times o_2 \\times o_3 \\times \\ldots \\times o_n\n\\]\n\n\nThis is full Bayesian updating; multiply everyone’s odds together to get the posterior."
+    "text": "Extremizing\nIf every individual has fully independent evidence informing their prediction:\n. . .\n\\[\no_{group} = o_1 \\times o_2 \\times o_3 \\times \\ldots \\times o_n\n\\]\n. . .\nThis is full Bayesian updating; multiply everyone’s odds together to get the posterior."
   },
   {
     "objectID": "slides/aggregating-forecasts.html#extremizing-2",
@@ -1901,7 +1901,7 @@
     "href": "slides/aggregating-forecasts.html#example",
     "title": "Aggregating Forecasts",
     "section": "Example",
-    "text": "Example\n\nFive forecasters predict 40%, 50%, 60%, 75%, and 75%.\nThe median forecast is 60%.\nThe extremized forecast \\((\\alpha = 2.5)\\) is:\n\n\n\\[\n(2:3 \\times 1:1 \\times 3:2 \\times 3:1 \\times 3:1)^\\frac{2.5}{5} =\n(9:1)^\\frac{1}{2} = 3:1 = 75\\%\n\\]\n\nThis isn’t the sort of math I’d ask you to perform on an exam.\nI just want you to have it in your toolbox."
+    "text": "Example\n\nFive forecasters predict 40%, 50%, 60%, 75%, and 75%.\nThe median forecast is 60%.\nThe extremized forecast \\((\\alpha = 2.5)\\) is:\n\n. . .\n\\[\n(2:3 \\times 1:1 \\times 3:2 \\times 3:1 \\times 3:1)^\\frac{2.5}{5} =\n(9:1)^\\frac{1}{2} = 3:1 = 75\\%\n\\]\n\nThis isn’t the sort of math I’d ask you to perform on an exam.\nI just want you to have it in your toolbox."
   },
   {
     "objectID": "slides/prediction-markets.html#hedgehog-professor",
@@ -2083,7 +2083,7 @@
     "href": "slides/aggregating-forecasts.html#extremizing-3",
     "title": "Aggregating Forecasts",
     "section": "Extremizing",
-    "text": "Extremizing\nIf each individual has some independent information:\n\n\\[\no_{group} = (o_1 \\times o_2 \\times o_3 \\times \\ldots \\times o_n)^\\frac{\\alpha}{n}\n\\]\n\n\n\n\\(\\alpha\\) represents the amount of independent information.\n\\(\\alpha = n\\): Everyone has completely independent information. Group forecast is full Bayesian updating.\n\\(\\alpha = 1\\): No one has independent information. Group forecast is just the average individual forecast.\nTruth is probably somewhere in the middle. For superforecasters, Satopää et al. (2014) use \\(\\alpha = 2.5\\)."
+    "text": "Extremizing\nIf each individual has some independent information:\n. . .\n\\[\no_{group} = (o_1 \\times o_2 \\times o_3 \\times \\ldots \\times o_n)^\\frac{\\alpha}{n}\n\\]\n. . .\n\n\\(\\alpha\\) represents the amount of independent information.\n\\(\\alpha = n\\): Everyone has completely independent information. Group forecast is full Bayesian updating.\n\\(\\alpha = 1\\): No one has independent information. Group forecast is just the average individual forecast.\nTruth is probably somewhere in the middle. For superforecasters, Satopää et al. (2014) use \\(\\alpha = 2.5\\)."
   },
   {
     "objectID": "slides/aggregating-forecasts.html#references",
@@ -2125,7 +2125,7 @@
     "href": "slides/madness-of-crowds.html#groupthink",
     "title": "Madness of Crowds",
     "section": "Groupthink",
-    "text": "Groupthink\nWhen individuals suppress their private information for the sake of group harmony/cohesion, we call it groupthink.\n\n\nDiscuss: Have you ever been part of a group like this? How can we design our teams to avoid groupthink?\n\nhttps://mediationworksfl.com/going-with-the-flow-the-influence-of-groupthink-on-mediation-outcomes/"
+    "text": "Groupthink\nWhen individuals suppress their private information for the sake of group harmony/cohesion, we call it groupthink.\n\n\n\n\n\n. . .\nDiscuss: Have you ever been part of a group like this? How can we design our teams to avoid groupthink?\n\nhttps://mediationworksfl.com/going-with-the-flow-the-influence-of-groupthink-on-mediation-outcomes/"
   },
   {
     "objectID": "slides/madness-of-crowds.html#social-influence",
@@ -2490,5 +2490,61 @@
     "title": "Fall 2025 Predictions",
     "section": "Week 6 (9/24)",
     "text": "Week 6 (9/24)"
+  },
+  {
+    "objectID": "slides/aggregating-forecasts.html",
+    "href": "slides/aggregating-forecasts.html",
+    "title": "Aggregating Forecasts",
+    "section": "",
+    "text": "Suppose the class is trying to predict whether the Federal Reserve will cut interest rates at its next meeting.\nThree students submit briefings, and all three say 75%.\nWhat should you predict after observing those three forecasts?\nPreviously, we considered taking the median forecast (i.e. majority rule).\n\nBut that strategy required some strong assumptions.\nAre those assumptions met here?"
+  },
+  {
+    "objectID": "slides/linear-models.html",
+    "href": "slides/linear-models.html",
+    "title": "Linear Models",
+    "section": "",
+    "text": "Over the next three weeks, we’ll study the fundamentals of machine learning."
+  },
+  {
+    "objectID": "slides/linear-models.html#looking-ahead",
+    "href": "slides/linear-models.html#looking-ahead",
+    "title": "Linear Models",
+    "section": "",
+    "text": "Over the next three weeks, we’ll study the fundamentals of machine learning."
+  },
+  {
+    "objectID": "slides/linear-models.html#dutch",
+    "href": "slides/linear-models.html#dutch",
+    "title": "Linear Models",
+    "section": "Dutch",
+    "text": "Dutch\n\n\n\nCall:\nlm(formula = result ~ poll_average_one_month_out, data = d)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-13.249  -2.525  -1.010   1.519  18.635 \n\nCoefficients:\n                           Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)                 1.29219    1.19670    1.08    0.285    \npoll_average_one_month_out  0.89857    0.06396   14.05   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 5.323 on 55 degrees of freedom\nMultiple R-squared:  0.7821,    Adjusted R-squared:  0.7781 \nF-statistic: 197.4 on 1 and 55 DF,  p-value: &lt; 2.2e-16\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  `residual &gt;= 8`     n\n  &lt;lgl&gt;           &lt;int&gt;\n1 FALSE              22\n2 TRUE                5"
+  },
+  {
+    "objectID": "slides/linear-models.html#four-dangers",
+    "href": "slides/linear-models.html#four-dangers",
+    "title": "Linear Models",
+    "section": "Four Dangers",
+    "text": "Four Dangers\nWhen using a linear model, keep in mind four dangers that could ruin your predictions:\n\nNonlinearity\nExtrapolation\nOverfitting\n(Structural Breaks?)"
+  },
+  {
+    "objectID": "slides/linear-models.html#danger-1-nonlinearity",
+    "href": "slides/linear-models.html#danger-1-nonlinearity",
+    "title": "Linear Models",
+    "section": "Danger 1: Nonlinearity",
+    "text": "Danger 1: Nonlinearity\n. . .\nThe linear model faithfully gives you the line of best fit…\n. . .\n…even when a straight line is a bad model.\n\nDiagnostic: Look at a chart! Are there patterns in the errors?"
+  },
+  {
+    "objectID": "slides/linear-models.html#danger-2-extrapolation",
+    "href": "slides/linear-models.html#danger-2-extrapolation",
+    "title": "Linear Models",
+    "section": "Danger 2: Extrapolation",
+    "text": "Danger 2: Extrapolation"
+  },
+  {
+    "objectID": "slides/linear-models.html#danger-3-structural-breaks",
+    "href": "slides/linear-models.html#danger-3-structural-breaks",
+    "title": "Linear Models",
+    "section": "Danger 3: Structural Breaks",
+    "text": "Danger 3: Structural Breaks\n\nPredicting with a linear model assumes that the relationships observed in your data will be stable over time.\nIn other words, you’re assuming that the future will follow the same rules as the past."
   }
 ]
