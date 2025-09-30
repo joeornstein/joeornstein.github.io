@@ -1628,7 +1628,7 @@
     "href": "slides/jury-theorems.html#condorcet-jury-theorem",
     "title": "Jury Theorems",
     "section": "Condorcet Jury Theorem",
-    "text": "Condorcet Jury Theorem\n. . .\nAssumptions:\n\nA group is voting on a binary (Yes/No) decision.\nEach voter has probability \\(p &gt; \\frac{1}{2}\\) of making the correct choice.\nIndividual votes are independent of one another.\n\n. . .\nTheorem:\n\nAs the size of the group \\(n\\) gets large:\n\nThe probability that the majority makes the correct choice approaches 100%."
+    "text": "Condorcet Jury Theorem\n\nAssumptions:\n\nA group is voting on a binary (Yes/No) decision.\nEach voter has probability \\(p &gt; \\frac{1}{2}\\) of making the correct choice.\nIndividual votes are independent of one another.\n\n\n\nTheorem:\n\nAs the size of the group \\(n\\) gets large:\n\nThe probability that the majority makes the correct choice approaches 100%."
   },
   {
     "objectID": "slides/jury-theorems.html#marquis-de-condorcet-1743-1794",
@@ -1726,7 +1726,7 @@
     "href": "slides/jury-theorems.html#wisdom-of-crowds-2",
     "title": "Jury Theorems",
     "section": "Wisdom of Crowds",
-    "text": "Wisdom of Crowds\n\n\n\n\n\n\n\n\n\n. . .\nWhat is the “majority judgment” here?"
+    "text": "Wisdom of Crowds\n\n\nWhat is the “majority judgment” here?"
   },
   {
     "objectID": "slides/jury-theorems.html#wisdom-of-crowds-3",
@@ -1775,7 +1775,7 @@
     "href": "slides/jury-theorems.html#references",
     "title": "Jury Theorems",
     "section": "References",
-    "text": "References\n\n\n\n\nBlack, Duncan. 1948. “On the Rationale of Group Decision-Making.” Journal of Political Economy 56 (1): 23–34. https://doi.org/10.1086/256633.\n\n\nGalton, Francis. 1907. “Vox Populi.” Nature 75 (1949): 450–51. https://doi.org/10.1038/075450a0."
+    "text": "References\n\n\n\n\n\n\n\n\nBlack, Duncan. 1948. “On the Rationale of Group Decision-Making.” Journal of Political Economy 56 (1): 23–34. https://doi.org/10.1086/256633.\n\n\nGalton, Francis. 1907. “Vox Populi.” Nature 75 (1949): 450–51. https://doi.org/10.1038/075450a0."
   },
   {
     "objectID": "slides/jury-theorems.html#takeaways",
@@ -1795,8 +1795,8 @@
     "objectID": "slides/aggregating-forecasts.html#motivating-problem",
     "href": "slides/aggregating-forecasts.html#motivating-problem",
     "title": "Aggregating Forecasts",
-    "section": "",
-    "text": "Suppose the class is trying to predict whether the Federal Reserve will cut interest rates at its next meeting.\nThree students submit briefings, and all three say 75%.\nWhat should you predict after observing those three forecasts?\nPreviously, we considered taking the median forecast (i.e. majority rule).\n\nBut that strategy required some strong assumptions.\nAre those assumptions met here?"
+    "section": "Motivating Problem",
+    "text": "Motivating Problem\n\nSuppose the class is trying to predict whether the Federal Reserve will cut interest rates at its next meeting.\nThree students submit briefings, and all three say 75%.\nWhat should you predict after observing those three forecasts?\nPreviously, we considered taking the median forecast (i.e. majority rule).\n\nBut that strategy required some strong assumptions.\nAre those assumptions met here?"
   },
   {
     "objectID": "slides/aggregating-forecasts.html#todays-agen",
@@ -1859,7 +1859,7 @@
     "href": "slides/aggregating-forecasts.html#extremizing-1",
     "title": "Aggregating Forecasts",
     "section": "Extremizing",
-    "text": "Extremizing\nIf every individual has fully independent evidence informing their prediction:\n. . .\n\\[\no_{group} = o_1 \\times o_2 \\times o_3 \\times \\ldots \\times o_n\n\\]\n. . .\nThis is full Bayesian updating; multiply everyone’s odds together to get the posterior."
+    "text": "Extremizing\nIf every individual has fully independent evidence informing their prediction:\n\n\\[\no_{group} = o_1 \\times o_2 \\times o_3 \\times \\ldots \\times o_n\n\\]\n\n\nThis is full Bayesian updating; multiply everyone’s odds together to get the posterior."
   },
   {
     "objectID": "slides/aggregating-forecasts.html#extremizing-2",
@@ -1901,7 +1901,7 @@
     "href": "slides/aggregating-forecasts.html#example",
     "title": "Aggregating Forecasts",
     "section": "Example",
-    "text": "Example\n\nFive forecasters predict 40%, 50%, 60%, 75%, and 75%.\nThe median forecast is 60%.\nThe extremized forecast \\((\\alpha = 2.5)\\) is:\n\n. . .\n\\[\n(2:3 \\times 1:1 \\times 3:2 \\times 3:1 \\times 3:1)^\\frac{2.5}{5} =\n(9:1)^\\frac{1}{2} = 3:1 = 75\\%\n\\]\n\nThis isn’t the sort of math I’d ask you to perform on an exam.\nI just want you to have it in your toolbox."
+    "text": "Example\n\nFive forecasters predict 40%, 50%, 60%, 75%, and 75%.\nThe median forecast is 60%.\nThe extremized forecast \\((\\alpha = 2.5)\\) is:\n\n\n\\[\n(2:3 \\times 1:1 \\times 3:2 \\times 3:1 \\times 3:1)^\\frac{2.5}{5} =\n(9:1)^\\frac{1}{2} = 3:1 = 75\\%\n\\]\n\nThis isn’t the sort of math I’d ask you to perform on an exam.\nI just want you to have it in your toolbox."
   },
   {
     "objectID": "slides/prediction-markets.html#hedgehog-professor",
@@ -2083,14 +2083,14 @@
     "href": "slides/aggregating-forecasts.html#extremizing-3",
     "title": "Aggregating Forecasts",
     "section": "Extremizing",
-    "text": "Extremizing\nIf each individual has some independent information:\n. . .\n\\[\no_{group} = (o_1 \\times o_2 \\times o_3 \\times \\ldots \\times o_n)^\\frac{\\alpha}{n}\n\\]\n. . .\n\n\\(\\alpha\\) represents the amount of independent information.\n\\(\\alpha = n\\): Everyone has completely independent information. Group forecast is full Bayesian updating.\n\\(\\alpha = 1\\): No one has independent information. Group forecast is just the average individual forecast.\nTruth is probably somewhere in the middle. For superforecasters, Satopää et al. (2014) use \\(\\alpha = 2.5\\)."
+    "text": "Extremizing\nIf each individual has some independent information:\n\n\\[\no_{group} = (o_1 \\times o_2 \\times o_3 \\times \\ldots \\times o_n)^\\frac{\\alpha}{n}\n\\]\n\n\n\n\\(\\alpha\\) represents the amount of independent information.\n\\(\\alpha = n\\): Everyone has completely independent information. Group forecast is full Bayesian updating.\n\\(\\alpha = 1\\): No one has independent information. Group forecast is just the average individual forecast.\nTruth is probably somewhere in the middle. For superforecasters, Satopää et al. (2014) use \\(\\alpha = 2.5\\)."
   },
   {
     "objectID": "slides/aggregating-forecasts.html#references",
     "href": "slides/aggregating-forecasts.html#references",
     "title": "Aggregating Forecasts",
     "section": "References",
-    "text": "References\n\n\n\n\nSatopää, Ville A., Jonathan Baron, Dean P. Foster, Barbara A. Mellers, Philip E. Tetlock, and Lyle H. Ungar. 2014. “Combining Multiple Probability Predictions Using a Simple Logit Model.” International Journal of Forecasting 30 (2): 344–56. https://doi.org/10.1016/j.ijforecast.2013.09.009."
+    "text": "References\n\n\n\n\n\n\n\n\nSatopää, Ville A., Jonathan Baron, Dean P. Foster, Barbara A. Mellers, Philip E. Tetlock, and Lyle H. Ungar. 2014. “Combining Multiple Probability Predictions Using a Simple Logit Model.” International Journal of Forecasting 30 (2): 344–56. https://doi.org/10.1016/j.ijforecast.2013.09.009."
   },
   {
     "objectID": "index.html#week-5-916",
