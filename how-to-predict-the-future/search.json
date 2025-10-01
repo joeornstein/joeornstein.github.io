@@ -564,7 +564,7 @@
     "href": "index.html#leaderboard",
     "title": "Fall 2025 Predictions",
     "section": "Leaderboard",
-    "text": "Leaderboard\n\n\n\n\n\n\n\n\n\n\n\n\nRank\nName\nSubmissions\nCorrect Calls\nBrier Score\n\n\n\n\n1\nManuv Datta\n10\n1/2\n0.1562\n\n\n2\nOwen Johnston\n11\n1/2\n0.1862\n\n\n3\nSierra Cross-Thompson\n7\n1/2\n0.1862\n\n\n4\nZafar Ali\n11\n1/2\n0.2313\n\n\n5\nCaleb Lux\n12\n1/2\n0.2570\n\n\n6\nJhaycee Barnes\n12\n1/2\n0.2600\n\n\n7\nLiz Yancey\n12\n1/2\n0.2624\n\n\n8\nNic Curtis\n11\n1/2\n0.2624\n\n\n9\nChris Haswell\n12\n1/2\n0.2725\n\n\n10\nAkshara Singh\n11\n1/2\n0.2912\n\n\n11\nShaheer Ul-Islam\n11\n1/2\n0.3012\n\n\n12\nBlake Martin\n10\n1/2\n0.3153\n\n\n13\nAnna Barton-Caucci\n11\n1/2\n0.3250\n\n\n14\nJames Hunter Darke\n9\n1/2\n0.3250\n\n\n15\nJackson Bost\n12\n1/2\n0.3280\n\n\n16\nCierra Green\n12\n1/2\n0.3324\n\n\n17\nCrowd\n12\n1/2\n0.3332\n\n\n18\nMateo Ceron\n10\n1/2\n0.3332\n\n\n19\nPaul Frilingos\n10\n1/2\n0.3422\n\n\n20\nRaquel Beatriz Caldas Laranjeira\n12\n1/2\n0.3464\n\n\n21\nSarah Kate Maher\n12\n0/2\n0.3600\n\n\n22\nRuhi Doddamani\n10\n0/2\n0.3757\n\n\n23\nAnna Kneser\n11\n0/2\n0.3962\n\n\n24\nElizabeth Nelson\n10\n1/2\n0.4000\n\n\n25\nAlika Otero-Ricalde\n8\n0/2\n0.4062\n\n\n26\nSade Ezekiel\n12\n0/2\n0.4172\n\n\n27\nEllie Null\n11\n0/2\n0.4180\n\n\n28\nReese Fabritius\n10\n1/2\n0.4212\n\n\n29\nAlizah Mudaliar\n12\n0/2\n0.4234\n\n\n30\nAmanda Neighbour\n12\n0/2\n0.4250\n\n\n31\nBreanne Talley\n11\n0/2\n0.4250\n\n\n32\nFrancesca Mariano\n11\n0/2\n0.4250\n\n\n33\nJack Lutz\n10\n1/2\n0.4293\n\n\n34\nAna Valencia\n11\n1/2\n0.4412\n\n\n35\nKira Fleischer\n10\n1/2\n0.4496\n\n\n36\nJoe Ornstein\n12\n1/2\n0.4625\n\n\n37\nHunter Murray\n9\n0/2\n0.4633\n\n\n38\nArshia Charkhian\n8\n1/2\n0.4662\n\n\n39\nSasha Mahtani\n11\n0/2\n0.4850\n\n\n40\nKristoffer Fields\n11\n0/2\n0.4874\n\n\n41\nCaroline Mattox\n10\n0/2\n0.5000\n\n\n42\nRyan Marx\n11\n0/2\n0.5313"
+    "text": "Leaderboard\n\n\n\n\n\n\n\n\n\n\n\n\nRank\nName\nSubmissions\nCorrect Calls\nBrier Score\n\n\n\n\n1\nSierra Cross-Thompson\n7\n1/3\n0.2075\n\n\n2\nNic Curtis\n12\n2/3\n0.2158\n\n\n3\nChris Haswell\n13\n2/3\n0.2225\n\n\n4\nCaleb Lux\n13\n2/3\n0.2247\n\n\n5\nZafar Ali\n12\n1/3\n0.2375\n\n\n6\nOwen Johnston\n12\n1/3\n0.2442\n\n\n7\nAkshara Singh\n12\n2/3\n0.2617\n\n\n8\nRuhi Doddamani\n11\n1/3\n0.2666\n\n\n9\nJhaycee Barnes\n13\n1/3\n0.2705\n\n\n10\nLiz Yancey\n13\n1/3\n0.2758\n\n\n11\nPaul Frilingos\n11\n2/3\n0.2842\n\n\n12\nCierra Green\n13\n2/3\n0.2891\n\n\n13\nAnna Barton-Caucci\n12\n2/3\n0.2903\n\n\n14\nManuv Datta\n11\n1/3\n0.2917\n\n\n15\nJackson Bost\n13\n2/3\n0.2955\n\n\n16\nCrowd\n13\n2/3\n0.2989\n\n\n17\nJames Hunter Darke\n10\n1/3\n0.3000\n\n\n18\nMateo Ceron\n10\n1/3\n0.3055\n\n\n19\nSarah Kate Maher\n13\n1/3\n0.3075\n\n\n20\nAlika Otero-Ricalde\n9\n1/3\n0.3117\n\n\n21\nReese Fabritius\n11\n2/3\n0.3217\n\n\n22\nBlake Martin\n11\n1/3\n0.3223\n\n\n23\nAnna Kneser\n12\n1/3\n0.3317\n\n\n24\nEllie Null\n12\n1/3\n0.3462\n\n\n25\nRaquel Beatriz Caldas Laranjeira\n13\n1/3\n0.3510\n\n\n26\nFrancesca Mariano\n11\n1/3\n0.3539\n\n\n27\nAna Valencia\n11\n2/3\n0.3587\n\n\n28\nShaheer Ul-Islam\n12\n1/3\n0.3642\n\n\n29\nArshia Charkhian\n9\n2/3\n0.3783\n\n\n30\nKira Fleischer\n11\n2/3\n0.3798\n\n\n31\nAlizah Mudaliar\n13\n0/3\n0.3831\n\n\n32\nBreanne Talley\n11\n0/3\n0.3842\n\n\n33\nJack Lutz\n11\n1/3\n0.3870\n\n\n34\nCaroline Mattox\n10\n1/3\n0.3921\n\n\n35\nHunter Murray\n10\n0/3\n0.3922\n\n\n36\nElizabeth Nelson\n11\n1/3\n0.4075\n\n\n37\nSade Ezekiel\n13\n0/3\n0.4190\n\n\n38\nAmanda Neighbour\n13\n0/3\n0.4242\n\n\n39\nJoe Ornstein\n13\n1/3\n0.4283\n\n\n40\nRyan Marx\n12\n0/3\n0.4375\n\n\n41\nSasha Mahtani\n11\n0/3\n0.4434\n\n\n42\nKristoffer Fields\n12\n0/3\n0.4658"
   },
   {
     "objectID": "fall-2023.html#week-2-913",
@@ -2546,5 +2546,12 @@
     "title": "Linear Models",
     "section": "Danger 3: Structural Breaks",
     "text": "Danger 3: Structural Breaks\n\nPredicting with a linear model assumes that the relationships observed in your data will be stable over time.\nIn other words, you’re assuming that the future will follow the same rules as the past."
+  },
+  {
+    "objectID": "index.html#week-7-930",
+    "href": "index.html#week-7-930",
+    "title": "Fall 2025 Predictions",
+    "section": "Week 7 (9/30)",
+    "text": "Week 7 (9/30)"
   }
 ]
