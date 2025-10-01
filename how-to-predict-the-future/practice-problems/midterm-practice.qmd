@@ -1,0 +1,31 @@
+---
+title: "POLS 3220 Midterm Probability Practice"
+format: html
+editor: visual
+---
+
+*Note: the actual midterm exam will have relatively friendly multiplication problems so you won't need a calculator, but you may find a calculator useful for a few of the review questions I've drawn from the slides!*
+
+## Problem 1
+
+A basketball player with a 50% free throw shooting rate goes to the line to shoot 3 free throws. What’s the probability she makes 1 or fewer?
+
+## Problem 2
+
+You’re volunteering with a phone bank for a political campaign. People only answer their phone 10% of the time. Out of the next 3 numbers on your call sheet, what’s the probability that anyone answers your call?
+
+## Problem 3
+
+The average movie director starts out with a 25% chance of making a Certified Fresh film. But that probability can go up or down over time. If the director makes a Certified Fresh film, he gets a boost of morale, and the probability increases by 10% for the next film he directs. Otherwise, he takes a hit to morale, and the probability decreases by 10% for the next film he directs. What’s the probability that a director gets at least 2 Certified Fresh films out of his first 3 films?
+
+## Problem 4
+
+You are trying to predict whether a bill will be passed by the US House of Representatives. Historically, only 10% of bills introduced in the House are passed. Among passed bills, 60% had bipartisan cosponsors. Among failed bills, only 15% had bipartisan cosponsors. The bill in question has bipartisan cosponsors. What is the probability that it passes?
+
+## Problem 5
+
+Same question as above, but the bill does *not* have bipartisan cosponsors.
+
+## Problem 6
+
+Breast cancer is rare among women age 40-49; it only occurs in about [2% of women](https://www.cancer.org/content/dam/cancer-org/research/cancer-facts-and-statistics/breast-cancer-facts-and-figures/2024/breast-cancer-facts-and-figures-2024.pdf) in this age range. A mammogram screening can help you determine if you have breast cancer, but the [false positive rate is about 10%](https://health.ucdavis.edu/news/headlines/false-positive-mammograms-discourage-some-women-from-future-screenings/2024/08) (i.e. 10% of women who don’t have breast cancer will receive a false positive result). The false negative rate is [also around 10%](https://www.cancer.org/cancer/types/breast-cancer/screening-tests-and-early-detection/mammograms/limitations-of-mammograms.html) (i.e. the mammogram will give a false negative in about 10% of women with breast cancer). If a woman in her 40s receives a positive result on a mammogram, what is the probability she has breast cancer?

@@ -1,0 +1,118 @@
+---
+title: "POLS 3220 Midterm Probability Practice"
+subtitle: "Answer Key"
+format: html
+editor: visual
+---
+
+## Problem 1
+
+*A basketball player with a 50% free throw shooting rate goes to the line to shoot 3 free throws. What’s the probability she makes 1 or fewer?*
+
+```{mermaid}
+flowchart LR
+  A[Goes to the line] --> |0.5|B[Hit]
+  A --> |0.5|C[Miss]
+  B --> |0.5|D[Hit]
+  B --> |0.5|E[Miss]
+  C --> |0.5|F[Hit]
+  C --> |0.5|G[Miss]
+  D --> |0.5|H["Hit (12.5%)"]
+  D --> |0.5|I["Miss (12.5%)"]
+  E --> |0.5|J["Hit (12.5%)"]
+  E --> |0.5|K["Miss (12.5%)"]
+  F --> |0.5|L["Hit (12.5%)"]
+  F --> |0.5|M["Miss (12.5%)"]
+  G --> |0.5|N["Hit (12.5%)"]
+  G --> |0.5|O["Miss (12.5%)"]
+```
+
+$12.5\% \times 4 = 50\%$
+
+## Problem 2
+
+*You’re volunteering with a phone bank for a political campaign. People only answer their phone 10% of the time. Out of the next 3 numbers on your call sheet, what’s the probability that anyone answers your call?*
+
+You could draw out the full tree here, but the most straightforward solution is to take advantage of the axioms of probability.
+
+$P(\text{anyone answers your call}) = 1 - P(\text{no one answers your calls})$
+
+The probability that no one answers a single call is 90%, so the probability that no one answers you three calls in a row is $90\% \times 90\% \times 90\% \approx 73\%$.
+
+Therefore, at least one person will pick up the phone with probability $1 - 0.73$ or 27%.
+
+## Problem 3
+
+*The average movie director starts out with a 25% chance of making a Certified Fresh film. But that probability can go up or down over time. If the director makes a Certified Fresh film, he gets a boost of morale, and the probability increases by 10% for the next film he directs. Otherwise, he takes a hit to morale, and the probability decreases by 10% for the next film he directs. What’s the probability that a director gets at least 2 Certified Fresh films out of his first 3 films?*
+
+```{mermaid}
+flowchart LR
+  A[Start] --> |25%|B[Fresh]
+  A --> |75%|C[Rotten]
+  B --> |35%|D[Fresh]
+  B --> |65%|E[Rotten]
+  C --> |15%|F[Fresh]
+  C --> |85%|G[Rotten]
+  D --> |45%|H["Fresh (3.9%)"]
+  D --> |55%|I["Rotten (4.8%)"]
+  E --> |25%|J["Fresh (4.1%)"]
+  E --> |75%|K["Rotten (12.2%)"]
+  F --> |25%|L["Fresh (2.8%)"]
+  F --> |75%|M["Rotten (8.4%)"]
+  G --> |5%|N["Fresh (3.2%)"]
+  G --> |95%|O["Rotten (60.6%)"]
+```
+
+There are four outcomes on the tree where the director has 2/3 fresh films: terminal nodes 1, 2, 3, and 5. The probability of one of those four outcomes is:
+
+$3.9\% + 4.8\% + 4.1\% + 2.8\% =  15.6\%$
+
+## Problem 4
+
+*You are trying to predict whether a bill will be passed by the US House of Representatives. Historically, only 10% of bills introduced in the House are passed. Among passed bills, 60% had bipartisan cosponsors. Among failed bills, only 15% had bipartisan cosponsors. The bill in question has bipartisan cosponsors. What is the probability that it passes?*
+
+$$
+\text{Posterior Odds} = \text{Prior Odds} \times \text{Strength of Evidence}
+$$
+
+-   Prior Odds = 1:9
+
+-   Strength of Evidence = 4:1
+
+-   Posterior Odds = 4:9
+
+-   Posterior Probability = $\frac{4}{13} \approx 31\%$
+
+## Problem 5
+
+*Same question as above, but the bill does not have bipartisan cosponsors.*
+
+$$ 
+\text{Posterior Odds} = \text{Prior Odds} \times \text{Strength of Evidence} 
+$$
+
+-   Prior Odds = 1:9
+
+-   Strength of Evidence = 1:4
+
+-   Posterior Odds = 1:36
+
+-   Posterior Probability = $\frac{1}{37} \approx 2.7\%$
+
+## Problem 6
+
+*Breast cancer is rare among women age 40-49; it only occurs in about [2% of women](https://www.cancer.org/content/dam/cancer-org/research/cancer-facts-and-statistics/breast-cancer-facts-and-figures/2024/breast-cancer-facts-and-figures-2024.pdf) in this age range. A mammogram screening can help you determine if you have breast cancer, but the [false positive rate is about 10%](https://health.ucdavis.edu/news/headlines/false-positive-mammograms-discourage-some-women-from-future-screenings/2024/08) (i.e. 10% of women who don’t have breast cancer will receive a false positive result). The false negative rate is [also around 10%](https://www.cancer.org/cancer/types/breast-cancer/screening-tests-and-early-detection/mammograms/limitations-of-mammograms.html) (i.e. the mammogram will give a false negative in about 10% of women with breast cancer). If a woman in her 40s receives a positive result on a mammogram, what is the probability she has breast cancer?*
+
+The strength of evidence here is 9:1, because the probability of getting a positive mammogram is 90% if you *do* have breast cancer, and 10% if you don't have breast cancer.
+
+$$  
+\text{Posterior Odds} = \text{Prior Odds} \times \text{Strength of Evidence}  
+$$
+
+-   Prior Odds = 2:98 = 1:49
+
+-   Strength of Evidence = 9:1
+
+-   Posterior Odds = 9:49
+
+-   Posterior Probability = $\frac{9}{58} \approx 15.5\%$
