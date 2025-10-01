@@ -1649,7 +1649,7 @@
     "href": "slides/jury-theorems.html#condorcet-jury-theorem-2",
     "title": "Jury Theorems",
     "section": "Condorcet Jury Theorem",
-    "text": "Condorcet Jury Theorem\nExample: A jury with 5 members, where each individual has a 60% probability of choosing the right answer.\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Voting\n\n\n\n\n\n\n\n1R,0W\n\n\n\n\n\n\n\n0R,1W\n\n\n\n\n\n\n\n2R,0W\n\n\n\n\n\n\n\n1R,1W\n\n\n\n\n\n\n\n0R,2W\n\n\n\n\n\n\n\n3R,0W\n\n\n\n\n\n\n\n2R,1W\n\n\n\n\n\n\n\n1R,2W\n\n\n\n\n\n\n\n0R,3W\n\n\n\n\n\n\n\n4R,0W\n\n\n\n\n\n\n\n3R,1W\n\n\n\n\n\n\n\n2R,2W\n\n\n\n\n\n\n\n1R,3W\n\n\n\n\n\n\n\n0R,4W\n\n\n\n\n\n\n\n5R,0W (7.8%)\n\n\n\n\n\n\n\n4R,1W (25.9%)\n\n\n\n\n\n\n\n3R,2W (34.6%)\n\n\n\n\n\n\n\n2R,3W (23%)\n\n\n\n\n\n\n\n1R,4W (7.7%)\n\n\n\n\n\n\n\n0R,5W (1%)"
+    "text": "Condorcet Jury Theorem\nExample: A jury with 5 members, where each individual has a 60% probability of choosing the right answer.\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Voting\n\n\n\n1R,0W\n\n\n\n0R,1W\n\n\n\n2R,0W\n\n\n\n1R,1W\n\n\n\n0R,2W\n\n\n\n3R,0W\n\n\n\n2R,1W\n\n\n\n1R,2W\n\n\n\n0R,3W\n\n\n\n4R,0W\n\n\n\n3R,1W\n\n\n\n2R,2W\n\n\n\n1R,3W\n\n\n\n0R,4W\n\n\n\n5R,0W (7.8%)\n\n\n\n4R,1W (25.9%)\n\n\n\n3R,2W (34.6%)\n\n\n\n2R,3W (23%)\n\n\n\n1R,4W (7.7%)\n\n\n\n0R,5W (1%)"
   },
   {
     "objectID": "slides/jury-theorems.html#condorcet-jury-theorem-3",
@@ -1775,7 +1775,7 @@
     "href": "slides/jury-theorems.html#references",
     "title": "Jury Theorems",
     "section": "References",
-    "text": "References\n\n\n\n\nBlack, Duncan. 1948. “On the Rationale of Group Decision-Making.” Journal of Political Economy 56 (1): 23–34. https://doi.org/10.1086/256633.\n\n\nGalton, Francis. 1907. “Vox Populi.” Nature 75 (1949): 450–51. https://doi.org/10.1038/075450a0."
+    "text": "References\n\n\n\n\n\n\n\n\nBlack, Duncan. 1948. “On the Rationale of Group Decision-Making.” Journal of Political Economy 56 (1): 23–34. https://doi.org/10.1086/256633.\n\n\nGalton, Francis. 1907. “Vox Populi.” Nature 75 (1949): 450–51. https://doi.org/10.1038/075450a0."
   },
   {
     "objectID": "slides/jury-theorems.html#takeaways",
@@ -2090,7 +2090,7 @@
     "href": "slides/aggregating-forecasts.html#references",
     "title": "Aggregating Forecasts",
     "section": "References",
-    "text": "References\n\n\n\n\nSatopää, Ville A., Jonathan Baron, Dean P. Foster, Barbara A. Mellers, Philip E. Tetlock, and Lyle H. Ungar. 2014. “Combining Multiple Probability Predictions Using a Simple Logit Model.” International Journal of Forecasting 30 (2): 344–56. https://doi.org/10.1016/j.ijforecast.2013.09.009."
+    "text": "References\n\n\n\n\n\n\n\n\nSatopää, Ville A., Jonathan Baron, Dean P. Foster, Barbara A. Mellers, Philip E. Tetlock, and Lyle H. Ungar. 2014. “Combining Multiple Probability Predictions Using a Simple Logit Model.” International Journal of Forecasting 30 (2): 344–56. https://doi.org/10.1016/j.ijforecast.2013.09.009."
   },
   {
     "objectID": "index.html#week-5-916",
@@ -2490,5 +2490,61 @@
     "title": "Fall 2025 Predictions",
     "section": "Week 6 (9/24)",
     "text": "Week 6 (9/24)"
+  },
+  {
+    "objectID": "slides/aggregating-forecasts.html",
+    "href": "slides/aggregating-forecasts.html",
+    "title": "Aggregating Forecasts",
+    "section": "",
+    "text": "Suppose the class is trying to predict whether the Federal Reserve will cut interest rates at its next meeting.\nThree students submit briefings, and all three say 75%.\nWhat should you predict after observing those three forecasts?\nPreviously, we considered taking the median forecast (i.e. majority rule).\n\nBut that strategy required some strong assumptions.\nAre those assumptions met here?"
+  },
+  {
+    "objectID": "slides/linear-models.html",
+    "href": "slides/linear-models.html",
+    "title": "Linear Models",
+    "section": "",
+    "text": "Over the next three weeks, we’ll study the fundamentals of machine learning."
+  },
+  {
+    "objectID": "slides/linear-models.html#looking-ahead",
+    "href": "slides/linear-models.html#looking-ahead",
+    "title": "Linear Models",
+    "section": "",
+    "text": "Over the next three weeks, we’ll study the fundamentals of machine learning."
+  },
+  {
+    "objectID": "slides/linear-models.html#dutch",
+    "href": "slides/linear-models.html#dutch",
+    "title": "Linear Models",
+    "section": "Dutch",
+    "text": "Dutch\n\n\n\nCall:\nlm(formula = result ~ poll_average_one_month_out, data = d)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-13.249  -2.525  -1.010   1.519  18.635 \n\nCoefficients:\n                           Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)                 1.29219    1.19670    1.08    0.285    \npoll_average_one_month_out  0.89857    0.06396   14.05   &lt;2e-16 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 5.323 on 55 degrees of freedom\nMultiple R-squared:  0.7821,    Adjusted R-squared:  0.7781 \nF-statistic: 197.4 on 1 and 55 DF,  p-value: &lt; 2.2e-16\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  `residual &gt;= 8`     n\n  &lt;lgl&gt;           &lt;int&gt;\n1 FALSE              22\n2 TRUE                5"
+  },
+  {
+    "objectID": "slides/linear-models.html#four-dangers",
+    "href": "slides/linear-models.html#four-dangers",
+    "title": "Linear Models",
+    "section": "Four Dangers",
+    "text": "Four Dangers\nWhen using a linear model, keep in mind four dangers that could ruin your predictions:\n\nNonlinearity\nExtrapolation\nOverfitting\n(Structural Breaks?)"
+  },
+  {
+    "objectID": "slides/linear-models.html#danger-1-nonlinearity",
+    "href": "slides/linear-models.html#danger-1-nonlinearity",
+    "title": "Linear Models",
+    "section": "Danger 1: Nonlinearity",
+    "text": "Danger 1: Nonlinearity\n. . .\nThe linear model faithfully gives you the line of best fit…\n. . .\n…even when a straight line is a bad model.\n\nDiagnostic: Look at a chart! Are there patterns in the errors?"
+  },
+  {
+    "objectID": "slides/linear-models.html#danger-2-extrapolation",
+    "href": "slides/linear-models.html#danger-2-extrapolation",
+    "title": "Linear Models",
+    "section": "Danger 2: Extrapolation",
+    "text": "Danger 2: Extrapolation"
+  },
+  {
+    "objectID": "slides/linear-models.html#danger-3-structural-breaks",
+    "href": "slides/linear-models.html#danger-3-structural-breaks",
+    "title": "Linear Models",
+    "section": "Danger 3: Structural Breaks",
+    "text": "Danger 3: Structural Breaks\n\nPredicting with a linear model assumes that the relationships observed in your data will be stable over time.\nIn other words, you’re assuming that the future will follow the same rules as the past."
   }
 ]
