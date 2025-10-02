@@ -2509,8 +2509,8 @@
     "objectID": "slides/linear-models.html#looking-ahead",
     "href": "slides/linear-models.html#looking-ahead",
     "title": "Linear Models",
-    "section": "",
-    "text": "Over the next three weeks, we’ll study the fundamentals of machine learning."
+    "section": "Looking Ahead",
+    "text": "Looking Ahead\n\nOver the next three weeks, we’ll study the fundamentals of machine learning.\n\n\n\nToday linear models. Simple models can get you a long way!"
   },
   {
     "objectID": "slides/linear-models.html#dutch",
@@ -2531,7 +2531,7 @@
     "href": "slides/linear-models.html#danger-1-nonlinearity",
     "title": "Linear Models",
     "section": "Danger 1: Nonlinearity",
-    "text": "Danger 1: Nonlinearity\n. . .\nThe linear model faithfully gives you the line of best fit…\n. . .\n…even when a straight line is a bad model.\n\nDiagnostic: Look at a chart! Are there patterns in the errors?"
+    "text": "Danger 1: Nonlinearity\n\nThe linear model faithfully gives you the line of best fit…\n\n\n\n\n[1] \"hello\"\n\n\n…even when a straight line is a bad model.\n\nDiagnostic: Look at a chart! Are there patterns in the errors?"
   },
   {
     "objectID": "slides/linear-models.html#danger-2-extrapolation",
@@ -2553,5 +2553,54 @@
     "title": "Fall 2025 Predictions",
     "section": "Week 7 (9/30)",
     "text": "Week 7 (9/30)"
+  },
+  {
+    "objectID": "slides/linear-models.html#presidential-elections",
+    "href": "slides/linear-models.html#presidential-elections",
+    "title": "Linear Models",
+    "section": "Presidential Elections",
+    "text": "Presidential Elections"
+  },
+  {
+    "objectID": "slides/linear-models.html#presidential-approval",
+    "href": "slides/linear-models.html#presidential-approval",
+    "title": "Linear Models",
+    "section": "Presidential Approval",
+    "text": "Presidential Approval"
+  },
+  {
+    "objectID": "slides/linear-models.html#presidential-approval-1",
+    "href": "slides/linear-models.html#presidential-approval-1",
+    "title": "Linear Models",
+    "section": "Presidential Approval",
+    "text": "Presidential Approval"
+  },
+  {
+    "objectID": "slides/linear-models.html#presidential-election-forecast",
+    "href": "slides/linear-models.html#presidential-election-forecast",
+    "title": "Linear Models",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast\n\n\n“Line of Best Fit”. What is it? We’ll use a familiar strategy. The “best” model is the one that minimizes the average squared error."
+  },
+  {
+    "objectID": "slides/linear-models.html#adding-multiple-predictors",
+    "href": "slides/linear-models.html#adding-multiple-predictors",
+    "title": "Linear Models",
+    "section": "Adding Multiple Predictors",
+    "text": "Adding Multiple Predictors\nWhy were the errors for 1972 and 1984 so large?\nPlane of best fit"
+  },
+  {
+    "objectID": "slides/linear-models.html#plane-of-best-fit",
+    "href": "slides/linear-models.html#plane-of-best-fit",
+    "title": "Linear Models",
+    "section": "Plane of Best Fit",
+    "text": "Plane of Best Fit"
+  },
+  {
+    "objectID": "slides/linear-models.html#threee-dangers",
+    "href": "slides/linear-models.html#threee-dangers",
+    "title": "Linear Models",
+    "section": "Threee Dangers",
+    "text": "Threee Dangers\nWhen using a linear model, keep in mind three dangers that could ruin your predictions:\n\nNonlinearity\nExtrapolation\nOverfitting"
   }
 ]
