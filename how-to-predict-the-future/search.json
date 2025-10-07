@@ -2125,7 +2125,7 @@
     "href": "slides/madness-of-crowds.html#groupthink",
     "title": "Madness of Crowds",
     "section": "Groupthink",
-    "text": "Groupthink\nWhen individuals suppress their private information for the sake of group harmony/cohesion, we call it groupthink.\n\n\nDiscuss: Have you ever been part of a group like this? How can we design our teams to avoid groupthink?\n\nhttps://mediationworksfl.com/going-with-the-flow-the-influence-of-groupthink-on-mediation-outcomes/"
+    "text": "Groupthink\nWhen individuals suppress their private information for the sake of group harmony/cohesion, we call it groupthink.\n\n\n\n\n\n. . .\nDiscuss: Have you ever been part of a group like this? How can we design our teams to avoid groupthink?\n\nhttps://mediationworksfl.com/going-with-the-flow-the-influence-of-groupthink-on-mediation-outcomes/"
   },
   {
     "objectID": "slides/madness-of-crowds.html#social-influence",
@@ -2188,7 +2188,7 @@
     "href": "slides/madness-of-crowds.html#information-cascades-1",
     "title": "Madness of Crowds",
     "section": "Information Cascades",
-    "text": "Information Cascades\n\nInformation cascades don’t always mean that the group will always get the wrong answer.\nBut they do illustrate how hard it is to make a truly independent prediction in a group setting.\nIf we can observe the predictions that other people make, there’s a strong rational basis for ignoring our individual information and just going with the group."
+    "text": "Information Cascades\n\nInformation cascades don’t always cause the group to get the wrong answer.\nBut they do illustrate how hard it is to make a truly independent prediction in a group setting.\nIf we can observe the predictions that other people make, there’s a strong rational basis for ignoring our individual information and just going with the group."
   },
   {
     "objectID": "slides/madness-of-crowds.html#wisdom-of-crowds",
@@ -2531,21 +2531,21 @@
     "href": "slides/linear-models.html#danger-1-nonlinearity",
     "title": "Linear Models",
     "section": "Danger 1: Nonlinearity",
-    "text": "Danger 1: Nonlinearity\n\nThe linear model faithfully gives you the line of best fit…\n\n\n\n\n[1] \"hello\"\n\n\n…even when a straight line is a bad model.\n\nDiagnostic: Look at a chart! Are there patterns in the errors?"
+    "text": "Danger 1: Nonlinearity\n\nThe linear model faithfully gives you the line of best fit…\n\n\n\n\n\n\n\n\n\n\n\n…even when a straight line is a terrible model!\n\nDiagnostic: are there patterns in the errors?"
   },
   {
     "objectID": "slides/linear-models.html#danger-2-extrapolation",
     "href": "slides/linear-models.html#danger-2-extrapolation",
     "title": "Linear Models",
     "section": "Danger 2: Extrapolation",
-    "text": "Danger 2: Extrapolation"
+    "text": "Danger 2: Extrapolation\n\nBe cautious of making predictions with a linear model if the current situation lies far outside the historical data.\n\n\n\n\n\n\n\n\nPlugging these numbers into our model would predict the incumbent losing by 35.2 percentage points! (Actual margin was -4.5 points)."
   },
   {
     "objectID": "slides/linear-models.html#danger-3-structural-breaks",
     "href": "slides/linear-models.html#danger-3-structural-breaks",
     "title": "Linear Models",
     "section": "Danger 3: Structural Breaks",
-    "text": "Danger 3: Structural Breaks\n\nPredicting with a linear model assumes that the relationships observed in your data will be stable over time.\nIn other words, you’re assuming that the future will follow the same rules as the past."
+    "text": "Danger 3: Structural Breaks\n\nPredicting with a linear model assumes that the relationships observed in your data will be stable over time.\nIn other words, you’re assuming that the future will follow the same rules as the past.\n\n\n\n\n\n\n\n\n\n\nAbramowitz, Alan I. 2021. “It’s the Pandemic, Stupid! A Simplified Model for Forecasting the 2020 Presidential Election.” PS: Political Science & Politics 54 (1): 52–54. https://doi.org/10.1017/S1049096520001389."
   },
   {
     "objectID": "index.html#week-7-930",
@@ -2580,7 +2580,7 @@
     "href": "slides/linear-models.html#presidential-election-forecast",
     "title": "Linear Models",
     "section": "Presidential Election Forecast",
-    "text": "Presidential Election Forecast\n\n\n“Line of Best Fit”. What is it? We’ll use a familiar strategy. The “best” model is the one that minimizes the average squared error."
+    "text": "Presidential Election Forecast"
   },
   {
     "objectID": "slides/linear-models.html#adding-multiple-predictors",
@@ -2602,5 +2602,159 @@
     "title": "Linear Models",
     "section": "Threee Dangers",
     "text": "Threee Dangers\nWhen using a linear model, keep in mind three dangers that could ruin your predictions:\n\nNonlinearity\nExtrapolation\nOverfitting"
+  },
+  {
+    "objectID": "slides/linear-models.html#road-map",
+    "href": "slides/linear-models.html#road-map",
+    "title": "Linear Models",
+    "section": "Road Map",
+    "text": "Road Map\n\nIn the first half of the semester, we learned the fundamentals of probabilistic forecasting.\nWe also showed how “crowds” of forecasters tend to outperform individuals.\nOver the next three weeks, we’ll apply these insights to learn the basics of machine learning."
+  },
+  {
+    "objectID": "slides/linear-models.html#machine-learning",
+    "href": "slides/linear-models.html#machine-learning",
+    "title": "Linear Models",
+    "section": "Machine Learning",
+    "text": "Machine Learning\n\nThe term machine learning refers to any computer algorithm that:\n\nidentifies patterns in data, and\nuses those patterns to make predictions.\n\nThis is a really broad definition!"
+  },
+  {
+    "objectID": "slides/linear-models.html#machine-learning-1",
+    "href": "slides/linear-models.html#machine-learning-1",
+    "title": "Linear Models",
+    "section": "Machine Learning",
+    "text": "Machine Learning"
+  },
+  {
+    "objectID": "slides/linear-models.html#machine-learning-2",
+    "href": "slides/linear-models.html#machine-learning-2",
+    "title": "Linear Models",
+    "section": "Machine Learning",
+    "text": "Machine Learning"
+  },
+  {
+    "objectID": "slides/linear-models.html#machine-learning-3",
+    "href": "slides/linear-models.html#machine-learning-3",
+    "title": "Linear Models",
+    "section": "Machine Learning",
+    "text": "Machine Learning"
+  },
+  {
+    "objectID": "slides/linear-models.html#todays-agenda",
+    "href": "slides/linear-models.html#todays-agenda",
+    "title": "Linear Models",
+    "section": "Today’s Agenda",
+    "text": "Today’s Agenda\n\nWe’ll start with perhaps the simplest machine learning approach: the linear model.\nSimple \\(\\neq\\) bad!\n\nSimple models frequently outperform complicated models at prediction.\n\nWe’ll describe how linear models works, and discuss three potential dangers associated with using them."
+  },
+  {
+    "objectID": "slides/linear-models.html#motivating-example",
+    "href": "slides/linear-models.html#motivating-example",
+    "title": "Linear Models",
+    "section": "Motivating Example",
+    "text": "Motivating Example\n\nSuppose it is June in a presidential election year, and you want to predict which candidate will win.\nCan you make a reasonably accurate prediction about November’s election based only on information you have in June?\nLet’s start with an “Outside View”. Are there variables that, historically, have been predictive of presidential election results five months in advance?\nDiscuss: what information would you want to know before making your prediction?"
+  },
+  {
+    "objectID": "slides/linear-models.html#presidential-election-forecast-1",
+    "href": "slides/linear-models.html#presidential-election-forecast-1",
+    "title": "Linear Models",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast"
+  },
+  {
+    "objectID": "slides/linear-models.html#presidential-election-forecast-2",
+    "href": "slides/linear-models.html#presidential-election-forecast-2",
+    "title": "Linear Models",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast\n\nThe equation describing that line is 3.27 + 0.37 \\(\\times \\text{June Approval}\\)\nFor every 1-unit increase in presidential approval, we would predict an additional 0.37 in vote margin for the incumbent’s party.\nBut where did those numbers come from? What is the “line of best fit”?\nThe line of best fit is the line that minimizes average squared error.\n\nSound familiar?"
+  },
+  {
+    "objectID": "slides/linear-models.html#presidential-election-forecast-3",
+    "href": "slides/linear-models.html#presidential-election-forecast-3",
+    "title": "Linear Models",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast"
+  },
+  {
+    "objectID": "slides/linear-models.html#presidential-election-forecast-4",
+    "href": "slides/linear-models.html#presidential-election-forecast-4",
+    "title": "Linear Models",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast"
+  },
+  {
+    "objectID": "slides/linear-models.html#presidential-election-forecast-5",
+    "href": "slides/linear-models.html#presidential-election-forecast-5",
+    "title": "Linear Models",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast\n\nWe can make predictions using this model by plugging in values for future elections.\nIn June 2016, the incumbent president’s net approval rating was +5%.\nSo the model would predict 3.27 + 0.37 \\(\\times 5 = 5.12\\%\\) vote margin for the incumbent party."
+  },
+  {
+    "objectID": "slides/linear-models.html#presidential-election-forecast-6",
+    "href": "slides/linear-models.html#presidential-election-forecast-6",
+    "title": "Linear Models",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast"
+  },
+  {
+    "objectID": "slides/linear-models.html#presidential-election-forecast-7",
+    "href": "slides/linear-models.html#presidential-election-forecast-7",
+    "title": "Linear Models",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast\n\nThe average forecast error is 4.7 percentage points.\nAnd we have some particularly large errors in 1972 (11.9 points) and 1984 (8.5 points).\nMaybe we’d do better if we added more predictor variables to the model?"
+  },
+  {
+    "objectID": "slides/linear-models.html#presidential-election-forecast-8",
+    "href": "slides/linear-models.html#presidential-election-forecast-8",
+    "title": "Linear Models",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast"
+  },
+  {
+    "objectID": "slides/linear-models.html#presidential-election-forecast-9",
+    "href": "slides/linear-models.html#presidential-election-forecast-9",
+    "title": "Linear Models",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast\n\nCombining the presidential approval and economic growth into the same linear model yields this equation:\n\n0.33 + 0.3 \\(\\times \\text{June Approval}\\) + 0.94 \\(\\times \\text{Q2 GDP Growth}\\)\n\nIn 2016, GDP growth was a sluggish 1.2% in the second quarter.\nSo the revised model would predict an incumbent margin of 2.96 percentage points. Much better!"
+  },
+  {
+    "objectID": "slides/linear-models.html#the-plane-of-best-fit",
+    "href": "slides/linear-models.html#the-plane-of-best-fit",
+    "title": "Linear Models",
+    "section": "The “Plane of Best Fit”",
+    "text": "The “Plane of Best Fit”"
+  },
+  {
+    "objectID": "slides/linear-models.html#presidential-election-forecast-10",
+    "href": "slides/linear-models.html#presidential-election-forecast-10",
+    "title": "Linear Models",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast\n\nThe kind of forecast model we’ve been building here is called a fundamentals model.\nNotice that it doesn’t use polling at all! \nIt makes predictions purely based on “fundamentals”, historical patterns in the data (Abramowitz 2021) .\nIn a future lecture, we’ll show how combining polls + fundamentals yields better predictions than either alone."
+  },
+  {
+    "objectID": "slides/linear-models.html#three-dangers",
+    "href": "slides/linear-models.html#three-dangers",
+    "title": "Linear Models",
+    "section": "Three Dangers",
+    "text": "Three Dangers\n\nSimple linear models can be a surprisingly useful tool for making predictions.\nBut when using a linear model, keep in mind three dangers that could ruin your forecasts:\n\nNonlinearity\nExtrapolation\nStructural Stability"
+  },
+  {
+    "objectID": "slides/linear-models.html#danger-3-structural-stability",
+    "href": "slides/linear-models.html#danger-3-structural-stability",
+    "title": "Linear Models",
+    "section": "Danger 3: Structural Stability",
+    "text": "Danger 3: Structural Stability\n\nPredicting with a linear model assumes that the relationships observed in your data will be stable over time.\nIn other words, you’re assuming that the future will follow the same rules as the past.\nMaybe as voters have become more polarized, the relationship between economic growth and voting behavior has gotten weaker?\n\nIf so, our fundamentals model will get worse and worse at predicting.\n\nThis is closely related to a problem we’ll discuss in more detail next lecture: overfitting."
+  },
+  {
+    "objectID": "slides/linear-models.html#looking-forward",
+    "href": "slides/linear-models.html#looking-forward",
+    "title": "Linear Models",
+    "section": "Looking Forward",
+    "text": "Looking Forward\n\nNext time, I’ll show you a slightly more complex machine learning approach that’s better at handling nonlinearity: classification and regression trees (CART).\nWe’ll discuss the balance between overfitting and underfitting machine learning models, and how it relates to the bias-variance tradeoff we introduced previously."
+  },
+  {
+    "objectID": "slides/linear-models.html#references",
+    "href": "slides/linear-models.html#references",
+    "title": "Linear Models",
+    "section": "References",
+    "text": "References\n\n\n\n\n\n\n\n\nAbramowitz, Alan I. 2021. “It’s the Pandemic, Stupid! A Simplified Model for Forecasting the 2020 Presidential Election.” PS: Political Science & Politics 54 (1): 52–54. https://doi.org/10.1017/S1049096520001389."
   }
 ]

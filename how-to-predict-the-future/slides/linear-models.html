@@ -7,8 +7,9 @@
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.42">
+<link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.57">
 
   <title>How To Predict The Future – Linear Models</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,14 +29,232 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2f366650f320edcfcf53d73c80250a32.css">
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -127,7 +346,7 @@
 
   <script src="../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 
-  <script src="../site_libs/plotly-binding-4.10.4/plotly.js"></script>
+  <script src="../site_libs/plotly-binding-4.11.0/plotly.js"></script>
 
   <script src="../site_libs/typedarray-0.1/typedarray.min.js"></script>
 
@@ -154,57 +373,156 @@
 </div>
 
 </section>
-<section id="looking-ahead" class="slide level2">
-<h2>Looking Ahead</h2>
+<section id="road-map" class="slide level2">
+<h2>Road Map</h2>
 <ul>
-<li class="fragment"><p>Over the next three weeks, we’ll study the fundamentals of <strong>machine learning</strong>.</p>
-<ul>
-<li class="fragment"></li>
-</ul></li>
-<li class="fragment"><p>Today linear models. Simple models can get you a long way!</p></li>
+<li class="fragment"><p>In the first half of the semester, we learned the fundamentals of probabilistic forecasting.</p></li>
+<li class="fragment"><p>We also showed how “crowds” of forecasters tend to outperform individuals.</p></li>
+<li class="fragment"><p>Over the next three weeks, we’ll apply these insights to learn the basics of <strong>machine learning</strong>.</p></li>
 </ul>
 </section>
-<section id="presidential-elections" class="slide level2">
-<h2>Presidential Elections</h2>
+<section id="machine-learning" class="slide level2">
+<h2>Machine Learning</h2>
+<ul>
+<li class="fragment"><p>The term <strong>machine learning</strong> refers to any computer algorithm that:</p>
+<ul>
+<li class="fragment">identifies patterns in data, and</li>
+<li class="fragment">uses those patterns to make predictions.</li>
+</ul></li>
+<li class="fragment"><p>This is a really broad definition!</p></li>
+</ul>
+</section>
+<section id="machine-learning-1" class="slide level2">
+<h2>Machine Learning</h2>
 
-<img data-src="linear-models_files/figure-revealjs/unnamed-chunk-1-1.png" width="768" class="r-stretch"></section>
+<img data-src="img/tiktok-logo.png" class="quarto-figure quarto-figure-center r-stretch" width="600"></section>
+<section id="machine-learning-2" class="slide level2">
+<h2>Machine Learning</h2>
+
+<img data-src="img/chase-fraud.png" class="r-stretch"></section>
+<section id="machine-learning-3" class="slide level2">
+<h2>Machine Learning</h2>
+
+<img data-src="img/chatgpt-is-machine-learning.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="todays-agenda" class="slide level2">
+<h2>Today’s Agenda</h2>
+<ul>
+<li class="fragment"><p>We’ll start with perhaps the simplest machine learning approach: the <strong>linear model</strong>.</p></li>
+<li class="fragment"><p>Simple <span class="math inline">\(\neq\)</span> bad!</p>
+<ul>
+<li class="fragment">Simple models frequently outperform complicated models at prediction.</li>
+</ul></li>
+<li class="fragment"><p>We’ll describe how linear models works, and discuss three potential dangers associated with using them.</p></li>
+</ul>
+</section>
+<section id="motivating-example" class="slide level2">
+<h2>Motivating Example</h2>
+<ul>
+<li class="fragment"><p>Suppose it is June in a presidential election year, and you want to predict which candidate will win.</p></li>
+<li class="fragment"><p>Can you make a reasonably accurate prediction about November’s election based only on information you have in June?</p></li>
+<li class="fragment"><p>Let’s start with an “Outside View”. Are there variables that, historically, have been predictive of presidential election results five months in advance?</p></li>
+<li class="fragment"><p><strong>Discuss:</strong> what information would you want to know before making your prediction?</p></li>
+</ul>
+</section>
 <section id="presidential-election-forecast" class="slide level2">
 <h2>Presidential Election Forecast</h2>
 
-<img data-src="linear-models_files/figure-revealjs/unnamed-chunk-2-1.png" width="768" class="r-stretch"><ul>
-<li class="fragment">“Line of Best Fit”. What is it? We’ll use a familiar strategy. The “best” model is the one that minimizes the <em>average squared error</em>.</li>
+<img data-src="linear-models_files/figure-revealjs/unnamed-chunk-1-1.png" width="768" class="r-stretch"></section>
+<section id="presidential-election-forecast-1" class="slide level2">
+<h2>Presidential Election Forecast</h2>
+
+<img data-src="linear-models_files/figure-revealjs/unnamed-chunk-2-1.png" width="768" class="r-stretch"></section>
+<section id="presidential-election-forecast-2" class="slide level2">
+<h2>Presidential Election Forecast</h2>
+<ul>
+<li class="fragment"><p>The equation describing that line is 3.27 + 0.37 <span class="math inline">\(\times \text{June Approval}\)</span></p></li>
+<li class="fragment"><p>For every 1-unit increase in presidential approval, we would predict an additional 0.37 in vote margin for the incumbent’s party.</p></li>
+<li class="fragment"><p>But where did those numbers come from? What is the “line of best fit”?</p></li>
+<li class="fragment"><p>The <strong>line of best fit</strong> is the line that <em>minimizes</em> average squared error.</p>
+<ul>
+<li class="fragment">Sound familiar?</li>
+</ul></li>
 </ul>
 </section>
-<section id="presidential-approval" class="slide level2">
-<h2>Presidential Approval</h2>
+<section id="presidential-election-forecast-3" class="slide level2">
+<h2>Presidential Election Forecast</h2>
 
 <img data-src="linear-models_files/figure-revealjs/unnamed-chunk-3-1.png" width="768" class="r-stretch"></section>
-<section id="presidential-approval-1" class="slide level2">
-<h2>Presidential Approval</h2>
+<section id="presidential-election-forecast-4" class="slide level2">
+<h2>Presidential Election Forecast</h2>
 
 <img data-src="linear-models_files/figure-revealjs/unnamed-chunk-4-1.png" width="768" class="r-stretch"></section>
-<section id="adding-multiple-predictors" class="slide level2">
-<h2>Adding Multiple Predictors</h2>
-<p>Why were the errors for 1972 and 1984 so large?</p>
-<p>Plane of best fit</p>
+<section id="presidential-election-forecast-5" class="slide level2">
+<h2>Presidential Election Forecast</h2>
+<ul>
+<li class="fragment"><p>We can make predictions using this model by plugging in values for future elections.</p></li>
+<li class="fragment"><p>In June 2016, the incumbent president’s net approval rating was +5%.</p></li>
+<li class="fragment"><p>So the model would predict 3.27 + 0.37 <span class="math inline">\(\times 5 = 5.12\%\)</span> vote margin for the incumbent party.</p></li>
+</ul>
 </section>
-<section id="plane-of-best-fit" class="slide level2">
-<h2>Plane of Best Fit</h2>
+<section id="presidential-election-forecast-6" class="slide level2">
+<h2>Presidential Election Forecast</h2>
+
+<img data-src="linear-models_files/figure-revealjs/unnamed-chunk-5-1.png" width="768" class="r-stretch"></section>
+<section id="presidential-election-forecast-7" class="slide level2">
+<h2>Presidential Election Forecast</h2>
+<ul>
+<li class="fragment"><p>The average forecast error is 4.7 percentage points.</p></li>
+<li class="fragment"><p>And we have some particularly large errors in 1972 (11.9 points) and 1984 (8.5 points).</p></li>
+<li class="fragment"><p>Maybe we’d do better if we added more predictor variables to the model?</p></li>
+</ul>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/carville-economy.jpg" class="quarto-figure quarto-figure-center" width="500"></p>
+</figure>
+</div>
+</div>
+</section>
+<section id="presidential-election-forecast-8" class="slide level2">
+<h2>Presidential Election Forecast</h2>
+
+<img data-src="linear-models_files/figure-revealjs/unnamed-chunk-6-1.png" width="768" class="r-stretch"></section>
+<section id="presidential-election-forecast-9" class="slide level2">
+<h2>Presidential Election Forecast</h2>
+<ul>
+<li class="fragment"><p>Combining the presidential approval and economic growth into the same linear model yields this equation:</p>
+<ul>
+<li class="fragment">0.33 + 0.3 <span class="math inline">\(\times \text{June Approval}\)</span> + 0.94 <span class="math inline">\(\times \text{Q2 GDP Growth}\)</span></li>
+</ul></li>
+<li class="fragment"><p>In 2016, GDP growth was a sluggish 1.2% in the second quarter.</p></li>
+<li class="fragment"><p>So the revised model would predict an incumbent margin of 2.96 percentage points. Much better!</p></li>
+</ul>
+</section>
+<section id="the-plane-of-best-fit" class="slide level2">
+<h2>The “Plane of Best Fit”</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div class="plotly html-widget html-fill-item" id="htmlwidget-cb1adb3d650e1361cb49" style="width:960px;height:672px;"></div>
-<script type="application/json" data-for="htmlwidget-cb1adb3d650e1361cb49">{"x":{"visdat":{"633c25cc701a":["function () ","plotlyVisDat"],"633c4bbc6d64":["function () ","data"]},"cur_data":"633c4bbc6d64","attrs":{"633c25cc701a":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"z":{},"type":"surface","x":{},"y":{},"opacity":0.5,"showscale":false,"inherit":true},"633c4bbc6d64":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"z":{},"type":"scatter3d","mode":"markers","text":{},"hoverinfo":"text+x+y+z","marker":{"size":5,"color":"red"},"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"October Approval"},"yaxis":{"title":"Q2 GDP Growth"},"zaxis":{"title":"Incumbent Vote Margin"}},"showlegend":false,"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false},"data":[{"colorbar":{"title":"z<br />incvotemargin","ticklen":2},"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":false,"z":[[-14.491073868973832,-14.091582858808056,-13.69209184864228,-13.292600838476503,-12.893109828310727,-12.493618818144951,-12.094127807979174,-11.694636797813398,-11.295145787647622,-10.895654777481845,-10.496163767316068,-10.096672757150291,-9.6971817469845156,-9.2976907368187387,-8.8981997266529618,-8.4987087164871866,-8.0992177063214097,-7.6997266961556328,-7.3002356859898558,-6.9007446758240798,-6.5012536656583038,-6.1017626554925268,-5.7022716453267499,-5.3027806351609739,-4.9032896249951987,-4.5037986148294218,-4.1043076046636457,-3.7048165944978688,-3.3053255843320919,-2.9058345741663167],[-13.525665424567233,-13.126174414401458,-12.726683404235681,-12.327192394069904,-11.927701383904129,-11.528210373738352,-11.128719363572575,-10.7292283534068,-10.329737343241023,-9.930246333075246,-9.530755322909469,-9.1312643127436921,-8.731773302577917,-8.33228229241214,-7.932791282246364,-7.5333002720805871,-7.133809261914811,-6.7343182517490341,-6.3348272415832572,-5.9353362314174811,-5.5358452212517051,-5.1363542110859282,-4.7368632009201512,-4.3373721907543752,-3.9378811805886,-3.5383901704228231,-3.1388991602570471,-2.7394081500912701,-2.3399171399254932,-1.9404261297597181],[-12.560256980160638,-12.160765969994859,-11.761274959829084,-11.361783949663307,-10.96229293949753,-10.562801929331755,-10.163310919165978,-9.7638199090002011,-9.364328898834426,-8.9648378886686491,-8.5653468785028721,-8.1658558683370952,-7.7663648581713201,-7.3668738480055431,-6.9673828378397671,-6.5678918276739902,-6.1684008175082141,-5.7689098073424372,-5.3694187971766603,-4.9699277870108842,-4.5704367768451082,-4.1709457666793313,-3.7714547565135548,-3.3719637463477783,-2.9724727361820031,-2.5729817260162262,-2.1734907158504502,-1.7739997056846732,-1.3745086955188963,-0.97501768535312117],[-11.594848535754037,-11.19535752558826,-10.795866515422485,-10.396375505256708,-9.9968844950909315,-9.5973934849251545,-9.1979024747593794,-8.7984114645936025,-8.3989204544278255,-7.9994294442620495,-7.5999384340962726,-7.2004474239304965,-6.8009564137647205,-6.4014654035989436,-6.0019743934331675,-5.6024833832673906,-5.2029923731016146,-4.8035013629358376,-4.4040103527700616,-4.0045193426042847,-3.6050283324385082,-3.2055373222727317,-2.8060463121069552,-2.4065553019411787,-2.0070642917754036,-1.6075732816096266,-1.2080822714438506,-0.80859126127807368,-0.40910025111229675,-0.0096092409465216022],[-10.629440091347441,-10.229949081181664,-9.8304580710158866,-9.4309670608501115,-9.0314760506843346,-8.6319850405185576,-8.2324940303527825,-7.8330030201870056,-7.4335120100212286,-7.0340209998554526,-6.6345299896896757,-6.2350389795238996,-5.8355479693581236,-5.4360569591923467,-5.0365659490265706,-4.6370749388607937,-4.2375839286950177,-3.8380929185292407,-3.4386019083634642,-3.0391108981976878,-2.6396198880319113,-2.2401288778661348,-1.8406378677003583,-1.4411468575345818,-1.0416558473688067,-0.64216483720302975,-0.24267382703725371,0.15681718312852322,0.55630819329430015,0.9557992034600753],[-9.6640316469408418,-9.2645406367750667,-8.8650496266092897,-8.4655586164435128,-8.0660676062777377,-7.6665765961119607,-7.2670855859461838,-6.8675945757804078,-6.4681035656146308,-6.0686125554488548,-5.6691215452830779,-5.2696305351173018,-4.8701395249515258,-4.4706485147857489,-4.0711575046199728,-3.6716664944541959,-3.2721754842884199,-2.8726844741226429,-2.4731934639568665,-2.07370245379109,-1.6742114436253135,-1.274720433459537,-0.87522942329376052,-0.47573841312798404,-0.076247402962208888,0.32324360720356804,0.72273461736934408,1.122225627535121,1.5217166377008979,1.9212076478666731],[-8.6986232025342431,-8.299132192368468,-7.8996411822026911,-7.5001501720369141,-7.1006591618711381,-6.7011681517053621,-6.3016771415395851,-5.9021861313738091,-5.5026951212080322,-5.1032041110422561,-4.7037131008764792,-4.3042220907107032,-3.9047310805449271,-3.5052400703791506,-3.1057490602133742,-2.7062580500475972,-2.3067670398818212,-1.9072760297160443,-1.5077850195502678,-1.1082940093844913,-0.70880299921871481,-0.30931198905293833,0.090179021112838154,0.48967003127861464,0.88916104144438979,1.2886520516101667,1.6881430617759428,2.0876340719417197,2.4871250821074966,2.8866160922732718],[-7.7332147581276454,-7.3337237479618684,-6.9342327377960924,-6.5347417276303155,-6.1352507174645394,-5.7357597072987634,-5.3362686971329865,-4.9367776869672104,-4.5372866768014335,-4.1377956666356575,-3.7383046564698805,-3.3388136463041045,-2.9393226361383284,-2.539831625972552,-2.1403406158067755,-1.7408496056409986,-1.3413585954752223,-0.94186758530944559,-0.5423765751436691,-0.14288556497789262,0.25660544518788386,0.65609645535366035,1.0555874655194368,1.4550784756852133,1.8545694858509885,2.2540604960167654,2.6535515061825414,3.0530425163483184,3.4525335265140953,3.8520245366798704],[-6.7678063137210476,-6.3683153035552706,-5.9688242933894955,-5.5693332832237186,-5.1698422730579416,-4.7703512628921656,-4.3708602527263896,-3.9713692425606131,-3.5718782323948366,-3.1723872222290597,-2.7728962120632836,-2.3734052018975067,-1.9739141917317309,-1.5744231815659544,-1.1749321714001779,-0.77544116123440132,-0.37595015106862495,0.023540859097151756,0.42303186926292824,0.82252287942870472,1.2220138895944812,1.6215048997602577,2.0209959099260342,2.4204869200918107,2.8199779302575858,3.2194689404233627,3.6189599505891388,4.0184509607549153,4.4179419709206922,4.8174329810864673],[-5.8023978693144507,-5.4029068591486737,-5.0034158489828968,-4.6039248388171208,-4.2044338286513447,-3.8049428184855678,-3.4054518083197918,-3.0059607981540153,-2.6064697879882388,-2.2069787778224619,-1.8074877676566856,-1.4079967574909091,-1.0085057473251331,-0.60901473715935661,-0.20952372699358013,0.18996728317219647,0.58945829333797284,0.98894930350374954,1.388440313669526,1.7879313238353025,2.187422334001079,2.5869133441668555,2.986404354332632,3.3858953644984084,3.7853863746641836,4.1848773848299601,4.584368394995737,4.9838594051615139,5.3833504153272909,5.782841425493066],[-4.8369894249078529,-4.437498414742076,-4.0380074045762999,-3.638516394410523,-3.2390253842447465,-2.83953437407897,-2.440043363913194,-2.0405523537474175,-1.641061343581641,-1.2415703334158645,-0.84207932325008794,-0.44258831308431146,-0.043097302918535474,0.35639370724724106,0.75588471741301755,1.1553757275787941,1.5548667377445704,1.9543577479103473,2.3538487580761238,2.7533397682419003,3.1528307784076768,3.5523217885734533,3.9518127987392297,4.3513038089050058,4.7507948190707809,5.1502858292365579,5.5497768394023339,5.9492678495681108,6.3487588597338878,6.7482498698996629],[-3.8715809805012533,-3.4720899703354764,-3.0725989601697004,-2.6731079500039243,-2.2736169398381474,-1.8741259296723711,-1.4746349195065951,-1.0751439093408186,-0.6756528991750419,-0.27616188900926542,0.12332912115651107,0.52282013132228755,0.92231114148806359,1.3218021516538401,1.7212931618196166,2.120784171985393,2.5202751821511695,2.9197661923169465,3.3192572024827225,3.7187482126484994,4.1182392228142755,4.5177302329800524,4.9172212431458284,5.3167122533116054,5.7162032634773805,6.1156942736431574,6.5151852838089335,6.9146762939747104,7.3141673041404873,7.7136583143062625],[-2.9061725360946555,-2.5066815259288786,-2.1071905157631026,-1.7076995055973261,-1.3082084954315496,-0.90871748526577312,-0.50922647509999708,-0.10973546493422059,0.28975554523155611,0.68924655539733259,1.0887375655631091,1.4882285757288856,1.8877195858946616,2.2872105960604379,2.6867016062262143,3.0861926163919913,3.4856836265577673,3.8851746367235442,4.2846656468893212,4.6841566570550972,5.0836476672208732,5.4831386773866502,5.8826296875524271,6.2821206977182031,6.6816117078839783,7.0811027180497552,7.4805937282155313,7.8800847383813082,8.2795757485470851,8.6790667587128603],[-1.9407640916880564,-1.5412730815222795,-1.1417820713565034,-0.74229106119072696,-0.34280005102495048,0.056690959140826003,0.45618196930660204,0.85567297947237853,1.2551639896381552,1.6546549998039317,2.054146009969708,2.4536370201354849,2.8531280303012605,3.252619040467037,3.6521100506328139,4.0516010607985899,4.4510920709643669,4.8505830811301429,5.2500740912959198,5.6495651014616968,6.0490561116274728,6.4485471217932488,6.8480381319590258,7.2475291421248027,7.6470201522905779,8.0465111624563548,8.4460021726221299,8.8454931827879069,9.2449841929536838,9.6444752031194589],[-0.97535564728145907,-0.57586463711568214,-0.1763736269499061,0.22311738321587038,0.62260839338164686,1.0220994035474233,1.4215904137131994,1.8210814238789759,2.2205724340447528,2.6200634442105288,3.0195544543763058,3.4190454645420818,3.8185364747078578,4.2180274848736348,4.6175184950394108,5.0170095052051877,5.4165005153709638,5.8159915255367407,6.2154825357025167,6.6149735458682937,7.0144645560340706,7.4139555661998466,7.8134465763656227,8.2129375865313996,8.6124285966971748,9.0119196068629517,9.4114106170287286,9.8109016271945038,10.210392637360282,10.609883647526058],[-0.0099472028748612829,0.38954380729091564,0.78903481745669168,1.1885258276224682,1.5880168377882447,1.9875078479540211,2.3869988581197972,2.7864898682855737,3.1859808784513506,3.5854718886171266,3.9849628987829036,4.3844539089486796,4.7839449191144556,5.1834359292802326,5.5829269394460086,5.9824179496117855,6.3819089597775616,6.7813999699433385,7.1808909801091154,7.5803819902748915,7.9798730004406675,8.3793640106064444,8.7788550207722214,9.1783460309379983,9.5778370411037734,9.9773280512695486,10.376819061435326,10.776310071601102,11.175801081766879,11.575292091932655],[0.9554612415317365,1.3549522516975134,1.7544432618632895,2.153934272029066,2.5534252821948424,2.9529162923606189,3.352407302526395,3.7518983126921714,4.1513893228579484,4.5508803330237244,4.9503713431895013,5.3498623533552774,5.7493533635210534,6.1488443736868303,6.5483353838526064,6.9478263940183833,7.3473174041841594,7.7468084143499363,8.1462994245157123,8.5457904346814892,8.9452814448472662,9.3447724550130431,9.7442634651788183,10.143754475344595,10.54324548551037,10.942736495676147,11.342227505841922,11.741718516007701,12.141209526173476,12.540700536339251],[1.9208696859383343,2.3203606961041112,2.7198517062698873,3.1193427164356637,3.5188337266014402,3.9183247367672167,4.3178157469329932,4.7173067570987692,5.1167977672645462,5.5162887774303222,5.9157797875960991,6.3152707977618752,6.7147618079276512,7.1142528180934281,7.5137438282592042,7.9132348384249811,8.3127258485907571,8.7122168587565341,9.111707868922311,9.5111988790880879,9.9106898892538631,10.31018089941964,10.709671909585417,11.109162919751192,11.508653929916967,11.908144940082746,12.307635950248521,12.707126960414298,13.106617970580075,13.50610898074585],[2.886278130344933,3.2857691405107099,3.6852601506764859,4.0847511608422629,4.4842421710080389,4.8837331811738149,5.2832241913395919,5.6827152015053679,6.0822062116711448,6.4816972218369209,6.8811882320026978,7.2806792421684738,7.6801702523342499,8.0796612625000268,8.4791522726658037,8.8786432828315789,9.2781342929973558,9.6776253031631327,10.07711631332891,10.476607323494687,10.876098333660462,11.275589343826239,11.675080353992016,12.074571364157791,12.474062374323566,12.873553384489345,13.27304439465512,13.672535404820897,14.072026414986674,14.471517425152449],[3.8516865747515299,4.2511775849173068,4.6506685950830828,5.0501596052488598,5.4496506154146358,5.8491416255804118,6.2486326357461888,6.6481236459119648,7.0476146560777417,7.4471056662435178,7.8465966764092947,8.2460876865750716,8.6455786967408468,9.0450697069066237,9.4445607170724006,9.8440517272381758,10.243542737403953,10.64303374756973,11.042524757735507,11.442015767901282,11.841506778067059,12.240997788232836,12.640488798398613,13.039979808564389,13.439470818730165,13.83896182889594,14.238452839061717,14.637943849227494,15.037434859393271,15.436925869559046],[4.8170950191581268,5.2165860293239037,5.6160770394896797,6.0155680496554567,6.4150590598212327,6.8145500699870087,7.2140410801527857,7.6135320903185617,8.0130231004843377,8.4125141106501147,8.8120051208158916,9.2114961309816685,9.6109871411474437,10.010478151313221,10.409969161478998,10.809460171644773,11.20895118181055,11.608442191976327,12.007933202142103,12.40742421230788,12.806915222473656,13.206406232639432,13.605897242805209,14.005388252970985,14.40487926313676,14.804370273302538,15.203861283468314,15.60335229363409,16.002843303799867,16.402334313965643],[5.7825034635647272,6.1819944737305041,6.5814854838962802,6.9809764940620571,7.3804675042278332,7.7799585143936092,8.1794495245593861,8.578940534725163,8.9784315448909382,9.3779225550567151,9.7774135652224921,10.176904575388269,10.576395585554044,10.975886595719821,11.375377605885598,11.774868616051373,12.17435962621715,12.573850636382927,12.973341646548704,13.372832656714479,13.772323666880256,14.171814677046033,14.57130568721181,14.970796697377587,15.370287707543362,15.769778717709137,16.169269727874912,16.568760738040691,16.96825174820647,17.367742758372245],[6.7479119079713259,7.1474029181371028,7.5468939283028789,7.9463849384686558,8.3458759486344327,8.7453669588002079,9.1448579689659848,9.5443489791317617,9.9438399892975369,10.343330999463314,10.742822009629091,11.142313019794868,11.541804029960643,11.94129504012642,12.340786050292197,12.740277060457972,13.139768070623749,13.539259080789526,13.938750090955303,14.338241101121078,14.737732111286855,15.137223121452632,15.536714131618409,15.936205141784185,16.335696151949961,16.735187162115736,17.134678172281511,17.53416918244729,17.933660192613068,18.333151202778843],[7.7133203523779228,8.1128113625436988,8.5123023727094758,8.9117933828752527,9.3112843930410278,9.7107754032068048,10.110266413372582,10.509757423538357,10.909248433704134,11.308739443869911,11.708230454035688,12.107721464201465,12.50721247436724,12.906703484533017,13.306194494698794,13.705685504864569,14.105176515030346,14.504667525196123,14.904158535361899,15.303649545527676,15.703140555693452,16.102631565859227,16.502122576025005,16.901613586190781,17.301104596356556,17.700595606522334,18.10008661668811,18.499577626853885,18.899068637019663,19.298559647185439],[8.6787287967845224,9.0782198069502975,9.4777108171160744,9.8772018272818514,10.276692837447627,10.676183847613403,11.07567485777918,11.475165867944956,11.874656878110732,12.274147888276509,12.673638898442286,13.073129908608063,13.472620918773838,13.872111928939615,14.271602939105392,14.671093949271167,15.070584959436944,15.470075969602721,15.869566979768498,16.269057989934275,16.66854900010005,17.068040010265825,17.467531020431604,17.867022030597379,18.266513040763154,18.666004050928933,19.065495061094708,19.464986071260483,19.864477081426262,20.263968091592037],[9.644137241191121,10.0436282513569,10.443119261522675,10.842610271688452,11.242101281854229,11.641592292020004,12.041083302185781,12.440574312351558,12.840065322517333,13.23955633268311,13.639047342848887,14.038538353014664,14.438029363180439,14.837520373346216,15.237011383511993,15.636502393677768,16.035993403843545,16.435484414009323,16.834975424175099,17.234466434340874,17.633957444506652,18.033448454672428,18.432939464838203,18.832430475003981,19.231921485169757,19.631412495335532,20.030903505501307,20.430394515667086,20.829885525832864,21.229376535998639],[10.60954568559772,11.009036695763495,11.408527705929272,11.808018716095049,12.207509726260824,12.607000736426601,13.006491746592378,13.405982756758153,13.80547376692393,14.204964777089707,14.604455787255484,15.003946797421261,15.403437807587036,15.802928817752813,16.20241982791859,16.601910838084365,17.001401848250143,17.400892858415919,17.800383868581694,18.199874878747472,18.599365888913248,18.998856899079023,19.398347909244801,19.797838919410577,20.197329929576352,20.59682093974213,20.996311949907906,21.395802960073681,21.795293970239459,22.194784980405235],[11.574954130004318,11.974445140170094,12.37393615033587,12.773427160501647,13.172918170667423,13.572409180833199,13.971900190998976,14.371391201164752,14.770882211330528,15.170373221496305,15.569864231662082,15.969355241827859,16.368846251993634,16.76833726215941,17.167828272325188,17.567319282490963,17.966810292656742,18.366301302822517,18.765792312988292,19.165283323154071,19.564774333319846,19.964265343485621,20.3637563536514,20.763247363817175,21.16273837398295,21.562229384148729,21.961720394314504,22.361211404480279,22.760702414646058,23.160193424811833],[12.540362574410917,12.939853584576692,13.339344594742469,13.738835604908246,14.138326615074021,14.537817625239798,14.937308635405575,15.33679964557135,15.736290655737127,16.135781665902904,16.535272676068679,16.934763686234458,17.334254696400233,17.733745706566008,18.133236716731787,18.532727726897562,18.932218737063341,19.331709747229116,19.731200757394891,20.13069176756067,20.530182777726445,20.92967378789222,21.329164798057999,21.728655808223774,22.128146818389549,22.527637828555328,22.927128838721103,23.326619848886878,23.726110859052657,24.125601869218432],[13.505771018817512,13.905262028983287,14.304753039149064,14.704244049314841,15.103735059480616,15.503226069646393,15.90271707981217,16.302208089977945,16.701699100143724,17.101190110309499,17.500681120475274,17.900172130641053,18.299663140806828,18.699154150972603,19.098645161138382,19.498136171304157,19.897627181469936,20.297118191635711,20.696609201801486,21.096100211967265,21.49559122213304,21.895082232298819,22.294573242464594,22.694064252630369,23.093555262796144,23.493046272961923,23.892537283127698,24.292028293293477,24.691519303459252,25.091010313625027]],"type":"surface","x":[-25,-22.379310344827587,-19.758620689655174,-17.137931034482758,-14.517241379310345,-11.896551724137932,-9.2758620689655178,-6.6551724137931032,-4.0344827586206904,-1.4137931034482776,1.2068965517241352,3.8275862068965516,6.4482758620689644,9.0689655172413808,11.689655172413794,14.310344827586206,16.931034482758619,19.551724137931032,22.172413793103445,24.793103448275858,27.41379310344827,30.03448275862069,32.655172413793103,35.275862068965516,37.896551724137929,40.517241379310349,43.137931034482762,45.758620689655174,48.379310344827587,51],"y":[-7.9000000000000004,-7.2896551724137932,-6.6793103448275861,-6.068965517241379,-5.4586206896551719,-4.8482758620689648,-4.2379310344827585,-3.6275862068965514,-3.0172413793103443,-2.4068965517241372,-1.7965517241379301,-1.186206896551723,-0.57586206896551673,0.03448275862069039,0.64482758620689751,1.2551724137931046,1.8655172413793117,2.4758620689655189,3.086206896551726,3.6965517241379331,4.3068965517241402,4.9172413793103473,5.5275862068965544,6.1379310344827616,6.7482758620689669,7.358620689655174,7.9689655172413811,8.5793103448275883,9.1896551724137954,9.8000000000000007],"opacity":0.5,"frame":null},{"x":[48,51,34,5,-25,25,-22,18,5,8],"y":[3.2000000000000002,4.7000000000000002,9.8000000000000007,3,-7.9000000000000004,7.0999999999999996,4.2999999999999998,7.0999999999999996,2.8999999999999999,1.3],"z":[15.599999999999994,22.599999999999994,23.599999999999994,-2.2000000000000028,-10.599999999999994,18.400000000000006,-7,9.4000000000000057,2.480000000000004,4],"type":"scatter3d","mode":"markers","text":[1956,1964,1972,1976,1980,1984,1992,1996,2004,2012],"hoverinfo":["text+x+y+z","text+x+y+z","text+x+y+z","text+x+y+z","text+x+y+z","text+x+y+z","text+x+y+z","text+x+y+z","text+x+y+z","text+x+y+z"],"marker":{"color":"red","size":5,"line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-e6584022455d7386ed1f" style="width:960px;height:672px;"></div>
+<script type="application/json" data-for="htmlwidget-e6584022455d7386ed1f">{"x":{"visdat":{"3a9c16b63f8a":["function () ","plotlyVisDat"],"3a9c3183ff0":["function () ","data"]},"cur_data":"3a9c3183ff0","attrs":{"3a9c16b63f8a":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"z":{},"type":"surface","x":{},"y":{},"opacity":0.5,"showscale":false,"inherit":true},"3a9c3183ff0":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"z":{},"type":"scatter3d","mode":"markers","text":{},"hoverinfo":"text+x+y+z","marker":{"size":5,"color":"red"},"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"June Approval"},"yaxis":{"title":"Q2 GDP Growth"},"zaxis":{"title":"Incumbent Vote Margin"}},"showlegend":false,"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false,"displayModeBar":false},"data":[{"colorbar":{"title":"z<br />incvotemargin","ticklen":2},"colorscale":[["0","rgba(68,1,84,1)"],["0.0416666666666667","rgba(70,19,97,1)"],["0.0833333333333333","rgba(72,32,111,1)"],["0.125","rgba(71,45,122,1)"],["0.166666666666667","rgba(68,58,128,1)"],["0.208333333333333","rgba(64,70,135,1)"],["0.25","rgba(60,82,138,1)"],["0.291666666666667","rgba(56,93,140,1)"],["0.333333333333333","rgba(49,104,142,1)"],["0.375","rgba(46,114,142,1)"],["0.416666666666667","rgba(42,123,142,1)"],["0.458333333333333","rgba(38,133,141,1)"],["0.5","rgba(37,144,140,1)"],["0.541666666666667","rgba(33,154,138,1)"],["0.583333333333333","rgba(39,164,133,1)"],["0.625","rgba(47,174,127,1)"],["0.666666666666667","rgba(53,183,121,1)"],["0.708333333333333","rgba(79,191,110,1)"],["0.75","rgba(98,199,98,1)"],["0.791666666666667","rgba(119,207,85,1)"],["0.833333333333333","rgba(147,214,70,1)"],["0.875","rgba(172,220,52,1)"],["0.916666666666667","rgba(199,225,42,1)"],["0.958333333333333","rgba(226,228,40,1)"],["1","rgba(253,231,37,1)"]],"showscale":false,"z":[[-15.205591288394039,-14.629772586359891,-14.05395388432574,-13.478135182291592,-12.902316480257442,-12.326497778223292,-11.750679076189144,-11.174860374154992,-10.599041672120844,-10.023222970086692,-9.4474042680525443,-8.8715855660183944,-8.2957668639842446,-7.7199481619500956,-7.1441294599159457,-6.5683107578817959,-5.992492055847646,-5.4166733538134961,-4.8408546517793472,-4.2650359497451973,-3.6892172477110474,-3.1133985456768976,-2.5375798436427477,-1.9617611416085978,-1.3859424395744497,-0.81012373754029987,-0.23430503550615001,0.34151366652799986,0.91733236856214972,1.4931510705962978],[-14.3173843793925,-13.74156567735835,-13.1657469753242,-12.589928273290052,-12.014109571255901,-11.438290869221753,-10.862472167187603,-10.286653465153453,-9.710834763119303,-9.1350160610851532,-8.5591973590510033,-7.9833786570168535,-7.4075599549827054,-6.8317412529485555,-6.2559225509144056,-5.6801038488802558,-5.1042851468461059,-4.528466444811956,-3.9526477427778066,-3.3768290407436568,-2.8010103387095073,-2.2251916366753575,-1.6493729346412076,-1.0735542326070577,-0.49773553057290965,0.078083171461240219,0.65390187349539008,1.2297205755295399,1.8055392775636898,2.3813579795978379],[-13.429177470390961,-12.853358768356809,-12.277540066322661,-11.701721364288511,-11.125902662254362,-10.550083960220212,-9.9742652581860618,-9.3984465561519137,-8.8226278541177621,-8.246809152083614,-7.6709904500494632,-7.0951717480153143,-6.5193530459811644,-5.9435343439470154,-5.3677156419128655,-4.7918969398787157,-4.2160782378445658,-3.6402595358104159,-3.0644408337762665,-2.4886221317421167,-1.9128034297079672,-1.3369847276738174,-0.76116602563966751,-0.18534732360551764,0.39047137842863044,0.96629008046278031,1.5421087824969302,2.11792748453108,2.6937461865652299,3.269564888599378],[-12.54097056138942,-11.96515185935527,-11.38933315732112,-10.81351445528697,-10.237695753252822,-9.6618770512186707,-9.0860583491845226,-8.5102396471503727,-7.9344209451162229,-7.358602243082073,-6.7827835410479231,-6.2069648390137733,-5.6311461369796252,-5.0553274349454753,-4.4795087329113255,-3.9036900308771756,-3.3278713288430257,-2.7520526268088759,-2.1762339247747264,-1.6004152227405766,-1.0245965207064271,-0.44877781867227728,0.12704088336187258,0.70285958539602245,1.2786782874301705,1.8544969894643204,2.4303156914984703,3.0061343935326201,3.58195309556677,4.1577717976009181],[-11.652763652387879,-11.076944950353731,-10.501126248319579,-9.9253075462854312,-9.3494888442512813,-8.7736701422171315,-8.1978514401829834,-7.6220327381488326,-7.0462140361146828,-6.4703953340805329,-5.894576632046383,-5.3187579300122341,-4.7429392279780842,-4.1671205259439352,-3.5913018239097854,-3.0154831218756355,-2.4396644198414856,-1.8638457178073358,-1.2880270157731863,-0.71220831373903648,-0.13638961170488706,0.43942909032926281,1.0152477923634127,1.5910664943975625,2.1668851964317106,2.7427038984658605,3.3185226005000104,3.8943413025341602,4.4701600045683101,5.0459787066024582],[-10.76455674338634,-10.18873804135219,-9.6129193393180401,-9.037100637283892,-8.4612819352497404,-7.8854632332155914,-7.3096445311814424,-6.7338258291472926,-6.1580071271131427,-5.5821884250789928,-5.006369723044843,-4.4305510210106931,-3.8547323189765446,-3.2789136169423947,-2.7030949149082453,-2.1272762128740954,-1.5514575108399455,-0.97563880880579568,-0.39982010677164626,0.17599859526250361,0.75181729729665303,1.3276359993308029,1.9034547013649528,2.4792734033991026,3.0550921054332507,3.6309108074674006,4.2067295095015504,4.7825482115357003,5.3583669135698502,5.9341856156039983],[-9.8763498343847989,-9.300531132350649,-8.7247124303164991,-8.1488937282823493,-7.5730750262482003,-6.9972563242140504,-6.4214376221799014,-5.8456189201457516,-5.2698002181116017,-4.6939815160774518,-4.118162814043302,-3.5423441120091526,-2.9665254099750036,-2.3907067079408537,-1.8148880059067041,-1.2390693038725544,-0.66325060183840456,-0.087431899804254698,0.48838680222989472,1.0642055042640446,1.640024206298194,2.2158429083323439,2.7916616103664937,3.3674803124006436,3.9432990144347917,4.5191177164689416,5.0949364185030914,5.6707551205372413,6.2465738225713912,6.8223925246055392],[-8.9881429253832597,-8.4123242233491098,-7.8365055213149599,-7.2606868192808101,-6.6848681172466602,-6.1090494152125103,-5.5332307131783622,-4.9574120111442124,-4.3815933091100625,-3.8057746070759122,-3.2299559050417628,-2.6541372030076129,-2.0783185009734639,-1.5024997989393143,-0.92668109690516443,-0.35086239487101478,0.22495630716313508,0.80077500919728495,1.3765937112314344,1.9524124132655842,2.5282311152997337,3.1040498173338835,3.6798685193680334,4.2556872214021837,4.8315059234363318,5.4073246254704816,5.9831433275046315,6.5589620295387814,7.1347807315729312,7.7105994336070793],[-8.0999360163817187,-7.5241173143475697,-6.9482986123134198,-6.3724799102792709,-5.796661208245121,-5.2208425062109711,-4.6450238041768221,-4.0692051021426723,-3.4933864001085224,-2.9175676980743726,-2.3417489960402227,-1.7659302940060733,-1.1901115919719243,-0.61429288993777442,-0.038474187903624668,0.53734451413052498,1.1131632161646747,1.6889819181988246,2.264800620232974,2.8406193222671239,3.4164380243012733,3.9922567263354232,4.568075428369573,5.1438941304037229,5.719712832437871,6.2955315344720209,6.8713502365061707,7.4471689385403206,8.0229876405744704,8.5988063426086185],[-7.2117291073801795,-6.6359104053460296,-6.0600917033118797,-5.4842730012777308,-4.9084542992435809,-4.332635597209431,-3.7568168951752821,-3.1809981931411322,-2.6051794911069823,-2.0293607890728325,-1.453542087038683,-0.8777233850045334,-0.30190468297038442,0.27391401906376533,0.84973272109791509,1.4255514231320647,2.0013701251662148,2.5771888272003647,3.1530075292345141,3.728826231268664,4.3046449333028134,4.8804636353369633,5.4562823373711131,6.032101039405263,6.6079197414394111,7.1837384434735609,7.7595571455077108,8.3353758475418598,8.9111945495760096,9.4870132516101577],[-6.3235221983786403,-5.7477034963444904,-5.1718847943103405,-4.5960660922761907,-4.0202473902420408,-3.4444286882078914,-2.8686099861737424,-2.2927912841395925,-1.7169725821054427,-1.1411538800712928,-0.56533517803714317,0.010483523997006472,0.58630222603115545,1.1621209280653051,1.737939630099455,2.3137583321336046,2.8895770341677545,3.4653957362019043,4.0412144382360538,4.6170331402702036,5.1928518423043535,5.7686705443385033,6.3444892463726532,6.9203079484068031,7.4961266504409512,8.071945352475101,8.6477640545092509,9.2235827565434008,9.7994014585775506,10.375220160611699],[-5.4353152893771002,-4.8594965873429503,-4.2836778853088004,-3.7078591832746515,-3.1320404812405016,-2.5562217792063517,-1.9804030771722028,-1.4045843751380529,-0.82876567310390303,-0.25294697106975317,0.32287173096439648,0.89869043299854612,1.4745091350326951,2.050327837066845,2.6261465391009944,3.2019652411351442,3.7777839431692941,4.353602645203444,4.929421347237593,5.5052400492717428,6.0810587513058927,6.6568774533400425,7.2326961553741924,7.8085148574083423,8.3843335594424904,8.9601522614766402,9.5359709635107901,10.11178966554494,10.68760836757909,11.263427069613238],[-4.5471083803755583,-3.9712896783414084,-3.3954709763072586,-2.8196522742731096,-2.2438335722389597,-1.6680148702048099,-1.0921961681706609,-0.51637746613651103,0.059441235897638833,0.6352599379317887,1.2110786399659383,1.786897342000088,2.362716044034237,2.9385347460683868,3.5143534481025362,4.0901721501366861,4.665990852170836,5.2418095542049858,5.8176282562391357,6.3934469582732856,6.9692656603074346,7.5450843623415844,8.1209030643757352,8.6967217664098833,9.2725404684440313,9.848359170478183,10.424177872512331,10.999996574546483,11.575815276580631,12.151633978614779],[-3.6589014713740182,-3.0830827693398684,-2.5072640673057185,-1.9314453652715695,-1.3556266632374196,-0.77980796120326978,-0.20398925916912081,0.37182944286502906,0.94764814489917892,1.5234668469333288,2.0992855489674787,2.6751042510016281,3.2509229530357771,3.8267416550699269,4.4025603571040763,4.9783790591382262,5.5541977611723761,6.1300164632065259,6.7058351652406749,7.2816538672748248,7.8574725693089746,8.4332912713431245,9.0091099733772744,9.5849286754114242,10.160747377445572,10.736566079479722,11.312384781513872,11.888203483548022,12.464022185582172,13.03984088761632],[-2.770694562372479,-2.1948758603383292,-1.6190571583041793,-1.0432384562700303,-0.46741975423588045,0.10839894779826942,0.6842176498324184,1.2600363518665683,1.8358550539007181,2.411673755934868,2.9874924579690179,3.5633111600031673,4.1391298620373167,4.7149485640714657,5.2907672661056155,5.8665859681397654,6.4424046701739153,7.0182233722080651,7.5940420742422141,8.169860776276364,8.7456794783105138,9.3214981803446637,9.8973168823788136,10.473135584412963,11.048954286447112,11.624772988481261,12.200591690515411,12.776410392549561,13.352229094583711,13.928047796617859],[-1.8824876533709389,-1.3066689513367891,-0.7308502493026392,-0.15503154726849022,0.42078715476565964,0.99660585679980951,1.5724245588339585,2.1482432608681084,2.7240619629022582,3.2998806649364081,3.8756993669705579,4.4515180690047078,5.0273367710388559,5.6031554730730058,6.1789741751071556,6.7547928771413055,7.3306115791754554,7.9064302812096052,8.4822489832437551,9.058067685277905,9.633886387312053,10.209705089346205,10.785523791380353,11.361342493414504,11.937161195448653,12.512979897482801,13.088798599516952,13.6646173015511,14.240436003585252,14.8162547056194],[-0.99428074436939973,-0.41846204233524986,0.1573566596989,0.73317536173304898,1.3089940637671988,1.8848127658013487,2.4606314678354977,3.0364501698696476,3.6122688719037974,4.1880875739379473,4.7639062759720971,5.339724978006247,5.9155436800403951,6.491362382074545,7.0671810841086948,7.6429997861428447,8.2188184881769946,8.7946371902111444,9.3704558922452943,9.9462745942794442,10.522093296313592,11.097911998347744,11.673730700381892,12.249549402416044,12.825368104450192,13.40118680648434,13.977005508518491,14.55282421055264,15.128642912586791,15.704461614620939],[-0.10607383536785964,0.46974486666629023,1.0455635687004401,1.6213822707345891,2.1972009727687389,2.7730196748028888,3.3488383768370378,3.9246570788711876,4.5004757809053375,5.0762944829394874,5.6521131849736372,6.2279318870077862,6.8037505890419361,7.3795692910760851,7.9553879931102349,8.5312066951443839,9.1070253971785355,9.6828440992126836,10.258662801246833,10.834481503280983,11.410300205315133,11.986118907349283,12.561937609383433,13.137756311417583,13.713575013451731,14.289393715485881,14.865212417520031,15.441031119554181,16.01684982158833,16.592668523622478],[0.78213307363367957,1.3579517756678294,1.9337704777019793,2.5095891797361283,3.0854078817702781,3.661226583804428,4.237045285838577,4.8128639878727268,5.3886826899068767,5.9645013919410266,6.5403200939751764,7.1161387960093254,7.6919574980434753,8.2677762000776251,8.843594902111775,9.4194136041459231,9.9952323061800747,10.571051008214223,11.146869710248373,11.722688412282523,12.298507114316672,12.874325816350822,13.450144518384972,14.025963220419122,14.60178192245327,15.17760062448742,15.75341932652157,16.329238028555721,16.90505673058987,17.480875432624018],[1.6703399826352188,2.2461586846693686,2.8219773867035185,3.3977960887376675,3.9736147907718173,4.5494334928059672,5.1252521948401162,5.701070896874266,6.2768895989084159,6.8527083009425658,7.4285270029767156,8.0043457050108646,8.5801644070450145,9.1559831090791644,9.7318018111133142,10.307620513147462,10.883439215181614,11.459257917215762,12.035076619249912,12.610895321284062,13.186714023318212,13.762532725352361,14.338351427386511,14.914170129420661,15.489988831454809,16.065807533488957,16.641626235523109,17.217444937557261,17.793263639591409,18.369082341625557],[2.5585468916367597,3.1343655936709096,3.7101842957050595,4.2860029977392085,4.8618216997733583,5.4376404018075082,6.0134591038416572,6.589277805875807,7.1650965079099569,7.7409152099441068,8.3167339119782557,8.8925526140124056,9.4683713160465555,10.044190018080705,10.620008720114855,11.195827422149005,11.771646124183153,12.347464826217305,12.923283528251453,13.499102230285603,14.074920932319753,14.650739634353902,15.226558336388052,15.802377038422202,16.378195740456349,16.9540144424905,17.529833144524652,18.1056518465588,18.681470548592948,19.257289250627096],[3.4467538006383007,4.0225725026724506,4.5983912047066005,5.1742099067407494,5.7500286087748993,6.3258473108090492,6.9016660128431981,7.477484714877348,8.053303416911497,8.6291221189456486,9.2049408209797967,9.7807595230139466,10.356578225048096,10.932396927082246,11.508215629116396,12.084034331150544,12.659853033184696,13.235671735218844,13.811490437252994,14.387309139287144,14.963127841321294,15.538946543355443,16.114765245389592,16.690583947423743,17.266402649457891,17.842221351492043,18.418040053526191,18.993858755560339,19.569677457594491,20.145496159628639],[4.3349607096398382,4.910779411673988,5.4865981137081379,6.0624168157422869,6.6382355177764367,7.2140542198105866,7.7898729218447356,8.3656916238788845,8.9415103259130362,9.5173290279471843,10.093147729981334,10.668966432015484,11.244785134049634,11.820603836083784,12.396422538117934,12.972241240152083,13.548059942186232,14.123878644220383,14.699697346254531,15.275516048288681,15.851334750322831,16.427153452356983,17.002972154391131,17.578790856425279,18.154609558459427,18.730428260493579,19.30624696252773,19.882065664561878,20.457884366596026,21.033703068630174],[5.2231676186413809,5.7989863206755308,6.3748050227096806,6.9506237247438296,7.5264424267779795,8.1022611288121293,8.6780798308462792,9.2538985328804273,9.8297172349145789,10.405535936948727,10.981354638982877,11.557173341017027,12.132992043051177,12.708810745085326,13.284629447119476,13.860448149153626,14.436266851187774,15.012085553221926,15.587904255256074,16.163722957290226,16.739541659324374,17.315360361358522,17.891179063392673,18.466997765426825,19.042816467460973,19.618635169495121,20.194453871529269,20.770272573563421,21.346091275597573,21.921909977631721],[6.1113745276429219,6.6871932296770717,7.2630119317112216,7.8388306337453706,8.4146493357795205,8.9904680378136703,9.5662867398478184,10.14210544188197,10.717924143916118,11.29374284595027,11.869561547984418,12.445380250018568,13.021198952052718,13.597017654086867,14.172836356121017,14.748655058155165,15.324473760189317,15.900292462223465,16.476111164257617,17.051929866291765,17.627748568325913,18.203567270360065,18.779385972394216,19.355204674428364,19.931023376462512,20.506842078496661,21.082660780530812,21.658479482564964,22.234298184599112,22.81011688663326],[6.9995814366444611,7.575400138678611,8.1512188407127617,8.7270375427469098,9.3028562447810597,9.8786749468152095,10.454493648849358,11.030312350883509,11.606131052917657,12.181949754951809,12.757768456985957,13.333587159020107,13.909405861054257,14.485224563088407,15.061043265122557,15.636861967156705,16.212680669190856,16.788499371225004,17.364318073259156,17.940136775293304,18.515955477327452,19.091774179361604,19.667592881395755,20.243411583429904,20.819230285464052,21.3950489874982,21.970867689532351,22.546686391566503,23.122505093600651,23.698323795634799],[7.8877883456460021,8.4636070476801528,9.0394257497143009,9.6152444517484508,10.191063153782601,10.766881855816751,11.3427005578509,11.918519259885048,12.4943379619192,13.070156663953348,13.645975365987498,14.221794068021648,14.797612770055798,15.373431472089948,15.949250174124098,16.525068876158247,17.100887578192395,17.676706280226547,18.252524982260695,18.828343684294847,19.404162386328995,19.979981088363147,20.555799790397295,21.131618492431443,21.707437194465591,22.283255896499742,22.859074598533894,23.434893300568042,24.01071200260219,24.586530704636338],[8.7759952546475404,9.351813956681692,9.9276326587158401,10.50345136074999,11.07927006278414,11.65508876481829,12.23090746685244,12.806726168886588,13.382544870920739,13.958363572954887,14.534182274989037,15.110000977023187,15.685819679057337,16.261638381091487,16.837457083125635,17.413275785159787,17.989094487193935,18.564913189228086,19.140731891262234,19.716550593296386,20.292369295330534,20.868187997364686,21.444006699398834,22.019825401432982,22.59564410346713,23.171462805501282,23.747281507535433,24.323100209569581,24.898918911603729,25.474737613637878],[9.6642021636490796,10.240020865683231,10.815839567717379,11.391658269751529,11.967476971785679,12.543295673819829,13.119114375853979,13.694933077888127,14.270751779922279,14.846570481956427,15.422389183990576,15.998207886024726,16.574026588058874,17.149845290093026,17.725663992127174,18.301482694161326,18.877301396195474,19.453120098229626,20.028938800263774,20.604757502297925,21.180576204332073,21.756394906366225,22.332213608400373,22.908032310434521,23.483851012468669,24.059669714502821,24.635488416536973,25.211307118571121,25.787125820605269,26.362944522639417],[10.552409072650619,11.12822777468477,11.704046476718919,12.279865178753068,12.855683880787218,13.431502582821368,14.007321284855518,14.583139986889666,15.158958688923818,15.734777390957966,16.310596092992117,16.886414795026266,17.462233497060414,18.038052199094565,18.613870901128713,19.189689603162865,19.765508305197013,20.341327007231165,20.917145709265313,21.492964411299464,22.068783113333613,22.644601815367764,23.220420517401912,23.79623921943606,24.372057921470208,24.94787662350436,25.523695325538512,26.09951402757266,26.675332729606808,27.251151431640956]],"type":"surface","x":[-27,-24.03448275862069,-21.068965517241381,-18.103448275862068,-15.137931034482758,-12.172413793103448,-9.2068965517241352,-6.2413793103448256,-3.275862068965516,-0.31034482758620641,2.6551724137931032,5.6206896551724128,8.5862068965517295,11.551724137931039,14.517241379310349,17.482758620689658,20.448275862068968,23.413793103448278,26.379310344827587,29.344827586206897,32.310344827586206,35.275862068965523,38.241379310344826,41.206896551724142,44.172413793103459,47.137931034482762,50.103448275862078,53.068965517241381,56.034482758620697,59],"y":[-7.9000000000000004,-7.2896551724137932,-6.6793103448275861,-6.068965517241379,-5.4586206896551719,-4.8482758620689648,-4.2379310344827585,-3.6275862068965514,-3.0172413793103443,-2.4068965517241372,-1.7965517241379301,-1.186206896551723,-0.57586206896551673,0.03448275862069039,0.64482758620689751,1.2551724137931046,1.8655172413793117,2.4758620689655189,3.086206896551726,3.6965517241379331,4.3068965517241402,4.9172413793103473,5.5275862068965544,6.1379310344827616,6.7482758620689669,7.358620689655174,7.9689655172413811,8.5793103448275883,9.1896551724137954,9.8000000000000007],"opacity":0.5,"frame":null},{"x":[-4,55,59,23,5,-27,18,-17,10,-1,1],"y":[7.5999999999999996,3.2000000000000002,4.7000000000000002,9.8000000000000007,3,-7.9000000000000004,7.0999999999999996,4.2999999999999998,7.0999999999999996,2.8999999999999999,1.3],"z":[4.5999999999999943,15.599999999999994,22.599999999999994,23.599999999999994,-2.2000000000000028,-10.599999999999994,18.400000000000006,-7,9.4000000000000057,2.480000000000004,4],"type":"scatter3d","mode":"markers","text":[1948,1956,1964,1972,1976,1980,1984,1992,1996,2004,2012],"hoverinfo":["text+x+y+z","text+x+y+z","text+x+y+z","text+x+y+z","text+x+y+z","text+x+y+z","text+x+y+z","text+x+y+z","text+x+y+z","text+x+y+z","text+x+y+z"],"marker":{"color":"red","size":5,"line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
-<section id="threee-dangers" class="slide level2">
-<h2>Threee Dangers</h2>
-<p>When using a linear model, keep in mind three dangers that could ruin your predictions:</p>
-<ol type="1">
+<section id="presidential-election-forecast-10" class="slide level2">
+<h2>Presidential Election Forecast</h2>
+<ul>
+<li class="fragment"><p>The kind of forecast model we’ve been building here is called a <strong>fundamentals model</strong>.</p></li>
+<li class="fragment"><p>Notice that it doesn’t use polling at all!&nbsp;</p></li>
+<li class="fragment"><p>It makes predictions purely based on “fundamentals”, historical patterns in the data <span class="citation" data-cites="abramowitzItsPandemicStupid2021">(<a href="#/references" role="doc-biblioref" onclick="">Abramowitz 2021</a>)</span> .</p></li>
+<li class="fragment"><p>In a future lecture, we’ll show how combining polls + fundamentals yields better predictions than either alone.</p></li>
+</ul>
+</section>
+<section id="three-dangers" class="slide level2">
+<h2>Three Dangers</h2>
+<ul>
+<li class="fragment"><p>Simple linear models can be a surprisingly useful tool for making predictions.</p></li>
+<li class="fragment"><p>But when using a linear model, keep in mind three dangers that could ruin your forecasts:</p>
+<ul>
 <li class="fragment"><p>Nonlinearity</p></li>
 <li class="fragment"><p>Extrapolation</p></li>
-<li class="fragment"><p>Overfitting</p></li>
-</ol>
+<li class="fragment"><p>Structural Stability</p></li>
+</ul></li>
+</ul>
 </section>
 <section id="danger-1-nonlinearity" class="slide level2">
 <h2>Danger 1: Nonlinearity</h2>
@@ -213,35 +531,71 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "hello"</code></pre>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="linear-models_files/figure-revealjs/unnamed-chunk-8-1.png" width="768"></p>
+</figure>
 </div>
 </div>
-<p>…even when a straight line is a bad model.</p>
+</div>
+<p>…even when a straight line is a terrible model!</p>
 <ul>
-<li class="fragment"><strong>Diagnostic</strong>: Look at a chart! Are there patterns in the errors?</li>
+<li class="fragment"><strong>Diagnostic</strong>: are there patterns in the errors?</li>
 </ul>
 </div>
 </section>
 <section id="danger-2-extrapolation" class="slide level2">
 <h2>Danger 2: Extrapolation</h2>
+<ul>
+<li class="fragment">Be cautious of making predictions with a linear model if the current situation lies far outside the historical data.</li>
+</ul>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="img/gdp2q20_adv_chart.png" class="quarto-figure quarto-figure-center" width="550"></p>
+</figure>
+</div>
+<ul>
+<li class="fragment">Plugging these numbers into our model would predict the incumbent losing by 35.2 percentage points! (Actual margin was -4.5 points).</li>
+</ul>
+</div>
 </section>
-<section id="danger-3-structural-breaks" class="slide level2">
-<h2>Danger 3: Structural Breaks</h2>
+<section id="danger-3-structural-stability" class="slide level2">
+<h2>Danger 3: Structural Stability</h2>
 <ul>
 <li class="fragment"><p>Predicting with a linear model assumes that the relationships observed in your data will be <em>stable</em> over time.</p></li>
 <li class="fragment"><p>In other words, you’re assuming that the future will follow the same rules as the past.</p></li>
-<li class="fragment"></li>
+<li class="fragment"><p>Maybe as voters have become more polarized, the relationship between economic growth and voting behavior has gotten weaker?</p>
+<ul>
+<li class="fragment">If so, our fundamentals model will get worse and worse at predicting.</li>
+</ul></li>
+<li class="fragment"><p>This is closely related to a problem we’ll discuss in more detail next lecture: <strong>overfitting</strong>.</p></li>
 </ul>
-
-
 </section>
-    </div>
-  <div class="quarto-auto-generated-content" style="display: none;">
+<section id="looking-forward" class="slide level2">
+<h2>Looking Forward</h2>
+<ul>
+<li class="fragment"><p>Next time, I’ll show you a slightly more complex machine learning approach that’s better at handling nonlinearity: <strong>classification and regression trees</strong> (CART).</p></li>
+<li class="fragment"><p>We’ll discuss the balance between <strong>overfitting</strong> and <strong>underfitting</strong> machine learning models, and how it relates to the <strong>bias-variance tradeoff</strong> we introduced previously.</p></li>
+</ul>
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
+
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
-</div></div>
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-abramowitzItsPandemicStupid2021" class="csl-entry" role="listitem">
+Abramowitz, Alan I. 2021. <span>“It<span>’</span>s the Pandemic, Stupid! A Simplified Model for Forecasting the 2020 Presidential Election.”</span> <em>PS: Political Science &amp; Politics</em> 54 (1): 52–54. <a href="https://doi.org/10.1017/S1049096520001389">https://doi.org/10.1017/S1049096520001389</a>.
+</div>
+</div>
+</section>
+    </div>
+  </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="../site_libs/revealjs/dist/reveal.js"></script>
@@ -271,8 +625,7 @@
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
 'smaller': false,
  
@@ -427,7 +780,7 @@
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -608,6 +961,8 @@
       });
       clipboard.on('success', onCopySuccess);
       if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
         const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
           text: getTextToCopy,
           container: window.document.getElementById('quarto-embedded-source-code-modal')
