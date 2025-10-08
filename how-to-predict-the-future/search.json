@@ -2770,5 +2770,33 @@
     "title": "Fall 2025 Predictions",
     "section": "Week 8 (10/7)",
     "text": "Week 8 (10/7)"
+  },
+  {
+    "objectID": "slides/tree-models.html#todays-agenda",
+    "href": "slides/tree-models.html#todays-agenda",
+    "title": "Tree Models",
+    "section": "Today’s Agenda",
+    "text": "Today’s Agenda\n\nLast time, we introduced linear models as a machine learning approach.\n\nThe key idea was to make predictions based on a linear combination of predictor variables.\n\nToday, we’ll introduce an approach that combines information in a nonlinear fashion, called classification and regression trees (CART).\n\nIt looks exactly like the probability trees we worked with in the first half of the semester.\nExcept we get the computer to build them for us."
+  },
+  {
+    "objectID": "slides/tree-models.html#overfitting-vs.-underfitting",
+    "href": "slides/tree-models.html#overfitting-vs.-underfitting",
+    "title": "Tree Models",
+    "section": "Overfitting vs. Underfitting",
+    "text": "Overfitting vs. Underfitting\n\nsource: https://www.geeksforgeeks.org/machine-learning/underfitting-and-overfitting-in-machine-learning/"
+  },
+  {
+    "objectID": "slides/tree-models.html#cross-validation",
+    "href": "slides/tree-models.html#cross-validation",
+    "title": "Tree Models",
+    "section": "Cross-Validation",
+    "text": "Cross-Validation"
+  },
+  {
+    "objectID": "slides/tree-models.html#bias-variance-tradeoff",
+    "href": "slides/tree-models.html#bias-variance-tradeoff",
+    "title": "Tree Models",
+    "section": "Bias-Variance Tradeoff",
+    "text": "Bias-Variance Tradeoff\n\nNonlinear models can be much more complex than linear models."
   }
 ]
