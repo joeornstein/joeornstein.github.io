@@ -396,7 +396,7 @@
     "href": "12-importing-exporting.html#part-1",
     "title": "Week 12: Data Importing/Exporting",
     "section": "Part 1",
-    "text": "Part 1\nThe website 538 maintains a dataset of all polls conducted during the 2024 US presidential election at the following link. The following set of problems involve reading and analyzing this dataset.\n\nRead the .csv file directly into R from the URL.\nMake sure that the start date and end date fields are properly formatted as a date.\nWhat is the unit of analysis in this dataset? Perform the necessary transformation so that the unit of analysis is the poll (unique identifier is the variable poll_id) and for each poll compute the percent of respondents that planned to vote for the Democratic candidate.\nKeep only the polls of likely voters in two states of your choice.\nCreate a scatter plot of Democratic vote share over time, faceted by state. Include dashed vertical lines indicating the dates of major campaign events.\nBonus. Compute 95% confidence intervals for each poll assuming random sampling from the population of likely voters. What fraction of these 95% confidence intervals contain the true Democratic vote share in the two states you selected? Does this fraction increase for polls conducted closer to the election? What about polls conducted by pollsters with high “grades” from 538? What about polls conducted over telephone vs. online polls?"
+    "text": "Part 1\nBefore it was shut down by the Disney Company in May 2025, the website FiveThirtyEight maintained a dataset of all polls conducted during the 2024 US presidential election. Fortunately, you can still find the dataset through the Internet Archive at this link. The following set of problems involve reading and analyzing this dataset.\n\nRead the .csv file directly into R from the URL.\nMake sure that the start date and end date fields are properly formatted as a date.\nWhat is the unit of analysis in this dataset? Perform the necessary transformation so that the unit of analysis is the poll (unique identifier is the variable poll_id) and for each poll compute the percent of respondents that planned to vote for the Democratic candidate.\nKeep only the polls of likely voters in two states of your choice.\nCreate a scatter plot of Democratic vote share over time, faceted by state. Include dashed vertical lines indicating the dates of major campaign events.\nBonus. Compute 95% confidence intervals for each poll assuming random sampling from the population of likely voters. What fraction of these 95% confidence intervals contain the true Democratic vote share in the two states you selected? Does this fraction increase for polls conducted closer to the election? What about polls conducted by pollsters with high “grades” from 538? What about polls conducted over telephone vs. online polls?"
   },
   {
     "objectID": "12-importing-exporting.html#part-2",
@@ -815,15 +815,15 @@
     "objectID": "slides/warmup.html#three-fundamental-problems",
     "href": "slides/warmup.html#three-fundamental-problems",
     "title": "Introduction to Political Methodology",
-    "section": "Three Fundamental Problems",
-    "text": "Three Fundamental Problems\n\nMeasurement\nCausal Inference\nSampling\n\n\nIn each case, there is some quantity of interest that we do not or cannot observe.\n\nThe goal of statistics is to make inferences about the unobserved quantity based on the things we do observe."
+    "section": "",
+    "text": "Measurement\nCausal Inference\nSampling\n\n. . .\nIn each case, there is some quantity of interest that we do not or cannot observe.\n\nThe goal of statistics is to make inferences about the unobserved quantity based on the things we do observe."
   },
   {
     "objectID": "slides/warmup.html#measurement",
     "href": "slides/warmup.html#measurement",
     "title": "Introduction to Political Methodology",
     "section": "Measurement",
-    "text": "Measurement\n\nSome underlying concept of interest that we are interested in studying:\n\nDemocracy\nIdeology\nPolarization\nPoverty\nHappiness\n\n\n\nThe goal of measurement is to take features we observe and make inferences about the underlying concept of interest."
+    "text": "Measurement\n. . .\nSome underlying concept of interest that we are interested in studying:\n\nDemocracy\nIdeology\nPolarization\nPoverty\nHappiness\n\n. . .\nThe goal of measurement is to take features we observe and make inferences about the underlying concept of interest."
   },
   {
     "objectID": "slides/warmup.html#measurement-1",
@@ -851,7 +851,7 @@
     "href": "slides/warmup.html#causal-inference",
     "title": "Introduction to Political Methodology",
     "section": "Causal Inference",
-    "text": "Causal Inference\n\nPolitical scientists are rarely satisfied with just describing the world. We also want to explain why things are the way they are.\nThis takes the form of causal claims. “X causes Y”.\n\n“Democracy causes economic growth”\n“Cable news causes political polarization”\n\n\n\nThe fundamental problem of causal inference is that we can’t observe counterfactuals."
+    "text": "Causal Inference\n\nPolitical scientists are rarely satisfied with just describing the world. We also want to explain why things are the way they are.\nThis takes the form of causal claims. “X causes Y”.\n\n“Democracy causes economic growth”\n“Cable news causes political polarization”\n\n\n. . .\nThe fundamental problem of causal inference is that we can’t observe counterfactuals."
   },
   {
     "objectID": "slides/warmup.html#causal-inference-1",
@@ -908,5 +908,12 @@
     "title": "Introduction to Political Methodology",
     "section": "Sampling",
     "text": "Sampling"
+  },
+  {
+    "objectID": "slides/warmup.html",
+    "href": "slides/warmup.html",
+    "title": "Introduction to Political Methodology",
+    "section": "",
+    "text": "Measurement\nCausal Inference\nSampling\n\n. . .\nIn each case, there is some quantity of interest that we do not or cannot observe.\n\nThe goal of statistics is to make inferences about the unobserved quantity based on the things we do observe."
   }
 ]
