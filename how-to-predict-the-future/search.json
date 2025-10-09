@@ -2776,7 +2776,11 @@
     "href": "slides/tree-models.html#todays-agenda",
     "title": "Tree Models",
     "section": "Today’s Agenda",
+<<<<<<< HEAD
     "text": "Today’s Agenda\n\nLast time, we introduced linear models as a machine learning tool.\n\nThe key idea was to make predictions based on a linear combination of predictor variables.\n\nToday, we’ll discuss an approach that combines variables in a nonlinear fashion, called classification and regression trees (CART).\n\nIt looks exactly like the probability trees we worked with in the first half of the semester.\nExcept we let computer to build them for us!"
+=======
+    "text": "Today’s Agenda\n\nLast time, we introduced linear models as a machine learning tool.\n\nThe key idea was to make predictions based on a linear combination of predictor variables.\n\nToday, we’ll introduce an approach that combines information in a nonlinear fashion, called classification and regression trees (CART).\n\nIt looks exactly like the probability trees we worked with in the first half of the semester.\nExcept we let computer to build them for us!"
+>>>>>>> 4a101e408a3cbd4918fc32874d8fd245de70673b
   },
   {
     "objectID": "slides/tree-models.html#overfitting-vs.-underfitting",
@@ -2797,7 +2801,11 @@
     "href": "slides/tree-models.html#bias-variance-tradeoff",
     "title": "Tree Models",
     "section": "Bias-Variance Tradeoff",
+<<<<<<< HEAD
     "text": "Bias-Variance Tradeoff\n\nIt’s our old friend, the bias-variance tradeoff!\nOutside View (zero partitions) is biased.\nInside View (lots of partitions) has higher variance, because your predictions are based on less data.\nSweet spot is somewhere in the middle."
+=======
+    "text": "Bias-Variance Tradeoff\n\nToo complex, and the\nsadfi"
+>>>>>>> 4a101e408a3cbd4918fc32874d8fd245de70673b
   },
   {
     "objectID": "slides/tree-models.html#motivating-problem",
@@ -2807,6 +2815,7 @@
     "text": "Motivating Problem\n\n\nCan we predict a movie’s Rotten Tomatoes rating?\nPredictor Variables: Content Rating, Genre, Release Date, Production Company, Runtime, Number of Audience Reviews"
   },
   {
+<<<<<<< HEAD
     "objectID": "slides/tree-models.html#outside-view",
     "href": "slides/tree-models.html#outside-view",
     "title": "Tree Models",
@@ -2840,13 +2849,59 @@
     "title": "Tree Models",
     "section": "Choosing Splits",
     "text": "Choosing Splits\n\nWhat is the “best” way to partition the data?\nUp to now, we’ve been choosing our splits based purely on vibes.\nA more principled way is to partition the data based on how much information it reveals."
+=======
+    "objectID": "slides/tree-models.html#strategy-split-the-data",
+    "href": "slides/tree-models.html#strategy-split-the-data",
+    "title": "Tree Models",
+    "section": "Strategy: Split the data",
+    "text": "Strategy: Split the data"
+  },
+  {
+    "objectID": "slides/tree-models.html#but-whats-the-best-split",
+    "href": "slides/tree-models.html#but-whats-the-best-split",
+    "title": "Tree Models",
+    "section": "But what’s the best split?",
+    "text": "But what’s the best split?"
+>>>>>>> 4a101e408a3cbd4918fc32874d8fd245de70673b
   },
   {
     "objectID": "slides/tree-models.html#information-theory-review",
     "href": "slides/tree-models.html#information-theory-review",
     "title": "Tree Models",
     "section": "Information Theory: Review",
+<<<<<<< HEAD
     "text": "Information Theory: Review\nRecall the definitions of information and entropy.\n\nInformation is how surprised we are when we learn an outcome. Equal to \\(-log(p)\\).\nEntropy is “expected surprise”: how much surprise we experience on average when we learn the outcome.\nIf we could perfectly predict the Rotten Tomatoes rating a of movie, then entropy would be zero. (We would never be surprised).\nTherefore, our optimal strategy is to seek out information that reduces entropy as much as possible."
+=======
+    "text": "Information Theory: Review\nRecall the definitions of information and entropy.\n\nInformation is how surprised we are when we learn an outcome. Equal to \\(-log(p)\\).\nEntropy is “average surprise”: how much surprise we expect to experience when we learn the outcome.\nIf we could perfectly predict the Rotten Tomatoes rating a of movie, then entropy would be zero. (We would never be surprised).\nOur optimal strategy is to seek out information that yields the largest reduction in entropy."
+  },
+  {
+    "objectID": "slides/tree-models.html#complex-tree",
+    "href": "slides/tree-models.html#complex-tree",
+    "title": "Tree Models",
+    "section": "Complex Tree",
+    "text": "Complex Tree"
+  },
+  {
+    "objectID": "slides/tree-models.html#motivating-problem-1",
+    "href": "slides/tree-models.html#motivating-problem-1",
+    "title": "Tree Models",
+    "section": "Motivating Problem",
+    "text": "Motivating Problem\n\n\n\nCertified-Fresh           Fresh          Rotten \n       2.438637        1.368227        1.223727 \n\n\n[1] 1.503801"
+  },
+  {
+    "objectID": "slides/tree-models.html#outside-view",
+    "href": "slides/tree-models.html#outside-view",
+    "title": "Tree Models",
+    "section": "Outside View",
+    "text": "Outside View\nIf we had no other information, what would we predict based on historical base rates?\n\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  3,259\n                  18.4\n                \n                \n                  \n                  6,844\n                  38.7\n                \n                \n                  \n                  7,565\n                  42.8"
+  },
+  {
+    "objectID": "slides/tree-models.html#classification-and-regression-trees",
+    "href": "slides/tree-models.html#classification-and-regression-trees",
+    "title": "Tree Models",
+    "section": "Classification and Regression Trees",
+    "text": "Classification and Regression Trees\n\nA classification tree works by recursively partitioning the dataset to get a less-biased prediction."
+>>>>>>> 4a101e408a3cbd4918fc32874d8fd245de70673b
   },
   {
     "objectID": "slides/tree-models.html#information-theory-review-1",
@@ -2856,6 +2911,7 @@
     "text": "Information Theory: Review\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                p\n              \n        \n        \n        \n                \n                  \n                  3,259\n                  0.184\n                \n                \n                  \n                  6,844\n                  0.387\n                \n                \n                  \n                  7,565\n                  0.428"
   },
   {
+<<<<<<< HEAD
     "objectID": "slides/tree-models.html#information-theory-review-2",
     "href": "slides/tree-models.html#information-theory-review-2",
     "title": "Tree Models",
@@ -2875,6 +2931,27 @@
     "title": "Tree Models",
     "section": "Information Gain",
     "text": "Information Gain\n\nEach time you partition the dataset, it reduces entropy.\nThis is because you become more certain about your prediction, therefore less likely to be surprised!\nThe information gain from a partition equals how much it reduces entropy."
+=======
+    "objectID": "slides/tree-models.html#classification-trees",
+    "href": "slides/tree-models.html#classification-trees",
+    "title": "Tree Models",
+    "section": "Classification Trees",
+    "text": "Classification Trees\n\nA classification tree works by recursively partitioning the dataset (i.e. repeatedly splitting the data into smaller subsets).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAll Movies\n\n\n\n\n\n\n\nCriterion/Searchlight/A24\n\n\n\n\n\n\n\nOther Production Company\n\n\n\n\n\n\n\nAudience Count &gt;= 10,000\n\n\n\n\n\n\n\nAudience Count &lt; 10,000\n\n\n\n\n\n\n\nPG\n\n\n\n\n\n\n\nOther Rating\n\n\n\n\n\n\n\nPG-13 or R\n\n\n\n\n\n\n\nOther Rating"
+  },
+  {
+    "objectID": "slides/tree-models.html#classification-trees-1",
+    "href": "slides/tree-models.html#classification-trees-1",
+    "title": "Tree Models",
+    "section": "Classification Trees",
+    "text": "Classification Trees\nWith each partition, your prediction becomes less biased.\n\n\n\nCriterion, Searchlight, or A24\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  118\n                  37.2\n                \n                \n                  \n                  135\n                  42.6\n                \n                \n                  \n                  64\n                  20.2\n                \n        \n      \n    \n\n\n\n\nOther Production Companies\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  3,105\n                  18.4\n                \n                \n                  \n                  6,396\n                  37.9\n                \n                \n                  \n                  7,357\n                  43.6"
+  },
+  {
+    "objectID": "slides/tree-models.html#how",
+    "href": "slides/tree-models.html#how",
+    "title": "Tree Models",
+    "section": "How?",
+    "text": "How?"
+>>>>>>> 4a101e408a3cbd4918fc32874d8fd245de70673b
   },
   {
     "objectID": "slides/tree-models.html#optimal-partitions",
@@ -2884,6 +2961,44 @@
     "text": "Optimal Partitions"
   },
   {
+<<<<<<< HEAD
+=======
+    "objectID": "slides/tree-models.html#splitting-by-production-company",
+    "href": "slides/tree-models.html#splitting-by-production-company",
+    "title": "Tree Models",
+    "section": "Splitting By Production Company",
+    "text": "Splitting By Production Company\n\n\nCriterion, Searchlight, or A24\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  118\n                  37.2\n                \n                \n                  \n                  135\n                  42.6\n                \n                \n                  \n                  64\n                  20.2\n                \n        \n      \n    \n\n\n\n\nOther Production Companies\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  3,105\n                  18.4\n                \n                \n                  \n                  6,396\n                  37.9\n                \n                \n                  \n                  7,357\n                  43.6"
+  },
+  {
+    "objectID": "slides/tree-models.html#section",
+    "href": "slides/tree-models.html#section",
+    "title": "Tree Models",
+    "section": "",
+    "text": "Criterion, Searchlight, or A24\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  118\n                  37.2\n                \n                \n                  \n                  135\n                  42.6\n                \n                \n                  \n                  64\n                  20.2\n                \n        \n      \n    \n\n\n\n\nOther Production Companies\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  3,105\n                  18.4\n                \n                \n                  \n                  6,396\n                  37.9\n                \n                \n                  \n                  7,357\n                  43.6"
+  },
+  {
+    "objectID": "slides/tree-models.html#choosing-splits",
+    "href": "slides/tree-models.html#choosing-splits",
+    "title": "Tree Models",
+    "section": "Choosing Splits",
+    "text": "Choosing Splits\n\nWhat is the “best” way to partition the data?\nUp to now, we’ve been choosing our splits based purely on vibes.\nA more principled way is to partition the data based on how much information it reveals."
+  },
+  {
+    "objectID": "slides/tree-models.html#classification-trees-2",
+    "href": "slides/tree-models.html#classification-trees-2",
+    "title": "Tree Models",
+    "section": "Classification Trees",
+    "text": "Classification Trees\nWith each partition, your prediction becomes less biased.\n\n\n\nAudience Count &lt; 10,000\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  1,293\n                  12.0\n                \n                \n                  \n                  5,052\n                  46.9\n                \n                \n                  \n                  4,427\n                  41.1\n                \n        \n      \n    \n\n\n\n\nAudience Count &gt;= 10,000\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  1,811\n                  30.8\n                \n                \n                  \n                  1,193\n                  20.3\n                \n                \n                  \n                  2,870\n                  48.9"
+  },
+  {
+    "objectID": "slides/tree-models.html#how-complex-should-we-make-the-trees",
+    "href": "slides/tree-models.html#how-complex-should-we-make-the-trees",
+    "title": "Tree Models",
+    "section": "How Complex Should We Make The Trees?",
+    "text": "How Complex Should We Make The Trees?"
+  },
+  {
+>>>>>>> 4a101e408a3cbd4918fc32874d8fd245de70673b
     "objectID": "slides/tree-models.html#how-complex-should-the-tree-be",
     "href": "slides/tree-models.html#how-complex-should-the-tree-be",
     "title": "Tree Models",
@@ -2891,6 +3006,16 @@
     "text": "How Complex Should The Tree Be?"
   },
   {
+<<<<<<< HEAD
+=======
+    "objectID": "slides/tree-models.html#information-theory-review-2",
+    "href": "slides/tree-models.html#information-theory-review-2",
+    "title": "Tree Models",
+    "section": "Information Theory: Review",
+    "text": "Information Theory: Review\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                p\n                -log(p)\n              \n        \n        \n        \n                \n                  \n                  3,259\n                  0.184\n                  2.44\n                \n                \n                  \n                  6,844\n                  0.387\n                  1.37\n                \n                \n                  \n                  7,565\n                  0.428\n                  1.22\n                \n        \n      \n    \n\n\n\n\n\\(\\text{Entropy} = \\sum p \\times -log(p) =\\) 1.5"
+  },
+  {
+>>>>>>> 4a101e408a3cbd4918fc32874d8fd245de70673b
     "objectID": "slides/tree-models.html#bias-variance-tradeoff-1",
     "href": "slides/tree-models.html#bias-variance-tradeoff-1",
     "title": "Tree Models",
@@ -2898,6 +3023,7 @@
     "text": "Bias-Variance Tradeoff\n\nIn machine learning, this tradeoff is called overfitting vs. underfitting."
   },
   {
+<<<<<<< HEAD
     "objectID": "slides/tree-models.html#classification-trees-3",
     "href": "slides/tree-models.html#classification-trees-3",
     "title": "Tree Models",
@@ -2931,5 +3057,12 @@
     "title": "Tree Models",
     "section": "How Complex Should The Tree Get?",
     "text": "How Complex Should The Tree Get?"
+=======
+    "objectID": "slides/tree-models.html#information-theory-review-3",
+    "href": "slides/tree-models.html#information-theory-review-3",
+    "title": "Tree Models",
+    "section": "Information Theory: Review",
+    "text": "Information Theory: Review"
+>>>>>>> 4a101e408a3cbd4918fc32874d8fd245de70673b
   }
 ]
