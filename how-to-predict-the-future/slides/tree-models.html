@@ -355,7 +355,7 @@
 
 <img data-src="img/kaggle-rotten-tomatoes.png" class="r-stretch"><ul>
 <li class="fragment"><p>Can we predict a movie’s Rotten Tomatoes rating?</p></li>
-<li class="fragment"><p><strong>Predictor Variables</strong>: Content Rating, Genre, Release Date, Production Company, Runtime, Number of Audience Reviews</p></li>
+<li class="fragment"><p><strong>Predictor Variables</strong>: Content Rating, Genre, Release Date, Distributor, Runtime, Number of Audience Reviews</p></li>
 </ul>
 </section>
 <section id="outside-view" class="slide level2">
@@ -368,8 +368,8 @@
 
     <script>
 
-      function styleCell_hgercvuhnrw0eqsmctcr(i, j, css_id) {
-          var table = document.getElementById("tinytable_hgercvuhnrw0eqsmctcr");
+      function styleCell_t1wyp5ms2f40q87fc4k7(i, j, css_id) {
+          var table = document.getElementById("tinytable_t1wyp5ms2f40q87fc4k7");
           var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -379,7 +379,7 @@
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_hgercvuhnrw0eqsmctcr');
+        var table = document.getElementById('tinytable_t1wyp5ms2f40q87fc4k7');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -387,8 +387,8 @@
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_hgercvuhnrw0eqsmctcr(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_hgercvuhnrw0eqsmctcr");
+      function spanCell_t1wyp5ms2f40q87fc4k7(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_t1wyp5ms2f40q87fc4k7");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -418,14 +418,14 @@
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 3, j: 0 }, { i: 3, j: 1 }, { i: 3, j: 2 },  ], css_id: 'tinytable_css_vrk7yhvqdbxx2909bgqm',}, 
-          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_qgfe5fdk280c7ekrx04m',}, 
+          { positions: [ { i: 3, j: 0 }, { i: 3, j: 1 }, { i: 3, j: 2 },  ], css_id: 'tinytable_css_6b38zmq3outjjr9mzyj4',}, 
+          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_1hp8jg7x9xc6yor8iebc',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_hgercvuhnrw0eqsmctcr(cell.i, cell.j, group.css_id);
+                  styleCell_t1wyp5ms2f40q87fc4k7(cell.i, cell.j, group.css_id);
               });
           });
       });
@@ -433,11 +433,11 @@
 
     <style>
       /* tinytable css entries after */
-      .table td.tinytable_css_vrk7yhvqdbxx2909bgqm, .table th.tinytable_css_vrk7yhvqdbxx2909bgqm { border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_qgfe5fdk280c7ekrx04m, .table th.tinytable_css_qgfe5fdk280c7ekrx04m { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_6b38zmq3outjjr9mzyj4, .table th.tinytable_css_6b38zmq3outjjr9mzyj4 { border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_1hp8jg7x9xc6yor8iebc, .table th.tinytable_css_1hp8jg7x9xc6yor8iebc { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
     </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_hgercvuhnrw0eqsmctcr" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_t1wyp5ms2f40q87fc4k7" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
@@ -485,9 +485,9 @@
 <div>
 <p></p><figure class=""><p></p>
 <div>
-<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="-8 -8 767.734375 302" style="; display: block; margin: auto auto auto auto" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="768" id="mermaid-figure-1" height="480">
+<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="-8 -8 761.734375 302" style="; display: block; margin: auto auto auto auto" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="768" id="mermaid-figure-1" height="480">
 <style>#mermaid-figure-1{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-1 .error-icon{fill:#552222;}#mermaid-figure-1 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-1 .edge-thickness-normal{stroke-width:2px;}#mermaid-figure-1 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-1 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-1 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-1 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-1 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-1 .marker.cross{stroke:#333333;}#mermaid-figure-1 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-1 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-1 .cluster-label text{fill:#333;}#mermaid-figure-1 .cluster-label span,#mermaid-figure-1 p{color:#333;}#mermaid-figure-1 .label text,#mermaid-figure-1 span,#mermaid-figure-1 p{fill:#333;color:#333;}#mermaid-figure-1 .node rect,#mermaid-figure-1 .node circle,#mermaid-figure-1 .node ellipse,#mermaid-figure-1 .node polygon,#mermaid-figure-1 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-1 .flowchart-label text{text-anchor:middle;}#mermaid-figure-1 .node .label{text-align:center;}#mermaid-figure-1 .node.clickable{cursor:pointer;}#mermaid-figure-1 .arrowheadPath{fill:#333333;}#mermaid-figure-1 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-1 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-1 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaid-figure-1 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaid-figure-1 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-1 .cluster text{fill:#333;}#mermaid-figure-1 .cluster span,#mermaid-figure-1 p{color:#333;}#mermaid-figure-1 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-1 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-1 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
-<g><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="10" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="0" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-A LE-B" id="L-A-B-0" d="M70.68843005952381,84L77.44608754960318,79.83333333333333C84.20374503968254,75.66666666666667,97.71906001984127,67.33333333333333,109.1433841765873,63.166666666666664C120.56770833333333,59,129.90104166666666,59,134.56770833333334,59L139.234375,59"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-A LE-C" id="L-A-C-0" d="M70.68843005952381,118L77.44608754960318,122.16666666666667C84.20374503968254,126.33333333333333,97.71906001984127,134.66666666666666,108.6433841765873,138.83333333333334C119.56770833333333,143,127.90104166666667,143,132.06770833333334,143L136.234375,143"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-C LE-D" id="L-C-D-0" d="M266.1254650297619,126L283.2503875248016,114.83333333333333C300.37531001984127,103.66666666666667,334.62515500992066,81.33333333333333,355.916744171627,70.16666666666667C377.2083333333333,59,385.5416666666667,59,389.7083333333333,59L393.875,59"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-C LE-E" id="L-C-E-0" d="M266.1254650297619,160L283.2503875248016,171.16666666666666C300.37531001984127,182.33333333333334,334.62515500992066,204.66666666666666,356.615962921627,215.83333333333334C378.6067708333333,227,388.3385416666667,227,393.2044270833333,227L398.0703125,227"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-D LE-F" id="L-D-F-0" d="M545.7542782738095,42L558.2457527281746,37.833333333333336C570.7372271825396,33.666666666666664,595.7201760912699,25.333333333333332,618.3184213789683,21.166666666666668C640.9166666666666,17,661.1302083333334,17,671.2369791666666,17L681.34375,17"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-D LE-G" id="L-D-G-0" d="M545.7542782738095,76L558.2457527281746,80.16666666666667C570.7372271825396,84.33333333333333,595.7201760912699,92.66666666666667,612.3783172123016,96.83333333333333C629.0364583333334,101,637.3697916666666,101,641.5364583333334,101L645.703125,101"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-E LE-H" id="L-E-H-0" d="M545.7542782738095,210L558.2457527281746,205.83333333333334C570.7372271825396,201.66666666666666,595.7201760912699,193.33333333333334,613.6179005456349,189.16666666666666C631.515625,185,642.328125,185,647.734375,185L653.140625,185"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-E LE-I" id="L-E-I-0" d="M545.7542782738095,244L558.2457527281746,248.16666666666666C570.7372271825396,252.33333333333334,595.7201760912699,260.6666666666667,612.3783172123016,264.8333333333333C629.0364583333334,269,637.3697916666666,269,641.5364583333334,269L645.703125,269"></path></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
+<g><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="10" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="12" markerwidth="12" markerunits="userSpaceOnUse" refy="5" refx="0" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart" id="flowchart-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-A LE-B" id="L-A-B-0" d="M70.68843005952381,84L77.44608754960318,79.83333333333333C84.20374503968254,75.66666666666667,97.71906001984127,67.33333333333333,108.6433841765873,63.166666666666664C119.56770833333333,59,127.90104166666667,59,132.06770833333334,59L136.234375,59"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-A LE-C" id="L-A-C-0" d="M70.68843005952381,118L77.44608754960318,122.16666666666667C84.20374503968254,126.33333333333333,97.71906001984127,134.66666666666666,113.9949466765873,138.83333333333334C130.27083333333334,143,149.30729166666666,143,158.82552083333334,143L168.34375,143"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-C LE-D" id="L-C-D-0" d="M262.51832217261904,126L279.2444351438492,114.83333333333333C295.97054811507934,103.66666666666667,329.4227740575397,81.33333333333333,350.31555369543656,70.16666666666667C371.2083333333333,59,379.5416666666667,59,383.7083333333333,59L387.875,59"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-C LE-E" id="L-C-E-0" d="M262.51832217261904,160L279.2444351438492,171.16666666666666C295.97054811507934,182.33333333333334,329.4227740575397,204.66666666666666,351.01477244543656,215.83333333333334C372.6067708333333,227,382.3385416666667,227,387.2044270833333,227L392.0703125,227"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-D LE-F" id="L-D-F-0" d="M539.7542782738095,42L552.2457527281746,37.833333333333336C564.7372271825396,33.666666666666664,589.7201760912699,25.333333333333332,612.3184213789683,21.166666666666668C634.9166666666666,17,655.1302083333334,17,665.2369791666666,17L675.34375,17"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-D LE-G" id="L-D-G-0" d="M539.7542782738095,76L552.2457527281746,80.16666666666667C564.7372271825396,84.33333333333333,589.7201760912699,92.66666666666667,606.3783172123016,96.83333333333333C623.0364583333334,101,631.3697916666666,101,635.5364583333334,101L639.703125,101"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-E LE-H" id="L-E-H-0" d="M539.7542782738095,210L552.2457527281746,205.83333333333334C564.7372271825396,201.66666666666666,589.7201760912699,193.33333333333334,607.6179005456349,189.16666666666666C625.515625,185,636.328125,185,641.734375,185L647.140625,185"></path><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-E LE-I" id="L-E-I-0" d="M539.7542782738095,244L552.2457527281746,248.16666666666666C564.7372271825396,252.33333333333334,589.7201760912699,260.6666666666667,606.3783172123016,264.8333333333333C623.0364583333334,269,631.3697916666666,269,635.5364583333334,269L639.703125,269"></path></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignobject height="0" width="0">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="edgeLabel"></span>
 </div>
@@ -523,35 +523,35 @@
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">All Movies</span>
 </div>
-</foreignobject></g></g><g transform="translate(240.0546875, 59)" id="flowchart-B-33" class="node default default flowchart-label"><rect height="34" width="201.640625" y="-17" x="-100.8203125" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-93.3203125, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="186.640625">
+</foreignobject></g></g><g transform="translate(237.0546875, 59)" id="flowchart-B-33" class="node default default flowchart-label"><rect height="34" width="201.640625" y="-17" x="-100.8203125" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-93.3203125, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="186.640625">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Criterion/Searchlight/A24</span>
 </div>
-</foreignobject></g></g><g transform="translate(240.0546875, 143)" id="flowchart-C-35" class="node default default flowchart-label"><rect height="34" width="207.640625" y="-17" x="-103.8203125" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-96.3203125, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="192.640625">
+</foreignobject></g></g><g transform="translate(237.0546875, 143)" id="flowchart-C-35" class="node default default flowchart-label"><rect height="34" width="137.421875" y="-17" x="-68.7109375" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-61.2109375, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="122.421875">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
-<span class="nodeLabel">Other Production Company</span>
+<span class="nodeLabel">Other Distributor</span>
 </div>
-</foreignobject></g></g><g transform="translate(494.7890625, 59)" id="flowchart-D-37" class="node default default flowchart-label"><rect height="34" width="201.828125" y="-17" x="-100.9140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-93.4140625, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="186.828125">
+</foreignobject></g></g><g transform="translate(488.7890625, 59)" id="flowchart-D-37" class="node default default flowchart-label"><rect height="34" width="201.828125" y="-17" x="-100.9140625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-93.4140625, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="186.828125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Audience Count &gt;= 10,000</span>
 </div>
-</foreignobject></g></g><g transform="translate(494.7890625, 227)" id="flowchart-E-39" class="node default default flowchart-label"><rect height="34" width="193.4375" y="-17" x="-96.71875" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-89.21875, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="178.4375">
+</foreignobject></g></g><g transform="translate(488.7890625, 227)" id="flowchart-E-39" class="node default default flowchart-label"><rect height="34" width="193.4375" y="-17" x="-96.71875" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-89.21875, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="178.4375">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Audience Count &lt; 10,000</span>
 </div>
-</foreignobject></g></g><g transform="translate(698.71875, 17)" id="flowchart-F-41" class="node default default flowchart-label"><rect height="34" width="34.75" y="-17" x="-17.375" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-9.875, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="19.75">
+</foreignobject></g></g><g transform="translate(692.71875, 17)" id="flowchart-F-41" class="node default default flowchart-label"><rect height="34" width="34.75" y="-17" x="-17.375" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-9.875, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="19.75">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">PG</span>
 </div>
-</foreignobject></g></g><g transform="translate(698.71875, 101)" id="flowchart-G-43" class="node default default flowchart-label"><rect height="34" width="106.03125" y="-17" x="-53.015625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-45.515625, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="91.03125">
+</foreignobject></g></g><g transform="translate(692.71875, 101)" id="flowchart-G-43" class="node default default flowchart-label"><rect height="34" width="106.03125" y="-17" x="-53.015625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-45.515625, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="91.03125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Other Rating</span>
 </div>
-</foreignobject></g></g><g transform="translate(698.71875, 185)" id="flowchart-H-45" class="node default default flowchart-label"><rect height="34" width="91.15625" y="-17" x="-45.578125" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-38.078125, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="76.15625">
+</foreignobject></g></g><g transform="translate(692.71875, 185)" id="flowchart-H-45" class="node default default flowchart-label"><rect height="34" width="91.15625" y="-17" x="-45.578125" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-38.078125, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="76.15625">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">PG-13 or R</span>
 </div>
-</foreignobject></g></g><g transform="translate(698.71875, 269)" id="flowchart-I-47" class="node default default flowchart-label"><rect height="34" width="106.03125" y="-17" x="-53.015625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-45.515625, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="91.03125">
+</foreignobject></g></g><g transform="translate(692.71875, 269)" id="flowchart-I-47" class="node default default flowchart-label"><rect height="34" width="106.03125" y="-17" x="-53.015625" ry="0" rx="0" style="" class="basic label-container"></rect><g transform="translate(-45.515625, -9.5)" style="" class="label"><rect></rect><foreignobject height="19" width="91.03125">
 <div style="display: inline-block; white-space: nowrap;" data-xmlns="http://www.w3.org/1999/xhtml">
 <span class="nodeLabel">Other Rating</span>
 </div>
@@ -577,8 +577,8 @@
 
     <script>
 
-      function styleCell_cenmtq9yxl4u0b12vszz(i, j, css_id) {
-          var table = document.getElementById("tinytable_cenmtq9yxl4u0b12vszz");
+      function styleCell_gjdlukemund9cuzft14b(i, j, css_id) {
+          var table = document.getElementById("tinytable_gjdlukemund9cuzft14b");
           var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -588,7 +588,7 @@
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_cenmtq9yxl4u0b12vszz');
+        var table = document.getElementById('tinytable_gjdlukemund9cuzft14b');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -596,8 +596,8 @@
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_cenmtq9yxl4u0b12vszz(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_cenmtq9yxl4u0b12vszz");
+      function spanCell_gjdlukemund9cuzft14b(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_gjdlukemund9cuzft14b");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -627,14 +627,14 @@
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 3, j: 0 }, { i: 3, j: 1 }, { i: 3, j: 2 },  ], css_id: 'tinytable_css_ylqkzqa372k8351ojyvm',}, 
-          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_g9at0of4zevro04eqpeq',}, 
+          { positions: [ { i: 3, j: 0 }, { i: 3, j: 1 }, { i: 3, j: 2 },  ], css_id: 'tinytable_css_91bn46e00tgd0u9mhidy',}, 
+          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_rsj1njmeacfr3e5fj92v',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_cenmtq9yxl4u0b12vszz(cell.i, cell.j, group.css_id);
+                  styleCell_gjdlukemund9cuzft14b(cell.i, cell.j, group.css_id);
               });
           });
       });
@@ -642,11 +642,11 @@
 
     <style>
       /* tinytable css entries after */
-      .table td.tinytable_css_ylqkzqa372k8351ojyvm, .table th.tinytable_css_ylqkzqa372k8351ojyvm { border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_g9at0of4zevro04eqpeq, .table th.tinytable_css_g9at0of4zevro04eqpeq { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_91bn46e00tgd0u9mhidy, .table th.tinytable_css_91bn46e00tgd0u9mhidy { border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_rsj1njmeacfr3e5fj92v, .table th.tinytable_css_rsj1njmeacfr3e5fj92v { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
     </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_cenmtq9yxl4u0b12vszz" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_gjdlukemund9cuzft14b" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
@@ -679,15 +679,15 @@
 </div>
 </div>
 </div><div class="column" style="width:50%;">
-<p><strong>Other Production Companies</strong></p>
+<p><strong>Other Distributors</strong></p>
 <div class="cell">
 <div class="cell-output-display">
 <!-- preamble start -->
 
     <script>
 
-      function styleCell_90s49g50w0u7mzijbssr(i, j, css_id) {
-          var table = document.getElementById("tinytable_90s49g50w0u7mzijbssr");
+      function styleCell_25zld183iqtdw4hfdkbt(i, j, css_id) {
+          var table = document.getElementById("tinytable_25zld183iqtdw4hfdkbt");
           var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -697,7 +697,7 @@
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_90s49g50w0u7mzijbssr');
+        var table = document.getElementById('tinytable_25zld183iqtdw4hfdkbt');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -705,8 +705,8 @@
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_90s49g50w0u7mzijbssr(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_90s49g50w0u7mzijbssr");
+      function spanCell_25zld183iqtdw4hfdkbt(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_25zld183iqtdw4hfdkbt");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -736,14 +736,14 @@
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 3, j: 0 }, { i: 3, j: 1 }, { i: 3, j: 2 },  ], css_id: 'tinytable_css_amf5s3ucs1k59wqdpmb0',}, 
-          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_jnzoxtq5ul07uhj00ja4',}, 
+          { positions: [ { i: 3, j: 0 }, { i: 3, j: 1 }, { i: 3, j: 2 },  ], css_id: 'tinytable_css_l0bmy1e0bzogm957gvax',}, 
+          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_gcxzyrs3dophttdzz3oz',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_90s49g50w0u7mzijbssr(cell.i, cell.j, group.css_id);
+                  styleCell_25zld183iqtdw4hfdkbt(cell.i, cell.j, group.css_id);
               });
           });
       });
@@ -751,11 +751,11 @@
 
     <style>
       /* tinytable css entries after */
-      .table td.tinytable_css_amf5s3ucs1k59wqdpmb0, .table th.tinytable_css_amf5s3ucs1k59wqdpmb0 { border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_jnzoxtq5ul07uhj00ja4, .table th.tinytable_css_jnzoxtq5ul07uhj00ja4 { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_l0bmy1e0bzogm957gvax, .table th.tinytable_css_l0bmy1e0bzogm957gvax { border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_gcxzyrs3dophttdzz3oz, .table th.tinytable_css_gcxzyrs3dophttdzz3oz { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
     </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_90s49g50w0u7mzijbssr" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_25zld183iqtdw4hfdkbt" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
@@ -803,8 +803,8 @@
 
     <script>
 
-      function styleCell_73t4u6twbu4k76o2hx6a(i, j, css_id) {
-          var table = document.getElementById("tinytable_73t4u6twbu4k76o2hx6a");
+      function styleCell_utxmk0uyqlie4d7p2tqq(i, j, css_id) {
+          var table = document.getElementById("tinytable_utxmk0uyqlie4d7p2tqq");
           var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -814,7 +814,7 @@
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_73t4u6twbu4k76o2hx6a');
+        var table = document.getElementById('tinytable_utxmk0uyqlie4d7p2tqq');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -822,8 +822,8 @@
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_73t4u6twbu4k76o2hx6a(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_73t4u6twbu4k76o2hx6a");
+      function spanCell_utxmk0uyqlie4d7p2tqq(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_utxmk0uyqlie4d7p2tqq");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -853,14 +853,14 @@
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 3, j: 0 }, { i: 3, j: 1 }, { i: 3, j: 2 },  ], css_id: 'tinytable_css_s83ybebww6s2gjfkaf4o',}, 
-          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_602d2bpfj7ov6mngwnhz',}, 
+          { positions: [ { i: 3, j: 0 }, { i: 3, j: 1 }, { i: 3, j: 2 },  ], css_id: 'tinytable_css_izgguhof8asgl4xupt9s',}, 
+          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_ahre4juezidhobop28k0',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_73t4u6twbu4k76o2hx6a(cell.i, cell.j, group.css_id);
+                  styleCell_utxmk0uyqlie4d7p2tqq(cell.i, cell.j, group.css_id);
               });
           });
       });
@@ -868,11 +868,11 @@
 
     <style>
       /* tinytable css entries after */
-      .table td.tinytable_css_s83ybebww6s2gjfkaf4o, .table th.tinytable_css_s83ybebww6s2gjfkaf4o { border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_602d2bpfj7ov6mngwnhz, .table th.tinytable_css_602d2bpfj7ov6mngwnhz { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_izgguhof8asgl4xupt9s, .table th.tinytable_css_izgguhof8asgl4xupt9s { border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_ahre4juezidhobop28k0, .table th.tinytable_css_ahre4juezidhobop28k0 { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
     </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_73t4u6twbu4k76o2hx6a" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_utxmk0uyqlie4d7p2tqq" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
@@ -912,8 +912,8 @@
 
     <script>
 
-      function styleCell_9l9bq9swjaotoyazwim2(i, j, css_id) {
-          var table = document.getElementById("tinytable_9l9bq9swjaotoyazwim2");
+      function styleCell_v42l2dbuasna3gysncqf(i, j, css_id) {
+          var table = document.getElementById("tinytable_v42l2dbuasna3gysncqf");
           var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -923,7 +923,7 @@
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_9l9bq9swjaotoyazwim2');
+        var table = document.getElementById('tinytable_v42l2dbuasna3gysncqf');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -931,8 +931,8 @@
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_9l9bq9swjaotoyazwim2(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_9l9bq9swjaotoyazwim2");
+      function spanCell_v42l2dbuasna3gysncqf(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_v42l2dbuasna3gysncqf");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -962,14 +962,14 @@
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 3, j: 0 }, { i: 3, j: 1 }, { i: 3, j: 2 },  ], css_id: 'tinytable_css_cqodqw4d0zkciuzds1wk',}, 
-          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_p9wgyzvh5p4d4kkx0m7g',}, 
+          { positions: [ { i: 3, j: 0 }, { i: 3, j: 1 }, { i: 3, j: 2 },  ], css_id: 'tinytable_css_j34cfsauyox6yevfxwjy',}, 
+          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_fh5lcgoh6u6cifhpi7p9',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_9l9bq9swjaotoyazwim2(cell.i, cell.j, group.css_id);
+                  styleCell_v42l2dbuasna3gysncqf(cell.i, cell.j, group.css_id);
               });
           });
       });
@@ -977,11 +977,11 @@
 
     <style>
       /* tinytable css entries after */
-      .table td.tinytable_css_cqodqw4d0zkciuzds1wk, .table th.tinytable_css_cqodqw4d0zkciuzds1wk { border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_p9wgyzvh5p4d4kkx0m7g, .table th.tinytable_css_p9wgyzvh5p4d4kkx0m7g { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_j34cfsauyox6yevfxwjy, .table th.tinytable_css_j34cfsauyox6yevfxwjy { border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_fh5lcgoh6u6cifhpi7p9, .table th.tinytable_css_fh5lcgoh6u6cifhpi7p9 { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
     </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_9l9bq9swjaotoyazwim2" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_v42l2dbuasna3gysncqf" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
@@ -1042,8 +1042,8 @@
 
     <script>
 
-      function styleCell_53jhtcav3yf3kf0plbka(i, j, css_id) {
-          var table = document.getElementById("tinytable_53jhtcav3yf3kf0plbka");
+      function styleCell_fa42rq08pb2cyi5im0oj(i, j, css_id) {
+          var table = document.getElementById("tinytable_fa42rq08pb2cyi5im0oj");
           var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -1053,7 +1053,7 @@
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_53jhtcav3yf3kf0plbka');
+        var table = document.getElementById('tinytable_fa42rq08pb2cyi5im0oj');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -1061,8 +1061,8 @@
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_53jhtcav3yf3kf0plbka(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_53jhtcav3yf3kf0plbka");
+      function spanCell_fa42rq08pb2cyi5im0oj(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_fa42rq08pb2cyi5im0oj");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -1092,14 +1092,14 @@
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 3, j: 0 }, { i: 3, j: 1 }, { i: 3, j: 2 },  ], css_id: 'tinytable_css_jbzjpjc7ss01gq3inx01',}, 
-          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_ixhmzw6ivavya0zhfgxy',}, 
+          { positions: [ { i: 3, j: 0 }, { i: 3, j: 1 }, { i: 3, j: 2 },  ], css_id: 'tinytable_css_z70rjgam85srz1wavn87',}, 
+          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_bumm2hzgccf71ix76tfi',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_53jhtcav3yf3kf0plbka(cell.i, cell.j, group.css_id);
+                  styleCell_fa42rq08pb2cyi5im0oj(cell.i, cell.j, group.css_id);
               });
           });
       });
@@ -1107,11 +1107,11 @@
 
     <style>
       /* tinytable css entries after */
-      .table td.tinytable_css_jbzjpjc7ss01gq3inx01, .table th.tinytable_css_jbzjpjc7ss01gq3inx01 { border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_ixhmzw6ivavya0zhfgxy, .table th.tinytable_css_ixhmzw6ivavya0zhfgxy { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_z70rjgam85srz1wavn87, .table th.tinytable_css_z70rjgam85srz1wavn87 { border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_bumm2hzgccf71ix76tfi, .table th.tinytable_css_bumm2hzgccf71ix76tfi { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
     </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_53jhtcav3yf3kf0plbka" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_fa42rq08pb2cyi5im0oj" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
@@ -1152,8 +1152,8 @@
 
     <script>
 
-      function styleCell_g80ycsvbpt17s6n0h0m1(i, j, css_id) {
-          var table = document.getElementById("tinytable_g80ycsvbpt17s6n0h0m1");
+      function styleCell_9vg4ag26l1kyn5ydk76e(i, j, css_id) {
+          var table = document.getElementById("tinytable_9vg4ag26l1kyn5ydk76e");
           var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -1163,7 +1163,7 @@
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_g80ycsvbpt17s6n0h0m1');
+        var table = document.getElementById('tinytable_9vg4ag26l1kyn5ydk76e');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -1171,8 +1171,8 @@
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_g80ycsvbpt17s6n0h0m1(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_g80ycsvbpt17s6n0h0m1");
+      function spanCell_9vg4ag26l1kyn5ydk76e(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_9vg4ag26l1kyn5ydk76e");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -1202,14 +1202,14 @@
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 3, j: 0 }, { i: 3, j: 1 }, { i: 3, j: 2 }, { i: 3, j: 3 },  ], css_id: 'tinytable_css_gma1bo7yr8lbqlq57pzr',}, 
-          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 }, { i: 0, j: 2 }, { i: 0, j: 3 },  ], css_id: 'tinytable_css_z8d63m2nqrtoum5kbo70',}, 
+          { positions: [ { i: 3, j: 0 }, { i: 3, j: 1 }, { i: 3, j: 2 }, { i: 3, j: 3 },  ], css_id: 'tinytable_css_1bf85kwyho6k9xv4pw4z',}, 
+          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 }, { i: 0, j: 2 }, { i: 0, j: 3 },  ], css_id: 'tinytable_css_189m7x5x56ngrd1tzuhc',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_g80ycsvbpt17s6n0h0m1(cell.i, cell.j, group.css_id);
+                  styleCell_9vg4ag26l1kyn5ydk76e(cell.i, cell.j, group.css_id);
               });
           });
       });
@@ -1217,11 +1217,11 @@
 
     <style>
       /* tinytable css entries after */
-      .table td.tinytable_css_gma1bo7yr8lbqlq57pzr, .table th.tinytable_css_gma1bo7yr8lbqlq57pzr { border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_z8d63m2nqrtoum5kbo70, .table th.tinytable_css_z8d63m2nqrtoum5kbo70 { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_1bf85kwyho6k9xv4pw4z, .table th.tinytable_css_1bf85kwyho6k9xv4pw4z { border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_189m7x5x56ngrd1tzuhc, .table th.tinytable_css_189m7x5x56ngrd1tzuhc { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
     </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_g80ycsvbpt17s6n0h0m1" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_9vg4ag26l1kyn5ydk76e" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
@@ -1280,8 +1280,8 @@
 
     <script>
 
-      function styleCell_qcj6astm3wqvrxqmwtq1(i, j, css_id) {
-          var table = document.getElementById("tinytable_qcj6astm3wqvrxqmwtq1");
+      function styleCell_qlru5h4t1kxk8dvzh4mf(i, j, css_id) {
+          var table = document.getElementById("tinytable_qlru5h4t1kxk8dvzh4mf");
           var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -1291,7 +1291,7 @@
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_qcj6astm3wqvrxqmwtq1');
+        var table = document.getElementById('tinytable_qlru5h4t1kxk8dvzh4mf');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -1299,8 +1299,8 @@
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_qcj6astm3wqvrxqmwtq1(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_qcj6astm3wqvrxqmwtq1");
+      function spanCell_qlru5h4t1kxk8dvzh4mf(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_qlru5h4t1kxk8dvzh4mf");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -1330,14 +1330,14 @@
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 3, j: 0 }, { i: 3, j: 1 }, { i: 3, j: 2 },  ], css_id: 'tinytable_css_c9xgd77wzil9idmrxunh',}, 
-          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_4gbpe824nm981x8xtcn5',}, 
+          { positions: [ { i: 3, j: 0 }, { i: 3, j: 1 }, { i: 3, j: 2 },  ], css_id: 'tinytable_css_09opovqs8fn8k6nfk7yy',}, 
+          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_20qtymp8xyvk3kxv9e8o',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_qcj6astm3wqvrxqmwtq1(cell.i, cell.j, group.css_id);
+                  styleCell_qlru5h4t1kxk8dvzh4mf(cell.i, cell.j, group.css_id);
               });
           });
       });
@@ -1345,11 +1345,11 @@
 
     <style>
       /* tinytable css entries after */
-      .table td.tinytable_css_c9xgd77wzil9idmrxunh, .table th.tinytable_css_c9xgd77wzil9idmrxunh { border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_4gbpe824nm981x8xtcn5, .table th.tinytable_css_4gbpe824nm981x8xtcn5 { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_09opovqs8fn8k6nfk7yy, .table th.tinytable_css_09opovqs8fn8k6nfk7yy { border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_20qtymp8xyvk3kxv9e8o, .table th.tinytable_css_20qtymp8xyvk3kxv9e8o { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
     </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_qcj6astm3wqvrxqmwtq1" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_qlru5h4t1kxk8dvzh4mf" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
@@ -1390,8 +1390,8 @@
 
     <script>
 
-      function styleCell_ejancy78lrshtc9hwdpp(i, j, css_id) {
-          var table = document.getElementById("tinytable_ejancy78lrshtc9hwdpp");
+      function styleCell_18gf8bxoftaem659468q(i, j, css_id) {
+          var table = document.getElementById("tinytable_18gf8bxoftaem659468q");
           var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -1401,7 +1401,7 @@
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_ejancy78lrshtc9hwdpp');
+        var table = document.getElementById('tinytable_18gf8bxoftaem659468q');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -1409,8 +1409,8 @@
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_ejancy78lrshtc9hwdpp(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_ejancy78lrshtc9hwdpp");
+      function spanCell_18gf8bxoftaem659468q(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_18gf8bxoftaem659468q");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -1440,14 +1440,14 @@
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 3, j: 0 }, { i: 3, j: 1 }, { i: 3, j: 2 },  ], css_id: 'tinytable_css_1wgtnypxcr9qv78ifbcu',}, 
-          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_gtr9wiscykbwhhpzqnvs',}, 
+          { positions: [ { i: 3, j: 0 }, { i: 3, j: 1 }, { i: 3, j: 2 },  ], css_id: 'tinytable_css_v7gygbzcaxdoyj7k0bz8',}, 
+          { positions: [ { i: 0, j: 0 }, { i: 0, j: 1 }, { i: 0, j: 2 },  ], css_id: 'tinytable_css_wn48bazle2ylasjykztk',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_ejancy78lrshtc9hwdpp(cell.i, cell.j, group.css_id);
+                  styleCell_18gf8bxoftaem659468q(cell.i, cell.j, group.css_id);
               });
           });
       });
@@ -1455,11 +1455,11 @@
 
     <style>
       /* tinytable css entries after */
-      .table td.tinytable_css_1wgtnypxcr9qv78ifbcu, .table th.tinytable_css_1wgtnypxcr9qv78ifbcu { border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_gtr9wiscykbwhhpzqnvs, .table th.tinytable_css_gtr9wiscykbwhhpzqnvs { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_v7gygbzcaxdoyj7k0bz8, .table th.tinytable_css_v7gygbzcaxdoyj7k0bz8 { border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_wn48bazle2ylasjykztk, .table th.tinytable_css_wn48bazle2ylasjykztk { border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
     </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_ejancy78lrshtc9hwdpp" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_18gf8bxoftaem659468q" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
