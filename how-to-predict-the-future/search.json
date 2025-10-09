@@ -2797,7 +2797,7 @@
     "href": "slides/tree-models.html#bias-variance-tradeoff",
     "title": "Tree Models",
     "section": "Bias-Variance Tradeoff",
-    "text": "Bias-Variance Tradeoff\n\nToo complex, and the\nsadfi\nIn machine learning, this tradeoff is called overfitting vs. underfitting."
+    "text": "Bias-Variance Tradeoff\n\nToo complex, and the\nsadfi"
   },
   {
     "objectID": "slides/tree-models.html#motivating-problem",
@@ -2824,8 +2824,8 @@
     "objectID": "slides/tree-models.html#information-theory-review",
     "href": "slides/tree-models.html#information-theory-review",
     "title": "Tree Models",
-    "section": "Information Theory Review",
-    "text": "Information Theory Review\n\n\n\nCertified-Fresh           Fresh          Rotten \n       2.438637        1.368227        1.223727 \n\n\n[1] 1.503801"
+    "section": "Information Theory: Review",
+    "text": "Information Theory: Review\nRecall the definitions of information and entropy.\n\nInformation is how surprised we are when we learn an outcome. Equal to \\(-log(p)\\).\nEntropy is “average surprise”: how much surprise we expect to experience when we learn the outcome.\nIf we could perfectly predict the Rotten Tomatoes rating a of movie, then entropy would be zero. (We would never be surprised).\nOur optimal strategy is to seek out information that yields the largest reduction in entropy."
   },
   {
     "objectID": "slides/tree-models.html#complex-tree",
@@ -2846,7 +2846,7 @@
     "href": "slides/tree-models.html#outside-view",
     "title": "Tree Models",
     "section": "Outside View",
-    "text": "Outside View\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  3,259\n                  18.4\n                \n                \n                  \n                  6,844\n                  38.7\n                \n                \n                  \n                  7,565\n                  42.8"
+    "text": "Outside View\nIf we had no other information, what would we predict based on historical base rates?\n\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  3,259\n                  18.4\n                \n                \n                  \n                  6,844\n                  38.7\n                \n                \n                  \n                  7,565\n                  42.8"
   },
   {
     "objectID": "slides/tree-models.html#classification-and-regression-trees",
@@ -2860,7 +2860,7 @@
     "href": "slides/tree-models.html#information-theory-review-1",
     "title": "Tree Models",
     "section": "Information Theory: Review",
-    "text": "Information Theory: Review\nRecall the definitions of information and entropy.\n\nInformation is how surprised we are when we learn the outcome. \\(-log(p)\\).\nEntropy is “average surprise”: how much surprise we expect to experience when we learn the outcome.\nIf we could perfectly predict the Rotten Tomatoes rating a of movie, then entropy would be zero. (We would never be surprised).\nOptimal strategy is to seek out information that reduces entropy the most."
+    "text": "Information Theory: Review\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                p\n              \n        \n        \n        \n                \n                  \n                  3,259\n                  0.184\n                \n                \n                  \n                  6,844\n                  0.387\n                \n                \n                  \n                  7,565\n                  0.428"
   },
   {
     "objectID": "slides/tree-models.html#classification-trees",
@@ -2909,7 +2909,7 @@
     "href": "slides/tree-models.html#choosing-splits",
     "title": "Tree Models",
     "section": "Choosing Splits",
-    "text": "Choosing Splits\n\nWhat is the “best” way to partition the data?"
+    "text": "Choosing Splits\n\nWhat is the “best” way to partition the data?\nUp to now, we’ve been choosing our splits based purely on vibes.\nA more principled way is to partition the data based on how much information it reveals."
   },
   {
     "objectID": "slides/tree-models.html#classification-trees-2",
@@ -2931,5 +2931,26 @@
     "title": "Tree Models",
     "section": "How Complex Should The Tree Be?",
     "text": "How Complex Should The Tree Be?"
+  },
+  {
+    "objectID": "slides/tree-models.html#information-theory-review-2",
+    "href": "slides/tree-models.html#information-theory-review-2",
+    "title": "Tree Models",
+    "section": "Information Theory: Review",
+    "text": "Information Theory: Review\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                p\n                -log(p)\n              \n        \n        \n        \n                \n                  \n                  3,259\n                  0.184\n                  2.44\n                \n                \n                  \n                  6,844\n                  0.387\n                  1.37\n                \n                \n                  \n                  7,565\n                  0.428\n                  1.22\n                \n        \n      \n    \n\n\n\n\n\\(\\text{Entropy} = \\sum p \\times -log(p) =\\) 1.5"
+  },
+  {
+    "objectID": "slides/tree-models.html#bias-variance-tradeoff-1",
+    "href": "slides/tree-models.html#bias-variance-tradeoff-1",
+    "title": "Tree Models",
+    "section": "Bias-Variance Tradeoff",
+    "text": "Bias-Variance Tradeoff\n\nIn machine learning, this tradeoff is called overfitting vs. underfitting."
+  },
+  {
+    "objectID": "slides/tree-models.html#information-theory-review-3",
+    "href": "slides/tree-models.html#information-theory-review-3",
+    "title": "Tree Models",
+    "section": "Information Theory: Review",
+    "text": "Information Theory: Review"
   }
 ]
