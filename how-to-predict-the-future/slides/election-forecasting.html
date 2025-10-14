@@ -11,7 +11,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.57">
 
-  <title>How To Predict The Future – Long Tails</title>
+  <title>How To Predict The Future – Election Forecasting</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -348,7 +348,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Long Tails</h1>
+  <h1 class="title">Election Forecasting</h1>
   <p class="subtitle">POLS 3220: How to Predict the Future</p>
 
 <div class="quarto-title-authors">
@@ -358,285 +358,275 @@
 <section id="todays-agenda" class="slide level2">
 <h2>Today’s Agenda</h2>
 <ul>
-<li class="fragment">Review the <strong>Central Limit Theorem</strong> (CLT)</li>
-<li class="fragment">Describe the problem of <strong>tail risk</strong></li>
-<li class="fragment">Consider when the assumptions of CLT may be violated</li>
-<li class="fragment">Introduce <strong>long tail</strong> probability distributions</li>
+<li class="fragment"><p>Today, we’ll develop a model to predict the outcome of US Senate elections.</p></li>
+<li class="fragment"><p>This is a tough forecasting problem compared to presidential elections, for two reasons:</p>
+<ol type="1">
+<li class="fragment"><p>Relatively few polls</p></li>
+<li class="fragment"><p>“Fundamentals” are weakly predictive</p></li>
+</ol></li>
+<li class="fragment"><p>Combining polls + fundamentals will yield much better predictions than either alone!</p></li>
 </ul>
 </section>
-<section id="warmup" class="slide level2">
-<h2>Warmup</h2>
+<section id="approach-1-polls-only" class="slide level2">
+<h2>Approach 1: Polls Only</h2>
 
-<img data-src="img/galton-board.jpeg" class="r-stretch"><p>Using the definition of the Central Limit Theorem, explain why the Galton Board produces a bell curve shape.</p>
-</section>
-<section id="tail-risk" class="slide level2">
-<h2>Tail Risk</h2>
+<img data-src="election-forecasting_files/figure-revealjs/unnamed-chunk-2-1.png" width="768" class="r-stretch"></section>
+<section id="approach-1-polls-only-1" class="slide level2">
+<h2>Approach 1: Polls Only</h2>
 <ul>
-<li class="fragment"><p>A common forecasting problem is to try to quantify “tail risk”. What’s the probability of an extreme result, far outside what we ordinarily expect?</p></li>
-<li class="fragment"><p>Last time, we discussed the <strong>margin of error</strong>, which is a measure of tail risk in political polling.</p></li>
-<li class="fragment"><p>But this type of problem crops up everywhere: financial analysis, military planning, emergency management, etc.</p></li>
-</ul>
-</section>
-<section id="bell-curves-have-low-tail-risk" class="slide level2">
-<h2>Bell Curves Have Low Tail Risk</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><img data-src="img/bell-curve-tail-risk.png"></p>
-</div><div class="column" style="width:50%;">
+<li class="fragment"><p>Between 1992 and 2016, polls “called” the correct candidate 79.7% of the time.</p></li>
+<li class="fragment"><p>And polling error is quite high! The average poll was off by 6.75 percentage points.</p></li>
+<li class="fragment"><p>Of course, we expect that there will be some error in polling.</p>
 <ul>
-<li class="fragment">Standard deviation <span class="math inline">\((\sigma)\)</span> is a measure of the spread of the distribution. It measures how far, on average, observations lie from their expected value.</li>
-<li class="fragment">A “2 sigma” event should happen only 5% of the time.</li>
-<li class="fragment">A “3 sigma” event should happen only 0.3% of the time.</li>
-</ul>
-</div></div>
-</section>
-<section id="financial-markets-example" class="slide level2">
-<h2>Financial Markets Example</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
-<section id="financial-markets-example-1" class="slide level2">
-<h2>Financial Markets Example</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="long-tails_files/figure-revealjs/unnamed-chunk-2-1.png" width="384"></p>
-</figure>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<p>It…looks like a bell curve?</p>
-<ul>
-<li class="fragment"><p><span class="math inline">\(\sigma =\)</span> 0.84</p></li>
-<li class="fragment"><p>So we should expect price movements greater than 1.68% only on about 1 in every 20 trading days.</p></li>
-<li class="fragment"><p>And that’s basically true! On 94% of trading days, price movements are within that range.</p></li>
-</ul>
-</div></div>
-</section>
-<section id="so-whats-the-problem" class="slide level2">
-<h2>So what’s the problem?</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
-<section id="so-whats-the-problem-1" class="slide level2">
-<h2>So what’s the problem?</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
-<section id="long-tails" class="slide level2">
-<h2>Long Tails</h2>
-<ul>
-<li class="fragment"><p>On March 16, 2020 the S&amp;P 500 index dropped 11.98%.</p></li>
-<li class="fragment"><p>This was a “14 sigma” event.</p></li>
-<li class="fragment"><p>The probability of such an event, according to the standard bell curve, is approximately 0.0000000000000000000000000000000000000000007793537%.</p></li>
-<li class="fragment"><p>To express that somewhat dramatically: if the New York Stock Exchange had operated every single day since the birth of the universe 13.8 billion years ago, we still wouldn’t expect to see a price movement that large.</p></li>
-</ul>
-<aside class="notes">
-<p>3.9282933^{-32}</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="long-tails-1" class="slide level2">
-<h2>Long Tails</h2>
-<ul>
-<li class="fragment"><p>So, financial markets are clearly have greater tail risk than a bell curve would expect <span class="citation" data-cites="talebBlackSwanImpact2007">(<a href="#/references" role="doc-biblioref" onclick="">Taleb 2007</a>)</span>.</p></li>
-<li class="fragment"><p><strong>Discuss</strong>: Why do you think that is? Which part of the Central Limit Theorem is violated here?</p></li>
-<li class="fragment"><p>In the rest of the lecture, we’ll discuss two types of violations, and the <strong>long tail</strong> distributions they generate.</p></li>
-</ul>
-</section>
-<section id="violation-1-multiplicative-processes" class="slide level2">
-<h2>Violation 1: Multiplicative Processes</h2>
-<ul>
-<li class="fragment"><p>Imagine a group of gamblers who each start with $100.</p></li>
-<li class="fragment"><p>They all make a series of wagers that either cause them to win or lose 10% of their money, with equal probability.</p></li>
-<li class="fragment"><p>What will the wealth distribution look like after a large number of these gambles?</p>
-<ul>
-<li class="fragment"><p>As in CLT, wealth is the result of a <strong>large number</strong> of <strong>independent</strong> random events.</p></li>
-<li class="fragment"><p>But wealth is the <strong>product</strong> of these events, not the sum.</p></li>
+<li class="fragment">Think back to our lecture on Bell Curves. Polling error should look like a normal distribution.</li>
 </ul></li>
 </ul>
 </section>
-<section id="violation-1-multiplicative-processes-1" class="slide level2">
-<h2>Violation 1: Multiplicative Processes</h2>
+<section id="approach-1-polls-only-2" class="slide level2">
+<h2>Approach 1: Polls Only</h2>
 
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
-<section id="violation-1-multiplicative-processes-2" class="slide level2">
-<h2>Violation 1: Multiplicative Processes</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
-<section id="violation-1-multiplicative-processes-3" class="slide level2">
-<h2>Violation 1: Multiplicative Processes</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
-<section id="violation-1-multiplicative-processes-4" class="slide level2">
-<h2>Violation 1: Multiplicative Processes</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
-<section id="violation-1-multiplicative-processes-5" class="slide level2">
-<h2>Violation 1: Multiplicative Processes</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
-<section id="violation-1-multiplicative-processes-6" class="slide level2">
-<h2>Violation 1: Multiplicative Processes</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
-<section id="violation-1-multiplicative-processes-7" class="slide level2">
-<h2>Violation 1: Multiplicative Processes</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
-<section id="violation-1-multiplicative-processes-8" class="slide level2">
-<h2>Violation 1: Multiplicative Processes</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-12-1.png" width="960" class="r-stretch"></section>
-<section id="violation-1-multiplicative-processes-9" class="slide level2">
-<h2>Violation 1: Multiplicative Processes</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-13-1.png" width="960" class="r-stretch"></section>
-<section id="violation-1-multiplicative-processes-10" class="slide level2">
-<h2>Violation 1: Multiplicative Processes</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"></section>
-<section id="violation-1-multiplicative-processes-11" class="slide level2">
-<h2>Violation 1: Multiplicative Processes</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-15-1.png" width="960" class="r-stretch"></section>
-<section id="violation-1-multiplicative-processes-12" class="slide level2">
-<h2>Violation 1: Multiplicative Processes</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-16-1.png" width="960" class="r-stretch"></section>
-<section id="violation-1-multiplicative-processes-13" class="slide level2">
-<h2>Violation 1: Multiplicative Processes</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"></section>
-<section id="violation-1-multiplicative-processes-14" class="slide level2">
-<h2>Violation 1: Multiplicative Processes</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
-<section id="violation-1-multiplicative-processes-15" class="slide level2">
-<h2>Violation 1: Multiplicative Processes</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"></section>
-<section id="violation-1-multiplicative-processes-16" class="slide level2">
-<h2>Violation 1: Multiplicative Processes</h2>
-<p>This is called a <strong>lognormal</strong> distribution, because here’s what it looks like on a logarithmic scale:</p>
-<div class="fragment">
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="long-tails_files/figure-revealjs/unnamed-chunk-20-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="lognormal-distributions" class="slide level2">
-<h2>Lognormal Distributions</h2>
+<img data-src="election-forecasting_files/figure-revealjs/unnamed-chunk-3-1.png" width="768" class="r-stretch"></section>
+<section id="approach-1-polls-only-3" class="slide level2">
+<h2>Approach 1: Polls Only</h2>
 <ul>
-<li class="fragment"><p>Lognormal distributions are common when outcomes are the result of multiplicative growth over time.</p></li>
-<li class="fragment"><p>For example, the distribution of city sizes in the United States.</p></li>
+<li class="fragment"><p>The problem is that polling error is much wider than the Central Limit Theorem would predict!</p></li>
+<li class="fragment"><p>Recall: a poll’s <strong>margin of error</strong> is the range within which one can be 95% confident the polling error will fall.</p></li>
+<li class="fragment"><p>Back-of-the-envelope approximation of a poll’s margin of error is <span class="math inline">\(\frac{100\%}{\sqrt{n}}\)</span></p></li>
+<li class="fragment"><p>In this dataset of 6,407 polls, the result only fell within the margin of error 3,119 times.</p>
+<ul>
+<li class="fragment">That’s 48.7% confidence, not 95%!</li>
+</ul></li>
 </ul>
 </section>
-<section id="lognormal-distributions-1" class="slide level2">
-<h2>Lognormal Distributions</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-21-1.png" width="960" class="r-stretch"></section>
-<section id="lognormal-distributions-2" class="slide level2">
-<h2>Lognormal Distributions</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch"></section>
-<section id="violation-2-interdependence" class="slide level2">
-<h2>Violation 2: Interdependence</h2>
+<section id="approach-1-polls-only-4" class="slide level2">
+<h2>Approach 1: Polls Only</h2>
 <ul>
-<li class="fragment"><p>Next, let’s consider what happens when the <strong>independence</strong> assumption of CLT is violated.</p></li>
-<li class="fragment"><p>Imagine a process of students forming clubs.</p></li>
-<li class="fragment"><p>Each student can choose either to start a new club or join an existing club.</p></li>
-<li class="fragment"><p>This process exhibits “preferential attachment”. You’re more likely to join a popular club.</p></li>
-<li class="fragment"><p>So club size is the <strong>sum</strong> of a <strong>large number</strong> of student choices.</p></li>
-<li class="fragment"><p>But these choices are not <strong>independent</strong>. A club is more likely to grow if it’s already popular.</p></li>
+<li class="fragment"><p>For most polls, the margin of error gives us a false sense of security.</p></li>
+<li class="fragment"><p>Real-world polling is much more volatile than theory would predict.</p></li>
+<li class="fragment"><p>Many different reasons why:</p>
+<ul>
+<li class="fragment">Non-response bias</li>
+<li class="fragment">People change their minds</li>
+<li class="fragment">People lie</li>
+</ul></li>
 </ul>
 </section>
-<section id="violation-2-interdependence-1" class="slide level2">
-<h2>Violation 2: Interdependence</h2>
+<section id="approach-2-fundamentals-only" class="slide level2">
+<h2>Approach 2: Fundamentals Only</h2>
+<ul>
+<li class="fragment"><p>Maybe a <strong>fundamentals model</strong> will work better?</p></li>
+<li class="fragment"><p>The problem here is a lack of good data.</p></li>
+<li class="fragment"><p>For example, there’s no dataset on “Senator approval” like there was on presidential approval</p></li>
+<li class="fragment"><p>But there are still some useful predictor variables we can include:</p>
+<ul>
+<li class="fragment">The Cook Political Report’s measure of a state’s partisan lean.</li>
+<li class="fragment">Whether each Senate candidate has previous political experience <span class="citation" data-cites="carsonElectoralCostsParty2010">(<a href="#/references" role="doc-biblioref" onclick="">Carson et al. 2010</a>)</span>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="approach-2-fundamentals-only-1" class="slide level2">
+<h2>Approach 2: Fundamentals Only</h2>
 
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-23-1.png" width="960" class="r-stretch"></section>
-<section id="violation-2-interdependence-2" class="slide level2">
-<h2>Violation 2: Interdependence</h2>
+<img data-src="election-forecasting_files/figure-revealjs/unnamed-chunk-4-1.png" width="768" class="r-stretch"></section>
+<section id="approach-2-fundamentals" class="slide level2">
+<h2>Approach 2: Fundamentals</h2>
+<p>The fundamentals model is off by 12.05 percentage points on average. Even worse than the polls!</p>
 
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-24-1.png" width="960" class="r-stretch"></section>
-<section id="violation-2-interdependence-3" class="slide level2">
-<h2>Violation 2: Interdependence</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-25-1.png" width="960" class="r-stretch"></section>
-<section id="violation-2-interdependence-4" class="slide level2">
-<h2>Violation 2: Interdependence</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-26-1.png" width="960" class="r-stretch"></section>
-<section id="violation-2-interdependence-5" class="slide level2">
-<h2>Violation 2: Interdependence</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch"></section>
-<section id="violation-2-interdependence-6" class="slide level2">
-<h2>Violation 2: Interdependence</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-28-1.png" width="960" class="r-stretch"></section>
-<section id="power-laws" class="slide level2">
-<h2>Power Laws</h2>
-<p>Distributions generated by this type of process are called <strong>power laws</strong>. They have a very distinct shape.</p>
-<div class="fragment">
+<img data-src="election-forecasting_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" width="768"></section>
+<section id="approach-3-polls-fundamentals" class="slide level2">
+<h2>Approach 3: Polls + Fundamentals</h2>
+<ul>
+<li class="fragment"><p>A polls-only approach had <em>way</em> higher error than we would expect from the Central Limit Theorem.</p></li>
+<li class="fragment"><p>The fundamentals-only approach was weak sauce.</p></li>
+<li class="fragment"><p>What if we combined the two?</p></li>
+<li class="fragment"><p>Our final approach: use both polls and fundamentals as predictor variables in a linear model.</p></li>
+</ul>
+</section>
+<section id="approach-3-polls-fundamentals-1" class="slide level2">
+<h2>Approach 3: Polls + Fundamentals</h2>
+<p>Predictor variables include:</p>
+<ol type="1">
+<li class="fragment"><p>Cook Partisan Voting Index (PVI)</p></li>
+<li class="fragment"><p>Whether the Democratic candidate has previous political experience (1 if yes, 0 if no).</p></li>
+<li class="fragment"><p>Whether the Republican candidate has previous political experience (1 if yes, 0 if no).</p></li>
+<li class="fragment"><p>The average vote margin in polls conducted within 1 month of the election.</p></li>
+</ol>
+</section>
+<section id="approach-3-polls-fundamentals-2" class="slide level2">
+<h2>Approach 3: Polls + Fundamentals</h2>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="long-tails_files/figure-revealjs/unnamed-chunk-29-1.png" width="960"></p>
-</figure>
-</div>
-</div>
+<!-- preamble start -->
+
+    <script>
+
+      function styleCell_ntck9r7kurdukr3ask67(i, j, css_id) {
+          var table = document.getElementById("tinytable_ntck9r7kurdukr3ask67");
+          var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
+          if (cell) {
+              console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
+              cell.classList.add(css_id);
+          } else {
+              console.warn(`Cell at (${i}, ${j}) not found.`);
+          }
+      }
+      function insertSpanRow(i, colspan, content) {
+        var table = document.getElementById('tinytable_ntck9r7kurdukr3ask67');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_ntck9r7kurdukr3ask67(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_ntck9r7kurdukr3ask67");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+      // tinytable span after
+      window.addEventListener('load', function () {
+          var cellsToStyle = [
+            // tinytable style arrays after
+          { positions: [ { i: 6, j: 1 },  ], css_id: 'tinytable_css_myya1nppjxbiggcbffu0',}, 
+          { positions: [ { i: 5, j: 1 },  ], css_id: 'tinytable_css_r3v8koiidekrb9emicky',}, 
+          { positions: [ { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 3, j: 1 }, { i: 4, j: 1 },  ], css_id: 'tinytable_css_29k68o24jgg1epwetdu6',}, 
+          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_rmwk6vzrlicg9nog7w5n',}, 
+          { positions: [ { i: 6, j: 0 },  ], css_id: 'tinytable_css_q0dph0wqyn7olsa3dhdw',}, 
+          { positions: [ { i: 5, j: 0 },  ], css_id: 'tinytable_css_ria70qlfmeh50zm8eu3g',}, 
+          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 4, j: 0 },  ], css_id: 'tinytable_css_337xikpzq6i9h3z2k1dk',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_rfldjru0u2b03kay377p',}, 
+          ];
+
+          // Loop over the arrays to style the cells
+          cellsToStyle.forEach(function (group) {
+              group.positions.forEach(function (cell) {
+                  styleCell_ntck9r7kurdukr3ask67(cell.i, cell.j, group.css_id);
+              });
+          });
+      });
+    </script>
+
+    <style>
+      /* tinytable css entries after */
+      .table td.tinytable_css_myya1nppjxbiggcbffu0, .table th.tinytable_css_myya1nppjxbiggcbffu0 { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_r3v8koiidekrb9emicky, .table th.tinytable_css_r3v8koiidekrb9emicky { text-align: center; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_29k68o24jgg1epwetdu6, .table th.tinytable_css_29k68o24jgg1epwetdu6 { text-align: center; }
+      .table td.tinytable_css_rmwk6vzrlicg9nog7w5n, .table th.tinytable_css_rmwk6vzrlicg9nog7w5n { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_q0dph0wqyn7olsa3dhdw, .table th.tinytable_css_q0dph0wqyn7olsa3dhdw { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_ria70qlfmeh50zm8eu3g, .table th.tinytable_css_ria70qlfmeh50zm8eu3g { text-align: left; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_337xikpzq6i9h3z2k1dk, .table th.tinytable_css_337xikpzq6i9h3z2k1dk { text-align: left; }
+      .table td.tinytable_css_rfldjru0u2b03kay377p, .table th.tinytable_css_rfldjru0u2b03kay377p { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+    </style>
+    <div class="container">
+      <table class="table table-borderless" id="tinytable_ntck9r7kurdukr3ask67" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+        <thead>
+        
+              <tr>
+                <th scope="col"> </th>
+                <th scope="col">(1)</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>(Intercept)</td>
+                  <td>-0.012</td>
+                </tr>
+                <tr>
+                  <td>polling_average</td>
+                  <td>0.911</td>
+                </tr>
+                <tr>
+                  <td>pvi</td>
+                  <td>0.004</td>
+                </tr>
+                <tr>
+                  <td>dem_experienced</td>
+                  <td>0.012</td>
+                </tr>
+                <tr>
+                  <td>rep_experienced</td>
+                  <td>0.001</td>
+                </tr>
+                <tr>
+                  <td>Num.Obs.</td>
+                  <td>223</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+<!-- hack to avoid NA insertion in last line -->
 </div>
 </div>
 </section>
-<section id="power-laws-1" class="slide level2">
-<h2>Power Laws</h2>
+<section id="approach-3-polls-fundamentals-3" class="slide level2">
+<h2>Approach 3: Polls + Fundamentals</h2>
 
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-30-1.png" width="960" class="r-stretch"></section>
-<section id="power-laws-2" class="slide level2">
-<h2>Power Laws</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-31-1.png" width="960" class="r-stretch"></section>
-<section id="power-laws-3" class="slide level2">
-<h2>Power Laws</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-32-1.png" width="960" class="r-stretch"></section>
-<section id="power-laws-4" class="slide level2">
-<h2>Power Laws</h2>
-
-<img data-src="long-tails_files/figure-revealjs/unnamed-chunk-33-1.png" width="960" class="r-stretch"></section>
-<section id="power-laws-5" class="slide level2">
-<h2>Power Laws</h2>
+<img data-src="election-forecasting_files/figure-revealjs/unnamed-chunk-7-1.png" width="768" class="r-stretch"></section>
+<section id="approach-3-polls-fundamentals-4" class="slide level2">
+<h2>Approach 3: Polls + Fundamentals</h2>
 <ul>
-<li class="fragment"><p>Power laws are the result of processes where large events are more likely grow than small ones.</p></li>
-<li class="fragment"><p>Each of these outcomes – social media subscribers, word usage, earthquakes, armed conflict – exhibit “snowball effects”.</p></li>
-<li class="fragment"><p>This violates the independence assumption of CLT.</p></li>
+<li class="fragment"><p>The combined model has an average error of 3.88 percentage points.</p></li>
+<li class="fragment"><p>It correctly calls the winner in 91.9% of elections from 1992-2016.</p></li>
+<li class="fragment"><p>But the <em>true</em> test of the model is whether it can accurately forecast <strong>out-of-sample</strong>.</p>
+<ul>
+<li class="fragment">The model was fit using 1992-2016 election data. Can we use the same model to predict the outcomes in 2018?</li>
+</ul></li>
+</ul>
+</section>
+<section id="out-of-sample-prediction" class="slide level2">
+<h2>Out-of-Sample Prediction</h2>
+
+<img data-src="election-forecasting_files/figure-revealjs/unnamed-chunk-8-1.png" width="768" class="r-stretch"></section>
+<section id="out-of-sample-prediction-1" class="slide level2">
+<h2>Out-of-Sample Prediction</h2>
+
+<img data-src="election-forecasting_files/figure-revealjs/unnamed-chunk-9-1.png" width="768" class="r-stretch"></section>
+<section id="out-of-sample-prediction-2" class="slide level2">
+<h2>Out-of-Sample Prediction</h2>
+
+<img data-src="election-forecasting_files/figure-revealjs/unnamed-chunk-10-1.png" width="768" class="r-stretch"></section>
+<section id="out-of-sample-prediction-3" class="slide level2">
+<h2>Out-of-Sample Prediction</h2>
+<ul>
+<li class="fragment"><p>The polls + fundamentals model correctly predicted all but two of the 2018 Senate elections, with an average error of 2.55 percentage points.</p></li>
+<li class="fragment"><p>By comparison, if you had been looking at the polls alone, you would have incorrectly called three elections.</p>
+<ul>
+<li class="fragment">In Missouri 2018, the polls narrowly favored the Democratic incumbent, but the fundamentals were skeptical.</li>
+</ul></li>
 </ul>
 </section>
 <section id="takeaways" class="slide level2">
 <h2>Takeaways</h2>
-<ol type="1">
-<li class="fragment"><p>If your outcome falls on a bell curve, then tail risk is low. Remember 68-95-99.7%.</p></li>
-<li class="fragment"><p>But if the sum or independence assumptions of CLT are violated, expect to observe much longer tails.</p></li>
-<li class="fragment"><p><strong>Lognormal</strong> and <strong>power law</strong> distributions are dominated by extreme events, when occur much more frequently than the bell curve would suggest.</p></li>
-</ol>
+<ul>
+<li class="fragment"><p>It’s somewhat surprising that combining two terrible models (polls: 6.7% error, fundamentals: 12% error) yields a pretty good model (polls + fundamentals: 3.8% error)!</p></li>
+<li class="fragment"><p>But it follows the basic logic of the <strong>wisdom of crowds</strong>.</p></li>
+<li class="fragment"><p>Both polls and fundamentals provide an imperfect glimpse at the state of a race.</p></li>
+<li class="fragment"><p>Combining the two perspectives yields a better forecast than either alone <span class="citation" data-cites="chenPollsContextTime2023">(<a href="#/references" role="doc-biblioref" onclick="">Chen, Garnett, and Montgomery 2023</a>)</span>.</p></li>
+</ul>
 </section>
 <section id="references" class="slide level2 smaller scrollable">
 <h2>References</h2>
@@ -647,8 +637,11 @@
 </div>
 </div>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-talebBlackSwanImpact2007" class="csl-entry" role="listitem">
-Taleb, Nassim Nicholas. 2007. <em>The black swan: the impact of the highly improbable</em>. London: Allen Lane.
+<div id="ref-carsonElectoralCostsParty2010" class="csl-entry" role="listitem">
+Carson, Jamie, Gregory Koger, Matthew J. Lebo, Jamie L, and Matthew J. Lebo. 2010. <span>“The Electoral Costs of Party Loyalty in Congress.”</span> <em>American Journal of Political Science</em>, 598616.
+</div>
+<div id="ref-chenPollsContextTime2023" class="csl-entry" role="listitem">
+Chen, Yehu, Roman Garnett, and Jacob M. Montgomery. 2023. <span>“Polls, Context, and Time: A Dynamic Hierarchical Bayesian Forecasting Model for US Senate Elections.”</span> <em>Political Analysis</em> 31 (1): 113–33. <a href="https://doi.org/10.1017/pan.2021.42">https://doi.org/10.1017/pan.2021.42</a>.
 </div>
 </div>
 </section>
