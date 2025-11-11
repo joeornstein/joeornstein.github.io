@@ -2889,5 +2889,82 @@
     "title": "Fall 2025 Predictions",
     "section": "Week 12 (11/4)",
     "text": "Week 12 (11/4)"
+  },
+  {
+    "objectID": "slides/stocks-flows.html#recap",
+    "href": "slides/stocks-flows.html#recap",
+    "title": "Stocks & Flows",
+    "section": "Recap",
+    "text": "Recap\n\nSo far this semester, we’ve covered:\n\nProbability (Part I). How to handle uncertainty.\nWisdom of Crowds (Part II). The value of thinking from multiple perspectives.\nMachine Learning (Part III). Using historical patterns to forecast future outcomes.\n\n\n\n\nTo date, we’ve mainly focused on short- and medium-term predictions.\n\nThis was a practical choice. We needed forecasts we could score!\n\nBut many of the most important prediction problems have longer time horizons.\nHere are a few trends I’ll be watching closely in the coming years:"
+  },
+  {
+    "objectID": "slides/stocks-flows.html#artificial-intelligence",
+    "href": "slides/stocks-flows.html#artificial-intelligence",
+    "title": "Stocks & Flows",
+    "section": "Artificial Intelligence",
+    "text": "Artificial Intelligence"
+  },
+  {
+    "objectID": "slides/stocks-flows.html#democracy",
+    "href": "slides/stocks-flows.html#democracy",
+    "title": "Stocks & Flows",
+    "section": "Democracy",
+    "text": "Democracy"
+  },
+  {
+    "objectID": "slides/stocks-flows.html#the-national-debt",
+    "href": "slides/stocks-flows.html#the-national-debt",
+    "title": "Stocks & Flows",
+    "section": "The National Debt",
+    "text": "The National Debt"
+  },
+  {
+    "objectID": "slides/stocks-flows.html#political-polarization",
+    "href": "slides/stocks-flows.html#political-polarization",
+    "title": "Stocks & Flows",
+    "section": "Political Polarization",
+    "text": "Political Polarization"
+  },
+  {
+    "objectID": "slides/stocks-flows.html#global-surface-temperature",
+    "href": "slides/stocks-flows.html#global-surface-temperature",
+    "title": "Stocks & Flows",
+    "section": "Global Surface Temperature",
+    "text": "Global Surface Temperature"
+  },
+  {
+    "objectID": "slides/stocks-flows.html#agenda",
+    "href": "slides/stocks-flows.html#agenda",
+    "title": "Stocks & Flows",
+    "section": "Agenda",
+    "text": "Agenda\n\nI want to give you some tools for reasoning about these sorts of long-term trends.\nToday: thinking in terms of stocks & flows."
+  },
+  {
+    "objectID": "slides/stocks-flows.html#stocks-flows",
+    "href": "slides/stocks-flows.html#stocks-flows",
+    "title": "Stocks & Flows",
+    "section": "Stocks & Flows",
+    "text": "Stocks & Flows\n\nA stock measures some quantity at a point in time.\nA flow measures the rate of change in a quantity.\nA useful metaphor is a bathtub."
+  },
+  {
+    "objectID": "slides/stocks-flows.html#stocks-flows-1",
+    "href": "slides/stocks-flows.html#stocks-flows-1",
+    "title": "Stocks & Flows",
+    "section": "Stocks & Flows",
+    "text": "Stocks & Flows\nLots of problems can be described in terms of stocks and flows:\n\n\n\nStock\nInflow\nOutflow\n\n\n\n\n$ in my bank account\nMonthly income\nMonthly spending\n\n\nNational Debt\nTaxes\nGovernment Spending\n\n\nNumber of Democracies\nDemocratization\n“Democratic Backsliding”\n\n\nCO2 in Atmosphere\nCarbon Emissions\nCarbon Sinks\n\n\nPopulation\nBirths\nDeaths\n\n\n\n\nToo often, people confuse stocks and flows.\nFor example: debt is a stock, and deficit is a flow.\n\n“Cutting the deficit” does not necessarily mean that the national debt will decrease!"
+  },
+  {
+    "objectID": "slides/stocks-flows.html#exercise",
+    "href": "slides/stocks-flows.html#exercise",
+    "title": "Stocks & Flows",
+    "section": "Exercise",
+    "text": "Exercise\nStocks and flows can be tricky! Sketch what you think will happen to the stock of water over time. Starts at 100 liters."
+  },
+  {
+    "objectID": "slides/stocks-flows.html#markov-chains",
+    "href": "slides/stocks-flows.html#markov-chains",
+    "title": "Stocks & Flows",
+    "section": "Markov Chains",
+    "text": "Markov Chains\n\nWhen flows are defined in terms of probabilities, the model is called a Markov Chain.\nSuppose, for example, that every dictatorship has a 4% chance of democratizing each year.\nAnd every democracy has a 1% chance of becoming a dictatorship.\nIf this process continued for 100 years, what do you think happens to the fraction of democracies?\n\n\n\n\n\n\n\n\n\n\n\n\n\n4%\n\n\n\n\n\n\n\n1%\n\n\n\n\n\n\n\nDictatorships\n\n\n\n\n\n\n\nDemocracies"
   }
 ]
