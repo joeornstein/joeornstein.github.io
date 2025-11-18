@@ -3309,5 +3309,12 @@
     "title": "Tipping Points",
     "section": "Wrap Up",
     "text": "Wrap Up\n\nIn the presence of positive feedback, a system can “tip” rapidly in response to small changes in conditions.\nThis makes prediction exceedingly difficult, because you need to have precise information about which side of the tipping point you’re on.\nAnd it suggests that there are critical points in time when small differences in initial conditions can cause history to unfold in dramatically different ways.\nMore on that next time!"
+  },
+  {
+    "objectID": "slides/tipping-points.html",
+    "href": "slides/tipping-points.html",
+    "title": "Tipping Points",
+    "section": "",
+    "text": "Let’s motivate today’s topic with a little game (Kuran 1991).\nThis is the situation. It’s late in the semester. Everyone’s a bit tired of learning.\nBut here’s Professor Ornstein, lecturing on another topic he expects you to learn before the final exam.\nIt probably even has math!\nEnough already!\nI mean, the man’s Brier Score puts him in 20th place! Who does he think he is, lecturing us about prediction?\nHe couldn’t predict his way out of a paper bag.\nIt’s time for drastic action. Take a few minutes to brainstorm protest slogans with your table."
   }
 ]
