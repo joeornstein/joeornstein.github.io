@@ -143,6 +143,7 @@
       margin-right: 0; 
     }
   </style>
+  <script src="../site_libs/quarto-diagram/mermaid-postprocess-shim.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -162,7 +163,7 @@
 <li class="fragment"><p>Let’s motivate today’s topic with a little game <span class="citation" data-cites="kuranNowOutNever1991">(<a href="#/references" role="doc-biblioref" onclick="">Kuran 1991</a>)</span>.</p></li>
 <li class="fragment"><p>This is the situation. It’s late in the semester. Everyone’s a bit tired of learning.</p></li>
 <li class="fragment"><p>But here’s Professor Ornstein, lecturing on <em>another</em> topic he expects you to learn before the final exam.</p></li>
-<li class="fragment"><p>It probably even involves math!</p></li>
+<li class="fragment"><p>It probably even has math!</p></li>
 <li class="fragment"><p>Enough already!</p></li>
 <li class="fragment"><p>I mean, the man’s Brier Score puts him in 20th place! Who does he think he is, lecturing us about prediction?</p></li>
 <li class="fragment"><p>He couldn’t predict his way out of a paper bag.</p></li>
@@ -173,17 +174,17 @@
 <h2>Warmup</h2>
 <ul>
 <li class="fragment"><p>Of course, protesting in the middle of class is risky.</p></li>
-<li class="fragment"><p>If too few people protest, they’ll be easy to single out for retribution.</p></li>
+<li class="fragment"><p>If too few people protest, it will be easy to single them out for retribution.</p></li>
 <li class="fragment"><p>Much safer to protest if other students are protesting too.</p></li>
 <li class="fragment"><p>Take a minute to consider how much risk you’re willing to take on.</p></li>
 <li class="fragment"><p>How many other students need to be actively protesting before you stand up and protest as well?</p></li>
-<li class="fragment"><p>This number is called your “revolutionary threshold” <span class="citation" data-cites="kuranNowOutNever1991">(<a href="#/references" role="doc-biblioref" onclick="">Kuran 1991</a>)</span>.</p>
+<li class="fragment"><p>This number is called your “revolutionary threshold”.</p>
 <ul>
 <li class="fragment">Zero means “I will stand and protest even if zero other students are protesting.”</li>
 <li class="fragment">One means “I will only stand and protest if at least one other student is protesting.”</li>
 <li class="fragment">And so on and so forth…</li>
 </ul></li>
-<li class="fragment"><p><strong>Secretly write down your revolutionary threshold. It should be a number between 0 and 5.</strong></p></li>
+<li class="fragment"><p><strong>Secretly write down your revolutionary threshold. It should be a number between 0 and 10.</strong></p></li>
 <li class="fragment"><p>Once everyone has finished writing down their number, we’ll begin.</p></li>
 </ul>
 </section>
@@ -217,11 +218,114 @@
 </ul></li>
 </ul>
 </section>
-<section id="sketch" class="slide level2">
-<h2>Sketch</h2>
+<section id="why-tipping-points" class="slide level2">
+<h2>Why Tipping Points?</h2>
 <ul>
-<li class="fragment"><p>Positive feedback + negative feedback –&gt; tipping points</p></li>
-<li class="fragment"><p>SIR model, R, vaccine thresholds</p></li>
+<li class="fragment"><p>Tipping points are often found in systems with <strong>positive feedback</strong>.</p></li>
+<li class="fragment"><p>In the presence of positive feedback loops, a small nudge can start a self-reinforcing cycle.</p>
+<ul>
+<li class="fragment">There is positive feedback in the protest game because a larger stock of protesters makes people more likely to join the protest.</li>
+</ul></li>
+<li class="fragment"><p><strong>Discussion Question</strong>: What are some other examples of phenomena with positive feedback, where we might observe tipping points?</p></li>
+</ul>
+</section>
+<section id="sir-model" class="slide level2">
+<h2>SIR Model</h2>
+<ul>
+<li class="fragment"><p>Anything that spreads from person to person—ideas, diseases, fashions—is likely to exhibit tipping behavior.</p></li>
+<li class="fragment"><p>Consider a basic stock-and-flow model from infectious disease epidemiology, the <strong>SIR Model</strong>.</p>
+<ul>
+<li class="fragment"><p>There are three stocks:</p>
+<ul>
+<li class="fragment"><p>people who are Susceptible to the disease <strong>(S)</strong>,</p></li>
+<li class="fragment"><p>people who are Infectious <strong>(I)</strong>,</p></li>
+<li class="fragment"><p>and people who have Recovered from the disease <strong>(R)</strong></p></li>
+</ul></li>
+<li class="fragment"><p>Each time a Susceptible person comes into contact with an Infectious person, there is some probability <span class="math inline">\(t\)</span>, the <strong>transmission probability</strong>, that the disease will spread.</p>
+<ul>
+<li class="fragment">The number of potential contacts equals <span class="math inline">\(S \times I\)</span>.</li>
+</ul></li>
+<li class="fragment"><p>Each day, there is some probability <span class="math inline">\(r\)</span>, the <strong>recovery probability</strong>, that an Infected individual will become Recovered.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="sir-model-1" class="slide level2">
+<h2>SIR Model</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<svg aria-roledescription="flowchart-v2" role="graphics-document document" viewbox="0 0 346.640625 70" style="; display: block; margin: auto auto auto auto" class="flowchart" xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="768" id="mermaid-figure-1" height="480">
+<style>#mermaid-figure-1{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#mermaid-figure-1 .error-icon{fill:#552222;}#mermaid-figure-1 .error-text{fill:#552222;stroke:#552222;}#mermaid-figure-1 .edge-thickness-normal{stroke-width:1px;}#mermaid-figure-1 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-figure-1 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-figure-1 .edge-thickness-invisible{stroke-width:0;fill:none;}#mermaid-figure-1 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-figure-1 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-figure-1 .marker{fill:#333333;stroke:#333333;}#mermaid-figure-1 .marker.cross{stroke:#333333;}#mermaid-figure-1 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-figure-1 p{margin:0;}#mermaid-figure-1 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#mermaid-figure-1 .cluster-label text{fill:#333;}#mermaid-figure-1 .cluster-label span{color:#333;}#mermaid-figure-1 .cluster-label span p{background-color:transparent;}#mermaid-figure-1 .label text,#mermaid-figure-1 span{fill:#333;color:#333;}#mermaid-figure-1 .node rect,#mermaid-figure-1 .node circle,#mermaid-figure-1 .node ellipse,#mermaid-figure-1 .node polygon,#mermaid-figure-1 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#mermaid-figure-1 .rough-node .label text,#mermaid-figure-1 .node .label text{text-anchor:middle;}#mermaid-figure-1 .node .katex path{fill:#000;stroke:#000;stroke-width:1px;}#mermaid-figure-1 .node .label{text-align:center;}#mermaid-figure-1 .node.clickable{cursor:pointer;}#mermaid-figure-1 .arrowheadPath{fill:#333333;}#mermaid-figure-1 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#mermaid-figure-1 .flowchart-link{stroke:#333333;fill:none;}#mermaid-figure-1 .edgeLabel{background-color:rgba(232,232,232, 0.8);text-align:center;}#mermaid-figure-1 .edgeLabel p{background-color:rgba(232,232,232, 0.8);}#mermaid-figure-1 .edgeLabel rect{opacity:0.5;background-color:rgba(232,232,232, 0.8);fill:rgba(232,232,232, 0.8);}#mermaid-figure-1 .labelBkg{background-color:rgba(232, 232, 232, 0.5);}#mermaid-figure-1 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#mermaid-figure-1 .cluster text{fill:#333;}#mermaid-figure-1 .cluster span{color:#333;}#mermaid-figure-1 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-figure-1 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#mermaid-figure-1 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}</style>
+<g><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1763561077232_flowchart-v2-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"></path></marker><marker orient="auto" markerheight="8" markerwidth="8" markerunits="userSpaceOnUse" refy="5" refx="4.5" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1763561077232_flowchart-v2-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="11" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1763561077232_flowchart-v2-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5" refx="-1" viewbox="0 0 10 10" class="marker flowchart-v2" id="mermaid-1763561077232_flowchart-v2-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"></circle></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="12" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1763561077232_flowchart-v2-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><marker orient="auto" markerheight="11" markerwidth="11" markerunits="userSpaceOnUse" refy="5.2" refx="-1" viewbox="0 0 11 11" class="marker cross flowchart-v2" id="mermaid-1763561077232_flowchart-v2-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"></path></marker><g class="root"><g class="clusters"></g><g class="edgePaths"><path marker-end="url(#mermaid-1763561077232_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_S_I_0" d="M75.703,35L81.411,35C87.12,35,98.536,35,107.099,35C115.661,35,121.37,35,126.411,35C131.453,35,135.828,35,138.016,35L140.203,35"></path><path marker-end="url(#mermaid-1763561077232_flowchart-v2-pointEnd)" style="" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" id="L_I_R_1" d="M208.656,35L213.712,35C218.768,35,228.88,35,236.464,35C244.048,35,249.104,35,253.493,35C257.883,35,261.605,35,263.467,35L265.328,35"></path></g><g class="edgeLabels"><g transform="translate(109.953125, 35)" class="edgeLabel"><g transform="translate(-9.25, -12)" class="label"><foreignobject height="24" width="18.5">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+tSI
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(238.9921875, 35)" class="edgeLabel"><g transform="translate(-5.3359375, -12)" class="label"><foreignobject height="24" width="10.671875">
+<div class="labelBkg" style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="edgeLabel">
+<p>
+rI
+</p>
+</span>
+</div>
+</foreignobject></g></g></g><g class="nodes"><g transform="translate(41.8515625, 35)" id="flowchart-S-0" class="node default"><rect height="54" width="67.703125" y="-27" x="-33.8515625" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-3.8515625, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="7.703125">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+S
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(176.4296875, 35)" id="flowchart-I-1" class="node default"><rect height="54" width="64.453125" y="-27" x="-32.2265625" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-2.2265625, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="4.453125">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+I
+</p>
+</span>
+</div>
+</foreignobject></g></g><g transform="translate(303.984375, 35)" id="flowchart-R-3" class="node default"><rect height="54" width="69.3125" y="-27" x="-34.65625" data-et="node" data-id="abc" style="" class="basic label-container"></rect><g transform="translate(-4.65625, -12)" style="" class="label"><rect></rect><foreignobject height="24" width="9.3125">
+<div style="display: table-cell; white-space: nowrap; line-height: 1.5; max-width: 200px; text-align: center;" data-xmlns="http://www.w3.org/1999/xhtml">
+<span class="nodeLabel">
+<p>
+R
+</p>
+</span>
+</div>
+</foreignobject></g></g></g></g></g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="sir-model-2" class="slide level2">
+<h2>SIR Model</h2>
+<p>Define the <strong>basic reproduction number</strong> as:</p>
+<p><span class="math display">\[
+R_0 = \frac{t}{r}
+\]</span></p>
+<ul>
+<li class="fragment"><p>The tipping point is at <span class="math inline">\(R_0 = 1\)</span>.</p></li>
+<li class="fragment"><p>When <span class="math inline">\(R_0 &lt; 1\)</span>, the epidemic fizzles out. People recover faster than they can transmit to other people.</p></li>
+<li class="fragment"><p>When <span class="math inline">\(R_0 &gt; 1\)</span>, the epidemic spreads exponentially. Each person transmits the disease to at least one person on average before they recover.</p></li>
+<li class="fragment"><p>If you’re close to the tipping point, then very small changes in <span class="math inline">\(t\)</span> can produce wildly different outcomes.</p></li>
+</ul>
+</section>
+<section id="wrap-up" class="slide level2">
+<h2>Wrap Up</h2>
+<ul>
+<li class="fragment"><p>In the presence of positive feedback, a system can “tip” rapidly in response to small changes in conditions.</p></li>
+<li class="fragment"><p>This makes prediction exceedingly difficult, because you need to have precise information about which side of the tipping point you’re on.</p></li>
+<li class="fragment"><p>And it suggests that there are critical points in time when small differences in initial conditions can cause history to unfold in dramatically different ways.</p></li>
+<li class="fragment"><p>More on that next time!</p></li>
 </ul>
 </section>
 <section id="references" class="slide level2 smaller scrollable">
