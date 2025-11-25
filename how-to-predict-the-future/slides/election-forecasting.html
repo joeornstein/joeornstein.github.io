@@ -1,445 +1,268 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
-<title>Election Forecasting – How To Predict The Future</title>
-<style>
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-  vertical-align: middle;
-}
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
-
-
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
+<html lang="en"><head>
 <link href="../img/favicon_io/favicon.ico" rel="icon">
-<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-39f7db0e33c7e7e0f37d956b9f0706d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
-  }
-}</script>
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.42">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
+  <title>How To Predict The Future – Election Forecasting</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
     }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="../styles.css">
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2f366650f320edcfcf53d73c80250a32.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
 </head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
 
-<body class="nav-fixed">
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Election Forecasting</h1>
+  <p class="subtitle">POLS 3220: How to Predict the Future</p>
 
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">How To Predict The Future</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-slides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Slides</span>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-slides">    
-        <li class="dropdown-header">I. Uncertainty</li>
-        <li>
-    <a class="dropdown-item" href="../slides/fundamentals.html">
- <span class="dropdown-text">Fundamentals of Probability</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../slides/compound-probability.html">
- <span class="dropdown-text">Compound Probability</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../slides/brier-scores.html">
- <span class="dropdown-text">Brier Scores</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../slides/conditional-probability.html">
- <span class="dropdown-text">Conditional Probability</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../slides/bayes-rule.html">
- <span class="dropdown-text">Bayes Rule</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../slides/bell-curves.html">
- <span class="dropdown-text">Bell Curves</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../slides/long-tails.html">
- <span class="dropdown-text">Long Tails</span></a>
-  </li>  
-        <li class="dropdown-header">II. Wisdom of Crowds</li>
-        <li>
-    <a class="dropdown-item" href="../slides/jury-theorems.html">
- <span class="dropdown-text">Jury Theorems</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../slides/prediction-markets.html">
- <span class="dropdown-text">Prediction Markets</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../slides/aggregating-forecasts.html">
- <span class="dropdown-text">Aggregating Forecasts</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../slides/madness-of-crowds.html">
- <span class="dropdown-text">Madness of Crowds</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../slides/information-theory.html">
- <span class="dropdown-text">Information Theory</span></a>
-  </li>  
-        <li class="dropdown-header">III. Machiine Learning</li>
-        <li>
-    <a class="dropdown-item" href="../slides/linear-models.html">
- <span class="dropdown-text">Linear Models</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../slides/election-forecasting.html">
- <span class="dropdown-text">Election Forecasting</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../slides/tree-models.html">
- <span class="dropdown-text">Tree Models</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../slides/random-forests.html">
- <span class="dropdown-text">Random Forests</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-archive" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Archive</span>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-archive">    
-        <li>
-    <a class="dropdown-item" href="../fall-2022.html">
- <span class="dropdown-text">Fall 2022 Predictions</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../fall-2023.html">
- <span class="dropdown-text">Fall 2023 Predictions</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../fall-2024.html">
- <span class="dropdown-text">Fall 2024 Predictions</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../spring-2025.html">
- <span class="dropdown-text">Spring 2025 Predictions</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="../POLS-3220-syllabus.pdf"> 
-<span class="menu-text">Syllabus</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
-<!-- sidebar -->
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#todays-agenda" id="toc-todays-agenda" class="nav-link active" data-scroll-target="#todays-agenda">Today’s Agenda</a></li>
-  <li><a href="#approach-1-polls-only" id="toc-approach-1-polls-only" class="nav-link" data-scroll-target="#approach-1-polls-only">Approach 1: Polls Only</a></li>
-  <li><a href="#approach-1-polls-only-1" id="toc-approach-1-polls-only-1" class="nav-link" data-scroll-target="#approach-1-polls-only-1">Approach 1: Polls Only</a></li>
-  <li><a href="#approach-1-polls-only-2" id="toc-approach-1-polls-only-2" class="nav-link" data-scroll-target="#approach-1-polls-only-2">Approach 1: Polls Only</a></li>
-  <li><a href="#approach-1-polls-only-3" id="toc-approach-1-polls-only-3" class="nav-link" data-scroll-target="#approach-1-polls-only-3">Approach 1: Polls Only</a></li>
-  <li><a href="#approach-1-polls-only-4" id="toc-approach-1-polls-only-4" class="nav-link" data-scroll-target="#approach-1-polls-only-4">Approach 1: Polls Only</a></li>
-  <li><a href="#approach-2-fundamentals-only" id="toc-approach-2-fundamentals-only" class="nav-link" data-scroll-target="#approach-2-fundamentals-only">Approach 2: Fundamentals Only</a></li>
-  <li><a href="#approach-2-fundamentals-only-1" id="toc-approach-2-fundamentals-only-1" class="nav-link" data-scroll-target="#approach-2-fundamentals-only-1">Approach 2: Fundamentals Only</a></li>
-  <li><a href="#approach-2-fundamentals" id="toc-approach-2-fundamentals" class="nav-link" data-scroll-target="#approach-2-fundamentals">Approach 2: Fundamentals</a></li>
-  <li><a href="#approach-3-polls-fundamentals" id="toc-approach-3-polls-fundamentals" class="nav-link" data-scroll-target="#approach-3-polls-fundamentals">Approach 3: Polls + Fundamentals</a></li>
-  <li><a href="#approach-3-polls-fundamentals-1" id="toc-approach-3-polls-fundamentals-1" class="nav-link" data-scroll-target="#approach-3-polls-fundamentals-1">Approach 3: Polls + Fundamentals</a></li>
-  <li><a href="#approach-3-polls-fundamentals-2" id="toc-approach-3-polls-fundamentals-2" class="nav-link" data-scroll-target="#approach-3-polls-fundamentals-2">Approach 3: Polls + Fundamentals</a></li>
-  <li><a href="#approach-3-polls-fundamentals-3" id="toc-approach-3-polls-fundamentals-3" class="nav-link" data-scroll-target="#approach-3-polls-fundamentals-3">Approach 3: Polls + Fundamentals</a></li>
-  <li><a href="#approach-3-polls-fundamentals-4" id="toc-approach-3-polls-fundamentals-4" class="nav-link" data-scroll-target="#approach-3-polls-fundamentals-4">Approach 3: Polls + Fundamentals</a></li>
-  <li><a href="#out-of-sample-prediction" id="toc-out-of-sample-prediction" class="nav-link" data-scroll-target="#out-of-sample-prediction">Out-of-Sample Prediction</a></li>
-  <li><a href="#out-of-sample-prediction-1" id="toc-out-of-sample-prediction-1" class="nav-link" data-scroll-target="#out-of-sample-prediction-1">Out-of-Sample Prediction</a></li>
-  <li><a href="#out-of-sample-prediction-2" id="toc-out-of-sample-prediction-2" class="nav-link" data-scroll-target="#out-of-sample-prediction-2">Out-of-Sample Prediction</a></li>
-  <li><a href="#out-of-sample-prediction-3" id="toc-out-of-sample-prediction-3" class="nav-link" data-scroll-target="#out-of-sample-prediction-3">Out-of-Sample Prediction</a></li>
-  <li><a href="#takeaways" id="toc-takeaways" class="nav-link" data-scroll-target="#takeaways">Takeaways</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="election-forecasting.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
-    </div>
-<!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Election Forecasting</h1>
-<p class="subtitle lead">POLS 3220: How to Predict the Future</p>
+<div class="quarto-title-authors">
 </div>
 
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<section id="todays-agenda" class="level2">
-<h2 class="anchored" data-anchor-id="todays-agenda">Today’s Agenda</h2>
+</section>
+<section id="todays-agenda" class="slide level2">
+<h2>Today’s Agenda</h2>
 <ul>
-<li><p>Today, we’ll develop a model to predict the outcome of US Senate elections.</p></li>
-<li><p>This is a tough forecasting problem compared to presidential elections, for two reasons:</p>
+<li class="fragment"><p>Today, we’ll develop a model to predict the outcome of US Senate elections.</p></li>
+<li class="fragment"><p>This is a tough forecasting problem compared to presidential elections, for two reasons:</p>
 <ol type="1">
-<li><p>Relatively few polls</p></li>
-<li><p>“Fundamentals” are weakly predictive</p></li>
+<li class="fragment"><p>Relatively few polls</p></li>
+<li class="fragment"><p>“Fundamentals” are weakly predictive</p></li>
 </ol></li>
-<li><p>Combining polls + fundamentals will yield much better predictions than either alone!</p></li>
+<li class="fragment"><p>Combining polls + fundamentals will yield much better predictions than either alone!</p></li>
 </ul>
 </section>
-<section id="approach-1-polls-only" class="level2">
-<h2 class="anchored" data-anchor-id="approach-1-polls-only">Approach 1: Polls Only</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="election-forecasting_files/figure-revealjs/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="approach-1-polls-only-1" class="level2">
-<h2 class="anchored" data-anchor-id="approach-1-polls-only-1">Approach 1: Polls Only</h2>
+<section id="approach-1-polls-only" class="slide level2">
+<h2>Approach 1: Polls Only</h2>
+
+<img data-src="election-forecasting_files/figure-revealjs/unnamed-chunk-2-1.png" width="768" class="r-stretch"></section>
+<section id="approach-1-polls-only-1" class="slide level2">
+<h2>Approach 1: Polls Only</h2>
 <ul>
-<li><p>Between 1992 and 2016, polls “called” the correct candidate 79.7% of the time.</p></li>
-<li><p>And polling error is quite high! The average poll was off by 6.75 percentage points.</p></li>
-<li><p>Of course, we expect that there will be some error in polling.</p>
+<li class="fragment"><p>Between 1992 and 2016, polls “called” the correct candidate 79.7% of the time.</p></li>
+<li class="fragment"><p>And polling error is quite high! The average poll was off by 6.75 percentage points.</p></li>
+<li class="fragment"><p>Of course, we expect that there will be some error in polling.</p>
 <ul>
-<li>Think back to our lecture on Bell Curves. Polling error should look like a normal distribution.</li>
+<li class="fragment">Think back to our lecture on Bell Curves. Polling error should look like a normal distribution.</li>
 </ul></li>
 </ul>
 </section>
-<section id="approach-1-polls-only-2" class="level2">
-<h2 class="anchored" data-anchor-id="approach-1-polls-only-2">Approach 1: Polls Only</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="election-forecasting_files/figure-revealjs/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="approach-1-polls-only-3" class="level2">
-<h2 class="anchored" data-anchor-id="approach-1-polls-only-3">Approach 1: Polls Only</h2>
+<section id="approach-1-polls-only-2" class="slide level2">
+<h2>Approach 1: Polls Only</h2>
+
+<img data-src="election-forecasting_files/figure-revealjs/unnamed-chunk-3-1.png" width="768" class="r-stretch"></section>
+<section id="approach-1-polls-only-3" class="slide level2">
+<h2>Approach 1: Polls Only</h2>
 <ul>
-<li><p>The problem is that polling error is much wider than the Central Limit Theorem would predict!</p></li>
-<li><p>Recall: a poll’s <strong>margin of error</strong> is the range within which one can be 95% confident the polling error will fall.</p></li>
-<li><p>Back-of-the-envelope approximation of a poll’s margin of error is <span class="math inline">\(\frac{100\%}{\sqrt{n}}\)</span></p></li>
-<li><p>In this dataset of 6,407 polls, the result only fell within the margin of error 3,119 times.</p>
+<li class="fragment"><p>The problem is that polling error is much wider than the Central Limit Theorem would predict!</p></li>
+<li class="fragment"><p>Recall: a poll’s <strong>margin of error</strong> is the range within which one can be 95% confident the polling error will fall.</p></li>
+<li class="fragment"><p>Back-of-the-envelope approximation of a poll’s margin of error is <span class="math inline">\(\frac{100\%}{\sqrt{n}}\)</span></p></li>
+<li class="fragment"><p>In this dataset of 6,407 polls, the result only fell within the margin of error 3,119 times.</p>
 <ul>
-<li>That’s 48.7% confidence, not 95%!</li>
+<li class="fragment">That’s 48.7% confidence, not 95%!</li>
 </ul></li>
 </ul>
 </section>
-<section id="approach-1-polls-only-4" class="level2">
-<h2 class="anchored" data-anchor-id="approach-1-polls-only-4">Approach 1: Polls Only</h2>
+<section id="approach-1-polls-only-4" class="slide level2">
+<h2>Approach 1: Polls Only</h2>
 <ul>
-<li><p>For most polls, the margin of error gives us a false sense of security.</p></li>
-<li><p>Real-world polling is much more volatile than theory would predict.</p></li>
-<li><p>Many different reasons why:</p>
+<li class="fragment"><p>For most polls, the margin of error gives us a false sense of security.</p></li>
+<li class="fragment"><p>Real-world polling is much more volatile than theory would predict.</p></li>
+<li class="fragment"><p>Many different reasons why:</p>
 <ul>
-<li>Non-response bias</li>
-<li>People change their minds</li>
-<li>People lie</li>
+<li class="fragment">Non-response bias</li>
+<li class="fragment">People change their minds</li>
+<li class="fragment">People lie</li>
 </ul></li>
 </ul>
 </section>
-<section id="approach-2-fundamentals-only" class="level2">
-<h2 class="anchored" data-anchor-id="approach-2-fundamentals-only">Approach 2: Fundamentals Only</h2>
+<section id="approach-2-fundamentals-only" class="slide level2">
+<h2>Approach 2: Fundamentals Only</h2>
 <ul>
-<li><p>Maybe a <strong>fundamentals model</strong> will work better?</p></li>
-<li><p>The problem here is a lack of good data.</p></li>
-<li><p>For example, there’s no dataset on “Senator approval” like there was on presidential approval</p></li>
-<li><p>But there are still some useful predictor variables we can include:</p>
+<li class="fragment"><p>Maybe a <strong>fundamentals model</strong> will work better?</p></li>
+<li class="fragment"><p>The problem here is a lack of good data.</p></li>
+<li class="fragment"><p>For example, there’s no dataset on “Senator approval” like there was on presidential approval</p></li>
+<li class="fragment"><p>But there are still some useful predictor variables we can include:</p>
 <ul>
-<li>The Cook Political Report’s measure of a state’s partisan lean.</li>
-<li>Whether each Senate candidate has previous political experience <span class="citation" data-cites="carsonElectoralCostsParty2010">(<a href="#ref-carsonElectoralCostsParty2010" role="doc-biblioref">Carson et al. 2010</a>)</span>.</li>
+<li class="fragment">The Cook Political Report’s measure of a state’s partisan lean.</li>
+<li class="fragment">Whether each Senate candidate has previous political experience <span class="citation" data-cites="carsonElectoralCostsParty2010">(<a href="#/references" role="doc-biblioref" onclick="">Carson et al. 2010</a>)</span>.</li>
 </ul></li>
 </ul>
 </section>
-<section id="approach-2-fundamentals-only-1" class="level2">
-<h2 class="anchored" data-anchor-id="approach-2-fundamentals-only-1">Approach 2: Fundamentals Only</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="election-forecasting_files/figure-revealjs/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="approach-2-fundamentals" class="level2">
-<h2 class="anchored" data-anchor-id="approach-2-fundamentals">Approach 2: Fundamentals</h2>
+<section id="approach-2-fundamentals-only-1" class="slide level2">
+<h2>Approach 2: Fundamentals Only</h2>
+
+<img data-src="election-forecasting_files/figure-revealjs/unnamed-chunk-4-1.png" width="768" class="r-stretch"></section>
+<section id="approach-2-fundamentals" class="slide level2">
+<h2>Approach 2: Fundamentals</h2>
 <p>The fundamentals model is off by 12.05 percentage points on average. Even worse than the polls!</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="election-forecasting_files/figure-revealjs/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="approach-3-polls-fundamentals" class="level2">
-<h2 class="anchored" data-anchor-id="approach-3-polls-fundamentals">Approach 3: Polls + Fundamentals</h2>
+
+<img data-src="election-forecasting_files/figure-revealjs/unnamed-chunk-5-1.png" class="quarto-figure quarto-figure-center r-stretch" width="768"></section>
+<section id="approach-3-polls-fundamentals" class="slide level2">
+<h2>Approach 3: Polls + Fundamentals</h2>
 <ul>
-<li><p>A polls-only approach had <em>way</em> higher error than we would expect from the Central Limit Theorem.</p></li>
-<li><p>The fundamentals-only approach was weak sauce.</p></li>
-<li><p>What if we combined the two?</p></li>
-<li><p>Our final approach: use both polls and fundamentals as predictor variables in a linear model.</p></li>
+<li class="fragment"><p>A polls-only approach had <em>way</em> higher error than we would expect from the Central Limit Theorem.</p></li>
+<li class="fragment"><p>The fundamentals-only approach was weak sauce.</p></li>
+<li class="fragment"><p>What if we combined the two?</p></li>
+<li class="fragment"><p>Our final approach: use both polls and fundamentals as predictor variables in a linear model.</p></li>
 </ul>
 </section>
-<section id="approach-3-polls-fundamentals-1" class="level2">
-<h2 class="anchored" data-anchor-id="approach-3-polls-fundamentals-1">Approach 3: Polls + Fundamentals</h2>
+<section id="approach-3-polls-fundamentals-1" class="slide level2">
+<h2>Approach 3: Polls + Fundamentals</h2>
 <p>Predictor variables include:</p>
 <ol type="1">
-<li><p>Cook Partisan Voting Index (PVI)</p></li>
-<li><p>Whether the Democratic candidate has previous political experience (1 if yes, 0 if no).</p></li>
-<li><p>Whether the Republican candidate has previous political experience (1 if yes, 0 if no).</p></li>
-<li><p>The average vote margin in polls conducted within 1 month of the election.</p></li>
+<li class="fragment"><p>Cook Partisan Voting Index (PVI)</p></li>
+<li class="fragment"><p>Whether the Democratic candidate has previous political experience (1 if yes, 0 if no).</p></li>
+<li class="fragment"><p>Whether the Republican candidate has previous political experience (1 if yes, 0 if no).</p></li>
+<li class="fragment"><p>The average vote margin in polls conducted within 1 month of the election.</p></li>
 </ol>
 </section>
-<section id="approach-3-polls-fundamentals-2" class="level2">
-<h2 class="anchored" data-anchor-id="approach-3-polls-fundamentals-2">Approach 3: Polls + Fundamentals</h2>
+<section id="approach-3-polls-fundamentals-2" class="slide level2">
+<h2>Approach 3: Polls + Fundamentals</h2>
 <div class="cell">
 <div class="cell-output-display">
 <!-- preamble start -->
 
     <script>
 
-      function styleCell_ntck9r7kurdukr3ask67(i, j, css_id) {
-          var table = document.getElementById("tinytable_ntck9r7kurdukr3ask67");
+      function styleCell_hvvlonj9zyu3pmf6czbk(i, j, css_id) {
+          var table = document.getElementById("tinytable_hvvlonj9zyu3pmf6czbk");
           var cell = table.rows[i]?.cells[j];  // Safe navigation to avoid errors
           if (cell) {
               console.log(`Styling cell at (${i}, ${j}) with class ${css_id}`);
@@ -449,7 +272,7 @@ window.Quarto = {
           }
       }
       function insertSpanRow(i, colspan, content) {
-        var table = document.getElementById('tinytable_ntck9r7kurdukr3ask67');
+        var table = document.getElementById('tinytable_hvvlonj9zyu3pmf6czbk');
         var newRow = table.insertRow(i);
         var newCell = newRow.insertCell(0);
         newCell.setAttribute("colspan", colspan);
@@ -457,8 +280,8 @@ window.Quarto = {
         // this may be unsafe, but innerText does not interpret <br>
         newCell.innerHTML = content;
       }
-      function spanCell_ntck9r7kurdukr3ask67(i, j, rowspan, colspan) {
-        var table = document.getElementById("tinytable_ntck9r7kurdukr3ask67");
+      function spanCell_hvvlonj9zyu3pmf6czbk(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_hvvlonj9zyu3pmf6czbk");
         const targetRow = table.rows[i];
         const targetCell = targetRow.cells[j];
         for (let r = 0; r < rowspan; r++) {
@@ -488,20 +311,20 @@ window.Quarto = {
       window.addEventListener('load', function () {
           var cellsToStyle = [
             // tinytable style arrays after
-          { positions: [ { i: 6, j: 1 },  ], css_id: 'tinytable_css_myya1nppjxbiggcbffu0',}, 
-          { positions: [ { i: 5, j: 1 },  ], css_id: 'tinytable_css_r3v8koiidekrb9emicky',}, 
-          { positions: [ { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 3, j: 1 }, { i: 4, j: 1 },  ], css_id: 'tinytable_css_29k68o24jgg1epwetdu6',}, 
-          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_rmwk6vzrlicg9nog7w5n',}, 
-          { positions: [ { i: 6, j: 0 },  ], css_id: 'tinytable_css_q0dph0wqyn7olsa3dhdw',}, 
-          { positions: [ { i: 5, j: 0 },  ], css_id: 'tinytable_css_ria70qlfmeh50zm8eu3g',}, 
-          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 4, j: 0 },  ], css_id: 'tinytable_css_337xikpzq6i9h3z2k1dk',}, 
-          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_rfldjru0u2b03kay377p',}, 
+          { positions: [ { i: 6, j: 1 },  ], css_id: 'tinytable_css_rymjkj3ezlfn5zlzixjw',}, 
+          { positions: [ { i: 5, j: 1 },  ], css_id: 'tinytable_css_i4vhaqh5khspvjhkgc9f',}, 
+          { positions: [ { i: 1, j: 1 }, { i: 2, j: 1 }, { i: 3, j: 1 }, { i: 4, j: 1 },  ], css_id: 'tinytable_css_f675uncmp7bd751dkxw1',}, 
+          { positions: [ { i: 0, j: 1 },  ], css_id: 'tinytable_css_lc16q1plmoacv67qawkf',}, 
+          { positions: [ { i: 6, j: 0 },  ], css_id: 'tinytable_css_8ys4jjhjn6hl6q0r8tmt',}, 
+          { positions: [ { i: 5, j: 0 },  ], css_id: 'tinytable_css_g6fnf5tnlpb6ju8bd86o',}, 
+          { positions: [ { i: 1, j: 0 }, { i: 2, j: 0 }, { i: 3, j: 0 }, { i: 4, j: 0 },  ], css_id: 'tinytable_css_e9pz247s0uuc2y4gohzn',}, 
+          { positions: [ { i: 0, j: 0 },  ], css_id: 'tinytable_css_yuan8148gglv5d5jrv7b',}, 
           ];
 
           // Loop over the arrays to style the cells
           cellsToStyle.forEach(function (group) {
               group.positions.forEach(function (cell) {
-                  styleCell_ntck9r7kurdukr3ask67(cell.i, cell.j, group.css_id);
+                  styleCell_hvvlonj9zyu3pmf6czbk(cell.i, cell.j, group.css_id);
               });
           });
       });
@@ -509,17 +332,17 @@ window.Quarto = {
 
     <style>
       /* tinytable css entries after */
-      .table td.tinytable_css_myya1nppjxbiggcbffu0, .table th.tinytable_css_myya1nppjxbiggcbffu0 { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_r3v8koiidekrb9emicky, .table th.tinytable_css_r3v8koiidekrb9emicky { text-align: center; border-bottom: solid black 0.05em; }
-      .table td.tinytable_css_29k68o24jgg1epwetdu6, .table th.tinytable_css_29k68o24jgg1epwetdu6 { text-align: center; }
-      .table td.tinytable_css_rmwk6vzrlicg9nog7w5n, .table th.tinytable_css_rmwk6vzrlicg9nog7w5n { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
-      .table td.tinytable_css_q0dph0wqyn7olsa3dhdw, .table th.tinytable_css_q0dph0wqyn7olsa3dhdw { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
-      .table td.tinytable_css_ria70qlfmeh50zm8eu3g, .table th.tinytable_css_ria70qlfmeh50zm8eu3g { text-align: left; border-bottom: solid black 0.05em; }
-      .table td.tinytable_css_337xikpzq6i9h3z2k1dk, .table th.tinytable_css_337xikpzq6i9h3z2k1dk { text-align: left; }
-      .table td.tinytable_css_rfldjru0u2b03kay377p, .table th.tinytable_css_rfldjru0u2b03kay377p { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_rymjkj3ezlfn5zlzixjw, .table th.tinytable_css_rymjkj3ezlfn5zlzixjw { text-align: center; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_i4vhaqh5khspvjhkgc9f, .table th.tinytable_css_i4vhaqh5khspvjhkgc9f { text-align: center; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_f675uncmp7bd751dkxw1, .table th.tinytable_css_f675uncmp7bd751dkxw1 { text-align: center; }
+      .table td.tinytable_css_lc16q1plmoacv67qawkf, .table th.tinytable_css_lc16q1plmoacv67qawkf { text-align: center; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
+      .table td.tinytable_css_8ys4jjhjn6hl6q0r8tmt, .table th.tinytable_css_8ys4jjhjn6hl6q0r8tmt { text-align: left; border-bottom: solid #d3d8dc 0.1em; }
+      .table td.tinytable_css_g6fnf5tnlpb6ju8bd86o, .table th.tinytable_css_g6fnf5tnlpb6ju8bd86o { text-align: left; border-bottom: solid black 0.05em; }
+      .table td.tinytable_css_e9pz247s0uuc2y4gohzn, .table th.tinytable_css_e9pz247s0uuc2y4gohzn { text-align: left; }
+      .table td.tinytable_css_yuan8148gglv5d5jrv7b, .table th.tinytable_css_yuan8148gglv5d5jrv7b { text-align: left; border-top: solid #d3d8dc 0.1em; border-bottom: solid #d3d8dc 0.05em; }
     </style>
     <div class="container">
-      <table class="table table-borderless" id="tinytable_ntck9r7kurdukr3ask67" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
+      <table class="table table-borderless" id="tinytable_hvvlonj9zyu3pmf6czbk" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing="true">
         <thead>
         
               <tr>
@@ -560,595 +383,543 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="approach-3-polls-fundamentals-3" class="level2">
-<h2 class="anchored" data-anchor-id="approach-3-polls-fundamentals-3">Approach 3: Polls + Fundamentals</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="election-forecasting_files/figure-revealjs/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="approach-3-polls-fundamentals-4" class="level2">
-<h2 class="anchored" data-anchor-id="approach-3-polls-fundamentals-4">Approach 3: Polls + Fundamentals</h2>
+<section id="approach-3-polls-fundamentals-3" class="slide level2">
+<h2>Approach 3: Polls + Fundamentals</h2>
+
+<img data-src="election-forecasting_files/figure-revealjs/unnamed-chunk-7-1.png" width="768" class="r-stretch"></section>
+<section id="approach-3-polls-fundamentals-4" class="slide level2">
+<h2>Approach 3: Polls + Fundamentals</h2>
 <ul>
-<li><p>The combined model has an average error of 3.88 percentage points.</p></li>
-<li><p>It correctly calls the winner in 91.9% of elections from 1992-2016.</p></li>
-<li><p>But the <em>true</em> test of the model is whether it can accurately forecast <strong>out-of-sample</strong>.</p>
+<li class="fragment"><p>The combined model has an average error of 3.88 percentage points.</p></li>
+<li class="fragment"><p>It correctly calls the winner in 91.9% of elections from 1992-2016.</p></li>
+<li class="fragment"><p>But the <em>true</em> test of the model is whether it can accurately forecast <strong>out-of-sample</strong>.</p>
 <ul>
-<li>The model was fit using 1992-2016 election data. Can we use the same model to predict the outcomes in 2018?</li>
+<li class="fragment">The model was fit using 1992-2016 election data. Can we use the same model to predict the outcomes in 2018?</li>
 </ul></li>
 </ul>
 </section>
-<section id="out-of-sample-prediction" class="level2">
-<h2 class="anchored" data-anchor-id="out-of-sample-prediction">Out-of-Sample Prediction</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="election-forecasting_files/figure-revealjs/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="out-of-sample-prediction-1" class="level2">
-<h2 class="anchored" data-anchor-id="out-of-sample-prediction-1">Out-of-Sample Prediction</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="election-forecasting_files/figure-revealjs/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="out-of-sample-prediction-2" class="level2">
-<h2 class="anchored" data-anchor-id="out-of-sample-prediction-2">Out-of-Sample Prediction</h2>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="election-forecasting_files/figure-revealjs/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="out-of-sample-prediction-3" class="level2">
-<h2 class="anchored" data-anchor-id="out-of-sample-prediction-3">Out-of-Sample Prediction</h2>
+<section id="out-of-sample-prediction" class="slide level2">
+<h2>Out-of-Sample Prediction</h2>
+
+<img data-src="election-forecasting_files/figure-revealjs/unnamed-chunk-8-1.png" width="768" class="r-stretch"></section>
+<section id="out-of-sample-prediction-1" class="slide level2">
+<h2>Out-of-Sample Prediction</h2>
+
+<img data-src="election-forecasting_files/figure-revealjs/unnamed-chunk-9-1.png" width="768" class="r-stretch"></section>
+<section id="out-of-sample-prediction-2" class="slide level2">
+<h2>Out-of-Sample Prediction</h2>
+
+<img data-src="election-forecasting_files/figure-revealjs/unnamed-chunk-10-1.png" width="768" class="r-stretch"></section>
+<section id="out-of-sample-prediction-3" class="slide level2">
+<h2>Out-of-Sample Prediction</h2>
 <ul>
-<li><p>The polls + fundamentals model correctly predicted all but two of the 2018 Senate elections, with an average error of 2.55 percentage points.</p></li>
-<li><p>By comparison, if you had been looking at the polls alone, you would have incorrectly called three elections.</p>
+<li class="fragment"><p>The polls + fundamentals model correctly predicted all but two of the 2018 Senate elections, with an average error of 2.55 percentage points.</p></li>
+<li class="fragment"><p>By comparison, if you had been looking at the polls alone, you would have incorrectly called three elections.</p>
 <ul>
-<li>In Missouri 2018, the polls narrowly favored the Democratic incumbent, but the fundamentals were skeptical.</li>
+<li class="fragment">In Missouri 2018, the polls narrowly favored the Democratic incumbent, but the fundamentals were skeptical.</li>
 </ul></li>
 </ul>
 </section>
-<section id="takeaways" class="level2">
-<h2 class="anchored" data-anchor-id="takeaways">Takeaways</h2>
+<section id="takeaways" class="slide level2">
+<h2>Takeaways</h2>
 <ul>
-<li><p>It’s somewhat surprising that combining two terrible models (polls: 6.7% error, fundamentals: 12% error) yields a pretty good model (polls + fundamentals: 3.8% error)!</p></li>
-<li><p>But it follows the basic logic of the <strong>wisdom of crowds</strong>.</p></li>
-<li><p>Both polls and fundamentals provide an imperfect glimpse at the state of a race.</p></li>
-<li><p>Combining the two perspectives yields a better forecast than either alone <span class="citation" data-cites="chenPollsContextTime2023">(<a href="#ref-chenPollsContextTime2023" role="doc-biblioref">Chen, Garnett, and Montgomery 2023</a>)</span>.</p></li>
+<li class="fragment"><p>It’s somewhat surprising that combining two terrible models (polls: 6.7% error, fundamentals: 12% error) yields a pretty good model (polls + fundamentals: 3.8% error)!</p></li>
+<li class="fragment"><p>But it follows the basic logic of the <strong>wisdom of crowds</strong>.</p></li>
+<li class="fragment"><p>Both polls and fundamentals provide an imperfect glimpse at the state of a race.</p></li>
+<li class="fragment"><p>Combining the two perspectives yields a better forecast than either alone <span class="citation" data-cites="chenPollsContextTime2023">(<a href="#/references" role="doc-biblioref" onclick="">Chen, Garnett, and Montgomery 2023</a>)</span>.</p></li>
 </ul>
 </section>
-<section id="references" class="level2">
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
 
 
-
-
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-carsonElectoralCostsParty2010" class="csl-entry" role="listitem">
 Carson, Jamie, Gregory Koger, Matthew J. Lebo, Jamie L, and Matthew J. Lebo. 2010. <span>“The Electoral Costs of Party Loyalty in Congress.”</span> <em>American Journal of Political Science</em>, 598616.
 </div>
 <div id="ref-chenPollsContextTime2023" class="csl-entry" role="listitem">
 Chen, Yehu, Roman Garnett, and Jacob M. Montgomery. 2023. <span>“Polls, Context, and Time: A Dynamic Hierarchical Bayesian Forecasting Model for US Senate Elections.”</span> <em>Political Analysis</em> 31 (1): 113–33. <a href="https://doi.org/10.1017/pan.2021.42">https://doi.org/10.1017/pan.2021.42</a>.
 </div>
-</div></section></div></main> <!-- /main -->
+</div>
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
 
+</div>
+</div></div>
 
-<script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
 
-  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
-  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+  <script>
 
-  // slide changes (different for each slide format).
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
 
-  (function () {
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
 
-    // dispatch for htmlwidgets
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
 
-    function fireSlideEnter() {
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
 
-      const event = window.document.createEvent("Event");
+        // Display a presentation progress bar
+        progress: true,
 
-      event.initEvent("slideenter", true, true);
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
 
-      window.document.dispatchEvent(event);
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
 
-    }
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
 
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
 
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
 
-    function fireSlideChanged(previousSlide, currentSlide) {
+        // Push each slide change to the browser history
+        history: true,
 
-      fireSlideEnter();
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
 
+        // Enable the slide overview mode
+        overview: true,
 
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
 
-      // dispatch for shiny
+        // Vertical centering of slides
+        center: false,
 
-      if (window.jQuery) {
+        // Enables touch navigation on devices with touch input
+        touch: true,
 
-        if (previousSlide) {
+        // Loop the presentation
+        loop: false,
 
-          window.jQuery(previousSlide).trigger("hidden");
+        // Change the presentation direction to be RTL
+        rtl: false,
 
-        }
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
 
-        if (currentSlide) {
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
 
-          window.jQuery(currentSlide).trigger("shown");
+        // Turns fragments on and off globally
+        fragments: true,
 
-        }
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
 
-      }
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
 
-    }
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
 
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
 
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
 
-    // hookup for slidy
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
 
-    if (window.w3c_slidy) {
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
 
-      window.w3c_slidy.add_observer(function (slide_num) {
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
 
-        // slide_num starts at position 1
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
 
-        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
 
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
       });
+    </script>
+    
 
-    }
+    <script>
 
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
 
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
 
-  })();
+      // slide changes (different for each slide format).
 
-</script>
+      (function () {
 
+        // dispatch for htmlwidgets
 
+        function fireSlideEnter() {
 
-<script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+          const event = window.document.createEvent("Event");
+
+          event.initEvent("slideenter", true, true);
+
+          window.document.dispatchEvent(event);
+
+        }
+
+    
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+
+          fireSlideEnter();
+
+    
+
+          // dispatch for shiny
+
+          if (window.jQuery) {
+
+            if (previousSlide) {
+
+              window.jQuery(previousSlide).trigger("hidden");
+
+            }
+
+            if (currentSlide) {
+
+              window.jQuery(currentSlide).trigger("shown");
+
+            }
+
+          }
+
+        }
+
+    
+
+        // hookup for slidy
+
+        if (window.w3c_slidy) {
+
+          window.w3c_slidy.add_observer(function (slide_num) {
+
+            // slide_num starts at position 1
+
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+
+          });
+
+        }
+
+    
+
+      })();
+
+    </script>
+
+    
+
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
         }
       }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
         }
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+        return false;
+      }
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
         }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      }
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
         }
-        return note.innerHTML;
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
       }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
+        });
       }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
       }
-    }, function(instance) {
     });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
-      });
-    }
-  }
-});
-</script>
-</div> <!-- /content -->
-
-
-
+    </script>
+    
 
 </body></html>
