@@ -3056,7 +3056,7 @@
     "href": "slides/feedback.html#rule-of-72",
     "title": "Feedback Loops",
     "section": "Rule of 72",
-    "text": "Rule of 72\n\nOne way to get an intuition for the speed of exponential growth is to think in terms of doubling time (i.e. how long it takes for the stock to double in size).\nThe Rule of 72 is a useful shorthand for estimating doubling time.\n\n\n\\[\n\\text{Doubling Time} = \\frac{72}{\\text{Growth Rate (%)}}\n\\]\n\nSo a country whose economy is growing at 3% per year will:\n\nroughly double in 36 years\ngrow 4x in 72 years\ngrow 8x in 108 years"
+    "text": "Rule of 72\n\nOne way to get an intuition for the speed of exponential growth is to think in terms of doubling time (i.e. how long it takes for the stock to double in size).\nThe Rule of 72 is a useful shorthand for estimating doubling time.\n\n\n\\[\n\\text{Doubling Time} = \\frac{72}{\\text{Growth Rate (%)}}\n\\]\n\nSo a country whose economy is growing at 3% per year will:\n\nroughly double in 24 years\ngrow 4x in 48 years\ngrow 8x in 72 years"
   },
   {
     "objectID": "slides/feedback.html#two-common-mistakes",
