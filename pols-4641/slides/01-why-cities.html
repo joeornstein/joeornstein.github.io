@@ -1,937 +1,1624 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
-  <head>
-    <title>Foundations</title>
-    <meta charset="utf-8" />
-    <script src="01-why-cities_files/header-attrs-2.14/header-attrs.js"></script>
-    <link href="01-why-cities_files/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="01-why-cities_files/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
-  </head>
-  <body>
-    <textarea id="source">
-class: center, middle, inverse, title-slide
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-.title[
-# Foundations
-]
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
 
----
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-&lt;style type="text/css"&gt;
+<title>Foundations – The Science of Cities</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../img/favicon_io/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-39f7db0e33c7e7e0f37d956b9f0706d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">The Science of Cities</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus/POLS-4641H-syllabus.pdf"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#fill-in-the-blank" id="toc-fill-in-the-blank" class="nav-link active" data-scroll-target="#fill-in-the-blank">Fill in the blank:</a></li>
+  <li><a href="#fill-in-the-blank-1" id="toc-fill-in-the-blank-1" class="nav-link" data-scroll-target="#fill-in-the-blank-1">Fill in the blank:</a></li>
+  <li><a href="#land-values" id="toc-land-values" class="nav-link" data-scroll-target="#land-values">Land Values</a></li>
+  <li><a href="#land-values-1" id="toc-land-values-1" class="nav-link" data-scroll-target="#land-values-1">Land Values</a></li>
+  <li><a href="#land-values-2" id="toc-land-values-2" class="nav-link" data-scroll-target="#land-values-2">Land Values</a></li>
+  <li><a href="#why-cities" id="toc-why-cities" class="nav-link" data-scroll-target="#why-cities">Why Cities?</a></li>
+  <li><a href="#scale-economies-from-geometry" id="toc-scale-economies-from-geometry" class="nav-link" data-scroll-target="#scale-economies-from-geometry">Scale Economies from Geometry</a>
+  <ul class="collapse">
+  <li><a href="#scale-economies-from-geometry-1" id="toc-scale-economies-from-geometry-1" class="nav-link" data-scroll-target="#scale-economies-from-geometry-1">Scale Economies from Geometry</a></li>
+  <li><a href="#scale-economies" id="toc-scale-economies" class="nav-link" data-scroll-target="#scale-economies">Scale Economies</a></li>
+  <li><a href="#scale-economies-from-geometry-2" id="toc-scale-economies-from-geometry-2" class="nav-link" data-scroll-target="#scale-economies-from-geometry-2">Scale Economies from Geometry</a></li>
+  <li><a href="#scale-economies-1" id="toc-scale-economies-1" class="nav-link" data-scroll-target="#scale-economies-1">Scale Economies</a></li>
+  <li><a href="#scale-economies-from-geometry-3" id="toc-scale-economies-from-geometry-3" class="nav-link" data-scroll-target="#scale-economies-from-geometry-3">Scale Economies from Geometry</a></li>
+  <li><a href="#scale-economies-from-geometry-4" id="toc-scale-economies-from-geometry-4" class="nav-link" data-scroll-target="#scale-economies-from-geometry-4">Scale Economies from Geometry</a></li>
+  <li><a href="#scale-economies-from-geometry-5" id="toc-scale-economies-from-geometry-5" class="nav-link" data-scroll-target="#scale-economies-from-geometry-5">Scale Economies from Geometry</a></li>
+  <li><a href="#scale-economies-from-geometry-6" id="toc-scale-economies-from-geometry-6" class="nav-link" data-scroll-target="#scale-economies-from-geometry-6">Scale Economies from Geometry</a></li>
+  <li><a href="#scale-economies-from-geometry-7" id="toc-scale-economies-from-geometry-7" class="nav-link" data-scroll-target="#scale-economies-from-geometry-7">Scale Economies from Geometry</a></li>
+  <li><a href="#scale-economies-from-geometry-8" id="toc-scale-economies-from-geometry-8" class="nav-link" data-scroll-target="#scale-economies-from-geometry-8">Scale Economies from Geometry</a></li>
+  <li><a href="#scale-economies-from-fixed-costs" id="toc-scale-economies-from-fixed-costs" class="nav-link" data-scroll-target="#scale-economies-from-fixed-costs">Scale Economies from Fixed Costs</a></li>
+  <li><a href="#scale-economies-from-fixed-costs-1" id="toc-scale-economies-from-fixed-costs-1" class="nav-link" data-scroll-target="#scale-economies-from-fixed-costs-1">Scale Economies from Fixed Costs</a></li>
+  <li><a href="#scale-economies-from-fixed-costs-2" id="toc-scale-economies-from-fixed-costs-2" class="nav-link" data-scroll-target="#scale-economies-from-fixed-costs-2">Scale Economies from Fixed Costs</a></li>
+  <li><a href="#scale-economies-from-fixed-costs-3" id="toc-scale-economies-from-fixed-costs-3" class="nav-link" data-scroll-target="#scale-economies-from-fixed-costs-3">Scale Economies from Fixed Costs</a></li>
+  <li><a href="#scale-economies-from-fixed-costs-4" id="toc-scale-economies-from-fixed-costs-4" class="nav-link" data-scroll-target="#scale-economies-from-fixed-costs-4">Scale Economies from Fixed Costs</a></li>
+  <li><a href="#scale-economies-from-fixed-costs-5" id="toc-scale-economies-from-fixed-costs-5" class="nav-link" data-scroll-target="#scale-economies-from-fixed-costs-5">Scale Economies from Fixed Costs</a></li>
+  </ul></li>
+  <li><a href="#scale-economies-from-network-effects" id="toc-scale-economies-from-network-effects" class="nav-link" data-scroll-target="#scale-economies-from-network-effects">Scale Economies from Network Effects</a>
+  <ul class="collapse">
+  <li><a href="#scale-economies-from-network-effects-1" id="toc-scale-economies-from-network-effects-1" class="nav-link" data-scroll-target="#scale-economies-from-network-effects-1">Scale Economies from Network Effects</a></li>
+  <li><a href="#scale-economies-from-network-effects-2" id="toc-scale-economies-from-network-effects-2" class="nav-link" data-scroll-target="#scale-economies-from-network-effects-2">Scale Economies from Network Effects</a></li>
+  <li><a href="#scale-economies-from-network-effects-3" id="toc-scale-economies-from-network-effects-3" class="nav-link" data-scroll-target="#scale-economies-from-network-effects-3">Scale Economies from Network Effects</a></li>
+  <li><a href="#scale-economies-from-network-effects-4" id="toc-scale-economies-from-network-effects-4" class="nav-link" data-scroll-target="#scale-economies-from-network-effects-4">Scale Economies from Network Effects</a></li>
+  </ul></li>
+  <li><a href="#agglomeration-effects" id="toc-agglomeration-effects" class="nav-link" data-scroll-target="#agglomeration-effects">Agglomeration Effects</a>
+  <ul class="collapse">
+  <li><a href="#a-puzzle-clusters-of-industry" id="toc-a-puzzle-clusters-of-industry" class="nav-link" data-scroll-target="#a-puzzle-clusters-of-industry">A Puzzle: Clusters of Industry</a></li>
+  <li><a href="#a-puzzle-clusters-of-industry-1" id="toc-a-puzzle-clusters-of-industry-1" class="nav-link" data-scroll-target="#a-puzzle-clusters-of-industry-1">A Puzzle: Clusters of Industry</a></li>
+  <li><a href="#agglomeration-economies" id="toc-agglomeration-economies" class="nav-link" data-scroll-target="#agglomeration-economies">Agglomeration Economies</a></li>
+  <li><a href="#agglomeration-economies-1" id="toc-agglomeration-economies-1" class="nav-link" data-scroll-target="#agglomeration-economies-1">Agglomeration Economies</a></li>
+  <li><a href="#agglomeration-economies-2" id="toc-agglomeration-economies-2" class="nav-link" data-scroll-target="#agglomeration-economies-2">Agglomeration Economies</a></li>
+  <li><a href="#agglomeration-economies-3" id="toc-agglomeration-economies-3" class="nav-link" data-scroll-target="#agglomeration-economies-3">Agglomeration Economies</a></li>
+  <li><a href="#power-laws" id="toc-power-laws" class="nav-link" data-scroll-target="#power-laws">Power Laws</a></li>
+  <li><a href="#warmup" id="toc-warmup" class="nav-link" data-scroll-target="#warmup">Warmup</a></li>
+  <li><a href="#city-size-distribution" id="toc-city-size-distribution" class="nav-link" data-scroll-target="#city-size-distribution">City Size Distribution</a></li>
+  <li><a href="#city-size-distribution-1" id="toc-city-size-distribution-1" class="nav-link" data-scroll-target="#city-size-distribution-1">City Size Distribution</a></li>
+  <li><a href="#power-law" id="toc-power-law" class="nav-link" data-scroll-target="#power-law">Power Law</a></li>
+  <li><a href="#power-law-1" id="toc-power-law-1" class="nav-link" data-scroll-target="#power-law-1">Power Law</a></li>
+  <li><a href="#power-laws-are-everywhere" id="toc-power-laws-are-everywhere" class="nav-link" data-scroll-target="#power-laws-are-everywhere">Power Laws Are Everywhere!</a></li>
+  <li><a href="#power-laws-are-everywhere-1" id="toc-power-laws-are-everywhere-1" class="nav-link" data-scroll-target="#power-laws-are-everywhere-1">Power Laws Are Everywhere!</a></li>
+  <li><a href="#power-laws-are-everywhere-2" id="toc-power-laws-are-everywhere-2" class="nav-link" data-scroll-target="#power-laws-are-everywhere-2">Power Laws Are Everywhere!</a></li>
+  <li><a href="#power-laws-are-everywhere-3" id="toc-power-laws-are-everywhere-3" class="nav-link" data-scroll-target="#power-laws-are-everywhere-3">Power Laws Are Everywhere!</a></li>
+  <li><a href="#power-laws-are-everywhere-4" id="toc-power-laws-are-everywhere-4" class="nav-link" data-scroll-target="#power-laws-are-everywhere-4">Power Laws Are Everywhere!</a></li>
+  <li><a href="#power-laws-are-everywhere-5" id="toc-power-laws-are-everywhere-5" class="nav-link" data-scroll-target="#power-laws-are-everywhere-5">Power Laws Are Everywhere!</a></li>
+  <li><a href="#where-do-power-laws-come-from" id="toc-where-do-power-laws-come-from" class="nav-link" data-scroll-target="#where-do-power-laws-come-from">Where Do Power Laws Come From?</a></li>
+  <li><a href="#historical-path-dependence" id="toc-historical-path-dependence" class="nav-link" data-scroll-target="#historical-path-dependence">Historical Path Dependence</a></li>
+  <li><a href="#stories-about-historical-path-dependence" id="toc-stories-about-historical-path-dependence" class="nav-link" data-scroll-target="#stories-about-historical-path-dependence">Stories about Historical Path Dependence</a></li>
+  <li><a href="#story-1-the-fall-line" id="toc-story-1-the-fall-line" class="nav-link" data-scroll-target="#story-1-the-fall-line">Story 1: The Fall Line</a></li>
+  <li><a href="#story-1-the-fall-line-1" id="toc-story-1-the-fall-line-1" class="nav-link" data-scroll-target="#story-1-the-fall-line-1">Story 1: The Fall Line</a></li>
+  <li><a href="#story-1-the-fall-line-2" id="toc-story-1-the-fall-line-2" class="nav-link" data-scroll-target="#story-1-the-fall-line-2">Story 1: The Fall Line</a></li>
+  <li><a href="#story-1-the-fall-line-3" id="toc-story-1-the-fall-line-3" class="nav-link" data-scroll-target="#story-1-the-fall-line-3">Story 1: The Fall Line</a></li>
+  <li><a href="#story-2-hiroshima-and-nagasaki" id="toc-story-2-hiroshima-and-nagasaki" class="nav-link" data-scroll-target="#story-2-hiroshima-and-nagasaki">Story 2: Hiroshima and Nagasaki</a></li>
+  <li><a href="#story-2-hiroshima-and-nagasaki-1" id="toc-story-2-hiroshima-and-nagasaki-1" class="nav-link" data-scroll-target="#story-2-hiroshima-and-nagasaki-1">Story 2: Hiroshima and Nagasaki</a></li>
+  <li><a href="#story-2-hiroshima-and-nagasaki-2" id="toc-story-2-hiroshima-and-nagasaki-2" class="nav-link" data-scroll-target="#story-2-hiroshima-and-nagasaki-2">Story 2: Hiroshima and Nagasaki</a></li>
+  <li><a href="#story-2-hiroshima-and-nagasaki-3" id="toc-story-2-hiroshima-and-nagasaki-3" class="nav-link" data-scroll-target="#story-2-hiroshima-and-nagasaki-3">Story 2: Hiroshima and Nagasaki</a></li>
+  <li><a href="#story-3-pirates-of-the-mediterranean" id="toc-story-3-pirates-of-the-mediterranean" class="nav-link" data-scroll-target="#story-3-pirates-of-the-mediterranean">Story 3: Pirates of the Mediterranean</a></li>
+  <li><a href="#story-3-pirates-of-the-mediterranean-1" id="toc-story-3-pirates-of-the-mediterranean-1" class="nav-link" data-scroll-target="#story-3-pirates-of-the-mediterranean-1">Story 3: Pirates of the Mediterranean</a></li>
+  <li><a href="#story-4-qwerty" id="toc-story-4-qwerty" class="nav-link" data-scroll-target="#story-4-qwerty">Story 4: QWERTY</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Foundations</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<style type="text/css">
 .cite {
   font-weight: bold;
   font-size: 0.75em;
   color: #BA0C2F;
 }
-&lt;/style&gt;
-
-
-
-
-## Fill in the blank:
-
-In the United States (minus Alaska and Hawaii), half of the population lives on roughly \_\_\_\_\_% of the land.
-
----
-
-## Fill in the blank:
-
-In the United States (minus Alaska and Hawaii), half of the population lives on roughly **1%** of the land.
-
-&lt;img src="img/tracts50.png" width="800" style="display: block; margin: auto;" /&gt;
-
-???
-
-Northeast Megalopolis: ~50 million
-Greater Los Angeles: ~20 million
-Texas Triangle: ~20 million
-Chicagoland: ~10 million
-Metro Atlanta: ~5 million
-
----
-
-## Land Values
-
-Let's play **The Price Is Right**. How much did this 6.5 acre lot sell for in April?
-
---
-
-[![](img/2-woodpecker-blind.png)](https://www.google.com/maps/place/2+Woodpecker+Trail,+Twin+City,+GA+30471/@32.5408803,-82.1596253,642m/data=!3m1!1e3!4m5!3m4!1s0x88fa0bb81013c68b:0x8cceffedeeb62f6f!8m2!3d32.5409024!4d-82.1567244?entry=ttu)
-
-???
-
-Actual retail price:
-
-![](img/2-woodpecker.png)
-
-About $5,175 per acre.
-
----
-
-## Land Values
-
-Next item on **The Price Is Right**: this 9400 sq. foot lot (about 1/5 acre) in Atlanta.
-
-[![](img/712-pearce-blinded.png)](https://www.google.com/maps/place/712+Pearce+St+SW,+Atlanta,+GA+30310/@33.735582,-84.4315899,6142m/data=!3m1!1e3!4m6!3m5!1s0x88f503112142a50b:0xc48f55ac55c1c458!8m2!3d33.72919!4d-84.410953!16s%2Fg%2F11c20_408r?entry=ttu)
-
-???
-
-Actual Retail Price:
-
-![](img/712-pearce.png)
-
-About $1 million per acre!!
-
----
-
-## Land Values
-
-Last item on **The Price Is Right**: this vacant lot in Brooklyn, NY.
-
-[![](img/88-schermerhorn-blinded.png)](https://www.google.com/maps/place/88+Schermerhorn+St,+Brooklyn,+NY+11201/@40.6988093,-74.0290343,10153m/data=!3m1!1e3!4m6!3m5!1s0x89c25a4eeb5072b9:0x1699dfec9d9cc7c9!8m2!3d40.6903751!4d-73.9904225!16s%2Fg%2F11hds309dq?entry=ttu)
-
-???
-
-Actual Retail Price:
-
-![](img/88-schermerhorn.png)
-
-Roughly $150 million per acre.
-
-[Zillow Link](https://www.zillow.com/homedetails/88-Schermerhorn-St-Brooklyn-NY-11201/338819772_zpid/)
-
-[Project Link](https://www.dannyforster.com/project/brooklyn-motto-hotel-architecture-project-brooklyn-new-york/)
-
-
----
-
-## Why Cities?
-
-Why are some places on the map in such high demand compared to others? In a country with so much space, why do we crowd ourselves so much? And pay so much for it?
-
---
-
-- To answer these questions, today we'll introduce the concept of **scale economies**.
-
---
-
-- Scale economies are the benefits that come from bringing large numbers of people together in one place.
-
---
-
-- Three sources of scale economies that we'll discuss:
-
-  - Geometry
-  
-  - Fixed Costs
-  
-  - Network Effects
-
----
-
-class: center, middle, inverse
-
-# Scale Economies from Geometry
-
----
-
-## Scale Economies from Geometry
-
-To illustrate this idea, let's take a tour of some famous city walls.
-
---
-
-- First Stop: [Monteriggioni, Italy](https://earth.google.com/web/search/Monteriggioni,+Province+of+Siena,+Italy/@43.38945675,11.22413305,265.92426554a,742.63459661d,35y,0h,45t,0r/data=CpIBGmgSYgolMHgxMzJhMmUyNzQ3YzA4YmQxOjB4ODQ0YjNkZjIwZjNiNjRjZBnwQRn077FFQCG3v2mwX3ImQConTW9udGVyaWdnaW9uaSwgUHJvdmluY2Ugb2YgU2llbmEsIEl0YWx5GAIgASImCiQJNWVAMIDcNEARNGVAMIDcNMAZyVTNncCoRUAhnnOmQcuuTcAoAg)
-
---
-
-- Second Stop: [Carcassone, France](https://earth.google.com/web/search/Carcassonne,+France/@43.20639725,2.36586874,139.23666918a,1092.56384986d,35y,358.03767514h,0t,0r/data=Cn4aVBJOCiUweDEyYWUyYzM5MDExNmJkOGI6MHhlMjhmZGYzYjc3YTExNGM3GbbB5KFKm0VAIQSicfJs0AJAKhNDYXJjYXNzb25uZSwgRnJhbmNlGAEgASImCiQJYh1wouWaRUARjlsPyvCZRUAZfSnBqbsBA0Ah1tih9dzYAkA)
-
---
-
-- Third Stop: [Palmanova, Italy](https://earth.google.com/web/search/Palmanova,+Province+of+Udine,+Italy/@45.90266633,13.31645381,21.35961588a,5104.81359948d,35y,0h,0t,0r/data=CigiJgokCUNusu1QLkhAEWLf9HkKEUhAGTJrnHxjzTBAIW6I8m71BzBA)
-
---
-
-- Fourth Stop: [Bruges, Belgium](https://earth.google.com/web/search/Bruges,+Belgium/@51.26078315,3.22210815,1.4800063a,46551.80501176d,35y,0h,0t,0r/data=CnoaUBJKCiUweDQ3YzM1MGQwYzExZTQyMGQ6MHgxYWEyZjM1YWM4ODM0ZGY3GSm65G7GmklAIfbYTHRMzAlAKg9CcnVnZXMsIEJlbGdpdW0YAiABIiYKJAliHXCi5ZpFQBGOWw_K8JlFQBl9KcGpuwEDQCHW2KH13NgCQA)
-
---
-
-- Fifth Stop: [Xi'An, China](https://earth.google.com/web/search/Xi%27An,+Shaanxi,+China/@34.25938035,108.96720885,406.98459581a,122967.04510274d,35y,0h,0t,0r/data=CoABGlYSUAolMHgzNjYzNzllOTIyYWMxN2I5OjB4ODVkNDY2ZmRhNzk0NTgyZRmp6cQvBiJBQCGqVJreDz1bQCoVWGknQW4sIFNoYWFueGksIENoaW5hGAIgASImCiQJFFZjzDSySUARCoQ1iFmQSUAZaALbmlhADUAhqMqrq2hNBkA)
-
---
-
-- Final Stop: [Paris, France](https://earth.google.com/web/search/Paris,+France/@48.85885485,2.347035,35.23780348a,24471.33975347d,35y,0h,0t,0r/data=CncaTRJHCiQweDQ3ZTY2ZTFmMDZlMmI3MGY6MHg0MGI4MmMzNjg4Yzk0NjAZ26UNh6VtSEAh2Hort1nRAkAqDVBhcmlzLCBGcmFuY2UYAiABIiYKJAk4-Wt6niFBQBGx3abwLRxBQBnpcN4yTT5bQCGkp32gpTdbQA)
-
----
-
-## Scale Economies
-
-Double the length of the wall, and you *quadruple* the size of the city you can protect.
-
-&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-3-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-
-## Scale Economies from Geometry
-
-To see why, imagine a perfectly circular medieval city.
-
-&lt;img src="img/circle.png" width="300" style="display: block; margin: auto;" /&gt;
---
-
-- The **area** of the city is `\(A = \pi R^2\)`. The **circumference** is the length of the wall you need `\((C = 2\pi R)\)`.
-
---
-
-- Do some algebra, and you get `\(A = \frac{1}{4\pi} C^2\)`.
-
----
-
-## Scale Economies
-
-Double the length of the wall, and you *quadruple* the size of the city you can protect.
-
-&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-5-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-## Scale Economies from Geometry
-
-Put another way: big cities are cheaper to protect on a per-person basis. Double the size of a city, and you *less* than double the size of the necessary wall.
-
-&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-6-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
-???
-
-Richter scale is logarithmic (e.g. a magnitude 8 earthquake is 10 times more powerful than a magnitude 7 earthquake).
-
----
-
-## Scale Economies from Geometry
-
-This sort of relationship holds for other (more modern) infrastructure as well, like streets.
-
---
-
-&lt;img src="img/StreetMap - Athens-Clarke County unified government (balance).png" width="60%" style="display: block; margin: auto;" /&gt;
-
---
-
-Athens has 1,274 kilometers of streets for 128,000 people -- roughly 10 meters per person.
-
-???
-
-Enough to stretch from here to Dallas, TX!
-
----
-
-## Scale Economies from Geometry
-
-Atlanta is 4x larger than Athens. About half a million people live in the city.
-
---
-
-&lt;img src="img/StreetMap - Atlanta.png" width="50%" style="display: block; margin: auto;" /&gt;
-
-But it only has about twice the length of roadway (3,052 km) -- 6 meters per person.
-
----
-
-## Scale Economies from Geometry
-
-Philadelphia is about 3x bigger than Atlanta (1.6 million people). 
-
---
-
-&lt;img src="img/StreetMap - Philadelphia.png" width="55%" style="display: block; margin: auto;" /&gt;
-
-But it only has about 1.5x the length of roadways (4,539 km) -- 3 meters per person.
-
-???
-
-Shipping containers scale similarly: volume is `\(L^3\)`, but metal is proportional to `\(6L^2\)`.
-
----
-
-## Scale Economies from Geometry
-
-
-
----
-
-## Scale Economies from Geometry
-
-This is all eerily similar to the geometric scaling laws we see in nature. 
-
---
-
-- Double the size of an animal, and the energy necessary to keep it alive less than doubles.
-
-&lt;img src="img/metabolic-scaling.jpeg" width="500" style="display: block; margin: auto;" /&gt;
-
----
-
-class: center, middle, inverse
-
-## Scale Economies from Fixed Costs
-
----
-
-## Scale Economies from Fixed Costs
-
-Another source of increasing returns comes from the way businesses operate.
-
---
-
-&lt;img src="img/cheese.png" width="600" style="display: block; margin: auto;" /&gt;
-
---
-
-Each block of cheese costs you `\(c\)` dollars (marginal costs). You also have *fixed costs* of `\(F\)` dollars each month (rent, wages, electricity, etc.).
-
---
-
-If you sell `\(x\)` blocks of cheese, then your average cost is:
-
-$$
+</style>
+</div>
+<section id="fill-in-the-blank" class="level2">
+<h2 class="anchored" data-anchor-id="fill-in-the-blank">Fill in the blank:</h2>
+<p>In the United States (minus Alaska and Hawaii), half of the population lives on roughly _____% of the land.</p>
+<hr>
+</section>
+<section id="fill-in-the-blank-1" class="level2">
+<h2 class="anchored" data-anchor-id="fill-in-the-blank-1">Fill in the blank:</h2>
+<p>In the United States (minus Alaska and Hawaii), half of the population lives on roughly <strong>1%</strong> of the land.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/tracts50.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p>Northeast Megalopolis: ~50 million Greater Los Angeles: ~20 million Texas Triangle: ~20 million Chicagoland: ~10 million Metro Atlanta: ~5 million</p>
+<hr>
+</section>
+<section id="land-values" class="level2">
+<h2 class="anchored" data-anchor-id="land-values">Land Values</h2>
+<p>Let’s play <strong>The Price Is Right</strong>. How much did this 6.5 acre lot sell for in April?</p>
+<p>–</p>
+<p><a href="https://www.google.com/maps/place/2+Woodpecker+Trail,+Twin+City,+GA+30471/@32.5408803,-82.1596253,642m/data=!3m1!1e3!4m5!3m4!1s0x88fa0bb81013c68b:0x8cceffedeeb62f6f!8m2!3d32.5409024!4d-82.1567244?entry=ttu"><img src="img/2-woodpecker-blind.png" class="img-fluid"></a></p>
+<p>???</p>
+<p>Actual retail price:</p>
+<p><img src="img/2-woodpecker.png" class="img-fluid"></p>
+<p>About $5,175 per acre.</p>
+<hr>
+</section>
+<section id="land-values-1" class="level2">
+<h2 class="anchored" data-anchor-id="land-values-1">Land Values</h2>
+<p>Next item on <strong>The Price Is Right</strong>: this 9400 sq. foot lot (about 1/5 acre) in Atlanta.</p>
+<p><a href="https://www.google.com/maps/place/712+Pearce+St+SW,+Atlanta,+GA+30310/@33.735582,-84.4315899,6142m/data=!3m1!1e3!4m6!3m5!1s0x88f503112142a50b:0xc48f55ac55c1c458!8m2!3d33.72919!4d-84.410953!16s%2Fg%2F11c20_408r?entry=ttu"><img src="img/712-pearce-blinded.png" class="img-fluid"></a></p>
+<p>???</p>
+<p>Actual Retail Price:</p>
+<p><img src="img/712-pearce.png" class="img-fluid"></p>
+<p>About $1 million per acre!!</p>
+<hr>
+</section>
+<section id="land-values-2" class="level2">
+<h2 class="anchored" data-anchor-id="land-values-2">Land Values</h2>
+<p>Last item on <strong>The Price Is Right</strong>: this vacant lot in Brooklyn, NY.</p>
+<p><a href="https://www.google.com/maps/place/88+Schermerhorn+St,+Brooklyn,+NY+11201/@40.6988093,-74.0290343,10153m/data=!3m1!1e3!4m6!3m5!1s0x89c25a4eeb5072b9:0x1699dfec9d9cc7c9!8m2!3d40.6903751!4d-73.9904225!16s%2Fg%2F11hds309dq?entry=ttu"><img src="img/88-schermerhorn-blinded.png" class="img-fluid"></a></p>
+<p>???</p>
+<p>Actual Retail Price:</p>
+<p><img src="img/88-schermerhorn.png" class="img-fluid"></p>
+<p>Roughly $150 million per acre.</p>
+<p><a href="https://www.zillow.com/homedetails/88-Schermerhorn-St-Brooklyn-NY-11201/338819772_zpid/">Zillow Link</a></p>
+<p><a href="https://www.dannyforster.com/project/brooklyn-motto-hotel-architecture-project-brooklyn-new-york/">Project Link</a></p>
+<hr>
+</section>
+<section id="why-cities" class="level2">
+<h2 class="anchored" data-anchor-id="why-cities">Why Cities?</h2>
+<p>Why are some places on the map in such high demand compared to others? In a country with so much space, why do we crowd ourselves so much? And pay so much for it?</p>
+<p>–</p>
+<ul>
+<li>To answer these questions, today we’ll introduce the concept of <strong>scale economies</strong>.</li>
+</ul>
+<p>–</p>
+<ul>
+<li>Scale economies are the benefits that come from bringing large numbers of people together in one place.</li>
+</ul>
+<p>–</p>
+<ul>
+<li><p>Three sources of scale economies that we’ll discuss:</p>
+<ul>
+<li><p>Geometry</p></li>
+<li><p>Fixed Costs</p></li>
+<li><p>Network Effects</p></li>
+</ul></li>
+</ul>
+<hr>
+<p>class: center, middle, inverse</p>
+</section>
+<section id="scale-economies-from-geometry" class="level1">
+<h1>Scale Economies from Geometry</h1>
+<hr>
+<section id="scale-economies-from-geometry-1" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-from-geometry-1">Scale Economies from Geometry</h2>
+<p>To illustrate this idea, let’s take a tour of some famous city walls.</p>
+<p>–</p>
+<ul>
+<li>First Stop: <a href="https://earth.google.com/web/search/Monteriggioni,+Province+of+Siena,+Italy/@43.38945675,11.22413305,265.92426554a,742.63459661d,35y,0h,45t,0r/data=CpIBGmgSYgolMHgxMzJhMmUyNzQ3YzA4YmQxOjB4ODQ0YjNkZjIwZjNiNjRjZBnwQRn077FFQCG3v2mwX3ImQConTW9udGVyaWdnaW9uaSwgUHJvdmluY2Ugb2YgU2llbmEsIEl0YWx5GAIgASImCiQJNWVAMIDcNEARNGVAMIDcNMAZyVTNncCoRUAhnnOmQcuuTcAoAg">Monteriggioni, Italy</a></li>
+</ul>
+<p>–</p>
+<ul>
+<li>Second Stop: <a href="https://earth.google.com/web/search/Carcassonne,+France/@43.20639725,2.36586874,139.23666918a,1092.56384986d,35y,358.03767514h,0t,0r/data=Cn4aVBJOCiUweDEyYWUyYzM5MDExNmJkOGI6MHhlMjhmZGYzYjc3YTExNGM3GbbB5KFKm0VAIQSicfJs0AJAKhNDYXJjYXNzb25uZSwgRnJhbmNlGAEgASImCiQJYh1wouWaRUARjlsPyvCZRUAZfSnBqbsBA0Ah1tih9dzYAkA">Carcassone, France</a></li>
+</ul>
+<p>–</p>
+<ul>
+<li>Third Stop: <a href="https://earth.google.com/web/search/Palmanova,+Province+of+Udine,+Italy/@45.90266633,13.31645381,21.35961588a,5104.81359948d,35y,0h,0t,0r/data=CigiJgokCUNusu1QLkhAEWLf9HkKEUhAGTJrnHxjzTBAIW6I8m71BzBA">Palmanova, Italy</a></li>
+</ul>
+<p>–</p>
+<ul>
+<li>Fourth Stop: <a href="https://earth.google.com/web/search/Bruges,+Belgium/@51.26078315,3.22210815,1.4800063a,46551.80501176d,35y,0h,0t,0r/data=CnoaUBJKCiUweDQ3YzM1MGQwYzExZTQyMGQ6MHgxYWEyZjM1YWM4ODM0ZGY3GSm65G7GmklAIfbYTHRMzAlAKg9CcnVnZXMsIEJlbGdpdW0YAiABIiYKJAliHXCi5ZpFQBGOWw_K8JlFQBl9KcGpuwEDQCHW2KH13NgCQA">Bruges, Belgium</a></li>
+</ul>
+<p>–</p>
+<ul>
+<li>Fifth Stop: <a href="https://earth.google.com/web/search/Xi%27An,+Shaanxi,+China/@34.25938035,108.96720885,406.98459581a,122967.04510274d,35y,0h,0t,0r/data=CoABGlYSUAolMHgzNjYzNzllOTIyYWMxN2I5OjB4ODVkNDY2ZmRhNzk0NTgyZRmp6cQvBiJBQCGqVJreDz1bQCoVWGknQW4sIFNoYWFueGksIENoaW5hGAIgASImCiQJFFZjzDSySUARCoQ1iFmQSUAZaALbmlhADUAhqMqrq2hNBkA">Xi’An, China</a></li>
+</ul>
+<p>–</p>
+<ul>
+<li>Final Stop: <a href="https://earth.google.com/web/search/Paris,+France/@48.85885485,2.347035,35.23780348a,24471.33975347d,35y,0h,0t,0r/data=CncaTRJHCiQweDQ3ZTY2ZTFmMDZlMmI3MGY6MHg0MGI4MmMzNjg4Yzk0NjAZ26UNh6VtSEAh2Hort1nRAkAqDVBhcmlzLCBGcmFuY2UYAiABIiYKJAk4-Wt6niFBQBGx3abwLRxBQBnpcN4yTT5bQCGkp32gpTdbQA">Paris, France</a></li>
+</ul>
+<hr>
+</section>
+<section id="scale-economies" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies">Scale Economies</h2>
+<p>Double the length of the wall, and you <em>quadruple</em> the size of the city you can protect.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-why-cities_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="scale-economies-from-geometry-2" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-from-geometry-2">Scale Economies from Geometry</h2>
+<p>To see why, imagine a perfectly circular medieval city.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/circle.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>–</p>
+<ul>
+<li>The <strong>area</strong> of the city is <span class="math inline">\(A = \pi R^2\)</span>. The <strong>circumference</strong> is the length of the wall you need <span class="math inline">\((C = 2\pi R)\)</span>.</li>
+</ul>
+<p>–</p>
+<ul>
+<li>Do some algebra, and you get <span class="math inline">\(A = \frac{1}{4\pi} C^2\)</span>.</li>
+</ul>
+<hr>
+</section>
+<section id="scale-economies-1" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-1">Scale Economies</h2>
+<p>Double the length of the wall, and you <em>quadruple</em> the size of the city you can protect.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-why-cities_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="scale-economies-from-geometry-3" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-from-geometry-3">Scale Economies from Geometry</h2>
+<p>Put another way: big cities are cheaper to protect on a per-person basis. Double the size of a city, and you <em>less</em> than double the size of the necessary wall.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-why-cities_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p>Richter scale is logarithmic (e.g.&nbsp;a magnitude 8 earthquake is 10 times more powerful than a magnitude 7 earthquake).</p>
+<hr>
+</section>
+<section id="scale-economies-from-geometry-4" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-from-geometry-4">Scale Economies from Geometry</h2>
+<p>This sort of relationship holds for other (more modern) infrastructure as well, like streets.</p>
+<p>–</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/StreetMap - Athens-Clarke County unified government (balance).png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>–</p>
+<p>Athens has 1,274 kilometers of streets for 128,000 people – roughly 10 meters per person.</p>
+<p>???</p>
+<p>Enough to stretch from here to Dallas, TX!</p>
+<hr>
+</section>
+<section id="scale-economies-from-geometry-5" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-from-geometry-5">Scale Economies from Geometry</h2>
+<p>Atlanta is 4x larger than Athens. About half a million people live in the city.</p>
+<p>–</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/StreetMap - Atlanta.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>But it only has about twice the length of roadway (3,052 km) – 6 meters per person.</p>
+<hr>
+</section>
+<section id="scale-economies-from-geometry-6" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-from-geometry-6">Scale Economies from Geometry</h2>
+<p>Philadelphia is about 3x bigger than Atlanta (1.6 million people).</p>
+<p>–</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/StreetMap - Philadelphia.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>But it only has about 1.5x the length of roadways (4,539 km) – 3 meters per person.</p>
+<p>???</p>
+<p>Shipping containers scale similarly: volume is <span class="math inline">\(L^3\)</span>, but metal is proportional to <span class="math inline">\(6L^2\)</span>.</p>
+<hr>
+</section>
+<section id="scale-economies-from-geometry-7" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-from-geometry-7">Scale Economies from Geometry</h2>
+<hr>
+</section>
+<section id="scale-economies-from-geometry-8" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-from-geometry-8">Scale Economies from Geometry</h2>
+<p>This is all eerily similar to the geometric scaling laws we see in nature.</p>
+<p>–</p>
+<ul>
+<li>Double the size of an animal, and the energy necessary to keep it alive less than doubles.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/metabolic-scaling.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<p>class: center, middle, inverse</p>
+</section>
+<section id="scale-economies-from-fixed-costs" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-from-fixed-costs">Scale Economies from Fixed Costs</h2>
+<hr>
+</section>
+<section id="scale-economies-from-fixed-costs-1" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-from-fixed-costs-1">Scale Economies from Fixed Costs</h2>
+<p>Another source of increasing returns comes from the way businesses operate.</p>
+<p>–</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/cheese.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>–</p>
+<p>Each block of cheese costs you <span class="math inline">\(c\)</span> dollars (marginal costs). You also have <em>fixed costs</em> of <span class="math inline">\(F\)</span> dollars each month (rent, wages, electricity, etc.).</p>
+<p>–</p>
+<p>If you sell <span class="math inline">\(x\)</span> blocks of cheese, then your average cost is:</p>
+<p><span class="math display">\[
 \frac{F + cx}{x}
-$$
-
----
-
-## Scale Economies from Fixed Costs
-
-Let's say your fixed costs are $10,000 and marginal costs are $5. 
-
-&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-13-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
---
-
-Unless you can sell cheese blocks for $5000 each, you need a large number of customers in order to cover your fixed costs!
-
----
-
-## Scale Economies from Fixed Costs
-
-This explains why:
-
-- Businesses with large fixed costs (major league sports stadiums, live theater, museums, **zoos**) can only operate in big cities.
-
-- Niche businesses (weird restaurants, esoteric bookstores, artisan cheese shops) typically operate in larger markets too.
-
-???
-
-Doesn't matter how many people visit your zoo. You gotta feed that elephant 350 pounds of vegetation every day.
-
----
-
-## Scale Economies from Fixed Costs
-
-.cite[Schiff (2015):]
-
-&lt;img src="img/schiff-2015-fig-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
-
-
----
-
-## Scale Economies from Fixed Costs
-
-&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-15-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
-???
-
-Pop Quiz: Which is the smallest metro area to have a major league team? (Green Bay! Likely because they're the only fan-owned team in the NFL.)
-
-Atlanta Falcons spend $230 million each year in player salaries alone. You can only cover fixed costs like that if you sell a *lot* of tickets. You need to operate in a big market.
-
----
-
-class: center, middle, inverse
-
-# Scale Economies from Network Effects
-
----
-
-## Scale Economies from Network Effects
-
-
-.pull-left[
-&lt;img src="img/metcalfe.svg" width="50%" style="display: block; margin: auto;" /&gt;
-]
-
-.pull-right[
-- 1 telephone is useless. There's no one to talk to.
-
-- Larger networks are increasingly valuable, because the number of possible connections scales with `\(n^2\)`.
-
-| Size of Network | Number of Connections |
-|-----------------|-----------------------|
-| 1               | 0                     |
-| 2               | 1                     |
-| 3               | 3                     |
-| 4               | 6                     |
-| 5               | 10                    |
-| 6               | 15                    |
-
-]
-
----
-
-## Scale Economies from Network Effects
-
-&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-17-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-## Scale Economies from Network Effects
-
-- In a small town with 1,000 people, there are roughly **500,000** possible connections.
-
---
-
-- There are about 30,000 undergraduates at UGA, or approximately **450 million** possible friendships.
-
---
-
-- In a city the size of New York (8 million), there are **32 trillion** possible connections between people.
-
---
-
-Anything that requires forging interpersonal connections (e.g. teamwork, social movements, dating) will be supercharged in big cities!
-
----
-
-## Scale Economies from Network Effects
-
-Innovation and creativity come from people connecting with one another and sharing ideas. It's no surprise, then, that big cities are hubs for innovation:
-
-&lt;img src="img/patents-scaling.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-class: center, middle, inverse
-
-# Agglomeration Effects
-
----
-
-## A Puzzle: Clusters of Industry
-
-
-Scale economies explain why individual organizations would want to locate in large markets, but why would *multiple*, competing firms locate in the same place?
-
---
-
-&lt;img src="img/silicon-valley.png" width="600" style="display: block; margin: auto;" /&gt;
-
-???
-
-Why do you get clusters of industry? What are some other clusters?
-
-- Finance in New York
-
-- Films in Los Angeles
-
-- Tech in San Francisco
-
-- Cars in Detroit
-
-- Hip hop in Atlanta
-
----
-
-## A Puzzle: Clusters of Industry
-
-
-Scale economies explain why individual organizations would want to locate in large markets, but why would *multiple*, competing firms locate in the same place?
-
-
-&lt;img src="img/silicon-valley-logos.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-## Agglomeration Economies
-
-Why is it valuable to locate in the same city as your competitors?
-
---
-
-&lt;br&gt;
-
-.pull-left[
-
-- **Forward Linkages**
-
-- Backward Linkages
-
-- Labor Market Pooling
-
-- Knowledge Spillovers
-]
-
-.pull-right[
-&lt;img src="img/Metropolitan_Opera_House,_a_concert_by_pianist_Josef_Hofmann_-_NARA_541890_-_Edit.jpg" width="600" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Agglomeration Economies
-
-Why is it valuable to locate in the same city as your competitors?
-
-&lt;br&gt;
-
-.pull-left[
-
-- Forward Linkages
-
-- **Backward Linkages**
-
-- Labor Market Pooling
-
-- Knowledge Spillovers
-]
-
-.pull-right[
-&lt;img src="img/Automotive-Factory-Parts_in_Bins.jpg" width="600" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Agglomeration Economies
-
-Why is it valuable to locate in the same city as your competitors?
-
-&lt;br&gt;
-
-.pull-left[
-
-- Forward Linkages
-
-- Backward Linkages
-
-- **Labor Market Pooling**
-
-- Knowledge Spillovers
-]
-
-.pull-right[
-&lt;img src="img/job-seekers.jpg" width="600" style="display: block; margin: auto;" /&gt;
-]
-
-
----
-
-## Agglomeration Economies
-
-Why is it valuable to locate in the same city as your competitors?
-
-&lt;br&gt;
-
-.pull-left[
-
-- Forward Linkages
-
-- Backward Linkages
-
-- Labor Market Pooling
-
-- **Knowledge Spillovers**
-]
-
-.pull-right[
-&lt;img src="img/knowledge-spillovers.png" width="600" style="display: block; margin: auto;" /&gt;
-]
-
-
----
-
-class: center, middle, inverse
-
-## Power Laws
-
----
-
-## Warmup
-
-Let's try our hand again at the [City Quiz](https://cityquiz.io/quizzes/usa). This time, we'll focus on cities in the United States only.
-
-- How many cities do you need to name before you reach 10% of the US urban population? 15%? 20%? 25%?
-
-???
-
-**The Best Possible Scores**:
-
-- 5%: 3 cities (Chicago)
-- 10%: 10 cities (San Jose)
-- 15%: 27 cities (Detroit)
-- 20%: 54 cities (Cleveland)
-- 25%: 101 cities (Hialeah, FL)
-- 30%: 171 cities (Killeen, TX)
-- 35%: 272 cities (Temecula, CA)
-
----
-
-## City Size Distribution
-
-&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-25-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-## City Size Distribution
-
-Once again, if you plot these on a logarithmic scale, everything fits nicely on a straight line!
-
-&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-26-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-## Power Law
-
-The city size distribution is **long tailed**. A few big cities dominate.
-
-&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-27-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-## Power Law
-
-A **power law distribution** is a long-tailed distribution that falls on a straight line when you plot it logarithmically.
-
-&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-28-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
-???
-
-- Power laws are ubiquitous (word use, wealth)
-- Where do power laws come from? Preferential attachment game (agglomeration economies and preferential attachment / the "Matthew Effect").
-- Next module we'll discuss "primate cities": cities that are much bigger than you would expect given power laws. 
-
----
-
-## Power Laws Are Everywhere!
-
---
-
-*Gutenberg-Richter Law*:
-
-&lt;br&gt;
-
-&lt;img src="img/gutenberg-richter.png" width="600" style="display: block; margin: auto;" /&gt;
-
-???
-
-Image Source: Nate Silver (2012). Signal &amp; The Noise, pg. 153.
-
----
-
-## Power Laws Are Everywhere!
-
-*The Forbes 400 (2022)*:
-
-&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-30-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-## Power Laws Are Everywhere!
-
-*The Forbes 400 (2022)*:
-
-&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-31-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
-???
-
-This one isn't perfect, because there are three Waltons and two Koch's screwing with my distribution.
-
----
-
-## Power Laws Are Everywhere!
-
-*Google Web Trillion Word Corpus*:
-
---
-
-&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-32-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-## Power Laws Are Everywhere!
-
-*Google Web Trillion Word Corpus*:
-
-&lt;img src="01-why-cities_files/figure-html/unnamed-chunk-33-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-## Power Laws Are Everywhere!
-
-*Social Media Followers*:
-
-[![](img/top-50-influencers.png)](https://www.visualcapitalist.com/wp-content/uploads/2021/05/Top-50-Social-Media-Influencers-2.jpg)
-
-???
-
-Image Source: [Visual Capitalist](https://www.visualcapitalist.com/worlds-top-50-influencers-across-social-media-platforms/)
-
----
-
-## Where Do Power Laws Come From?
-
-These sorts of distributions arise from the **Matthew Effect**.
-
-&gt; For to every one who has will more be given, and he will have abundance; but from him who has not, even what he has will be taken away.
-
-&gt; —Matthew 25:29
-
-&lt;img src="img/preferential-attachment-network.png" width="35%" style="display: block; margin: auto;" /&gt;
-
-Also known as [Preferential Attachment](https://www.netlogoweb.org/launch#https://www.netlogoweb.org/assets/modelslib/Sample%20Models/Networks/Preferential%20Attachment.nlogo).
-
----
-
-class: center, middle, inverse
-
-## Historical Path Dependence
-
----
-
-## Stories about Historical Path Dependence
-
-- **Story 1:** The Fall Line
-
-- **Story 2:** Hiroshima and Nagasaki
-
-- **Story 3:** Pirates of the Mediterranean
-
-- **Story 4:** QWERTY Keyboards
-
----
-
-## Story 1: The Fall Line
-
-&lt;img src="img/cretaceous.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-## Story 1: The Fall Line
-
-&lt;img src="img/portage.jpeg" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-## Story 1: The Fall Line
-
-&lt;img src="img/watermill.jpg" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-## Story 1: The Fall Line
-
-&lt;img src="img/bleakley-lin-fig-a1.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-## Story 2: Hiroshima and Nagasaki
-
-&lt;img src="img/nagasaki.jpg" width="600" style="display: block; margin: auto;" /&gt;
-
-???
-
-Hundreds of thousands of people dead. Roughly 70% of the buildings destroyed.
-
----
-
-## Story 2: Hiroshima and Nagasaki
-
-&lt;img src="img/hiroshima.webp" width="600" style="display: block; margin: auto;" /&gt;
-
-???
-
-As a high schooler, I honestly just assumed that Hiroshima and Nagasaki were no longer cities.
-
----
-
-## Story 2: Hiroshima and Nagasaki
-
-&lt;img src="img/Atomic_Bomb_Dome_and_Motoyaso_River,_Hiroshima,_Northwest_view_20190417_1.jpg" width="600" style="display: block; margin: auto;" /&gt;
-
-???
-
-Thriving city of roughly 1.2 million people
-
----
-
-## Story 2: Hiroshima and Nagasaki
-
-.cite[Davis &amp; Weinstein (2002):]
-
-&lt;img src="img/davis-fig-2.png" width="600" style="display: block; margin: auto;" /&gt;
-
-???
-
-As if nothing happened! By 1975, both cities are *exactly* where you would have predicted their population to be if you just naively projected forward their growth rates, without knowing anything about the war. 
-
-A remarkable example of Historical Path Dependence. Even in a situation where so many people died, others evacuated, 70% of the buildings destroyed, stigma surrounding radiation, the cities still survived.
-
----
-
-## Story 3: Pirates of the Mediterranean
-
-&lt;img src="img/pirate-attacks.png" width="400" style="display: block; margin: auto;" /&gt;
-
----
-
-## Story 3: Pirates of the Mediterranean
-
-&lt;img src="img/italian-cities.png" width="800" style="display: block; margin: auto;" /&gt;
-
-???
-
-Even 500 years afterwards, you still get this inefficient location of Italian urban activity. It would be more efficient for these places to be on the seaside, where you can have a port and trade. But path dependence locks you into this weird historical trajectory.
-
----
-
-## Story 4: QWERTY
-
---
-
-Why is history "sticky"?
-
-&lt;img src="img/QWERTY_keyboard.jpg" width="600" style="display: block; margin: auto;" /&gt;
-
-???
-
-Historical Path Dependence
-
-The Krugman model tells us **when** countries will urbanize.
-
-But does it tell us **where** they will urbanize?
-
-&lt;img src="img/krugman.png" width="400" style="display: block; margin: auto;" /&gt;
-
-Villages A, B, and C are all equally likely to become the city!
-
-And once an industry locates somewhere, powerful forces (forward and backward linkages, labor market pooling, knowledge spillovers), conspire to keep it there.
-
-(If you've taken economics before, notice that this is very different than the idea of "comparative advantage". One location specializes in shirt-making and the others specialize in agriculture, but not because of any particular locational advantage...)
-    </textarea>
-<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
-<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script>var slideshow = remark.create({
-"highlightStyle": "github",
-"countIncrementalSlides": false
-});
-if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
-  window.dispatchEvent(new Event('resize'));
-});
-(function(d) {
-  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
-  if (!r) return;
-  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
-  d.head.appendChild(s);
-})(document);
-
-(function(d) {
-  var el = d.getElementsByClassName("remark-slides-area");
-  if (!el) return;
-  var slide, slides = slideshow.getSlides(), els = el[0].children;
-  for (var i = 1; i < slides.length; i++) {
-    slide = slides[i];
-    if (slide.properties.continued === "true" || slide.properties.count === "false") {
-      els[i - 1].className += ' has-continuation';
+\]</span></p>
+<hr>
+</section>
+<section id="scale-economies-from-fixed-costs-2" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-from-fixed-costs-2">Scale Economies from Fixed Costs</h2>
+<p>Let’s say your fixed costs are $10,000 and marginal costs are $5.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-why-cities_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>–</p>
+<p>Unless you can sell cheese blocks for $5000 each, you need a large number of customers in order to cover your fixed costs!</p>
+<hr>
+</section>
+<section id="scale-economies-from-fixed-costs-3" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-from-fixed-costs-3">Scale Economies from Fixed Costs</h2>
+<p>This explains why:</p>
+<ul>
+<li><p>Businesses with large fixed costs (major league sports stadiums, live theater, museums, <strong>zoos</strong>) can only operate in big cities.</p></li>
+<li><p>Niche businesses (weird restaurants, esoteric bookstores, artisan cheese shops) typically operate in larger markets too.</p></li>
+</ul>
+<p>???</p>
+<p>Doesn’t matter how many people visit your zoo. You gotta feed that elephant 350 pounds of vegetation every day.</p>
+<hr>
+</section>
+<section id="scale-economies-from-fixed-costs-4" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-from-fixed-costs-4">Scale Economies from Fixed Costs</h2>
+<p>.cite[Schiff (2015):]</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/schiff-2015-fig-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="scale-economies-from-fixed-costs-5" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-from-fixed-costs-5">Scale Economies from Fixed Costs</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-why-cities_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p>Pop Quiz: Which is the smallest metro area to have a major league team? (Green Bay! Likely because they’re the only fan-owned team in the NFL.)</p>
+<p>Atlanta Falcons spend $230 million each year in player salaries alone. You can only cover fixed costs like that if you sell a <em>lot</em> of tickets. You need to operate in a big market.</p>
+<hr>
+<p>class: center, middle, inverse</p>
+</section>
+</section>
+<section id="scale-economies-from-network-effects" class="level1">
+<h1>Scale Economies from Network Effects</h1>
+<hr>
+<section id="scale-economies-from-network-effects-1" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-from-network-effects-1">Scale Economies from Network Effects</h2>
+<p>.pull-left[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/metcalfe.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<p>.pull-right[ - 1 telephone is useless. There’s no one to talk to.</p>
+<ul>
+<li>Larger networks are increasingly valuable, because the number of possible connections scales with <span class="math inline">\(n^2\)</span>.</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Size of Network</th>
+<th>Number of Connections</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+<p>]</p>
+<hr>
+</section>
+<section id="scale-economies-from-network-effects-2" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-from-network-effects-2">Scale Economies from Network Effects</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-why-cities_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="scale-economies-from-network-effects-3" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-from-network-effects-3">Scale Economies from Network Effects</h2>
+<ul>
+<li>In a small town with 1,000 people, there are roughly <strong>500,000</strong> possible connections.</li>
+</ul>
+<p>–</p>
+<ul>
+<li>There are about 30,000 undergraduates at UGA, or approximately <strong>450 million</strong> possible friendships.</li>
+</ul>
+<p>–</p>
+<ul>
+<li>In a city the size of New York (8 million), there are <strong>32 trillion</strong> possible connections between people.</li>
+</ul>
+<p>–</p>
+<p>Anything that requires forging interpersonal connections (e.g.&nbsp;teamwork, social movements, dating) will be supercharged in big cities!</p>
+<hr>
+</section>
+<section id="scale-economies-from-network-effects-4" class="level2">
+<h2 class="anchored" data-anchor-id="scale-economies-from-network-effects-4">Scale Economies from Network Effects</h2>
+<p>Innovation and creativity come from people connecting with one another and sharing ideas. It’s no surprise, then, that big cities are hubs for innovation:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/patents-scaling.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+<p>class: center, middle, inverse</p>
+</section>
+</section>
+<section id="agglomeration-effects" class="level1">
+<h1>Agglomeration Effects</h1>
+<hr>
+<section id="a-puzzle-clusters-of-industry" class="level2">
+<h2 class="anchored" data-anchor-id="a-puzzle-clusters-of-industry">A Puzzle: Clusters of Industry</h2>
+<p>Scale economies explain why individual organizations would want to locate in large markets, but why would <em>multiple</em>, competing firms locate in the same place?</p>
+<p>–</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/silicon-valley.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p>Why do you get clusters of industry? What are some other clusters?</p>
+<ul>
+<li><p>Finance in New York</p></li>
+<li><p>Films in Los Angeles</p></li>
+<li><p>Tech in San Francisco</p></li>
+<li><p>Cars in Detroit</p></li>
+<li><p>Hip hop in Atlanta</p></li>
+</ul>
+<hr>
+</section>
+<section id="a-puzzle-clusters-of-industry-1" class="level2">
+<h2 class="anchored" data-anchor-id="a-puzzle-clusters-of-industry-1">A Puzzle: Clusters of Industry</h2>
+<p>Scale economies explain why individual organizations would want to locate in large markets, but why would <em>multiple</em>, competing firms locate in the same place?</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/silicon-valley-logos.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="agglomeration-economies" class="level2">
+<h2 class="anchored" data-anchor-id="agglomeration-economies">Agglomeration Economies</h2>
+<p>Why is it valuable to locate in the same city as your competitors?</p>
+<p>–</p>
+<p><br></p>
+<p>.pull-left[</p>
+<ul>
+<li><p><strong>Forward Linkages</strong></p></li>
+<li><p>Backward Linkages</p></li>
+<li><p>Labor Market Pooling</p></li>
+<li><p>Knowledge Spillovers ]</p></li>
+</ul>
+<p>.pull-right[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/Metropolitan_Opera_House,_a_concert_by_pianist_Josef_Hofmann_-_NARA_541890_-_Edit.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<hr>
+</section>
+<section id="agglomeration-economies-1" class="level2">
+<h2 class="anchored" data-anchor-id="agglomeration-economies-1">Agglomeration Economies</h2>
+<p>Why is it valuable to locate in the same city as your competitors?</p>
+<p><br></p>
+<p>.pull-left[</p>
+<ul>
+<li><p>Forward Linkages</p></li>
+<li><p><strong>Backward Linkages</strong></p></li>
+<li><p>Labor Market Pooling</p></li>
+<li><p>Knowledge Spillovers ]</p></li>
+</ul>
+<p>.pull-right[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/Automotive-Factory-Parts_in_Bins.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<hr>
+</section>
+<section id="agglomeration-economies-2" class="level2">
+<h2 class="anchored" data-anchor-id="agglomeration-economies-2">Agglomeration Economies</h2>
+<p>Why is it valuable to locate in the same city as your competitors?</p>
+<p><br></p>
+<p>.pull-left[</p>
+<ul>
+<li><p>Forward Linkages</p></li>
+<li><p>Backward Linkages</p></li>
+<li><p><strong>Labor Market Pooling</strong></p></li>
+<li><p>Knowledge Spillovers ]</p></li>
+</ul>
+<p>.pull-right[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/job-seekers.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<hr>
+</section>
+<section id="agglomeration-economies-3" class="level2">
+<h2 class="anchored" data-anchor-id="agglomeration-economies-3">Agglomeration Economies</h2>
+<p>Why is it valuable to locate in the same city as your competitors?</p>
+<p><br></p>
+<p>.pull-left[</p>
+<ul>
+<li><p>Forward Linkages</p></li>
+<li><p>Backward Linkages</p></li>
+<li><p>Labor Market Pooling</p></li>
+<li><p><strong>Knowledge Spillovers</strong> ]</p></li>
+</ul>
+<p>.pull-right[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/knowledge-spillovers.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<hr>
+<p>class: center, middle, inverse</p>
+</section>
+<section id="power-laws" class="level2">
+<h2 class="anchored" data-anchor-id="power-laws">Power Laws</h2>
+<hr>
+</section>
+<section id="warmup" class="level2">
+<h2 class="anchored" data-anchor-id="warmup">Warmup</h2>
+<p>Let’s try our hand again at the <a href="https://cityquiz.io/quizzes/usa">City Quiz</a>. This time, we’ll focus on cities in the United States only.</p>
+<ul>
+<li>How many cities do you need to name before you reach 10% of the US urban population? 15%? 20%? 25%?</li>
+</ul>
+<p>???</p>
+<p><strong>The Best Possible Scores</strong>:</p>
+<ul>
+<li>5%: 3 cities (Chicago)</li>
+<li>10%: 10 cities (San Jose)</li>
+<li>15%: 27 cities (Detroit)</li>
+<li>20%: 54 cities (Cleveland)</li>
+<li>25%: 101 cities (Hialeah, FL)</li>
+<li>30%: 171 cities (Killeen, TX)</li>
+<li>35%: 272 cities (Temecula, CA)</li>
+</ul>
+<hr>
+</section>
+<section id="city-size-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="city-size-distribution">City Size Distribution</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-why-cities_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="city-size-distribution-1" class="level2">
+<h2 class="anchored" data-anchor-id="city-size-distribution-1">City Size Distribution</h2>
+<p>Once again, if you plot these on a logarithmic scale, everything fits nicely on a straight line!</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-why-cities_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="power-law" class="level2">
+<h2 class="anchored" data-anchor-id="power-law">Power Law</h2>
+<p>The city size distribution is <strong>long tailed</strong>. A few big cities dominate.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-why-cities_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="power-law-1" class="level2">
+<h2 class="anchored" data-anchor-id="power-law-1">Power Law</h2>
+<p>A <strong>power law distribution</strong> is a long-tailed distribution that falls on a straight line when you plot it logarithmically.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-why-cities_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<ul>
+<li>Power laws are ubiquitous (word use, wealth)</li>
+<li>Where do power laws come from? Preferential attachment game (agglomeration economies and preferential attachment / the “Matthew Effect”).</li>
+<li>Next module we’ll discuss “primate cities”: cities that are much bigger than you would expect given power laws.</li>
+</ul>
+<hr>
+</section>
+<section id="power-laws-are-everywhere" class="level2">
+<h2 class="anchored" data-anchor-id="power-laws-are-everywhere">Power Laws Are Everywhere!</h2>
+<p>–</p>
+<p><em>Gutenberg-Richter Law</em>:</p>
+<p><br></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/gutenberg-richter.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p>Image Source: Nate Silver (2012). Signal &amp; The Noise, pg. 153.</p>
+<hr>
+</section>
+<section id="power-laws-are-everywhere-1" class="level2">
+<h2 class="anchored" data-anchor-id="power-laws-are-everywhere-1">Power Laws Are Everywhere!</h2>
+<p><em>The Forbes 400 (2022)</em>:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-why-cities_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="power-laws-are-everywhere-2" class="level2">
+<h2 class="anchored" data-anchor-id="power-laws-are-everywhere-2">Power Laws Are Everywhere!</h2>
+<p><em>The Forbes 400 (2022)</em>:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-why-cities_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p>This one isn’t perfect, because there are three Waltons and two Koch’s screwing with my distribution.</p>
+<hr>
+</section>
+<section id="power-laws-are-everywhere-3" class="level2">
+<h2 class="anchored" data-anchor-id="power-laws-are-everywhere-3">Power Laws Are Everywhere!</h2>
+<p><em>Google Web Trillion Word Corpus</em>:</p>
+<p>–</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-why-cities_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="power-laws-are-everywhere-4" class="level2">
+<h2 class="anchored" data-anchor-id="power-laws-are-everywhere-4">Power Laws Are Everywhere!</h2>
+<p><em>Google Web Trillion Word Corpus</em>:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="01-why-cities_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="power-laws-are-everywhere-5" class="level2">
+<h2 class="anchored" data-anchor-id="power-laws-are-everywhere-5">Power Laws Are Everywhere!</h2>
+<p><em>Social Media Followers</em>:</p>
+<p><a href="https://www.visualcapitalist.com/wp-content/uploads/2021/05/Top-50-Social-Media-Influencers-2.jpg"><img src="img/top-50-influencers.png" class="img-fluid"></a></p>
+<p>???</p>
+<p>Image Source: <a href="https://www.visualcapitalist.com/worlds-top-50-influencers-across-social-media-platforms/">Visual Capitalist</a></p>
+<hr>
+</section>
+<section id="where-do-power-laws-come-from" class="level2">
+<h2 class="anchored" data-anchor-id="where-do-power-laws-come-from">Where Do Power Laws Come From?</h2>
+<p>These sorts of distributions arise from the <strong>Matthew Effect</strong>.</p>
+<blockquote class="blockquote">
+<p>For to every one who has will more be given, and he will have abundance; but from him who has not, even what he has will be taken away.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>—Matthew 25:29</p>
+</blockquote>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/preferential-attachment-network.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:35.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Also known as <a href="https://www.netlogoweb.org/launch#https://www.netlogoweb.org/assets/modelslib/Sample%20Models/Networks/Preferential%20Attachment.nlogo">Preferential Attachment</a>.</p>
+<hr>
+<p>class: center, middle, inverse</p>
+</section>
+<section id="historical-path-dependence" class="level2">
+<h2 class="anchored" data-anchor-id="historical-path-dependence">Historical Path Dependence</h2>
+<hr>
+</section>
+<section id="stories-about-historical-path-dependence" class="level2">
+<h2 class="anchored" data-anchor-id="stories-about-historical-path-dependence">Stories about Historical Path Dependence</h2>
+<ul>
+<li><p><strong>Story 1:</strong> The Fall Line</p></li>
+<li><p><strong>Story 2:</strong> Hiroshima and Nagasaki</p></li>
+<li><p><strong>Story 3:</strong> Pirates of the Mediterranean</p></li>
+<li><p><strong>Story 4:</strong> QWERTY Keyboards</p></li>
+</ul>
+<hr>
+</section>
+<section id="story-1-the-fall-line" class="level2">
+<h2 class="anchored" data-anchor-id="story-1-the-fall-line">Story 1: The Fall Line</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/cretaceous.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="story-1-the-fall-line-1" class="level2">
+<h2 class="anchored" data-anchor-id="story-1-the-fall-line-1">Story 1: The Fall Line</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/portage.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="story-1-the-fall-line-2" class="level2">
+<h2 class="anchored" data-anchor-id="story-1-the-fall-line-2">Story 1: The Fall Line</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/watermill.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="story-1-the-fall-line-3" class="level2">
+<h2 class="anchored" data-anchor-id="story-1-the-fall-line-3">Story 1: The Fall Line</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/bleakley-lin-fig-a1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="story-2-hiroshima-and-nagasaki" class="level2">
+<h2 class="anchored" data-anchor-id="story-2-hiroshima-and-nagasaki">Story 2: Hiroshima and Nagasaki</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/nagasaki.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p>Hundreds of thousands of people dead. Roughly 70% of the buildings destroyed.</p>
+<hr>
+</section>
+<section id="story-2-hiroshima-and-nagasaki-1" class="level2">
+<h2 class="anchored" data-anchor-id="story-2-hiroshima-and-nagasaki-1">Story 2: Hiroshima and Nagasaki</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/hiroshima.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p>As a high schooler, I honestly just assumed that Hiroshima and Nagasaki were no longer cities.</p>
+<hr>
+</section>
+<section id="story-2-hiroshima-and-nagasaki-2" class="level2">
+<h2 class="anchored" data-anchor-id="story-2-hiroshima-and-nagasaki-2">Story 2: Hiroshima and Nagasaki</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/Atomic_Bomb_Dome_and_Motoyaso_River,_Hiroshima,_Northwest_view_20190417_1.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p>Thriving city of roughly 1.2 million people</p>
+<hr>
+</section>
+<section id="story-2-hiroshima-and-nagasaki-3" class="level2">
+<h2 class="anchored" data-anchor-id="story-2-hiroshima-and-nagasaki-3">Story 2: Hiroshima and Nagasaki</h2>
+<p>.cite[Davis &amp; Weinstein (2002):]</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/davis-fig-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p>As if nothing happened! By 1975, both cities are <em>exactly</em> where you would have predicted their population to be if you just naively projected forward their growth rates, without knowing anything about the war.</p>
+<p>A remarkable example of Historical Path Dependence. Even in a situation where so many people died, others evacuated, 70% of the buildings destroyed, stigma surrounding radiation, the cities still survived.</p>
+<hr>
+</section>
+<section id="story-3-pirates-of-the-mediterranean" class="level2">
+<h2 class="anchored" data-anchor-id="story-3-pirates-of-the-mediterranean">Story 3: Pirates of the Mediterranean</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/pirate-attacks.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="story-3-pirates-of-the-mediterranean-1" class="level2">
+<h2 class="anchored" data-anchor-id="story-3-pirates-of-the-mediterranean-1">Story 3: Pirates of the Mediterranean</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/italian-cities.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p>Even 500 years afterwards, you still get this inefficient location of Italian urban activity. It would be more efficient for these places to be on the seaside, where you can have a port and trade. But path dependence locks you into this weird historical trajectory.</p>
+<hr>
+</section>
+<section id="story-4-qwerty" class="level2">
+<h2 class="anchored" data-anchor-id="story-4-qwerty">Story 4: QWERTY</h2>
+<p>–</p>
+<p>Why is history “sticky”?</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/QWERTY_keyboard.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p>Historical Path Dependence</p>
+<p>The Krugman model tells us <strong>when</strong> countries will urbanize.</p>
+<p>But does it tell us <strong>where</strong> they will urbanize?</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/krugman.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Villages A, B, and C are all equally likely to become the city!</p>
+<p>And once an industry locates somewhere, powerful forces (forward and backward linkages, labor market pooling, knowledge spillovers), conspire to keep it there.</p>
+<p>(If you’ve taken economics before, notice that this is very different than the idea of “comparative advantage”. One location specializes in shirt-making and the others specialize in agriculture, but not because of any particular locational advantage…)</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
   }
-  var s = d.createElement("style");
-  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
-  d.head.appendChild(s);
-})(document);
-// delete the temporary CSS (for displaying all slides initially) when the user
-// starts to view slides
-(function() {
-  var deleted = false;
-  slideshow.on('beforeShowSlide', function(slide) {
-    if (deleted) return;
-    var sheets = document.styleSheets, node;
-    for (var i = 0; i < sheets.length; i++) {
-      node = sheets[i].ownerNode;
-      if (node.dataset["target"] !== "print-only") continue;
-      node.parentNode.removeChild(node);
-    }
-    deleted = true;
-  });
-})();
-// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
-// screen reader (see PR #262)
-(function(d) {
-  let res = {};
-  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
-    const t = tr.querySelector('td:nth-child(2)').innerText;
-    tr.querySelectorAll('td:first-child .key').forEach(key => {
-      const k = key.innerText;
-      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
-    });
-  });
-  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
-})(document);
-(function() {
-  "use strict"
-  // Replace <script> tags in slides area to make them executable
-  var scripts = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container script'
-  );
-  if (!scripts.length) return;
-  for (var i = 0; i < scripts.length; i++) {
-    var s = document.createElement('script');
-    var code = document.createTextNode(scripts[i].textContent);
-    s.appendChild(code);
-    var scriptAttrs = scripts[i].attributes;
-    for (var j = 0; j < scriptAttrs.length; j++) {
-      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
-    }
-    scripts[i].parentElement.replaceChild(s, scripts[i]);
-  }
-})();
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
     }
   }
-})();</script>
-
-<script>
-slideshow._releaseMath = function(el) {
-  var i, text, code, codes = el.getElementsByTagName('code');
-  for (i = 0; i < codes.length;) {
-    code = codes[i];
-    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
-      text = code.textContent;
-      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
-          /^\$\$(.|\s)+\$\$$/.test(text) ||
-          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
-        code.outerHTML = code.innerHTML;  // remove <code></code>
-        continue;
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
       }
     }
-    i++;
+    return false;
   }
-};
-slideshow._releaseMath(document);
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
 </script>
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-(function () {
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
-  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
-    script.src  = script.src.replace(/^https?:/, '');
-  document.getElementsByTagName('head')[0].appendChild(script);
-})();
-</script>
-  </body>
-</html>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
