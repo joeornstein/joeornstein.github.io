@@ -2993,28 +2993,28 @@
     "href": "slides/stocks-flows.html#markov-models",
     "title": "Stocks & Flows",
     "section": "Markov Models",
-    "text": "Markov Models\n\nWhen flows are defined in terms of probabilities, the model is called a Markov Chain.\nFor example, suppose that every dictatorship has a 4% chance of democratizing each year.\nAnd every democracy has a 1% chance of becoming a dictatorship…\nIf this process continued for 1,000 years, what do you think would happen to the share of countries that are democracies?\n\n\n\n\n\n\n\n\n\n\n\n4%\n\n\n\n1%\n\n\n\nDictatorships\n\n\n\nDemocracies"
+    "text": "Markov Models\n\nWhen flows are defined in terms of probabilities, the model is called a Markov Chain.\nFor example, suppose that every dictatorship has a 4% chance of democratizing each year.\nAnd every democracy has a 1% chance of becoming a dictatorship…\nIf this process continued for 1,000 years, what do you think would happen to the share of countries that are democracies?\n\n\n\n\n\n\n\n\n\n\n\n\n\n4%\n\n\n\n\n\n\n\n1%\n\n\n\n\n\n\n\nDictatorships\n\n\n\n\n\n\n\nDemocracies"
   },
   {
     "objectID": "slides/stocks-flows.html#markov-models-1",
     "href": "slides/stocks-flows.html#markov-models-1",
     "title": "Stocks & Flows",
     "section": "Markov Models",
-    "text": "Markov Models\n\nAnswer: the number of democracies and dictatorships will eventually reach a stable point, called an equilibrium.\nIn equilibrium, inflows = outflows.\nSo in the example problem, there would need to be four times as many democracies as dictatorships to reach equilibrium.\n\n\n\n\n\n\n\n\n\n\n\n4%\n\n\n\n1%\n\n\n\nDictatorships (50)\n\n\n\nDemocracies (200)"
+    "text": "Markov Models\n\nAnswer: the number of democracies and dictatorships will eventually reach a stable point, called an equilibrium.\nIn equilibrium, inflows = outflows.\nSo in the example problem, there would need to be four times as many democracies as dictatorships to reach equilibrium.\n\n\n\n\n\n\n\n\n\n\n\n\n\n4%\n\n\n\n\n\n\n\n1%\n\n\n\n\n\n\n\nDictatorships (50)\n\n\n\n\n\n\n\nDemocracies (200)"
   },
   {
     "objectID": "slides/stocks-flows.html#demographic-forecasts-1",
     "href": "slides/stocks-flows.html#demographic-forecasts-1",
     "title": "Stocks & Flows",
     "section": "Demographic Forecasts",
-    "text": "Demographic Forecasts\nIf the current fertility and mortality rates remain stationary for a few decades, the age distribution will eventually settle into an equilibrium."
+    "text": "Demographic Forecasts\nIf the current fertility and mortality rates remain stationary, the age distribution will eventually settle into an equilibrium."
   },
   {
     "objectID": "slides/stocks-flows.html#demographic-forecasts-2",
     "href": "slides/stocks-flows.html#demographic-forecasts-2",
     "title": "Stocks & Flows",
     "section": "Demographic Forecasts",
-    "text": "Demographic Forecasts\n\nThis has implications for:\n\nthe cost of social insurance programs\nmilitary recruitment\nhigher education\nthe national debt\ninterest rates\nthe “gerontocracy”\n\nThe Markov model lets us test out different scenarios (e.g. further reductions in fertility rates, medical advances that help Americans live longer) and forecast what would happen to the equilibrium."
+    "text": "Demographic Forecasts\nIf the current fertility and mortality rates remain stationary, the age distribution will eventually settle into an equilibrium."
   },
   {
     "objectID": "slides/stocks-flows.html#looking-forward",
@@ -3077,7 +3077,7 @@
     "href": "slides/feedback.html#negative-feedback",
     "title": "Feedback Loops",
     "section": "Negative Feedback",
-    "text": "Negative Feedback\n\nPure positive feedback does not exist in nature.\nThere is almost always some negative feedback loop that eventually places a limit on growth.\n\nFor bunnies, it’s grass.\n\nMore bunnies \\(\\rightarrow\\) less grass \\(\\rightarrow\\) fewer births\n\nFor disease epidemics, it’s the stock of susceptible people.\n\nMore cases \\(\\rightarrow\\) fewer susceptible people \\(\\rightarrow\\) fewer new cases\n\n\nCombining positive and negative feedback yields an S-curve.\n\nExponential growth at first\nGradually flattens out as negative feedback overtakes positive feedback."
+    "text": "Negative Feedback\n\nPure positive feedback does not exist in nature.\nThere is almost always some negative feedback loop that eventually places a limit on growth.\n\nFor bunnies, it’s grass.\n\nMore bunnies \\(\\rightarrow\\) less grass \\(\\rightarrow\\) fewer births\n\nFor disease epidemics, it’s the stock of susceptible people.\n\nMore cases \\(\\rightarrow\\) fewer susceptible people \\(\\rightarrow\\) fewer new cases\n\nFor human populations, it’s fertility choices (i.e. “demographc transition”).\n\nCombining positive and negative feedback yields an S-curve.\n\nExponential growth at first\nGradually flattens out as negative feedback overtakes positive feedback."
   },
   {
     "objectID": "slides/feedback.html#next-time",
@@ -3484,5 +3484,54 @@
     "title": "Fall 2025 Predictions",
     "section": "Calibration Plots",
     "text": "Calibration Plots"
+  },
+  {
+    "objectID": "slides/stocks-flows.html#demographic-forecasts-3",
+    "href": "slides/stocks-flows.html#demographic-forecasts-3",
+    "title": "Stocks & Flows",
+    "section": "Demographic Forecasts",
+    "text": "Demographic Forecasts\nIf the current fertility and mortality rates remain stationary, the age distribution will eventually settle into an equilibrium."
+  },
+  {
+    "objectID": "slides/stocks-flows.html#demographic-forecasts-4",
+    "href": "slides/stocks-flows.html#demographic-forecasts-4",
+    "title": "Stocks & Flows",
+    "section": "Demographic Forecasts",
+    "text": "Demographic Forecasts\nIf the current fertility and mortality rates remain stationary, the age distribution will eventually settle into an equilibrium."
+  },
+  {
+    "objectID": "slides/stocks-flows.html#demographic-forecasts-5",
+    "href": "slides/stocks-flows.html#demographic-forecasts-5",
+    "title": "Stocks & Flows",
+    "section": "Demographic Forecasts",
+    "text": "Demographic Forecasts\nIf the current fertility and mortality rates remain stationary, the age distribution will eventually settle into an equilibrium."
+  },
+  {
+    "objectID": "slides/stocks-flows.html#demographic-forecasts-6",
+    "href": "slides/stocks-flows.html#demographic-forecasts-6",
+    "title": "Stocks & Flows",
+    "section": "Demographic Forecasts",
+    "text": "Demographic Forecasts\nIf the current fertility and mortality rates remain stationary, the age distribution will eventually settle into an equilibrium."
+  },
+  {
+    "objectID": "slides/stocks-flows.html#demographic-forecasts-7",
+    "href": "slides/stocks-flows.html#demographic-forecasts-7",
+    "title": "Stocks & Flows",
+    "section": "Demographic Forecasts",
+    "text": "Demographic Forecasts\nIf the current fertility and mortality rates remain stationary, the age distribution will eventually settle into an equilibrium."
+  },
+  {
+    "objectID": "slides/stocks-flows.html#demographic-forecasts-8",
+    "href": "slides/stocks-flows.html#demographic-forecasts-8",
+    "title": "Stocks & Flows",
+    "section": "Demographic Forecasts",
+    "text": "Demographic Forecasts\nIf the current fertility and mortality rates remain stationary, the age distribution will eventually settle into an equilibrium."
+  },
+  {
+    "objectID": "slides/stocks-flows.html#demographic-forecasts-9",
+    "href": "slides/stocks-flows.html#demographic-forecasts-9",
+    "title": "Stocks & Flows",
+    "section": "Demographic Forecasts",
+    "text": "Demographic Forecasts\n\nThis has implications for:\n\nthe cost of social insurance programs\nmilitary recruitment\nhigher education\nthe national debt\ninterest rates\nthe “gerontocracy”\n\nThe Markov model lets us test out different scenarios (e.g. further reductions in fertility rates, medical advances that help Americans live longer) and forecast what would happen to the equilibrium."
   }
 ]
