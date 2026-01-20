@@ -3,7 +3,11 @@
  **
  ** A plugin for reveal.js adding a chalkboard.
  **
+<<<<<<< HEAD
  ** Version: 2.1.0
+=======
+ ** Version: 2.3.3
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
  **
  ** License: MIT license (see LICENSE.md)
  **
@@ -13,10 +17,19 @@
  ** Compatibility with reveal.js v4 by Hakim El Hattab https://github.com/hakimel
  ******************************************************************/
 
+<<<<<<< HEAD
 window.RevealChalkboard = window.RevealChalkboard || {
 	id: 'RevealChalkboard',
 	init: function ( deck ) {
 		initChalkboard( deck );
+=======
+"use strict";
+
+window.RevealChalkboard = window.RevealChalkboard || {
+	id: 'RevealChalkboard',
+	init: function ( deck ) {
+		initChalkboard.call(this, deck );
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 	},
 	configure: function ( config ) {
 		configure( config );
@@ -90,7 +103,11 @@ const initChalkboard = function ( Reveal ) {
 /*****************************************************************
  ** Configuration
  ******************************************************************/
+<<<<<<< HEAD
 	var background, pen, draw, color;
+=======
+	var background, pens, draw, color;
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 	var grid = false;
 	var boardmarkerWidth = 3;
 	var chalkWidth = 7;
@@ -158,6 +175,15 @@ const initChalkboard = function ( Reveal ) {
 			cursor: 'url(' + path + 'img/chalk-yellow.png), auto'
 		}
 	];
+<<<<<<< HEAD
+=======
+
+  var sponge = 		{
+		cursor: 'url(' + path + 'img/sponge.png), auto'
+	}
+
+
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 	var keyBindings = {
 		toggleNotesCanvas: {
 			keyCode: 67,
@@ -284,11 +310,19 @@ const initChalkboard = function ( Reveal ) {
 	function whenReady( callback ) {
 		// wait for markdown to be parsed and code to be highlighted
 		if ( !document.querySelector( 'section[data-markdown]:not([data-markdown-parsed])' ) 
+<<<<<<< HEAD
+=======
+			   && !document.querySelector( '[data-load]:not([data-loaded])') 
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 		     && !document.querySelector( 'code[data-line-numbers*="|"]') 	
 		) {
 			callback();
 		} else {
+<<<<<<< HEAD
 			console.log( "Wait for markdown to be parsed and code to be highlighted" );
+=======
+			console.log( "Wait for external sources to be loaded and code to be highlighted" );
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 			setTimeout( whenReady, 500, callback )
 		}
 	}
@@ -303,6 +337,7 @@ const initChalkboard = function ( Reveal ) {
 		}
 	}
 
+<<<<<<< HEAD
 	if ( toggleChalkboardButton ) {
 console.warn( "toggleChalkboardButton is deprecated, use customcontrols plugin instead!" );
 //console.log("toggleChalkboardButton")
@@ -341,6 +376,8 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 		document.querySelector( ".reveal" ).appendChild( button );
 	}
 
+=======
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 	var drawingCanvas = [ {
 		id: 'notescanvas'
 	}, {
@@ -370,11 +407,25 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 		[],
 		[]
 	];
+<<<<<<< HEAD
 	var touchTimeout = null;
+=======
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 	var slidechangeTimeout = null;
 	var updateStorageTimeout = null;
 	var playback = false;
 
+<<<<<<< HEAD
+=======
+  function changeCursor( element, tool ) {
+    element.style.cursor = tool.cursor;
+    var palette = document.querySelector('.palette[data-mode="' + mode + '"]');
+    if ( palette ) {
+      palette.style.cursor = tool.cursor;
+    }
+  }
+
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 	function createPalette( colors, length ) {
 		if ( length === true || length > colors.length ) {
 			length = colors.length;
@@ -404,6 +455,29 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 			} );
 			list.appendChild( colorButton );
 		}
+<<<<<<< HEAD
+=======
+    // eraser
+    var eraserButton = document.createElement( 'li' );
+		eraserButton.setAttribute( 'data-eraser', 'true' );
+		var spongeImg = document.createElement( 'img' );
+		spongeImg.src = eraser.src;
+    spongeImg.height = "24";
+    spongeImg.width = "24";
+    spongeImg.style.marginTop = '10px';
+    spongeImg.style.marginRight = '0';
+    spongeImg.style.marginBottom = '0';
+    spongeImg.style.marginLeft = '0';
+		eraserButton.appendChild(spongeImg);
+		eraserButton.addEventListener( 'click', function ( e ) {
+			colorIndex( -1 );
+		} );
+		eraserButton.addEventListener( 'touchstart', function ( e ) {
+			colorIndex( -1 );
+		} );
+		list.appendChild( eraserButton );
+
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 		palette.appendChild( list );
 		return palette;
 	};
@@ -430,7 +504,12 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 		container.oncontextmenu = function () {
 			return false;
 		}
+<<<<<<< HEAD
 		container.style.cursor = pens[ id ][ color[ id ] ].cursor;
+=======
+
+    changeCursor( container, pens[ id ][ color[ id ] ] );
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 
 		drawingCanvas[ id ].width = window.innerWidth;
 		drawingCanvas[ id ].height = window.innerHeight;
@@ -444,6 +523,12 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 			container.style.opacity = 1;
 			container.style.visibility = 'visible';
 			container.style.pointerEvents = 'none';
+<<<<<<< HEAD
+=======
+			container.style['backdrop-filter'] = 'none';
+			// for older safari
+			container.style["-webkit-backdrop-filter"] = "none";
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 
 			var slides = document.querySelector( '.slides' );
 			var aspectRatio = Reveal.getConfig().width / Reveal.getConfig().height;
@@ -455,6 +540,10 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 
 			if ( colorButtons ) {
 				var palette = createPalette( boardmarkers, colorButtons );
+<<<<<<< HEAD
+=======
+        palette.dataset.mode = id;
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 				palette.style.visibility = 'hidden'; // only show palette in drawing mode
 				container.appendChild( palette );
 			}
@@ -466,6 +555,10 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 
 			if ( colorButtons ) {
 				var palette = createPalette( chalks, colorButtons );
+<<<<<<< HEAD
+=======
+        palette.dataset.mode = id;
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 				container.appendChild( palette );
 			}
 			if ( boardHandle ) {
@@ -493,6 +586,7 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 			}
 		}
 
+<<<<<<< HEAD
 
 		var sponge = document.createElement( 'img' );
 		sponge.src = eraser.src;
@@ -502,11 +596,17 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 		container.appendChild( sponge );
 		drawingCanvas[ id ].sponge = sponge;
 
+=======
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 		var canvas = document.createElement( 'canvas' );
 		canvas.width = drawingCanvas[ id ].width;
 		canvas.height = drawingCanvas[ id ].height;
 		canvas.setAttribute( 'data-chalkboard', id );
+<<<<<<< HEAD
 		canvas.style.cursor = pens[ id ][ color[ id ] ].cursor;
+=======
+    changeCursor( canvas, pens[ id ][ color[ id ] ] );
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 		container.appendChild( canvas );
 		drawingCanvas[ id ].canvas = canvas;
 
@@ -673,13 +773,22 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 		} catch ( error ) {
 			// https://stackoverflow.com/a/6234804
 			// escape data for proper handling of quotes and line breaks
+<<<<<<< HEAD
 			// in case malicious gets a chance to craft the exception message
 			error = String(error).replace(/&/g, "&amp;")
+=======
+			// in case malicious user gets a chance to craft the exception message
+			error = String(error)
+					.replace(/&/g, "&amp;")
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 					.replace(/</g, "&lt;")
 					.replace(/>/g, "&gt;")
 					.replace(/"/g, "&quot;")
 					.replace(/'/g, "&#039;");
+<<<<<<< HEAD
 
+=======
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 			a.innerHTML += ' (' + error + ')';
 		}
 		a.click();
@@ -750,7 +859,10 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 					count = Number(fragments[j].getAttribute('data-fragment-index')) + 1;
 				}
 			}
+<<<<<<< HEAD
 //console.log(count,fragments.length,( slides[i].querySelector('h1,h2,h3,h4')||{}).innerHTML, page); 
+=======
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 			page += count + 1;
 		}
 	}
@@ -770,8 +882,11 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 				console.log( 'Create printout for slide ' + storage[ 1 ].data[ i ].slide.h + '.' + storage[ 1 ].data[ i ].slide.v );
 				var slideData = getSlideData( storage[ 1 ].data[ i ].slide, 1 );
 				var drawings = createDrawings( slideData, patImg );
+<<<<<<< HEAD
 //console.log("Page:", storage[ 1 ].data[ i ].page );
 //console.log("Slide:", slides[storage[ 1 ].data[ i ].page] );
+=======
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 				addDrawings( slides[storage[ 1 ].data[ i ].page], drawings );
 
 			}
@@ -923,7 +1038,11 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 		context.lineCap = 'round';
 		context.fillStyle = chalks[ colorIdx ].color; // 'rgba(255,255,255,0.5)';
 		context.strokeStyle = chalks[ colorIdx ].color;
+<<<<<<< HEAD
 		/*var opacity = Math.min(0.8, Math.max(0,color[1].replace(/^.*,(.+)\)/,'$1') - 0.1)) + Math.random()*0.2;*/
+=======
+
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 		var opacity = 1.0;
 		context.strokeStyle = context.strokeStyle.replace( /[\d\.]+\)$/g, opacity + ')' );
 		context.beginPath();
@@ -948,12 +1067,21 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 	function eraseWithSponge( context, x, y ) {
 		context.save();
 		context.beginPath();
+<<<<<<< HEAD
 		context.arc( x, y, eraser.radius, 0, 2 * Math.PI, false );
 		context.clip();
 		context.clearRect( x - eraser.radius - 1, y - eraser.radius - 1, eraser.radius * 2 + 2, eraser.radius * 2 + 2 );
 		context.restore();
 		if ( mode == 1 && grid ) {
 			redrawGrid( x, y, eraser.radius );
+=======
+		context.arc( x + eraser.radius, y + eraser.radius, eraser.radius, 0, 2 * Math.PI, false );
+		context.clip();
+		context.clearRect( x - 1, y - 1, eraser.radius * 2 + 2, eraser.radius * 2 + 2 );
+		context.restore();
+		if ( mode == 1 && grid ) {
+			redrawGrid( x + eraser.radius, y + eraser.radius, eraser.radius );
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 		}
 	}
 
@@ -963,10 +1091,13 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 	 */
 	function showChalkboard() {
 //console.log("showChalkboard");
+<<<<<<< HEAD
 		clearTimeout( touchTimeout );
 		touchTimeout = null;
 		drawingCanvas[ 0 ].sponge.style.visibility = 'hidden'; // make sure that the sponge from touch events is hidden
 		drawingCanvas[ 1 ].sponge.style.visibility = 'hidden'; // make sure that the sponge from touch events is hidden
+=======
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 		drawingCanvas[ 1 ].container.style.opacity = 1;
 		drawingCanvas[ 1 ].container.style.visibility = 'visible';
 		mode = 1;
@@ -977,10 +1108,13 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 	 * Closes open chalkboard.
 	 */
 	function closeChalkboard() {
+<<<<<<< HEAD
 		clearTimeout( touchTimeout );
 		touchTimeout = null;
 		drawingCanvas[ 0 ].sponge.style.visibility = 'hidden'; // make sure that the sponge from touch events is hidden
 		drawingCanvas[ 1 ].sponge.style.visibility = 'hidden'; // make sure that the sponge from touch events is hidden
+=======
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 		drawingCanvas[ 1 ].container.style.opacity = 0;
 		drawingCanvas[ 1 ].container.style.visibility = 'hidden';
 		lastX = null;
@@ -1079,12 +1213,29 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 	/**
 	 * Set the  color
 	 */
+<<<<<<< HEAD
 	function setColor( index, record ) {
 		// protect against out of bounds (this could happen when
 		// replaying events recorded with different color settings).
 		if ( index >= pens[ mode ].length ) index = 0;
 		color[ mode ] = index;
 		drawingCanvas[ mode ].canvas.style.cursor = pens[ mode ][ color[ mode ] ].cursor;
+=======
+	function setColor( index, record ) {    
+ 		// protect against out of bounds (this could happen when
+  	// replaying events recorded with different color settings).
+    if ( index >= pens[ mode ].length ) index = 0;
+
+	  color[ mode ] = index;
+
+    if ( color[ mode ] < 0 ) {
+      // use eraser
+      changeCursor( drawingCanvas[ mode ].canvas, sponge );
+    }
+    else {
+      changeCursor( drawingCanvas[ mode ].canvas, pens[ mode ][ color[ mode ] ] );
+    }
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 	}
 
 	/**
@@ -1370,7 +1521,10 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 	function startErasing( x, y ) {
 		drawing = false;
 		erasing = true;
+<<<<<<< HEAD
 		drawingCanvas[ mode ].sponge.style.visibility = 'visible';
+=======
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 		erasePoint( x, y );
 	}
 
@@ -1380,10 +1534,13 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 		var xOffset = drawingCanvas[ mode ].xOffset;
 		var yOffset = drawingCanvas[ mode ].yOffset;
 
+<<<<<<< HEAD
 		// move sponge image
 		drawingCanvas[ mode ].sponge.style.left = ( x * scale + xOffset - eraser.radius ) + 'px';
 		drawingCanvas[ mode ].sponge.style.top = ( y * scale + yOffset - 2 * eraser.radius ) + 'px';
 
+=======
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 		recordEvent( {
 			type: 'erase',
 			x,
@@ -1402,8 +1559,11 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 
 	function stopErasing() {
 		erasing = false;
+<<<<<<< HEAD
 		// hide sponge
 		drawingCanvas[ mode ].sponge.style.visibility = 'hidden';
+=======
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 	}
 
 	function startDrawing( x, y ) {
@@ -1468,8 +1628,17 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 				var touch = evt.touches[ 0 ];
 				mouseX = touch.pageX;
 				mouseY = touch.pageY;
+<<<<<<< HEAD
 				startDrawing( ( mouseX - xOffset ) / scale, ( mouseY - yOffset ) / scale );
 				touchTimeout = setTimeout( startErasing, 500,  ( mouseX - xOffset ) / scale, ( mouseY - yOffset ) / scale );
+=======
+        if ( color[ mode ]  < 0 ) {
+          startErasing( ( mouseX - xOffset ) / scale, ( mouseY - yOffset ) / scale);
+        }
+        else {
+  				startDrawing( ( mouseX - xOffset ) / scale, ( mouseY - yOffset ) / scale );
+        }
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 			}
 		}, passiveSupported ? {
 			passive: false
@@ -1478,8 +1647,11 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 		canvas.addEventListener( 'touchmove', function ( evt ) {
 			evt.preventDefault();
 //console.log("Touch move");
+<<<<<<< HEAD
 			clearTimeout( touchTimeout );
 			touchTimeout = null;
+=======
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 			if ( drawing || erasing ) {
 				var scale = drawingCanvas[ mode ].scale;
 				var xOffset = drawingCanvas[ mode ].xOffset;
@@ -1488,6 +1660,7 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 				var touch = evt.touches[ 0 ];
 				mouseX = touch.pageX;
 				mouseY = touch.pageY;
+<<<<<<< HEAD
 				if ( mouseY < drawingCanvas[ mode ].height && mouseX < drawingCanvas[ mode ].width ) {
 					// move sponge
 					if ( event.type == 'erase' ) {
@@ -1495,6 +1668,8 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 						drawingCanvas[ mode ].sponge.style.top = ( mouseY - eraser.radius ) + 'px';
 					}
 				}
+=======
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 
 				if ( drawing ) {
 					drawSegment( ( lastX - xOffset ) / scale, ( lastY - yOffset ) / scale, ( mouseX - xOffset ) / scale, ( mouseY - yOffset ) / scale, color[ mode ] );
@@ -1538,11 +1713,16 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 
 		canvas.addEventListener( 'touchend', function ( evt ) {
 			evt.preventDefault();
+<<<<<<< HEAD
 			clearTimeout( touchTimeout );
 			touchTimeout = null;
 			// hide sponge image
 			drawingCanvas[ mode ].sponge.style.visibility = 'hidden';
 			stopDrawing();
+=======
+			stopDrawing();
+			stopErasing();
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 		}, false );
 
 		canvas.addEventListener( 'mousedown', function ( evt ) {
@@ -1556,7 +1736,15 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 				mouseX = evt.pageX;
 				mouseY = evt.pageY;
 
+<<<<<<< HEAD
 				if ( evt.button == 2 || evt.button == 1 ) {
+=======
+				if ( color[ mode ]  < 0 || evt.button == 2 || evt.button == 1 ) {
+          if ( color[ mode ]  >= 0 ) {
+            // show sponge
+            changeCursor( drawingCanvas[ mode ].canvas, sponge );
+          }
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 					startErasing( ( mouseX - xOffset ) / scale, ( mouseY - yOffset ) / scale );
 					// broadcast
 					var message = new CustomEvent( messageType );
@@ -1579,6 +1767,17 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 		canvas.addEventListener( 'mousemove', function ( evt ) {
 			evt.preventDefault();
 //console.log("Mouse move");
+<<<<<<< HEAD
+=======
+
+			var scale = drawingCanvas[ mode ].scale;
+			var xOffset = drawingCanvas[ mode ].xOffset;
+			var yOffset = drawingCanvas[ mode ].yOffset;
+
+			mouseX = evt.pageX;
+			mouseY = evt.pageY;
+
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 			if ( drawing || erasing ) {
 				var scale = drawingCanvas[ mode ].scale;
 				var xOffset = drawingCanvas[ mode ].xOffset;
@@ -1629,7 +1828,13 @@ console.warn( "toggleNotesButton is deprecated, use customcontrols plugin instea
 
 		canvas.addEventListener( 'mouseup', function ( evt ) {
 			evt.preventDefault();
+<<<<<<< HEAD
 			drawingCanvas[ mode ].canvas.style.cursor = pens[ mode ][ color[ mode ] ].cursor;
+=======
+      if ( color[ mode ] >= 0 ) {
+        changeCursor( drawingCanvas[ mode ].canvas, pens[ mode ][ color[ mode ] ] );
+      }
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 			if ( drawing || erasing ) {
 				stopDrawing();
 				stopErasing();

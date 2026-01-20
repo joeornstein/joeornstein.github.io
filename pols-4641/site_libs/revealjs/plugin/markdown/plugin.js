@@ -7,13 +7,24 @@
 import { marked } from 'marked';
 
 const DEFAULT_SLIDE_SEPARATOR = '\r?\n---\r?\n',
+<<<<<<< HEAD
 	  DEFAULT_NOTES_SEPARATOR = 'notes?:',
+=======
+	  DEFAULT_VERTICAL_SEPARATOR = null,
+	  DEFAULT_NOTES_SEPARATOR = '^\s*notes?:',
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 	  DEFAULT_ELEMENT_ATTRIBUTES_SEPARATOR = '\\\.element\\\s*?(.+?)$',
 	  DEFAULT_SLIDE_ATTRIBUTES_SEPARATOR = '\\\.slide:\\\s*?(\\\S.+?)$';
 
 const SCRIPT_END_PLACEHOLDER = '__SCRIPT_END__';
 
+<<<<<<< HEAD
 const CODE_LINE_NUMBER_REGEX = /\[([\s\d,|-]*)\]/;
+=======
+// match an optional line number offset and highlight line numbers
+// [<line numbers>] or [<offset>: <line numbers>]
+const CODE_LINE_NUMBER_REGEX = /\[\s*((\d*):)?\s*([\s\d,|-]*)\]/;
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 
 const HTML_ESCAPE_MAP = {
   '&': '&amp;',
@@ -35,14 +46,22 @@ const Plugin = () => {
 	function getMarkdownFromSlide( section ) {
 
 		// look for a <script> or <textarea data-template> wrapper
+<<<<<<< HEAD
 		var template = section.querySelector( '[data-template]' ) || section.querySelector( 'script' );
 
 		// strip leading whitespace so it isn't evaluated as code
 		var text = ( template || section ).textContent;
+=======
+		const template = section.querySelector( '[data-template]' ) || section.querySelector( 'script' );
+
+		// strip leading whitespace so it isn't evaluated as code
+		let text = ( template || section ).textContent;
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 
 		// restore script end tags
 		text = text.replace( new RegExp( SCRIPT_END_PLACEHOLDER, 'g' ), '</script>' );
 
+<<<<<<< HEAD
 		var leadingWs = text.match( /^\n?(\s*)/ )[1].length,
 			leadingTabs = text.match( /^\n?(\t*)/ )[1].length;
 
@@ -51,6 +70,16 @@ const Plugin = () => {
 		}
 		else if( leadingWs > 1 ) {
 			text = text.replace( new RegExp('\\n? {' + leadingWs + '}', 'g'), '\n' );
+=======
+		const leadingWs = text.match( /^\n?(\s*)/ )[1].length,
+			leadingTabs = text.match( /^\n?(\t*)/ )[1].length;
+
+		if( leadingTabs > 0 ) {
+			text = text.replace( new RegExp('\\n?\\t{' + leadingTabs + '}(.*)','g'), function(m, p1) { return '\n' + p1 ; } );
+		}
+		else if( leadingWs > 1 ) {
+			text = text.replace( new RegExp('\\n? {' + leadingWs + '}(.*)', 'g'), function(m, p1) { return '\n' + p1 ; } );
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 		}
 
 		return text;
@@ -65,11 +94,19 @@ const Plugin = () => {
 	 */
 	function getForwardedAttributes( section ) {
 
+<<<<<<< HEAD
 		var attributes = section.attributes;
 		var result = [];
 
 		for( var i = 0, len = attributes.length; i < len; i++ ) {
 			var name = attributes[i].name,
+=======
+		const attributes = section.attributes;
+		const result = [];
+
+		for( let i = 0, len = attributes.length; i < len; i++ ) {
+			const name = attributes[i].name,
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 				value = attributes[i].value;
 
 			// disregard attributes that are used for markdown loading/parsing
@@ -92,10 +129,19 @@ const Plugin = () => {
 	 * values for what's not defined.
 	 */
 	function getSlidifyOptions( options ) {
+<<<<<<< HEAD
 
 		options = options || {};
 		options.separator = options.separator || DEFAULT_SLIDE_SEPARATOR;
 		options.notesSeparator = options.notesSeparator || DEFAULT_NOTES_SEPARATOR;
+=======
+		const markdownConfig = deck?.getConfig?.().markdown;
+
+		options = options || {};
+		options.separator = options.separator || markdownConfig?.separator || DEFAULT_SLIDE_SEPARATOR;
+		options.verticalSeparator = options.verticalSeparator || markdownConfig?.verticalSeparator || DEFAULT_VERTICAL_SEPARATOR;
+		options.notesSeparator = options.notesSeparator || markdownConfig?.notesSeparator || DEFAULT_NOTES_SEPARATOR;
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 		options.attributes = options.attributes || '';
 
 		return options;
@@ -109,7 +155,11 @@ const Plugin = () => {
 
 		options = getSlidifyOptions( options );
 
+<<<<<<< HEAD
 		var notesMatch = content.split( new RegExp( options.notesSeparator, 'mgi' ) );
+=======
+		const notesMatch = content.split( new RegExp( options.notesSeparator, 'mgi' ) );
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 
 		if( notesMatch.length === 2 ) {
 			content = notesMatch[0] + '<aside class="notes">' + marked(notesMatch[1].trim()) + '</aside>';
@@ -131,10 +181,17 @@ const Plugin = () => {
 
 		options = getSlidifyOptions( options );
 
+<<<<<<< HEAD
 		var separatorRegex = new RegExp( options.separator + ( options.verticalSeparator ? '|' + options.verticalSeparator : '' ), 'mg' ),
 			horizontalSeparatorRegex = new RegExp( options.separator );
 
 		var matches,
+=======
+		const separatorRegex = new RegExp( options.separator + ( options.verticalSeparator ? '|' + options.verticalSeparator : '' ), 'mg' ),
+			horizontalSeparatorRegex = new RegExp( options.separator );
+
+		let matches,
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 			lastIndex = 0,
 			isHorizontal,
 			wasHorizontal = true,
@@ -143,7 +200,11 @@ const Plugin = () => {
 
 		// iterate until all blocks between separators are stacked up
 		while( matches = separatorRegex.exec( markdown ) ) {
+<<<<<<< HEAD
 			var notes = null;
+=======
+			const notes = null;
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 
 			// determine direction (horizontal by default)
 			isHorizontal = horizontalSeparatorRegex.test( matches[0] );
@@ -172,10 +233,17 @@ const Plugin = () => {
 		// add the remaining slide
 		( wasHorizontal ? sectionStack : sectionStack[sectionStack.length-1] ).push( markdown.substring( lastIndex ) );
 
+<<<<<<< HEAD
 		var markdownSections = '';
 
 		// flatten the hierarchical stack, and insert <section data-markdown> tags
 		for( var i = 0, len = sectionStack.length; i < len; i++ ) {
+=======
+		let markdownSections = '';
+
+		// flatten the hierarchical stack, and insert <section data-markdown> tags
+		for( let i = 0, len = sectionStack.length; i < len; i++ ) {
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 			// vertical
 			if( sectionStack[i] instanceof Array ) {
 				markdownSections += '<section '+ options.attributes +'>';
@@ -204,7 +272,11 @@ const Plugin = () => {
 
 		return new Promise( function( resolve ) {
 
+<<<<<<< HEAD
 			var externalPromises = [];
+=======
+			const externalPromises = [];
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 
 			[].slice.call( scope.querySelectorAll( 'section[data-markdown]:not([data-markdown-parsed])') ).forEach( function( section, i ) {
 
@@ -257,6 +329,7 @@ const Plugin = () => {
 
 		return new Promise( function( resolve, reject ) {
 
+<<<<<<< HEAD
 			var xhr = new XMLHttpRequest(),
 				url = section.getAttribute( 'data-markdown' );
 
@@ -264,6 +337,15 @@ const Plugin = () => {
 
 			// see https://developer.mozilla.org/en-US/docs/Web/API/element.getAttribute#Notes
 			if( datacharset != null && datacharset != '' ) {
+=======
+			const xhr = new XMLHttpRequest(),
+				url = section.getAttribute( 'data-markdown' );
+
+			const datacharset = section.getAttribute( 'data-charset' );
+
+			// see https://developer.mozilla.org/en-US/docs/Web/API/element.getAttribute#Notes
+			if( datacharset !== null && datacharset !== '' ) {
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 				xhr.overrideMimeType( 'text/html; charset=' + datacharset );
 			}
 
@@ -308,6 +390,7 @@ const Plugin = () => {
 	 */
 	function addAttributeInElement( node, elementTarget, separator ) {
 
+<<<<<<< HEAD
 		var mardownClassesInElementsRegex = new RegExp( separator, 'mg' );
 		var mardownClassRegex = new RegExp( "([^\"= ]+?)=\"([^\"]+?)\"|(data-[^\"= ]+?)(?=[\" ])", 'mg' );
 		var nodeValue = node.nodeValue;
@@ -319,6 +402,19 @@ const Plugin = () => {
 			nodeValue = nodeValue.substring( 0, matches.index ) + nodeValue.substring( mardownClassesInElementsRegex.lastIndex );
 			node.nodeValue = nodeValue;
 			while( matchesClass = mardownClassRegex.exec( classes ) ) {
+=======
+		const markdownClassesInElementsRegex = new RegExp( separator, 'mg' );
+		const markdownClassRegex = new RegExp( "([^\"= ]+?)=\"([^\"]+?)\"|(data-[^\"= ]+?)(?=[\" ])", 'mg' );
+		let nodeValue = node.nodeValue;
+		let matches,
+			matchesClass;
+		if( matches = markdownClassesInElementsRegex.exec( nodeValue ) ) {
+
+			const classes = matches[1];
+			nodeValue = nodeValue.substring( 0, matches.index ) + nodeValue.substring( markdownClassesInElementsRegex.lastIndex );
+			node.nodeValue = nodeValue;
+			while( matchesClass = markdownClassRegex.exec( classes ) ) {
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 				if( matchesClass[2] ) {
 					elementTarget.setAttribute( matchesClass[1], matchesClass[2] );
 				} else {
@@ -336,6 +432,7 @@ const Plugin = () => {
 	 */
 	function addAttributes( section, element, previousElement, separatorElementAttributes, separatorSectionAttributes ) {
 
+<<<<<<< HEAD
 		if ( element != null && element.childNodes != undefined && element.childNodes.length > 0 ) {
 			var previousParentElement = element;
 			for( var i = 0; i < element.childNodes.length; i++ ) {
@@ -345,25 +442,50 @@ const Plugin = () => {
 					while ( j >= 0 ) {
 						var aPreviousChildElement = element.childNodes[j];
 						if ( typeof aPreviousChildElement.setAttribute == 'function' && aPreviousChildElement.tagName != "BR" ) {
+=======
+		if ( element !== null && element.childNodes !== undefined && element.childNodes.length > 0 ) {
+			let previousParentElement = element;
+			for( let i = 0; i < element.childNodes.length; i++ ) {
+				const childElement = element.childNodes[i];
+				if ( i > 0 ) {
+					let j = i - 1;
+					while ( j >= 0 ) {
+						const aPreviousChildElement = element.childNodes[j];
+						if ( typeof aPreviousChildElement.setAttribute === 'function' && aPreviousChildElement.tagName !== "BR" ) {
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 							previousParentElement = aPreviousChildElement;
 							break;
 						}
 						j = j - 1;
 					}
 				}
+<<<<<<< HEAD
 				var parentSection = section;
 				if( childElement.nodeName ==  "section" ) {
 					parentSection = childElement ;
 					previousParentElement = childElement ;
 				}
 				if ( typeof childElement.setAttribute == 'function' || childElement.nodeType == Node.COMMENT_NODE ) {
+=======
+				let parentSection = section;
+				if( childElement.nodeName ===  "section" ) {
+					parentSection = childElement ;
+					previousParentElement = childElement ;
+				}
+				if ( typeof childElement.setAttribute === 'function' || childElement.nodeType === Node.COMMENT_NODE ) {
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 					addAttributes( parentSection, childElement, previousParentElement, separatorElementAttributes, separatorSectionAttributes );
 				}
 			}
 		}
 
+<<<<<<< HEAD
 		if ( element.nodeType == Node.COMMENT_NODE ) {
 			if ( addAttributeInElement( element, previousElement, separatorElementAttributes ) == false ) {
+=======
+		if ( element.nodeType === Node.COMMENT_NODE ) {
+			if ( addAttributeInElement( element, previousElement, separatorElementAttributes ) === false ) {
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 				addAttributeInElement( element, section, separatorSectionAttributes );
 			}
 		}
@@ -375,14 +497,23 @@ const Plugin = () => {
 	 */
 	function convertSlides() {
 
+<<<<<<< HEAD
 		var sections = deck.getRevealElement().querySelectorAll( '[data-markdown]:not([data-markdown-parsed])');
+=======
+		const sections = deck.getRevealElement().querySelectorAll( '[data-markdown]:not([data-markdown-parsed])');
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 
 		[].slice.call( sections ).forEach( function( section ) {
 
 			section.setAttribute( 'data-markdown-parsed', true )
 
+<<<<<<< HEAD
 			var notes = section.querySelector( 'aside.notes' );
 			var markdown = getMarkdownFromSlide( section );
+=======
+			const notes = section.querySelector( 'aside.notes' );
+			const markdown = getMarkdownFromSlide( section );
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 
 			section.innerHTML = marked( markdown );
 			addAttributes( 	section, section, null, section.getAttribute( 'data-element-attributes' ) ||
@@ -429,14 +560,31 @@ const Plugin = () => {
 				renderer.code = ( code, language ) => {
 
 					// Off by default
+<<<<<<< HEAD
+=======
+					let lineNumberOffset = '';
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 					let lineNumbers = '';
 
 					// Users can opt in to show line numbers and highlight
 					// specific lines.
 					// ```javascript []        show line numbers
 					// ```javascript [1,4-8]   highlights lines 1 and 4-8
+<<<<<<< HEAD
 					if( CODE_LINE_NUMBER_REGEX.test( language ) ) {
 						lineNumbers = language.match( CODE_LINE_NUMBER_REGEX )[1].trim();
+=======
+					// optional line number offset:
+					// ```javascript [25: 1,4-8]   start line numbering at 25,
+					//                             highlights lines 1 (numbered as 25) and 4-8 (numbered as 28-32)
+					if( CODE_LINE_NUMBER_REGEX.test( language ) ) {
+						let lineNumberOffsetMatch =  language.match( CODE_LINE_NUMBER_REGEX )[2];
+						if (lineNumberOffsetMatch){
+							lineNumberOffset =  `data-ln-start-from="${lineNumberOffsetMatch.trim()}"`;
+						}
+
+						lineNumbers = language.match( CODE_LINE_NUMBER_REGEX )[3].trim();
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 						lineNumbers = `data-line-numbers="${lineNumbers}"`;
 						language = language.replace( CODE_LINE_NUMBER_REGEX, '' ).trim();
 					}
@@ -446,7 +594,13 @@ const Plugin = () => {
 					// highlight.js is able to read it
 					code = escapeForHTML( code );
 
+<<<<<<< HEAD
 					return `<pre><code ${lineNumbers} class="${language}">${code}</code></pre>`;
+=======
+					// return `<pre><code ${lineNumbers} class="${language}">${code}</code></pre>`;
+
+					return `<pre><code ${lineNumbers} ${lineNumberOffset} class="${language}">${code}</code></pre>`;
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 				};
 			}
 

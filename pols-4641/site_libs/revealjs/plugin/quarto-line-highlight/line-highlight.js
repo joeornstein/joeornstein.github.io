@@ -1,6 +1,10 @@
 window.QuartoLineHighlight = function () {
   function isPrintView() {
+<<<<<<< HEAD
     return /print-pdf/gi.test(window.location.search);
+=======
+    return /print-pdf/gi.test(window.location.search) || /view=print/gi.test(window.location.search);
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
   }
 
   const delimiters = {

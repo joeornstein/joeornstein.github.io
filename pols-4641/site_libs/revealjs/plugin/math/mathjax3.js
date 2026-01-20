@@ -21,7 +21,11 @@ export const MathJax3 = () => {
             ready: () => {
                 MathJax.startup.defaultReady();
                 MathJax.startup.promise.then(() => {
+<<<<<<< HEAD
                     Reveal.layout();
+=======
+                    deck.layout();
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
                 });
             }
         }
@@ -66,7 +70,11 @@ export const MathJax3 = () => {
 
             loadScript( url, function() {
                 // Reprocess equations in slides when they turn visible
+<<<<<<< HEAD
                 Reveal.addEventListener( 'slidechanged', function( event ) {
+=======
+                deck.addEventListener( 'slidechanged', function( event ) {
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
                     MathJax.typeset();
                 } );
             } );

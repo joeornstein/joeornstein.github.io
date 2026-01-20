@@ -19,7 +19,11 @@ const Plugin = {
 	hljs,
 
 	/**
+<<<<<<< HEAD
 	 * Highlights code blocks withing the given deck.
+=======
+	 * Highlights code blocks within the given deck.
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 	 *
 	 * Note that this can be called multiple times if
 	 * there are multiple presentations on one page.
@@ -138,7 +142,11 @@ const Plugin = {
 
 					// Scroll highlights into view as we step through them
 					fragmentBlock.addEventListener( 'visible', Plugin.scrollHighlightedLineIntoView.bind( Plugin, fragmentBlock, scrollState ) );
+<<<<<<< HEAD
 					fragmentBlock.addEventListener( 'hidden', Plugin.scrollHighlightedLineIntoView.bind( Plugin, fragmentBlock.previousSibling, scrollState ) );
+=======
+					fragmentBlock.addEventListener( 'hidden', Plugin.scrollHighlightedLineIntoView.bind( Plugin, fragmentBlock.previousElementSibling, scrollState ) );
+>>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 
 				} );
 
