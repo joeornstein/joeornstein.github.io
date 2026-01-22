@@ -137,11 +137,7 @@ const Plugin = () => {
 
 		this.setRegex = function(input)
 		{
-<<<<<<< HEAD
-			input = input.replace(/^[^\w]+|[^\w]+$/g, "").replace(/[^\w'-]+/g, "|");
-=======
 			input = input.trim();
->>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 			matchRegex = new RegExp("(" + input + ")","i");
 		}
 

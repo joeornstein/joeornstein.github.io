@@ -53,22 +53,13 @@ var PdfExport = ( function( _Reveal ){
 	}
 	
 	function isPrintingPDF(){
-<<<<<<< HEAD
-		return ( /print-pdf/gi ).test( window.location.search );
-=======
 		return /print-pdf/gi.test(window.location.search) || /view=print/gi.test(window.location.search);
->>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 	}
 
 	function togglePdfExport(){
 		var url_doc = new URL( document.URL );
 		var query_doc = new URLSearchParams( url_doc.searchParams );
 		if( isPrintingPDF() ){
-<<<<<<< HEAD
-			query_doc.delete( 'print-pdf' );
-		}else{
-			query_doc.set( 'print-pdf', '' );
-=======
 			if (query_doc.has('print-pdf')) {
 				query_doc.delete('print-pdf');
 			} else if (query_doc.has('view')) {
@@ -76,7 +67,6 @@ var PdfExport = ( function( _Reveal ){
 			}
 		}else{
 			query_doc.set( 'view', 'print' );
->>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 		}
 		url_doc.search = ( query_doc.toString() ? '?' + query_doc.toString() : '' );
 		window.location.href = url_doc.toString();
@@ -117,11 +107,7 @@ var PdfExport = ( function( _Reveal ){
 		};
 		Plugin.togglePdfExport = function () {
       togglePdfExport();
-<<<<<<< HEAD
-    };
-=======
 		};
->>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 	}
 
 	return Plugin;
