@@ -1,763 +1,1211 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
-  <head>
-    <title>Democracy</title>
-    <meta charset="utf-8" />
-    <script src="04-democracy_files/header-attrs-2.25/header-attrs.js"></script>
-    <link href="04-democracy_files/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="04-democracy_files/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
-  </head>
-  <body>
-    <textarea id="source">
-class: center, middle, inverse, title-slide
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-.title[
-# Democracy
-]
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
 
----
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-&lt;style type="text/css"&gt;
+<title>Democracy – The Science of Cities</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../img/favicon_io/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-39f7db0e33c7e7e0f37d956b9f0706d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">The Science of Cities</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus/POLS-4641H-syllabus.pdf"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#warmup" id="toc-warmup" class="nav-link active" data-scroll-target="#warmup">Warmup</a></li>
+  <li><a href="#its-strange-we-cant-name-more-local-politicians" id="toc-its-strange-we-cant-name-more-local-politicians" class="nav-link" data-scroll-target="#its-strange-we-cant-name-more-local-politicians">It’s Strange We Can’t Name More Local Politicians…</a></li>
+  <li><a href="#today" id="toc-today" class="nav-link" data-scroll-target="#today">Today</a></li>
+  <li><a href="#nationalization" id="toc-nationalization" class="nav-link" data-scroll-target="#nationalization">Nationalization</a>
+  <ul class="collapse">
+  <li><a href="#nationalization-1" id="toc-nationalization-1" class="nav-link" data-scroll-target="#nationalization-1">Nationalization</a></li>
+  <li><a href="#why-has-politics-nationalized" id="toc-why-has-politics-nationalized" class="nav-link" data-scroll-target="#why-has-politics-nationalized">Why has politics nationalized?</a></li>
+  <li><a href="#decline-of-local-news" id="toc-decline-of-local-news" class="nav-link" data-scroll-target="#decline-of-local-news">Decline of Local News</a></li>
+  <li><a href="#decline-of-local-news-1" id="toc-decline-of-local-news-1" class="nav-link" data-scroll-target="#decline-of-local-news-1">Decline of Local News</a></li>
+  <li><a href="#how-does-democracy-work-when-no-ones-paying-attention" id="toc-how-does-democracy-work-when-no-ones-paying-attention" class="nav-link" data-scroll-target="#how-does-democracy-work-when-no-ones-paying-attention">How does democracy work when no one’s paying attention?</a>
+  <ul class="collapse">
+  <li><a href="#how-does-democracy-work-when-no-ones-paying-attention-1" id="toc-how-does-democracy-work-when-no-ones-paying-attention-1" class="nav-link" data-scroll-target="#how-does-democracy-work-when-no-ones-paying-attention-1">How does democracy work when no one’s paying attention?</a></li>
+  </ul></li>
+  <li><a href="#why-no-local-political-parties" id="toc-why-no-local-political-parties" class="nav-link" data-scroll-target="#why-no-local-political-parties">Why no local political parties?</a></li>
+  <li><a href="#why-no-local-political-parties-1" id="toc-why-no-local-political-parties-1" class="nav-link" data-scroll-target="#why-no-local-political-parties-1">Why no local political parties?</a></li>
+  <li><a href="#summary-the-nationalization-of-local-politics" id="toc-summary-the-nationalization-of-local-politics" class="nav-link" data-scroll-target="#summary-the-nationalization-of-local-politics">Summary: The Nationalization of Local Politics</a></li>
+  </ul></li>
+  <li><a href="#local-democracy-is-different" id="toc-local-democracy-is-different" class="nav-link" data-scroll-target="#local-democracy-is-different">Local Democracy Is Different</a>
+  <ul class="collapse">
+  <li><a href="#local-democracy-is-different-1" id="toc-local-democracy-is-different-1" class="nav-link" data-scroll-target="#local-democracy-is-different-1">Local Democracy Is Different</a></li>
+  <li><a href="#local-democracy-is-different-2" id="toc-local-democracy-is-different-2" class="nav-link" data-scroll-target="#local-democracy-is-different-2">Local Democracy Is Different</a></li>
+  <li><a href="#tiebout-tee-bow-sorting" id="toc-tiebout-tee-bow-sorting" class="nav-link" data-scroll-target="#tiebout-tee-bow-sorting">Tiebout (“TEE-bow”) Sorting</a></li>
+  <li><a href="#tiebout-tee-bow-sorting-1" id="toc-tiebout-tee-bow-sorting-1" class="nav-link" data-scroll-target="#tiebout-tee-bow-sorting-1">Tiebout (“TEE-bow”) Sorting</a></li>
+  </ul></li>
+  <li><a href="#a-few-caveats" id="toc-a-few-caveats" class="nav-link" data-scroll-target="#a-few-caveats">A Few Caveats</a>
+  <ul class="collapse">
+  <li><a href="#a-few-caveats-1" id="toc-a-few-caveats-1" class="nav-link" data-scroll-target="#a-few-caveats-1">A Few Caveats</a></li>
+  <li><a href="#coordination-problems" id="toc-coordination-problems" class="nav-link" data-scroll-target="#coordination-problems">Coordination Problems</a></li>
+  <li><a href="#common-pool-resource-problems" id="toc-common-pool-resource-problems" class="nav-link" data-scroll-target="#common-pool-resource-problems">Common Pool Resource Problems</a></li>
+  <li><a href="#overfishing-the-common-tax-pool" id="toc-overfishing-the-common-tax-pool" class="nav-link" data-scroll-target="#overfishing-the-common-tax-pool">“Overfishing The Common Tax Pool”</a></li>
+  <li><a href="#overfishing-the-common-tax-pool-1" id="toc-overfishing-the-common-tax-pool-1" class="nav-link" data-scroll-target="#overfishing-the-common-tax-pool-1">“Overfishing The Common Tax Pool”</a></li>
+  <li><a href="#overfishing-the-common-tax-pool-2" id="toc-overfishing-the-common-tax-pool-2" class="nav-link" data-scroll-target="#overfishing-the-common-tax-pool-2">“Overfishing The Common Tax Pool”</a></li>
+  <li><a href="#horizontal-vs.-vertical-fragmentation" id="toc-horizontal-vs.-vertical-fragmentation" class="nav-link" data-scroll-target="#horizontal-vs.-vertical-fragmentation">Horizontal vs.&nbsp;Vertical Fragmentation</a></li>
+  <li><a href="#accountability" id="toc-accountability" class="nav-link" data-scroll-target="#accountability">Accountability</a></li>
+  <li><a href="#accountability-1" id="toc-accountability-1" class="nav-link" data-scroll-target="#accountability-1">Accountability</a></li>
+  <li><a href="#inefficiency" id="toc-inefficiency" class="nav-link" data-scroll-target="#inefficiency">Inefficiency</a></li>
+  <li><a href="#race-to-the-bottom" id="toc-race-to-the-bottom" class="nav-link" data-scroll-target="#race-to-the-bottom">Race To The Bottom</a></li>
+  <li><a href="#two-theories" id="toc-two-theories" class="nav-link" data-scroll-target="#two-theories">Two Theories</a></li>
+  <li><a href="#two-theories-1" id="toc-two-theories-1" class="nav-link" data-scroll-target="#two-theories-1">Two Theories</a></li>
+  <li><a href="#stadiums" id="toc-stadiums" class="nav-link" data-scroll-target="#stadiums">Stadiums</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a>
+  <ul class="collapse">
+  <li><a href="#summary-1" id="toc-summary-1" class="nav-link" data-scroll-target="#summary-1">Summary</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Democracy</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<style type="text/css">
 .cite {
   font-weight: bold;
   font-size: 0.75em;
   color: #BA0C2F;
 }
-&lt;/style&gt;
-
-
-
-## Warmup
-
---
-
-As a table:
-
---
-
-- Write down as many **federal** elected officials as you can name (e.g. president, members of Congress) in 3 minutes.
-
---
-
-- Write down as many **local** elected officials as you can name (e.g. mayors, city councilmembers, school board members, county commissioners) in 3 minutes.
-
-???
-
-[![](img/elected-officials-game.png)](https://forms.gle/53XXXS3JkJ6bwLHZ8)
-
-Suffice to say, this is deeply at odds with the way that the founders thought we'd be interacting with our democracy.
-
-
----
-
-## It's Strange We Can't Name More Local Politicians...
-
---
-
-&lt;img src="img/politicians-infographic-cropped.png" width="290" style="display: block; margin: auto;" /&gt;
-
-
-???
-
-https://poliengine.com/blog/how-many-politicians-are-there-in-the-us
-
-![](img/politicians-infographic.png)
-
-
----
-
-## Today
-
-Two big questions this week:
-
---
-
-1. Why has American politics become so **nationalized**?
-
---
-
-2. How can local democracy function if no one is paying attention to it?
-
----
-
-class: center, middle, inverse
-
-# Nationalization
-
----
-
-## Nationalization
-
-.pull-left[
-- Voters pay much more attention to national level political issues than to politics in their own town.
-
-- When we pay attention to local level political issues, it's often through the lens of national political fights (e.g. school curricula, police reform).
-
-- It wasn't always this way! The Founders would probably be pretty surprised.
-
-]
-
-.pull-right[
-&lt;img src="img/hopkins-cover.jpg" width="300" style="display: block; margin: auto;" /&gt;
-]
-
-
----
-
-## Why has politics nationalized?
-
---
-
-One important explanation involves changes to the media landscape.
-
---
-
-- In the 18th century, information traveled at the speed of a horse. 
-
---
-
-  - Newspapers served local audiences, funded by subscriptions and advertisements. 
-  
-  - It makes sense that you'd know more about local politics and less about national politics.
-
---
-
-- First television, then the Internet, changed the way Americans consumed news. 
-
---
-
-  - Because these platforms reach a national (or global) audience, there's an incentive to focus on news that appeals to the widest possible audience. 
-  
-  - Thus a focus on national news.
-
----
-
-## Decline of Local News
-
-Losing ad and subscription revenue to TV/Internet and national papers like the *New York Times*, local newspaper circulations took a nose dive in the late 20th century.
-
-![](img/statista-circulation.png)
-
-???
-
-https://www.statista.com/statistics/183422/paid-circulation-of-us-daily-newspapers-since-1975/
-
----
-
-## Decline of Local News
-
-It's tough to definitively say what effect the decline of local news has on people's political behavior, but there are some clever ways to research it.
-
---
-
-&lt;img src="img/moskowitz-fig2.png" width="550" style="display: block; margin: auto;" /&gt;
-
---
-
-In areas where you get your TV news from a another state, people are less knowlegeable about their own state/local politicians, and less likely to split ticket vote .cite[(Moskowitz 2021)].
-
----
-
-class: center, middle inverse
-
-## How does democracy work when no one's paying attention?
-
----
-
-### How does democracy work when no one's paying attention?
-
---
-
-Well, the usual answer is **political parties** .cite[(Aldrich 1995)].
-
---
-
-- Voters can't be expected to pay attention to every political issue.
-
-- Parties give voters a clear choice; most voters can basically tell you what the two parties stand for, and which they prefer.
-  
---
-
-But at the local level, there is basically no meaningful party competition.
-
-.pull-left[
-[![](img/wikipedia-atl-mayors.png)](https://en.wikipedia.org/wiki/List_of_mayors_of_Atlanta)
-]
-
-.pull-right[
-[![](img/wikipedia-chs-mayors.png)](https://en.wikipedia.org/wiki/List_of_mayors_of_Charleston,_South_Carolina)
-]
-
---
-
-Even in places where there's meaningful party competition for mayor (e.g. New York City), the city council tends to be dominated by one party or another .cite[(Schleicher 2007)].
-
-???
-
-But at the local level, this isn't the way that political competition plays out!
-
-Charleston, Atlanta. Combination of Southern Democratic dominance in the early 20th century, followed by the sort of partisan sorting we discussed a few weeks ago. 
-
----
-
-## Why no local political parties?
-
-- Why don't we have *local level* political parties? 
-
---
-
-  - Maybe Republicans aren't competitive in Atlanta mayoral elections, but perhaps the Green Party could be? Or some new party dedicated to Atlanta politics specifically?
-
---
-
-- Reasons are multifaceted .cite[(Schleicher, 2007)], but basically this problem comes from the top. 
-
---
-
-  - In winner-take-all presidential systems, there's a strong incentive for different political factions to coalesce into two parties (Duverger's Law). 
-  
-  - US election law allows national political parties to compete in local political races. It is tough for purely local political parties to compete for voters.
-
----
-
-## Why no local political parties?
-
-Another reason we don't have party competition at the local level: in most places it's illegal!
-
---
-
-- Only 17% of US cities hold partisan elections .cite[(Tausanovitch &amp; Warshaw 2014)].
-
---
-
-- In the early 20th century, reformers deliberately set out to *weaken* partisan politics at the local level, in response to the dominance of party machines in major US cities. 
-
-&lt;img src="img/tammany-hall.jpg" width="300" style="display: block; margin: auto;" /&gt;
-
---
-
-- This was part of a broad set of reforms during the "Progressive Era" in the early 20th century, designed to weaken machines and make local politics more professional / like the private sector.
-
----
-
-## Summary: The Nationalization of Local Politics
-
-.pull-left[
-
-The two things that we usually rely on to inform voters about politics -- media and parties -- barely function at the local level.
-
-- The decline of local news media has reduced voters' knowledge of local politics.
-
-- The US party system is divided between two national parties that are evenly matched at the federal level, but rarely competitive at the local level.
-
-- Even when party labels appear on ballots for local races, knowing a candidate's national party ID doesn't really help voters make an informed decision.
-
-]
-
-.pull-right[
-&lt;img src="img/zarate-ballot.png" width="600" style="display: block; margin: auto;" /&gt;
-]
-
-???
-
-Knowing the candidates' national party ID doesn't really help anyone make an informed decision. Case in point: the November 2023 Clarke County special election for Clerk of Superior Courts
-
----
-
-class: center, middle, inverse
-
-# Local Democracy Is Different
-
----
-
-## Local Democracy Is Different
-
-One prominent school of thought says that none of this really matters. Local politics is more pragmatic than national politics, and the kinds of decisions that need to be made are fundamentally non-ideological. 
-
---
-
-.pull-left[
-![](img/La_Guardia.png)
-]
-
-.pull-right[
-
-&lt;br&gt;
-
-&lt;br&gt;
-
-&lt;br&gt;
-
-*There is no Democratic or Republican way of cleaning the streets.*
-
-Fiorello La Guardia (NYC Mayor 1934-1945).
-
-]
-
-???
-
-What are some things that local governments *do*?
-
----
-
-## Local Democracy Is Different
-
---
-
-According to this view, the most important locus for political competition is not *within* cities, but *between* cities.
-
---
-
-- Citizens make their voices heard not by voting at the ballot box, but by "voting with their feet" .cite[(Tiebout 1956)].
-
---
-
-- This is ultimately what holds cities accountable. To avoid losing residents, they need to do things that make their residents happy.
-
---
-
-- In this way, one can think of cities like firms in a marketplace, and their residents like consumers, choosing the city that offers their preferred set of public goods without charging too much in taxes.
-
----
-
-## Tiebout ("TEE-bow") Sorting
-
-Let's illustrate this idea with a game.
-
-1. Everyone in the room starts with 10 points.
-
-2. Each table is a "city". Decide with the other residents of your city which amenities it will provide.
-
-  - These amenities come at a cost that every resident must pay in taxes (see the cost sheet for specifics). No city can charge more than 10 points in taxes.
-  
-3. You will get a preference sheet that tells you how much each amenity is worth to you.
-
-4. At the end of the game, count up how many points the amenities at your table are worth, minus how many points you have to pay in taxes. 
-
-  - Remember, you can always "vote with your feet", moving to a new table with amenities that you consider more valuable.
-
-
----
-
-## Tiebout ("TEE-bow") Sorting
-
-"Voting with your feet" can unlock far more happiness than voting at the ballot box.
-
---
-
-- This is all very Jeffersonian. In a big, diverse country, people aren't always going to agree on the best policy, so it's best to devolve lots of decisionmaking to local government.
-
----
-
-class: center, middle, inverse
-
-# A Few Caveats
-
----
-
-## A Few Caveats
-
-At least, that's how it works in theory. In reality, there are a few frictions that keep everything from working so perfectly:
-
---
-
-- **Inequities**: Voting at the ballot box is free, but voting with your feet is not. It's quite expensive to move from one jurisdiction to another because you're dissatisfied with your town's government.
-
---
-
-- **Coordination Problems**: When there are lots of independent governments making policy, it can be difficult to coordinate on solutions to region-wide problems.
-
---
-
-- **Accountability**: Lots of little governments make it difficult for voters and media to keep track of what's going on.
-
---
-
-- **Inefficiencies of Small Scale**: Remember scale economies? With lots of small governmental units, it's hard to take advantage of those.
-
---
-
-- **Race To The Bottom**: Taken to its logical extreme, competition can leave everyone worse off.
-
----
-
-## Coordination Problems
-
-Nice illustration of this problem in .cite[Berry (2009)].
-
-.pull-left[
-
-- Rhine River is an important trade route through western Europe.
-
-- During the 13th century, the river was divided among a bunch of independent principalities and city-states, and each one charged tolls to any river boat that went by. 
-
-- Every prince along the river wanted to get their share of taxation, but in so doing, they made it incredibly expensive to ship anything for long distances, effectively stifling trade for centuries. 
-
-
-]
-
-.pull-right[
-&lt;img src="img/Rhein-Karte2.png" width="330" style="display: block; margin: auto;" /&gt;
-]
-
-???
-
-Major industrial heartland of Europe to this day, thanks to ease of transportation. But during the medieval era, governance on the river had this problem. There were a bunch of independent city states (I count about 13 major ones on this map), and each one of them charged tolls to any river boat that went by. Every prince along the river wanted to get their share of taxation, but in so doing, they made it incredibly expensive to ship anything for long distances, effectively stifling trade for centuries. 
-
----
-
-## Common Pool Resource Problems
-
-.pull-left[
-&lt;img src="img/sheep-grazing.jpg" width="300" style="display: block; margin: auto;" /&gt;
-
-&lt;img src="img/overfishing.jpg" width="300" style="display: block; margin: auto;" /&gt;
-
-
-]
-
-.pull-right[
-&lt;br&gt;
-&lt;img src="img/smokestack.png" width="600" style="display: block; margin: auto;" /&gt;
-]
-
-???
-
-This is a subset of the sort of Common Pool problems we discussed in module 2.
-
----
-
-## "Overfishing The Common Tax Pool"
-
-.pull-left[
-
-- The same thing that happens with sheep and fish and smog happens with taxes too.
-
-- When too many governments are "fishing from the same tax pool", they tend to tax more than what would be optimal .cite[(Berry 2008)].
-
-]
-
-.pull-right[
-&lt;img src="img/imperfect-union-cover.jpg" width="300" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## "Overfishing The Common Tax Pool"
-
-
-&lt;img src="img/clarke-sample-tax-bill.png" width="600" style="display: block; margin: auto;" /&gt;
-
-There are three governments with the authority to tax my home in Clarke County.
-
-
----
-
-## "Overfishing The Common Tax Pool"
-
-&lt;img src="img/evanston-sample-tax-bill.png" width="600" style="display: block; margin: auto;" /&gt;
-
-By contrast, there are **fourteen** governments taxing this home in Evanston, Illinois!
-
----
-
-## Horizontal vs. Vertical Fragmentation
-
-An important distinction here:
-
---
-
-- **Horizontal fragmentation** is when a metropolitan area is divided geographically into several municipal governments, and citizens can vote with their feet to choose which government they want to live under. 
-
---
-
-- **Vertical fragmentation** is when a single area is administered and taxed by multiple governments simultaneously. 
-
----
-
-## Accountability
-
---
-
-- A single local government is easier to keep track of and hold to account than dozens of overlapping general and special-purpose governments.
-
---
-
-- Most special districts / school districts hold their elections **off-cycle**, separate local elections from state and national elections .cite[(Anzia 2012)].
-
---
-
-- The biggest effect this has is on turnout .cite[(Berry &amp; Gerson 2010)].
-
-&lt;img src="img/berry-gerson-sawtooth.png" width="500" style="display: block; margin: auto;" /&gt;
-
----
-
-## Accountability
-
-Election timing also influences *who* turns out to vote.
-
---
-
-- People with a strong interest in the election outcome more likely to turnout off-cycle .cite[(Anzia 2011)].
-
-  - e.g. lots of teachers turn out to school district elections
-
---
-
-- People who turn out to off-cycle elections more likely to be wealthy, white, and Republican .cite[(Kogan et al. 2018)].
-
---
-
-- But the *biggest* effect is on the share of senior citizens. 
-
-  - Goes from 1/3 of the electorate in presidential elections to roughly 1/2 the electorate in off-cycle special elections .cite[(Kogan et al. 2018)].
-  
---
-
-This can have downstream effects on policy.
-
---
-
-- Senior citizens tend to be more pro-police .cite[(Goldstein 2021)].
-
-- They also tend to be more "NIMBY", opposed to new housing construction .cite[(Ornstein 2019)].
-
----
-
-## Inefficiency
-
-.pull-left[
-
-- Lots of small governments mean lots of duplicate activities.
-
-- Harder to take advantage of **economies of scale**.
-
-- When Denmark compelled many of its local governments to **amalgamate**, the new, larger governments spent less on administration and more on public goods .cite[(Blom-Hansen et al. 2016).]
-
-]
-
-.pull-right[
-![](img/blom-hansen.png)
-]
-
----
-
-## Race To The Bottom
-
---
-
-To illustrate this concept, let's talk about the "Kansas City Border War".
-
-.pull-left[
-![](img/kansas-city.png)
-]
-
-.pull-right[
-[![](img/kansas-city-aerial.png)](https://www.google.com/maps/@39.1055065,-94.6021232,5190m/data=!3m1!1e3)
-]
-
---
-
-&lt;br&gt;
-
-For years, state and local governments spent hundreds of millions of dollars in subsidies ("corporate welfare") to lure businesses across the state line .cite[(Jensen &amp; Malesky 2018)].
-
---
-
-This race to cut taxes and lure investment is not isolated in Kansas City. State and local governments across the country spend billions in taxpayer-financed incentives to attract businesses.
-
----
-
-## Two Theories
-
-.pull-left[
-- **Prisoners' Dilemma**: If I don't offer incentives, the other side will.
-]
-
-.pull-right[
-![](img/prisoners-dilemma.png)
-]
-
----
-
-## Two Theories
-
-.pull-left[
-- **Prisoners' Dilemma**: If I don't offer incentives, the other side will.
-
-- **Incentives To Pander**: Subsidies aren't effective at luring business investment, and politicians know it. But it's a visible signal of effort to voters.
-]
-
-.pull-right[
-![](img/incentives-to-pander.png)
-]
-
----
-
-## Stadiums
-
-As of 2023, there is a "truce" in the Kansas City Border War between the two state governors. Except...
-
---
-
-.pull-left[
-&lt;img src="img/Aerial_view_of_Arrowhead_Stadium_08-31-2013.jpg" width="600" style="display: block; margin: auto;" /&gt;
-]
-
-.pull-right[
-&lt;img src="img/taylor-swift-travis-kelce.png" width="600" style="display: block; margin: auto;" /&gt;
-]
-
-&lt;br&gt;
-
-The KC Chiefs are currently on the Missouri side of the river, and Kansas is gearing up to attract them away when their lease on Arrowhead Stadium runs out in 2031.
-
---
-
-- Stadium fights are great fodder for student presentations, so hopefully we'll hear more on this next week!
-
----
-
-class: center, middle, inverse
-
-# Summary
-
----
-
-## Summary
-
---
-
-- Democracy doesn't quite function in cities the way it does at the state and national level. 
-
-  - The usual things we associate with democracy (e.g. political parties, media scrutiny, competitive elections) are often non-existent or barely functional.
-
---
-
-- That may be okay, because there is robust political competition *between* cities rather than *within* cities.
-
-  - In theory, "voting with your feet" gives people more choice and more freedom than voting at the ballot box.
-
---
-
-- This form of political competition is not without its drawbacks, including inequities in who can afford  to vote with their feet, coordination problems between governments, overfishing the tax pool, difficulty holding government accountable, inefficiencies from small scale, and wasteful spending on economic incentives.
-    </textarea>
-<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
-<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script>var slideshow = remark.create({
-"highlightStyle": "github",
-"countIncrementalSlides": false
-});
-if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
-  window.dispatchEvent(new Event('resize'));
-});
-(function(d) {
-  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
-  if (!r) return;
-  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
-  d.head.appendChild(s);
-})(document);
-
-(function(d) {
-  var el = d.getElementsByClassName("remark-slides-area");
-  if (!el) return;
-  var slide, slides = slideshow.getSlides(), els = el[0].children;
-  for (var i = 1; i < slides.length; i++) {
-    slide = slides[i];
-    if (slide.properties.continued === "true" || slide.properties.count === "false") {
-      els[i - 1].className += ' has-continuation';
+</style>
+</div>
+<section id="warmup" class="level2">
+<h2 class="anchored" data-anchor-id="warmup">Warmup</h2>
+<p>–</p>
+<p>As a table:</p>
+<p>–</p>
+<ul>
+<li>Write down as many <strong>federal</strong> elected officials as you can name (e.g.&nbsp;president, members of Congress) in 3 minutes.</li>
+</ul>
+<p>–</p>
+<ul>
+<li>Write down as many <strong>local</strong> elected officials as you can name (e.g.&nbsp;mayors, city councilmembers, school board members, county commissioners) in 3 minutes.</li>
+</ul>
+<p>???</p>
+<p><a href="https://forms.gle/53XXXS3JkJ6bwLHZ8"><img src="img/elected-officials-game.png" class="img-fluid"></a></p>
+<p>Suffice to say, this is deeply at odds with the way that the founders thought we’d be interacting with our democracy.</p>
+<hr>
+</section>
+<section id="its-strange-we-cant-name-more-local-politicians" class="level2">
+<h2 class="anchored" data-anchor-id="its-strange-we-cant-name-more-local-politicians">It’s Strange We Can’t Name More Local Politicians…</h2>
+<p>–</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/politicians-infographic-cropped.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="290"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p>https://poliengine.com/blog/how-many-politicians-are-there-in-the-us</p>
+<p><img src="img/politicians-infographic.png" class="img-fluid"></p>
+<hr>
+</section>
+<section id="today" class="level2">
+<h2 class="anchored" data-anchor-id="today">Today</h2>
+<p>Two big questions this week:</p>
+<p>–</p>
+<ol type="1">
+<li>Why has American politics become so <strong>nationalized</strong>?</li>
+</ol>
+<p>–</p>
+<ol start="2" type="1">
+<li>How can local democracy function if no one is paying attention to it?</li>
+</ol>
+<hr>
+<p>class: center, middle, inverse</p>
+</section>
+<section id="nationalization" class="level1">
+<h1>Nationalization</h1>
+<hr>
+<section id="nationalization-1" class="level2">
+<h2 class="anchored" data-anchor-id="nationalization-1">Nationalization</h2>
+<p>.pull-left[ - Voters pay much more attention to national level political issues than to politics in their own town.</p>
+<ul>
+<li><p>When we pay attention to local level political issues, it’s often through the lens of national political fights (e.g.&nbsp;school curricula, police reform).</p></li>
+<li><p>It wasn’t always this way! The Founders would probably be pretty surprised.</p></li>
+</ul>
+<p>]</p>
+<p>.pull-right[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/hopkins-cover.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<hr>
+</section>
+<section id="why-has-politics-nationalized" class="level2">
+<h2 class="anchored" data-anchor-id="why-has-politics-nationalized">Why has politics nationalized?</h2>
+<p>–</p>
+<p>One important explanation involves changes to the media landscape.</p>
+<p>–</p>
+<ul>
+<li>In the 18th century, information traveled at the speed of a horse.</li>
+</ul>
+<p>–</p>
+<ul>
+<li><p>Newspapers served local audiences, funded by subscriptions and advertisements.</p></li>
+<li><p>It makes sense that you’d know more about local politics and less about national politics.</p></li>
+</ul>
+<p>–</p>
+<ul>
+<li>First television, then the Internet, changed the way Americans consumed news.</li>
+</ul>
+<p>–</p>
+<ul>
+<li><p>Because these platforms reach a national (or global) audience, there’s an incentive to focus on news that appeals to the widest possible audience.</p></li>
+<li><p>Thus a focus on national news.</p></li>
+</ul>
+<hr>
+</section>
+<section id="decline-of-local-news" class="level2">
+<h2 class="anchored" data-anchor-id="decline-of-local-news">Decline of Local News</h2>
+<p>Losing ad and subscription revenue to TV/Internet and national papers like the <em>New York Times</em>, local newspaper circulations took a nose dive in the late 20th century.</p>
+<p><img src="img/statista-circulation.png" class="img-fluid"></p>
+<p>???</p>
+<p>https://www.statista.com/statistics/183422/paid-circulation-of-us-daily-newspapers-since-1975/</p>
+<hr>
+</section>
+<section id="decline-of-local-news-1" class="level2">
+<h2 class="anchored" data-anchor-id="decline-of-local-news-1">Decline of Local News</h2>
+<p>It’s tough to definitively say what effect the decline of local news has on people’s political behavior, but there are some clever ways to research it.</p>
+<p>–</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/moskowitz-fig2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="550"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>–</p>
+<p>In areas where you get your TV news from a another state, people are less knowlegeable about their own state/local politicians, and less likely to split ticket vote .cite[(Moskowitz 2021)].</p>
+<hr>
+<p>class: center, middle inverse</p>
+</section>
+<section id="how-does-democracy-work-when-no-ones-paying-attention" class="level2">
+<h2 class="anchored" data-anchor-id="how-does-democracy-work-when-no-ones-paying-attention">How does democracy work when no one’s paying attention?</h2>
+<hr>
+<section id="how-does-democracy-work-when-no-ones-paying-attention-1" class="level3">
+<h3 class="anchored" data-anchor-id="how-does-democracy-work-when-no-ones-paying-attention-1">How does democracy work when no one’s paying attention?</h3>
+<p>–</p>
+<p>Well, the usual answer is <strong>political parties</strong> .cite[(Aldrich 1995)].</p>
+<p>–</p>
+<ul>
+<li><p>Voters can’t be expected to pay attention to every political issue.</p></li>
+<li><p>Parties give voters a clear choice; most voters can basically tell you what the two parties stand for, and which they prefer.</p></li>
+</ul>
+<p>–</p>
+<p>But at the local level, there is basically no meaningful party competition.</p>
+<p>.pull-left[ <a href="https://en.wikipedia.org/wiki/List_of_mayors_of_Atlanta"><img src="img/wikipedia-atl-mayors.png" class="img-fluid"></a>]</p>
+<p>.pull-right[ <a href="https://en.wikipedia.org/wiki/List_of_mayors_of_Charleston,_South_Carolina"><img src="img/wikipedia-chs-mayors.png" class="img-fluid"></a>]</p>
+<p>–</p>
+<p>Even in places where there’s meaningful party competition for mayor (e.g.&nbsp;New York City), the city council tends to be dominated by one party or another .cite[(Schleicher 2007)].</p>
+<p>???</p>
+<p>But at the local level, this isn’t the way that political competition plays out!</p>
+<p>Charleston, Atlanta. Combination of Southern Democratic dominance in the early 20th century, followed by the sort of partisan sorting we discussed a few weeks ago.</p>
+<hr>
+</section>
+</section>
+<section id="why-no-local-political-parties" class="level2">
+<h2 class="anchored" data-anchor-id="why-no-local-political-parties">Why no local political parties?</h2>
+<ul>
+<li>Why don’t we have <em>local level</em> political parties?</li>
+</ul>
+<p>–</p>
+<ul>
+<li>Maybe Republicans aren’t competitive in Atlanta mayoral elections, but perhaps the Green Party could be? Or some new party dedicated to Atlanta politics specifically?</li>
+</ul>
+<p>–</p>
+<ul>
+<li>Reasons are multifaceted .cite[(Schleicher, 2007)], but basically this problem comes from the top.</li>
+</ul>
+<p>–</p>
+<ul>
+<li><p>In winner-take-all presidential systems, there’s a strong incentive for different political factions to coalesce into two parties (Duverger’s Law).</p></li>
+<li><p>US election law allows national political parties to compete in local political races. It is tough for purely local political parties to compete for voters.</p></li>
+</ul>
+<hr>
+</section>
+<section id="why-no-local-political-parties-1" class="level2">
+<h2 class="anchored" data-anchor-id="why-no-local-political-parties-1">Why no local political parties?</h2>
+<p>Another reason we don’t have party competition at the local level: in most places it’s illegal!</p>
+<p>–</p>
+<ul>
+<li>Only 17% of US cities hold partisan elections .cite[(Tausanovitch &amp; Warshaw 2014)].</li>
+</ul>
+<p>–</p>
+<ul>
+<li>In the early 20th century, reformers deliberately set out to <em>weaken</em> partisan politics at the local level, in response to the dominance of party machines in major US cities.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/tammany-hall.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>–</p>
+<ul>
+<li>This was part of a broad set of reforms during the “Progressive Era” in the early 20th century, designed to weaken machines and make local politics more professional / like the private sector.</li>
+</ul>
+<hr>
+</section>
+<section id="summary-the-nationalization-of-local-politics" class="level2">
+<h2 class="anchored" data-anchor-id="summary-the-nationalization-of-local-politics">Summary: The Nationalization of Local Politics</h2>
+<p>.pull-left[</p>
+<p>The two things that we usually rely on to inform voters about politics – media and parties – barely function at the local level.</p>
+<ul>
+<li><p>The decline of local news media has reduced voters’ knowledge of local politics.</p></li>
+<li><p>The US party system is divided between two national parties that are evenly matched at the federal level, but rarely competitive at the local level.</p></li>
+<li><p>Even when party labels appear on ballots for local races, knowing a candidate’s national party ID doesn’t really help voters make an informed decision.</p></li>
+</ul>
+<p>]</p>
+<p>.pull-right[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/zarate-ballot.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<p>???</p>
+<p>Knowing the candidates’ national party ID doesn’t really help anyone make an informed decision. Case in point: the November 2023 Clarke County special election for Clerk of Superior Courts</p>
+<hr>
+<p>class: center, middle, inverse</p>
+</section>
+</section>
+<section id="local-democracy-is-different" class="level1">
+<h1>Local Democracy Is Different</h1>
+<hr>
+<section id="local-democracy-is-different-1" class="level2">
+<h2 class="anchored" data-anchor-id="local-democracy-is-different-1">Local Democracy Is Different</h2>
+<p>One prominent school of thought says that none of this really matters. Local politics is more pragmatic than national politics, and the kinds of decisions that need to be made are fundamentally non-ideological.</p>
+<p>–</p>
+<p>.pull-left[ <img src="img/La_Guardia.png" class="img-fluid">]</p>
+<p>.pull-right[</p>
+<p><br></p>
+<p><br></p>
+<p><br></p>
+<p><em>There is no Democratic or Republican way of cleaning the streets.</em></p>
+<p>Fiorello La Guardia (NYC Mayor 1934-1945).</p>
+<p>]</p>
+<p>???</p>
+<p>What are some things that local governments <em>do</em>?</p>
+<hr>
+</section>
+<section id="local-democracy-is-different-2" class="level2">
+<h2 class="anchored" data-anchor-id="local-democracy-is-different-2">Local Democracy Is Different</h2>
+<p>–</p>
+<p>According to this view, the most important locus for political competition is not <em>within</em> cities, but <em>between</em> cities.</p>
+<p>–</p>
+<ul>
+<li>Citizens make their voices heard not by voting at the ballot box, but by “voting with their feet” .cite[(Tiebout 1956)].</li>
+</ul>
+<p>–</p>
+<ul>
+<li>This is ultimately what holds cities accountable. To avoid losing residents, they need to do things that make their residents happy.</li>
+</ul>
+<p>–</p>
+<ul>
+<li>In this way, one can think of cities like firms in a marketplace, and their residents like consumers, choosing the city that offers their preferred set of public goods without charging too much in taxes.</li>
+</ul>
+<hr>
+</section>
+<section id="tiebout-tee-bow-sorting" class="level2">
+<h2 class="anchored" data-anchor-id="tiebout-tee-bow-sorting">Tiebout (“TEE-bow”) Sorting</h2>
+<p>Let’s illustrate this idea with a game.</p>
+<ol type="1">
+<li><p>Everyone in the room starts with 10 points.</p></li>
+<li><p>Each table is a “city”. Decide with the other residents of your city which amenities it will provide.</p></li>
+</ol>
+<ul>
+<li>These amenities come at a cost that every resident must pay in taxes (see the cost sheet for specifics). No city can charge more than 10 points in taxes.</li>
+</ul>
+<ol start="3" type="1">
+<li><p>You will get a preference sheet that tells you how much each amenity is worth to you.</p></li>
+<li><p>At the end of the game, count up how many points the amenities at your table are worth, minus how many points you have to pay in taxes.</p></li>
+</ol>
+<ul>
+<li>Remember, you can always “vote with your feet”, moving to a new table with amenities that you consider more valuable.</li>
+</ul>
+<hr>
+</section>
+<section id="tiebout-tee-bow-sorting-1" class="level2">
+<h2 class="anchored" data-anchor-id="tiebout-tee-bow-sorting-1">Tiebout (“TEE-bow”) Sorting</h2>
+<p>“Voting with your feet” can unlock far more happiness than voting at the ballot box.</p>
+<p>–</p>
+<ul>
+<li>This is all very Jeffersonian. In a big, diverse country, people aren’t always going to agree on the best policy, so it’s best to devolve lots of decisionmaking to local government.</li>
+</ul>
+<hr>
+<p>class: center, middle, inverse</p>
+</section>
+</section>
+<section id="a-few-caveats" class="level1">
+<h1>A Few Caveats</h1>
+<hr>
+<section id="a-few-caveats-1" class="level2">
+<h2 class="anchored" data-anchor-id="a-few-caveats-1">A Few Caveats</h2>
+<p>At least, that’s how it works in theory. In reality, there are a few frictions that keep everything from working so perfectly:</p>
+<p>–</p>
+<ul>
+<li><strong>Inequities</strong>: Voting at the ballot box is free, but voting with your feet is not. It’s quite expensive to move from one jurisdiction to another because you’re dissatisfied with your town’s government.</li>
+</ul>
+<p>–</p>
+<ul>
+<li><strong>Coordination Problems</strong>: When there are lots of independent governments making policy, it can be difficult to coordinate on solutions to region-wide problems.</li>
+</ul>
+<p>–</p>
+<ul>
+<li><strong>Accountability</strong>: Lots of little governments make it difficult for voters and media to keep track of what’s going on.</li>
+</ul>
+<p>–</p>
+<ul>
+<li><strong>Inefficiencies of Small Scale</strong>: Remember scale economies? With lots of small governmental units, it’s hard to take advantage of those.</li>
+</ul>
+<p>–</p>
+<ul>
+<li><strong>Race To The Bottom</strong>: Taken to its logical extreme, competition can leave everyone worse off.</li>
+</ul>
+<hr>
+</section>
+<section id="coordination-problems" class="level2">
+<h2 class="anchored" data-anchor-id="coordination-problems">Coordination Problems</h2>
+<p>Nice illustration of this problem in .cite[Berry (2009)].</p>
+<p>.pull-left[</p>
+<ul>
+<li><p>Rhine River is an important trade route through western Europe.</p></li>
+<li><p>During the 13th century, the river was divided among a bunch of independent principalities and city-states, and each one charged tolls to any river boat that went by.</p></li>
+<li><p>Every prince along the river wanted to get their share of taxation, but in so doing, they made it incredibly expensive to ship anything for long distances, effectively stifling trade for centuries.</p></li>
+</ul>
+<p>]</p>
+<p>.pull-right[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/Rhein-Karte2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="330"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<p>???</p>
+<p>Major industrial heartland of Europe to this day, thanks to ease of transportation. But during the medieval era, governance on the river had this problem. There were a bunch of independent city states (I count about 13 major ones on this map), and each one of them charged tolls to any river boat that went by. Every prince along the river wanted to get their share of taxation, but in so doing, they made it incredibly expensive to ship anything for long distances, effectively stifling trade for centuries.</p>
+<hr>
+</section>
+<section id="common-pool-resource-problems" class="level2">
+<h2 class="anchored" data-anchor-id="common-pool-resource-problems">Common Pool Resource Problems</h2>
+<p>.pull-left[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/sheep-grazing.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/overfishing.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<p>.pull-right[ <br></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/smokestack.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<p>???</p>
+<p>This is a subset of the sort of Common Pool problems we discussed in module 2.</p>
+<hr>
+</section>
+<section id="overfishing-the-common-tax-pool" class="level2">
+<h2 class="anchored" data-anchor-id="overfishing-the-common-tax-pool">“Overfishing The Common Tax Pool”</h2>
+<p>.pull-left[</p>
+<ul>
+<li><p>The same thing that happens with sheep and fish and smog happens with taxes too.</p></li>
+<li><p>When too many governments are “fishing from the same tax pool”, they tend to tax more than what would be optimal .cite[(Berry 2008)].</p></li>
+</ul>
+<p>]</p>
+<p>.pull-right[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/imperfect-union-cover.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<hr>
+</section>
+<section id="overfishing-the-common-tax-pool-1" class="level2">
+<h2 class="anchored" data-anchor-id="overfishing-the-common-tax-pool-1">“Overfishing The Common Tax Pool”</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/clarke-sample-tax-bill.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There are three governments with the authority to tax my home in Clarke County.</p>
+<hr>
+</section>
+<section id="overfishing-the-common-tax-pool-2" class="level2">
+<h2 class="anchored" data-anchor-id="overfishing-the-common-tax-pool-2">“Overfishing The Common Tax Pool”</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/evanston-sample-tax-bill.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>By contrast, there are <strong>fourteen</strong> governments taxing this home in Evanston, Illinois!</p>
+<hr>
+</section>
+<section id="horizontal-vs.-vertical-fragmentation" class="level2">
+<h2 class="anchored" data-anchor-id="horizontal-vs.-vertical-fragmentation">Horizontal vs.&nbsp;Vertical Fragmentation</h2>
+<p>An important distinction here:</p>
+<p>–</p>
+<ul>
+<li><strong>Horizontal fragmentation</strong> is when a metropolitan area is divided geographically into several municipal governments, and citizens can vote with their feet to choose which government they want to live under.</li>
+</ul>
+<p>–</p>
+<ul>
+<li><strong>Vertical fragmentation</strong> is when a single area is administered and taxed by multiple governments simultaneously.</li>
+</ul>
+<hr>
+</section>
+<section id="accountability" class="level2">
+<h2 class="anchored" data-anchor-id="accountability">Accountability</h2>
+<p>–</p>
+<ul>
+<li>A single local government is easier to keep track of and hold to account than dozens of overlapping general and special-purpose governments.</li>
+</ul>
+<p>–</p>
+<ul>
+<li>Most special districts / school districts hold their elections <strong>off-cycle</strong>, separate local elections from state and national elections .cite[(Anzia 2012)].</li>
+</ul>
+<p>–</p>
+<ul>
+<li>The biggest effect this has is on turnout .cite[(Berry &amp; Gerson 2010)].</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/berry-gerson-sawtooth.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="accountability-1" class="level2">
+<h2 class="anchored" data-anchor-id="accountability-1">Accountability</h2>
+<p>Election timing also influences <em>who</em> turns out to vote.</p>
+<p>–</p>
+<ul>
+<li><p>People with a strong interest in the election outcome more likely to turnout off-cycle .cite[(Anzia 2011)].</p>
+<ul>
+<li>e.g.&nbsp;lots of teachers turn out to school district elections</li>
+</ul></li>
+</ul>
+<p>–</p>
+<ul>
+<li>People who turn out to off-cycle elections more likely to be wealthy, white, and Republican .cite[(Kogan et al.&nbsp;2018)].</li>
+</ul>
+<p>–</p>
+<ul>
+<li><p>But the <em>biggest</em> effect is on the share of senior citizens.</p>
+<ul>
+<li>Goes from 1/3 of the electorate in presidential elections to roughly 1/2 the electorate in off-cycle special elections .cite[(Kogan et al.&nbsp;2018)].</li>
+</ul></li>
+</ul>
+<p>–</p>
+<p>This can have downstream effects on policy.</p>
+<p>–</p>
+<ul>
+<li><p>Senior citizens tend to be more pro-police .cite[(Goldstein 2021)].</p></li>
+<li><p>They also tend to be more “NIMBY”, opposed to new housing construction .cite[(Ornstein 2019)].</p></li>
+</ul>
+<hr>
+</section>
+<section id="inefficiency" class="level2">
+<h2 class="anchored" data-anchor-id="inefficiency">Inefficiency</h2>
+<p>.pull-left[</p>
+<ul>
+<li><p>Lots of small governments mean lots of duplicate activities.</p></li>
+<li><p>Harder to take advantage of <strong>economies of scale</strong>.</p></li>
+<li><p>When Denmark compelled many of its local governments to <strong>amalgamate</strong>, the new, larger governments spent less on administration and more on public goods .cite[(Blom-Hansen et al.&nbsp;2016).]</p></li>
+</ul>
+<p>]</p>
+<p>.pull-right[ <img src="img/blom-hansen.png" class="img-fluid">]</p>
+<hr>
+</section>
+<section id="race-to-the-bottom" class="level2">
+<h2 class="anchored" data-anchor-id="race-to-the-bottom">Race To The Bottom</h2>
+<p>–</p>
+<p>To illustrate this concept, let’s talk about the “Kansas City Border War”.</p>
+<p>.pull-left[ <img src="img/kansas-city.png" class="img-fluid">]</p>
+<p>.pull-right[ <a href="https://www.google.com/maps/@39.1055065,-94.6021232,5190m/data=!3m1!1e3"><img src="img/kansas-city-aerial.png" class="img-fluid"></a>]</p>
+<p>–</p>
+<p><br></p>
+<p>For years, state and local governments spent hundreds of millions of dollars in subsidies (“corporate welfare”) to lure businesses across the state line .cite[(Jensen &amp; Malesky 2018)].</p>
+<p>–</p>
+<p>This race to cut taxes and lure investment is not isolated in Kansas City. State and local governments across the country spend billions in taxpayer-financed incentives to attract businesses.</p>
+<hr>
+</section>
+<section id="two-theories" class="level2">
+<h2 class="anchored" data-anchor-id="two-theories">Two Theories</h2>
+<p>.pull-left[ - <strong>Prisoners’ Dilemma</strong>: If I don’t offer incentives, the other side will.]</p>
+<p>.pull-right[ <img src="img/prisoners-dilemma.png" class="img-fluid">]</p>
+<hr>
+</section>
+<section id="two-theories-1" class="level2">
+<h2 class="anchored" data-anchor-id="two-theories-1">Two Theories</h2>
+<p>.pull-left[ - <strong>Prisoners’ Dilemma</strong>: If I don’t offer incentives, the other side will.</p>
+<ul>
+<li><strong>Incentives To Pander</strong>: Subsidies aren’t effective at luring business investment, and politicians know it. But it’s a visible signal of effort to voters. ]</li>
+</ul>
+<p>.pull-right[ <img src="img/incentives-to-pander.png" class="img-fluid">]</p>
+<hr>
+</section>
+<section id="stadiums" class="level2">
+<h2 class="anchored" data-anchor-id="stadiums">Stadiums</h2>
+<p>As of 2023, there is a “truce” in the Kansas City Border War between the two state governors. Except…</p>
+<p>–</p>
+<p>.pull-left[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/Aerial_view_of_Arrowhead_Stadium_08-31-2013.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<p>.pull-right[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/taylor-swift-travis-kelce.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<p><br></p>
+<p>The KC Chiefs are currently on the Missouri side of the river, and Kansas is gearing up to attract them away when their lease on Arrowhead Stadium runs out in 2031.</p>
+<p>–</p>
+<ul>
+<li>Stadium fights are great fodder for student presentations, so hopefully we’ll hear more on this next week!</li>
+</ul>
+<hr>
+<p>class: center, middle, inverse</p>
+</section>
+</section>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<hr>
+<section id="summary-1" class="level2">
+<h2 class="anchored" data-anchor-id="summary-1">Summary</h2>
+<p>–</p>
+<ul>
+<li><p>Democracy doesn’t quite function in cities the way it does at the state and national level.</p>
+<ul>
+<li>The usual things we associate with democracy (e.g.&nbsp;political parties, media scrutiny, competitive elections) are often non-existent or barely functional.</li>
+</ul></li>
+</ul>
+<p>–</p>
+<ul>
+<li><p>That may be okay, because there is robust political competition <em>between</em> cities rather than <em>within</em> cities.</p>
+<ul>
+<li>In theory, “voting with your feet” gives people more choice and more freedom than voting at the ballot box.</li>
+</ul></li>
+</ul>
+<p>–</p>
+<ul>
+<li>This form of political competition is not without its drawbacks, including inequities in who can afford to vote with their feet, coordination problems between governments, overfishing the tax pool, difficulty holding government accountable, inefficiencies from small scale, and wasteful spending on economic incentives.</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
   }
-  var s = d.createElement("style");
-  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
-  d.head.appendChild(s);
-})(document);
-// delete the temporary CSS (for displaying all slides initially) when the user
-// starts to view slides
-(function() {
-  var deleted = false;
-  slideshow.on('beforeShowSlide', function(slide) {
-    if (deleted) return;
-    var sheets = document.styleSheets, node;
-    for (var i = 0; i < sheets.length; i++) {
-      node = sheets[i].ownerNode;
-      if (node.dataset["target"] !== "print-only") continue;
-      node.parentNode.removeChild(node);
-    }
-    deleted = true;
-  });
-})();
-// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
-// screen reader (see PR #262)
-(function(d) {
-  let res = {};
-  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
-    const t = tr.querySelector('td:nth-child(2)').innerText;
-    tr.querySelectorAll('td:first-child .key').forEach(key => {
-      const k = key.innerText;
-      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
-    });
-  });
-  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
-})(document);
-(function() {
-  "use strict"
-  // Replace <script> tags in slides area to make them executable
-  var scripts = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container script'
-  );
-  if (!scripts.length) return;
-  for (var i = 0; i < scripts.length; i++) {
-    var s = document.createElement('script');
-    var code = document.createTextNode(scripts[i].textContent);
-    s.appendChild(code);
-    var scriptAttrs = scripts[i].attributes;
-    for (var j = 0; j < scriptAttrs.length; j++) {
-      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
-    }
-    scripts[i].parentElement.replaceChild(s, scripts[i]);
-  }
-})();
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
     }
   }
-})();</script>
-
-<script>
-slideshow._releaseMath = function(el) {
-  var i, text, code, codes = el.getElementsByTagName('code');
-  for (i = 0; i < codes.length;) {
-    code = codes[i];
-    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
-      text = code.textContent;
-      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
-          /^\$\$(.|\s)+\$\$$/.test(text) ||
-          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
-        code.outerHTML = code.innerHTML;  // remove <code></code>
-        continue;
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
       }
     }
-    i++;
+    return false;
   }
-};
-slideshow._releaseMath(document);
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
 </script>
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-(function () {
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
-  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
-    script.src  = script.src.replace(/^https?:/, '');
-  document.getElementsByTagName('head')[0].appendChild(script);
-})();
-</script>
-  </body>
-</html>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

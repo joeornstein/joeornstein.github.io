@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import speakerViewHTML from './speaker-view.html';
-=======
 import speakerViewHTML from './speaker-view.html'
->>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 
 import { marked } from 'marked';
 
@@ -112,11 +108,7 @@ const Plugin = () => {
 	function post( event ) {
 
 		let slideElement = deck.getCurrentSlide(),
-<<<<<<< HEAD
-			notesElement = slideElement.querySelector( 'aside.notes' ),
-=======
 			notesElements = slideElement.querySelectorAll( 'aside.notes' ),
->>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 			fragmentElement = slideElement.querySelector( '.current-fragment' );
 
 		let messageData = {
@@ -138,35 +130,22 @@ const Plugin = () => {
 		if( fragmentElement ) {
 			let fragmentNotes = fragmentElement.querySelector( 'aside.notes' );
 			if( fragmentNotes ) {
-<<<<<<< HEAD
-				notesElement = fragmentNotes;
-=======
 				messageData.notes = fragmentNotes.innerHTML;
 				messageData.markdown = typeof fragmentNotes.getAttribute( 'data-markdown' ) === 'string';
 
 				// Ignore other slide notes
 				notesElements = null;
->>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 			}
 			else if( fragmentElement.hasAttribute( 'data-notes' ) ) {
 				messageData.notes = fragmentElement.getAttribute( 'data-notes' );
 				messageData.whitespace = 'pre-wrap';
 
 				// In case there are slide notes
-<<<<<<< HEAD
-				notesElement = null;
-=======
 				notesElements = null;
->>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 			}
 		}
 
 		// Look for notes defined in an aside element
-<<<<<<< HEAD
-		if( notesElement ) {
-			messageData.notes = notesElement.innerHTML;
-			messageData.markdown = typeof notesElement.getAttribute( 'data-markdown' ) === 'string';
-=======
 		if( notesElements && notesElements.length ) {
 			// Ignore notes inside of fragments since those are shown
 			// individually when stepping through fragments
@@ -174,24 +153,12 @@ const Plugin = () => {
 
 			messageData.notes = notesElements.map( notesElement => notesElement.innerHTML ).join( '\n' );
 			messageData.markdown = notesElements[0] && typeof notesElements[0].getAttribute( 'data-markdown' ) === 'string';
->>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 		}
 
 		speakerWindow.postMessage( JSON.stringify( messageData ), '*' );
 
 	}
 
-<<<<<<< HEAD
-	function onPostMessage( event ) {
-
-		let data = JSON.parse( event.data );
-		if( data && data.namespace === 'reveal-notes' && data.type === 'connected' ) {
-			clearInterval( connectInterval );
-			onConnected();
-		}
-		else if( data && data.namespace === 'reveal-notes' && data.type === 'call' ) {
-			callRevealApi( data.methodName, data.arguments, data.callId );
-=======
 	/**
 	 * Check if the given event is from the same origin as the
 	 * current window.
@@ -224,7 +191,6 @@ const Plugin = () => {
 				}
 		  } catch (e) {}
 
->>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 		}
 
 	}

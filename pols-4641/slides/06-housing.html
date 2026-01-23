@@ -1,865 +1,1344 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
-  <head>
-    <title>Housing</title>
-    <meta charset="utf-8" />
-    <script src="06-housing_files/header-attrs-2.20/header-attrs.js"></script>
-    <link href="06-housing_files/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="06-housing_files/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
-  </head>
-  <body>
-    <textarea id="source">
-class: center, middle, inverse, title-slide
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-.title[
-# Housing
-]
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
 
----
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-&lt;style type="text/css"&gt;
+<title>Housing – The Science of Cities</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../img/favicon_io/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-39f7db0e33c7e7e0f37d956b9f0706d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">The Science of Cities</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../syllabus/POLS-4641H-syllabus.pdf"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#my-favorite-municipal-political-party" id="toc-my-favorite-municipal-political-party" class="nav-link active" data-scroll-target="#my-favorite-municipal-political-party">My Favorite Municipal Political Party</a></li>
+  <li><a href="#lets-play-guess-what-happened-to-the-rent" id="toc-lets-play-guess-what-happened-to-the-rent" class="nav-link" data-scroll-target="#lets-play-guess-what-happened-to-the-rent">Let’s Play “Guess What Happened To The Rent”</a></li>
+  <li><a href="#lets-play-guess-what-happened-to-the-rent-1" id="toc-lets-play-guess-what-happened-to-the-rent-1" class="nav-link" data-scroll-target="#lets-play-guess-what-happened-to-the-rent-1">Let’s Play “Guess What Happened To The Rent”</a></li>
+  <li><a href="#lets-play-guess-what-happened-to-the-rent-2" id="toc-lets-play-guess-what-happened-to-the-rent-2" class="nav-link" data-scroll-target="#lets-play-guess-what-happened-to-the-rent-2">Let’s Play “Guess What Happened To The Rent”</a></li>
+  <li><a href="#this-week" id="toc-this-week" class="nav-link" data-scroll-target="#this-week">This Week</a></li>
+  <li><a href="#part-i.-why-does-it-matter" id="toc-part-i.-why-does-it-matter" class="nav-link" data-scroll-target="#part-i.-why-does-it-matter">Part I. Why Does It Matter?</a></li>
+  <li><a href="#high-home-prices-cause" id="toc-high-home-prices-cause" class="nav-link" data-scroll-target="#high-home-prices-cause">High Home Prices Cause…</a></li>
+  <li><a href="#rent-burden" id="toc-rent-burden" class="nav-link" data-scroll-target="#rent-burden">Rent Burden</a></li>
+  <li><a href="#homelessness" id="toc-homelessness" class="nav-link" data-scroll-target="#homelessness">Homelessness</a></li>
+  <li><a href="#gentrification-displacement" id="toc-gentrification-displacement" class="nav-link" data-scroll-target="#gentrification-displacement">Gentrification / Displacement</a></li>
+  <li><a href="#urban-sprawl" id="toc-urban-sprawl" class="nav-link" data-scroll-target="#urban-sprawl">Urban Sprawl</a></li>
+  <li><a href="#urban-sprawl-1" id="toc-urban-sprawl-1" class="nav-link" data-scroll-target="#urban-sprawl-1">Urban Sprawl</a></li>
+  <li><a href="#interstate-mobility" id="toc-interstate-mobility" class="nav-link" data-scroll-target="#interstate-mobility">Interstate Mobility</a></li>
+  <li><a href="#interstate-mobility-1" id="toc-interstate-mobility-1" class="nav-link" data-scroll-target="#interstate-mobility-1">Interstate Mobility</a></li>
+  <li><a href="#interstate-mobility-2" id="toc-interstate-mobility-2" class="nav-link" data-scroll-target="#interstate-mobility-2">Interstate Mobility</a></li>
+  <li><a href="#interstate-mobility-3" id="toc-interstate-mobility-3" class="nav-link" data-scroll-target="#interstate-mobility-3">Interstate Mobility</a></li>
+  <li><a href="#other-economic-effects" id="toc-other-economic-effects" class="nav-link" data-scroll-target="#other-economic-effects">Other Economic Effects</a></li>
+  <li><a href="#summary-part-i" id="toc-summary-part-i" class="nav-link" data-scroll-target="#summary-part-i">Summary (Part I)</a></li>
+  <li><a href="#part-ii.-why-is-the-rent-so-high" id="toc-part-ii.-why-is-the-rent-so-high" class="nav-link" data-scroll-target="#part-ii.-why-is-the-rent-so-high">Part II. Why Is The Rent So High?</a></li>
+  <li><a href="#why-is-the-rent-so-high" id="toc-why-is-the-rent-so-high" class="nav-link" data-scroll-target="#why-is-the-rent-so-high">Why Is The Rent So High?</a></li>
+  <li><a href="#why-is-the-rent-so-high-1" id="toc-why-is-the-rent-so-high-1" class="nav-link" data-scroll-target="#why-is-the-rent-so-high-1">Why Is The Rent So High?</a></li>
+  <li><a href="#zoning-and-building-codes-create-housing-scarcity" id="toc-zoning-and-building-codes-create-housing-scarcity" class="nav-link" data-scroll-target="#zoning-and-building-codes-create-housing-scarcity">Zoning and Building Codes Create Housing Scarcity</a></li>
+  <li><a href="#zoning-and-building-codes-create-housing-scarcity-1" id="toc-zoning-and-building-codes-create-housing-scarcity-1" class="nav-link" data-scroll-target="#zoning-and-building-codes-create-housing-scarcity-1">Zoning and Building Codes Create Housing Scarcity</a></li>
+  <li><a href="#wait-a-minute." id="toc-wait-a-minute." class="nav-link" data-scroll-target="#wait-a-minute.">Wait A Minute.</a></li>
+  <li><a href="#filtering" id="toc-filtering" class="nav-link" data-scroll-target="#filtering">“Filtering”</a></li>
+  <li><a href="#how-do-we-know-new-supply-helps-bring-down-rent" id="toc-how-do-we-know-new-supply-helps-bring-down-rent" class="nav-link" data-scroll-target="#how-do-we-know-new-supply-helps-bring-down-rent">How Do We Know New Supply Helps Bring Down Rent?</a></li>
+  <li><a href="#how-do-we-know-new-supply-helps-bring-down-rent-1" id="toc-how-do-we-know-new-supply-helps-bring-down-rent-1" class="nav-link" data-scroll-target="#how-do-we-know-new-supply-helps-bring-down-rent-1">How Do We Know New Supply Helps Bring Down Rent?</a></li>
+  <li><a href="#how-do-we-know-new-supply-helps-bring-down-rent-2" id="toc-how-do-we-know-new-supply-helps-bring-down-rent-2" class="nav-link" data-scroll-target="#how-do-we-know-new-supply-helps-bring-down-rent-2">How Do We Know New Supply Helps Bring Down Rent?</a></li>
+  <li><a href="#summary-part-ii" id="toc-summary-part-ii" class="nav-link" data-scroll-target="#summary-part-ii">Summary (Part II)</a></li>
+  <li><a href="#part-iii.-the-political-barriers-to-new-housing" id="toc-part-iii.-the-political-barriers-to-new-housing" class="nav-link" data-scroll-target="#part-iii.-the-political-barriers-to-new-housing">Part III. The Political Barriers To New Housing</a></li>
+  <li><a href="#a-zoning-board-meeting" id="toc-a-zoning-board-meeting" class="nav-link" data-scroll-target="#a-zoning-board-meeting">A Zoning Board Meeting</a></li>
+  <li><a href="#neighborhood-defenders" id="toc-neighborhood-defenders" class="nav-link" data-scroll-target="#neighborhood-defenders">Neighborhood Defenders</a></li>
+  <li><a href="#this-illustrates-a-few-important-concepts" id="toc-this-illustrates-a-few-important-concepts" class="nav-link" data-scroll-target="#this-illustrates-a-few-important-concepts">This Illustrates A Few Important Concepts</a></li>
+  <li><a href="#housing-as-a-collective-action-problem" id="toc-housing-as-a-collective-action-problem" class="nav-link" data-scroll-target="#housing-as-a-collective-action-problem">1. Housing As A Collective Action Problem</a></li>
+  <li><a href="#housing-as-a-collective-action-problem-1" id="toc-housing-as-a-collective-action-problem-1" class="nav-link" data-scroll-target="#housing-as-a-collective-action-problem-1">1. Housing As A Collective Action Problem</a></li>
+  <li><a href="#vetocracy" id="toc-vetocracy" class="nav-link" data-scroll-target="#vetocracy">2. Vetocracy</a></li>
+  <li><a href="#horizontal-fragmentation" id="toc-horizontal-fragmentation" class="nav-link" data-scroll-target="#horizontal-fragmentation">3. Horizontal Fragmentation</a></li>
+  <li><a href="#who-represents-the-renters" id="toc-who-represents-the-renters" class="nav-link" data-scroll-target="#who-represents-the-renters">4. Who Represents The Renters?</a></li>
+  <li><a href="#summary-part-iii" id="toc-summary-part-iii" class="nav-link" data-scroll-target="#summary-part-iii">Summary (Part III)</a></li>
+  <li><a href="#part-iv.-going-forward" id="toc-part-iv.-going-forward" class="nav-link" data-scroll-target="#part-iv.-going-forward">Part IV. Going Forward</a></li>
+  <li><a href="#the-missing-middle" id="toc-the-missing-middle" class="nav-link" data-scroll-target="#the-missing-middle">The “Missing Middle”</a></li>
+  <li><a href="#state-level-reforms" id="toc-state-level-reforms" class="nav-link" data-scroll-target="#state-level-reforms">State-Level Reforms</a></li>
+  <li><a href="#we-live-in-exciting-times" id="toc-we-live-in-exciting-times" class="nav-link" data-scroll-target="#we-live-in-exciting-times">We Live In Exciting Times!</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Housing</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<style type="text/css">
 .cite {
   font-weight: bold;
   font-size: 0.75em;
   color: #BA0C2F;
 }
-&lt;/style&gt;
-
-
-
-## My Favorite Municipal Political Party
-
-.pull-left[
-&lt;img src="img/Jimmy-McMillan.jpg" width="600" style="display: block; margin: auto;" /&gt;
-]
-
---
-
-.pull-right[
-&lt;img src="img/rent-is-too-damn-high-ballot.png" width="600" style="display: block; margin: auto;" /&gt;
-]
-
---
-
-&lt;iframe src="https://www.youtube.com/embed/NrOY3yKUH4k" width="300" height="400px" data-external="1"&gt;&lt;/iframe&gt;
-
-???
-
-Yes, I told you that there are no parties in municipal politics, and that's mostly true, with a few excellent exceptions.
-
-https://www.youtube.com/embed/NrOY3yKUH4k
-
----
-
-## Let's Play "Guess What Happened To The Rent"
-
-
-
-&lt;img src="06-housing_files/figure-html/unnamed-chunk-6-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-## Let's Play "Guess What Happened To The Rent"
-
-&lt;img src="06-housing_files/figure-html/unnamed-chunk-7-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
-???
-
-Wait, I need a bit more space on the y-axis
-
----
-
-## Let's Play "Guess What Happened To The Rent"
-
-&lt;img src="06-housing_files/figure-html/unnamed-chunk-8-1.png" width="600" style="display: block; margin: auto;" /&gt;
-
-
-???
-
-![](img/home-prices-time-series.png)
-
-https://www.economist.com/graphic-detail/usa-house-prices
-
----
-
-## This Week
-
-1. Why does it matter if the rent is too high?
-
-2. What is causing the rent to be too high?
-
-3. How does politics make the rent too high?
-
-4. What can we do to make the rent less high?
-
----
-
-class: center, middle, inverse
-
-## Part I. Why Does It Matter?
-
-???
-
-## High Home Prices Cause...
-
-- Financial Hardship
-
-- Homelessness
-
-- Gentrification/Displacement
-
-- Inequality
-
-- Declines in Economic Productivity
-
-- Sprawl / Increased Carbon Emissions
-
-- Reduced Fertility
-
-
-hardship (homelessness), family formation, productivity, STUCK, inequality (Henry George sign; public improvements all go to landowners); links to transportation policy - pushes people to suburbs and exurbs, long commute times; single-family only cities are financially precarious (Suburban Ponzi Scheme)
-
----
-
-## Rent Burden
-
-When housing costs grow faster than income, renters must spend a growing share of their income on rent.
-
---
-
-
-.pull-left[
-![](img/nyt-rent-burden.png)
-]
-
-.pull-right[
-![](img/Rent Burden_Fig 2_650px.png)
-]
-
----
-
-## Homelessness
-
-Places with more expensive housing tend to have more people who live without it.
-
---
-
-&lt;img src="img/homelessness-vs-housing-costs-colburn-adern.png" width="600" style="display: block; margin: auto;" /&gt;
-
-???
-
-Note: PIT stands for "point in time", one method for estimating the rate of homelessness
-
----
-
-## Gentrification / Displacement
-
-.pull-left[
-
-&lt;br&gt;
-
-- In cities throughout the country, neighborhoods that were previously affordable have become expensive.
-
-- Renters in these areas must make the difficult choice to accept an increasing rent burden or leave their homes and communities.
-]
-.pull-right[
-&lt;br&gt;
-&lt;br&gt;
-![](img/gentrification-sign.jpg)
-]
-
-???
-
-In many cities, the surge in rents has spurred gentrification and displacement of existing residents.
-
----
-
-## Urban Sprawl
-
-We tend to think of displacement as something that only happens to low-income renters, but middle class families get displaced from places with high housing costs too.
-
---
-
-
-&lt;img src="img/us_lower_48_american_commute.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-## Urban Sprawl
-
-We tend to think of displacement as something that only happens to low-income renters, but middle class families get displaced from places with high housing costs too.
-
-.pull-left[
-&lt;img src="img/co2-footprints.png" width="600" style="display: block; margin: auto;" /&gt;
-]
-
-.pull-right[
-&lt;img src="img/super-commmuters.png" width="600" style="display: block; margin: auto;" /&gt;
-]
-
-???
-
-It's just called "moving to the suburbs"
-
-https://www.apartmentlist.com/research/traffic-trains-or-teleconference-the-changing-american-commute
-
-Comes with all the climate change problems we discussed before.
-
----
-
-## Interstate Mobility
-
-**Gut check:** Are Americans more or less likely to move across state lines today than they were 100 years ago?
-
---
-
-.pull-left[
-- Surprisingly, the answer is less. Much less!
-]
-
-.pull-right[
-&lt;img src="img/migration-rates.png" width="600" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Interstate Mobility
-
-**Gut check:** Are Americans more or less likely to move across state lines today than they were 100 years ago?
-
-.pull-left[
-- Surprisingly, the answer is less. Much less!
-
-- This has important economic effects. In the early 20th century, lots of people moved to places where they could earn higher wages.
-]
-
-.pull-right[
-&lt;img src="img/great-migration.png" width="600" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Interstate Mobility
-
-**Gut check:** Are Americans more or less likely to move across state lines today than they were 100 years ago?
-
-.pull-left[
-- Surprisingly, the answer is less. Much less!
-
-- This has important economic effects. In the early 20th century, lots of people moved to places where they could earn higher wages.
-
-- As a result, we saw strong **regional convergence** .cite[(Ganong &amp; Shoag, 2017)]. 
-
-]
-
-.pull-right[
-&lt;img src="img/ganong-shoag-fig1.png" width="600" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Interstate Mobility
-
-**Gut check:** Are Americans more or less likely to move across state lines today than they were 100 years ago?
-
-.pull-left[
-- Surprisingly, the answer is less. Much less!
-
-- This has important economic effects. In the early 20th century, lots of people moved to places where they could earn higher wages.
-
-- As a result, we saw strong **regional convergence** .cite[(Ganong &amp; Shoag, 2017)]. 
-
-- Today, people are less likely to move to places with higher wages because so much of their paycheck would get eaten by housing. The result is declining regional convergence.
-
-]
-
-.pull-right[
-&lt;img src="img/ganong-shoag-fig1b.png" width="600" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Other Economic Effects
-
-- When housing costs deter people from moving to high-wage cities, the entire country is poorer than it otherwise would be.
-
---
-
-  - By some estimates, about **8.9%** poorer .cite[(Hsieh &amp; Moretti, 2019)].
-  
---
-
-- Income inequality is higher too, as property owners receive a larger share of national income.
-
---
-
-  - Capital's share of national income rose from 32% to 40% in the years since WWII. 
-
---
-  
-  - That increase is almost **entirely** due to the rising cost of housing .cite[(Rognile 2019)].
-
----
-
-## Summary (Part I)
-
-The rising cost of housing is a root cause of so many problems bedeviling American society today:
-
-- Financial Hardship
-
-- Homelessness
-
-- Gentrification/Displacement
-
-- Inequality
-
-- Declines in Economic Productivity
-
-- Sprawl 
-
-- Climate Change
-
-- Reduced Fertility
-
---
-
-So why has the cost of housing gone up so dramatically, and what can we do about it?
-
-
----
-
-class: center, middle, inverse
-
-## Part II. Why Is The Rent So High?
-
----
-
-## Why Is The Rent So High?
-
---
-
-- Well, like the price of anything, the price of housing is determined by a combination of **supply and demand**.
-
---
-
-- When cities don't build enough new housing to meet rising demand, they tend to be much more expensive .cite[Glaeser &amp; Gyourko (2018)].
-
-
-&lt;img src="img/permits-and-home-prices.png" width="500" style="display: block; margin: auto;" /&gt;
-
----
-
-## Why Is The Rent So High?
-
---
-
-- Why can't cities build enough housing to meet demand? Because in city after city, it's illegal!
-
---
-
-- Nearly every US city zones most of its land for single-family detached homes. This severely restricts the number of housing units that can be built by right.
-
-[![](img/single-family-zoning-nyt.png)](https://www.nytimes.com/interactive/2019/06/18/upshot/cities-across-america-question-single-family-zoning.html)
-
----
-
-## Zoning and Building Codes Create Housing Scarcity
-
-Even in places like New York City where multifamily housing is permitted, zoning laws significantly restrict how much housing can be built compared to a century ago.
-
-&lt;br&gt;
-
-[![](img/40-percent-manhattan.png)](https://www.nytimes.com/interactive/2016/05/19/upshot/forty-percent-of-manhattans-buildings-could-not-be-built-today.html)
-
----
-
-## Zoning and Building Codes Create Housing Scarcity
-
-Every US city has dozens of well-meaning regulations that, in the aggregate, reduce the number of housing units that can be built and drive up the cost of housing:
-
-
-.pull-left[
-- Minimum Lot Sizes
-- Building Height Maximums
-- Setbacks
-- Parking Mandates
-- Historic Preservation Ordinances
-- [Second Egress Requirements](https://slate.com/business/2021/12/staircases-floor-plan-twitter-housing-apartments.html)
-]
-
-.pull-right[
-&lt;img src="img/stair-daddy.png" width="600" style="display: block; margin: auto;" /&gt;
-]
-
----
-
-## Wait A Minute.
-
---
-
-How do we know that new building doesn't make the problem **worse**?
-
---
-
-.pull-left[
-![](img/the-mark-athens.jpg)
-]
-
-.pull-right[
-![](img/the-mark-amenities.png)
-]
-
---
-
-New housing is often wildly unaffordable. How can building new housing bring down rents if *this* is what gets built?
-
----
-
-## "Filtering"
-
-It can be helpful to imagine what would happen if The Mark were torn down and replaced with a parking lot. What happens to the 1,500 renters living there?
-
---
-
-- Those 1,500 renters still have to live somewhere! So they take all the money they would have spent on The Mark and bid up the cost of housing throughout the rest of the market.
-
---
-
-- In this way, even high-cost new housing can reduce the *average* cost of housing in a city, by "filtering" out the highest-income households .cite[(Bratu et al. 2023)].
-
-???
-
-928 beds (Phase I), 446 beds (Phase II)
-https://www.redandblack.com/athensnews/the-mark-athens-to-expand-add-more-than-400-new-beds/article_d5ca095c-bf04-11e9-a476-0bf42f0cb720.html
-
----
-
-## How Do We Know New Supply Helps Bring Down Rent?
-
-First, there's cross-city evidence .cite[Glaeser &amp; Gyourko (2018)]. Places with more building are less expensive, all else equal.
-
-
-&lt;img src="img/permits-and-home-prices.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-## How Do We Know New Supply Helps Bring Down Rent?
-
-We can also look at cases where there was a big change in housing policy, like Minneapolis, which eliminated single-family zoning in 2018:
-
-&lt;img src="img/minneapolis-ft.png" width="600" style="display: block; margin: auto;" /&gt;
-
----
-
-## How Do We Know New Supply Helps Bring Down Rent?
-
-Or Auckland, New Zealand, which implemented a major upzoning in 2016:
-
-&lt;img src="img/auckland-ft.png" width="600" style="display: block; margin: auto;" /&gt;
-
-???
-
-Lotta back and forth on this one. Here are the relevant papers / blog posts. I ultimately come down more on the side of "allowing more building ends up creating more buildings":
-
-- [Paper](https://cdn.auckland.ac.nz/assets/business/about/our-research/research-institutes-and-centres/Economic-Policy-Centre--EPC-/006WP%20-%204.pdf)
-- [Auckland Myth](https://www.fresheconomicthinking.com/p/the-auckland-myth-there-is-no-evidence)
-- [Response](https://onefinaleffort.com/blog/a-response-to-murray-and-helm-on-aucklands-upzoning)
-
-
----
-
-## Summary (Part II)
-
-- The price of housing is a product of supply and demand.
-
-- In the most expensive cities, demand is rising faster than supply can keep up.
-
-- Zoning restrictions make it illegal to build new housing by right in many of the most high-demand neighborhoods.
-
-  - The US is a free-market economy for most products people buy, but for housing it's practically a command economy. Every new home that gets built is ultimately a political choice.
-
---
-
-So why don't we choose to build more homes?
-
---
-
-That brings us to Part III.
-
----
-
-class: center, middle, inverse
-
-## Part III. The Political Barriers To New Housing
-
----
-
-## A Zoning Board Meeting
-
-&lt;img src="img/cumming-city-meeting.jpg" width="600" style="display: block; margin: auto;" /&gt;
-
---
-
-**Exercise**: What are the five most common concerns brought up by residents at these sorts of meetings?
-
----
-
-## Neighborhood Defenders
-
-
-.pull-left[
-.cite[Einstein, Glick &amp; Palmer (2019)] read *thousands* of comments from zoning/planning meetings in Massachusetts.
-
-- Comments opposing new construction 4x more frequent than comments supporting new construction.
-
-- Most common concerns:
-
-  - Traffic (23%)
-  - Environment (19%)
-  - Flooding (15%)
-  - Safety (15%)
-  - Density (12%)
-  - Aesthetics (12%)
-  - Septic/Water Systems (11%)
-  - Neighborhood Character (10%)
-  - Parking (10%)
-
-]
-
-.pull-right[
-
-&lt;img src="img/neighborhood-defenders-cover.png" width="80%" style="display: block; margin: auto;" /&gt;
-
-]
-
----
-
-## This Illustrates A Few Important Concepts
-
-1. Housing as a Collective Action Problem
-
-2. Vetocracy
-
-3. Horizontal Fragmentation
-
-4. Who Represents The Renters?
-
----
-
-## 1. Housing As A Collective Action Problem
-
---
-
-The Logic of Collective Action .cite[(Olson, 1965)]:
-
-- Some policies have **diffuse benefits** and **concentrated costs**.
-
-  - Free trade is a classic example.
-
-- It is difficult to organize collective action in favor of these policies. (Nobody benefits enough to care deeply.)
-
-- But it is very easy to organize interest groups in opposition. 
-
----
-
-## 1. Housing As A Collective Action Problem
-
-Zoning reform has that same flavor .cite[(Schleicher, 2013)]:
-
---
-
-- New construction has **diffuse** benefits: 
-
-  - Slightly lower rents for everybody!
-
---
-
-- And **concentrated** costs borne by neighbors:
-
-  - More cars on the street
-  - Harder to find parking
-  - Crowding neighborhood schools and parks
-  - Building shadows block the sun from my garden!
-  - Etc.
-  
---
-
-- So it's much easier to organize opposition to new housing ("Homevoters", "Neighborhood Defenders", "NIMBYs", "BANANAs") than it is to organize support.
-  
----
-
-## 2. Vetocracy
-
-Combine that with political institutions where every new housing project must jump through a series of hoops to get approved...
-
---
-
-- Neighborhood Advisory Committees
-- Zoning Boards of Appeals
-- Planning Commissions
-- Historic Preservation District approval (where applicable)
-- Environmental Review (required in states like New York and California)
-- City Council Approval
-- Mayoral Veto
-
---
-
-...and you get a situation where a committed opposition has multiple opportunities to block or significantly delay new housing.
-
-&lt;img src="img/sf-chronicle-permits.png" width="80%" style="display: block; margin: auto;" /&gt;
-
----
-
-## 3. Horizontal Fragmentation
-
-This is all further exacerbated by horizontal fragmentation.
-
---
-
-- The benefits of new construction accrue to the entire metropolitan area.
-
-- But the negative externalities are borne locally.
-
---
-
-- Cities are reticent to build new housing if it means they bear all the costs but see only a small share of the benefits.
-
---
-
-And the people who *most* benefit from a city building new housing -- potential renters -- don't get a vote, because they don't live there!
-
----
-
-## 4. Who Represents The Renters?
-
-This all might be okay if public officeholders were looking out for the interests of renters. But at every level of government -- city councilmembers, mayors, state legislators, members of Congress -- renters are significantly underrepresented.
-
---
-
-- Roughly 1/3 of Americans rent, but over 93% of public officials are homeowners .cite[(Einstein, Ornstein, &amp; Palmer, 2022)]. 
-
---
-
-&lt;img src="img/scatter_owners.png" width="60%" style="display: block; margin: auto;" /&gt;
-
-???
-
-Lots of possible reasons for this: renters are less tied to their community, likely to be younger, less likely to run for office; some evidence that voters are less likely to vote for someone they know is a renter.
-
-homevoters, neighborhood defenders (who represents the renters?), collective action problems/szea, vetocracy, fragmentation (the people who'd most benefit from upzoning don't get a vote!)
-
----
-
-## Summary (Part III)
-
-- Because new housing has concentrated costs and diffuse benefits, it is easier to mobilize opposition than support.
-
-- Multiple veto points to modify zoning codes create status quo bias. 
-
-- Horizontal fragmentation means that cities don't internalize all the benefits of new housing.
-
-- The biggest beneficiaries of new construction -- renters -- are underrepresented at every stage of the decision-making process.
-
---
-
-How do you overcome all these political obstacles? Let's end on a note of optimism (Part IV).
-
----
-
-class: center, middle, inverse
-
-## Part IV. Going Forward
-
----
-
-## The "Missing Middle"
-
-Our cities used to build a wide range of housing options for people at different stages of life, but in most places we've now regulated them out of existence.
-
-&lt;img src="img/missing-middle.jpg" width="600" style="display: block; margin: auto;" /&gt;
-
---
-
-The most promising reforms of the past decade involve efforts to legalize this "missing middle".
-
-???
-
-Next time you walk around Athens, notice what types of homes you see. All the "Missing Middle" was built a long time ago and grandfathered in.
-
-The path from housing scarcity to housing abundance doesn't require radical deregulation. It can be incremental and organic.
-
-missing middle (includes things like ADUs) / incremental densification, YIMBY movement, election timing, progress at the state level
-
----
-
-## State-Level Reforms
-
-The most consequential zoning reforms are often at the state-level, where lawmakers can internalize the benefits of housing growth.
-
---
-
-For example, California has passed a torrent of legislation since 2019:
-
-- **AB 68 (2019)**: Legalizes Accessory Dwelling Units (ADUs) statewide
-
-- **AB 725 (2020)**: Requires municipalities to permit some Missing Middle housing
-
-- **SB 9 (2021)**: Allows duplexes in single-family zones
-
-- **SB 10 (2021)**: Allows multifamily housing near transit without triggering environmental review
-
-- **SB 886 (2022)**: Streamlines the approval process for universities to build student housing
-
-- **AB 2097 (2022)**: Prohibits parking mandates within 1/2 mile of public transit
-
---
-
-State level is where localized opposition holds the least influence, and broad-based interest groups that want to promote economic growth / housing affordability are more likely to be able to wield influence.
-
-
-???
-
-All these interlocking regulations need to be addressed [simultaneously](https://www.bloomberg.com/news/articles/2020-07-29/to-add-housing-zoning-code-reform-is-just-a-start)! (Allowing duplexes doesn't actually get you more duplexes unless you relax regulations around minimum lot sizes, parking, environmental review, etc.)
-
----
-
-## We Live In Exciting Times!
-
-This sort of ["gentle density"](https://www.strongtowns.org/journal/2019/12/11/is-gentle-density-enough) can create millions of new homes and reduce car-dependence without requiring a radical transformation of our neighborhoods.
-
-After decades of Urban Renewal, suburbanization, and disinvestment, we have a tremendous opportunity to repair the fabric of our cities.
-
-.pull-left[
-
-&lt;img src="img/gentle-density3.jpeg" width="600" style="display: block; margin: auto;" /&gt;
-]
-
-.pull-right[
-&lt;img src="img/gentle-density1.jpg" width="70%" style="display: block; margin: auto;" /&gt;
-
-&lt;img src="img/gentle-density2.jpg" width="70%" style="display: block; margin: auto;" /&gt;
-]
-
-
-???
-
-[US needs 3.8 million housing units](https://www.nytimes.com/2022/07/14/upshot/housing-shortage-us.html)
-    </textarea>
-<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
-<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-<script>var slideshow = remark.create({
-"highlightStyle": "github",
-"countIncrementalSlides": false
-});
-if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
-  window.dispatchEvent(new Event('resize'));
-});
-(function(d) {
-  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
-  if (!r) return;
-  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
-  d.head.appendChild(s);
-})(document);
-
-(function(d) {
-  var el = d.getElementsByClassName("remark-slides-area");
-  if (!el) return;
-  var slide, slides = slideshow.getSlides(), els = el[0].children;
-  for (var i = 1; i < slides.length; i++) {
-    slide = slides[i];
-    if (slide.properties.continued === "true" || slide.properties.count === "false") {
-      els[i - 1].className += ' has-continuation';
+</style>
+</div>
+<section id="my-favorite-municipal-political-party" class="level2">
+<h2 class="anchored" data-anchor-id="my-favorite-municipal-political-party">My Favorite Municipal Political Party</h2>
+<p>.pull-left[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/Jimmy-McMillan.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<p>–</p>
+<p>.pull-right[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/rent-is-too-damn-high-ballot.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<p>–</p>
+<div class="cell" data-layout-align="center">
+<iframe src="https://www.youtube.com/embed/NrOY3yKUH4k" width="300" height="400px" data-external="1">
+</iframe>
+</div>
+<p>???</p>
+<p>Yes, I told you that there are no parties in municipal politics, and that’s mostly true, with a few excellent exceptions.</p>
+<p>https://www.youtube.com/embed/NrOY3yKUH4k</p>
+<hr>
+</section>
+<section id="lets-play-guess-what-happened-to-the-rent" class="level2">
+<h2 class="anchored" data-anchor-id="lets-play-guess-what-happened-to-the-rent">Let’s Play “Guess What Happened To The Rent”</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06-housing_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="lets-play-guess-what-happened-to-the-rent-1" class="level2">
+<h2 class="anchored" data-anchor-id="lets-play-guess-what-happened-to-the-rent-1">Let’s Play “Guess What Happened To The Rent”</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06-housing_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p>Wait, I need a bit more space on the y-axis</p>
+<hr>
+</section>
+<section id="lets-play-guess-what-happened-to-the-rent-2" class="level2">
+<h2 class="anchored" data-anchor-id="lets-play-guess-what-happened-to-the-rent-2">Let’s Play “Guess What Happened To The Rent”</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="06-housing_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p><img src="img/home-prices-time-series.png" class="img-fluid"></p>
+<p>https://www.economist.com/graphic-detail/usa-house-prices</p>
+<hr>
+</section>
+<section id="this-week" class="level2">
+<h2 class="anchored" data-anchor-id="this-week">This Week</h2>
+<ol type="1">
+<li><p>Why does it matter if the rent is too high?</p></li>
+<li><p>What is causing the rent to be too high?</p></li>
+<li><p>How does politics make the rent too high?</p></li>
+<li><p>What can we do to make the rent less high?</p></li>
+</ol>
+<hr>
+<p>class: center, middle, inverse</p>
+</section>
+<section id="part-i.-why-does-it-matter" class="level2">
+<h2 class="anchored" data-anchor-id="part-i.-why-does-it-matter">Part I. Why Does It Matter?</h2>
+<p>???</p>
+</section>
+<section id="high-home-prices-cause" class="level2">
+<h2 class="anchored" data-anchor-id="high-home-prices-cause">High Home Prices Cause…</h2>
+<ul>
+<li><p>Financial Hardship</p></li>
+<li><p>Homelessness</p></li>
+<li><p>Gentrification/Displacement</p></li>
+<li><p>Inequality</p></li>
+<li><p>Declines in Economic Productivity</p></li>
+<li><p>Sprawl / Increased Carbon Emissions</p></li>
+<li><p>Reduced Fertility</p></li>
+</ul>
+<p>hardship (homelessness), family formation, productivity, STUCK, inequality (Henry George sign; public improvements all go to landowners); links to transportation policy - pushes people to suburbs and exurbs, long commute times; single-family only cities are financially precarious (Suburban Ponzi Scheme)</p>
+<hr>
+</section>
+<section id="rent-burden" class="level2">
+<h2 class="anchored" data-anchor-id="rent-burden">Rent Burden</h2>
+<p>When housing costs grow faster than income, renters must spend a growing share of their income on rent.</p>
+<p>–</p>
+<p>.pull-left[ <img src="img/nyt-rent-burden.png" class="img-fluid">]</p>
+<p>.pull-right[ <img src="img/Rent Burden_Fig 2_650px.png" class="img-fluid">]</p>
+<hr>
+</section>
+<section id="homelessness" class="level2">
+<h2 class="anchored" data-anchor-id="homelessness">Homelessness</h2>
+<p>Places with more expensive housing tend to have more people who live without it.</p>
+<p>–</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/homelessness-vs-housing-costs-colburn-adern.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p>Note: PIT stands for “point in time”, one method for estimating the rate of homelessness</p>
+<hr>
+</section>
+<section id="gentrification-displacement" class="level2">
+<h2 class="anchored" data-anchor-id="gentrification-displacement">Gentrification / Displacement</h2>
+<p>.pull-left[</p>
+<p><br></p>
+<ul>
+<li><p>In cities throughout the country, neighborhoods that were previously affordable have become expensive.</p></li>
+<li><p>Renters in these areas must make the difficult choice to accept an increasing rent burden or leave their homes and communities. ] .pull-right[ <br> <br> <img src="img/gentrification-sign.jpg" class="img-fluid">]</p></li>
+</ul>
+<p>???</p>
+<p>In many cities, the surge in rents has spurred gentrification and displacement of existing residents.</p>
+<hr>
+</section>
+<section id="urban-sprawl" class="level2">
+<h2 class="anchored" data-anchor-id="urban-sprawl">Urban Sprawl</h2>
+<p>We tend to think of displacement as something that only happens to low-income renters, but middle class families get displaced from places with high housing costs too.</p>
+<p>–</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/us_lower_48_american_commute.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="urban-sprawl-1" class="level2">
+<h2 class="anchored" data-anchor-id="urban-sprawl-1">Urban Sprawl</h2>
+<p>We tend to think of displacement as something that only happens to low-income renters, but middle class families get displaced from places with high housing costs too.</p>
+<p>.pull-left[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/co2-footprints.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<p>.pull-right[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/super-commmuters.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<p>???</p>
+<p>It’s just called “moving to the suburbs”</p>
+<p>https://www.apartmentlist.com/research/traffic-trains-or-teleconference-the-changing-american-commute</p>
+<p>Comes with all the climate change problems we discussed before.</p>
+<hr>
+</section>
+<section id="interstate-mobility" class="level2">
+<h2 class="anchored" data-anchor-id="interstate-mobility">Interstate Mobility</h2>
+<p><strong>Gut check:</strong> Are Americans more or less likely to move across state lines today than they were 100 years ago?</p>
+<p>–</p>
+<p>.pull-left[ - Surprisingly, the answer is less. Much less!]</p>
+<p>.pull-right[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/migration-rates.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<hr>
+</section>
+<section id="interstate-mobility-1" class="level2">
+<h2 class="anchored" data-anchor-id="interstate-mobility-1">Interstate Mobility</h2>
+<p><strong>Gut check:</strong> Are Americans more or less likely to move across state lines today than they were 100 years ago?</p>
+<p>.pull-left[ - Surprisingly, the answer is less. Much less!</p>
+<ul>
+<li>This has important economic effects. In the early 20th century, lots of people moved to places where they could earn higher wages. ]</li>
+</ul>
+<p>.pull-right[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/great-migration.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<hr>
+</section>
+<section id="interstate-mobility-2" class="level2">
+<h2 class="anchored" data-anchor-id="interstate-mobility-2">Interstate Mobility</h2>
+<p><strong>Gut check:</strong> Are Americans more or less likely to move across state lines today than they were 100 years ago?</p>
+<p>.pull-left[ - Surprisingly, the answer is less. Much less!</p>
+<ul>
+<li><p>This has important economic effects. In the early 20th century, lots of people moved to places where they could earn higher wages.</p></li>
+<li><p>As a result, we saw strong <strong>regional convergence</strong> .cite[(Ganong &amp; Shoag, 2017)].</p></li>
+</ul>
+<p>]</p>
+<p>.pull-right[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/ganong-shoag-fig1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<hr>
+</section>
+<section id="interstate-mobility-3" class="level2">
+<h2 class="anchored" data-anchor-id="interstate-mobility-3">Interstate Mobility</h2>
+<p><strong>Gut check:</strong> Are Americans more or less likely to move across state lines today than they were 100 years ago?</p>
+<p>.pull-left[ - Surprisingly, the answer is less. Much less!</p>
+<ul>
+<li><p>This has important economic effects. In the early 20th century, lots of people moved to places where they could earn higher wages.</p></li>
+<li><p>As a result, we saw strong <strong>regional convergence</strong> .cite[(Ganong &amp; Shoag, 2017)].</p></li>
+<li><p>Today, people are less likely to move to places with higher wages because so much of their paycheck would get eaten by housing. The result is declining regional convergence.</p></li>
+</ul>
+<p>]</p>
+<p>.pull-right[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/ganong-shoag-fig1b.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<hr>
+</section>
+<section id="other-economic-effects" class="level2">
+<h2 class="anchored" data-anchor-id="other-economic-effects">Other Economic Effects</h2>
+<ul>
+<li>When housing costs deter people from moving to high-wage cities, the entire country is poorer than it otherwise would be.</li>
+</ul>
+<p>–</p>
+<ul>
+<li>By some estimates, about <strong>8.9%</strong> poorer .cite[(Hsieh &amp; Moretti, 2019)].</li>
+</ul>
+<p>–</p>
+<ul>
+<li>Income inequality is higher too, as property owners receive a larger share of national income.</li>
+</ul>
+<p>–</p>
+<ul>
+<li>Capital’s share of national income rose from 32% to 40% in the years since WWII.</li>
+</ul>
+<p>–</p>
+<ul>
+<li>That increase is almost <strong>entirely</strong> due to the rising cost of housing .cite[(Rognile 2019)].</li>
+</ul>
+<hr>
+</section>
+<section id="summary-part-i" class="level2">
+<h2 class="anchored" data-anchor-id="summary-part-i">Summary (Part I)</h2>
+<p>The rising cost of housing is a root cause of so many problems bedeviling American society today:</p>
+<ul>
+<li><p>Financial Hardship</p></li>
+<li><p>Homelessness</p></li>
+<li><p>Gentrification/Displacement</p></li>
+<li><p>Inequality</p></li>
+<li><p>Declines in Economic Productivity</p></li>
+<li><p>Sprawl</p></li>
+<li><p>Climate Change</p></li>
+<li><p>Reduced Fertility</p></li>
+</ul>
+<p>–</p>
+<p>So why has the cost of housing gone up so dramatically, and what can we do about it?</p>
+<hr>
+<p>class: center, middle, inverse</p>
+</section>
+<section id="part-ii.-why-is-the-rent-so-high" class="level2">
+<h2 class="anchored" data-anchor-id="part-ii.-why-is-the-rent-so-high">Part II. Why Is The Rent So High?</h2>
+<hr>
+</section>
+<section id="why-is-the-rent-so-high" class="level2">
+<h2 class="anchored" data-anchor-id="why-is-the-rent-so-high">Why Is The Rent So High?</h2>
+<p>–</p>
+<ul>
+<li>Well, like the price of anything, the price of housing is determined by a combination of <strong>supply and demand</strong>.</li>
+</ul>
+<p>–</p>
+<ul>
+<li>When cities don’t build enough new housing to meet rising demand, they tend to be much more expensive .cite[Glaeser &amp; Gyourko (2018)].</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/permits-and-home-prices.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="why-is-the-rent-so-high-1" class="level2">
+<h2 class="anchored" data-anchor-id="why-is-the-rent-so-high-1">Why Is The Rent So High?</h2>
+<p>–</p>
+<ul>
+<li>Why can’t cities build enough housing to meet demand? Because in city after city, it’s illegal!</li>
+</ul>
+<p>–</p>
+<ul>
+<li>Nearly every US city zones most of its land for single-family detached homes. This severely restricts the number of housing units that can be built by right.</li>
+</ul>
+<p><a href="https://www.nytimes.com/interactive/2019/06/18/upshot/cities-across-america-question-single-family-zoning.html"><img src="img/single-family-zoning-nyt.png" class="img-fluid"></a></p>
+<hr>
+</section>
+<section id="zoning-and-building-codes-create-housing-scarcity" class="level2">
+<h2 class="anchored" data-anchor-id="zoning-and-building-codes-create-housing-scarcity">Zoning and Building Codes Create Housing Scarcity</h2>
+<p>Even in places like New York City where multifamily housing is permitted, zoning laws significantly restrict how much housing can be built compared to a century ago.</p>
+<p><br></p>
+<p><a href="https://www.nytimes.com/interactive/2016/05/19/upshot/forty-percent-of-manhattans-buildings-could-not-be-built-today.html"><img src="img/40-percent-manhattan.png" class="img-fluid"></a></p>
+<hr>
+</section>
+<section id="zoning-and-building-codes-create-housing-scarcity-1" class="level2">
+<h2 class="anchored" data-anchor-id="zoning-and-building-codes-create-housing-scarcity-1">Zoning and Building Codes Create Housing Scarcity</h2>
+<p>Every US city has dozens of well-meaning regulations that, in the aggregate, reduce the number of housing units that can be built and drive up the cost of housing:</p>
+<p>.pull-left[ - Minimum Lot Sizes - Building Height Maximums - Setbacks - Parking Mandates - Historic Preservation Ordinances - <a href="https://slate.com/business/2021/12/staircases-floor-plan-twitter-housing-apartments.html">Second Egress Requirements</a>]</p>
+<p>.pull-right[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/stair-daddy.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<hr>
+</section>
+<section id="wait-a-minute." class="level2">
+<h2 class="anchored" data-anchor-id="wait-a-minute.">Wait A Minute.</h2>
+<p>–</p>
+<p>How do we know that new building doesn’t make the problem <strong>worse</strong>?</p>
+<p>–</p>
+<p>.pull-left[ <img src="img/the-mark-athens.jpg" class="img-fluid">]</p>
+<p>.pull-right[ <img src="img/the-mark-amenities.png" class="img-fluid">]</p>
+<p>–</p>
+<p>New housing is often wildly unaffordable. How can building new housing bring down rents if <em>this</em> is what gets built?</p>
+<hr>
+</section>
+<section id="filtering" class="level2">
+<h2 class="anchored" data-anchor-id="filtering">“Filtering”</h2>
+<p>It can be helpful to imagine what would happen if The Mark were torn down and replaced with a parking lot. What happens to the 1,500 renters living there?</p>
+<p>–</p>
+<ul>
+<li>Those 1,500 renters still have to live somewhere! So they take all the money they would have spent on The Mark and bid up the cost of housing throughout the rest of the market.</li>
+</ul>
+<p>–</p>
+<ul>
+<li>In this way, even high-cost new housing can reduce the <em>average</em> cost of housing in a city, by “filtering” out the highest-income households .cite[(Bratu et al.&nbsp;2023)].</li>
+</ul>
+<p>???</p>
+<p>928 beds (Phase I), 446 beds (Phase II) https://www.redandblack.com/athensnews/the-mark-athens-to-expand-add-more-than-400-new-beds/article_d5ca095c-bf04-11e9-a476-0bf42f0cb720.html</p>
+<hr>
+</section>
+<section id="how-do-we-know-new-supply-helps-bring-down-rent" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-we-know-new-supply-helps-bring-down-rent">How Do We Know New Supply Helps Bring Down Rent?</h2>
+<p>First, there’s cross-city evidence .cite[Glaeser &amp; Gyourko (2018)]. Places with more building are less expensive, all else equal.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/permits-and-home-prices.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="how-do-we-know-new-supply-helps-bring-down-rent-1" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-we-know-new-supply-helps-bring-down-rent-1">How Do We Know New Supply Helps Bring Down Rent?</h2>
+<p>We can also look at cases where there was a big change in housing policy, like Minneapolis, which eliminated single-family zoning in 2018:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/minneapolis-ft.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="how-do-we-know-new-supply-helps-bring-down-rent-2" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-we-know-new-supply-helps-bring-down-rent-2">How Do We Know New Supply Helps Bring Down Rent?</h2>
+<p>Or Auckland, New Zealand, which implemented a major upzoning in 2016:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/auckland-ft.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p>Lotta back and forth on this one. Here are the relevant papers / blog posts. I ultimately come down more on the side of “allowing more building ends up creating more buildings”:</p>
+<ul>
+<li><a href="https://cdn.auckland.ac.nz/assets/business/about/our-research/research-institutes-and-centres/Economic-Policy-Centre--EPC-/006WP%20-%204.pdf">Paper</a></li>
+<li><a href="https://www.fresheconomicthinking.com/p/the-auckland-myth-there-is-no-evidence">Auckland Myth</a></li>
+<li><a href="https://onefinaleffort.com/blog/a-response-to-murray-and-helm-on-aucklands-upzoning">Response</a></li>
+</ul>
+<hr>
+</section>
+<section id="summary-part-ii" class="level2">
+<h2 class="anchored" data-anchor-id="summary-part-ii">Summary (Part II)</h2>
+<ul>
+<li><p>The price of housing is a product of supply and demand.</p></li>
+<li><p>In the most expensive cities, demand is rising faster than supply can keep up.</p></li>
+<li><p>Zoning restrictions make it illegal to build new housing by right in many of the most high-demand neighborhoods.</p>
+<ul>
+<li>The US is a free-market economy for most products people buy, but for housing it’s practically a command economy. Every new home that gets built is ultimately a political choice.</li>
+</ul></li>
+</ul>
+<p>–</p>
+<p>So why don’t we choose to build more homes?</p>
+<p>–</p>
+<p>That brings us to Part III.</p>
+<hr>
+<p>class: center, middle, inverse</p>
+</section>
+<section id="part-iii.-the-political-barriers-to-new-housing" class="level2">
+<h2 class="anchored" data-anchor-id="part-iii.-the-political-barriers-to-new-housing">Part III. The Political Barriers To New Housing</h2>
+<hr>
+</section>
+<section id="a-zoning-board-meeting" class="level2">
+<h2 class="anchored" data-anchor-id="a-zoning-board-meeting">A Zoning Board Meeting</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/cumming-city-meeting.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>–</p>
+<p><strong>Exercise</strong>: What are the five most common concerns brought up by residents at these sorts of meetings?</p>
+<hr>
+</section>
+<section id="neighborhood-defenders" class="level2">
+<h2 class="anchored" data-anchor-id="neighborhood-defenders">Neighborhood Defenders</h2>
+<p>.pull-left[ .cite[Einstein, Glick &amp; Palmer (2019)] read <em>thousands</em> of comments from zoning/planning meetings in Massachusetts.</p>
+<ul>
+<li><p>Comments opposing new construction 4x more frequent than comments supporting new construction.</p></li>
+<li><p>Most common concerns:</p>
+<ul>
+<li>Traffic (23%)</li>
+<li>Environment (19%)</li>
+<li>Flooding (15%)</li>
+<li>Safety (15%)</li>
+<li>Density (12%)</li>
+<li>Aesthetics (12%)</li>
+<li>Septic/Water Systems (11%)</li>
+<li>Neighborhood Character (10%)</li>
+<li>Parking (10%)</li>
+</ul></li>
+</ul>
+<p>]</p>
+<p>.pull-right[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/neighborhood-defenders-cover.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<hr>
+</section>
+<section id="this-illustrates-a-few-important-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="this-illustrates-a-few-important-concepts">This Illustrates A Few Important Concepts</h2>
+<ol type="1">
+<li><p>Housing as a Collective Action Problem</p></li>
+<li><p>Vetocracy</p></li>
+<li><p>Horizontal Fragmentation</p></li>
+<li><p>Who Represents The Renters?</p></li>
+</ol>
+<hr>
+</section>
+<section id="housing-as-a-collective-action-problem" class="level2">
+<h2 class="anchored" data-anchor-id="housing-as-a-collective-action-problem">1. Housing As A Collective Action Problem</h2>
+<p>–</p>
+<p>The Logic of Collective Action .cite[(Olson, 1965)]:</p>
+<ul>
+<li><p>Some policies have <strong>diffuse benefits</strong> and <strong>concentrated costs</strong>.</p>
+<ul>
+<li>Free trade is a classic example.</li>
+</ul></li>
+<li><p>It is difficult to organize collective action in favor of these policies. (Nobody benefits enough to care deeply.)</p></li>
+<li><p>But it is very easy to organize interest groups in opposition.</p></li>
+</ul>
+<hr>
+</section>
+<section id="housing-as-a-collective-action-problem-1" class="level2">
+<h2 class="anchored" data-anchor-id="housing-as-a-collective-action-problem-1">1. Housing As A Collective Action Problem</h2>
+<p>Zoning reform has that same flavor .cite[(Schleicher, 2013)]:</p>
+<p>–</p>
+<ul>
+<li><p>New construction has <strong>diffuse</strong> benefits:</p>
+<ul>
+<li>Slightly lower rents for everybody!</li>
+</ul></li>
+</ul>
+<p>–</p>
+<ul>
+<li><p>And <strong>concentrated</strong> costs borne by neighbors:</p>
+<ul>
+<li>More cars on the street</li>
+<li>Harder to find parking</li>
+<li>Crowding neighborhood schools and parks</li>
+<li>Building shadows block the sun from my garden!</li>
+<li>Etc.</li>
+</ul></li>
+</ul>
+<p>–</p>
+<ul>
+<li>So it’s much easier to organize opposition to new housing (“Homevoters”, “Neighborhood Defenders”, “NIMBYs”, “BANANAs”) than it is to organize support.</li>
+</ul>
+<hr>
+</section>
+<section id="vetocracy" class="level2">
+<h2 class="anchored" data-anchor-id="vetocracy">2. Vetocracy</h2>
+<p>Combine that with political institutions where every new housing project must jump through a series of hoops to get approved…</p>
+<p>–</p>
+<ul>
+<li>Neighborhood Advisory Committees</li>
+<li>Zoning Boards of Appeals</li>
+<li>Planning Commissions</li>
+<li>Historic Preservation District approval (where applicable)</li>
+<li>Environmental Review (required in states like New York and California)</li>
+<li>City Council Approval</li>
+<li>Mayoral Veto</li>
+</ul>
+<p>–</p>
+<p>…and you get a situation where a committed opposition has multiple opportunities to block or significantly delay new housing.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/sf-chronicle-permits.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="horizontal-fragmentation" class="level2">
+<h2 class="anchored" data-anchor-id="horizontal-fragmentation">3. Horizontal Fragmentation</h2>
+<p>This is all further exacerbated by horizontal fragmentation.</p>
+<p>–</p>
+<ul>
+<li><p>The benefits of new construction accrue to the entire metropolitan area.</p></li>
+<li><p>But the negative externalities are borne locally.</p></li>
+</ul>
+<p>–</p>
+<ul>
+<li>Cities are reticent to build new housing if it means they bear all the costs but see only a small share of the benefits.</li>
+</ul>
+<p>–</p>
+<p>And the people who <em>most</em> benefit from a city building new housing – potential renters – don’t get a vote, because they don’t live there!</p>
+<hr>
+</section>
+<section id="who-represents-the-renters" class="level2">
+<h2 class="anchored" data-anchor-id="who-represents-the-renters">4. Who Represents The Renters?</h2>
+<p>This all might be okay if public officeholders were looking out for the interests of renters. But at every level of government – city councilmembers, mayors, state legislators, members of Congress – renters are significantly underrepresented.</p>
+<p>–</p>
+<ul>
+<li>Roughly 1/3 of Americans rent, but over 93% of public officials are homeowners .cite[(Einstein, Ornstein, &amp; Palmer, 2022)].</li>
+</ul>
+<p>–</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/scatter_owners.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>???</p>
+<p>Lots of possible reasons for this: renters are less tied to their community, likely to be younger, less likely to run for office; some evidence that voters are less likely to vote for someone they know is a renter.</p>
+<p>homevoters, neighborhood defenders (who represents the renters?), collective action problems/szea, vetocracy, fragmentation (the people who’d most benefit from upzoning don’t get a vote!)</p>
+<hr>
+</section>
+<section id="summary-part-iii" class="level2">
+<h2 class="anchored" data-anchor-id="summary-part-iii">Summary (Part III)</h2>
+<ul>
+<li><p>Because new housing has concentrated costs and diffuse benefits, it is easier to mobilize opposition than support.</p></li>
+<li><p>Multiple veto points to modify zoning codes create status quo bias.</p></li>
+<li><p>Horizontal fragmentation means that cities don’t internalize all the benefits of new housing.</p></li>
+<li><p>The biggest beneficiaries of new construction – renters – are underrepresented at every stage of the decision-making process.</p></li>
+</ul>
+<p>–</p>
+<p>How do you overcome all these political obstacles? Let’s end on a note of optimism (Part IV).</p>
+<hr>
+<p>class: center, middle, inverse</p>
+</section>
+<section id="part-iv.-going-forward" class="level2">
+<h2 class="anchored" data-anchor-id="part-iv.-going-forward">Part IV. Going Forward</h2>
+<hr>
+</section>
+<section id="the-missing-middle" class="level2">
+<h2 class="anchored" data-anchor-id="the-missing-middle">The “Missing Middle”</h2>
+<p>Our cities used to build a wide range of housing options for people at different stages of life, but in most places we’ve now regulated them out of existence.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/missing-middle.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>–</p>
+<p>The most promising reforms of the past decade involve efforts to legalize this “missing middle”.</p>
+<p>???</p>
+<p>Next time you walk around Athens, notice what types of homes you see. All the “Missing Middle” was built a long time ago and grandfathered in.</p>
+<p>The path from housing scarcity to housing abundance doesn’t require radical deregulation. It can be incremental and organic.</p>
+<p>missing middle (includes things like ADUs) / incremental densification, YIMBY movement, election timing, progress at the state level</p>
+<hr>
+</section>
+<section id="state-level-reforms" class="level2">
+<h2 class="anchored" data-anchor-id="state-level-reforms">State-Level Reforms</h2>
+<p>The most consequential zoning reforms are often at the state-level, where lawmakers can internalize the benefits of housing growth.</p>
+<p>–</p>
+<p>For example, California has passed a torrent of legislation since 2019:</p>
+<ul>
+<li><p><strong>AB 68 (2019)</strong>: Legalizes Accessory Dwelling Units (ADUs) statewide</p></li>
+<li><p><strong>AB 725 (2020)</strong>: Requires municipalities to permit some Missing Middle housing</p></li>
+<li><p><strong>SB 9 (2021)</strong>: Allows duplexes in single-family zones</p></li>
+<li><p><strong>SB 10 (2021)</strong>: Allows multifamily housing near transit without triggering environmental review</p></li>
+<li><p><strong>SB 886 (2022)</strong>: Streamlines the approval process for universities to build student housing</p></li>
+<li><p><strong>AB 2097 (2022)</strong>: Prohibits parking mandates within 1/2 mile of public transit</p></li>
+</ul>
+<p>–</p>
+<p>State level is where localized opposition holds the least influence, and broad-based interest groups that want to promote economic growth / housing affordability are more likely to be able to wield influence.</p>
+<p>???</p>
+<p>All these interlocking regulations need to be addressed <a href="https://www.bloomberg.com/news/articles/2020-07-29/to-add-housing-zoning-code-reform-is-just-a-start">simultaneously</a>! (Allowing duplexes doesn’t actually get you more duplexes unless you relax regulations around minimum lot sizes, parking, environmental review, etc.)</p>
+<hr>
+</section>
+<section id="we-live-in-exciting-times" class="level2">
+<h2 class="anchored" data-anchor-id="we-live-in-exciting-times">We Live In Exciting Times!</h2>
+<p>This sort of <a href="https://www.strongtowns.org/journal/2019/12/11/is-gentle-density-enough">“gentle density”</a> can create millions of new homes and reduce car-dependence without requiring a radical transformation of our neighborhoods.</p>
+<p>After decades of Urban Renewal, suburbanization, and disinvestment, we have a tremendous opportunity to repair the fabric of our cities.</p>
+<p>.pull-left[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/gentle-density3.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<p>.pull-right[</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/gentle-density1.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/gentle-density2.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>]</p>
+<p>???</p>
+<p><a href="https://www.nytimes.com/2022/07/14/upshot/housing-shortage-us.html">US needs 3.8 million housing units</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
   }
-  var s = d.createElement("style");
-  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
-  d.head.appendChild(s);
-})(document);
-// delete the temporary CSS (for displaying all slides initially) when the user
-// starts to view slides
-(function() {
-  var deleted = false;
-  slideshow.on('beforeShowSlide', function(slide) {
-    if (deleted) return;
-    var sheets = document.styleSheets, node;
-    for (var i = 0; i < sheets.length; i++) {
-      node = sheets[i].ownerNode;
-      if (node.dataset["target"] !== "print-only") continue;
-      node.parentNode.removeChild(node);
-    }
-    deleted = true;
-  });
-})();
-// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
-// screen reader (see PR #262)
-(function(d) {
-  let res = {};
-  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
-    const t = tr.querySelector('td:nth-child(2)').innerText;
-    tr.querySelectorAll('td:first-child .key').forEach(key => {
-      const k = key.innerText;
-      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
-    });
-  });
-  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
-})(document);
-(function() {
-  "use strict"
-  // Replace <script> tags in slides area to make them executable
-  var scripts = document.querySelectorAll(
-    '.remark-slides-area .remark-slide-container script'
-  );
-  if (!scripts.length) return;
-  for (var i = 0; i < scripts.length; i++) {
-    var s = document.createElement('script');
-    var code = document.createTextNode(scripts[i].textContent);
-    s.appendChild(code);
-    var scriptAttrs = scripts[i].attributes;
-    for (var j = 0; j < scriptAttrs.length; j++) {
-      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
-    }
-    scripts[i].parentElement.replaceChild(s, scripts[i]);
-  }
-})();
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
     }
   }
-})();</script>
-
-<script>
-slideshow._releaseMath = function(el) {
-  var i, text, code, codes = el.getElementsByTagName('code');
-  for (i = 0; i < codes.length;) {
-    code = codes[i];
-    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
-      text = code.textContent;
-      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
-          /^\$\$(.|\s)+\$\$$/.test(text) ||
-          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
-        code.outerHTML = code.innerHTML;  // remove <code></code>
-        continue;
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
       }
     }
-    i++;
+    return false;
   }
-};
-slideshow._releaseMath(document);
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
 </script>
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-(function () {
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
-  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
-  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
-    script.src  = script.src.replace(/^https?:/, '');
-  document.getElementsByTagName('head')[0].appendChild(script);
-})();
-</script>
-  </body>
-</html>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

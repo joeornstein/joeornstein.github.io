@@ -9,40 +9,6 @@ The main use case in mind when implementing the plugin is classroom usage in whi
 
 The plugin records all drawings made so that they can be play backed using the `autoSlide` feature or the `audio-slideshow` plugin.
 
-<<<<<<< HEAD
-[Check out the live demo](https://rajgoel.github.io/reveal.js-demos/chalkboard-demo.html)
-
-The chalkboard effect is based on [Chalkboard](https://github.com/mmoustafa/Chalkboard) by Mohamed Moustafa.
-
-## Installation
-
-Copy the file `plugin.js` and the  `img` directory into the plugin folder of your reveal.js presentation, i.e. `plugin/chalkboard` and load the plugin as shown below.
-
-```html
-<script src="plugin/chalkboard/plugin.js"></script>
-<script src="plugin/customcontrols/plugin.js"></script>
-
-<script>
-    Reveal.initialize({
-        // ...
-        plugins: [ RevealChalkboard, RevealCustomControls ],
-        // ...
-    });
-</script>
-```
-
-The following stylesheet
-```html
-<link rel="stylesheet" href="plugin/chalkboard/style.css">
-<link rel="stylesheet" href="plugin/customcontrols/style.css">
-```
-has to be included to the `head` section of you HTML-file.
-
-
-In order to include buttons for opening and closing the notes canvas or the chalkboard you should make sure that `font-awesome` is available. The easiest way is to include
-```
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-=======
 
 [Check out the demo](https://rajgoel.github.io/reveal.js-demos/?topic=chalkboard)
 
@@ -88,7 +54,6 @@ Reveal.initialize({
 In order to include buttons for opening and closing the notes canvas or the chalkboard you should make sure that `font-awesome` is available. The easiest way is to include
 ```
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins/menu/font-awesome/css/fontawesome.css">
->>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 ```
 to the ```head``` section of you HTML-file.
 
@@ -101,10 +66,6 @@ to the ```head``` section of you HTML-file.
 - Click the left mouse button and drag to write on notes canvas or chalkboard
 - Click the right mouse button and drag to wipe away previous drawings
 - Touch and move to write on notes canvas or chalkboard
-<<<<<<< HEAD
-- Touch and hold for half a second, then move to wipe away previous drawings
-=======
->>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 
 ### Keyboard
 - Press the 'BACKSPACE' key to delete all chalkboard drawings
@@ -186,39 +147,17 @@ Reveal.initialize({
                 { color: 'rgba(255,220,0,0.5)', cursor: 'url(' + path + 'img/chalk-yellow.png), auto'}
         ]
     },
-<<<<<<< HEAD
-    customcontrols: {
-  		controls: [
-  			{ icon: '<i class="fa fa-pen-square"></i>',
-  			  title: 'Toggle chalkboard (B)',
-  			  action: 'RevealChalkboard.toggleChalkboard();'
-  			},
-  			{ icon: '<i class="fa fa-pen"></i>',
-  			  title: 'Toggle notes canvas (C)',
-  			  action: 'RevealChalkboard.toggleNotesCanvas();'
-  			}
-  		]
-    },
-=======
->>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
     // ...
 
 });
 ```
 
-<<<<<<< HEAD
-=======
 ## Credits
 
 The chalkboard effect is based on [Chalkboard](https://github.com/mmoustafa/Chalkboard) by Mohamed Moustafa.
->>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
 
 ## License
 
 MIT licensed
 
-<<<<<<< HEAD
-Copyright (C) 2021 Asvin Goel
-=======
 Copyright (C) 2023 Asvin Goel
->>>>>>> ff31673fed1ee9a7f37beddca696c43e8d51489c
