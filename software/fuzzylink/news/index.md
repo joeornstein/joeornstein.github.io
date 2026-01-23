@@ -1,0 +1,41 @@
+# Changelog
+
+## fuzzylink 0.3.0
+
+- API calls for language model prompts are now passed through the
+  `ellmer` package, improving speed, error handling, and rate limits.
+
+## fuzzylink 0.2.5
+
+CRAN release: 2025-08-29
+
+- Updated documentation with publication DOI
+
+## fuzzylink 0.2.4
+
+CRAN release: 2025-08-18
+
+- Patched a bug introduced in 0.2.3, crashing the algorithm when there
+  are no exact matches.
+
+## fuzzylink 0.2.3
+
+- The algorithm now omits exact matches from the training set during the
+  active learning loop. This avoids the superfluous step of labeling
+  exact matches with the language model, and patches a bug wherein too
+  many exact matches caused the loop to terminate prematurely.
+
+## fuzzylink 0.2.2
+
+- The algorithm now drops missing observations from `dfA` and `dfB` with
+  a warning.
+
+## fuzzylink 0.2.1
+
+CRAN release: 2025-06-14
+
+- Updated package documentation and console messages.
+
+## fuzzylink 0.2.0
+
+- Initial CRAN submission.
