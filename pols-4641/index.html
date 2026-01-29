@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Joe Ornstein">
-<meta name="dcterms.date" content="2026-01-22">
+<meta name="dcterms.date" content="2026-01-29">
 
 <title>The Science of Cities</title>
 <style>
@@ -38,10 +38,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-39f7db0e33c7e7e0f37d956b9f0706d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -208,7 +208,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 22, 2026</p>
+      <p class="date">January 29, 2026</p>
     </div>
   </div>
   
@@ -244,7 +244,6 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Bettencourt, Luís M. A., et al.&nbsp;“Growth, Innovation, Scaling, and the Pace of Life in Cities.” <em>Proceedings of the National Academy of Sciences</em> 104, no. 17 (2007): 7301–6. <a href="https://doi.org/10.1073/pnas.0610172104" class="uri">https://doi.org/10.1073/pnas.0610172104</a>.</p></li>
 <li><p>Schiff, Nathan. “Cities and Product Variety: Evidence from Restaurants.” <em>Journal of Economic Geography</em> 15, no. 6 (2015): 1085–123. <a href="https://doi.org/10.1093/jeg/lbu040" class="uri">https://doi.org/10.1093/jeg/lbu040</a>.</p></li>
 <li><p>Carlino, Gerald A., Satyajit Chatterjee, and Robert M. Hunt. “Urban Density and the Rate of Invention.” <em>Journal of Urban Economics</em> 61, no. 3 (2007): 389–419. <a href="https://doi.org/10.1016/j.jue.2006.08.003" class="uri">https://doi.org/10.1016/j.jue.2006.08.003</a>.</p></li>
-<li><p>Glaeser, Edward L. “Cities and Warfare: The Impact of Terrorism on Urban Form.” <em>Journal of Urban Economics</em> 51 (2002): 205–24. <a href="https://doi.org/10.1006/juec.2001.2262" class="uri">https://doi.org/10.1006/juec.2001.2262</a>.</p></li>
 <li><p>Glaeser, Edward L., Jed Kolko, and Albert Saiz. “Consumer City.” <em>Journal of Economic Geography</em> 1, no. 1 (2001): 27–50. <a href="https://doi.org/10.1093/jeg/1.1.27" class="uri">https://doi.org/10.1093/jeg/1.1.27</a>.</p></li>
 <li><p>Accetturo, Antonio, Michele Cascarano, and Guido de Blasio. “Pirate Attacks and the Shape of the Italian Urban System.” <em>Working Paper</em>, 2020, 49.</p></li>
 <li><p>Davis, Donald R., and David E. Weinstein. “Bones, Bombs, and Breakpoints: The Geography of Economic Activity.” <em>The American Economic Review</em> 92, no. 5 (2002): 1269–89. <a href="https://doi.org/10.1257/000282802762024502" class="uri">https://doi.org/10.1257/000282802762024502</a>.</p></li>
@@ -657,6 +656,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -767,6 +768,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
+      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
