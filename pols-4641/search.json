@@ -3028,7 +3028,7 @@
     "href": "slides/foot-voting.html#simulation-1-setup",
     "title": "Voting With Your Feet",
     "section": "Simulation 1: Setup",
-    "text": "Simulation 1: Setup\n\nImagine that you are a person trying to decide where to live.\nYou only care about three things:\n\nPlaying pickleball.\nReading books at your local public library.\nNot paying too much in taxes.\n\nEveryone take a sheet of paper, which describes exactly how much you care about each of these things.\n\n\nExample Set of Values:\n\n\n\n\n\nPeople per Pickleball Court\nValue\n\n\n\n\n10\n$100\n\n\n5\n$190\n\n\n2\n$220\n\n\n1\n$220\n\n\n\n\n\n\n\nLibrary Books Per Person\nValue\n\n\n\n\n0\n$0\n\n\n1\n$30\n\n\n2\n$50\n\n\n3\n$65"
+    "text": "Simulation 1: Setup\n\nImagine that you are a person trying to decide where to live.\nYou only care about three things:\n\nPlaying pickleball.\nReading books at your local public library.\nNot paying too much in taxes.\n\nEveryone take a sheet of paper, which describes exactly how much you care about each of these things.\n\n\nExample Set of Values:\n\n\n\n\n\nPeople per Pickleball Court\nValue\n\n\n\n\n10\n$100\n\n\n5\n$190\n\n\n2\n$220\n\n\n1\n$220\n\n\n\n\n\n\n\nBooks in Library\nValue\n\n\n\n\n0\n$0\n\n\n1\n$30\n\n\n2\n$50\n\n\n3\n$65"
   },
   {
     "objectID": "slides/foot-voting.html#simulation-1-towns",
