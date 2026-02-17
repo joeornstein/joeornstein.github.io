@@ -3035,14 +3035,14 @@
     "href": "slides/foot-voting.html#simulation-1-towns",
     "title": "Voting With Your Feet",
     "section": "Simulation 1: Towns",
-    "text": "Simulation 1: Towns\n\nIn order to get pickleball and library books, you need to organize yourselves into towns.\nIn each town, choose one person to be mayor. Ideally someone trustworthy. Someone who doesn’t mind doing a little arithmetic.\nThe mayor is responsible for choosing the town’s policy bundle.\n\nThe “lump sum” tax rate (i.e. each resident must pay $X in taxes).\nHow many pickleball courts the town will maintain.\nHow many books will be in the town’s public library.\n\nThe mayor will receive a sheet of paper describing the costs for each level of public goods.\n\nYou must raise enough in taxes to cover your costs!"
+    "text": "Simulation 1: Towns\n\nIn order to get pickleball and library books, you need to organize yourselves into towns.\nIn each town, choose one person to be mayor. Ideally someone trustworthy. Someone who doesn’t mind doing a little arithmetic.\nThe mayor is responsible for choosing the town’s policy bundle.\n\nThe “lump sum” tax rate (i.e. each resident must pay $X in taxes).\nHow many pickleball courts the town will maintain.\nHow many books will be in the town’s public library.\n\nThe mayor will receive a sheet of paper describing the costs for each level of public goods.\n\nYou must raise enough in taxes to cover your costs!\n\n\n\nEconomies of scale in public service delivery are, arguably, the reason why we form governments!"
   },
   {
     "objectID": "slides/foot-voting.html#simulation-1-sorting",
     "href": "slides/foot-voting.html#simulation-1-sorting",
     "title": "Voting With Your Feet",
     "section": "Simulation 1: Sorting",
-    "text": "Simulation 1: Sorting\n\nYou may, at any point during the simulation:\n\nMove to a different town (“migration”).\nCreate a brand new town, declaring yourself mayor (“secession”).\nDissolve a town where you are mayor and join another town (“amalgamation”).\n\nMayors may adjust their town’s policy bundle in response to new migration, secession, or amalgamation.\nYou have 10 minutes to make yourselves as happy as possible.\nGo!"
+    "text": "Simulation 1: Sorting\n\nYou may, at any point during the simulation:\n\nMove to a different town (“migration”).\nCreate a brand new town, declaring yourself mayor (“secession”).\nDissolve a town where you are mayor and join another town (“amalgamation”).\n\nMayors may freely adjust their town’s policy bundle in response to new migration, secession, or amalgamation.\nYou have 10 minutes to make yourselves as happy as possible.\nGo!"
   },
   {
     "objectID": "slides/foot-voting.html#simulation-1-debrief",
@@ -3091,6 +3091,6 @@
     "href": "slides/foot-voting.html#key-takeaways",
     "title": "Voting With Your Feet",
     "section": "Key Takeaways",
-    "text": "Key Takeaways\n\nThe Tiebout (1956) model (Simulation 1) suggests that some types of public spending are best handled at the local level:\n\nLots of preference diversity\nLimited economies of scale\nNo “spillovers” across geographic boundaries\n\nResidential mobility limits the types of public spending that is feasible for local governments, particularly redistributive spending (Simulation 2).\nTax competition for mobile capital can yield a “Race to the Bottom” (Simulation 3).\n\nScholars disagree on how good a model this is of local tax incentives (Jensen, Malesky, and Walsh 2015).\nBut it’s a very good model of the competition for sports stadiums!\nMore on that in the Deep Dives."
+    "text": "Key Takeaways\n\nIs 90,000 too many governments? Well, it depends what you want to achieve…\nThe Tiebout (1956) model (Simulation 1) suggests that some types of public spending are best handled by competing local governments:\n\nLots of preference diversity\nLimited economies of scale\nNo “spillovers” across geographic boundaries\n\nResidential mobility limits the types of public spending that is feasible for local governments, particularly redistribution (Simulation 2).\nTax competition for mobile capital can yield a “Race to the Bottom” (Simulation 3).\n\nScholars disagree on how good a model this is of local tax incentives (Jensen, Malesky, and Walsh 2015).\nBut it’s a very good model of the competition for sports stadiums!\nMore on that in the Deep Dives."
   }
 ]
