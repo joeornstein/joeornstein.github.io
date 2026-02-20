@@ -1,0 +1,25 @@
+<style>
+iframe { overflow: hidden; }
+</style>
+<script>
+window.addEventListener('load', function () {
+  if (typeof Reveal === 'undefined') return;
+
+  // 1. Eagerly trigger all iframes to start loading in the background.
+  document.querySelectorAll('iframe').forEach(function (iframe) {
+    iframe.scrolling = 'no';
+    var src = iframe.src;
+    if (src) { iframe.src = ''; iframe.src = src; }
+  });
+
+  // 2. On each slide change, reload the iframe(s) on the incoming slide
+  //    as a fallback for any that didn't finish rendering in time.
+  Reveal.on('slidechanged', function (event) {
+    event.currentSlide.querySelectorAll('iframe').forEach(function (iframe) {
+      var src = iframe.src;
+      iframe.src = '';
+      iframe.src = src;
+    });
+  });
+});
+</script>
