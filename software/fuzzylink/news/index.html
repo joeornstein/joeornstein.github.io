@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">fuzzylink</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,21 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.3.0" id="fuzzylink-030">fuzzylink 0.3.0<a class="anchor" aria-label="anchor" href="#fuzzylink-030"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.4.0" id="fuzzylink-040">fuzzylink 0.4.0<a class="anchor" aria-label="anchor" href="#fuzzylink-040"></a></h2>
+<ul><li>
+<code><a href="../reference/fuzzylink.html">fuzzylink()</a></code> now supports Anthropic Claude (e.g. <code>'claude-sonnet-4-5-20250929'</code>) and Mistral (e.g. <code>'mistral-large-latest'</code>) models in addition to OpenAI.</li>
+<li>Updated default model to <code>gpt-5.2</code>.</li>
+<li>Active learning loop now reports rolling gradient and stopping threshold in real time.</li>
+<li>Fixed a potential edge case in <code>get_cutoff()</code> where NaN F1 scores could cause silent failures on datasets with no true matches.</li>
+<li>Removed unused internal functions (<code>get_training_set()</code>, <code>hand_label()</code>, <code>estimate_tokens()</code>).</li>
+<li>Fixed a bug in <code><a href="../reference/check_match.html">check_match()</a></code> where verbose LLM responses (e.g. from Claude or Mistral) could cause match labels to be parsed incorrectly. Labels are now normalized by extracting the first word of each response.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.1" id="fuzzylink-031">fuzzylink 0.3.1<a class="anchor" aria-label="anchor" href="#fuzzylink-031"></a></h2>
+<ul><li>Patched <code><a href="../reference/check_match.html">check_match()</a></code> to return labels from legacy OpenAI models.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.0" id="fuzzylink-030">fuzzylink 0.3.0<a class="anchor" aria-label="anchor" href="#fuzzylink-030"></a></h2><p class="text-muted">CRAN release: 2026-01-23</p>
 <ul><li>API calls for language model prompts are now passed through the <code>ellmer</code> package, improving speed, error handling, and rate limits.</li>
 </ul></div>
     <div class="section level2">
@@ -69,7 +83,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer></div>
