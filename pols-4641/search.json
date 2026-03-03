@@ -2937,7 +2937,7 @@
     "href": "index.html#week-6-33-elections",
     "title": "The Science of Cities",
     "section": "Week 6 (3/3): Elections",
-    "text": "Week 6 (3/3): Elections\nHow is electoral politics different at the local level?\n\nRequired Reading\n\nSchleicher, David. “Why Is There No Partisan Competition in City Council Elections?: The Role of Election Law.” Journal of Law & Politics 23 (2007): 419.\n\n\n\nLecture\n\nSlides forthcoming\n\n\n\nDeep Dives\n\nTrounstine, Jessica. “Dominant Regimes and the Demise of Urban Democracy.” Journal of Politics 68, no. 4 (2006): 879–93. https://doi.org/10.1111/j.1468-2508.2006.00476.x.\nGaudette, Jennifer. “Polarization in Police Union Politics.” American Journal of Political Science 69, no. 3 (2025): 961–80. https://doi.org/10.1111/ajps.12932.\nHartney, Michael T., and Vladimir Kogan. “The Politics of Teachers’ Union Endorsements.” American Journal of Political Science 69, no. 3 (2025): 1163–79. https://doi.org/10.1111/ajps.12922.\nColner, Jonathan. “Running Towards Rankings: Ranked Choice Voting’s Impact on Candidate Entry and Descriptive Representation.” SSRN Electronic Journal, ahead of print, 2023. https://doi.org/10.2139/ssrn.4317298.\nOrnstein, Joseph T., Amanda J. Heideman, Bryant J. Moy, and Kaylyn Jackson Schiff. “Hometown Advantage: Voter Preferences for Community Embeddedness in Local Contests.” Journal of Experimental Political Science, December 3, 2024, 1–15. https://doi.org/10.1017/XPS.2024.16.\nBucchianeri, Peter. “Party Competition and Coalitional Stability: Evidence from American Local Government.” American Political Science Review 114, no. 4 (2020): 1055–70. https://doi.org/10.1017/S0003055420000386.\nSchaffner, Brian F., Matthew Streb, and Gerald Wright. “Teams without Uniforms : The Nonpartisan Ballot in State and Local Elections.” Political Research Quarterly 54, no. 1 (2001): 7–30.\nde Benedictis-Kessner, Justin, and Christopher Warshaw. “Politics in Forgotten Governments: The Partisan Composition of County Legislatures and County Fiscal Policies.” The Journal of Politics 82, no. 2 (2020): 460–75. https://doi.org/10.1086/706458.\nTrebbi, Francesco, Philippe Aghion, and Alberto Alesina. “Electoral Rules and Minority Representation in U.S. Cities.” The Quarterly Journal of Economics 123, no. 1 (2008): 325–57.\nTausanovitch, Chris, and Christopher Warshaw. “Representation in Municipal Government.” The American Political Science Review 108, no. 3 (2014): 605–41. https://doi.org/10.1017/S0003055414000318."
+    "text": "Week 6 (3/3): Elections\nHow is electoral politics different at the local level?\n\nRequired Reading\n\nSchleicher, David. “Why Is There No Partisan Competition in City Council Elections?: The Role of Election Law.” Journal of Law & Politics 23 (2007): 419.\n\n\n\nLecture\n\nSlides\n\n\n\nDeep Dives\n\nTrounstine, Jessica. “Dominant Regimes and the Demise of Urban Democracy.” Journal of Politics 68, no. 4 (2006): 879–93. https://doi.org/10.1111/j.1468-2508.2006.00476.x.\nGaudette, Jennifer. “Polarization in Police Union Politics.” American Journal of Political Science 69, no. 3 (2025): 961–80. https://doi.org/10.1111/ajps.12932.\nHartney, Michael T., and Vladimir Kogan. “The Politics of Teachers’ Union Endorsements.” American Journal of Political Science 69, no. 3 (2025): 1163–79. https://doi.org/10.1111/ajps.12922.\nColner, Jonathan. “Running Towards Rankings: Ranked Choice Voting’s Impact on Candidate Entry and Descriptive Representation.” SSRN Electronic Journal, ahead of print, 2023. https://doi.org/10.2139/ssrn.4317298.\nOrnstein, Joseph T., Amanda J. Heideman, Bryant J. Moy, and Kaylyn Jackson Schiff. “Hometown Advantage: Voter Preferences for Community Embeddedness in Local Contests.” Journal of Experimental Political Science, December 3, 2024, 1–15. https://doi.org/10.1017/XPS.2024.16.\nBucchianeri, Peter. “Party Competition and Coalitional Stability: Evidence from American Local Government.” American Political Science Review 114, no. 4 (2020): 1055–70. https://doi.org/10.1017/S0003055420000386.\nSchaffner, Brian F., Matthew Streb, and Gerald Wright. “Teams without Uniforms : The Nonpartisan Ballot in State and Local Elections.” Political Research Quarterly 54, no. 1 (2001): 7–30.\nde Benedictis-Kessner, Justin, and Christopher Warshaw. “Politics in Forgotten Governments: The Partisan Composition of County Legislatures and County Fiscal Policies.” The Journal of Politics 82, no. 2 (2020): 460–75. https://doi.org/10.1086/706458.\nTrebbi, Francesco, Philippe Aghion, and Alberto Alesina. “Electoral Rules and Minority Representation in U.S. Cities.” The Quarterly Journal of Economics 123, no. 1 (2008): 325–57.\nTausanovitch, Chris, and Christopher Warshaw. “Representation in Municipal Government.” The American Political Science Review 108, no. 3 (2014): 605–41. https://doi.org/10.1017/S0003055414000318."
   },
   {
     "objectID": "index.html#week-7-317-corruption-accountability",
@@ -3253,5 +3253,117 @@
     "title": "Political Participation",
     "section": "Takeaways",
     "text": "Takeaways\n\nVertical fragmentation creates a common pool resource problem: overlapping governments tend to collectively overtax.\nOff-cycle elections and the logic of collective action mean that organized interest groups are systematically over-represented in local politics.\nInstitutional design matters – the timing of elections, the number of governments, and the rules of participation all shape who shows up and whose interests are represented."
+  },
+  {
+    "objectID": "slides/elections.html#todays-agenda",
+    "href": "slides/elections.html#todays-agenda",
+    "title": "Local Elections",
+    "section": "Today’s Agenda",
+    "text": "Today’s Agenda\n\nWhat are political parties good for?\nWhy do we not see party competition at the local level?\nHow do voters in local elections deal with the fact that there are no party labels on the ballot?"
+  },
+  {
+    "objectID": "slides/elections.html#why-parties",
+    "href": "slides/elections.html#why-parties",
+    "title": "Local Elections",
+    "section": "Why Parties?",
+    "text": "Why Parties?\n\n\nWhy do we see political parties spring up in virtually every electoral democracy?\n\nParties solve three fundamental problems (Aldrich 1995):\n\nRegulating candidate entry\nMobilizing voters\nOrganizing legislative majorities"
+  },
+  {
+    "objectID": "slides/elections.html#regulating-candidate-entry",
+    "href": "slides/elections.html#regulating-candidate-entry",
+    "title": "Local Elections",
+    "section": "Regulating Candidate Entry",
+    "text": "Regulating Candidate Entry"
+  },
+  {
+    "objectID": "slides/elections.html#mobilizing-voters",
+    "href": "slides/elections.html#mobilizing-voters",
+    "title": "Local Elections",
+    "section": "Mobilizing Voters",
+    "text": "Mobilizing Voters"
+  },
+  {
+    "objectID": "slides/elections.html#organizing-legislative-majorities",
+    "href": "slides/elections.html#organizing-legislative-majorities",
+    "title": "Local Elections",
+    "section": "Organizing Legislative Majorities",
+    "text": "Organizing Legislative Majorities\n\n\n\n\nEach legislator represents a distinct district with its own interests\nNo individual has reason to support another district’s priorities — it costs political capital and may alienate constituents\nA fundamental collective action problem: everyone free-rides and nothing passes\n\n\n\nParties solve this by:\n\nSetting the agenda — controlling which bills come to the floor and in what order\nWhipping votes — applying carrots (committee assignments, fundraising support) and sticks (primary challenges) to enforce party discipline"
+  },
+  {
+    "objectID": "slides/elections.html#parties-regulate-candidate-entry",
+    "href": "slides/elections.html#parties-regulate-candidate-entry",
+    "title": "Local Elections",
+    "section": "Parties Regulate Candidate Entry",
+    "text": "Parties Regulate Candidate Entry\n\nIn a first-past-the-post system, you don’t want multiple “clone” candidates running for the same office.\n\nCandidates with similar platforms just sap support from each other.\nWhichever side consolidates around a single candidate stands the best chance of winning.\n\nParties solve the problem nicely by regulating who can run for office on their ticket.\nThese forces tend to yield two major political parties (Downs 1957)."
+  },
+  {
+    "objectID": "slides/elections.html#references",
+    "href": "slides/elections.html#references",
+    "title": "Local Elections",
+    "section": "References",
+    "text": "References\n\n\n\n\nAldrich, John Herbert. 1995. Why Parties? The Origin and Transformation of Political Parties in America. American Politics and Political Economy Series. Chicago: The University of Chicago Press.\n\n\nBenedictis-Kessner, Justin de. 2018. “Off-Cycle and Out of Office: Election Timing and the Incumbency Advantage.” The Journal of Politics 80 (1): 119–32. https://doi.org/10.1086/694396.\n\n\nBucchianeri, Peter. 2020. “Party Competition and Coalitional Stability: Evidence from American Local Government.” American Political Science Review 114 (4): 1055–70. https://doi.org/10.1017/S0003055420000386.\n\n\nDowns, Anthony. 1957. An economic theory of democracy. Nachdr. Boston: Addison Wesley.\n\n\nGaudette, Jennifer. 2025. “Polarization in Police Union Politics.” American Journal of Political Science 69 (3): 961–80. https://doi.org/10.1111/ajps.12932.\n\n\nHartney, Michael T., and Vladimir Kogan. 2025. “The Politics of Teachers’ Union Endorsements.” American Journal of Political Science 69 (3): 1163–79. https://doi.org/10.1111/ajps.12922.\n\n\nKirkland, Patricia A. 2021. “Representation in American Cities: Who Runs for Mayor and Who Wins?” Urban Affairs Review, October, 10780874211021688. https://doi.org/10.1177/10780874211021688.\n\n\nKirkland, Patricia A., and Alexander Coppock. 2018. “Candidate Choice Without Party Labels: New Insights from Conjoint Survey Experiments.” Political Behavior 40 (3): 571–91. https://doi.org/10.1007/s11109-017-9414-8.\n\n\nLupia, Arthur. 1994. “Shortcuts Versus Encyclopedias: Information and Voting Behavior in California Insurance Reform Elections.” The American Political Science Review 88 (1): 63–76. https://doi.org/10.2307/2944882.\n\n\nLupia, Arthur, and Mathew D. McCubbins. 1998. The Democratic Dilemma: Can Citizens Learn What They Need to Know? Political Economy of Institutions and Decisions. Cambridge, U.K. ; New York: Cambridge University Press.\n\n\nOrnstein, Joseph T., Amanda J. Heideman, Bryant J. Moy, and Kaylyn Jackson Schiff. 2024. “Hometown Advantage: Voter Preferences for Community Embeddedness in Local Contests.” Journal of Experimental Political Science, December, 1–15. https://doi.org/10.1017/XPS.2024.16.\n\n\nSchaffner, Brian F., Matthew Streb, and Gerald Wright. 2001. “Teams Without Uniforms : The Nonpartisan Ballot in State and Local Elections.” Political Research Quarterly 54 (1): 7–30.\n\n\nSchleicher, David. 2007. “Why Is There No Partisan Competition in City Council Elections?: The Role of Election Law.” Journal of Law & Politics 23: 419.\n\n\n———. 2013. “City Unplanning.” Yale Law Journal 122: 1670–1737. http://www.yalelawjournal.org/pdf/1162_zn8saw36.pdf."
+  },
+  {
+    "objectID": "slides/elections.html#parties-mobilize-voters",
+    "href": "slides/elections.html#parties-mobilize-voters",
+    "title": "Local Elections",
+    "section": "Parties Mobilize Voters",
+    "text": "Parties Mobilize Voters\n\n\nWhy bother voting at all? (Downs 1957)\n\nThe chance that your single vote decides an election is vanishingly small; there’s a nonzero cost to researching candidates and turning out.\nVoting itself is yet another collective action problem: your individual incentive is to stay home and let other people put in the work.\n\nParties help solve this in two ways:\n\nOrganizational mobilization — party networks knock on doors, make calls, and apply social pressure to turn out supporters.\nInformational shortcuts — the party label allows voters quickly infer a candidate’s positions without researching every race (Lupia and McCubbins 1998); makes voting less informationally costly."
+  },
+  {
+    "objectID": "slides/elections.html#parties-organize-legislative-majorities",
+    "href": "slides/elections.html#parties-organize-legislative-majorities",
+    "title": "Local Elections",
+    "section": "Parties Organize Legislative Majorities",
+    "text": "Parties Organize Legislative Majorities\n\n\nOnce you’re in office, how do you get the bills you want passed through the legislature?\n\nEach legislator represents a district with its own interests.\nNo individual has reason to support another district’s priorities\nA fundamental collective action problem: everyone free-rides and nothing passes\nParties solve this problem by “whipping votes” – applying carrots (committee assignments, fundraising support) and sticks (primary challenges) to enforce party discipline."
+  },
+  {
+    "objectID": "slides/elections.html#why-no-parties-at-the-local-level",
+    "href": "slides/elections.html#why-no-parties-at-the-local-level",
+    "title": "Local Elections",
+    "section": "Why No Parties At The Local Level?",
+    "text": "Why No Parties At The Local Level?\n\nGeographic Sorting: As we discussed in Week 3, many communities are overwhelmingly dominated by voters from one of the major national parties.\nNonpartisan Ballots: The majority of local elections are formally nonpartisan, a legacy of Progressive Era reforms (Schaffner, Streb, and Wright 2001).\nUnitary Party Rules: Even in cities with partisan ballots, election law make it impossible for purely local parties to form with distinct brands from the national parties (Schleicher 2007)."
+  },
+  {
+    "objectID": "slides/elections.html#unregulated-candidate-entry",
+    "href": "slides/elections.html#unregulated-candidate-entry",
+    "title": "Local Elections",
+    "section": "Unregulated Candidate Entry",
+    "text": "Unregulated Candidate Entry"
+  },
+  {
+    "objectID": "slides/elections.html#demobilized-voters",
+    "href": "slides/elections.html#demobilized-voters",
+    "title": "Local Elections",
+    "section": "Demobilized Voters",
+    "text": "Demobilized Voters"
+  },
+  {
+    "objectID": "slides/elections.html#poorly-informed-voters",
+    "href": "slides/elections.html#poorly-informed-voters",
+    "title": "Local Elections",
+    "section": "Poorly-Informed Voters",
+    "text": "Poorly-Informed Voters\n\nWithout party labels, how do voters make informed decisions about candidates?\n\n\n\nIn practice, they rely on other informational shortcuts:\n\nInterest group endorsements (Lupia 1994; Hartney and Kogan 2025; Gaudette 2025)\nIncumbency (Schaffner, Streb, and Wright 2001; Benedictis-Kessner 2018)\nRace and gender (Kirkland and Coppock 2018)\nBusiness experience (Kirkland 2021)\nHomeownership and other cues about “community embeddedness” (Ornstein et al. 2024)"
+  },
+  {
+    "objectID": "slides/elections.html#disorganized-legislatures",
+    "href": "slides/elections.html#disorganized-legislatures",
+    "title": "Local Elections",
+    "section": "Disorganized Legislatures",
+    "text": "Disorganized Legislatures\n\nIn the US Congress and most state legislatures, it’s easy to predict how a given legislator will vote, if you know their party.\nIn city councils, school boards, and other local legislative bodies, coalitions are unstable, and it’s difficult to predict how a given member will vote (Bucchianeri 2020).\nInstead of party discipline, we get conventions like “aldermanic privilege”.\n\nCouncilmembers defer to a ward’s representative about legislation that would affect their district.\nThis makes it particularly difficult to push forward initiatives that would help the entire city, but have negative impacts locally (Schleicher 2013):\n\nBuilding new housing\nExpanding mass transportation\n\nMore on these sorts of policy issues over the next few weeks!"
+  },
+  {
+    "objectID": "slides/elections.html#next-time",
+    "href": "slides/elections.html#next-time",
+    "title": "Local Elections",
+    "section": "Next Time",
+    "text": "Next Time\n\nIf no one is paying attention to local government, and parties aren’t organizing electoral competition, then how do we hold local politicians accountable for what they do in office?"
+  },
+  {
+    "objectID": "slides/elections.html",
+    "href": "slides/elections.html",
+    "title": "Local Elections",
+    "section": "",
+    "text": "What are political parties good for?\nWhy do we not see party competition at the local level?\nHow do voters in local elections deal with the fact that there are no party labels on the ballot?"
   }
 ]
