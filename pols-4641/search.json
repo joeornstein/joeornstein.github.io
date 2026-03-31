@@ -2958,7 +2958,7 @@
     "href": "index.html#week-9-331-urban-geometry",
     "title": "The Science of Cities",
     "section": "Week 9 (3/31): Urban Geometry",
-    "text": "Week 9 (3/31): Urban Geometry\nWhat makes a great, livable city? What happens if you design a city around cars?\n\nRequired Reading\n\nJacobs, Jane. The Death and Life of Great American Cities. Vintage Books, 1961. Chapters 7-11.\n\n\n\nLecture\n\nSlides forthcoming\n\n\n\nDeep Dives\n\nSpeck, Jeff. Walkable City: How Downtown Can Save America, One Step at a Time. First paperback edition. North Point Press, a division of Farrar, Straus and Giroux, 2013. pg. 1-35.\nGray, M. Nolan. Arbitrary Lines: How Zoning Broke the American City and How to Fix It. Island Press, 2022. Chapter 1.\nDuranton, Gilles, and Matthew A. Turner. “The Fundamental Law of Road Congestion: Evidence from US Cities.” The American Economic Review 101, no. 6 (2011): 2616–52. https://doi.org/10.1257/aer.101.6.2616.\nAnderson, Michael L. “Subways, Strikes, and Slowdowns: The Impacts of Public Transit on Traffic Congestion.” American Economic Review 104, no. 9 (2014): 2763–96. https://doi.org/10.1257/aer.104.9.2763.\nde Benedictis-Kessner, Justin, and Maxwell Palmer. “Driving Turnout: The Effect of Car Ownership on Electoral Participation.” Political Science Research and Methods 11, no. 3 (2023): 654–62. https://doi.org/10.1017/psrm.2021.67.\nEllickson, Robert C. “The Law and Economics of Street Layouts: How a Grid Pattern Benefits a Downtown.” Alabama Law Review 64, no. 3 (2013): 463–510."
+    "text": "Week 9 (3/31): Urban Geometry\nWhat makes a great, livable city? What happens if you design a city around cars?\n\nRequired Reading\n\nJacobs, Jane. The Death and Life of Great American Cities. Vintage Books, 1961. Chapters 7-11.\n\n\n\nLecture\n\nSlides\n\n\n\nDeep Dives\n\nSpeck, Jeff. Walkable City: How Downtown Can Save America, One Step at a Time. First paperback edition. North Point Press, a division of Farrar, Straus and Giroux, 2013. pg. 1-35.\nGray, M. Nolan. Arbitrary Lines: How Zoning Broke the American City and How to Fix It. Island Press, 2022. Chapter 1.\nDuranton, Gilles, and Matthew A. Turner. “The Fundamental Law of Road Congestion: Evidence from US Cities.” The American Economic Review 101, no. 6 (2011): 2616–52. https://doi.org/10.1257/aer.101.6.2616.\nAnderson, Michael L. “Subways, Strikes, and Slowdowns: The Impacts of Public Transit on Traffic Congestion.” American Economic Review 104, no. 9 (2014): 2763–96. https://doi.org/10.1257/aer.104.9.2763.\nde Benedictis-Kessner, Justin, and Maxwell Palmer. “Driving Turnout: The Effect of Car Ownership on Electoral Participation.” Political Science Research and Methods 11, no. 3 (2023): 654–62. https://doi.org/10.1017/psrm.2021.67.\nEllickson, Robert C. “The Law and Economics of Street Layouts: How a Grid Pattern Benefits a Downtown.” Alabama Law Review 64, no. 3 (2013): 463–510."
   },
   {
     "objectID": "index.html#week-10-47-parking",
@@ -3659,5 +3659,509 @@
     "title": "Urban Decline and Renewal",
     "section": "An Analogy: Scientific Forestry",
     "text": "An Analogy: Scientific Forestry\n\n\n\n19th-century German foresters replaced messy, diverse old-growth forests with neat rows of Norweigan spruce — optimized for timber yield.\n\n\n\nIt worked, briefly. Then the second generation of trees collapsed. What happened?\nPlanners could measure and optimize what was legible — board-feet of timber. What they couldn’t see was the complex ecology that made the forest viable.\nUrban renewal repeated this mistake: optimizing for legible metrics (population density, green space, traffic flow) while destroying the social fabric that made neighborhoods function.\n\n\n\n\n\nAI Overview:\nScott’s scientific forestry example is the heart of Seeing Like a State. The German term is Normalbaum — the “normal tree,” a standardized unit that could be counted, projected, and optimized. The monoculture forests looked rational on paper and produced excellent yields in the first rotation. By the second rotation they were dying, because the planners had eliminated everything that wasn’t timber: the fungi, the leaf litter, the insects, the diversity of species that maintained soil health.\nThe urban renewal parallel is direct. Planners could count housing units, measure lot coverage, and project traffic flows. What they couldn’t count — and therefore didn’t value — was the corner store that extended credit to regulars, the stoop where neighbors watched each other’s children, the informal networks of mutual aid that Jane Jacobs documented in Greenwich Village. Moses and his contemporaries saw disorder; what they were actually seeing was complexity they lacked the tools to understand."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#this-weeks-question",
+    "href": "slides/urban-geometry.html#this-weeks-question",
+    "title": "Urban Geometry",
+    "section": "This Week’s Question",
+    "text": "This Week’s Question\nWhat makes a great, livable city? What happens if you design a city around cars?\n\nWe’ll explore the geometry of cities — how the physical arrangement of streets, buildings, and land uses shapes urban life.\n\nThis week we’re pulling together several threads from the course: zoning from our sorting module, the highway system from transportation, and now layering on walkability, street design, and the work of Jane Jacobs. The throughline: designing cities around cars consumes expensive land, induces demand rather than relieving congestion, erodes social capital, and produces monoculture neighborhoods."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#zoning",
+    "href": "slides/urban-geometry.html#zoning",
+    "title": "Urban Geometry",
+    "section": "Zoning",
+    "text": "Zoning\n\n\nIn SimCity, the very first thing you do is segregate your city…by land use. Houses go here, shops go here, the landfill and coal power plants go way off in the corner."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#zoning-1",
+    "href": "slides/urban-geometry.html#zoning-1",
+    "title": "Urban Geometry",
+    "section": "Zoning",
+    "text": "Zoning\nNearly every city in the United States has a map like this:"
+  },
+  {
+    "objectID": "slides/urban-geometry.html#zoning-2",
+    "href": "slides/urban-geometry.html#zoning-2",
+    "title": "Urban Geometry",
+    "section": "Zoning",
+    "text": "Zoning\nIt didn’t used to be this way…\n\n\nIn any pre-modern city, there’s city planning, sure. You lay out the roads, set aside some public space, but dividing a city into “zones” with single purposes is a 20th century invention."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#the-happy-bedtime-story-about-zoning",
+    "href": "slides/urban-geometry.html#the-happy-bedtime-story-about-zoning",
+    "title": "Urban Geometry",
+    "section": "The Happy Bedtime Story About Zoning",
+    "text": "The Happy Bedtime Story About Zoning"
+  },
+  {
+    "objectID": "slides/urban-geometry.html#negative-externalities",
+    "href": "slides/urban-geometry.html#negative-externalities",
+    "title": "Urban Geometry",
+    "section": "Negative Externalities",
+    "text": "Negative Externalities\nSome land uses impose negative externalities on others.\n\n\n\n\n\n\n\n\nThe free market alone has a hard time handling negative externalities. And so the government steps in, using zoning to separate incompatible uses.\n\nPittsburgh in its steel-producing heyday is the canonical example. One of the key roles of government is to resolve these collective action problems."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#euclid-v.-ambler-1926",
+    "href": "slides/urban-geometry.html#euclid-v.-ambler-1926",
+    "title": "Urban Geometry",
+    "section": "Euclid v. Ambler (1926)",
+    "text": "Euclid v. Ambler (1926)\n\n\nThe village of Euclid, OH creates land use maps to separate incompatible uses. Ambler Realty sues, arguing the village violated the 14th amendment, seizing the value of its land without due process. Supreme Court upholds the practice in 1926."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#the-gritty-reboot",
+    "href": "slides/urban-geometry.html#the-gritty-reboot",
+    "title": "Urban Geometry",
+    "section": "The Gritty Reboot",
+    "text": "The Gritty Reboot"
+  },
+  {
+    "objectID": "slides/urban-geometry.html#the-high-modernists",
+    "href": "slides/urban-geometry.html#the-high-modernists",
+    "title": "Urban Geometry",
+    "section": "The High Modernists",
+    "text": "The High Modernists\nAdoption of zoning codes coincides with a movement James Scott calls “High Modernism” (Scott 1998).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacterized by a love of rectangles, open space, strict separation of uses, and a general zest for tearing everything down and starting over.\n\nLe Corbusier and the High Modernists viewed pre-modern cities as dirty, unorganized, and in need of rationalist urban planning. The analogy to Scott is apt: just as scientific forestry replaced diverse forests with fragile monocultures, Euclidean zoning replaces diverse neighborhoods with fragile, car-dependent ones."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#monoculture-neighborhoods",
+    "href": "slides/urban-geometry.html#monoculture-neighborhoods",
+    "title": "Urban Geometry",
+    "section": "Monoculture Neighborhoods",
+    "text": "Monoculture Neighborhoods\nZoning regulations that prohibit missing middle housing create monoculture neighborhoods — auto-dependent, low-density, single-use — lacking the diversity Jacobs identified as essential to thriving cities (Jacobs 1961; Gray 2022)."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#why-does-zoning-matter",
+    "href": "slides/urban-geometry.html#why-does-zoning-matter",
+    "title": "Urban Geometry",
+    "section": "Why Does Zoning Matter?",
+    "text": "Why Does Zoning Matter?\n\nStrict zoning regulations create housing shortages (we covered this in the Housing module).\nSingle-use zoning strains transportation by putting distance between where people live, work, and play.\nStrict separation of uses saps cities of life (Jacobs 1961)."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#cars-are-a-geometry-problem-1",
+    "href": "slides/urban-geometry.html#cars-are-a-geometry-problem-1",
+    "title": "Urban Geometry",
+    "section": "Cars Are A Geometry Problem",
+    "text": "Cars Are A Geometry Problem\nThe fundamental problem with relying on automobiles for urban transportation is one of geometry.\n\nLand in cities is scarce (basically by definition).\nCars take up a lot of space."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#cars-are-a-geometry-problem-2",
+    "href": "slides/urban-geometry.html#cars-are-a-geometry-problem-2",
+    "title": "Urban Geometry",
+    "section": "Cars Are A Geometry Problem",
+    "text": "Cars Are A Geometry Problem"
+  },
+  {
+    "objectID": "slides/urban-geometry.html#cars-are-a-geometry-problem-3",
+    "href": "slides/urban-geometry.html#cars-are-a-geometry-problem-3",
+    "title": "Urban Geometry",
+    "section": "Cars Are A Geometry Problem",
+    "text": "Cars Are A Geometry Problem\nThe fundamental problem with relying on automobiles for urban transportation is one of geometry.\n\nLand in cities is scarce (basically by definition).\nCars take up a lot of space.\nAll this means that cities with auto-dependent transportation systems waste a lot of valuable land."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#cars-are-a-geometry-problem-4",
+    "href": "slides/urban-geometry.html#cars-are-a-geometry-problem-4",
+    "title": "Urban Geometry",
+    "section": "Cars Are A Geometry Problem",
+    "text": "Cars Are A Geometry Problem\nThe fundamental problem with relying on automobiles for urban transportation is one of geometry.\n\nLand in cities is scarce (basically by definition).\nCars take up a lot of space.\nAll this means that cities with auto-dependent transportation systems waste a lot of valuable land."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#the-opportunity-cost-of-cars",
+    "href": "slides/urban-geometry.html#the-opportunity-cost-of-cars",
+    "title": "Urban Geometry",
+    "section": "The Opportunity Cost of Cars",
+    "text": "The Opportunity Cost of Cars\n\nA growing, car-dependent city needs to set aside more and more land for cars, precisely when that land is getting scarcer and more expensive.\nThere is an enormous opportunity cost from using that valuable space to move and store cars.\nWalk through any city and count the “missing teeth” — surface parking lots, dead frontages, land consumed by automobiles rather than serving as places where people live.\n\n\n\nThe automobile has dissolved the living tissue of the city. Its appetite for space is absolutely insatiable; moving and parked, it devours urban land, leaving buildings as mere islands of habitable space in a sea of dangerous and ugly traffic. — James Marston Fitch, NY Times, 1960"
+  },
+  {
+    "objectID": "slides/urban-geometry.html#the-suburban-experiment",
+    "href": "slides/urban-geometry.html#the-suburban-experiment",
+    "title": "Urban Geometry",
+    "section": "The Suburban Experiment",
+    "text": "The Suburban Experiment\nThe 20th-century suburban build-out was an abrupt, top-down break from millennia of walkable development (Marohn 2020).\n\nTraditional development proceeds incrementally through trial and error, producing emergent design wisdom — shared walls, buildings hugging the street.\nThe suburban experiment replaced this with mass-produced, auto-dependent neighborhoods designed from scratch.\n\n\n\n\n\n\n\n\nAtlanta and Barcelona have roughly the same metro population. The difference in land consumption is staggering. This has profound consequences for transit, walkability, and fiscal sustainability."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#and-electric-cars-dont-fix-it",
+    "href": "slides/urban-geometry.html#and-electric-cars-dont-fix-it",
+    "title": "Urban Geometry",
+    "section": "And Electric Cars Don’t Fix It",
+    "text": "And Electric Cars Don’t Fix It\nThe geometry problem isn’t about tailpipes. It’s about space.\n\nAn electric car takes up the same amount of road and parking as a gas car.\nEVs still induce the same sprawl, the same “missing teeth,” the same opportunity costs.\nTire particulates are now a larger source of urban air pollution than tailpipe emissions.\n\n\nThe problem is auto-dependence, not auto-emissions."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#can-we-build-our-way-out-of-traffic",
+    "href": "slides/urban-geometry.html#can-we-build-our-way-out-of-traffic",
+    "title": "Urban Geometry",
+    "section": "Can We Build Our Way Out of Traffic?",
+    "text": "Can We Build Our Way Out of Traffic?\nThe intuition is straightforward: more lanes → less congestion. Right?"
+  },
+  {
+    "objectID": "slides/urban-geometry.html#the-fundamental-law-of-road-congestion-1",
+    "href": "slides/urban-geometry.html#the-fundamental-law-of-road-congestion-1",
+    "title": "Urban Geometry",
+    "section": "The Fundamental Law of Road Congestion",
+    "text": "The Fundamental Law of Road Congestion\nDuranton and Turner (2011) find that vehicle kilometers traveled increase proportionately with highway capacity.\n\nDouble the lane-miles → double the driving. Congestion stays roughly the same.\nThis is induced demand: making driving easier attracts more driving.\nThis undermines cost-benefit analyses that assume new roads save commuters time — time that isn’t actually saved in equilibrium.\n\n\nThe result is striking: the elasticity is almost exactly 1.0. Build it, and they will drive. This is one of the deep dive readings for this week."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#what-happens-when-transit-disappears",
+    "href": "slides/urban-geometry.html#what-happens-when-transit-disappears",
+    "title": "Urban Geometry",
+    "section": "What Happens When Transit Disappears?",
+    "text": "What Happens When Transit Disappears?\nAnderson (2014) studies the 2003 LA transit strike as a natural experiment.\n\nWhen transit shut down, highway delays increased by 47%.\nThis suggests transit’s congestion-relief benefits are larger than typically estimated.\nEven in car-dominated LA, a substantial number of commuters rely on transit — and their absence from the roads is felt immediately.\n\n\nThe point is that transit and roads are not independent systems. Removing transit doesn’t just hurt transit riders; it hurts everyone on the road."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#the-density-paradox",
+    "href": "slides/urban-geometry.html#the-density-paradox",
+    "title": "Urban Geometry",
+    "section": "The Density Paradox",
+    "text": "The Density Paradox\nThere is a range of residential density — roughly, small-lot single-family homes — that is suboptimal for both cars and mass transit.\n\nAdding density worsens congestion…\n…but the area is still too sparse to support good transit.\nThis creates a canyon in the fitness landscape — communities in this zone may be the least likely to accept incremental densification.\n\n\nThe cruel irony: the places that most need to densify are the places where densification feels worst."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#walkability",
+    "href": "slides/urban-geometry.html#walkability",
+    "title": "Urban Geometry",
+    "section": "Walkability",
+    "text": "Walkability\nSpeck (2013) argues that walkability is the single best indicator of a city’s vitality. A walk has to be four things:\n\nUseful (you can accomplish daily errands on foot)\nSafe (streets designed to protect pedestrians)\nComfortable (buildings and trees create a sense of enclosure)\nInteresting (varied streetscape, active ground floors)\n\n\nCity engineers have spent decades “worshiping the twin gods of Smooth Traffic and Ample Parking” — making downtowns easy to get to but not worth arriving at."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#the-benefits-of-walkability",
+    "href": "slides/urban-geometry.html#the-benefits-of-walkability",
+    "title": "Urban Geometry",
+    "section": "The Benefits of Walkability",
+    "text": "The Benefits of Walkability\n\n\nWalkable cities are…\n\nmore economically productive\nsafer\ngreener\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStrong Towns has a great series comparing the per-acre tax revenue of walkable blocks vs. big box retail with parking. The walkable blocks win every time."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#the-benefits-of-walkability-1",
+    "href": "slides/urban-geometry.html#the-benefits-of-walkability-1",
+    "title": "Urban Geometry",
+    "section": "The Benefits of Walkability",
+    "text": "The Benefits of Walkability"
+  },
+  {
+    "objectID": "slides/urban-geometry.html#commuting-makes-us-miserable",
+    "href": "slides/urban-geometry.html#commuting-makes-us-miserable",
+    "title": "Urban Geometry",
+    "section": "Commuting Makes Us Miserable",
+    "text": "Commuting Makes Us Miserable\nKahneman et al. (2004) asked people to reconstruct their previous day and rate how they felt during each activity.\n\nCommuting ranked dead last — below housework, below working, below every other daily activity.\n\n\nAnd it’s not just about individual well-being…"
+  },
+  {
+    "objectID": "slides/urban-geometry.html#commuting-erodes-social-capital",
+    "href": "slides/urban-geometry.html#commuting-erodes-social-capital",
+    "title": "Urban Geometry",
+    "section": "Commuting Erodes Social Capital",
+    "text": "Commuting Erodes Social Capital\nRobert Putnam finds that each additional 10 minutes of commuting cuts community involvement by 10% (Putnam 2000).\n\nLess volunteering, fewer club memberships, less time with neighbors.\nAuto-oriented suburbs — where every errand requires a car — significantly contributed to the broad-based decline in social trust that Putnam documents in Bowling Alone.\n\n\nCars don’t just consume land. They consume time — and with it, the social fabric of communities.\nThis connects back to our module on local democracy. If people are spending hours a day in their cars, they’re not attending city council meetings or getting to know their neighbors."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#cars-and-political-participation",
+    "href": "slides/urban-geometry.html#cars-and-political-participation",
+    "title": "Urban Geometry",
+    "section": "Cars and Political Participation",
+    "text": "Cars and Political Participation\nAuto-dependence may even shape who participates in democracy.\n\nBenedictis-Kessner and Palmer (2023) find that car ownership increases voter turnout.\nIn a car-dependent landscape, the people without cars aren’t just immobile — they’re politically marginalized.\nThis is another dimension of the geometry problem: the built environment shapes not just how we move, but who has a voice."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#the-case-for-grid-streets",
+    "href": "slides/urban-geometry.html#the-case-for-grid-streets",
+    "title": "Urban Geometry",
+    "section": "The Case for Grid Streets",
+    "text": "The Case for Grid Streets\nEllickson (2013) argues for the economic benefits of grid street layouts.\n\nGrids maximize accessibility: every parcel connects to every other parcel through a predictable network.\nThey optimize the tradeoff between connectivity and the opportunity cost of land consumed by roads.\nThey’re legible — you can navigate without a GPS.\nMost great walkable neighborhoods were built on a grid.\n\n\nCompare a grid to a suburban cul-de-sac layout. The cul-de-sac may feel “safe” and “quiet,” but it forces every trip — even to a neighbor two houses away — onto the collector road."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#human-scale-design",
+    "href": "slides/urban-geometry.html#human-scale-design",
+    "title": "Urban Geometry",
+    "section": "Human-Scale Design",
+    "text": "Human-Scale Design\nJacobs (1961) and Christopher Alexander (1977) both observe that people naturally gravitate toward the edges of spaces.\n\nTraditional streetscapes provide these edges — buildings hugging the sidewalk, awnings, storefronts.\nSuburban open spaces, wide setbacks, and surface parking lots do not.\nThe discomfort of wide-open suburban landscapes may be deeply rooted — we are, after all, the brains of a prey species.\n\n\n\n\n\n\n\n\nThink about how you feel walking down a wide suburban arterial with no street trees, no buildings near the sidewalk, just parking lots on both sides. Now compare that to a narrow street with shops and awnings. The second feels safe in a way the first does not. This is (armchair) evolutionary psychology — edges of spaces are where prey animals feel safest."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#sprawl-and-externalities",
+    "href": "slides/urban-geometry.html#sprawl-and-externalities",
+    "title": "Urban Geometry",
+    "section": "Sprawl and Externalities",
+    "text": "Sprawl and Externalities\nThe economist’s framing: sprawl is only inefficient if there are unpriced negative externalities.\n\nTraffic congestion\nCarbon emissions\nLost amenity value of open space\nReduced social interactions (Putnam 2000)\n\n\nThere’s also a fiscal angle (Marohn 2020): once infrastructure is built out, the maintenance costs mount, and adding residents just adds congestion without proportional revenue."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#next-week-parking",
+    "href": "slides/urban-geometry.html#next-week-parking",
+    "title": "Urban Geometry",
+    "section": "Next Week: Parking",
+    "text": "Next Week: Parking\nAll next week is devoted to the politics and economics of parking — no lecture, but required reading.\n\n\n\n\n\n\n\n\n\nWhy does Athens require 8 parking spaces per hole at a golf course?\nWhat does “free parking” actually cost?\nWhy is this one of the most politically contentious topics in local government?\n\n\n\nFew things get people more upset than (a) traffic congestion (Kahneman et al. 2004), or (b) trouble finding free parking."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#further-reading",
+    "href": "slides/urban-geometry.html#further-reading",
+    "title": "Urban Geometry",
+    "section": "Further Reading",
+    "text": "Further Reading"
+  },
+  {
+    "objectID": "slides/urban-geometry.html#references",
+    "href": "slides/urban-geometry.html#references",
+    "title": "Urban Geometry",
+    "section": "References",
+    "text": "References\n\n\n\n\nDuranton, Gilles, and Matthew A. Turner. 2011. “The Fundamental Law of Road Congestion: Evidence from US Cities.” The American Economic Review 101 (6): 2616–52. https://doi.org/10.1257/aer.101.6.2616.\n\n\nJacobs, Jane. 1961. The Death and Life of Great American Cities. New York: Vintage Books."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#warmup",
+    "href": "slides/urban-geometry.html#warmup",
+    "title": "Urban Geometry",
+    "section": "Warmup",
+    "text": "Warmup\nTODO: Activity"
+  },
+  {
+    "objectID": "slides/urban-geometry.html#todays-agenda",
+    "href": "slides/urban-geometry.html#todays-agenda",
+    "title": "Urban Geometry",
+    "section": "Today’s Agenda",
+    "text": "Today’s Agenda\nJane Jacobs (1961) argued that great cities require four conditions for diversity:\n\nMixed uses — districts must serve more than one primary function\nShort blocks — streets must be frequent and turns easy\nAged buildings — a mix of old and new buildings of varying condition\nConcentration — a sufficiently dense concentration of people\n\n\nWe’ll use these as a lens to think about the geometry of cities — how the physical arrangement of streets, buildings, and land uses shapes urban life.\n\nJacobs wrote Death and Life in 1961 as an attack on the prevailing orthodoxy of urban planning. These four conditions are her prescription for what makes neighborhoods work. We’ll organize the lecture around them."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#why-mixed-uses",
+    "href": "slides/urban-geometry.html#why-mixed-uses",
+    "title": "Urban Geometry",
+    "section": "Why Mixed Uses?",
+    "text": "Why Mixed Uses?\nJacobs argued that a district must serve more than one primary function — ideally more than two — to generate activity at different times of day (Jacobs 1961).\n\nA neighborhood that is only offices empties out at 5pm. One that is only residential empties out at 9am.\nMixed uses ensure there are always people on the street — commuters in the morning, shoppers at midday, diners in the evening, residents at night.\nThis constant presence creates “eyes on the street” — Jacobs’ famous argument that safety comes not from police but from the ordinary surveillance of neighbors going about their business.\n\n\nSo how did American cities end up banning mixed uses?"
+  },
+  {
+    "objectID": "slides/urban-geometry.html#new-york-1880s",
+    "href": "slides/urban-geometry.html#new-york-1880s",
+    "title": "Urban Geometry",
+    "section": "New York, 1880s",
+    "text": "New York, 1880s\n\n\nMy guilty pleasure TV: HBO’s the Gilded Age. Real Housewives of New York, but in 1880. The new money Vanderbilt stand-ins build a gaudy Upper East Side mansion directly across from the old money Van Rhijns, but the Astors obviously can’t let them into polite society just because they have a lot of money."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#new-york-1880s-1",
+    "href": "slides/urban-geometry.html#new-york-1880s-1",
+    "title": "Urban Geometry",
+    "section": "New York, 1880s",
+    "text": "New York, 1880s\n\n\nIf you’re new money in 1880s New York City, where do you build your giant mansion?\n\n61st Street and 5th Avenue\n(Historical Path Dependence Alert!)\n\n\n\n\n\nBefore New York had a zoning code, it’s the closest you can be to the Financial District while safely avoiding the poors and the factories. Factories can’t be far from rail depots or the docks. Poor people in their apartment buildings can’t be far from the street car lines. So the wealthiest New Yorkers settle here. Historical path dependence alert — the Upper East Side is still where all the old money live today, long after the original reason disappeared."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#the-internal-combustion-engine-changes-everything",
+    "href": "slides/urban-geometry.html#the-internal-combustion-engine-changes-everything",
+    "title": "Urban Geometry",
+    "section": "The Internal Combustion Engine Changes Everything",
+    "text": "The Internal Combustion Engine Changes Everything\n\n\n1904-1905:\n\n\n\n\n\n\n\n\n\n\n\n1917:\n\n\n\n\n\nSuddenly, industry is not confined to the railyards and the docks, and the apartment buildings are not confined to the streetcar lines!\n\n\nTrucks (the Model TT, rolled out in 1917) and buses change everything. Suddenly, industry is not confined to the docks and the railroad lines, and poor people can live anywhere. Naturally, the city’s monied classes are outraged, and lobby for change."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#new-yorks-first-zoning-map-1916",
+    "href": "slides/urban-geometry.html#new-yorks-first-zoning-map-1916",
+    "title": "Urban Geometry",
+    "section": "New York’s First Zoning Map (1916)",
+    "text": "New York’s First Zoning Map (1916)"
+  },
+  {
+    "objectID": "slides/urban-geometry.html#why-short-blocks",
+    "href": "slides/urban-geometry.html#why-short-blocks",
+    "title": "Urban Geometry",
+    "section": "Why Short Blocks?",
+    "text": "Why Short Blocks?\nJacobs observed that long blocks — with few intersections and limited route choices — kill foot traffic and concentrate activity on a few arterials.\n\nShort blocks create multiple paths between any two points, spreading pedestrians across many streets.\nThis generates the foot traffic that supports small businesses, casual encounters, and “eyes on the street.”\nLong blocks isolate neighborhoods from one another, creating dead zones.\n\n\nBut cars want long blocks, and in the 20th century we started building cities with longer blocks and wider streets to accommodate them.\n\nJacobs’ argument is specifically about Manhattan’s grid vs. the superblocks that Robert Moses was building. But the principle generalizes: connectivity matters. And the most extreme form of disconnection comes from auto-dependent design."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#cars-are-a-geometry-problem",
+    "href": "slides/urban-geometry.html#cars-are-a-geometry-problem",
+    "title": "Urban Geometry",
+    "section": "Cars Are A Geometry Problem",
+    "text": "Cars Are A Geometry Problem\nThe fundamental problem with relying on automobiles for urban transportation is one of geometry.\n\n\nLand in cities is scarce (basically by definition).\n\n\n\n\n\n\n\nThere’s a lot of land in the United States, and in most places it’s pretty cheap. But cities, basically by definition, have lots of people in close proximity. Space is at a premium."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#the-fundamental-law-of-road-congestion",
+    "href": "slides/urban-geometry.html#the-fundamental-law-of-road-congestion",
+    "title": "Urban Geometry",
+    "section": "The Fundamental Law of Road Congestion",
+    "text": "The Fundamental Law of Road Congestion\n\nThe irony of all this road building is that it rarely if ever solves the problem it sets out to solve: traffic congestion.\nCan we build our way out of traffic? The intuition: more lanes → less congestion. Right?\nDuranton and Turner (2011) find that vehicle kilometers traveled increase proportionately with highway capacity.\nDouble the lane-miles → double the driving. Congestion stays roughly the same.\nThis is induced demand: making driving easier attracts more driving.\nThis undermines cost-benefit analyses that assume new roads save commuters time — time that isn’t actually saved in equilibrium.\n\n\nThe result is striking: the elasticity is almost exactly 1.0. Build it, and they will drive. This is one of the deep dive readings for this week."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#congestion-pricing",
+    "href": "slides/urban-geometry.html#congestion-pricing",
+    "title": "Urban Geometry",
+    "section": "Congestion Pricing",
+    "text": "Congestion Pricing\n\nTraffic congestion is a another tragedy of the commons!\nEach driver imposes costs on every other driver, but no one pays for the delay they cause.\nIf building more roads doesn’t reduce congestion, what does? Charge a price to use the roads.\nCongestion pricing charges drivers for using roads at peak times, inducing drivers to carpool or shift off-peak.\nThe economics are straightforward. The politics are hard."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#congestion-pricing-in-practice",
+    "href": "slides/urban-geometry.html#congestion-pricing-in-practice",
+    "title": "Urban Geometry",
+    "section": "Congestion Pricing in Practice",
+    "text": "Congestion Pricing in Practice\n\nImplemented in Singapore (1975), London (2003), and Stockholm (2006).\nNew York became the first U.S. city to implement congestion pricing in 2025, charging drivers entering Manhattan below 60th Street.\nThis was after almost 20 years of wrangling in the state legislature, court challenges, and the Trump administration’s last-minute attempts to rescind federal approval.\n\n\nNYC’s congestion pricing was first proposed in 2007 under Bloomberg, authorized by the state legislature in 2019, and finally launched in 2025.\nhttps://www.nytimes.com/2026/03/27/opinion/congestion-pricing-traffic-new-york.html"
+  },
+  {
+    "objectID": "slides/urban-geometry.html#congestion-pricing-in-practice-1",
+    "href": "slides/urban-geometry.html#congestion-pricing-in-practice-1",
+    "title": "Urban Geometry",
+    "section": "Congestion Pricing in Practice",
+    "text": "Congestion Pricing in Practice"
+  },
+  {
+    "objectID": "slides/urban-geometry.html#why-cities-need-old-buildings",
+    "href": "slides/urban-geometry.html#why-cities-need-old-buildings",
+    "title": "Urban Geometry",
+    "section": "Why Cities Need Old Buildings",
+    "text": "Why Cities Need Old Buildings\nJacobs’ most counterintuitive argument: cities need old, run-down buildings — not because they’re charming, but because they’re cheap (Jacobs 1961).\n\nNew construction is expensive. Only established, high-margin businesses can afford brand-new space.\nOld buildings provide low-rent incubator space for the enterprises that make neighborhoods interesting — bookstores, local restaurants, art studios, small manufacturers, startups.\nA district with only new buildings will be dominated by chain stores and banks — the businesses that can afford the rent.\n\n\nThis is not an argument for historic preservation per se. Jacobs is making an economic argument about the ecology of a neighborhood. You need a mix of old and new buildings the way a forest needs trees of different ages."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#creative-destruction-and-neighborhood-ecology",
+    "href": "slides/urban-geometry.html#creative-destruction-and-neighborhood-ecology",
+    "title": "Urban Geometry",
+    "section": "Creative Destruction and Neighborhood Ecology",
+    "text": "Creative Destruction and Neighborhood Ecology\nJacobs’ insight parallels ecological thinking:\n\nA healthy forest has trees of many ages — young saplings, mature canopy, decaying trunks that become habitat.\nA healthy neighborhood has buildings of many ages — providing a range of rents that supports a diversity of uses.\nUrban renewal that clears entire blocks and rebuilds from scratch is like a clearcut — it destroys the ecosystem.\n\n\nThe High Modernists’ great error was treating old buildings as blight to be removed, rather than as infrastructure that subsidizes diversity.\n\nThis connects back to Scott’s Seeing Like a State — the monoculture problem. Just as scientific forestry replaced diverse forests with fragile monocultures, wholesale redevelopment replaces diverse neighborhoods with fragile, homogeneous ones. Jacobs also warned about the “self-destruction of diversity” — when a neighborhood becomes too successful, rising rents drive out the very businesses that made it attractive. Gentrification before the word existed."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#why-concentration",
+    "href": "slides/urban-geometry.html#why-concentration",
+    "title": "Urban Geometry",
+    "section": "Why Concentration?",
+    "text": "Why Concentration?\nJacobs argued that cities need a sufficiently dense concentration of people — including dense concentration of residents — to support the diversity of uses that makes urban life work (Jacobs 1961).\n\nDensity is what makes a corner store, a bus line, or a neighborhood bar economically viable. Without enough people within walking distance, these amenities can’t survive.\nLow density forces car dependence – which consumes the very land that could house more people.\nConcentration also enables the casual encounters that build social capital. It’s harder to bump into your neighbor if your neighbor lives a mile away.\n\n\nBut zoning codes make concentration illegal in nearly every major American city."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#how-much-land-is-single-family-zoning",
+    "href": "slides/urban-geometry.html#how-much-land-is-single-family-zoning",
+    "title": "Urban Geometry",
+    "section": "How Much Land Is Single-Family Zoning?",
+    "text": "How Much Land Is Single-Family Zoning?\nIn most American cities, the vast majority of residential land is reserved exclusively for detached single-family homes.\n\nNew York Times maps show that in cities like San Jose, Arlington, and Charlotte, single-family zoning covers 70-90% of residential land.\nThis isn’t just a personal preference — it’s mandated by law. Duplexes, triplexes, and small apartment buildings are illegal to build on most land.\nThe result: an artificial scarcity of housing in the places where demand is highest."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#the-missing-middle",
+    "href": "slides/urban-geometry.html#the-missing-middle",
+    "title": "Urban Geometry",
+    "section": "The Missing Middle",
+    "text": "The Missing Middle\nThe gap between single-family homes and large apartment complexes is called the “missing middle” — the duplexes, triplexes, fourplexes, and small apartment buildings that used to be the backbone of urban neighborhoods."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#density-and-transit",
+    "href": "slides/urban-geometry.html#density-and-transit",
+    "title": "Urban Geometry",
+    "section": "Density and Transit",
+    "text": "Density and Transit\n\n\nLow density makes mass transit geometrically prohibitive.\n\nA bus route needs roughly 15-30 housing units per acre to generate enough ridership to justify frequent service.\nAt suburban densities (~4-6 units/acre), routes are too long, stops too far apart, and ridership too low for the math to work.\nThis is fundamentally why Atlanta’s MARTA struggles while Barcelona’s metro thrives — it’s not just politics; it’s the underlying geometry of the built environment."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#fiscal-productivity",
+    "href": "slides/urban-geometry.html#fiscal-productivity",
+    "title": "Urban Geometry",
+    "section": "Fiscal Productivity",
+    "text": "Fiscal Productivity\nDense, walkable places generate dramatically more tax revenue per acre than auto-dependent sprawl (Marohn 2020).\n\nStrong Towns has documented this pattern in cities across the country — walkable downtown blocks often produce 10-40x more tax revenue per acre than big-box retail or suburban subdivisions.\nSprawl is expensive to serve: longer water mains, more road-miles, more fire stations, more school buses.\nMany suburban developments do not generate enough tax revenue to cover the cost of their own infrastructure over its full lifecycle.\n\n\nThe fiscal math of sprawl only works during the growth phase — when new development fees subsidize existing infrastructure. When growth slows, the bill comes due.\n\nThis is the core Strong Towns argument. The suburban growth model is essentially a Ponzi scheme — each generation of development requires the next generation of development to pay for maintaining the infrastructure of the last. When growth stops, cities face a fiscal cliff."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#environmental-footprint",
+    "href": "slides/urban-geometry.html#environmental-footprint",
+    "title": "Urban Geometry",
+    "section": "Environmental Footprint",
+    "text": "Environmental Footprint\nWhere you live is the single best predictor of your carbon footprint.\n\nHouseholds in dense, walkable neighborhoods produce a fraction of the emissions of their suburban counterparts — driven primarily by transportation and home energy use.\nCoolClimate maps show this pattern vividly: urban cores are green, outer suburbs are red.\nElectric vehicles help, but they don’t address the fundamental geometry — tire particulates, road maintenance, and the opportunity cost of land devoted to cars remain."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#next-few-weeks-parking-and-housing-policy",
+    "href": "slides/urban-geometry.html#next-few-weeks-parking-and-housing-policy",
+    "title": "Urban Geometry",
+    "section": "Next Few Weeks: Parking and Housing Policy",
+    "text": "Next Few Weeks: Parking and Housing Policy\nJacobs’ four conditions — mixed use, short blocks, aged buildings, concentration — point to the same conclusion: American zoning and transportation policy have systematically dismantled the ingredients of vibrant cities.\n\nThe next few weeks, we turn to two policy domains where these forces collide:\n\nParking: Why does Athens require 8 parking spaces per hole at a golf course? What does “free parking” actually cost? (Shoup 2005)\nHousing: Who shows up to fight new development? Why is housing so expensive in the places where it’s most needed? (Einstein, Glick, and Palmer 2019)"
+  },
+  {
+    "objectID": "slides/urban-geometry.html#wrapping-up-1",
+    "href": "slides/urban-geometry.html#wrapping-up-1",
+    "title": "Urban Geometry",
+    "section": "Wrapping Up",
+    "text": "Wrapping Up\nJacobs’ four conditions — mixed use, short blocks, aged buildings, concentration — point to the same conclusion: American zoning and transportation policy have systematically outlawed the ingredients of vibrant cities.\n\nThe last three weeks of class(!), we discuss two policy areas where zoning codes have the biggest impact:\n\nParking\nHousing"
+  },
+  {
+    "objectID": "slides/urban-geometry.html#the-gritty-rebooted-story",
+    "href": "slides/urban-geometry.html#the-gritty-rebooted-story",
+    "title": "Urban Geometry",
+    "section": "The Gritty Rebooted Story",
+    "text": "The Gritty Rebooted Story"
+  },
+  {
+    "objectID": "slides/urban-geometry.html#zoning-3",
+    "href": "slides/urban-geometry.html#zoning-3",
+    "title": "Urban Geometry",
+    "section": "Zoning",
+    "text": "Zoning\n\nAfter Euclid and New York, zoning spreads throughout the country.\nStates throughout the country pass enabling legislation to allow municipal governments to create zoning codes.\nToday, Houston is the only major US city without a zoning code!\nIn the final two weeks of class, we’ll dive deeper into the politics of zoning and housing policy…"
+  },
+  {
+    "objectID": "slides/urban-geometry.html#traffic-congestion",
+    "href": "slides/urban-geometry.html#traffic-congestion",
+    "title": "Urban Geometry",
+    "section": "Traffic Congestion",
+    "text": "Traffic Congestion\n\nThe irony of all this road building is that it so rarely solves the problem it sets out to solve: traffic congestion.\nCan we build our way out of traffic? The intuition: more lanes → less congestion. Right?\nDuranton and Turner (2011) find that vehicle kilometers traveled increase proportionately with highway capacity.\n\nThey call this the Fundamental Law of Road Congestion.\nDouble the lane-miles → double the driving. Congestion stays roughly the same.\n\nThis is also known as induced demand: making driving easier attracts more driving.\nThis undermines cost-benefit analyses that assume new roads save commuters time — time that isn’t actually saved in equilibrium.\n\n\nThe result is striking: the elasticity is almost exactly 1.0. Build it, and they will drive. This is one of the deep dive readings for this week."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#urban-renewal",
+    "href": "slides/urban-geometry.html#urban-renewal",
+    "title": "Urban Geometry",
+    "section": "Urban Renewal",
+    "text": "Urban Renewal\n\nThis connects to our earlier discussion of Urban Renewal.\nDuring this era, it was too easy to seize and redevelop urban land with identically-aged buildings.\nToday, the problem is almost the opposite.\nIt can be so difficult to get the necessary permitting in many cities, that builders default towards large-scale redevelopments."
+  },
+  {
+    "objectID": "slides/urban-geometry.html#single-family-zoning",
+    "href": "slides/urban-geometry.html#single-family-zoning",
+    "title": "Urban Geometry",
+    "section": "Single-Family Zoning",
+    "text": "Single-Family Zoning\nIn most American cities, the vast majority of residential land is reserved exclusively for detached single-family homes.\n\nNew York Times maps show that in cities like San Jose, Arlington, and Charlotte, single-family zoning covers 70-90% of residential land.\nThis isn’t just a personal preference — it’s mandated by law. Duplexes, triplexes, and small apartment buildings are illegal to build on most land.\nThe result: an artificial scarcity of housing in the places where demand is highest."
+  },
+  {
+    "objectID": "slides/week9-urban-geometry-notes.html",
+    "href": "slides/week9-urban-geometry-notes.html",
+    "title": "Week 9: Urban Geometry — Zettelkasten Summary",
+    "section": "",
+    "text": "Speck argues that walkability is the single best indicator of a city’s vitality — cities where basic needs are walkable are wealthier, healthier, and more pleasant. His four criteria: walking must be useful, safe, comfortable, and interesting. The punchiest formulation: city engineers “worshiping the twin gods of Smooth Traffic and Ample Parking” have made downtowns easy to reach but not worth arriving at.\nPutnam’s finding reinforces the stakes: each additional 10 minutes of commute cuts community involvement by 10%. Auto-oriented suburbs significantly contributed to the broad-based decline in social trust.\n\n\n\nThe 20th-century suburban build-out was an abrupt, top-down break from millennia of walkable development (Marohn, Strong Towns). Traditional development proceeds incrementally through trial and error, producing emergent design wisdom — shared walls that reduce construction and heating costs, buildings hugging the street that satisfy a deep psychological need to occupy edges of spaces.\nElectric cars don’t solve auto-dependence. Tire particulates are now a larger source of pollution than tailpipe emissions.\n\n\n\nA city is, almost by definition, a place where land is expensive. Cars are spectacularly space-inefficient in that context (see the classic Human Transit photo comparing transit modes). Transportation is fundamentally a land use problem: walk through any city and count the “missing teeth” — surface parking lots, dead frontages, land consumed by moving and storing cars rather than serving as places where people live.\n\n\n\nDuranton and Turner find that vehicle kilometers traveled increase proportionately with highway capacity, meaning new roads don’t relieve congestion in equilibrium. This undermines the ASCE’s “infrastructure gap” calculations, which rely on the value of time saved — time that isn’t actually saved. Meanwhile, Anderson’s study of the 2003 LA transit strike found highway delays increased 47% when transit shut down, suggesting transit’s net benefits are larger than typically estimated.\n\n\n\nThere is a range of residential density (roughly, small-lot single-family homes) that is suboptimal for both cars and mass transit. Adding density worsens congestion, but the area is still too sparse to support good transit. This creates a “canyon in the fitness landscape” — communities in this zone may be the least likely to accept incremental densification.\n\n\n\nThe economist’s framing: sprawl is only inefficient if there are unpriced negative externalities — traffic congestion, carbon emissions, an amenity value for open space, or reduced social interactions. There is also a fiscal angle (Marohn): once public infrastructure is built out, adding residents just adds congestion, reversing the traditional development logic where more people meant more fiscal capacity.\n\n\n\nZoning regulations that prohibit missing middle housing create monoculture neighborhoods — auto-dependent, low-density, single-use — lacking the diversity Jacobs identified as essential to thriving cities. The analogy to Scott’s Seeing Like a State is apt: just as scientific forestry replaced diverse forests with fragile monocultures, Euclidean zoning replaces diverse neighborhoods with fragile, car-dependent ones.\n\n\n\nEllickson argues for the economic benefits of grid street layouts. A speculative framing: grids may maximize aggregate property values by optimizing the tradeoff between accessibility (more roads connecting more parcels) and the opportunity cost of land consumed by roads.\n\n\n\nJacobs and Alexander (A Pattern Language) both observe that people naturally gravitate toward the edges of spaces. Traditional streetscapes provide these edges; suburban open spaces do not. The discomfort of wide-open suburban landscapes may be deeply rooted — we are, after all, the brains of a prey species.\n\nThroughline: Designing cities around cars consumes expensive land inefficiently, induces demand rather than relieving congestion, erodes social capital, and produces monoculture neighborhoods that lack the diversity Jacobs identified as essential to urban vitality. Walkability is the corrective."
+  },
+  {
+    "objectID": "slides/week9-urban-geometry-notes.html#walkability-as-the-core-metric",
+    "href": "slides/week9-urban-geometry-notes.html#walkability-as-the-core-metric",
+    "title": "Week 9: Urban Geometry — Zettelkasten Summary",
+    "section": "",
+    "text": "Speck argues that walkability is the single best indicator of a city’s vitality — cities where basic needs are walkable are wealthier, healthier, and more pleasant. His four criteria: walking must be useful, safe, comfortable, and interesting. The punchiest formulation: city engineers “worshiping the twin gods of Smooth Traffic and Ample Parking” have made downtowns easy to reach but not worth arriving at.\nPutnam’s finding reinforces the stakes: each additional 10 minutes of commute cuts community involvement by 10%. Auto-oriented suburbs significantly contributed to the broad-based decline in social trust."
+  },
+  {
+    "objectID": "slides/week9-urban-geometry-notes.html#the-suburban-experiment-and-auto-dependence",
+    "href": "slides/week9-urban-geometry-notes.html#the-suburban-experiment-and-auto-dependence",
+    "title": "Week 9: Urban Geometry — Zettelkasten Summary",
+    "section": "",
+    "text": "The 20th-century suburban build-out was an abrupt, top-down break from millennia of walkable development (Marohn, Strong Towns). Traditional development proceeds incrementally through trial and error, producing emergent design wisdom — shared walls that reduce construction and heating costs, buildings hugging the street that satisfy a deep psychological need to occupy edges of spaces.\nElectric cars don’t solve auto-dependence. Tire particulates are now a larger source of pollution than tailpipe emissions."
+  },
+  {
+    "objectID": "slides/week9-urban-geometry-notes.html#cars-geometry-and-land-use",
+    "href": "slides/week9-urban-geometry-notes.html#cars-geometry-and-land-use",
+    "title": "Week 9: Urban Geometry — Zettelkasten Summary",
+    "section": "",
+    "text": "A city is, almost by definition, a place where land is expensive. Cars are spectacularly space-inefficient in that context (see the classic Human Transit photo comparing transit modes). Transportation is fundamentally a land use problem: walk through any city and count the “missing teeth” — surface parking lots, dead frontages, land consumed by moving and storing cars rather than serving as places where people live."
+  },
+  {
+    "objectID": "slides/week9-urban-geometry-notes.html#the-fundamental-law-of-road-congestion",
+    "href": "slides/week9-urban-geometry-notes.html#the-fundamental-law-of-road-congestion",
+    "title": "Week 9: Urban Geometry — Zettelkasten Summary",
+    "section": "",
+    "text": "Duranton and Turner find that vehicle kilometers traveled increase proportionately with highway capacity, meaning new roads don’t relieve congestion in equilibrium. This undermines the ASCE’s “infrastructure gap” calculations, which rely on the value of time saved — time that isn’t actually saved. Meanwhile, Anderson’s study of the 2003 LA transit strike found highway delays increased 47% when transit shut down, suggesting transit’s net benefits are larger than typically estimated."
+  },
+  {
+    "objectID": "slides/week9-urban-geometry-notes.html#the-density-paradox",
+    "href": "slides/week9-urban-geometry-notes.html#the-density-paradox",
+    "title": "Week 9: Urban Geometry — Zettelkasten Summary",
+    "section": "",
+    "text": "There is a range of residential density (roughly, small-lot single-family homes) that is suboptimal for both cars and mass transit. Adding density worsens congestion, but the area is still too sparse to support good transit. This creates a “canyon in the fitness landscape” — communities in this zone may be the least likely to accept incremental densification."
+  },
+  {
+    "objectID": "slides/week9-urban-geometry-notes.html#sprawl-and-externalities",
+    "href": "slides/week9-urban-geometry-notes.html#sprawl-and-externalities",
+    "title": "Week 9: Urban Geometry — Zettelkasten Summary",
+    "section": "",
+    "text": "The economist’s framing: sprawl is only inefficient if there are unpriced negative externalities — traffic congestion, carbon emissions, an amenity value for open space, or reduced social interactions. There is also a fiscal angle (Marohn): once public infrastructure is built out, adding residents just adds congestion, reversing the traditional development logic where more people meant more fiscal capacity."
+  },
+  {
+    "objectID": "slides/week9-urban-geometry-notes.html#missing-middle-and-jacobs",
+    "href": "slides/week9-urban-geometry-notes.html#missing-middle-and-jacobs",
+    "title": "Week 9: Urban Geometry — Zettelkasten Summary",
+    "section": "",
+    "text": "Zoning regulations that prohibit missing middle housing create monoculture neighborhoods — auto-dependent, low-density, single-use — lacking the diversity Jacobs identified as essential to thriving cities. The analogy to Scott’s Seeing Like a State is apt: just as scientific forestry replaced diverse forests with fragile monocultures, Euclidean zoning replaces diverse neighborhoods with fragile, car-dependent ones."
+  },
+  {
+    "objectID": "slides/week9-urban-geometry-notes.html#street-grids",
+    "href": "slides/week9-urban-geometry-notes.html#street-grids",
+    "title": "Week 9: Urban Geometry — Zettelkasten Summary",
+    "section": "",
+    "text": "Ellickson argues for the economic benefits of grid street layouts. A speculative framing: grids may maximize aggregate property values by optimizing the tradeoff between accessibility (more roads connecting more parcels) and the opportunity cost of land consumed by roads."
+  },
+  {
+    "objectID": "slides/week9-urban-geometry-notes.html#human-scale-design",
+    "href": "slides/week9-urban-geometry-notes.html#human-scale-design",
+    "title": "Week 9: Urban Geometry — Zettelkasten Summary",
+    "section": "",
+    "text": "Jacobs and Alexander (A Pattern Language) both observe that people naturally gravitate toward the edges of spaces. Traditional streetscapes provide these edges; suburban open spaces do not. The discomfort of wide-open suburban landscapes may be deeply rooted — we are, after all, the brains of a prey species.\n\nThroughline: Designing cities around cars consumes expensive land inefficiently, induces demand rather than relieving congestion, erodes social capital, and produces monoculture neighborhoods that lack the diversity Jacobs identified as essential to urban vitality. Walkability is the corrective."
   }
 ]
