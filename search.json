@@ -4,21 +4,21 @@
     "href": "software.html",
     "title": "Joseph T. Ornstein",
     "section": "",
-    "text": "fuzzylink : Probabilistic record linkage using pretrained text embeddings\npromptr : Functions for formatting and completing prompts to Large Language Models. Useful for text classification and topic modeling.\ngprd (work in progress): Regression discontinuity estimates using Gaussian Process\nSRP : Stacked regression and poststratification (vignette)\nrdviz : Regression discontinuity visualizations"
+    "text": "textscale (under development): Measuring latent quantities from text embeddings\nfuzzylink : Probabilistic record linkage using pretrained text embeddings\npromptr : Functions for formatting and completing prompts to Large Language Models. Useful for text classification and topic modeling. (Lightly maintained since the release of ellmer.)\ngprd (work in progress): Regression discontinuity estimates using Gaussian Process\nSRP : Stacked regression and poststratification (vignette)\nrdviz : Regression discontinuity visualizations"
   },
   {
     "objectID": "software.html#r-packages",
     "href": "software.html#r-packages",
     "title": "Joseph T. Ornstein",
     "section": "",
-    "text": "fuzzylink : Probabilistic record linkage using pretrained text embeddings\npromptr : Functions for formatting and completing prompts to Large Language Models. Useful for text classification and topic modeling.\ngprd (work in progress): Regression discontinuity estimates using Gaussian Process\nSRP : Stacked regression and poststratification (vignette)\nrdviz : Regression discontinuity visualizations"
+    "text": "textscale (under development): Measuring latent quantities from text embeddings\nfuzzylink : Probabilistic record linkage using pretrained text embeddings\npromptr : Functions for formatting and completing prompts to Large Language Models. Useful for text classification and topic modeling. (Lightly maintained since the release of ellmer.)\ngprd (work in progress): Regression discontinuity estimates using Gaussian Process\nSRP : Stacked regression and poststratification (vignette)\nrdviz : Regression discontinuity visualizations"
   },
   {
     "objectID": "software.html#misc",
     "href": "software.html#misc",
     "title": "Joseph T. Ornstein",
     "section": "Misc",
-    "text": "Misc\n\nDraw A Random Sample: An interactive Shiny app that does exactly what it says on the tin. Very useful for teaching about probability and sampling. Hard to believe I couldn’t find something like this anywhere else on the Internet!"
+    "text": "Misc\n\nDraw A Random Sample: An interactive Shiny app that does exactly what it says on the tin. Useful for teaching probability and sampling."
   },
   {
     "objectID": "publications.html",
@@ -46,7 +46,7 @@
     "href": "publications.html#working-papers",
     "title": "Joseph T. Ornstein",
     "section": "Working Papers",
-    "text": "Working Papers\n\nOrnstein, Joseph T. (2024). Election Timing Revisited: Evidence from California’s Voter Participation Rights Act. [PDF]\nOrnstein, Joseph T. & JBrandon Duck-Mayr. Gaussian Process Regression Discontinuity. [PDF]"
+    "text": "Working Papers\n\nOrnstein, Joseph T. Election Timing Revisited: Evidence from California’s Voter Participation Rights Act. [PDF]\nOrnstein, Joseph T. & JBrandon Duck-Mayr. Gaussian Process Regression Discontinuity. [PDF]"
   },
   {
     "objectID": "software/SRP/index.html",
