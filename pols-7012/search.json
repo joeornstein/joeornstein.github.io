@@ -130,7 +130,7 @@
     "href": "index.html#course-objectives",
     "title": "POLS 7012: Introduction to Political Methodology",
     "section": "Course Objectives",
-    "text": "Course Objectives\nBy the end of this course, you will be able to:\n\nConfidently work with data using the R programming language\nCreate beautiful and informative data visualizations\nOrganize your work so that it is transparent and reproducible\nBuild basic statistical models and estimate their parameters from data\nCommunicate uncertainty around your estimates\nIdentify research designs that credibly address three fundamental challenges of social science: measurement, causal inference, and sampling."
+    "text": "Course Objectives\nUpon successful completion of this course, students will be able to:\n\nDescribe the workhorse methods that political scientists use to test their theories with data. See Readings and Exams & Grading for details on how this competency will be assessed.\nConfidently analyze datasets using the R programming language, organizing this work so that it is transparent and reproducible. See Problem Sets for details on how this competency will be assessed."
   },
   {
     "objectID": "index.html#assignments-grading",
@@ -144,14 +144,14 @@
     "href": "index.html#office-hours-and-email-policy",
     "title": "POLS 7012: Introduction to Political Methodology",
     "section": "Office Hours and Email Policy",
-    "text": "Office Hours and Email Policy\nI will be available for students to drop in and chat every Thursday afternoon from 2-4pm. My office is Baldwin 304C. If you send me an email, please allow me 24 hours to respond. Like many professors, my inbox is pretty overloaded. Also, I have small children, so it’s my policy to not check email after 5pm or on weekends. You should feel free to seek assistance from the senior graduate students staffing the SPIA Methods Helpdesk. You can email them questions at spia-methods-help@uga.edu."
+    "text": "Office Hours and Email Policy\nI will be available for students to drop in and chat every Thursday afternoon from 2-3pm. My office is Baldwin 304C. If you send me an email, please allow me 24 hours to respond. Like many professors, my inbox is pretty overloaded. Also, I have small children, so it’s my policy to not check email after 5pm or on weekends. You should feel free to seek assistance from the senior graduate students staffing the SPIA Methods Helpdesk. You can email them questions at spia-methods-help@uga.edu."
   },
   {
     "objectID": "index.html#books",
     "href": "index.html#books",
     "title": "POLS 7012: Introduction to Political Methodology",
     "section": "Books",
-    "text": "Books\nOur readings will come from the two books listed below. The first book (DAFSS) must be purchased—either in hard-copy or through the course Perusall site—but the second (R4DS) is freely available online.\n\nDAFSS: Llaudet, Elena & Imai, Kosuke (2022). Data Analysis for Social Science: A Friendly and Practical Introduction. Princeton University Press.\nR4DS: Wickham, H., Cetinkaya-Rundel, M., & Grolemund, G., (2023). R For Data Science: Import, Tidy, Transform, Visualize, and Model Data, 2nd Edition. O’Reilly Media, Inc."
+    "text": "Books\nOur readings will come from the course textbook:\n\nQSS: Imai, Kosuke (2017). Quantitative Social Science: An Introduction. Princeton University Press."
   },
   {
     "objectID": "index.html#schedule",
@@ -915,5 +915,33 @@
     "title": "Introduction to Political Methodology",
     "section": "",
     "text": "Measurement\nCausal Inference\nSampling\n\n. . .\nIn each case, there is some quantity of interest that we do not or cannot observe.\n\nThe goal of statistics is to make inferences about the unobserved quantity based on the things we do observe."
+  },
+  {
+    "objectID": "index.html#readings",
+    "href": "index.html#readings",
+    "title": "POLS 7012: Introduction to Political Methodology",
+    "section": "Readings",
+    "text": "Readings\nEach week we will read a selection from our course textbook, Quantitative Social Science: An Introduction by Kosuke Imai (abbreviated QSS below). At the start of each class period, students will take a short reading quiz, in which they will be asked to summarize one or more of the key concepts from that week’s reading. These quizzes will be graded pass/fail, and there are 12 quizzes in total. To meet expectations, quiz responses must be accurate and clear enough that someone who hadn’t read the textbook could understand the response.\nAs you read each week’s assigned section, I strongly encourage you to follow along with the code examples by manually typing them into R and ensuring that everything works as expected. This practice will help you better understand how code works and prepare you for the problem sets."
+  },
+  {
+    "objectID": "index.html#problem-sets",
+    "href": "index.html#problem-sets",
+    "title": "POLS 7012: Introduction to Political Methodology",
+    "section": "Problem Sets",
+    "text": "Problem Sets\nAfter class, I will assign an exercise from QSS as that week’s problem set, due before the following week’s class. Feel free to consult your classmates with questions about the problem sets, but I expect you to submit your answers individually. Resist the temptation to copy-paste code directly from your classmates or Claudes. You are much more likely to learn if you grapple with the coding yourself. Problem sets will be graded pass/fail, where a passing grade indicates that your solution is correct or contains only minor errors."
+  },
+  {
+    "objectID": "index.html#exams-grading",
+    "href": "index.html#exams-grading",
+    "title": "POLS 7012: Introduction to Political Methodology",
+    "section": "Exams & Grading",
+    "text": "Exams & Grading\nThere will be two written exams: one midterm (scheduled for October 6) and one final exam (scheduled by the university during final exam period, December 8 from 3:30-6:30pm). Both exams will be graded out of 100 points. Exam content will be drawn from the readings and problem sets, and the final exam will be cumulative.\nThe final letter grade you earn for the semester will be determined based on the number of reading quizzes and problem sets you complete that meet expectations (each worth 5 points) and your performance on the exams (each worth 100 points). Consult the table below for the minimum requirements for each letter grade.\n\n\n\nLetter Grade\nPoints\n\n\n\n\nA\n240+\n\n\nA-\n230-239\n\n\nB+\n220-229\n\n\nB\n210-219\n\n\nB-\n200-209\n\n\nC+\n185-199\n\n\nC\n170-184\n\n\nF\nbelow 170"
+  },
+  {
+    "objectID": "index.html#course-outline",
+    "href": "index.html#course-outline",
+    "title": "POLS 7012: Introduction to Political Methodology",
+    "section": "Course Outline",
+    "text": "Course Outline\n\n\n\nDate\nModule\nTopic\nReading Quiz\nProblem Set\n\n\n\n\nAug 18\nI. Introduction\nGetting Started\n\nQSS 1.5.2\n\n\nAug 25\nII. Causality\nExperiments\nQSS 2.1-2.4\nQSS 2.8.1\n\n\nSep 1\n\nObservation\nQSS 2.5-2.7\nQSS 2.8.1\n\n\nSep 8\nIII. Measurement\nSampling\nQSS 3.1-3.4\nQSS 3.9.2\n\n\nSep 15\n\nSummary Statistics\nQSS 3.5-3.8\nQSS 3.9.3\n\n\nSep 22\nIV. Prediction\nLinear Models\nQSS 4.1-4.2\nQSS 4.5.1\n\n\nSep 29\n\nRegression and Causation\nQSS 4.3-4.4\nQSS 4.5.2\n\n\nOct 6\n\nMidterm Exam\n\n\n\n\nOct 13\nV. Probability\nProbability\nQSS 6.1\nQSS 6.6.1\n\n\nOct 20\n\nConditional Probability\nQSS 6.2 (skip 6.2.4)\n–\n\n\nOct 27\n\nDistributions\nQSS 6.3-6.4\nQSS 6.6.3\n\n\nNov 3\nVI. Uncertainty\nEstimation\nQSS 7.1\nQSS 7.5.1\n\n\nNov 10\n\nHypothesis Testing\nQSS 7.2\nQSS 7.5.2\n\n\nNov 17\n\nModel-Based Inference\nQSS 7.3\nQSS 7.5.1\n\n\nDec 8\n\nFinal Exam"
   }
 ]
