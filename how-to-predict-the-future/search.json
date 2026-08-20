@@ -151,7 +151,7 @@
     "href": "slides/prediction-markets.html#references",
     "title": "Prediction Markets",
     "section": "References",
-    "text": "References\n\n\n\n\n\n\n\n\nArrow, Kenneth J., Robert Forsythe, Michael Gorham, Robert Hahn, Robin Hanson, John O. Ledyard, Saul Levmore, et al. 2008. “The Promise of Prediction Markets.” Science 320 (5878): 877–78. https://doi.org/10.1126/science.1157679."
+    "text": "References\n\n\n\n\nArrow, Kenneth J., Robert Forsythe, Michael Gorham, et al. 2008. “The Promise of Prediction Markets.” Science 320 (5878): 877–78. https://doi.org/10.1126/science.1157679."
   },
   {
     "objectID": "slides/long-tails.html#todays-agenda",
@@ -466,7 +466,7 @@
     "href": "slides/long-tails.html#references",
     "title": "Long Tails",
     "section": "References",
-    "text": "References\n\n\n\n\n\n\n\n\nTaleb, Nassim Nicholas. 2007. The black swan: the impact of the highly improbable. London: Allen Lane."
+    "text": "References\n\n\n\n\nTaleb, Nassim Nicholas. 2007. The black swan: the impact of the highly improbable. Allen Lane."
   },
   {
     "objectID": "slides/jury-theorems.html#warmup",
@@ -557,7 +557,7 @@
     "href": "slides/jury-theorems.html#condorcet-jury-theorem-2",
     "title": "Jury Theorems",
     "section": "Condorcet Jury Theorem",
-    "text": "Condorcet Jury Theorem\nExample: A jury with 5 members, where each individual has a 60% probability of choosing the right answer.\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Voting\n\n\n\n1R,0W\n\n\n\n0R,1W\n\n\n\n2R,0W\n\n\n\n1R,1W\n\n\n\n0R,2W\n\n\n\n3R,0W\n\n\n\n2R,1W\n\n\n\n1R,2W\n\n\n\n0R,3W\n\n\n\n4R,0W\n\n\n\n3R,1W\n\n\n\n2R,2W\n\n\n\n1R,3W\n\n\n\n0R,4W\n\n\n\n5R,0W (7.8%)\n\n\n\n4R,1W (25.9%)\n\n\n\n3R,2W (34.6%)\n\n\n\n2R,3W (23%)\n\n\n\n1R,4W (7.7%)\n\n\n\n0R,5W (1%)"
+    "text": "Condorcet Jury Theorem\nExample: A jury with 5 members, where each individual has a 60% probability of choosing the right answer.\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Voting\n\n\n\n\n\n\n\n1R,0W\n\n\n\n\n\n\n\n0R,1W\n\n\n\n\n\n\n\n2R,0W\n\n\n\n\n\n\n\n1R,1W\n\n\n\n\n\n\n\n0R,2W\n\n\n\n\n\n\n\n3R,0W\n\n\n\n\n\n\n\n2R,1W\n\n\n\n\n\n\n\n1R,2W\n\n\n\n\n\n\n\n0R,3W\n\n\n\n\n\n\n\n4R,0W\n\n\n\n\n\n\n\n3R,1W\n\n\n\n\n\n\n\n2R,2W\n\n\n\n\n\n\n\n1R,3W\n\n\n\n\n\n\n\n0R,4W\n\n\n\n\n\n\n\n5R,0W (7.8%)\n\n\n\n\n\n\n\n4R,1W (25.9%)\n\n\n\n\n\n\n\n3R,2W (34.6%)\n\n\n\n\n\n\n\n2R,3W (23%)\n\n\n\n\n\n\n\n1R,4W (7.7%)\n\n\n\n\n\n\n\n0R,5W (1%)"
   },
   {
     "objectID": "slides/jury-theorems.html#condorcet-jury-theorem-3",
@@ -683,7 +683,7 @@
     "href": "slides/jury-theorems.html#references",
     "title": "Jury Theorems",
     "section": "References",
-    "text": "References\n\n\n\n\n\n\n\n\nBlack, Duncan. 1948. “On the Rationale of Group Decision-Making.” Journal of Political Economy 56 (1): 23–34. https://doi.org/10.1086/256633.\n\n\nGalton, Francis. 1907. “Vox Populi.” Nature 75 (1949): 450–51. https://doi.org/10.1038/075450a0."
+    "text": "References\n\n\n\n\nBlack, Duncan. 1948. “On the Rationale of Group Decision-Making.” Journal of Political Economy 56 (1): 23–34. https://doi.org/10.1086/256633.\n\n\nGalton, Francis. 1907. “Vox Populi.” Nature 75 (1949): 450–51. https://doi.org/10.1038/075450a0."
   },
   {
     "objectID": "slides/fundamentals.html#prediction-is-hard",
@@ -732,7 +732,7 @@
     "href": "slides/fundamentals.html#prediction-is-hard-6",
     "title": "Fudamentals of Probability",
     "section": "Prediction Is Hard",
-    "text": "Prediction Is Hard\n\nPredictions guide important decisions—in politics, public policy, business, and daily life.\nOverconfidence and neglect of uncertainty can have serious consequences.\nThe future is inherently uncertain—we need better ways to think about and communicate uncertainty."
+    "text": "Prediction Is Hard\n\nLooking back at history, it sometimes seems like events unfold in a linear, even predictable, fashion.\nBut overconfidence and neglect of uncertainty are the norm.\nMaking good predictions is essential for making good decisions—in politics, public policy, business, and daily life.\nIn the first few weeks of class, we’ll introduce probability, a language that helps us think about and communicate our uncertainty about outcomes."
   },
   {
     "objectID": "slides/fundamentals.html#probability-1",
@@ -844,7 +844,7 @@
     "href": "slides/fundamentals.html#practice",
     "title": "Fudamentals of Probability",
     "section": "Practice",
-    "text": "Practice\n\nTake 10 minutes to play “Two Truths and a Lie” with your tablemates. Pick a person to tell two truths and a lie about themselves, and everyone else must guess which is the lie.\nOur twist on the game is that everyone must estimate a probability that their chosen statement is a lie. Use the Equivalent Bet Test to help calibrate your probability.\n(Feel free to play multiple rounds if there is time remaining.)"
+    "text": "Practice\n\nTake 10 minutes to play “Two Truths and a Lie” with your tablemates. Pick a person to tell two truths and a lie about themselves, and everyone else must guess which is the lie.\nOur twist on the game is that everyone should write down a probability that their chosen statement is a lie. Use the Equivalent Bet Test to help calibrate your probability.\n(Feel free to play multiple rounds if there is time remaining.)"
   },
   {
     "objectID": "slides/conditional-probability.html#todays-agenda",
@@ -872,7 +872,7 @@
     "href": "slides/conditional-probability.html#outside-view",
     "title": "Conditional Probability",
     "section": "Outside View",
-    "text": "Outside View\n\n\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Tomatometer\n                Total\n                %\n              \n        \n        \n        \n                \n                  Certified-Fresh\n                  3,259\n                  18.4\n                \n                \n                  Fresh\n                  6,844\n                  38.7\n                \n                \n                  Rotten\n                  7,565\n                  42.8"
+    "text": "Outside View\n\n\n\n\n\n\n    \n\n    \n    \n    \n      \n        \n        \n              \n                Tomatometer\n                Total\n                %\n              \n        \n        \n        \n                \n                  Certified-Fresh\n                  3,259\n                  18.4\n                \n                \n                  Fresh\n                  6,844\n                  38.7\n                \n                \n                  Rotten\n                  7,565\n                  42.8"
   },
   {
     "objectID": "slides/conditional-probability.html#outside-view-1",
@@ -886,14 +886,14 @@
     "href": "slides/conditional-probability.html#unconditional-probability",
     "title": "Conditional Probability",
     "section": "Unconditional Probability",
-    "text": "Unconditional Probability\n\n\n\n\n\n\n\n\n\n18.5%\n\n\n\n81.5%\n\n\n\nAll Movies\n\n\n\nCertified Fresh\n\n\n\nNot CF"
+    "text": "Unconditional Probability\n\n\n\n\n\n\n\n\n\n\n\n18.5%\n\n\n\n\n\n\n\n81.5%\n\n\n\n\n\n\n\nAll Movies\n\n\n\n\n\n\n\nCertified Fresh\n\n\n\n\n\n\n\nNot CF"
   },
   {
     "objectID": "slides/conditional-probability.html#conditional-probability",
     "href": "slides/conditional-probability.html#conditional-probability",
     "title": "Conditional Probability",
     "section": "Conditional Probability",
-    "text": "Conditional Probability\n\n\n\n\n\n\n\n\n\n36%\n\n\n\n64%\n\n\n\n22%\n\n\n\n78%\n\n\n\n16.5%\n\n\n\n83.5%\n\n\n\nAll Movies\n\n\n\nRated R\n\n\n\nNot Rated R\n\n\n\nCertified Fresh\n\n\n\nNot CF\n\n\n\nCertified Fresh\n\n\n\nNot CF"
+    "text": "Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n36%\n\n\n\n\n\n\n\n64%\n\n\n\n\n\n\n\n22%\n\n\n\n\n\n\n\n78%\n\n\n\n\n\n\n\n16.5%\n\n\n\n\n\n\n\n83.5%\n\n\n\n\n\n\n\nAll Movies\n\n\n\n\n\n\n\nRated R\n\n\n\n\n\n\n\nNot Rated R\n\n\n\n\n\n\n\nCertified Fresh\n\n\n\n\n\n\n\nNot CF\n\n\n\n\n\n\n\nCertified Fresh\n\n\n\n\n\n\n\nNot CF"
   },
   {
     "objectID": "slides/conditional-probability.html#conditional-probability-1",
@@ -907,7 +907,7 @@
     "href": "slides/conditional-probability.html#conditional-probability-2",
     "title": "Conditional Probability",
     "section": "Conditional Probability",
-    "text": "Conditional Probability\n\n\n\n\n\n\n\n\n\n36%\n\n\n\n64%\n\n\n\n63.4%\n\n\n\n36.6%\n\n\n\n25.5%\n\n\n\n74.5%\n\n\n\nAll Movies\n\n\n\nRated R\n\n\n\nNot Rated R\n\n\n\nReleased After 2000\n\n\n\nReleased Before 2000\n\n\n\nCertified Fresh\n\n\n\nNot CF"
+    "text": "Conditional Probability\n\n\n\n\n\n\n\n\n\n\n\n36%\n\n\n\n\n\n\n\n64%\n\n\n\n\n\n\n\n63.4%\n\n\n\n\n\n\n\n36.6%\n\n\n\n\n\n\n\n25.5%\n\n\n\n\n\n\n\n74.5%\n\n\n\n\n\n\n\nAll Movies\n\n\n\n\n\n\n\nRated R\n\n\n\n\n\n\n\nNot Rated R\n\n\n\n\n\n\n\nReleased After 2000\n\n\n\n\n\n\n\nReleased Before 2000\n\n\n\n\n\n\n\nCertified Fresh\n\n\n\n\n\n\n\nNot CF"
   },
   {
     "objectID": "slides/conditional-probability.html#conditional-probability-3",
@@ -935,7 +935,7 @@
     "href": "slides/conditional-probability.html#conditional-probability-6",
     "title": "Conditional Probability",
     "section": "Conditional Probability",
-    "text": "Conditional Probability\nHow far should we take this???\n\n\n\n\n\n\n\n\n\n\n36%\n\n\n\n64%\n\n\n\n63.4%\n\n\n\n36.6%\n\n\n\n0.05%\n\n\n\n99.95%\n\n\n\n100%\n\n\n\n0%\n\n\n\nAll Movies\n\n\n\nRated R\n\n\n\nNot Rated R\n\n\n\nReleased After 2000\n\n\n\nReleased Before 2000\n\n\n\nDirected by Cianfrance\n\n\n\nNot Cianfrance\n\n\n\nCertified Fresh\n\n\n\nNot CF"
+    "text": "Conditional Probability\nHow far should we take this???\n\n\n\n\n\n\n\n\n\n\n\n\n36%\n\n\n\n\n\n\n\n64%\n\n\n\n\n\n\n\n63.4%\n\n\n\n\n\n\n\n36.6%\n\n\n\n\n\n\n\n0.05%\n\n\n\n\n\n\n\n99.95%\n\n\n\n\n\n\n\n100%\n\n\n\n\n\n\n\n0%\n\n\n\n\n\n\n\nAll Movies\n\n\n\n\n\n\n\nRated R\n\n\n\n\n\n\n\nNot Rated R\n\n\n\n\n\n\n\nReleased After 2000\n\n\n\n\n\n\n\nReleased Before 2000\n\n\n\n\n\n\n\nDirected by Cianfrance\n\n\n\n\n\n\n\nNot Cianfrance\n\n\n\n\n\n\n\nCertified Fresh\n\n\n\n\n\n\n\nNot CF"
   },
   {
     "objectID": "slides/conditional-probability.html#inside-view",
@@ -963,7 +963,7 @@
     "href": "slides/conditional-probability.html#practice-1",
     "title": "Conditional Probability",
     "section": "Practice",
-    "text": "Practice\n\n\n\n\n\n\n\n\n\n25%\n\n\n\n75%\n\n\n\n25%\n\n\n\n75%\n\n\n\n25%\n\n\n\n75%\n\n\n\n25%\n\n\n\n75%\n\n\n\n25%\n\n\n\n75%\n\n\n\n25%\n\n\n\n75%\n\n\n\n25%\n\n\n\n75%\n\n\n\nStart of Career\n\n\n\nFilm 1: Fresh\n\n\n\nFilm 1: Not Fresh\n\n\n\nFilm 2: Fresh\n\n\n\nFilm 2: Not Fresh\n\n\n\nFilm 2: Fresh\n\n\n\nFilm 2: Not Fresh\n\n\n\nFilm 3: Fresh (1.5%)\n\n\n\nFilm 3: Not Fresh (4.7%)\n\n\n\nFilm 3: Fresh (4.7%)\n\n\n\nFilm 3: Not Fresh (14.1%)\n\n\n\nFilm 3: Fresh (4.7%)\n\n\n\nFilm 3: Not Fresh (14.1%)\n\n\n\nFilm 3: Fresh (14.1%)\n\n\n\nFilm 3: Not Fresh (42.2%)"
+    "text": "Practice\n\n\n\n\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\n25%\n\n\n\n\n\n\n\n75%\n\n\n\n\n\n\n\nStart of Career\n\n\n\n\n\n\n\nFilm 1: Fresh\n\n\n\n\n\n\n\nFilm 1: Not Fresh\n\n\n\n\n\n\n\nFilm 2: Fresh\n\n\n\n\n\n\n\nFilm 2: Not Fresh\n\n\n\n\n\n\n\nFilm 2: Fresh\n\n\n\n\n\n\n\nFilm 2: Not Fresh\n\n\n\n\n\n\n\nFilm 3: Fresh (1.5%)\n\n\n\n\n\n\n\nFilm 3: Not Fresh (4.7%)\n\n\n\n\n\n\n\nFilm 3: Fresh (4.7%)\n\n\n\n\n\n\n\nFilm 3: Not Fresh (14.1%)\n\n\n\n\n\n\n\nFilm 3: Fresh (4.7%)\n\n\n\n\n\n\n\nFilm 3: Not Fresh (14.1%)\n\n\n\n\n\n\n\nFilm 3: Fresh (14.1%)\n\n\n\n\n\n\n\nFilm 3: Not Fresh (42.2%)"
   },
   {
     "objectID": "slides/conditional-probability.html#inside-view-2",
@@ -1005,7 +1005,7 @@
     "href": "slides/conditional-probability.html#references",
     "title": "Conditional Probability",
     "section": "References",
-    "text": "References\n\n\n\n\n\n\n\n\nKahneman, Daniel, and Dan Lovallo. 1993. “Timid Choices and Bold Forecasts: A Cognitive Perspective on Risk Taking.” Management Science 39 (1): 17–31. https://www.jstor.org/stable/2661517."
+    "text": "References\n\n\n\n\nKahneman, Daniel, and Dan Lovallo. 1993. “Timid Choices and Bold Forecasts: A Cognitive Perspective on Risk Taking.” Management Science 39 (1): 17–31. https://www.jstor.org/stable/2661517."
   },
   {
     "objectID": "slides/brier-scores.html#todays-agenda",
@@ -1215,7 +1215,7 @@
     "href": "slides/bayes-rule.html#whats-going-on-5",
     "title": "Bayes Rule",
     "section": "What’s Going On?",
-    "text": "What’s Going On?\nHere’s the problem as a probability tree:\n\n\n\n\n\n\n\n\n\n99%\n\n\n\n1%\n\n\n\n90%\n\n\n\n10%\n\n\n\n90%\n\n\n\n10%\n\n\n\nAll Applicants\n\n\n\nNot A Spy\n\n\n\nSpy\n\n\n\nPass Polygraph (89.1%)\n\n\n\nFail Polygraph (9.9%)\n\n\n\nFail Polygraph (0.9%)\n\n\n\nPass Polygraph (0.1%)"
+    "text": "What’s Going On?\nHere’s the problem as a probability tree:\n\n\n\n\n\n\n\n\n\n\n\n99%\n\n\n\n\n\n\n\n1%\n\n\n\n\n\n\n\n90%\n\n\n\n\n\n\n\n10%\n\n\n\n\n\n\n\n90%\n\n\n\n\n\n\n\n10%\n\n\n\n\n\n\n\nAll Applicants\n\n\n\n\n\n\n\nNot A Spy\n\n\n\n\n\n\n\nSpy\n\n\n\n\n\n\n\nPass Polygraph (89.1%)\n\n\n\n\n\n\n\nFail Polygraph (9.9%)\n\n\n\n\n\n\n\nFail Polygraph (0.9%)\n\n\n\n\n\n\n\nPass Polygraph (0.1%)"
   },
   {
     "objectID": "slides/bayes-rule.html#bayes-rule",
@@ -1691,7 +1691,7 @@
     "href": "slides/aggregating-forecasts.html#references",
     "title": "Aggregating Forecasts",
     "section": "References",
-    "text": "References\n\n\n\n\n\n\n\n\nSatopää, Ville A., Jonathan Baron, Dean P. Foster, Barbara A. Mellers, Philip E. Tetlock, and Lyle H. Ungar. 2014. “Combining Multiple Probability Predictions Using a Simple Logit Model.” International Journal of Forecasting 30 (2): 344–56. https://doi.org/10.1016/j.ijforecast.2013.09.009."
+    "text": "References\n\n\n\n\nSatopää, Ville A., Jonathan Baron, Dean P. Foster, Barbara A. Mellers, Philip E. Tetlock, and Lyle H. Ungar. 2014. “Combining Multiple Probability Predictions Using a Simple Logit Model.” International Journal of Forecasting 30 (2): 344–56. https://doi.org/10.1016/j.ijforecast.2013.09.009."
   },
   {
     "objectID": "slides/bell-curves.html#todays-agenda",
@@ -1712,21 +1712,21 @@
     "href": "slides/bell-curves.html#warmup-1",
     "title": "Bell Curves",
     "section": "Warmup",
-    "text": "Warmup\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\nR\n\n\n\nD"
+    "text": "Warmup\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\nR\n\n\n\n\n\n\n\nD"
   },
   {
     "objectID": "slides/bell-curves.html#warmup-2",
     "href": "slides/bell-curves.html#warmup-2",
     "title": "Bell Curves",
     "section": "Warmup",
-    "text": "Warmup\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\nR\n\n\n\nD\n\n\n\nRR (36%)\n\n\n\nRD (24%)\n\n\n\nDR (24%)\n\n\n\nDD (16%)"
+    "text": "Warmup\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\nR\n\n\n\n\n\n\n\nD\n\n\n\n\n\n\n\nRR (36%)\n\n\n\n\n\n\n\nRD (24%)\n\n\n\n\n\n\n\nDR (24%)\n\n\n\n\n\n\n\nDD (16%)"
   },
   {
     "objectID": "slides/bell-curves.html#simplifying-assumption",
     "href": "slides/bell-curves.html#simplifying-assumption",
     "title": "Bell Curves",
     "section": "Simplifying Assumption",
-    "text": "Simplifying Assumption\nBecause we don’t care about the order of responses (just the counts), we can combine some outcomes:\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\n1R,0D\n\n\n\n0R,1D\n\n\n\n2R,0D (36%)\n\n\n\n1R,1D (48%)\n\n\n\n0R,2D (16%)"
+    "text": "Simplifying Assumption\nBecause we don’t care about the order of responses (just the counts), we can combine some outcomes:\n\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D (36%)\n\n\n\n\n\n\n\n1R,1D (48%)\n\n\n\n\n\n\n\n0R,2D (16%)"
   },
   {
     "objectID": "slides/bell-curves.html#things-to-notice",
@@ -1747,7 +1747,7 @@
     "href": "slides/bell-curves.html#n3",
     "title": "Bell Curves",
     "section": "n=3",
-    "text": "n=3\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\n1R,0D\n\n\n\n0R,1D\n\n\n\n2R,0D\n\n\n\n1R,1D\n\n\n\n0R,2D\n\n\n\n3R,0D (21.6%)\n\n\n\n2R,1D (43.2%)\n\n\n\n1R,2D (28.8%)\n\n\n\n0R,3D (6.4%)"
+    "text": "n=3\n\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D (21.6%)\n\n\n\n\n\n\n\n2R,1D (43.2%)\n\n\n\n\n\n\n\n1R,2D (28.8%)\n\n\n\n\n\n\n\n0R,3D (6.4%)"
   },
   {
     "objectID": "slides/bell-curves.html#section",
@@ -1761,21 +1761,21 @@
     "href": "slides/bell-curves.html#n4",
     "title": "Bell Curves",
     "section": "n=4",
-    "text": "n=4\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\n1R,0D\n\n\n\n0R,1D\n\n\n\n2R,0D\n\n\n\n1R,1D\n\n\n\n0R,2D\n\n\n\n3R,0D\n\n\n\n2R,1D\n\n\n\n1R,2D\n\n\n\n0R,3D\n\n\n\n4R,0D (13%)\n\n\n\n3R,1D (34.5%)\n\n\n\n2R,2D (34.5%)\n\n\n\n1R,3D (15.4%)\n\n\n\n0R,4D (2.6%)\n\n\n\n\n\n\n\n\n\n\nI would never make you do this by hand."
+    "text": "n=4\n\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D\n\n\n\n\n\n\n\n2R,1D\n\n\n\n\n\n\n\n1R,2D\n\n\n\n\n\n\n\n0R,3D\n\n\n\n\n\n\n\n4R,0D (13%)\n\n\n\n\n\n\n\n3R,1D (34.5%)\n\n\n\n\n\n\n\n2R,2D (34.5%)\n\n\n\n\n\n\n\n1R,3D (15.4%)\n\n\n\n\n\n\n\n0R,4D (2.6%)\n\n\n\n\n\n\n\n\n\n\n\n\nI would never make you do this by hand."
   },
   {
     "objectID": "slides/bell-curves.html#n5",
     "href": "slides/bell-curves.html#n5",
     "title": "Bell Curves",
     "section": "n=5",
-    "text": "n=5\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\n1R,0D\n\n\n\n0R,1D\n\n\n\n2R,0D\n\n\n\n1R,1D\n\n\n\n0R,2D\n\n\n\n3R,0D\n\n\n\n2R,1D\n\n\n\n1R,2D\n\n\n\n0R,3D\n\n\n\n4R,0D\n\n\n\n3R,1D\n\n\n\n2R,2D\n\n\n\n1R,3D\n\n\n\n0R,4D\n\n\n\n5R,0D (7.8%)\n\n\n\n4R,1D (25.9%)\n\n\n\n3R,2D (34.6%)\n\n\n\n2R,3D (23%)\n\n\n\n1R,4D (7.7%)\n\n\n\n0R,5D (1%)\n\n\n\n\n\n\n\n\n\nIntuition Check: Why is the probability of 3R,2D so big and the probability of 0R,5D so small?"
+    "text": "n=5\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D\n\n\n\n\n\n\n\n2R,1D\n\n\n\n\n\n\n\n1R,2D\n\n\n\n\n\n\n\n0R,3D\n\n\n\n\n\n\n\n4R,0D\n\n\n\n\n\n\n\n3R,1D\n\n\n\n\n\n\n\n2R,2D\n\n\n\n\n\n\n\n1R,3D\n\n\n\n\n\n\n\n0R,4D\n\n\n\n\n\n\n\n5R,0D (7.8%)\n\n\n\n\n\n\n\n4R,1D (25.9%)\n\n\n\n\n\n\n\n3R,2D (34.6%)\n\n\n\n\n\n\n\n2R,3D (23%)\n\n\n\n\n\n\n\n1R,4D (7.7%)\n\n\n\n\n\n\n\n0R,5D (1%)\n\n\n\n\n\n\n\n\n\n\n\nIntuition Check: Why is the probability of 3R,2D so big and the probability of 0R,5D so small?"
   },
   {
     "objectID": "slides/bell-curves.html#n6",
     "href": "slides/bell-curves.html#n6",
     "title": "Bell Curves",
     "section": "n=6",
-    "text": "n=6\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\n60%\n\n\n\n40%\n\n\n\nStart Poll\n\n\n\n1R,0D\n\n\n\n0R,1D\n\n\n\n2R,0D\n\n\n\n1R,1D\n\n\n\n0R,2D\n\n\n\n3R,0D\n\n\n\n2R,1D\n\n\n\n1R,2D\n\n\n\n0R,3D\n\n\n\n4R,0D\n\n\n\n3R,1D\n\n\n\n2R,2D\n\n\n\n1R,3D\n\n\n\n0R,4D\n\n\n\n5R,0D\n\n\n\n4R,1D\n\n\n\n3R,2D\n\n\n\n2R,3D\n\n\n\n1R,4D\n\n\n\n0R,5D\n\n\n\n6D,0R (4.7%)\n\n\n\n5D,1R (18.7%)\n\n\n\n4D,2R (31.1%)\n\n\n\n3D,3R (27.6%)\n\n\n\n2D,4R (13.8%)\n\n\n\n1D,5R (3.7%)\n\n\n\n0D,6R (0.4%)"
+    "text": "n=6\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D\n\n\n\n\n\n\n\n2R,1D\n\n\n\n\n\n\n\n1R,2D\n\n\n\n\n\n\n\n0R,3D\n\n\n\n\n\n\n\n4R,0D\n\n\n\n\n\n\n\n3R,1D\n\n\n\n\n\n\n\n2R,2D\n\n\n\n\n\n\n\n1R,3D\n\n\n\n\n\n\n\n0R,4D\n\n\n\n\n\n\n\n5R,0D\n\n\n\n\n\n\n\n4R,1D\n\n\n\n\n\n\n\n3R,2D\n\n\n\n\n\n\n\n2R,3D\n\n\n\n\n\n\n\n1R,4D\n\n\n\n\n\n\n\n0R,5D\n\n\n\n\n\n\n\n6D,0R (4.7%)\n\n\n\n\n\n\n\n5D,1R (18.7%)\n\n\n\n\n\n\n\n4D,2R (31.1%)\n\n\n\n\n\n\n\n3D,3R (27.6%)\n\n\n\n\n\n\n\n2D,4R (13.8%)\n\n\n\n\n\n\n\n1D,5R (3.7%)\n\n\n\n\n\n\n\n0D,6R (0.4%)"
   },
   {
     "objectID": "slides/bell-curves.html#things-to-notice-1",
@@ -1873,7 +1873,7 @@
     "href": "slides/compound-probability.html#probability-trees-1",
     "title": "Compound Probability",
     "section": "Probability Trees",
-    "text": "Probability Trees\n\nImagine the future as a series of branching paths.\nEach branch represents a different path that the universe could take.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBorn\n\n\n\nGo to UGA\n\n\n\nGo somewhere else\n\n\n\nEnroll in POLS 3220\n\n\n\nStudy biochem instead\n\n\n\nAttend class today\n\n\n\nSkip class today"
+    "text": "Probability Trees\n\nImagine the future as a series of branching paths.\nEach branch represents a different path that the universe could take.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBorn\n\n\n\n\n\n\n\nGo to UGA\n\n\n\n\n\n\n\nGo somewhere else\n\n\n\n\n\n\n\nEnroll in POLS 3220\n\n\n\n\n\n\n\nStudy biochem instead\n\n\n\n\n\n\n\nAttend class today\n\n\n\n\n\n\n\nSkip class today"
   },
   {
     "objectID": "slides/compound-probability.html#rules-for-tree-construction",
@@ -1887,7 +1887,7 @@
     "href": "slides/compound-probability.html#rules-for-tree-construction-1",
     "title": "Compound Probability",
     "section": "Rules for Tree Construction",
-    "text": "Rules for Tree Construction\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStart of Season\n\n\n\nUGA beats Alabama\n\n\n\nAlabama beats UGA\n\n\n\nUGA beats Texas\n\n\n\nTexas beats UGA\n\n\n\nUGA beats Texas\n\n\n\nTexas beats UGA"
+    "text": "Rules for Tree Construction\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStart of Season\n\n\n\n\n\n\n\nUGA beats Alabama\n\n\n\n\n\n\n\nAlabama beats UGA\n\n\n\n\n\n\n\nUGA beats Texas\n\n\n\n\n\n\n\nTexas beats UGA\n\n\n\n\n\n\n\nUGA beats Texas\n\n\n\n\n\n\n\nTexas beats UGA"
   },
   {
     "objectID": "slides/compound-probability.html#practice",
@@ -1908,7 +1908,7 @@
     "href": "slides/compound-probability.html#rules-for-tree-construction-3",
     "title": "Compound Probability",
     "section": "Rules for Tree Construction",
-    "text": "Rules for Tree Construction\n\n\n\n\n\n\n\n\n\n0.6\n\n\n\n0.4\n\n\n\n0.6\n\n\n\n0.4\n\n\n\n0.5\n\n\n\n0.5\n\n\n\nStart of Season\n\n\n\nUGA beats Alabama\n\n\n\nAlabama beats UGA\n\n\n\nUGA beats Texas\n\n\n\nTexas beats UGA\n\n\n\nUGA beats Texas\n\n\n\nTexas beats UGA\n\n\n\n\n\n\n\n\n\nThe second set of probabilities are called conditional probabilities."
+    "text": "Rules for Tree Construction\n\n\n\n\n\n\n\n\n\n\n\n0.6\n\n\n\n\n\n\n\n0.4\n\n\n\n\n\n\n\n0.6\n\n\n\n\n\n\n\n0.4\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\nStart of Season\n\n\n\n\n\n\n\nUGA beats Alabama\n\n\n\n\n\n\n\nAlabama beats UGA\n\n\n\n\n\n\n\nUGA beats Texas\n\n\n\n\n\n\n\nTexas beats UGA\n\n\n\n\n\n\n\nUGA beats Texas\n\n\n\n\n\n\n\nTexas beats UGA\n\n\n\n\n\n\n\n\n\n\n\nThe second set of probabilities are called conditional probabilities."
   },
   {
     "objectID": "slides/compound-probability.html#conditional-probability",
@@ -1929,7 +1929,7 @@
     "href": "slides/compound-probability.html#independence-1",
     "title": "Compound Probability",
     "section": "Independence",
-    "text": "Independence\nCoin flips are a classic example of independent events:\n\n\n\n\n\n\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\n0.5\n\n\n\nStart flipping a coin\n\n\n\nHeads\n\n\n\nTails\n\n\n\nHeads\n\n\n\nTails\n\n\n\nHeads\n\n\n\nTails\n\n\n\nHeads\n\n\n\nTails\n\n\n\nHeads\n\n\n\nTails\n\n\n\nHeads\n\n\n\nTails\n\n\n\nHeads\n\n\n\nTails"
+    "text": "Independence\nCoin flips are a classic example of independent events:\n\n\n\n\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\nStart flipping a coin\n\n\n\n\n\n\n\nHeads\n\n\n\n\n\n\n\nTails\n\n\n\n\n\n\n\nHeads\n\n\n\n\n\n\n\nTails\n\n\n\n\n\n\n\nHeads\n\n\n\n\n\n\n\nTails\n\n\n\n\n\n\n\nHeads\n\n\n\n\n\n\n\nTails\n\n\n\n\n\n\n\nHeads\n\n\n\n\n\n\n\nTails\n\n\n\n\n\n\n\nHeads\n\n\n\n\n\n\n\nTails\n\n\n\n\n\n\n\nHeads\n\n\n\n\n\n\n\nTails"
   },
   {
     "objectID": "slides/compound-probability.html#practice-1",
@@ -1943,14 +1943,14 @@
     "href": "slides/compound-probability.html#joint-probability",
     "title": "Compound Probability",
     "section": "Joint Probability",
-    "text": "Joint Probability\nNow we’re ready to tackle joint probability. What is the probability of event \\(A\\) and event \\(B\\) both happening?\n\n\n\n\n\n\n\n\n\n0.6\n\n\n\n0.4\n\n\n\n0.6\n\n\n\n0.4\n\n\n\n0.5\n\n\n\n0.5\n\n\n\nStart of Season\n\n\n\nUGA beats Alabama\n\n\n\nAlabama beats UGA\n\n\n\nUGA beats Texas\n\n\n\nTexas beats UGA\n\n\n\nUGA beats Texas\n\n\n\nTexas beats UGA"
+    "text": "Joint Probability\nNow we’re ready to tackle joint probability. What is the probability of event \\(A\\) and event \\(B\\) both happening?\n\n\n\n\n\n\n\n\n\n\n\n0.6\n\n\n\n\n\n\n\n0.4\n\n\n\n\n\n\n\n0.6\n\n\n\n\n\n\n\n0.4\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\nStart of Season\n\n\n\n\n\n\n\nUGA beats Alabama\n\n\n\n\n\n\n\nAlabama beats UGA\n\n\n\n\n\n\n\nUGA beats Texas\n\n\n\n\n\n\n\nTexas beats UGA\n\n\n\n\n\n\n\nUGA beats Texas\n\n\n\n\n\n\n\nTexas beats UGA"
   },
   {
     "objectID": "slides/compound-probability.html#joint-probability-1",
     "href": "slides/compound-probability.html#joint-probability-1",
     "title": "Compound Probability",
     "section": "Joint Probability",
-    "text": "Joint Probability\nTo find the probability of ending up at any node of the tree, multiply the probabilities of all the branches that feed into it.\n\n\n\n\n\n\n\n\n\n\n0.6\n\n\n\n0.4\n\n\n\n0.6\n\n\n\n0.4\n\n\n\n0.5\n\n\n\n0.5\n\n\n\nStart of Season\n\n\n\nUGA beats Alabama\n\n\n\nAlabama beats UGA\n\n\n\nUGA beats Texas (36%)\n\n\n\nTexas beats UGA (24%)\n\n\n\nUGA beats Texas (20%)\n\n\n\nTexas beats UGA (20%)"
+    "text": "Joint Probability\nTo find the probability of ending up at any node of the tree, multiply the probabilities of all the branches that feed into it.\n\n\n\n\n\n\n\n\n\n\n\n\n0.6\n\n\n\n\n\n\n\n0.4\n\n\n\n\n\n\n\n0.6\n\n\n\n\n\n\n\n0.4\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\n0.5\n\n\n\n\n\n\n\nStart of Season\n\n\n\n\n\n\n\nUGA beats Alabama\n\n\n\n\n\n\n\nAlabama beats UGA\n\n\n\n\n\n\n\nUGA beats Texas (36%)\n\n\n\n\n\n\n\nTexas beats UGA (24%)\n\n\n\n\n\n\n\nUGA beats Texas (20%)\n\n\n\n\n\n\n\nTexas beats UGA (20%)"
   },
   {
     "objectID": "slides/compound-probability.html#practice-2",
@@ -1964,7 +1964,7 @@
     "href": "slides/compound-probability.html#wrap-up",
     "title": "Compound Probability",
     "section": "Wrap Up",
-    "text": "Wrap Up\nThis gives us some insight into the birthday problem we started with:\n\n\n\n\n\n\n\n\n\n364/365\n\n\n\n1/365\n\n\n\n363/365\n\n\n\n2/365\n\n\n\n362/365\n\n\n\n3/365\n\n\n\nPerson A\n\n\n\nNo match\n\n\n\nPerson B shares birthday\n\n\n\nNo match\n\n\n\nPerson C shares birthday\n\n\n\nNo match\n\n\n\nPerson D shares birthday"
+    "text": "Wrap Up\nThis gives us some insight into the birthday problem we started with:\n\n\n\n\n\n\n\n\n\n\n\n364/365\n\n\n\n\n\n\n\n1/365\n\n\n\n\n\n\n\n363/365\n\n\n\n\n\n\n\n2/365\n\n\n\n\n\n\n\n362/365\n\n\n\n\n\n\n\n3/365\n\n\n\n\n\n\n\nPerson A\n\n\n\n\n\n\n\nNo match\n\n\n\n\n\n\n\nPerson B shares birthday\n\n\n\n\n\n\n\nNo match\n\n\n\n\n\n\n\nPerson C shares birthday\n\n\n\n\n\n\n\nNo match\n\n\n\n\n\n\n\nPerson D shares birthday"
   },
   {
     "objectID": "slides/election-forecasting.html#todays-agenda",
@@ -2048,7 +2048,7 @@
     "href": "slides/election-forecasting.html#approach-3-polls-fundamentals-2",
     "title": "Election Forecasting",
     "section": "Approach 3: Polls + Fundamentals",
-    "text": "Approach 3: Polls + Fundamentals\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                 \n                (1)\n              \n        \n        \n        \n                \n                  (Intercept)\n                  -0.012\n                \n                \n                  polling_average\n                  0.911\n                \n                \n                  pvi\n                  0.004\n                \n                \n                  dem_experienced\n                  0.012\n                \n                \n                  rep_experienced\n                  0.001\n                \n                \n                  Num.Obs.\n                  223"
+    "text": "Approach 3: Polls + Fundamentals\n\n\n\n\n    \n\n    \n    \n    \n      \n        \n        \n              \n                 \n                (1)\n              \n        \n        \n        \n                \n                  (Intercept)\n                  -0.012\n                \n                \n                  polling_average\n                  0.911\n                \n                \n                  pvi\n                  0.004\n                \n                \n                  dem_experienced\n                  0.012\n                \n                \n                  rep_experienced\n                  0.001\n                \n                \n                  Num.Obs.\n                  223"
   },
   {
     "objectID": "slides/election-forecasting.html#approach-3-polls-fundamentals-3",
@@ -2097,7 +2097,7 @@
     "href": "slides/election-forecasting.html#takeaways",
     "title": "Election Forecasting",
     "section": "Takeaways",
-    "text": "Takeaways\n\nIt’s somewhat surprising that combining two terrible models (polls: 6.7% error, fundamentals: 12% error) yields a pretty good model (polls + fundamentals: 3.8% error)!\nBut it follows the basic logic of the wisdom of crowds.\nBoth polls and fundamentals provide an imperfect glimpse at the state of a race.\nCombining the two perspectives yields a better forecast than either alone (Chen, Garnett, and Montgomery 2023)."
+    "text": "Takeaways\n\nIt’s somewhat surprising that combining two terrible models (polls: 6.7% error, fundamentals: 12% error) yields a pretty good model (polls + fundamentals: 3.8% error)!\nBut it follows the basic logic of the wisdom of crowds.\nBoth polls and fundamentals provide an imperfect glimpse at the state of a race.\nCombining the two perspectives yields a better forecast than either alone (Chen et al. 2023)."
   },
   {
     "objectID": "slides/election-forecasting.html#references",
@@ -2356,7 +2356,7 @@
     "href": "slides/information-theory.html#references",
     "title": "Information Theory",
     "section": "References",
-    "text": "References\n\n\n\n\n\n\n\n\nShannon, C E. 1948. “A Mathematical Theory of Communication.” The Bell System Technical Journal 27: 379–423.\n\n\nTaber, Charles S., and Milton Lodge. 2006. “Motivated Skepticism in the Evaluation of Political Beliefs.” American Journal of Political Science 50 (3): 755–69. https://doi.org/10.1111/j.1540-5907.2006.00214.x."
+    "text": "References\n\n\n\n\nShannon, C E. 1948. “A Mathematical Theory of Communication.” The Bell System Technical Journal 27: 379–423.\n\n\nTaber, Charles S., and Milton Lodge. 2006. “Motivated Skepticism in the Evaluation of Political Beliefs.” American Journal of Political Science 50 (3): 755–69. https://doi.org/10.1111/j.1540-5907.2006.00214.x."
   },
   {
     "objectID": "slides/linear-models.html#road-map",
@@ -2629,7 +2629,7 @@
     "href": "slides/tree-models.html#outside-view",
     "title": "Tree Models",
     "section": "Outside View",
-    "text": "Outside View\nIf we had no other information, what would we predict based solely on historical base rates?\n\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  3,259\n                  18.4\n                \n                \n                  \n                  6,844\n                  38.7\n                \n                \n                  \n                  7,565\n                  42.8\n                \n        \n      \n    \n\n\n\n\n\nWe can do better!"
+    "text": "Outside View\nIf we had no other information, what would we predict based solely on historical base rates?\n\n\n\n\n\n    \n\n    \n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  3,259\n                  18.4\n                \n                \n                  \n                  6,844\n                  38.7\n                \n                \n                  \n                  7,565\n                  42.8\n                \n        \n      \n    \n\n\n\n\n\nWe can do better!"
   },
   {
     "objectID": "slides/tree-models.html#classification-trees",
@@ -2643,14 +2643,14 @@
     "href": "slides/tree-models.html#classification-trees-1",
     "title": "Tree Models",
     "section": "Classification Trees",
-    "text": "Classification Trees\nWith each partition, your prediction becomes less biased.\n\n\n\nCriterion, Searchlight, or A24\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  118\n                  37.2\n                \n                \n                  \n                  135\n                  42.6\n                \n                \n                  \n                  64\n                  20.2\n                \n        \n      \n    \n\n\n\n\nOther Distributors\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  3,105\n                  18.4\n                \n                \n                  \n                  6,396\n                  37.9\n                \n                \n                  \n                  7,357\n                  43.6"
+    "text": "Classification Trees\nWith each partition, your prediction becomes less biased.\n\n\n\nCriterion, Searchlight, or A24\n\n\n\n\n    \n\n    \n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  118\n                  37.2\n                \n                \n                  \n                  135\n                  42.6\n                \n                \n                  \n                  64\n                  20.2\n                \n        \n      \n    \n\n\n\n\nOther Distributors\n\n\n\n\n    \n\n    \n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  3,105\n                  18.4\n                \n                \n                  \n                  6,396\n                  37.9\n                \n                \n                  \n                  7,357\n                  43.6"
   },
   {
     "objectID": "slides/tree-models.html#classification-trees-2",
     "href": "slides/tree-models.html#classification-trees-2",
     "title": "Tree Models",
     "section": "Classification Trees",
-    "text": "Classification Trees\nWith each partition, your prediction becomes less biased.\n\n\n\nAudience Count &lt; 10,000\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  1,293\n                  12.0\n                \n                \n                  \n                  5,052\n                  46.9\n                \n                \n                  \n                  4,427\n                  41.1\n                \n        \n      \n    \n\n\n\n\nAudience Count &gt;= 10,000\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  1,811\n                  30.8\n                \n                \n                  \n                  1,193\n                  20.3\n                \n                \n                  \n                  2,870\n                  48.9"
+    "text": "Classification Trees\nWith each partition, your prediction becomes less biased.\n\n\n\nAudience Count &lt; 10,000\n\n\n\n\n    \n\n    \n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  1,293\n                  12.0\n                \n                \n                  \n                  5,052\n                  46.9\n                \n                \n                  \n                  4,427\n                  41.1\n                \n        \n      \n    \n\n\n\n\nAudience Count &gt;= 10,000\n\n\n\n\n    \n\n    \n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  1,811\n                  30.8\n                \n                \n                  \n                  1,193\n                  20.3\n                \n                \n                  \n                  2,870\n                  48.9"
   },
   {
     "objectID": "slides/tree-models.html#choosing-splits",
@@ -2671,14 +2671,14 @@
     "href": "slides/tree-models.html#information-theory-review-1",
     "title": "Tree Models",
     "section": "Information Theory: Review",
-    "text": "Information Theory: Review\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                p\n              \n        \n        \n        \n                \n                  \n                  3,259\n                  0.184\n                \n                \n                  \n                  6,844\n                  0.387\n                \n                \n                  \n                  7,565\n                  0.428"
+    "text": "Information Theory: Review\n\n\n\n\n    \n\n    \n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                p\n              \n        \n        \n        \n                \n                  \n                  3,259\n                  0.184\n                \n                \n                  \n                  6,844\n                  0.387\n                \n                \n                  \n                  7,565\n                  0.428"
   },
   {
     "objectID": "slides/tree-models.html#information-theory-review-2",
     "href": "slides/tree-models.html#information-theory-review-2",
     "title": "Tree Models",
     "section": "Information Theory: Review",
-    "text": "Information Theory: Review\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                p\n                -log(p)\n              \n        \n        \n        \n                \n                  \n                  3,259\n                  0.184\n                  2.44\n                \n                \n                  \n                  6,844\n                  0.387\n                  1.37\n                \n                \n                  \n                  7,565\n                  0.428\n                  1.22\n                \n        \n      \n    \n\n\n\n\n\\(\\text{Entropy} = -\\sum p\\times log(p)=\\) 1.5 bits."
+    "text": "Information Theory: Review\n\n\n\n\n    \n\n    \n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                p\n                -log(p)\n              \n        \n        \n        \n                \n                  \n                  3,259\n                  0.184\n                  2.44\n                \n                \n                  \n                  6,844\n                  0.387\n                  1.37\n                \n                \n                  \n                  7,565\n                  0.428\n                  1.22\n                \n        \n      \n    \n\n\n\n\n\\(\\text{Entropy} = -\\sum p\\times log(p)=\\) 1.5 bits."
   },
   {
     "objectID": "slides/tree-models.html#information-gain",
@@ -2692,7 +2692,7 @@
     "href": "slides/tree-models.html#information-gain-1",
     "title": "Tree Models",
     "section": "Information Gain",
-    "text": "Information Gain\n\n\nAudience Count &lt; 9,000\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  1,328\n                  12.1\n                \n                \n                  \n                  5,161\n                  47.1\n                \n                \n                  \n                  4,462\n                  40.7\n                \n        \n      \n    \n\n\n\nEntropy: 1.41 bits\n\nAudience Count &gt;= 9,000\n\n\n\n\n    \n\n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  1,894\n                  31.5\n                \n                \n                  \n                  1,219\n                  20.3\n                \n                \n                  \n                  2,899\n                  48.2\n                \n        \n      \n    \n\n\n\nEntropy: 1.5 bits"
+    "text": "Information Gain\n\n\nAudience Count &lt; 9,000\n\n\n\n\n    \n\n    \n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  1,328\n                  12.1\n                \n                \n                  \n                  5,161\n                  47.1\n                \n                \n                  \n                  4,462\n                  40.7\n                \n        \n      \n    \n\n\n\nEntropy: 1.41 bits\n\nAudience Count &gt;= 9,000\n\n\n\n\n    \n\n    \n    \n    \n      \n        \n        \n              \n                Rating\n                Total\n                %\n              \n        \n        \n        \n                \n                  \n                  1,894\n                  31.5\n                \n                \n                  \n                  1,219\n                  20.3\n                \n                \n                  \n                  2,899\n                  48.2\n                \n        \n      \n    \n\n\n\nEntropy: 1.5 bits"
   },
   {
     "objectID": "slides/tree-models.html#classification-trees-3",
@@ -3287,14 +3287,14 @@
     "href": "slides/tipping-points.html#references",
     "title": "Tipping Points",
     "section": "References",
-    "text": "References\n\n\n\n\n\n\n\n\nKuran, Timur. 1991. “Now Out of Never: The Element of Surprise in the East European Revolution of 1989.” World Politics 44 (1): 7–48."
+    "text": "References\n\n\n\n\nKuran, Timur. 1991. “Now Out of Never: The Element of Surprise in the East European Revolution of 1989.” World Politics 44 (1): 7–48."
   },
   {
     "objectID": "slides/tipping-points.html#sir-model-1",
     "href": "slides/tipping-points.html#sir-model-1",
     "title": "Tipping Points",
     "section": "SIR Model",
-    "text": "SIR Model\n\n\n\n\n\n\n\n\n\ntSI\n\n\n\nrI\n\n\n\nS\n\n\n\nI\n\n\n\nR"
+    "text": "SIR Model\n\n\n\n\n\n\n\n\n\n\n\ntSI\n\n\n\n\n\n\n\nrI\n\n\n\n\n\n\n\nS\n\n\n\n\n\n\n\nI\n\n\n\n\n\n\n\nR"
   },
   {
     "objectID": "slides/tipping-points.html#sir-model-2",
@@ -3533,5 +3533,61 @@
     "title": "Stocks & Flows",
     "section": "Demographic Forecasts",
     "text": "Demographic Forecasts\n\nThis has implications for:\n\nthe cost of social insurance programs\nmilitary recruitment\nhigher education\nthe national debt\ninterest rates\nthe “gerontocracy”\n\nThe Markov model lets us test out different scenarios (e.g. further reductions in fertility rates, medical advances that help Americans live longer) and forecast what would happen to the equilibrium."
+  },
+  {
+    "objectID": "slides/fundamentals.html#warmup",
+    "href": "slides/fundamentals.html#warmup",
+    "title": "Fudamentals of Probability",
+    "section": "Warmup",
+    "text": "Warmup"
+  },
+  {
+    "objectID": "slides/fundamentals.html#what-is-probability",
+    "href": "slides/fundamentals.html#what-is-probability",
+    "title": "Fudamentals of Probability",
+    "section": "What Is Probability?",
+    "text": "What Is Probability?\n\nThe language of uncertainty\nAllows us to communicate clearly and precisely how certain we are that an event will happen.\n\n\nA probability is a number between 0 and 1 that expresses how likely it is that an event will happen.\n\n\n\n0% means “impossible”\n50% means “equally likely to happen or not”\n100% means “certain”\n\n\n\nDeveloping an intuition for intermediate values is trickier…"
+  },
+  {
+    "objectID": "slides/fundamentals.html#what-is-probability-1",
+    "href": "slides/fundamentals.html#what-is-probability-1",
+    "title": "Fudamentals of Probability",
+    "section": "What Is Probability?",
+    "text": "What Is Probability?\nIn some contexts, probability statements seem natural:\n\n40% chance of rain on Tuesday\n12% chance the Dodgers win the World Series\n2.7% chance of rolling double sixes\n\n\nIn other contexts, feels weird:\n\n\n\n“I believe there is 42% chance of peace in our time!”\n-Neville Chamberlain, September 30, 1938\n\n\n\n(My goal is to get you comfortable with such statements.)"
+  },
+  {
+    "objectID": "slides/fundamentals.html#what-is-probability-2",
+    "href": "slides/fundamentals.html#what-is-probability-2",
+    "title": "Fudamentals of Probability",
+    "section": "What Is Probability?",
+    "text": "What Is Probability?\n\nMany of us develop an intuition for probability by playing games of chance."
+  },
+  {
+    "objectID": "slides/fundamentals.html#frequentist-interpretation",
+    "href": "slides/fundamentals.html#frequentist-interpretation",
+    "title": "Fudamentals of Probability",
+    "section": "Frequentist Interpretation",
+    "text": "Frequentist Interpretation\n\nIf you flip a coin 200 times, you’d expect it to come up heads roughly half the time.\nThis illustrates the frequentist interpretation of probability:\n\nProbability = the frequency we expect an event to occur in a large number of repeated trials.\n\nFormalized in the Law of Large Numbers:\n\nIf the probability of an event is \\(p\\), then the proportion of times that event occurs will approach \\(p\\) in a (very) large number of repeated trials."
+  },
+  {
+    "objectID": "slides/fundamentals.html#odds",
+    "href": "slides/fundamentals.html#odds",
+    "title": "Fudamentals of Probability",
+    "section": "Odds",
+    "text": "Odds\nSometimes, like in casinos, it will be useful to express probability as odds.\n\n50% \\(\\rightarrow\\) 1:1 (“equally likely to happen or not”)\n75% \\(\\rightarrow\\) 3:1 (“three times more likely to happen than not”)\n10% \\(\\rightarrow\\) 1:9 (“nine times less likely to happen than not”)\n\n\nTo convert probability \\(p\\) to odds, divide \\(\\frac{p}{1-p}\\).\n\n\nTo convert odds \\(p:q\\) to probability, divide \\(\\frac{p}{p+q}\\)."
+  },
+  {
+    "objectID": "slides/fundamentals.html#are-people-good-at-probability",
+    "href": "slides/fundamentals.html#are-people-good-at-probability",
+    "title": "Fudamentals of Probability",
+    "section": "Are people good at probability?",
+    "text": "Are people good at probability?\n\nNo. Assessing probability is not something that comes naturally to people."
+  },
+  {
+    "objectID": "slides/fundamentals.html#the-equivalent-bet-test",
+    "href": "slides/fundamentals.html#the-equivalent-bet-test",
+    "title": "Fudamentals of Probability",
+    "section": "The Equivalent Bet Test",
+    "text": "The Equivalent Bet Test\n\n\n\n\nHere’s a useful mental trick for improving your probability calibration.\nReframe the problem as a choice between bets.\nFor example, “Would I rather have $100 if Karl Marx was born before Queen Victoria or if I draw a red ball from this jar?”\nAlter the contents of the jar until you’re indifferent between the two bets.\n\nI personally prefer using a spinner wheel.\n\nThis is called the Equivalent Bet Test (Spetzler & Staël Von Holstein, 1975; Galef, 2021)"
   }
 ]
