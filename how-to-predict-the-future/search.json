@@ -732,7 +732,7 @@
     "href": "slides/fundamentals.html#prediction-is-hard-6",
     "title": "Fudamentals of Probability",
     "section": "Prediction Is Hard",
-    "text": "Prediction Is Hard\n\nLooking back at history, it sometimes seems like events unfold in a linear, even predictable, fashion.\nBut overconfidence and neglect of uncertainty are the norm.\nMaking good predictions is essential for making good decisions—in politics, public policy, business, and daily life.\nIn the first few weeks of class, we’ll introduce probability, a language that helps us think about and communicate our uncertainty about outcomes."
+    "text": "Prediction Is Hard\n\nLooking back at history, it sometimes seems like events unfold in a linear, even predictable, fashion.\nWe often underestimate how surprising historical events were to the people living through them.\nThese bad predictions all share some combination of vagueness and neglect of uncertainty.\nMaking good predictions is essential for making good decisions—in politics, public policy, business, and daily life.\nIn the first few weeks of class, we’ll introduce probability, a language that helps us think about and communicate our uncertainty about outcomes."
   },
   {
     "objectID": "slides/fundamentals.html#probability-1",
@@ -3574,7 +3574,7 @@
     "href": "slides/fundamentals.html#odds",
     "title": "Fudamentals of Probability",
     "section": "Odds",
-    "text": "Odds\nSometimes, like in casinos, it will be useful to express probability as odds.\n\n50% \\(\\rightarrow\\) 1:1 (“equally likely to happen or not”)\n75% \\(\\rightarrow\\) 3:1 (“three times more likely to happen than not”)\n10% \\(\\rightarrow\\) 1:9 (“nine times less likely to happen than not”)\n\n\nTo convert probability \\(p\\) to odds, divide \\(\\frac{p}{1-p}\\).\n\n\nTo convert odds \\(p:q\\) to probability, divide \\(\\frac{p}{p+q}\\)."
+    "text": "Odds\nSometimes, like in casinos, it will be useful to express probability as odds.\n\n50% \\(\\rightarrow\\) 1:1 (“equally likely to happen or not”)\n75% \\(\\rightarrow\\) 3:1 (“three times more likely to happen than not”)\n10% \\(\\rightarrow\\) 1:9 (“nine times less likely to happen than not”)\n\n\nTo convert probability \\(p\\) to odds, take \\(p:1-p\\) and simplify.\n\n\nTo convert odds \\(p:q\\) to probability, divide \\(\\frac{p}{p+q}\\)."
   },
   {
     "objectID": "slides/fundamentals.html#are-people-good-at-probability",
@@ -3588,6 +3588,6 @@
     "href": "slides/fundamentals.html#the-equivalent-bet-test",
     "title": "Fudamentals of Probability",
     "section": "The Equivalent Bet Test",
-    "text": "The Equivalent Bet Test\n\n\n\n\nHere’s a useful mental trick for improving your probability calibration.\nReframe the problem as a choice between bets.\nFor example, “Would I rather have $100 if Karl Marx was born before Queen Victoria or if I draw a red ball from this jar?”\nAlter the contents of the jar until you’re indifferent between the two bets.\n\nI personally prefer using a spinner wheel.\n\nThis is called the Equivalent Bet Test (Spetzler & Staël Von Holstein, 1975; Galef, 2021)"
+    "text": "The Equivalent Bet Test\n\n\n\n\nHere’s a useful mental trick for improving your probability calibration.\nReframe the problem as a choice between bets.\nFor example, “Would I rather have $100 if Karl Marx was born before Queen Victoria or if I draw a red ball from this jar?”\n\nIf you chose the first bet, it suggests you are more than 33% certain.\nIf you chose the second bet, it suggests you are less than 33% certain.\n\nAlter the contents of the jar until you’re indifferent between the two bets.\n\nI personally prefer using a spinner wheel.\n\nThis is called the Equivalent Bet Test (Spetzler & Staël Von Holstein, 1975; Galef, 2021)\n\n\n \n\n\nTry it with a volunteer!"
   }
 ]
