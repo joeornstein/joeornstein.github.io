@@ -2048,7 +2048,7 @@
     "href": "slides/bayes-rule.html#whats-going-on-5",
     "title": "Bayes Rule",
     "section": "What’s Going On?",
-    "text": "What’s Going On?\nHere’s the problem as a probability tree:\n\n\n\n\n\n\n\n\n\n\n\n99%\n\n\n\n\n\n\n\n1%\n\n\n\n\n\n\n\n90%\n\n\n\n\n\n\n\n10%\n\n\n\n\n\n\n\n90%\n\n\n\n\n\n\n\n10%\n\n\n\n\n\n\n\nAll Applicants\n\n\n\n\n\n\n\nNot A Spy\n\n\n\n\n\n\n\nSpy\n\n\n\n\n\n\n\nPass Polygraph (89.1%)\n\n\n\n\n\n\n\nFail Polygraph (9.9%)\n\n\n\n\n\n\n\nFail Polygraph (0.9%)\n\n\n\n\n\n\n\nPass Polygraph (0.1%)"
+    "text": "What’s Going On?\nHere’s the problem as a probability tree:"
   },
   {
     "objectID": "slides/bayes-rule.html#bayes-rule",
@@ -3442,5 +3442,12 @@
     "title": "Fall 2026 Predictions",
     "section": "Week 2 (9/1)",
     "text": "Week 2 (9/1)"
+  },
+  {
+    "objectID": "index.html#leaderboard",
+    "href": "index.html#leaderboard",
+    "title": "Fall 2026 Predictions",
+    "section": "Leaderboard",
+    "text": "Leaderboard\n\n\n\n\n\n\n\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score (Revised)\nBrier Score (Initial)\n\n\n\n\n1\nAnya Biswas\n1/1\n0.0000\n0.0625\n\n\n2\nBain Fulcher\n1/1\n0.0000\n0.0625\n\n\n3\nBianca Orfila-Molinet\n1/1\n0.0000\n0.09\n\n\n4\nBrian Sadenwasser\n1/1\n0.0000\n0.1089\n\n\n5\nBrianna Speizer\n1/1\n0.0000\n0.1369\n\n\n6\nCaitlyn Mcmullen\n1/1\n0.0000\n0.25\n\n\n7\nCarter Ray\n1/1\n0.0000\n0.04\n\n\n8\nCelina Simone\n1/1\n0.0000\n0.09\n\n\n9\nChristopher Heyl\n1/1\n0.0000\n0.09\n\n\n10\nDean Mcdonald\n1/1\n0.0000\n0.04\n\n\n11\nEdy Thompson\n1/1\n0.0000\n0.1225\n\n\n12\nElla Vars\n1/1\n0.0000\n0.09\n\n\n13\nHailey Chae\n1/1\n0.0000\n0.0625\n\n\n14\nHannah Hartley\n1/1\n0.0000\n0.0225\n\n\n15\nHaven Priem\n1/1\n0.0000\n0.64\n\n\n16\nIsabella Picciano\n1/1\n0.0000\n0.09\n\n\n17\nJacob Nabors\n1/1\n0.0000\n0.3364\n\n\n18\nJason Eappen\n1/1\n0.0000\n0.16\n\n\n19\nJoe Ornstein\n1/1\n0.0000\n-\n\n\n20\nJordan Sanderson\n1/1\n0.0000\n0.1225\n\n\n21\nJoshua Mui\n1/1\n0.0000\n0.04\n\n\n22\nJulia Krehbiel\n1/1\n0.0000\n0.64\n\n\n23\nKiefer Adams\n1/1\n0.0000\n0.0625\n\n\n24\nKrish Chinta\n1/1\n0.0000\n0.0225\n\n\n25\nLeah Mojica\n1/1\n0.0000\n0.1225\n\n\n26\nMatthew Fern\n1/1\n0.0000\n0.0625\n\n\n27\nMegan Tate\n1/1\n0.0000\n0.09\n\n\n28\nMera Moucharrafie\n1/1\n0.0000\n0.25\n\n\n29\nMichelle Villanueva\n1/1\n0.0000\n0.09\n\n\n30\nParker Buckroyd\n1/1\n0.0000\n0.1225\n\n\n31\nSantiago Bottini Azugaray\n1/1\n0.0000\n0.16\n\n\n32\nSarah Gregory\n1/1\n0.0000\n0.2401\n\n\n33\nSlate Jones\n1/1\n0.0000\n0.0225\n\n\n34\nWill Steiner\n1/1\n0.0000\n0.01\n\n\n35\nZiyada Rakhimova\n1/1\n0.0000\n0.5625\n\n\n36\nEva Carnes\n0/1\n0.2500\n0.25\n\n\n37\nDylan Goff\n0/1\n0.3364\n0.3364\n\n\n38\nDenton Alexander\n0/1\n0.4225\n0.4225"
   }
 ]
