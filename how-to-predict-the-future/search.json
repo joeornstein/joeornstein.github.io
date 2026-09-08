@@ -1348,49 +1348,49 @@
     "href": "slides/bell-curves.html#warmup",
     "title": "Bell Curves",
     "section": "Warmup",
-    "text": "Warmup\n\nIn an upcoming Congressional election:\n\n60% of voters plan to vote for the Republican candidate.\n40% of voters plan to vote for the Democratic candidate.\n\nA polling firm randomly calls voters in the Congressional district and asks who they plan to vote for.\n\n\nDraw a probability tree representing the first two voters contacted by the polling firm. What is the probability of every possible poll result?"
+    "text": "Warmup\n\nIn an upcoming Congressional election:\n\n60% of voters plan to vote for the Republican candidate.\n40% of voters plan to vote for the Democratic candidate.\n\nA polling firm randomly calls voters in the Congressional district and asks who they plan to vote for.\n\n\nDraw a probability tree representing the first two voters contacted by the polling firm. What is the probability that the poll contacts one Democratic voter and one Republican voter?"
   },
   {
     "objectID": "slides/bell-curves.html#warmup-1",
     "href": "slides/bell-curves.html#warmup-1",
     "title": "Bell Curves",
     "section": "Warmup",
-    "text": "Warmup\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\nR\n\n\n\n\n\n\n\nD"
+    "text": "Warmup"
   },
   {
     "objectID": "slides/bell-curves.html#warmup-2",
     "href": "slides/bell-curves.html#warmup-2",
     "title": "Bell Curves",
     "section": "Warmup",
-    "text": "Warmup\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\nR\n\n\n\n\n\n\n\nD\n\n\n\n\n\n\n\nRR (36%)\n\n\n\n\n\n\n\nRD (24%)\n\n\n\n\n\n\n\nDR (24%)\n\n\n\n\n\n\n\nDD (16%)"
+    "text": "Warmup"
   },
   {
     "objectID": "slides/bell-curves.html#simplifying-assumption",
     "href": "slides/bell-curves.html#simplifying-assumption",
     "title": "Bell Curves",
     "section": "Simplifying Assumption",
-    "text": "Simplifying Assumption\nBecause we don’t care about the order of responses (just the counts), we can combine some outcomes:\n\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D (36%)\n\n\n\n\n\n\n\n1R,1D (48%)\n\n\n\n\n\n\n\n0R,2D (16%)"
+    "text": "Simplifying Assumption\nBecause we don’t care about the order of responses (just the counts), we can combine some outcomes:"
   },
   {
     "objectID": "slides/bell-curves.html#things-to-notice",
     "href": "slides/bell-curves.html#things-to-notice",
     "title": "Bell Curves",
     "section": "Things To Notice",
-    "text": "Things To Notice\n\nA poll with two responses is pretty worthless.\n\n48% of the time you get an equal number of R’s and D’s\n16% of the time, you get all D’s\n36% of the time, you get all R’s\n\nTwo big problems:\n\nThe poll is biased. Result is more likely to be wrong in one direction than the other.\nIt also has high variance. Result is, on average, very far from the truth."
+    "text": "Things To Notice\n\nA poll with two responses is pretty worthless.\n\n48% of the time you get an equal number of R’s and D’s\n16% of the time, you get all D’s\n36% of the time, you get all R’s\n\nTwo big problems:\n\nThe poll is biased. Result is more likely to be wrong in one direction than the other.\nIt also has high variance. The result is, on average, very far from the truth."
   },
   {
     "objectID": "slides/bell-curves.html#increasing-poll-size",
     "href": "slides/bell-curves.html#increasing-poll-size",
     "title": "Bell Curves",
     "section": "Increasing Poll Size",
-    "text": "Increasing Poll Size\nOver the next few slides, we’ll show that increasing the size of the poll \\((n)\\) does three things:\n\nEliminates bias\nReduces variance\nGives the polling errors a particular (bell curve) shape."
+    "text": "Increasing Poll Size\nOver the next few slides, we’ll show that increasing the size of the poll \\((n)\\) does three things:\n\nEliminates bias\nReduces variance\nGives the polling errors a useful (bell curve) shape."
   },
   {
     "objectID": "slides/bell-curves.html#n3",
     "href": "slides/bell-curves.html#n3",
     "title": "Bell Curves",
     "section": "n=3",
-    "text": "n=3\n\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D (21.6%)\n\n\n\n\n\n\n\n2R,1D (43.2%)\n\n\n\n\n\n\n\n1R,2D (28.8%)\n\n\n\n\n\n\n\n0R,3D (6.4%)"
+    "text": "n=3"
   },
   {
     "objectID": "slides/bell-curves.html#section",
@@ -1404,21 +1404,21 @@
     "href": "slides/bell-curves.html#n4",
     "title": "Bell Curves",
     "section": "n=4",
-    "text": "n=4\n\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D\n\n\n\n\n\n\n\n2R,1D\n\n\n\n\n\n\n\n1R,2D\n\n\n\n\n\n\n\n0R,3D\n\n\n\n\n\n\n\n4R,0D (13%)\n\n\n\n\n\n\n\n3R,1D (34.5%)\n\n\n\n\n\n\n\n2R,2D (34.5%)\n\n\n\n\n\n\n\n1R,3D (15.4%)\n\n\n\n\n\n\n\n0R,4D (2.6%)\n\n\n\n\n\n\n\n\n\n\n\n\nI would never make you do this by hand."
+    "text": "n=4\n\n\n\n\n\n\n\n\n\n\n\n\nI would never make you do this by hand."
   },
   {
     "objectID": "slides/bell-curves.html#n5",
     "href": "slides/bell-curves.html#n5",
     "title": "Bell Curves",
     "section": "n=5",
-    "text": "n=5\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D\n\n\n\n\n\n\n\n2R,1D\n\n\n\n\n\n\n\n1R,2D\n\n\n\n\n\n\n\n0R,3D\n\n\n\n\n\n\n\n4R,0D\n\n\n\n\n\n\n\n3R,1D\n\n\n\n\n\n\n\n2R,2D\n\n\n\n\n\n\n\n1R,3D\n\n\n\n\n\n\n\n0R,4D\n\n\n\n\n\n\n\n5R,0D (7.8%)\n\n\n\n\n\n\n\n4R,1D (25.9%)\n\n\n\n\n\n\n\n3R,2D (34.6%)\n\n\n\n\n\n\n\n2R,3D (23%)\n\n\n\n\n\n\n\n1R,4D (7.7%)\n\n\n\n\n\n\n\n0R,5D (1%)\n\n\n\n\n\n\n\n\n\n\n\nIntuition Check: Why is the probability of 3R,2D so big and the probability of 0R,5D so small?"
+    "text": "n=5\n\n\nIntuition Check: Why is the probability of 3R,2D so big and the probability of 0R,5D so small?"
   },
   {
     "objectID": "slides/bell-curves.html#n6",
     "href": "slides/bell-curves.html#n6",
     "title": "Bell Curves",
     "section": "n=6",
-    "text": "n=6\n\n\n\n\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\n60%\n\n\n\n\n\n\n\n40%\n\n\n\n\n\n\n\nStart Poll\n\n\n\n\n\n\n\n1R,0D\n\n\n\n\n\n\n\n0R,1D\n\n\n\n\n\n\n\n2R,0D\n\n\n\n\n\n\n\n1R,1D\n\n\n\n\n\n\n\n0R,2D\n\n\n\n\n\n\n\n3R,0D\n\n\n\n\n\n\n\n2R,1D\n\n\n\n\n\n\n\n1R,2D\n\n\n\n\n\n\n\n0R,3D\n\n\n\n\n\n\n\n4R,0D\n\n\n\n\n\n\n\n3R,1D\n\n\n\n\n\n\n\n2R,2D\n\n\n\n\n\n\n\n1R,3D\n\n\n\n\n\n\n\n0R,4D\n\n\n\n\n\n\n\n5R,0D\n\n\n\n\n\n\n\n4R,1D\n\n\n\n\n\n\n\n3R,2D\n\n\n\n\n\n\n\n2R,3D\n\n\n\n\n\n\n\n1R,4D\n\n\n\n\n\n\n\n0R,5D\n\n\n\n\n\n\n\n6D,0R (4.7%)\n\n\n\n\n\n\n\n5D,1R (18.7%)\n\n\n\n\n\n\n\n4D,2R (31.1%)\n\n\n\n\n\n\n\n3D,3R (27.6%)\n\n\n\n\n\n\n\n2D,4R (13.8%)\n\n\n\n\n\n\n\n1D,5R (3.7%)\n\n\n\n\n\n\n\n0D,6R (0.4%)"
+    "text": "n=6"
   },
   {
     "objectID": "slides/bell-curves.html#things-to-notice-1",
@@ -1432,7 +1432,7 @@
     "href": "slides/bell-curves.html#central-limit-theorem",
     "title": "Bell Curves",
     "section": "Central Limit Theorem",
-    "text": "Central Limit Theorem\n\nAs poll size gets larger, the shape of the errors takes on that gorgeous bell curve shape.\nThis is one of the most foundational ideas in all of statistics.\n\n\nCentral Limit Theorem\n\nIf an outcome is the sum of a large number of independent random events, then it will fall on a bell curve."
+    "text": "Central Limit Theorem\n\nAs poll size gets larger, the shape of the errors takes on that gorgeous bell curve shape.\nThis is one of the most foundational ideas in all of statistics.\n\n\nCentral Limit Theorem\n\nIf an outcome is the sum of a large number of independent random events, then it will fall on a bell curve.\n\n\n\nThe number of Republicans in a poll is the sum of a large number of independent random events."
   },
   {
     "objectID": "slides/bell-curves.html#bell-curves-in-the-wild",
@@ -1488,14 +1488,14 @@
     "href": "slides/bell-curves.html#margin-of-error",
     "title": "Bell Curves",
     "section": "Margin of Error",
-    "text": "Margin of Error\n\nDefine the margin of error as the range within which you’re 95% sure your polling error will fall.\nThe back-of-the-envelope approximation of a poll’s margin of error is \\(\\frac{100\\%}{\\sqrt{n}}\\).\n\nSo, for a poll with 100 respondents, margin of error is roughly \\(\\frac{100\\%}{\\sqrt{100}} = 10\\%\\).\nPractice: what’s the margin of error for a poll with 400 respondents?"
+    "text": "Margin of Error\n\nEvery poll has a margin of error, the “plus-or-minus” range around the truth within which we expect the poll to fall 95% of the time.\nMargin of error is approximately \\(\\frac{100\\%}{\\sqrt{n}}\\).\n\nSo, for a poll with 100 respondents, margin of error is roughly \\(\\frac{100\\%}{\\sqrt{100}} = 10\\%\\).\nThere should be less than a 5% chance that the poll is off by 10 percentage points or more.\nPractice: what’s the margin of error for a poll with 400 respondents?"
   },
   {
     "objectID": "slides/bell-curves.html#wrap-up",
     "href": "slides/bell-curves.html#wrap-up",
     "title": "Bell Curves",
     "section": "Wrap Up",
-    "text": "Wrap Up\n\nYour outcome will fall on a bell curve if it is the sum of a large number of independent random events (Central Limit Theorem).\nIf the theorem holds, it’s great for making predictions, because bell curves are easy to work with.\n\nIn a few weeks, we’ll talk about the ways in which real-world polls fall short of this idealized model.\n\nNext Time: What happens when that independence assumption is violated?"
+    "text": "Wrap Up\n\nIf your outcome is the sum of a large number of independent random events, then it should fall on a bell curve (Central Limit Theorem).\nThis theorem is useful for making predictions, because bell curves are easy to work with.\n\nIn a few weeks, we’ll talk about the ways in which real-world polls fall short of this idealized model.\nFor now, it’s helpful to think of this as a lower bound on our uncertainty.\n\nNext Time: What happens when that independence assumption is violated?"
   },
   {
     "objectID": "slides/aggregating-forecasts.html#motivating-problem",
@@ -3449,5 +3449,26 @@
     "title": "Fall 2026 Predictions",
     "section": "Leaderboard",
     "text": "Leaderboard\n\n\n\n\n\n\n\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score (Revised)\nBrier Score (Initial)\n\n\n\n\n1\nAnya Biswas\n1/1\n0.0000\n0.0625\n\n\n2\nBain Fulcher\n1/1\n0.0000\n0.0625\n\n\n3\nBianca Orfila-Molinet\n1/1\n0.0000\n0.09\n\n\n4\nBrian Sadenwasser\n1/1\n0.0000\n0.1089\n\n\n5\nBrianna Speizer\n1/1\n0.0000\n0.1369\n\n\n6\nCaitlyn Mcmullen\n1/1\n0.0000\n0.25\n\n\n7\nCarter Ray\n1/1\n0.0000\n0.04\n\n\n8\nCelina Simone\n1/1\n0.0000\n0.09\n\n\n9\nChristopher Heyl\n1/1\n0.0000\n0.09\n\n\n10\nDean Mcdonald\n1/1\n0.0000\n0.04\n\n\n11\nEdy Thompson\n1/1\n0.0000\n0.1225\n\n\n12\nElla Vars\n1/1\n0.0000\n0.09\n\n\n13\nHailey Chae\n1/1\n0.0000\n0.0625\n\n\n14\nHannah Hartley\n1/1\n0.0000\n0.0225\n\n\n15\nHaven Priem\n1/1\n0.0000\n0.64\n\n\n16\nIsabella Picciano\n1/1\n0.0000\n0.09\n\n\n17\nJacob Nabors\n1/1\n0.0000\n0.3364\n\n\n18\nJason Eappen\n1/1\n0.0000\n0.16\n\n\n19\nJoe Ornstein\n1/1\n0.0000\n-\n\n\n20\nJordan Sanderson\n1/1\n0.0000\n0.1225\n\n\n21\nJoshua Mui\n1/1\n0.0000\n0.04\n\n\n22\nJulia Krehbiel\n1/1\n0.0000\n0.64\n\n\n23\nKiefer Adams\n1/1\n0.0000\n0.0625\n\n\n24\nKrish Chinta\n1/1\n0.0000\n0.0225\n\n\n25\nLeah Mojica\n1/1\n0.0000\n0.1225\n\n\n26\nMatthew Fern\n1/1\n0.0000\n0.0625\n\n\n27\nMegan Tate\n1/1\n0.0000\n0.09\n\n\n28\nMera Moucharrafie\n1/1\n0.0000\n0.25\n\n\n29\nMichelle Villanueva\n1/1\n0.0000\n0.09\n\n\n30\nParker Buckroyd\n1/1\n0.0000\n0.1225\n\n\n31\nSantiago Bottini Azugaray\n1/1\n0.0000\n0.16\n\n\n32\nSarah Gregory\n1/1\n0.0000\n0.2401\n\n\n33\nSlate Jones\n1/1\n0.0000\n0.0225\n\n\n34\nWill Steiner\n1/1\n0.0000\n0.01\n\n\n35\nZiyada Rakhimova\n1/1\n0.0000\n0.5625\n\n\n36\nEva Carnes\n0/1\n0.2500\n0.25\n\n\n37\nDylan Goff\n0/1\n0.3364\n0.3364\n\n\n38\nDenton Alexander\n0/1\n0.4225\n0.4225"
+  },
+  {
+    "objectID": "slides/bell-curves.html#bell-curves-are-useful",
+    "href": "slides/bell-curves.html#bell-curves-are-useful",
+    "title": "Bell Curves",
+    "section": "Bell Curves Are Useful",
+    "text": "Bell Curves Are Useful\n\nWhen outcomes fall on a bell curve, it makes prediction a lot easier.\nThat’s because outcomes are very unlikely to stray far from their expected values."
+  },
+  {
+    "objectID": "slides/bell-curves.html#bell-curves-are-useful-1",
+    "href": "slides/bell-curves.html#bell-curves-are-useful-1",
+    "title": "Bell Curves",
+    "section": "Bell Curves Are Useful",
+    "text": "Bell Curves Are Useful\n95% of poll results will be one of the red bars."
+  },
+  {
+    "objectID": "slides/bell-curves.html#bell-curves-are-useful-2",
+    "href": "slides/bell-curves.html#bell-curves-are-useful-2",
+    "title": "Bell Curves",
+    "section": "Bell Curves Are Useful",
+    "text": "Bell Curves Are Useful\n95% of poll results will be one of the red bars."
   }
 ]
