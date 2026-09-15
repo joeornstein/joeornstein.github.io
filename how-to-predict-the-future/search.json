@@ -3448,7 +3448,7 @@
     "href": "index.html#leaderboard",
     "title": "Fall 2026 Predictions",
     "section": "Leaderboard",
-    "text": "Leaderboard\n\n\n\n\n\n\n\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score (Initial)\nBrier Score (Revised)\n\n\n\n\n1\nCarter Ray\n2/2\n0.0212\n0.0013\n\n\n2\nChristopher Heyl\n2/2\n0.0463\n0.0013\n\n\n3\nKiefer Adams\n2/2\n0.0625\n0.0013\n\n\n4\nLeah Mojica\n2/2\n0.0625\n0.0013\n\n\n5\nSlate Jones\n2/2\n0.0125\n0.0013\n\n\n6\nKrish Chinta\n2/2\n0.0144\n0.0018\n\n\n7\nBain Fulcher\n2/2\n0.0362\n0.0050\n\n\n8\nBianca Orfila-Molinet\n2/2\n0.0563\n0.0050\n\n\n9\nEdy Thompson\n2/2\n0.0662\n0.0050\n\n\n10\nHailey Chae\n2/2\n0.0362\n0.0050\n\n\n11\nHaven Priem\n2/2\n0.325\n0.0050\n\n\n12\nWill Steiner\n2/2\n0.01\n0.0050\n\n\n13\nSarah Gregory\n2/2\n0.1285\n0.0085\n\n\n14\nAnya Biswas\n2/2\n0.1113\n0.0113\n\n\n15\nBrianna Speizer\n2/2\n0.1023\n0.0113\n\n\n16\nCaitlyn Mcmullen\n2/2\n0.1862\n0.0113\n\n\n17\nHannah Hartley\n2/2\n0.0312\n0.0113\n\n\n18\nIsabella Picciano\n2/2\n0.0563\n0.0113\n\n\n19\nJoe Ornstein\n2/2\n-\n0.0113\n\n\n20\nMatthew Fern\n2/2\n0.0512\n0.0113\n\n\n21\nZiyada Rakhimova\n2/2\n0.2925\n0.0113\n\n\n22\nBrian Sadenwasser\n2/2\n0.0744\n0.0145\n\n\n23\nDenton Alexander\n2/2\n0.3363\n0.0200\n\n\n24\nElla Vars\n2/2\n0.065\n0.0200\n\n\n25\nJacob Nabors\n2/2\n0.1882\n0.0200\n\n\n26\nJason Eappen\n2/2\n0.205\n0.0200\n\n\n27\nMera Moucharrafie\n2/2\n0.205\n0.0200\n\n\n28\nMichelle Villanueva\n2/2\n0.065\n0.0200\n\n\n29\nParker Buckroyd\n2/2\n0.0812\n0.0200\n\n\n30\nSantiago Bottini Azugaray\n2/2\n0.125\n0.0200\n\n\n31\nCelina Simone\n2/2\n0.0763\n0.0312\n\n\n32\nMegan Tate\n2/2\n0.0763\n0.0312\n\n\n33\nDean Mcdonald\n2/2\n0.065\n0.0450\n\n\n34\nJordan Sanderson\n2/2\n0.1124\n0.0512\n\n\n35\nDylan Goff\n1/2\n0.2932\n0.1795\n\n\n36\nEva Carnes\n1/2\n0.25\n0.1828\n\n\n37\nJoshua Mui\n1/2\n0.3812\n0.2812\n\n\n38\nJulia Krehbiel\n1/2\n0.6013\n0.2812"
+    "text": "Leaderboard\n\n\n\n\n\n\n\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score (Initial)\nBrier Score (Revised)\n\n\n\n\n1\nJacob Nabors\n4/5\n0.2558\n0.1450\n\n\n2\nChristopher Heyl\n4/5\n0.148\n0.1655\n\n\n3\nWill Steiner\n4/5\n0.1783\n0.1665\n\n\n4\nBain Fulcher\n4/5\n0.1495\n0.1745\n\n\n5\nDean Mcdonald\n4/5\n0.2085\n0.1795\n\n\n6\nHailey Chae\n3/5\n0.1515\n0.1839\n\n\n7\nMichelle Villanueva\n4/5\n0.1785\n0.1850\n\n\n8\nJoe Ornstein\n4/5\n-\n0.1860\n\n\n9\nMegan Tate\n4/5\n0.171\n0.1896\n\n\n10\nBrian Sadenwasser\n3/5\n0.2308\n0.1944\n\n\n11\nDenton Alexander\n2/5\n0.415\n0.1973\n\n\n12\nLeah Mojica\n4/5\n0.2875\n0.1990\n\n\n13\nCaitlyn Mcmullen\n3/5\n0.224\n0.2015\n\n\n14\nIsabella Picciano\n4/5\n0.2006\n0.2021\n\n\n15\nEdy Thompson\n4/5\n0.2043\n0.2030\n\n\n16\nMera Moucharrafie\n3/5\n0.232\n0.2105\n\n\n17\nParker Buckroyd\n4/5\n0.2269\n0.2144\n\n\n18\nBrianna Speizer\n3/5\n0.2584\n0.2220\n\n\n19\nJason Eappen\n3/5\n0.3435\n0.2290\n\n\n20\nHaven Priem\n3/5\n0.2485\n0.2325\n\n\n21\nHannah Hartley\n3/5\n0.211\n0.2375\n\n\n22\nMatthew Fern\n3/5\n0.2085\n0.2395\n\n\n23\nCrowd\n3/5\n0.222\n0.2407\n\n\n24\nSarah Gregory\n3/5\n0.2464\n0.2501\n\n\n25\nZiyada Rakhimova\n3/5\n0.3609\n0.2521\n\n\n26\nAnya Biswas\n3/5\n0.3555\n0.2559\n\n\n27\nCarter Ray\n3/5\n0.255\n0.2684\n\n\n28\nJulia Krehbiel\n3/5\n0.3835\n0.2750\n\n\n29\nKiefer Adams\n3/5\n0.214\n0.2785\n\n\n30\nJoshua Mui\n3/5\n0.317\n0.2935\n\n\n31\nJordan Sanderson\n3/5\n0.2982\n0.2965\n\n\n32\nSlate Jones\n2/5\n0.3495\n0.2985\n\n\n33\nCelina Simone\n3/5\n0.2936\n0.3001\n\n\n34\nSantiago Bottini Azugaray\n3/5\n0.2485\n0.3071\n\n\n35\nBianca Orfila-Molinet\n3/5\n0.3764\n0.3145\n\n\n36\nKrish Chinta\n3/5\n0.3926\n0.3197\n\n\n37\nEva Carnes\n1/5\n0.2619\n0.3600\n\n\n38\nDylan Goff\n1/5\n0.478\n0.4103\n\n\n39\nElla Vars\n3/5\n0.3403\n0.4125"
   },
   {
     "objectID": "slides/bell-curves.html#bell-curves-are-useful",
@@ -3477,5 +3477,12 @@
     "title": "Fall 2026 Predictions",
     "section": "Week 3 (9/8)",
     "text": "Week 3 (9/8)"
+  },
+  {
+    "objectID": "index.html#week-4-915",
+    "href": "index.html#week-4-915",
+    "title": "Fall 2026 Predictions",
+    "section": "Week 4 (9/15)",
+    "text": "Week 4 (9/15)"
   }
 ]
