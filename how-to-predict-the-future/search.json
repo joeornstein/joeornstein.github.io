@@ -907,14 +907,14 @@
     "href": "slides/jury-theorems.html#takeaways",
     "title": "Jury Theorems",
     "section": "Takeaways",
-    "text": "Takeaways\n\nThe Condorcet Jury Theorem shows when we can expect majority rule to yield good judgments.\n\nIndividuals must be competent/independent, and you need a large group.\n\nThe median voter theorem says that, when you’re making judgments on a continuous spectrum, majority = median.\n\nThis is why the “Crowd” point on our course website is the median forecast.\n\nNext Time: What to do when we don’t quite believe that independence assumption…"
+    "text": "Takeaways\n\nThe Condorcet Jury Theorem shows us when we can expect majority rule to yield good judgments.\nMajority rule is a powerful method for finding the right answer, if:\n\nIndividuals are competent \\((p &gt; \\frac{1}{2})\\).\nChoices are made independently.\nThe group is large.\n\nThe theorem does not imply that non-independent groups will always make the wrong choice.\n\nOr small groups\nOr incompetent groups\n\nRather, it shows that these three assumptions are sufficient to guarantee the group will make the correct choice.\nNext time: what if a group is making a non-binary choice?"
   },
   {
     "objectID": "slides/jury-theorems.html#references",
     "href": "slides/jury-theorems.html#references",
     "title": "Jury Theorems",
     "section": "References",
-    "text": "References\n\n\n\n\nBlack, Duncan. 1948. “On the Rationale of Group Decision-Making.” Journal of Political Economy 56 (1): 23–34. https://doi.org/10.1086/256633.\n\n\nGalton, Francis. 1907. “Vox Populi.” Nature 75 (1949): 450–51. https://doi.org/10.1038/075450a0."
+    "text": "References"
   },
   {
     "objectID": "slides/fundamentals.html#warmup",
@@ -3484,5 +3484,96 @@
     "title": "Fall 2026 Predictions",
     "section": "Week 4 (9/15)",
     "text": "Week 4 (9/15)"
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#warmup",
+    "href": "slides/median-voter-theorem.html#warmup",
+    "title": "Median Voter Theorem",
+    "section": "Warmup",
+    "text": "Warmup"
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#previously",
+    "href": "slides/median-voter-theorem.html#previously",
+    "title": "Median Voter Theorem",
+    "section": "Previously…",
+    "text": "Previously…\n\nLast time, we introduced the Condorcet Jury Theorem.\n\nRemind me what that was?\n\nToday:: What if the decision being made isn’t binary (Yes/No)?\nWhat if the group is trying to make a decision about a continuous value?"
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#wisdom-of-crowds",
+    "href": "slides/median-voter-theorem.html#wisdom-of-crowds",
+    "title": "Median Voter Theorem",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds\n\nConsider the ox weight-judging competition described in Tetlock Chapter 3.\nParticipants paid sixpence to enter a competition to guess the weight of a “fat ox” (Galton 1907)."
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#wisdom-of-crowds-1",
+    "href": "slides/median-voter-theorem.html#wisdom-of-crowds-1",
+    "title": "Median Voter Theorem",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds\n\n\nWhat is the “majority judgment” here?"
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#wisdom-of-crowds-2",
+    "href": "slides/median-voter-theorem.html#wisdom-of-crowds-2",
+    "title": "Median Voter Theorem",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds\nImagine we broke this down into a series of binary (Yes/No) votes."
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#wisdom-of-crowds-3",
+    "href": "slides/median-voter-theorem.html#wisdom-of-crowds-3",
+    "title": "Median Voter Theorem",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds\nIf the majority says “it weighs more than that”, adjust the question higher:"
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#wisdom-of-crowds-4",
+    "href": "slides/median-voter-theorem.html#wisdom-of-crowds-4",
+    "title": "Median Voter Theorem",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds\nIf the majority says “it weighs less than that”, adjust the question lower:"
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#wisdom-of-crowds-5",
+    "href": "slides/median-voter-theorem.html#wisdom-of-crowds-5",
+    "title": "Median Voter Theorem",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds\nThis process will finally stop when we get to the median voter (Black 1948)."
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#median-voter-theorem",
+    "href": "slides/median-voter-theorem.html#median-voter-theorem",
+    "title": "Median Voter Theorem",
+    "section": "Median Voter Theorem",
+    "text": "Median Voter Theorem\n\nThe median voter theorem (Black 1948) says that the median is the only position that cannot be defeated by a majority vote.\nThis follows from the definition of the median:\n\n50% of the group lies to the right.\n50% of the group lies to the left.\nAny majority voting bloc (&gt;50%) must include the median.\n\nSo we can think of the “majority judgment” as the position of the median voter."
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#takeaways",
+    "href": "slides/median-voter-theorem.html#takeaways",
+    "title": "Median Voter Theorem",
+    "section": "Takeaways",
+    "text": "Takeaways\n\nThe Condorcet Jury Theorem shows when we can expect majority rule to yield good judgments.\n\nIndividuals must be competent/independent, and you need a large group.\n\nThe median voter theorem says that, when you’re making judgments on a continuous spectrum, majority = median.\n\nThis is why the “Crowd” point on our course website is the median forecast.\n\nNext Time: What to do when we don’t quite believe that independence assumption…"
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#references",
+    "href": "slides/median-voter-theorem.html#references",
+    "title": "Median Voter Theorem",
+    "section": "References",
+    "text": "References\n\n\n\n\nBlack, Duncan. 1948. “On the Rationale of Group Decision-Making.” Journal of Political Economy 56 (1): 23–34. https://doi.org/10.1086/256633.\n\n\nGalton, Francis. 1907. “Vox Populi.” Nature 75 (1949): 450–51. https://doi.org/10.1038/075450a0."
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#todays-agenda",
+    "href": "slides/median-voter-theorem.html#todays-agenda",
+    "title": "Median Voter Theorem",
+    "section": "Today’s Agenda",
+    "text": "Today’s Agenda\n\nWhat if the decision being made isn’t binary (Yes/No)?\nWhat if the group is trying to make a decision about a continuous value?\nConsider the ox weight-judging competition described in Tetlock Chapter 3.\nParticipants paid sixpence to enter a competition to guess the weight of a “fat ox” (Galton 1907)."
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#wisdom-of-crowds-6",
+    "href": "slides/median-voter-theorem.html#wisdom-of-crowds-6",
+    "title": "Median Voter Theorem",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds\nIn Galton’s experiment, the median voter was off by only 9 pounds!"
   }
 ]
