@@ -774,7 +774,7 @@
     "href": "slides/jury-theorems.html#condorcet-jury-theorem",
     "title": "Jury Theorems",
     "section": "Condorcet Jury Theorem",
-    "text": "Condorcet Jury Theorem\n\nAssumptions:\n\nA group is voting on a binary (Yes/No) decision.\nEach voter has probability \\(p &gt; \\frac{1}{2}\\) of making the correct choice.\nIndividual votes are independent of one another.\n\n\n\nTheorem:\n\nAs the size of the group \\(n\\) gets large:\n\nThe probability that the majority makes the correct choice approaches 100%."
+    "text": "Condorcet Jury Theorem\n. . .\nAssumptions:\n\nA group is voting on a binary (Yes/No) decision.\nEach voter has probability \\(p &gt; \\frac{1}{2}\\) of making the correct choice.\nIndividual votes are independent of one another.\n\n. . .\nTheorem:\n\nAs the size of the group \\(n\\) gets large:\n\nThe probability that the majority makes the correct choice approaches 100%."
   },
   {
     "objectID": "slides/jury-theorems.html#condorcet-jury-theorem-1",
@@ -907,14 +907,14 @@
     "href": "slides/jury-theorems.html#takeaways",
     "title": "Jury Theorems",
     "section": "Takeaways",
-    "text": "Takeaways\n\nThe Condorcet Jury Theorem shows when we can expect majority rule to yield good judgments.\n\nIndividuals must be competent/independent, and you need a large group.\n\nThe median voter theorem says that, when you’re making judgments on a continuous spectrum, majority = median.\n\nThis is why the “Crowd” point on our course website is the median forecast.\n\nNext Time: What to do when we don’t quite believe that independence assumption…"
+    "text": "Takeaways\n\nThe Condorcet Jury Theorem shows us when we can expect majority rule to yield good judgments.\nMajority rule is a powerful method for finding the right answer, if:\n\nIndividuals are competent \\((p &gt; \\frac{1}{2})\\).\nChoices are made independently.\nThe group is large.\n\nThe theorem does not imply that non-independent groups will always make the wrong choice.\n\nOr small groups\nOr incompetent groups\n\nRather, it shows that these three assumptions are sufficient to guarantee the group will make the correct choice.\nNext time: what if a group is making a non-binary choice?"
   },
   {
     "objectID": "slides/jury-theorems.html#references",
     "href": "slides/jury-theorems.html#references",
     "title": "Jury Theorems",
     "section": "References",
-    "text": "References\n\n\n\n\nBlack, Duncan. 1948. “On the Rationale of Group Decision-Making.” Journal of Political Economy 56 (1): 23–34. https://doi.org/10.1086/256633.\n\n\nGalton, Francis. 1907. “Vox Populi.” Nature 75 (1949): 450–51. https://doi.org/10.1038/075450a0."
+    "text": "References"
   },
   {
     "objectID": "slides/fundamentals.html#warmup",
@@ -3448,7 +3448,7 @@
     "href": "index.html#leaderboard",
     "title": "Fall 2026 Predictions",
     "section": "Leaderboard",
-    "text": "Leaderboard\n\n\n\n\n\n\n\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score (Initial)\nBrier Score (Revised)\n\n\n\n\n1\nCarter Ray\n2/2\n0.0212\n0.0013\n\n\n2\nChristopher Heyl\n2/2\n0.0463\n0.0013\n\n\n3\nKiefer Adams\n2/2\n0.0625\n0.0013\n\n\n4\nLeah Mojica\n2/2\n0.0625\n0.0013\n\n\n5\nSlate Jones\n2/2\n0.0125\n0.0013\n\n\n6\nKrish Chinta\n2/2\n0.0144\n0.0018\n\n\n7\nBain Fulcher\n2/2\n0.0362\n0.0050\n\n\n8\nBianca Orfila-Molinet\n2/2\n0.0563\n0.0050\n\n\n9\nEdy Thompson\n2/2\n0.0662\n0.0050\n\n\n10\nHailey Chae\n2/2\n0.0362\n0.0050\n\n\n11\nHaven Priem\n2/2\n0.325\n0.0050\n\n\n12\nWill Steiner\n2/2\n0.01\n0.0050\n\n\n13\nSarah Gregory\n2/2\n0.1285\n0.0085\n\n\n14\nAnya Biswas\n2/2\n0.1113\n0.0113\n\n\n15\nBrianna Speizer\n2/2\n0.1023\n0.0113\n\n\n16\nCaitlyn Mcmullen\n2/2\n0.1862\n0.0113\n\n\n17\nHannah Hartley\n2/2\n0.0312\n0.0113\n\n\n18\nIsabella Picciano\n2/2\n0.0563\n0.0113\n\n\n19\nJoe Ornstein\n2/2\n-\n0.0113\n\n\n20\nMatthew Fern\n2/2\n0.0512\n0.0113\n\n\n21\nZiyada Rakhimova\n2/2\n0.2925\n0.0113\n\n\n22\nBrian Sadenwasser\n2/2\n0.0744\n0.0145\n\n\n23\nDenton Alexander\n2/2\n0.3363\n0.0200\n\n\n24\nElla Vars\n2/2\n0.065\n0.0200\n\n\n25\nJacob Nabors\n2/2\n0.1882\n0.0200\n\n\n26\nJason Eappen\n2/2\n0.205\n0.0200\n\n\n27\nMera Moucharrafie\n2/2\n0.205\n0.0200\n\n\n28\nMichelle Villanueva\n2/2\n0.065\n0.0200\n\n\n29\nParker Buckroyd\n2/2\n0.0812\n0.0200\n\n\n30\nSantiago Bottini Azugaray\n2/2\n0.125\n0.0200\n\n\n31\nCelina Simone\n2/2\n0.0763\n0.0312\n\n\n32\nMegan Tate\n2/2\n0.0763\n0.0312\n\n\n33\nDean Mcdonald\n2/2\n0.065\n0.0450\n\n\n34\nJordan Sanderson\n2/2\n0.1124\n0.0512\n\n\n35\nDylan Goff\n1/2\n0.2932\n0.1795\n\n\n36\nEva Carnes\n1/2\n0.25\n0.1828\n\n\n37\nJoshua Mui\n1/2\n0.3812\n0.2812\n\n\n38\nJulia Krehbiel\n1/2\n0.6013\n0.2812"
+    "text": "Leaderboard\n\n\n\n\n\n\n\n\n\n\n\n\nRank\nName\nCorrect Calls\nBrier Score (Initial)\nBrier Score (Revised)\n\n\n\n\n1\nJacob Nabors\n4/5\n0.2558\n0.1450\n\n\n2\nChristopher Heyl\n4/5\n0.148\n0.1655\n\n\n3\nWill Steiner\n4/5\n0.1783\n0.1665\n\n\n4\nBain Fulcher\n4/5\n0.1495\n0.1745\n\n\n5\nDean Mcdonald\n4/5\n0.2085\n0.1795\n\n\n6\nHailey Chae\n3/5\n0.1515\n0.1839\n\n\n7\nMichelle Villanueva\n4/5\n0.1785\n0.1850\n\n\n8\nJoe Ornstein\n4/5\n-\n0.1860\n\n\n9\nMegan Tate\n4/5\n0.171\n0.1896\n\n\n10\nBrian Sadenwasser\n3/5\n0.2308\n0.1944\n\n\n11\nDenton Alexander\n2/5\n0.415\n0.1973\n\n\n12\nLeah Mojica\n4/5\n0.2875\n0.1990\n\n\n13\nCaitlyn Mcmullen\n3/5\n0.224\n0.2015\n\n\n14\nIsabella Picciano\n4/5\n0.2006\n0.2021\n\n\n15\nEdy Thompson\n4/5\n0.2043\n0.2030\n\n\n16\nMera Moucharrafie\n3/5\n0.232\n0.2105\n\n\n17\nParker Buckroyd\n4/5\n0.2269\n0.2144\n\n\n18\nBrianna Speizer\n3/5\n0.2584\n0.2220\n\n\n19\nJason Eappen\n3/5\n0.3435\n0.2290\n\n\n20\nHaven Priem\n3/5\n0.2485\n0.2325\n\n\n21\nHannah Hartley\n3/5\n0.211\n0.2375\n\n\n22\nMatthew Fern\n3/5\n0.2085\n0.2395\n\n\n23\nCrowd\n3/5\n0.222\n0.2407\n\n\n24\nSarah Gregory\n3/5\n0.2464\n0.2501\n\n\n25\nZiyada Rakhimova\n3/5\n0.3609\n0.2521\n\n\n26\nAnya Biswas\n3/5\n0.3555\n0.2559\n\n\n27\nCarter Ray\n3/5\n0.255\n0.2684\n\n\n28\nJulia Krehbiel\n3/5\n0.3835\n0.2750\n\n\n29\nKiefer Adams\n3/5\n0.214\n0.2785\n\n\n30\nJoshua Mui\n3/5\n0.317\n0.2935\n\n\n31\nJordan Sanderson\n3/5\n0.2982\n0.2965\n\n\n32\nSlate Jones\n2/5\n0.3495\n0.2985\n\n\n33\nCelina Simone\n3/5\n0.2936\n0.3001\n\n\n34\nSantiago Bottini Azugaray\n3/5\n0.2485\n0.3071\n\n\n35\nBianca Orfila-Molinet\n3/5\n0.3764\n0.3145\n\n\n36\nKrish Chinta\n3/5\n0.3926\n0.3197\n\n\n37\nEva Carnes\n1/5\n0.2619\n0.3600\n\n\n38\nDylan Goff\n1/5\n0.478\n0.4103\n\n\n39\nElla Vars\n3/5\n0.3403\n0.4125"
   },
   {
     "objectID": "slides/bell-curves.html#bell-curves-are-useful",
@@ -3477,5 +3477,117 @@
     "title": "Fall 2026 Predictions",
     "section": "Week 3 (9/8)",
     "text": "Week 3 (9/8)"
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#previously",
+    "href": "slides/median-voter-theorem.html#previously",
+    "title": "Median Voter Theorem",
+    "section": "Previously…",
+    "text": "Previously…\n\nLast time, we introduced the Condorcet Jury Theorem.\n\nRemind me what that was?\n\nToday: What if the decision being made isn’t binary (Yes/No)?\nWhat if the group is trying to make a decision about a continuous value (like a probability)?"
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#wisdom-of-crowds",
+    "href": "slides/median-voter-theorem.html#wisdom-of-crowds",
+    "title": "Median Voter Theorem",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds\n\nConsider the ox weight-judging competition described in Tetlock Chapter 3.\nParticipants paid sixpence to enter a competition to guess the weight of a “fat ox” (Galton 1907)."
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#wisdom-of-crowds-1",
+    "href": "slides/median-voter-theorem.html#wisdom-of-crowds-1",
+    "title": "Median Voter Theorem",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds\n\n\nWhat is the “majority judgment” here?"
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#wisdom-of-crowds-2",
+    "href": "slides/median-voter-theorem.html#wisdom-of-crowds-2",
+    "title": "Median Voter Theorem",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds\n\nImagine we broke this down into a series of binary (Yes/No) votes.\nInstead of asking everyone for a number, ask “Does the ox weigh more than 1,100 pounds?”\n\nIf the majority says “Yes”, pick a larger number and ask again.\nIf the majority says “No”, pick a smaller number and ask again."
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#wisdom-of-crowds-3",
+    "href": "slides/median-voter-theorem.html#wisdom-of-crowds-3",
+    "title": "Median Voter Theorem",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds"
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#wisdom-of-crowds-4",
+    "href": "slides/median-voter-theorem.html#wisdom-of-crowds-4",
+    "title": "Median Voter Theorem",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds"
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#wisdom-of-crowds-5",
+    "href": "slides/median-voter-theorem.html#wisdom-of-crowds-5",
+    "title": "Median Voter Theorem",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds"
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#wisdom-of-crowds-6",
+    "href": "slides/median-voter-theorem.html#wisdom-of-crowds-6",
+    "title": "Median Voter Theorem",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds\nThis process will finally stop when we get to the median estimate."
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#median-voter-theorem",
+    "href": "slides/median-voter-theorem.html#median-voter-theorem",
+    "title": "Median Voter Theorem",
+    "section": "Median Voter Theorem",
+    "text": "Median Voter Theorem\n\nThe median voter theorem (Black 1948) says that the median is the only position that cannot be defeated by a majority vote.\nThis follows from the definition of the median:\n\n50% of the group lies to the right.\n50% of the group lies to the left.\nAny majority voting bloc (&gt;50%) must include the median.\n\nSo we can think of the “majority judgment” as the position of the median voter."
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#takeaways",
+    "href": "slides/median-voter-theorem.html#takeaways",
+    "title": "Median Voter Theorem",
+    "section": "Takeaways",
+    "text": "Takeaways\n\nThe Condorcet Jury Theorem shows when we can expect majority rule to yield good judgments.\n\nIndividuals should be competent/independent, and you need a large group.\n\nThe median voter theorem shows that, when you’re making judgments about a continuous value, majority = median.\n\nThis is why the “Crowd” point on our course website is the median forecast.\n\nNext Time: What to do when we don’t quite believe that independence assumption…"
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#references",
+    "href": "slides/median-voter-theorem.html#references",
+    "title": "Median Voter Theorem",
+    "section": "References",
+    "text": "References\n\n\n\n\nBlack, Duncan. 1948. “On the Rationale of Group Decision-Making.” Journal of Political Economy 56 (1): 23–34. https://doi.org/10.1086/256633.\n\n\nGalton, Francis. 1907. “Vox Populi.” Nature 75 (1949): 450–51. https://doi.org/10.1038/075450a0."
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#warmup",
+    "href": "slides/median-voter-theorem.html#warmup",
+    "title": "Median Voter Theorem",
+    "section": "Warmup",
+    "text": "Warmup"
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#wisdom-of-crowds-7",
+    "href": "slides/median-voter-theorem.html#wisdom-of-crowds-7",
+    "title": "Median Voter Theorem",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds"
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#wisdom-of-crowds-8",
+    "href": "slides/median-voter-theorem.html#wisdom-of-crowds-8",
+    "title": "Median Voter Theorem",
+    "section": "Wisdom of Crowds",
+    "text": "Wisdom of Crowds"
+  },
+  {
+    "objectID": "slides/median-voter-theorem.html#back-to-the-warmup-exercise",
+    "href": "slides/median-voter-theorem.html#back-to-the-warmup-exercise",
+    "title": "Median Voter Theorem",
+    "section": "Back to the Warmup Exercise",
+    "text": "Back to the Warmup Exercise"
+  },
+  {
+    "objectID": "index.html#week-4-915",
+    "href": "index.html#week-4-915",
+    "title": "Fall 2026 Predictions",
+    "section": "Week 4 (9/15)",
+    "text": "Week 4 (9/15)"
   }
 ]
