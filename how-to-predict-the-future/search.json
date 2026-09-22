@@ -3105,14 +3105,14 @@
     "href": "slides/prediction-markets.html#class-activity",
     "title": "Prediction Markets",
     "section": "Class Activity",
-    "text": "Class Activity\n\nTo demonstrate how prediction markets work, we’re going to create our own.\nEveryone starts the game with a sheet of 300 foxcoin and a stack of contracts.\n\nYour goal is to have the most foxcoin by November 25.\n\nWe’ll record the order book for each contract on the board.\n\nIf you want to buy a contract, put your name and the price you’re wiling to pay in the “Bid” column.\nIf you want to sell a contract, put your name and the price you’re willing to pay in the “Ask” column."
+    "text": "Class Activity\n\nTo demonstrate how prediction markets work, we’re going to create our own.\nEveryone starts the game with a sheet of 300 foxcoin and a stack of contracts.\n\nYour goal is to have the most foxcoin by November 19.\n\nWe’ll record the order book for each contract on the board.\n\nIf you want to buy a contract, put your name and the price you’re wiling to pay in the “Bid” column.\nIf you want to sell a contract, put your name and the price you’re willing to pay in the “Ask” column."
   },
   {
     "objectID": "slides/prediction-markets.html#when-do-markets-work-best",
     "href": "slides/prediction-markets.html#when-do-markets-work-best",
     "title": "Prediction Markets",
     "section": "When do markets work best?",
-    "text": "When do markets work best?\n\nTrading volume is high.\n\nJust like we saw with the Condorcet Jury Theorem, the “wisdom of crowds” works best when the crowd is large.\n\nTime horizons are short.\n\nMarkets tend to be more accurate the closer you get to an event.\nProfit motive is much weaker for long-term contracts.\n\n(Why put in the effort to accurately price a 10-year prediction contract when you could just earn 50% compound interest on a US Treasury Bond?)"
+    "text": "When do markets work best?\n\nTrading volume is high.\n\nJust like we saw with the Condorcet Jury Theorem, the “wisdom of crowds” works best when the crowd is large.\n\nTime horizons are short.\n\nMarket participants tend to have more accurate information the closer you get to an event.\nProfit motive is much weaker for long-term contracts.\n\nThere’s no incentive to accurately price a 10-year prediction contract when you could just put your money in US Treasury Bonds and earn 50% compound interest."
   },
   {
     "objectID": "slides/prediction-markets.html#when-should-you-be-skeptical",
@@ -3497,7 +3497,7 @@
     "href": "slides/median-voter-theorem.html#wisdom-of-crowds-1",
     "title": "Median Voter Theorem",
     "section": "Wisdom of Crowds",
-    "text": "Wisdom of Crowds\n\n\nWhat is the “majority judgment” here?"
+    "text": "Wisdom of Crowds\n\n\n\n\n\n\n\n\n\n. . .\nWhat is the “majority judgment” here?"
   },
   {
     "objectID": "slides/median-voter-theorem.html#wisdom-of-crowds-2",
@@ -3589,5 +3589,19 @@
     "title": "Fall 2026 Predictions",
     "section": "Week 4 (9/15)",
     "text": "Week 4 (9/15)"
+  },
+  {
+    "objectID": "index.html#week-5-922",
+    "href": "index.html#week-5-922",
+    "title": "Fall 2026 Predictions",
+    "section": "Week 5 (9/22)",
+    "text": "Week 5 (9/22)"
+  },
+  {
+    "objectID": "slides/prediction-markets.html",
+    "href": "slides/prediction-markets.html",
+    "title": "Prediction Markets",
+    "section": "",
+    "text": ". . .\n\n. . ."
   }
 ]
