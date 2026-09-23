@@ -543,7 +543,7 @@
     "href": "slides/calculus.html#newton-leibniz",
     "title": "Calculus Essentials",
     "section": "Newton & Leibniz",
-    "text": "Newton & Leibniz\n\n\n\n\n\n\n\n\nDeveloped/Discovered: - The theory of universal gravitation - Three Laws of Motion - The Nature of Light - And, as a side project so he’d have mathematical notation for those other projects, he created calculus\nNB: Newton did some of his best work while stuck at home during an epidemic. So, you know, get to it.\nAlso invented calculus, but with better notation. A philosophical optimist who believed we lived in the “best of all possible worlds”, a sentiment parodied by Voltaire, and perhaps belied by the fact that Newton took all the credit for inventing calculus."
+    "text": "Newton & Leibniz\n\n\n\n\n\n\n\nDeveloped/Discovered: - The theory of universal gravitation - Three Laws of Motion - The Nature of Light - And, as a side project so he’d have mathematical notation for those other projects, he created calculus\n(NB Fall 2020: Newton did some of his best work while stuck at home during an epidemic. So, you know, get to it.)\nAlso invented calculus, but with better notation. A philosophical optimist who believed we lived in the “best of all possible worlds”, a sentiment parodied by Voltaire, and perhaps belied by the fact that Newton took all the credit for inventing calculus."
   },
   {
     "objectID": "slides/calculus.html#the-key-insight",
@@ -690,7 +690,7 @@
     "href": "slides/calculus.html#shortcut-5-the-chain-rule",
     "title": "Calculus Essentials",
     "section": "Shortcut 5: The Chain Rule",
-    "text": "Shortcut 5: The Chain Rule\nIf \\(f(x) = g(h(x))\\), then \\(f'(x) = g'(x) \\cdot h'(x)\\)\n\n“The derivative of the outside times the derivative of the inside.”\n\n\nExample: If \\(f(x) = (2x^2 - x + 1)^3\\), then \\(f'(x) = 3(2x^2 - x + 1)^2 (4x - 1)\\)\n\n\nPractice Problem: \\(f(x) = \\sqrt{x + 3} = (x+3)^{\\frac{1}{2}}\\), what is \\(f'(x)\\)?\n\n\n\\(f'(x) = \\frac{1}{2}(x+3)^{-\\frac{1}{2}}(1) = \\frac{1}{2\\sqrt{x+3}}\\)"
+    "text": "Shortcut 5: The Chain Rule\nIf \\(f(x) = g(h(x))\\), then \\(f'(x) = g'(h(x)) \\cdot h'(x)\\)\n\n“The derivative of the outside times the derivative of the inside.”\n\n\nExample: If \\(f(x) = (2x^2 - x + 1)^3\\), then \\(f'(x) = 3(2x^2 - x + 1)^2 (4x - 1)\\)\n\n\nPractice Problem: \\(f(x) = \\sqrt{x + 3} = (x+3)^{\\frac{1}{2}}\\), what is \\(f'(x)\\)?\n\n\n\\(f'(x) = \\frac{1}{2}(x+3)^{-\\frac{1}{2}}(1) = \\frac{1}{2\\sqrt{x+3}}\\)"
   },
   {
     "objectID": "slides/calculus.html#more-practice",
