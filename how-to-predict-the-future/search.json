@@ -3028,7 +3028,7 @@
     "href": "slides/madness-of-crowds.html#lets-play-a-game",
     "title": "Madness of Crowds",
     "section": "Let’s Play A Game",
-    "text": "Let’s Play A Game\n\nI need 10 volunteers to play a little game.\nI have two bags, and will randomly choose one to play with:\n\nBag A has 2 red poker chips and 1 blue poker chip.\nBag B has 1 red poker chip and 2 blue poker chips.\n\nOn your turn, secretly draw a chip from the bag, put it back, then write your name on the board.\n\nUse blue marker if you think the bag is mostly blue.\nUse red marker if you think the bag is mostly red.\n\n1 bonus point on the midterm if you predict correctly."
+    "text": "Let’s Play A Game\n\nI need 10 volunteers to play a little game.\nI have two bags, and will randomly choose one to play with:\n\nBag A has 2 red poker chips and 1 blue poker chip.\nBag B has 1 red poker chip and 2 blue poker chips.\n\nOn your turn, secretly draw a chip from the bag, put it back, then write your name on the board.\n\nUse blue marker if you think the bag is mostly blue.\nUse red marker if you think the bag is mostly red.\n\n1 bonus point if you predict correctly."
   },
   {
     "objectID": "slides/madness-of-crowds.html#information-cascades",
@@ -3056,7 +3056,7 @@
     "href": "slides/madness-of-crowds.html#groupthink",
     "title": "Madness of Crowds",
     "section": "Groupthink",
-    "text": "Groupthink\nWhen individuals suppress their private information for the sake of group harmony/cohesion, we call it groupthink.\n\n\n\n\n\n. . .\nDiscuss: Have you ever been part of a group like this? How can we design our teams to avoid groupthink?\n\nhttps://mediationworksfl.com/going-with-the-flow-the-influence-of-groupthink-on-mediation-outcomes/"
+    "text": "Groupthink\nWhen individuals suppress their private information for the sake of group harmony/cohesion, we call it groupthink.\n\n\nDiscuss: Have you ever been part of a group like this? How can we design our teams to avoid groupthink?\n\nhttps://mediationworksfl.com/going-with-the-flow-the-influence-of-groupthink-on-mediation-outcomes/"
   },
   {
     "objectID": "slides/madness-of-crowds.html#groupthink-1",
@@ -3603,5 +3603,110 @@
     "title": "Prediction Markets",
     "section": "",
     "text": ". . .\n\n. . ."
+  },
+  {
+    "objectID": "slides/extremizing.html#motivating-problem",
+    "href": "slides/extremizing.html#motivating-problem",
+    "title": "Extremizing",
+    "section": "Motivating Problem",
+    "text": "Motivating Problem\n\nSuppose the class is trying to predict whether the Federal Reserve will cut interest rates at its next meeting.\nThree students leading the discussion all say 75%.\nWhat should you predict after observing those three forecasts?\nPreviously, we considered taking the median forecast (i.e. majority rule).\n\nBut that strategy required some strong assumptions.\nRemind what those assumptions were?"
+  },
+  {
+    "objectID": "slides/extremizing.html#todays-agenda",
+    "href": "slides/extremizing.html#todays-agenda",
+    "title": "Extremizing",
+    "section": "Today’s Agenda",
+    "text": "Today’s Agenda\n\nHow best to aggregate individual forecasts into a group forecast?\nI’ll try to convince you that, if three individual forecasts are at 75%, the best aggregation is probably &gt;75%.\n\nThis is called extremizing: increasing the confidence of the group forecast when multiple individuals all make a prediction in the same direction.\n\nWe’ll motivate this idea from the perspective of Bayesian updating."
+  },
+  {
+    "objectID": "slides/extremizing.html#warmup",
+    "href": "slides/extremizing.html#warmup",
+    "title": "Extremizing",
+    "section": "Warmup",
+    "text": "Warmup\n\nSuppose you’re leading discussion of that interest rates question.\nAt first, you have no idea what will happen (prior odds = 1:1).\nThen you find a statement from a Fed official expressing concern about unemployment.\nHistorically, he makes statements like this three times more often before an interest rate cut than he does otherwise.\nProblem: What should your new forecast be, after observing this evidence?"
+  },
+  {
+    "objectID": "slides/extremizing.html#warmup-1",
+    "href": "slides/extremizing.html#warmup-1",
+    "title": "Extremizing",
+    "section": "Warmup",
+    "text": "Warmup\nRemember Bayes Rule:\n\\[\n\\text{Posterior Odds} = \\text{Prior Odds} \\times \\text{Strength of Evidence}\n\\]"
+  },
+  {
+    "objectID": "slides/extremizing.html#warmup-2",
+    "href": "slides/extremizing.html#warmup-2",
+    "title": "Extremizing",
+    "section": "Warmup",
+    "text": "Warmup\nRemember Bayes Rule:\n\\[\n\\underbrace{\\text{Posterior Odds}}_{\\text{New Forecast}} = \\underbrace{\\text{Prior Odds}}_{\\text{Old Forecast}}\\times  \\underbrace{\\text{Strength of Evidence}}_{\\text{Likelihood Ratio}}\n\\]\n\nPrior Odds: 1:1\nLikelihood Ratio: 3:1\nPosterior Odds: 3:1\nNew Forecast: 75%"
+  },
+  {
+    "objectID": "slides/extremizing.html#bayesian-updating",
+    "href": "slides/extremizing.html#bayesian-updating",
+    "title": "Extremizing",
+    "section": "Bayesian Updating",
+    "text": "Bayesian Updating\n\nNow suppose you read that JP Morgan’s analysts are predicting an interest rate cut.\nHistorically, this appears to have the same strength of evidence as the Fed official’s statements.\nBayes Rule handles this problem exactly like the first one!\n\nPrior Odds: 3:1\nLikelihood Ratio: 3:1\nPosterior Odds: \\(3:1 \\times 3:1 = 9:1\\)\nNew Prediction: 90%"
+  },
+  {
+    "objectID": "slides/extremizing.html#bayesian-updating-1",
+    "href": "slides/extremizing.html#bayesian-updating-1",
+    "title": "Extremizing",
+    "section": "Bayesian Updating",
+    "text": "Bayesian Updating\n\nThis process of Bayesian updating can proceed indefinitely.\nFor each piece of evidence:\n\nAssess its likelihood ratio: conditional on everything you already know, how much more likely are you to observe this evidence if the event happens?\nAdjust your prediction up or down using Bayes Rule."
+  },
+  {
+    "objectID": "slides/extremizing.html#back-to-the-motivating-problem",
+    "href": "slides/extremizing.html#back-to-the-motivating-problem",
+    "title": "Extremizing",
+    "section": "Back to the Motivating Problem",
+    "text": "Back to the Motivating Problem\n\nConsider the three students discussing the Federal Reserve question. All three start with prior odds 1:1.\nStudent A only finds the statement by the Fed official (3:1 likelihood ratio).\nStudent B finds the JP Morgan report (3:1 likelihood ratio).\nStudent C finds a third piece of evidence (also 3:1).\nIf nobody shares information with each other, what would each student predict?\nIf everyone shared their information, what would they predict (using Bayesian updating)?"
+  },
+  {
+    "objectID": "slides/extremizing.html#extremizing",
+    "href": "slides/extremizing.html#extremizing",
+    "title": "Extremizing",
+    "section": "Extremizing",
+    "text": "Extremizing\n\nThis is the intuition behind extremizing predictions.\nIf a group of forecasters have independent pieces of information, they should become more confident if they shared what they know.\nWe can simulate this process by making everyone’s forecast a bit more confident before taking the average.\nHow much you extremize depends on how much independent information you think the crowd has."
+  },
+  {
+    "objectID": "slides/extremizing.html#extremizing-1",
+    "href": "slides/extremizing.html#extremizing-1",
+    "title": "Extremizing",
+    "section": "Extremizing",
+    "text": "Extremizing\nIf every individual has fully independent evidence informing their prediction:\n\n\\[\no_{group} = o_1 \\times o_2 \\times o_3 \\times \\ldots \\times o_n\n\\]\n\n\nThis is full Bayesian updating; multiply everyone’s odds together to get the posterior."
+  },
+  {
+    "objectID": "slides/extremizing.html#extremizing-2",
+    "href": "slides/extremizing.html#extremizing-2",
+    "title": "Extremizing",
+    "section": "Extremizing",
+    "text": "Extremizing\n\nBut that independence assumption is wildly optimistic!\nForecasters are usually relying on the same sources of information (Google searches, chatbots, newspapers, etc.)\nMore reasonable assumption: the crowd has some independent pieces of information."
+  },
+  {
+    "objectID": "slides/extremizing.html#extremizing-3",
+    "href": "slides/extremizing.html#extremizing-3",
+    "title": "Extremizing",
+    "section": "Extremizing",
+    "text": "Extremizing\nIf each individual has some independent information:\n\n\\[\no_{group} = (o_1 \\times o_2 \\times o_3 \\times \\ldots \\times o_n)^\\frac{\\alpha}{n}\n\\]\n\n\n\n\\(\\alpha\\) represents the amount of independent information.\n\\(\\alpha = n\\): Everyone has completely independent information. Group forecast is full Bayesian updating.\n\\(\\alpha = 1\\): No one has independent information. Group forecast is just the average individual forecast.\nTruth is probably somewhere in the middle. For superforecasters, Satopää et al. (2014) use \\(\\alpha = 2.5\\)."
+  },
+  {
+    "objectID": "slides/extremizing.html#example",
+    "href": "slides/extremizing.html#example",
+    "title": "Extremizing",
+    "section": "Example",
+    "text": "Example\n\nFive forecasters predict 40%, 50%, 60%, 75%, and 75%.\nThe median forecast is 60%.\nThe extremized forecast \\((\\alpha = 2.5)\\) is:\n\n\n\\[\n(2:3 \\times 1:1 \\times 3:2 \\times 3:1 \\times 3:1)^\\frac{2.5}{5} =\n(9:1)^\\frac{1}{2} = 3:1 = 75\\%\n\\]\n\nThis isn’t the sort of math I’d ask you to perform on an exam.\nI just want you to have it in your toolbox."
+  },
+  {
+    "objectID": "slides/extremizing.html#takeaways",
+    "href": "slides/extremizing.html#takeaways",
+    "title": "Extremizing",
+    "section": "Takeaways",
+    "text": "Takeaways\n\nConfident predictions are justified if multiple, independent pieces of evidence point towards the same conclusion (Bayesian updating, dragonfly-eyed foxes).\nWhen listening to our discussions, consider whether each student is bringing a different perspective, or if everyone is relying on the same evidence.\n\nIf the former, then the group forecast should be more confident than the individual forecasts (extremizing).\n\nWhen organizing a team, make sure everyone shares information rather than just sharing conclusions."
+  },
+  {
+    "objectID": "slides/extremizing.html#references",
+    "href": "slides/extremizing.html#references",
+    "title": "Extremizing",
+    "section": "References",
+    "text": "References\n\n\n\n\nSatopää, Ville A., Jonathan Baron, Dean P. Foster, Barbara A. Mellers, Philip E. Tetlock, and Lyle H. Ungar. 2014. “Combining Multiple Probability Predictions Using a Simple Logit Model.” International Journal of Forecasting 30 (2): 344–56. https://doi.org/10.1016/j.ijforecast.2013.09.009."
   }
 ]

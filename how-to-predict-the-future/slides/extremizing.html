@@ -10,7 +10,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.10.18">
 
-  <title>How To Predict The Future – Madness of Crowds</title>
+  <title>How To Predict The Future – Extremizing</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -34,7 +34,26 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -135,123 +154,187 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Madness of Crowds</h1>
+  <h1 class="title">Extremizing</h1>
   <p class="subtitle">POLS 3220: How to Predict the Future</p>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="wisdom-of-crowds" class="slide level2">
-<h2>Wisdom of Crowds</h2>
-
-<img data-src="madness-of-crowds_files/figure-revealjs/unnamed-chunk-1-1.png" width="768" class="r-stretch"></section>
-<section id="wisdom-of-crowds-1" class="slide level2">
-<h2>Wisdom of Crowds</h2>
-
-<img data-src="madness-of-crowds_files/figure-revealjs/unnamed-chunk-2-1.png" width="768" class="r-stretch"></section>
-<section id="wisdom-of-crowds-2" class="slide level2">
-<h2>Wisdom of Crowds</h2>
-
-<img data-src="madness-of-crowds_files/figure-revealjs/unnamed-chunk-3-1.png" width="768" class="r-stretch"></section>
+<section id="motivating-problem" class="slide level2">
+<h2>Motivating Problem</h2>
+<ul>
+<li class="fragment"><p>Suppose the class is trying to predict whether the Federal Reserve will cut interest rates at its next meeting.</p></li>
+<li class="fragment"><p>Three students leading the discussion all say 75%.</p></li>
+<li class="fragment"><p>What should you predict after observing those three forecasts?</p></li>
+<li class="fragment"><p>Previously, we considered taking the <strong>median</strong> forecast (i.e.&nbsp;majority rule).</p>
+<ul>
+<li class="fragment">But that strategy required some strong assumptions.</li>
+<li class="fragment"><em>Remind what those assumptions were?</em></li>
+</ul></li>
+</ul>
+</section>
 <section id="todays-agenda" class="slide level2">
 <h2>Today’s Agenda</h2>
 <ul>
-<li class="fragment"><p>If you can engineer conditions so that you have a <strong>large group</strong> of <strong>independent</strong> and <strong>competent</strong> individuals, then your crowd will be wise.</p>
+<li class="fragment"><p>How best to <strong>aggregate</strong> individual forecasts into a group forecast?</p></li>
+<li class="fragment"><p>I’ll try to convince you that, if three individual forecasts are at 75%, the best aggregation is probably &gt;75%.</p>
 <ul>
-<li class="fragment">Congratulations!</li>
+<li class="fragment">This is called <strong>extremizing</strong>: increasing the confidence of the group forecast when multiple individuals all make a prediction in the same direction.</li>
 </ul></li>
-<li class="fragment"><p>But in most real-world groups, those assumptions are rarely met.</p></li>
-<li class="fragment"><p>Today, a few violations of the <em>independence</em> assumption, and how it can affect group decision-making.</p></li>
+<li class="fragment"><p>We’ll motivate this idea from the perspective of <strong>Bayesian updating</strong>.</p></li>
 </ul>
 </section>
-<section id="lets-play-a-game" class="slide level2">
-<h2>Let’s Play A Game</h2>
+<section id="warmup" class="slide level2">
+<h2>Warmup</h2>
 <ul>
-<li class="fragment">I need 10 volunteers to play a little game.</li>
-<li class="fragment">I have two bags, and will randomly choose one to play with:
-<ul>
-<li class="fragment">Bag A has <strong>2 red</strong> poker chips and <strong>1 blue</strong> poker chip.</li>
-<li class="fragment">Bag B has <strong>1 red</strong> poker chip and <strong>2 blue</strong> poker chips.</li>
-</ul></li>
-<li class="fragment">On your turn, secretly draw a chip from the bag, put it back, then write your name on the board.
-<ul>
-<li class="fragment">Use blue marker if you think the bag is mostly blue.</li>
-<li class="fragment">Use red marker if you think the bag is mostly red.</li>
-</ul></li>
-<li class="fragment">1 bonus point if you predict correctly.</li>
+<li class="fragment"><p>Suppose you’re leading discussion of that interest rates question.</p></li>
+<li class="fragment"><p>At first, you have no idea what will happen (prior odds = 1:1).</p></li>
+<li class="fragment"><p>Then you find a statement from a Fed official expressing concern about unemployment.</p></li>
+<li class="fragment"><p>Historically, he makes statements like this three times more often before an interest rate cut than he does otherwise.</p></li>
+<li class="fragment"><p><strong>Problem:</strong> What should your new forecast be, after observing this evidence?</p></li>
 </ul>
 </section>
-<section id="information-cascades" class="slide level2">
-<h2>Information Cascades</h2>
+<section id="warmup-1" class="slide level2">
+<h2>Warmup</h2>
+<p>Remember <strong>Bayes Rule</strong>:</p>
+<p><span class="math display">\[
+\text{Posterior Odds} = \text{Prior Odds} \times \text{Strength of Evidence}
+\]</span></p>
+</section>
+<section id="warmup-2" class="slide level2">
+<h2>Warmup</h2>
+<p>Remember <strong>Bayes Rule</strong>:</p>
+<p><span class="math display">\[
+\underbrace{\text{Posterior Odds}}_{\text{New Forecast}} = \underbrace{\text{Prior Odds}}_{\text{Old Forecast}}\times  \underbrace{\text{Strength of Evidence}}_{\text{Likelihood Ratio}}
+\]</span></p>
 <ul>
-<li class="fragment"><p>An <strong>information cascade</strong> occurs whenever individuals ignore their private information and go with the group consensus.</p></li>
-<li class="fragment"><p>This can be a perfectly rational decision from a Bayesian perspective.</p>
+<li class="fragment"><strong>Prior Odds:</strong> 1:1</li>
+<li class="fragment"><strong>Likelihood Ratio:</strong> 3:1</li>
+<li class="fragment"><strong>Posterior Odds:</strong> 3:1</li>
+<li class="fragment"><strong>New Forecast</strong>: 75%</li>
+</ul>
+</section>
+<section id="bayesian-updating" class="slide level2">
+<h2>Bayesian Updating</h2>
 <ul>
-<li class="fragment"><p>If the first two students draw blue chips, posterior odds are <span class="math inline">\(1:1 \times 2:1 \times 2:1 = 4:1\)</span> that it’s the blue bag.</p></li>
-<li class="fragment"><p>If the third student draws a <em>blue</em> chip, posterior odds are <span class="math inline">\(8:1\)</span>. <strong>Guess blue!</strong></p></li>
-<li class="fragment"><p>If the third student draws a <em>red</em> chip, posterior odds are <span class="math inline">\(2:1\)</span>. <strong>Guess blue!</strong></p></li>
+<li class="fragment"><p>Now suppose you read that JP Morgan’s analysts are predicting an interest rate cut.</p></li>
+<li class="fragment"><p>Historically, this appears to have the same strength of evidence as the Fed official’s statements.</p></li>
+<li class="fragment"><p>Bayes Rule handles this problem exactly like the first one!</p>
+<ul>
+<li class="fragment"><strong>Prior Odds:</strong> 3:1</li>
+<li class="fragment"><strong>Likelihood Ratio</strong>: 3:1</li>
+<li class="fragment"><strong>Posterior Odds</strong>: <span class="math inline">\(3:1 \times 3:1 = 9:1\)</span></li>
+<li class="fragment"><strong>New Prediction</strong>: 90%</li>
 </ul></li>
 </ul>
 </section>
-<section id="information-cascades-1" class="slide level2">
-<h2>Information Cascades</h2>
+<section id="bayesian-updating-1" class="slide level2">
+<h2>Bayesian Updating</h2>
 <ul>
-<li class="fragment"><p>Information cascades don’t always cause the group to get the wrong answer.</p></li>
-<li class="fragment"><p>But they do illustrate how hard it is to make a truly independent prediction in a group setting.</p></li>
-<li class="fragment"><p>If we can observe the predictions that other people make, there’s a strong rational basis for ignoring our individual information and just going with the group.</p></li>
+<li class="fragment"><p>This process of <strong>Bayesian updating</strong> can proceed indefinitely.</p></li>
+<li class="fragment"><p>For each piece of evidence:</p>
+<ul>
+<li class="fragment">Assess its likelihood ratio: conditional on everything you already know, how much more likely are you to observe this evidence if the event happens?</li>
+<li class="fragment">Adjust your prediction up or down using Bayes Rule.</li>
+</ul></li>
 </ul>
 </section>
-<section id="social-influence" class="slide level2">
-<h2>Social Influence</h2>
-<p>Even when there is no rational basis for doing so, we still might face strong pressures to conform with the group…</p>
-<iframe data-external="1" src="https://www.youtube.com/embed/iRh5qy09nNw?si=OU6-QJQGBOMJ35Fq" width="1100" height="500" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+<section id="back-to-the-motivating-problem" class="slide level2">
+<h2>Back to the Motivating Problem</h2>
+<ul>
+<li class="fragment"><p>Consider the three students discussing the Federal Reserve question. All three start with prior odds 1:1.</p></li>
+<li class="fragment"><p><strong>Student A</strong> only finds the statement by the Fed official (3:1 likelihood ratio).</p></li>
+<li class="fragment"><p><strong>Student B</strong> finds the JP Morgan report (3:1 likelihood ratio).</p></li>
+<li class="fragment"><p><strong>Student C</strong> finds a <em>third</em> piece of evidence (also 3:1).</p></li>
+<li class="fragment"><p>If nobody shares information with each other, what would each student predict?</p></li>
+<li class="fragment"><p>If everyone shared their information, what would they predict (using Bayesian updating)?</p></li>
+</ul>
 </section>
-<section id="groupthink" class="slide level2">
-<h2>Groupthink</h2>
-<p>When individuals suppress their private information for the sake of group harmony/cohesion, we call it <strong>groupthink</strong>.</p>
-
-<img data-src="img/groupthink.jpg" class="quarto-figure quarto-figure-center r-stretch"><div class="fragment">
-<p><strong>Discuss:</strong> Have you ever been part of a group like this? How can we design our teams to avoid groupthink?</p>
-<aside class="notes">
-<p>https://mediationworksfl.com/going-with-the-flow-the-influence-of-groupthink-on-mediation-outcomes/</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+<section id="extremizing" class="slide level2">
+<h2>Extremizing</h2>
+<ul>
+<li class="fragment"><p>This is the intuition behind <strong>extremizing</strong> predictions.</p></li>
+<li class="fragment"><p>If a group of forecasters have independent pieces of information, they should become more confident if they shared what they know.</p></li>
+<li class="fragment"><p>We can simulate this process by making everyone’s forecast a bit more confident before taking the average.</p></li>
+<li class="fragment"><p>How much you extremize depends on how much independent information you think the crowd has.</p></li>
+</ul>
+</section>
+<section id="extremizing-1" class="slide level2">
+<h2>Extremizing</h2>
+<p>If every individual has fully independent evidence informing their prediction:</p>
+<div class="fragment">
+<p><span class="math display">\[
+o_{group} = o_1 \times o_2 \times o_3 \times \ldots \times o_n
+\]</span></p>
+</div>
+<div class="fragment">
+<p>This is full Bayesian updating; multiply everyone’s odds together to get the posterior.</p>
 </div>
 </section>
-<section id="groupthink-1" class="slide level2">
-<h2>Groupthink</h2>
+<section id="extremizing-2" class="slide level2">
+<h2>Extremizing</h2>
 <ul>
-<li class="fragment"><p>History is full of examples of catastrophic predictions / decisions made by groups that valued harmony over accuracy:</p>
-<ul>
-<li class="fragment"><p>Bay of Pigs invasion (1961)</p></li>
-<li class="fragment"><p>Pearl Harbor attacks (1941)</p></li>
-<li class="fragment"><p>Space Shuttle Challenger disaster (1986)</p></li>
-</ul></li>
-<li class="fragment"><p>These are just a few prominent cases where people kept their private doubts quiet to conform with the group consensus.</p></li>
+<li class="fragment"><p>But that independence assumption is wildly optimistic!</p></li>
+<li class="fragment"><p>Forecasters are usually relying on the same sources of information (Google searches, chatbots, newspapers, etc.)</p></li>
+<li class="fragment"><p>More reasonable assumption: the crowd has <em>some</em> independent pieces of information.</p></li>
 </ul>
+</section>
+<section id="extremizing-3" class="slide level2">
+<h2>Extremizing</h2>
+<p>If each individual has <em>some</em> independent information:</p>
+<div class="fragment">
+<p><span class="math display">\[
+o_{group} = (o_1 \times o_2 \times o_3 \times \ldots \times o_n)^\frac{\alpha}{n}
+\]</span></p>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment"><p><span class="math inline">\(\alpha\)</span> represents the amount of independent information.</p></li>
+<li class="fragment"><p><span class="math inline">\(\alpha = n\)</span>: Everyone has completely independent information. Group forecast is full Bayesian updating.</p></li>
+<li class="fragment"><p><span class="math inline">\(\alpha = 1\)</span>: No one has independent information. Group forecast is just the average individual forecast.</p></li>
+<li class="fragment"><p>Truth is probably somewhere in the middle. For superforecasters, <span class="citation" data-cites="satopaaCombiningMultipleProbability2014">Satopää et al. (<a href="#/references" role="doc-biblioref" onclick="">2014</a>)</span> use <span class="math inline">\(\alpha = 2.5\)</span>.</p></li>
+</ul>
+</div>
+</section>
+<section id="example" class="slide level2">
+<h2>Example</h2>
+<ul>
+<li class="fragment"><p>Five forecasters predict 40%, 50%, 60%, 75%, and 75%.</p></li>
+<li class="fragment"><p>The <strong>median forecast</strong> is 60%.</p></li>
+<li class="fragment"><p>The <strong>extremized forecast</strong> <span class="math inline">\((\alpha = 2.5)\)</span> is:</p></li>
+</ul>
+<div class="fragment">
+<p><span class="math display">\[
+(2:3 \times 1:1 \times 3:2 \times 3:1 \times 3:1)^\frac{2.5}{5} =
+(9:1)^\frac{1}{2} = 3:1 = 75\%
+\]</span></p>
+<ul>
+<li class="fragment"><p>This isn’t the sort of math I’d ask you to perform on an exam.</p></li>
+<li class="fragment"><p>I just want you to have it in your toolbox.</p></li>
+</ul>
+</div>
 </section>
 <section id="takeaways" class="slide level2">
 <h2>Takeaways</h2>
 <ul>
-<li class="fragment"><p>We don’t naturally design our groups in a way that promotes independence.</p>
+<li class="fragment"><p>Confident predictions are justified if multiple, independent pieces of evidence point towards the same conclusion (<strong>Bayesian updating</strong>, dragonfly-eyed foxes).</p></li>
+<li class="fragment"><p>When listening to our discussions, consider whether each student is bringing a different perspective, or if everyone is relying on the same evidence.</p>
 <ul>
-<li class="fragment"><p>When people share their predictions but not their reasoning, a common result is <strong>information cascades</strong>.</p></li>
-<li class="fragment"><p>We are social creatures, and so face strong pressures towards <strong>group conformity</strong>.</p></li>
+<li class="fragment">If the former, then the group forecast should be more confident than the individual forecasts (<strong>extremizing</strong>).</li>
 </ul></li>
-<li class="fragment"><p>If you want to harness the wisdom of crowds, give individuals the freedom and motivation to work independently and report their information honestly.</p></li>
+<li class="fragment"><p>When organizing a team, make sure everyone <em>shares information</em> rather than just sharing conclusions.</p></li>
 </ul>
+</section>
+<section id="references" class="slide level2 smaller scrollable">
+<h2>References</h2>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-satopaaCombiningMultipleProbability2014" class="csl-entry" role="listitem">
+Satopää, Ville A., Jonathan Baron, Dean P. Foster, Barbara A. Mellers, Philip E. Tetlock, and Lyle H. Ungar. 2014. <span>“Combining Multiple Probability Predictions Using a Simple Logit Model.”</span> <em>International Journal of Forecasting</em> 30 (2): 344–56. <a href="https://doi.org/10.1016/j.ijforecast.2013.09.009">https://doi.org/10.1016/j.ijforecast.2013.09.009</a>.
+</div>
+</div>
 </section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
@@ -470,82 +553,6 @@
         ]
       });
     </script>
-    
-
-    <script>
-
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-
-      // slide changes (different for each slide format).
-
-      (function () {
-
-        // dispatch for htmlwidgets
-
-        function fireSlideEnter() {
-
-          const event = window.document.createEvent("Event");
-
-          event.initEvent("slideenter", true, true);
-
-          window.document.dispatchEvent(event);
-
-        }
-
-    
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-
-          fireSlideEnter();
-
-    
-
-          // dispatch for shiny
-
-          if (window.jQuery) {
-
-            if (previousSlide) {
-
-              window.jQuery(previousSlide).trigger("hidden");
-
-            }
-
-            if (currentSlide) {
-
-              window.jQuery(currentSlide).trigger("shown");
-
-            }
-
-          }
-
-        }
-
-    
-
-        // hookup for slidy
-
-        if (window.w3c_slidy) {
-
-          window.w3c_slidy.add_observer(function (slide_num) {
-
-            // slide_num starts at position 1
-
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-
-          });
-
-        }
-
-    
-
-      })();
-
-    </script>
-
-    
-
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
