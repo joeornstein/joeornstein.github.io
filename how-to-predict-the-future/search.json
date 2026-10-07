@@ -774,7 +774,7 @@
     "href": "slides/jury-theorems.html#condorcet-jury-theorem",
     "title": "Jury Theorems",
     "section": "Condorcet Jury Theorem",
-    "text": "Condorcet Jury Theorem\n. . .\nAssumptions:\n\nA group is voting on a binary (Yes/No) decision.\nEach voter has probability \\(p &gt; \\frac{1}{2}\\) of making the correct choice.\nIndividual votes are independent of one another.\n\n. . .\nTheorem:\n\nAs the size of the group \\(n\\) gets large:\n\nThe probability that the majority makes the correct choice approaches 100%."
+    "text": "Condorcet Jury Theorem\n\nAssumptions:\n\nA group is voting on a binary (Yes/No) decision.\nEach voter has probability \\(p &gt; \\frac{1}{2}\\) of making the correct choice.\nIndividual votes are independent of one another.\n\n\n\nTheorem:\n\nAs the size of the group \\(n\\) gets large:\n\nThe probability that the majority makes the correct choice approaches 100%."
   },
   {
     "objectID": "slides/jury-theorems.html#condorcet-jury-theorem-1",
