@@ -3722,5 +3722,201 @@
     "title": "Fall 2026 Predictions",
     "section": "Week 7 (10/6)",
     "text": "Week 7 (10/6)"
+  },
+  {
+    "objectID": "slides/polls.html#agenda",
+    "href": "slides/polls.html#agenda",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Agenda",
+    "text": "Agenda\n\nOver the next three weeks, we’ll develop a statistical model to predict the outcome of US Senate elections.\nThis is a tough forecasting problem, for several reasons:\n\nThere are relatively few polls in each Senate race, and those polls can be quite noisy.\nThe “fundamentals” are often weakly predictive.\n\nToday, we’ll talk about the first challenge. Next week, the second challenge. Week 3, bringing it all together."
+  },
+  {
+    "objectID": "slides/polls.html#review",
+    "href": "slides/polls.html#review",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Review",
+    "text": "Review"
+  },
+  {
+    "objectID": "slides/polls.html#review-1",
+    "href": "slides/polls.html#review-1",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Review",
+    "text": "Review"
+  },
+  {
+    "objectID": "slides/polls.html#review-2",
+    "href": "slides/polls.html#review-2",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Review",
+    "text": "Review"
+  },
+  {
+    "objectID": "slides/polls.html#review-3",
+    "href": "slides/polls.html#review-3",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Review",
+    "text": "Review"
+  },
+  {
+    "objectID": "slides/polls.html#review-4",
+    "href": "slides/polls.html#review-4",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Review",
+    "text": "Review\nSo, in theory:\n\nPolls will be unbiased. Any given poll will have some error, but on average they center around the actual result.\nThe variance depends on sample size. 95% of the time, a poll’s result should be within \\(\\frac{100\\%}{\\sqrt{n}}\\) of the actual result.\n\n\nThat’s what the theory says. Today, we get to see how that theory holds up in the real world."
+  },
+  {
+    "objectID": "slides/polls.html#approach-1-polls-only",
+    "href": "slides/polls.html#approach-1-polls-only",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Approach 1: Polls Only",
+    "text": "Approach 1: Polls Only"
+  },
+  {
+    "objectID": "slides/polls.html#approach-1-polls-only-1",
+    "href": "slides/polls.html#approach-1-polls-only-1",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Approach 1: Polls Only",
+    "text": "Approach 1: Polls Only\n\nBetween 1992 and 2016, polls “called” the correct winner 79.7% of the time.\nAnd polling error is quite high! The average poll was off by 6.75 percentage points.\nOf course, we expect that there will be some error in polling.\n\nThink back to our lecture on Bell Curves. Polling error should look like a normal distribution."
+  },
+  {
+    "objectID": "slides/polls.html#approach-1-polls-only-2",
+    "href": "slides/polls.html#approach-1-polls-only-2",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Approach 1: Polls Only",
+    "text": "Approach 1: Polls Only"
+  },
+  {
+    "objectID": "slides/polls.html#approach-1-polls-only-3",
+    "href": "slides/polls.html#approach-1-polls-only-3",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Approach 1: Polls Only",
+    "text": "Approach 1: Polls Only\n\nThe problem is that polling error is much wider than the Central Limit Theorem would predict!\nRecall: a poll’s margin of error is the range within which one can be 95% confident the polling error will fall.\nBack-of-the-envelope approximation of a poll’s margin of error is \\(\\frac{100\\%}{\\sqrt{n}}\\)\nIn this dataset of 6,407 polls, the result only fell within their margin of error 3,119 times.\n\nThat’s 48.7% confidence, not 95%!"
+  },
+  {
+    "objectID": "slides/polls.html#approach-1-polls-only-4",
+    "href": "slides/polls.html#approach-1-polls-only-4",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Approach 1: Polls Only",
+    "text": "Approach 1: Polls Only\n\nFor most polls, the margin of error gives us a false sense of security.\nReal-world polling has much higher variance than theory would predict.\nMany different reasons why:\n\nNon-response bias\nPeople change their minds\nPeople lie"
+  },
+  {
+    "objectID": "slides/polls.html#polling-averages",
+    "href": "slides/polls.html#polling-averages",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Polling Averages",
+    "text": "Polling Averages\n\nInstead of relying on individual polls to make predictions, what if we aggregate the predictions of a bunch of polls?\n“Wisdom of crowds” logic says this should be a good strategy.\n\nEach poll captures a glimpse of the truth. Correct on average, but with some error.\nA polling average should, in theory, cancel out those errors and yield a more accurate prediction."
+  },
+  {
+    "objectID": "slides/polls.html#polling-averages-1",
+    "href": "slides/polls.html#polling-averages-1",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Polling Averages",
+    "text": "Polling Averages"
+  },
+  {
+    "objectID": "slides/polls.html#polling-averages-2",
+    "href": "slides/polls.html#polling-averages-2",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Polling Averages",
+    "text": "Polling Averages"
+  },
+  {
+    "objectID": "slides/polls.html#references",
+    "href": "slides/polls.html#references",
+    "title": "Election Forecasting (The Polls)",
+    "section": "References",
+    "text": "References"
+  },
+  {
+    "objectID": "slides/polls.html#some-actual-polls",
+    "href": "slides/polls.html#some-actual-polls",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Some Actual Polls",
+    "text": "Some Actual Polls"
+  },
+  {
+    "objectID": "slides/polls.html#some-actual-polls-1",
+    "href": "slides/polls.html#some-actual-polls-1",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Some Actual Polls",
+    "text": "Some Actual Polls"
+  },
+  {
+    "objectID": "slides/polls.html#some-actual-polls-2",
+    "href": "slides/polls.html#some-actual-polls-2",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Some Actual Polls",
+    "text": "Some Actual Polls"
+  },
+  {
+    "objectID": "slides/polls.html#uh-oh",
+    "href": "slides/polls.html#uh-oh",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Uh Oh",
+    "text": "Uh Oh\n\nFor most polls, the classical margin of error gives us a false sense of security.\nReal-world polling has much higher variance than theory would predict.\nMany different reasons why:\n\nNon-response bias\nPeople change their minds\nPeople lie\nNot everyone who takes the poll turns out to vote\n\nIn practice, real-world pollsters have to make a bunch of statistical adjustments to compensate for these errors.\n\nSome pollsters do this better than others!"
+  },
+  {
+    "objectID": "slides/polls.html#house-effects",
+    "href": "slides/polls.html#house-effects",
+    "title": "Election Forecasting (The Polls)",
+    "section": "House Effects",
+    "text": "House Effects"
+  },
+  {
+    "objectID": "slides/polls.html#polling-averages-3",
+    "href": "slides/polls.html#polling-averages-3",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Polling Averages",
+    "text": "Polling Averages"
+  },
+  {
+    "objectID": "slides/polls.html#polling-averages-4",
+    "href": "slides/polls.html#polling-averages-4",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Polling Averages",
+    "text": "Polling Averages\n\nRecall that the individual polls called the correct winner 79.7% of the time.\nBy comparison, the polling average called the correct winner 91.5% of the time."
+  },
+  {
+    "objectID": "slides/polls.html#takeaways",
+    "href": "slides/polls.html#takeaways",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Takeaways",
+    "text": "Takeaways\n\nPolls provide unbiased, but high variance, election forecasts.\nModern pollsters have to make a lot of adjustments for non-response bias, with varying levels of success.\nPolling averages significantly reduce prediction error, as the “wisdom of crowds” would predict.\nNext time: Can we do better aggregating predictions than a simple polling average? Can we use information outside the pollsto improve our forecast?"
+  },
+  {
+    "objectID": "slides/polls.html#some-actual-polls-3",
+    "href": "slides/polls.html#some-actual-polls-3",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Some Actual Polls",
+    "text": "Some Actual Polls"
+  },
+  {
+    "objectID": "slides/polls.html#some-actual-polls-4",
+    "href": "slides/polls.html#some-actual-polls-4",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Some Actual Polls",
+    "text": "Some Actual Polls\n\nBetween 1992 and 2016, US Senate polls were resoundingly unbiased. 3,205 polls over-estimated Democrats and 3,202 polls over-estimated Republicans.\nThe polls “called” the correct winner 79.7% of the time.\nWhat about variance?\n\nHere, reality diverges from theory.\nThe average poll was off by 6.75 percentage points.\nThat polling error is much wider than the Central Limit Theorem would predict.\nIn this dataset of 6,407 polls, the result only fell within their margin of error 3,119 times.\n\nThat’s 48.7% confidence, not 95%!"
+  },
+  {
+    "objectID": "slides/polls.html#whoops",
+    "href": "slides/polls.html#whoops",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Whoops",
+    "text": "Whoops\n\nFor most polls, the classical margin of error gives us a false sense of security.\nReal-world polling has much higher variance than theory would predict.\nMany different reasons why:\n\nNon-response bias\nPeople change their minds\nPeople lie\nNot everyone who takes the poll turns out to vote\n\nIn practice, real-world pollsters have to make a bunch of statistical adjustments to compensate for these errors.\n\nSome pollsters do this better than others!"
+  },
+  {
+    "objectID": "slides/polls.html#polling-averages-5",
+    "href": "slides/polls.html#polling-averages-5",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Polling Averages",
+    "text": "Polling Averages"
+  },
+  {
+    "objectID": "slides/polls.html#polling-averages-6",
+    "href": "slides/polls.html#polling-averages-6",
+    "title": "Election Forecasting (The Polls)",
+    "section": "Polling Averages",
+    "text": "Polling Averages"
   }
 ]
