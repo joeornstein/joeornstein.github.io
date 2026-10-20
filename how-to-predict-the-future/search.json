@@ -3918,5 +3918,152 @@
     "title": "Election Forecasting (The Polls)",
     "section": "Polling Averages",
     "text": "Polling Averages"
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#previously",
+    "href": "slides/election-fundamentals.html#previously",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "Previously…",
+    "text": "Previously…"
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#todays-agenda",
+    "href": "slides/election-fundamentals.html#todays-agenda",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "Today’s Agenda",
+    "text": "Today’s Agenda\n\nIs there other information besides polls that we can use to make accurate election forecasts?\nWe’ll build a rudimentary statistical model based on political science fundamentals: quantitative indicators that we expect to be strongly predictive of election results.\nAlong the way, I’ll show you the basics of using linear models for prediction problems.\nWe’ll describe how these models work, and discuss three potential dangers caused by using them carelessly."
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#motivating-example",
+    "href": "slides/election-fundamentals.html#motivating-example",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "Motivating Example",
+    "text": "Motivating Example\n\nSuppose it is June in a presidential election year, and you want to predict which candidate will win.\nCan you make a reasonably accurate prediction about November’s election based only on information you have in June?\nLet’s start with an “Outside View”. Are there variables that, historically, have been predictive of presidential election results five months in advance?\nDiscuss: what information would you want to know before making your prediction?"
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#presidential-election-forecast",
+    "href": "slides/election-fundamentals.html#presidential-election-forecast",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast"
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#presidential-election-forecast-1",
+    "href": "slides/election-fundamentals.html#presidential-election-forecast-1",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast"
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#presidential-election-forecast-2",
+    "href": "slides/election-fundamentals.html#presidential-election-forecast-2",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast\n\nThe equation describing that line is 3.27 + 0.37 \\(\\times \\text{June Approval}\\)\nFor every 1-unit increase in presidential approval, we would predict an additional 0.37 in vote margin for the incumbent’s party.\nBut where did those numbers come from? What is the “line of best fit”?\nThe line of best fit is the line that minimizes average squared error.\n\nMinimizing average squared error. Does that remind you of anything?"
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#presidential-election-forecast-3",
+    "href": "slides/election-fundamentals.html#presidential-election-forecast-3",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast"
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#presidential-election-forecast-4",
+    "href": "slides/election-fundamentals.html#presidential-election-forecast-4",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast"
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#presidential-election-forecast-5",
+    "href": "slides/election-fundamentals.html#presidential-election-forecast-5",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast\n\nWe can make predictions using this model by plugging in values for future elections.\nIn June 2016, the incumbent president’s net approval rating was +5%.\nSo the model would predict 3.27 + 0.37 \\(\\times 5 = 5.12\\%\\) vote margin for the incumbent party."
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#presidential-election-forecast-6",
+    "href": "slides/election-fundamentals.html#presidential-election-forecast-6",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast"
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#presidential-election-forecast-7",
+    "href": "slides/election-fundamentals.html#presidential-election-forecast-7",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast\n\nThe average forecast error is 4.7 percentage points.\nAnd we have some particularly large errors in 1972 (11.9 points) and 1984 (8.5 points).\nMaybe we’d do better if we added more predictor variables to the model?"
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#presidential-election-forecast-8",
+    "href": "slides/election-fundamentals.html#presidential-election-forecast-8",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast"
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#presidential-election-forecast-9",
+    "href": "slides/election-fundamentals.html#presidential-election-forecast-9",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast\n\nCombining the presidential approval and economic growth into the same linear model yields this equation:\n\n0.33 + 0.3 \\(\\times \\text{June Approval}\\) + 0.94 \\(\\times \\text{Q2 GDP Growth}\\)\n\nIn 2016, GDP growth was a sluggish 1.2% in the second quarter.\nSo the revised model would predict an incumbent margin of 2.96 percentage points. Much better!"
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#the-plane-of-best-fit",
+    "href": "slides/election-fundamentals.html#the-plane-of-best-fit",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "The “Plane of Best Fit”",
+    "text": "The “Plane of Best Fit”"
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#presidential-election-forecast-10",
+    "href": "slides/election-fundamentals.html#presidential-election-forecast-10",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "Presidential Election Forecast",
+    "text": "Presidential Election Forecast\n\nThe kind of forecast model we’ve been building here is called a fundamentals model.\nNotice that it doesn’t use polling at all!\nIt makes predictions purely based on political “fundamentals”, historical patterns observed in the data (Abramowitz 2021)."
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#three-dangers",
+    "href": "slides/election-fundamentals.html#three-dangers",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "Three Dangers",
+    "text": "Three Dangers\n\nSimple linear models can be a surprisingly useful tool for making predictions.\nBut when using a linear model, keep in mind three dangers that could ruin your forecasts:\n\nNonlinearity\nExtrapolation\nStructural instability"
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#danger-1-nonlinearity",
+    "href": "slides/election-fundamentals.html#danger-1-nonlinearity",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "Danger 1: Nonlinearity",
+    "text": "Danger 1: Nonlinearity\n\nThe linear model faithfully gives you the line of best fit…\n\n\n\n\n\n\n\n\n\n\n\n…even when a straight line is a terrible model!"
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#danger-2-extrapolation",
+    "href": "slides/election-fundamentals.html#danger-2-extrapolation",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "Danger 2: Extrapolation",
+    "text": "Danger 2: Extrapolation\n\nBe cautious of making predictions with a linear model if the current situation lies far outside the historical data.\n\n\n\n\n\n\n\n\nPlugging these numbers into our model would predict the incumbent losing by 35.2 percentage points! (Actual margin was -4.5 points)."
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#danger-3-structural-instability",
+    "href": "slides/election-fundamentals.html#danger-3-structural-instability",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "Danger 3: Structural Instability",
+    "text": "Danger 3: Structural Instability\n\nPredicting with a linear model assumes that the relationships observed in your data will be stable over time.\nIn other words, you’re assuming that the future will follow the same rules as the past.\nMaybe as voters have become more polarized, the relationship between economic growth and voting behavior has gotten weaker?\n\nIf so, our fundamentals model will get worse and worse at predicting as time goes on."
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#looking-forward",
+    "href": "slides/election-fundamentals.html#looking-forward",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "Looking Forward",
+    "text": "Looking Forward\n\nNext class, we’ll try fitting this type of model on our Senate election dataset, and see how well it performs.\nAnd in our final topic of the module, we’ll combine polls and fundamentals into a single forecasting model.\n\nVery foxy move. Don’t miss it!"
+  },
+  {
+    "objectID": "slides/election-fundamentals.html#references",
+    "href": "slides/election-fundamentals.html#references",
+    "title": "Election Forecasting (The Fundamentals)",
+    "section": "References",
+    "text": "References\n\n\n\n\nAbramowitz, Alan I. 2021. “It’s the Pandemic, Stupid! A Simplified Model for Forecasting the 2020 Presidential Election.” PS: Political Science & Politics 54 (1): 52–54. https://doi.org/10.1017/S1049096520001389."
   }
 ]
