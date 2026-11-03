@@ -4,7 +4,7 @@
     "href": "slides/integrals.html#area-under-a-curve",
     "title": "Calculus Essentials",
     "section": "Area Under A Curve",
-    "text": "Area Under A Curve\nTo compute a p-value, we need to know the area under the shaded part of the probability distribution function. We know that the area under the entire curve equals 1, but what fraction of that area is shaded below?"
+    "text": "Area Under A Curve\nTo compute probability within an interval, we need to know the area under the shaded part of the probability distribution function. We know that the area under the entire curve equals 1, but what fraction of that area is shaded below?"
   },
   {
     "objectID": "slides/integrals.html#area-under-a-curve-1",
@@ -81,7 +81,7 @@
     "href": "slides/integrals.html#the-area-function-fx-1",
     "title": "Calculus Essentials",
     "section": "The Area Function \\(F(x)\\)",
-    "text": "The Area Function \\(F(x)\\)\nAs \\(h\\) approaches zero, our skinny rectangles should become a better and better approximation of this area function…\n\\[f(x) \\cdot h = \\lim_{h \\to 0} F(x+h) - F(x)\\]\n\nDivide on both sides by \\(h\\).\n\\[f(x) = \\lim_{h \\to 0} \\frac{F(x+h) - F(x)}{h}\\]\n\n\nHey doesn’t that look familiar?\n\n\n\\(f(x) = F'(x)\\). In other words, \\(F(x)\\) is the antiderivative."
+    "text": "The Area Function \\(F(x)\\)\nAs \\(h\\) approaches zero, our skinny rectangles should become a better and better approximation of this area function…\n\\[f(x) \\cdot h = \\lim_{h \\to 0} F(x+h) - F(x)\\]\n\nDivide on both sides by \\(h\\).\n\\[f(x) = \\lim_{h \\to 0} \\frac{F(x+h) - F(x)}{h}\\]\n\n\nHey doesn’t that look familiar?\n\n\n\\(f(x) = F'(x)\\). In other words, \\(F(x)\\) is the antiderivative of \\(f(x)\\)."
   },
   {
     "objectID": "slides/integrals.html#the-fundamental-theorem-of-calculus",
@@ -949,7 +949,7 @@
     "href": "index.html#slides",
     "title": "POLS 7012: Introduction to Political Methodology",
     "section": "Slides",
-    "text": "Slides\n\nCalculus Essentials\n\nCalculus Practice"
+    "text": "Slides\n\nCalculus Essentials\n\nCalculus Practice\n\nIntegrals and the Fundamental Theorem of Calculus"
   },
   {
     "objectID": "slides/calculus.html",
